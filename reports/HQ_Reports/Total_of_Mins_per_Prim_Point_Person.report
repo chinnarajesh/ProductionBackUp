@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <aggregates>
+        <calculatedFormula>Intervention_Session_Result__c.Amount_of_Time__c:SUM</calculatedFormula>
+        <datatype>number</datatype>
+        <developerName>FORMULA1</developerName>
+        <downGroupingContext>Section__c.Intervention_Sessions__r$Session_Time_Completed_For__c</downGroupingContext>
+        <isActive>true</isActive>
+        <isCrossBlock>false</isCrossBlock>
+        <masterLabel>Total # of Mins for PPP</masterLabel>
+        <scale>0</scale>
+    </aggregates>
+    <columns>
+        <field>Section__c$Name</field>
+    </columns>
+    <columns>
+        <field>Section__c$Program__c</field>
+    </columns>
+    <columns>
+        <field>Section__c.Intervention_Sessions__r.Intervention_Session_Results__r$Name</field>
+    </columns>
+    <columns>
+        <field>Section__c.Intervention_Sessions__r.Intervention_Session_Results__r$Amount_of_Time__c</field>
+    </columns>
+    <description>This report breaks down the data by location, school, and session time entered for so users can see how many mins staff has accumulated</description>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Section__c$Location__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Section__c$School__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Section__c.Intervention_Sessions__r$Session_Time_Completed_For__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Total # of  Mins per Prim Point Person</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Sections_with_Intervention_Sessions_with_Intervention_Session_Results__c</reportType>
+    <scope>organization</scope>
+    <showDetails>false</showDetails>
+    <showGrandTotal>false</showGrandTotal>
+    <showSubTotals>false</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>Section__c$CreatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

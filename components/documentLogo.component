@@ -1,0 +1,13 @@
+<apex:component access="global">
+	<apex:attribute access="global" name="image" description="This is the object that holds the picture information" type="Student__c" required="true" />
+	<apex:attribute access="global" name="bSchoolPicture" description="This determines whether to use the picture from the school record or the setup record" type="boolean" required="true" />
+
+	<ul id="school-info" style="padding-top:0px">
+		<li class="school-logo" style="padding-left:2px; margin-top=">
+			<div class="documentImage">
+				<apex:outputField value="{!image.School__r.School_Picture__c}" rendered="{!bSchoolPicture}" />
+				<apex:outputField value="{!image.Setup__r.School_picture__c}" rendered="{!!bSchoolPicture}" />
+			</div>
+		</li>
+	</ul>
+</apex:component>

@@ -1,0 +1,172 @@
+<apex:component >
+	<apex:attribute required="false" name="summerSchoolMode" type="boolean" description="Use summer school coloring." default="false"/>
+
+	<apex:stylesheet value="{!$Resource.New_Core_UX}" />
+	<apex:stylesheet value="{!URLFOR($Resource.schoolforce_demo_page, '/css/style.css')}" />
+	<apex:includeScript value="{!URLFOR($Resource.jWerty, '/jWerty/jwerty.js')}" />
+	
+	<c:CT_jQueryInit bDataTables="true" bLoadingPanel="true" bTimePicker="true" bColorPicker="true" bTreeView="true" bClueTip="true" bDateJs="true"/>
+	<c:admin />
+
+	<apex:outputPanel rendered="{!summerSchoolMode}">
+        <style>
+            h1.centerHeader{
+                color:#C54325!important;
+            }
+            .content-wrapper, .content-wrapper .apexp, .content-wrapper .tabs, .content-wrapper #tabList, .content-wrapper .ui-tabs-nav, #setupSidebarFrame, .section_content{
+            	background:white!important;
+            }
+            .tabs, #tabList, .noSidebarCell{
+            	background:#D5F7F7;
+            }
+            .apexp, .ui-tabs-nav{
+            	background:#D5F7F7!important;
+            }
+            .bPageBlock{
+            	background:transparent!important;
+            }
+        </style>
+    </apex:outputPanel>
+    <apex:outputPanel rendered="{!NOT(summerSchoolMode)}">
+    	<style>
+    		.ui-tabs-nav{
+            	background-color: white !important;
+            }
+    		 
+    	</style>
+    </apex:outputPanel>
+
+	<style>
+	.tabs #tabList .ui-widget-content {
+		border: 0px solid #AAA !important;
+	}
+	.tabs #tabList .ui-widget-header {
+		border: 0px solid #67B2CE !important;
+	}
+	.tabs #tabList .ui-tabs-nav {
+		border-width: 0px 0px 1px 0px;
+		border-radius: 0px;
+		-moz-border-radius: 0px;
+		-webkit-border-radius: 0px;
+	}
+	.tabs #tabList .ui-widget-header {
+		border: 0px;
+		background: white;
+		color: #222/*{fcHeader}*/;
+
+		/*font-weight: bold;*/
+	}
+	.tabs #tabList .ui-state-active a {
+		background: -webkit-gradient(linear, left top, left bottom, from(#e6f3f7), to(#cbe9f0));
+		background: -moz-linear-gradient(top, #e6f3f7, #cbe9f0);
+	}
+	.black_btn{
+		text-transform: uppercase;
+	}
+	.pageMessages table, 
+	.pageMessages tr, 
+	.pageMessages td{
+		border: none !important;
+		padding: 0px !important;
+		height: auto !important;
+	}
+	.helpText {
+		z-index:12;
+	}
+	.adminSummary{
+		display:block;
+	}
+	.childSummary{
+		margin: 18px;
+	}
+	.noFilter .ui-state-default {
+        padding:3px; 
+        background:#B5E3F2;
+        border:1px solid #67b2ce;
+    }
+	.tablesorter .ui-state-default {
+		padding:3px;
+		background:#B5E3F2;
+		border:1px solid #67b2ce;
+	}
+	.noFilter tbody tr td{
+        padding:5px 3px;
+        color:#333;
+    }
+	.tablesorter tbody tr td {
+		padding:5px 3px;
+		color:#333;
+	}
+	.red_btn:disabled{
+		background:#7F0E00 !important;
+	}
+	</style>
+	<script>
+		function toggleDetails(elem){
+			if(j$(elem).attr("class").indexOf('active') > 0){
+				j$(elem).removeClass("active");
+				j$(elem).next().addClass("collapsed");
+			}
+			else{
+				j$(elem).addClass("active");
+				j$(elem).next().removeClass("collapsed");
+			}
+		}
+		function colorRows(){
+			j$('.childTable tr:nth-child(even)').addClass('odd');
+			j$('.childTable tr:nth-child(odd)').addClass('even');
+		}
+		
+		function initModal(modalId,closefunction){
+			closeModal(modalId);
+			createModal(modalId,closefunction);
+		}
+		
+		function createModal(modalId,closefunction){
+			j$(modalId).dialog({
+				autoOpen: false,
+				modal: true,
+				width: "auto",
+				height: "auto",
+				position: "center",
+				zIndex: 5,
+				open: function(event, ui) {
+					j$(this).parent().appendTo(j$("[id$='mainForm']"));
+				},
+				close: function(event, ui) {
+					if(closefunction && typeof closefunction == "function"){
+						closefunction();
+					}
+					j$(this).dialog('destroy');
+				}
+			});
+		}
+		
+		function openModal(modalId){
+			j$(modalId).dialog("open");
+		}
+		
+		function closeModal(modalId){
+			j$(modalId).dialog("close");
+		}
+		
+		function checkModalClose(isSuccess,modalId){
+			if(isSuccess){
+				closeModal(modalId);
+			}
+			setTimeout('hideProgressBar()',500);
+		}
+		
+		function openCSVLoader(type,setupId,isManaged){
+			var url = '';
+			if(isManaged){
+				url = '/apex/SchoolForce__core_LoadCsvData_v2?setupId='+setupId;
+			} else {
+				url = '/apex/CT_core_LoadCsvData_v2?setupId='+setupId;
+			}
+			if(type!=null) url+='&type='+type;
+			var win=window.open(url,'_blank');
+			win.focus();
+		}
+	</script>
+</apex:component>

@@ -1,0 +1,242 @@
+<apex:page controller="EOYWiz_Landing" action="{!orgWideSettingsComplete}" >
+
+    <!-- <c:admin /> -->
+    <apex:includeScript value="{!URLFOR($Resource.jWerty, '/jWerty/jwerty.js')}" />
+    <c:jQueryInit bLoadingPanel="true" bDataTables="true"/>
+    <apex:stylesheet value="{!$Resource.New_Core_UX}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.schoolforce_demo_page, 'css/style.css')}"/>
+    <c:EOYWiz_StyleModifications />
+    <c:CSS_breadCrumb />
+    
+    <style>
+        #content-wrapper {
+            font-family: 'Varela', sans-serif !important;
+            width:990px;
+            display: inline-block;          
+            border-radius:9px;
+            border:1px solid #ccc;
+            margin-bottom: 12px;
+            overflow:auto;
+            border-top:3px solid #666;      
+        }           
+    </style>
+    
+    <!-- Place commented out CSS here
+        input.green_btn_arrow
+            {margin-left:0px; border:1px red solid; width:auto; width:auto; height:50px; background-position: right center;}
+        input.green_btn_arrow:disabled { 
+            background:#177610 url(../images/arrow.png) top right no-repeat !important; 
+        }       
+        input.green_btn_arrow:hover {
+            width:auto; height:50px; background-position: right center !important;
+        }               
+                
+     -->
+    
+    <script>
+        var oTable;
+    
+        j$(document).ready(function() {
+            resetTables();
+            
+            //if({!orgWideComplete}) {
+                //getSchoolProgressJS();
+            //}
+        });
+        
+        //need destroy in this version, that's why not using admin component
+        function resetTables(){
+            oTable = j$(".tablesorter").dataTable( {
+                "sScrollY": "200px",
+                "sScrollX": "100%",
+                //"bAutoWidth": true,
+                "bDestroy": true,
+                //"aoColumnDefs": [
+                //  { "sWidth": "100px", 
+                //  "aTargets": [ 0 ]}
+                //],
+                "bPaginate": false,
+                "bJQueryUI": true, 
+                "iDisplayLength": 1000
+            });                 
+        }
+        
+        function createFinalModal() {
+            j$("#final-modal").dialog({
+                autoOpen: true,
+                minHeight: 200,
+                minWidth: 400,
+                modal: true,
+                buttons: {
+                    Ok: function() {    
+                        j$(this).dialog("close");
+                        rerenderJS();
+                    },
+                }               
+            });
+        }
+        
+        function openFinalModal() {
+            j$("#final-modal").dialog("open");
+            document.getElementById(j$('[id$=finalPanel]').attr('id')).style.display = 'inline';
+        }           
+    </script>
+
+    <apex:form >
+        <apex:outputPanel id="outerPanel" >
+        
+            <div id="schoolforce-wrapper" class="wrapper" >
+        
+                <apex:outputPanel id="errorMessages" styleClass="pageMessages">
+                    <apex:pageMessages />
+                </apex:outputPanel>
+                
+                <h1 id="navPanel" class="centerHeader">
+                    <div style="display:inline-block;">End of Year Wizard for {!activeYear.Name__c}</div>
+                </h1>
+                
+                <apex:outputPanel id="summary" styleClass="adminSummary">
+                    <!-- <p>Welcome to the End of Year (EOY) Wizard! You must complete the Org Wide Settings before you can access the School Settings. Within the Org Wide Settings and School Settings, you will almost always have to complete a step in order to proceed to the next step. If you have more than one school, you may work on them at the same time. While there is no time limit within which the EOY Wizard must be completed, you will need to finish all steps on this page in order to fully set up the next school year. To exit the wizard at any time, make sure you have saved your current work and then click on any navigation tab (e.g., Home). To move from page to page, you can use the buttons on this navigation page or the buttons at the top of each step.</p> -->
+                    <p>Welcome to the End of Year (EOY) Wizard! The EOY Wizard provides a step-by-step process to close out your current school year and complete key parts of the school's setup for next year. You will want to have all of your data finalized for your organization's current school year before you export data in the optional Org Wide Settings step and before you complete the Process EOY Data step in the School Settings.</p>
+                    <p>In the EOY Wizard, you cannot access a step until it displays in yellow on this navigation page. Completed steps display green. Within the Org Wide Settings and School Settings, you almost always have to complete a step in order to proceed to the next step. If you have multiple schools, you may work on them simultaneously. While there is no time limit within which you must complete the EOY Wizard, you will need to finish all steps displayed on this page and click the Activate Next Year button in order to fully set up the next school year. To exit the wizard at any time, save your current settings and then click any navigation tab (e.g., Home). To move from page to page, you can use the buttons on this navigation page or the buttons at the top of each step.</p>
+                    <br></br>
+                    <br></br>
+                </apex:outputPanel>
+                
+            </div>  
+                
+                <div style="text-align:center;">
+                <div id="content-wrapper">
+                    <apex:outputPanel id="landingPage">
+                        <!-- <apex:pageBlock title="End of Year Wizard for {!activeYear.Name__c}" > -->
+                            <apex:pageBlock >
+                            <h2 style="font-size:18px; font-weight:bold; color:#000; margin-bottom:5px; text-align:left; display:block;" >Org Wide Settings Status</h2>
+                            <p style="text-align:left;">During this process, you will make the following decisions for your entire organization: how long you will keep historical data and what your next school year’s start/end dates will be. You will also be prompted to back up data for the school year that just ended.</p>
+                            <!-- old way
+                            <apex:pageBlockSection>
+                                <apex:pageBlockSectionItem>
+                                    <apex:pageBlockTable id="EOYProgress" value="{!orgWideProgress}" var="org">
+                                        <apex:column headerValue="Step 1" >
+                                            <apex:inputCheckbox value="{!org.EOY_Settings_Completed__c}" disabled="true" />
+                                        </apex:column>
+                                        <apex:column headerValue="Step 2" >
+                                            <apex:inputCheckbox value="{!org.Next_School_Year_Completed__c}" disabled="true" />
+                                        </apex:column>
+                                    </apex:pageBlockTable>  
+                                </apex:pageBlockSectionItem>
+                                <apex:pageBlockSectionItem >        
+                                    <input id="orgWideSettingsID" type="button" class="green_btn_arrow" onClick="gotoOrgWidesettingsJS();" value="Org Wide Settings" />
+                                </apex:pageBlockSectionItem>
+                            </apex:pageBlockSection>
+                            -->
+                            
+                            <apex:repeat id="EOYProgress" value="{!orgWideProgress}" var="org">
+                                <ul class="breadcrumb">
+                                    <!-- <input id="eoyWizard1" type="button" onClick="gotoOrgWideSettingsJS();" value="Step 1 Completed" /> -->
+                                    <li><a href="#" class="{!IF(org.EOY_Purge_Settings_Completed__c, '', 'oncrumb')}" onClick="gotoOrgPurgeSettingsJS();">Step 1 Completed</a></li>
+                                    <li><a href="#" class="{!IF(org.EOY_Next_School_Year_Completed__c, '', IF(org.EOY_Purge_Settings_Completed__c, 'oncrumb', 'disabledcrumb'))}" onClick="gotoOrgNextSchoolYearJS()">Step 2 Completed</a></li>
+                                    <li><a href="#" class="{!IF(org.EOY_Next_School_Year_Completed__c, '', 'disabledcrumb')}" onClick="gotoOrgExportJS();">Optional</a></li>
+                                </ul>
+                            </apex:repeat>  
+                            </apex:pageBlock>
+                            
+                            <br></br>
+                            <br></br>           
+                            <apex:pageBlock >
+                            <apex:outputPanel id="schoolProgress" >  <!-- rendered="{!orgWideComplete}" > -->
+                                <h2 style="font-size:18px; font-weight:bold; color:#000; margin-bottom:5px; text-align:left; display:block;" >School Settings Status</h2>
+                                <p style="text-align:left;">This process will walk you through closing out data for each school within your org. This process includes confirming the school’s gradespan, creating student records for the new school year, creating summary snapshots that provide high level information about your school, deactivating data to prepare for next school year, and deleting historical data.</p>  
+                                    
+                                    <apex:repeat id="schoolProgressTable" value="{!dEOYProgress}" var="school" >
+                                        <div style="font-weight:bold; color: #000; margin-left:40px; text-align:left; display:block; position:relative; top:10px">
+                                            <apex:outputField value="{!school.School__c}" />
+                                        </div>
+                                        <ul class="breadcrumb">
+                                            <!-- <li><apex:outputField value="{!school.School__c}" /></li> -->
+                                            
+                                            <li>
+                                                <a href="#" class="{!IF(school.School_Grade_Span_Completed__c && orgWideComplete, '', IF(school.Setup__c == null, 'disabledcrumb',IF( school.Setup__r.Year__c != activeYear.ID, 'disabledcrumb',IF(orgWideComplete, 'oncrumb', 'disabledcrumb'))))}" id="schoolWizardGS" onClick="if({!orgWideComplete}) {setSchoolGradeSpanJS('{!JSENCODE(school.Id)}');}" >Gradespan</a>
+                                            </li>
+                                            <li >
+                                                <a href="#" class="{!IF(school.School_Student_Promotional_Completed__c && orgWideComplete, '', IF(school.School_Grade_Span_Completed__c && orgWideComplete, 'oncrumb', 'disabledcrumb'))}" id="schoolWizardSP" onClick="if({!school.School_Student_Promotional_Completed__c || school.School_Grade_Span_Completed__c}){setSchoolStudentPromotionalJS('{!JSENCODE(school.Id)}');}" >Review Student Fields</a>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="{!IF(school.School_Next_Year_Students_Completed__c && orgWideComplete, '', IF(school.School_Student_Promotional_Completed__c && orgWideComplete, 'oncrumb', 'disabledcrumb'))}" id="schoolWizardNYS" onClick="if({!school.School_Next_Year_Students_Completed__c || school.School_Student_Promotional_Completed__c}){setSchoolNextYearStudentsJS('{!JSENCODE(school.Id)}');}" >Next Year Students</a>
+                                            </li>                   
+                                            <li>
+                                                <a href="#" class="{!IF(school.School_Snapshots_Completed__c && orgWideComplete, '', IF(school.School_Next_Year_Students_Completed__c && orgWideComplete, 'oncrumb', 'disabledcrumb'))}" id="schoolWizardSS" onClick="if({!school.School_Snapshots_Completed__c || school.School_Next_Year_Students_Completed__c}){setSchoolSnapshotsJS('{!JSENCODE(school.Id)}');}" >Snapshots</a>
+                                            </li>                           
+                                            <li>
+                                                <a href="#" class="{!IF(school.School_Process_Data_Completed__c && orgWideComplete, '', IF(school.School_Snapshots_Completed__c && orgWideComplete, 'oncrumb', 'disabledcrumb'))}" id="schoolWizardPD" onClick="if({!school.School_Process_Data_Completed__c || school.School_Snapshots_Completed__c}){setSchoolProcessDataJS('{!JSENCODE(school.Id)}');}" >Process EOY Data</a>
+                                            </li>                       
+                                            <li>
+                                                <a href="#" class="{!IF(school.School_Purge_EOY_Data_Completed__c && orgWideComplete, '', IF(school.School_Process_Data_Completed__c && orgWideComplete, 'oncrumb', 'disabledcrumb'))}" id="schoolWizardPED" onClick="if({!school.School_Purge_EOY_Data_Completed__c || school.School_Process_Data_Completed__c}){setSchoolPurgeEOYDataJS('{!JSENCODE(school.Id)}');}" >Purge EOY Data</a>
+                                            </li>   
+                                            <li>
+                                                <a href="#" class="{!IF(school.School_Purge_Historical_Data_Completed__c && orgWideComplete, '', IF(school.School_Purge_EOY_Data_Completed__c && orgWideComplete, 'oncrumb', 'disabledcrumb'))}" id="schoolWizardPHD" onClick="if({!school.School_Purge_Historical_Data_Completed__c || school.School_Purge_EOY_Data_Completed__c}){setSchoolPurgeHistoricalDataJS('{!JSENCODE(school.Id)}');}" >Purge Historical Data</a>
+                                            </li>
+                                        </ul>
+                                    </apex:repeat>
+                            </apex:outputPanel>
+                            </apex:pageBlock>
+                            
+                            <apex:pageBlock >
+                                <apex:outputPanel id="button">
+                                    <h2 style="font-size:18px; font-weight:bold; color:#000; margin-bottom:5px; text-align:left; display:block;" >Activate Next Year</h2>
+                                    <p style="text-align:left;">Click the Activate Next Year button in order to fully set up the next school year. This button will become active after you have completed all of the School settings and the EOY process for any Apps your school is using.</p>    
+                                    <br></br>                       
+                                    <apex:commandButton styleClass="red_btn" style="float: left; margin-bottom:12px;" action="{!deactivateCurrentYear}" value="Activate Next Year" onComplete="createFinalModal(); openFinalModal();" disabled="{!!orgWideProgress.Is_Complete__c}" rerender="finalPanel"/>
+                                </apex:outputPanel>
+                            </apex:pageBlock>   
+                        <!-- </apex:pageBlock> -->
+                    </apex:outputPanel>
+                </div>
+                </div>
+                
+            
+            <apex:actionFunction name="orgWideSettingsCompleteJS" action="{!orgWideSettingsComplete}" rerender="outerPanel" />
+            <apex:actionFunction name="getSchoolProgressJS" action="{!getSchoolProgress}" rerender="schoolProgress, button" onComplete="resetTables();"/>
+            
+            <apex:actionFunction name="gotoOrgPurgeSettingsJS" action="{!gotoOrgPurgeSettings}" />
+            <apex:actionFunction name="gotoOrgNextSchoolYearJS" action="{!gotoOrgNextSchoolYear}" />
+            <apex:actionFunction name="gotoOrgExportJS" action="{!gotoOrgExport}" />
+                        
+            <apex:actionFunction name="setSchoolGradeSpanJS" action="{!setSelectedProgress}" onComplete="gotoSchoolGradeSpanJS();" >
+                <apex:param name="selectedProgress" assignTo="{!selectedProgress}" value="" />
+            </apex:actionFunction>
+            <apex:actionFunction name="setSchoolStudentPromotionalJS" action="{!setSelectedProgress}" onComplete="gotoSchoolStudentPromotionalJS();" >
+                <apex:param name="selectedProgress" assignTo="{!selectedProgress}" value="" />
+            </apex:actionFunction>  
+            <apex:actionFunction name="setSchoolNextYearStudentsJS" action="{!setSelectedProgress}" onComplete="gotoSchoolNextYearStudentsJS();" >
+                <apex:param name="selectedProgress" assignTo="{!selectedProgress}" value="" />
+            </apex:actionFunction>  
+            <apex:actionFunction name="setSchoolSnapshotsJS" action="{!setSelectedProgress}" onComplete="gotoSchoolSnapshotsJS();" >
+                <apex:param name="selectedProgress" assignTo="{!selectedProgress}" value="" />
+            </apex:actionFunction>  
+            <apex:actionFunction name="setSchoolProcessDataJS" action="{!setSelectedProgress}" onComplete="gotoSchoolProcessDataJS();" >
+                <apex:param name="selectedProgress" assignTo="{!selectedProgress}" value="" />
+            </apex:actionFunction>  
+            <apex:actionFunction name="setSchoolPurgeEOYDataJS" action="{!setSelectedProgress}" onComplete="gotoSchoolPurgeEOYDataJS();" >
+                <apex:param name="selectedProgress" assignTo="{!selectedProgress}" value="" />
+            </apex:actionFunction>  
+            <apex:actionFunction name="setSchoolPurgeHistoricalDataJS" action="{!setSelectedProgress}" onComplete="gotoSchoolPurgeHistoricalDataJS();" >
+                <apex:param name="selectedProgress" assignTo="{!selectedProgress}" value="" />
+            </apex:actionFunction>                                                          
+            <apex:actionFunction name="gotoSchoolGradeSpanJS" action="{!gotoSchoolGradeSpan}" />        
+            <apex:actionFunction name="gotoSchoolStudentPromotionalJS" action="{!gotoSchoolStudentPromotional}" />
+            <apex:actionFunction name="gotoSchoolNextYearStudentsJS" action="{!gotoSchoolNextYearStudents}" />
+            <apex:actionFunction name="gotoSchoolSnapshotsJS" action="{!gotoSchoolSnapshots}" />
+            <apex:actionFunction name="gotoSchoolProcessDataJS" action="{!gotoSchoolProcessData}" />
+            <apex:actionFunction name="gotoSchoolPurgeEOYDataJS" action="{!gotoSchoolPurgeEOYData}" />
+            <apex:actionFunction name="gotoSchoolPurgeHistoricalDataJS" action="{!gotoSchoolPurgeHistoricalData}" />    
+            <apex:actionFunction name="rerenderJS" action="{!redirectToHome}"/>     
+        </apex:outputPanel>
+        
+        <div id="final-modal" title="All EOY Process Completed!">
+            <apex:outputPanel id="finalPanel" style="display: none;" >
+                <p>Congratulations! you have completed the End of Year Processes for {!orgWideProgress.Year__r.Name__c}</p>
+            </apex:outputPanel>
+        </div>      
+    </apex:form>
+
+</apex:page>

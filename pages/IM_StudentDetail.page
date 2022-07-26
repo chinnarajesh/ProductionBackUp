@@ -1,0 +1,386 @@
+<apex:page controller="studentDetailComponent" sidebar="false" showHeader="false">
+	<c:resourceComponent bLoadingPanel="true" />
+	<apex:outputPanel id="resources">
+		<script>
+		function fixGlobalDates(){
+			// get the section start and end dates
+			CITY.studEnrollDate  =  convertDate("{!JSENCODE(TEXT(selectedStudentSection.Enrollment_Start_Date__c))}");
+			CITY.sectionStartDate = convertDate("{!JSENCODE(TEXT(selectedStudentSection.Section__r.Start_Date__c))}");
+			CITY.sectionEndDate = convertDate("{!JSENCODE(TEXT(selectedStudentSection.Section__r.End_Date__c))}");
+		}
+		</script>
+	</apex:outputPanel>
+	<style>
+		.table-row:hover{background-color: #C0C0C0;}
+
+		.datePicker{
+			position: fixed;
+			z-index:11001;
+		}
+
+		.fullWidthTable{
+			width: 100%;
+		}
+ 
+		.requiredBlock {
+			background-color: #c00;
+			position: absolute;
+			left: -4px;
+			width: 3px;
+			top: 1px;
+			bottom: 1px;
+		}
+		.requiredInput {
+			position: relative;
+			height: 100%;
+		}
+		.leftList{
+			overflow: auto;
+		}
+		.rightList{
+			overflow: auto;
+		}
+		.modal_window{
+			top: 30px !important;
+		}
+		.box-right{
+			width: 400px !important;
+		}
+		#loadingPanel:parent{
+			display: none;
+		}
+		span:has(div#loadingPanel){
+			display: none;
+		}
+	</style>
+	<script>
+		function checkAddTime() {
+			var isError = false;
+			if(checkDate(j$("input[id$='dosageDateID']").attr('id'),"#dateErrorSpan")) {
+				j$("#dateErrorSpan").show();
+				isError = true;
+			} else {
+				j$("#dateErrorSpan").hide()
+			}
+
+			if(checkDosage(j$("input[id$='dosageID']").attr('id'),true)){
+				j$("#dosageErrorSpan").show();
+				isError = true;
+			}
+			else {
+				j$("#dosageErrorSpan").hide();
+			}
+
+			var allAvenues = j$("select[id$='allAvenuesID'] option:selected").text();
+			if(allAvenues=='None'){
+				j$("#serviceErrorSpan").show();
+				isError = true;
+			}else{
+				j$("#serviceErrorSpan").hide();
+			}
+
+			var primaryOptions = j$('.primaryOptions');
+//			if(j$('.primaryOptions')[0].selectedIndex == 0){
+			if(allAvenues!='Virtual Service' && (primaryOptions.length == 0 || primaryOptions[0].selectedIndex == 0)){
+				j$("#skillsErrorSpan").show();
+				isError = true;
+			} else {
+				j$("#skillsErrorSpan").hide()
+			}
+			var selectedLength = j$.map( j$('.rightList option'), function( o ){ 
+     			return o.text; 
+			}).join(', ').length; 
+			if(selectedLength > 2000){
+				j$("#skillsLengthErrorSpan").show();
+				isError = true;
+			} else {
+				j$("#skillsLengthErrorSpan").hide()
+			}			
+			//if(checkSkills(j$("textarea[id$='skillsId']").attr('id'))) {
+				//j$("#skillsErrorSpan").show();
+				//isError = true;
+			//} else {
+				//j$("#skillsErrorSpan").hide()
+			//}
+			if(!isError) {
+				close_modal("#add-session-time");
+				saveTimeJS();							
+			}
+			else {
+				isSaving=false;
+			}
+		}
+
+		var CITY = CITY || {};
+	
+		j$(document).ready( function(){
+			fixGlobalDates();
+			resetWindowSize();
+		});
+
+		function resetWindowSize(){
+			var newSize;
+			if(j$('.modal_window').filter(":visible").size()>0){
+				//100 for the top offset + 20 for the bottom offset
+				newSize = j$('.modal_window').filter(":visible").outerHeight()+120;
+			} else {
+				newSize = j$('body').outerHeight()+20;
+			}
+            //Commented to allow popup modal to open in full size
+			//500 is a requirement, minHeight
+            //if(newSize>=500)
+            //window.resizeBy((j$(window).width()<1000)?1000-j$(window).width():0, newSize-j$(window).height());
+            //else
+            //	window.resizeBy((j$(window).width()<1000)?1000-j$(window).width():0, 500-j$(window).height());
+		}
+
+		function clearAndOpenTimeModal(){
+			j$("input[id$='dosageDateID']").val('').removeAttr('disabled');
+			j$("input[id$='dosageID']").val('');
+			j$("select[id$='allAvenuesID']")[0].selectedIndex = 0;
+			//j$("textarea[id$='skillsId']").val('');
+			j$("[id$='commentsId']").val('');
+			selectOptionOld = null;
+			openTimeModal();
+		}
+
+		function openTimeModal(){
+			isSaving=false;
+			openModal('#time_modal');
+			resetWindowSize();		
+		}
+
+		function checkDisabled() {
+			console.log("function checkDisabled");
+		}
+	</script>
+	<apex:form >
+		<apex:outputPanel id="messages" styleClass="primaryErrorPanel">
+			<apex:pageMessages />
+			<script>
+				setTimeout('hideProgressBar()',500);
+			</script>
+		</apex:outputPanel>
+		<div id="leanModalLinks" style="display:none;">
+			<a href="#add-session-time" id="time_modal" rel="leanModal"></a>
+			<a href="#add-curricula" id="curricula_modal" rel="leanModal"></a>
+		</div>
+
+		<div class="wrapper" id="schoolforce-wrapper">
+			<apex:outputPanel id="sessionList"  rendered="{!isInSection}">
+				<div class="content">
+					<span class="section-header">Intervention Session Time For {!student.Name}</span>
+					<div class="field" style="height:40px; padding-top:10px;">
+						<apex:selectList value="{!selectedSectionId}" onchange="showProgressBar('Please wait.');changeSectionJS();" multiselect="false" size="1" >
+							<apex:selectOptions value="{!sectionList}"/>
+						</apex:selectList>
+						<input type="button" class="drk_blue_btn" value="Add Time" onClick="showProgressBar('Please wait.');initPicklist();" style="{!IF(isCurSection==true, 'display: none;', '')}margin: 0!important;"/>
+						<input type="button" class="drk_blue_btn" value="Add Сurricula" onClick="showProgressBar('Please wait.');startAddСurriculaJS();" style="{!IF(isCurSection==true, '', 'display: none;')}margin: 0!important;"/>
+					</div>
+				
+					<div>
+						<table class="fullWidthTable" style="margin:0px;">
+							<tbody>
+								<thead>
+									<th>Section</th>
+									<th>Dosage to Date</th>
+									<th>Target Dosage </th>
+								</thead>
+								<tr>
+									<td><a href="/{!selectedStudentSection.Section__c}" target="_new"><apex:outputText value="{!selectedStudentSection.Section__r.Name}"/></a></td>
+									<td>{!selectedStudentSection.Dosage_to_Date__c}</td>
+									<td><apex:outputField value="{!selectedStudentSection.Section__r.Target_Dosage_Section_Goal__c}"/></td>
+								</tr>
+							</tbody>
+						</table>
+
+						<div class="field" align="center">
+							<b><apex:outputText value="Session Time" rendered="{!NOT(isCurSection)}"/></b>
+							<b><apex:outputText value="Сurricula Scores" rendered="{!isCurSection}"/></b>
+							<apex:outputPanel id="dosageError" rendered="{!AND(NOT(hasSessions),NOT(isCurSection))}" >
+								There are no sessions results for this section
+							</apex:outputPanel>
+							<apex:outputPanel id="scoreError" rendered="{!AND(NOT(hasCurriculums),isCurSection)}" >
+								There are no curricula records for this section
+							</apex:outputPanel>
+						</div>
+
+						<apex:outputPanel id="dosageTable" rendered="{!hasSessions}">
+							<div style="max-height:350px;overflow:auto;">
+								<table class="fullWidthTable">
+									<thead>
+										<th>Edit</th>
+										<th id="date-header">Date</th>
+										<th>Intervention Session ID</th>
+										<th>Skills</th>
+										<th>Time</th>
+									</thead>
+									<tbody>
+										<apex:repeat value="{!sessions}" var="sessionWrapper">
+											<apex:repeat value="{!sessionWrapper.studentResults}" var="isr">
+												<tr class="table-row">
+													<td>
+														<a href="#" onClick="editSessionJS('{!sessionWrapper.session.ID}');">Edit</a>
+													</td>
+													<td>
+														<apex:outputField value="{!sessionWrapper.session.Date__c}"/>
+													</td>
+													<td>
+														<a href="/{!sessionWrapper.session.ID}" target="_new"><apex:outputText value="{!sessionWrapper.session.Name}"/></a>
+													</td>
+													<td style="max-width: 400px;"> <!-- Yay for hard coding!!! -->
+														<apex:outputField value="{!sessionWrapper.session.Skills_Covered_for_the_Session__c}"/>
+													</td>
+													<td>
+														<apex:outputField value="{!isr.Amount_of_Time__c}"/>
+													</td>
+												</tr>
+											</apex:repeat>
+										</apex:repeat>	
+								   </tbody>
+								</table>
+							</div>
+						</apex:outputPanel>
+
+						<apex:outputPanel id="curriculumTable" rendered="{!hasCurriculums}">
+							<div style="max-height:350px;overflow:auto;">
+								<table class="fullWidthTable">
+									<thead>
+									<th>Edit</th>
+									<th id="date-header">Date</th>
+									<th>Curriculum ID</th>
+									<th>Curriculum Name</th>
+									<th>Module Score</th>
+									</thead>
+									<tbody>
+									<apex:repeat value="{!curriculums}" var="cWrapper">
+										<tr class="table-row">
+											<td>
+												<a href="#" onClick="showProgressBar('Please wait.');startEditСurriculaJS('{!cWrapper.Id}');">Edit</a>
+											</td>
+											<td>
+												<apex:outputField value="{!cWrapper.Date_of_Module__c}"/>
+											</td>
+											<td>
+												<a href="/{!cWrapper.Id}" target="_new"><apex:outputText value="{!cWrapper.Name}"/></a>
+											</td>
+											<td style="max-width: 400px;"> <!-- Yay for hard coding!!! -->
+												<apex:outputField value="{!cWrapper.Curriculum_Name__c}"/>
+											</td>
+											<td>
+												<apex:outputField value="{!cWrapper.Module_Score__c}"/>
+											</td>
+										</tr>
+									</apex:repeat>
+									</tbody>
+								</table>
+							</div>
+						</apex:outputPanel>
+					</div>
+				</div>
+			</apex:outputPanel>
+			
+			<div id="add-session-time" class="modal_window" style="width:1120px;">
+				<div class = "modal-top" style="cursor:move;" >
+					<a class="modal_close" href="#"></a>
+					<p>&nbsp;</p>
+				</div>
+				<apex:outputPanel id="time-modal">
+					<apex:pageMessages />
+					<span class="section-header">Enter Session Time for {!student.name} for {!selectedStudentSection.Section__r.Name}</span>
+					<div class="field">
+						&nbsp;
+						<label><strong>Session time entered for:</strong></label> 
+						<apex:selectList value="{!selectedStaff}" multiselect="false" size="1" >
+							<apex:selectOptions value="{!staffList}"/>
+						</apex:selectList>
+					</div>
+					<hr />
+					<div class="half-column-left" style="margin-top:0px;padding: 0px 0px 0px 0px !important;">
+						<div style="margin-bottom:5px;">
+							&nbsp;<br/>
+						</div>
+						<apex:outputPanel >
+							<apex:outputLabel value="Date:"/>
+							<br/>
+							<div class="requiredInput">
+								<div class="requiredBlock"></div>
+								<apex:inputField value="{!sessionHolder.Date__c}" id="dosageDateID" html-disabled="disabled"/>
+								<br />
+							</div>
+							<span id="dateErrorSpan" style="color:red;display:none">
+								Date entry is invalid please enter a new value
+							</span>
+							<br />
+						</apex:outputPanel>
+						<apex:outputPanel >
+							<div class="requiredInput" style="margin-bottom: 10px;">
+								<div class="requiredBlock"></div>
+								<label><strong>In-Person Service or Virtual Service:</strong></label>
+								<apex:selectList size="1" value="{!sessionHolder.All_avenues__c}" id="allAvenuesID" >
+									<apex:selectOptions value="{!allAvenuesOptions}"/>
+								</apex:selectList>
+							</div>
+							<!--<apex:outputLabel value="{!$ObjectType.Intervention_Session__c.fields.Skills_Covered_for_the_Session__c.Label}:"/>-->
+							<div class="requiredInput">
+								<div class="requiredBlock"></div>
+<!-- 								<apex:inputField value="{!sessionHolder.Skills_Covered_for_the_Session__c}" id="skillsId" /><br/> -->
+								<c:MultiselectPicklist leftLabel="Other Skills" leftOption="{!avaliableFields}" 
+	    						rightLabel="Selected Skills" rightOption="{!selectedFields}" size="8" width="490px" isPrimaryOption="true" Alldata="{!allPrimaryFields}" primaryLabel="Primary Skill" primaryOption="{!primarySkill}"/>
+							</div>
+							<span id="serviceErrorSpan" style="color:red;display:none;">{!$Label.Required_Service}</span>
+							<span id="skillsErrorSpan" style="color:red;display:none">{!$Label.Skills_Required}</span>
+							<span id="skillsLengthErrorSpan" style="color:red;display:none">{!$Label.Exceeded_Skill_Length}</span>
+							<span id="requiredSkillsErrorSpan" style="color:red;display:none">{!$Label.Required_Skill_for_Literacy_Math}</span>
+						</apex:outputPanel>
+						<apex:outputPanel >
+							<br/>
+							<apex:outputLabel value="{!$ObjectType.Intervention_Session__c.fields.Comments__c.Label}:"/>
+							<apex:inputField value="{!sessionHolder.Comments__c}" id="commentsId"/>
+						</apex:outputPanel>	
+					</div>
+				
+					<div class="box-right" style="padding-right: 5px;">
+						<div style="margin-bottom:5px;">
+							<apex:outputLabel value="{!$ObjectType.Section__c.fields.Recommended_Time_per_Session__c.Label}:"/>
+							<apex:outputText value="{!selectedStudentSection.Section__r.Recommended_Time_per_Session__c}"/>
+						</div>
+						<apex:outputPanel >
+							<apex:outputLabel value="Session Time (in minutes):"/>
+							<div class="requiredInput">
+								<div class="requiredBlock"></div>
+								<apex:inputField value="{!resultHolder.Amount_of_Time__c}" id="dosageID" /><br />
+							</div>
+							<span id="dosageErrorSpan" style="color:red;display:none">
+								Please enter a valid value for dosage. (A whole non-negative number.  No decimals or non numeric values. Less then 500 minutes.)
+							</span>
+							<br />
+						</apex:outputPanel>
+<!-- 						<apex:outputPanel > -->
+<!-- 							<apex:outputLabel value="{!$ObjectType.Intervention_Session__c.fields.Comments__c.Label}:"/> -->
+<!-- 							<apex:inputField value="{!sessionHolder.Comments__c}" id="commentsId"/> -->
+<!-- 						</apex:outputPanel>	 -->
+					</div>
+					<div id="options" class="clear_fix">
+						<hr />
+						<input type="button" class="black_btn" onclick="if(!isSaving){ isSaving=true; checkAddTime(); } else { alert('Saving session time.  Please wait.'); }" value="Submit"/>
+						<input type="button" class="grey_btn" onclick="modalCancelJS();" value="Cancel"/>
+					</div>
+				</apex:outputPanel>
+			</div>
+
+			<!-- Add Curricula Modal -->
+			<apex:outputPanel id="modals">
+				<c:ModalAddCurricula recSection="{!selectedSection}" lstStudentSections="{!studentInfos}"/>
+			</apex:outputPanel>
+
+			<apex:actionFunction name="editSessionJS" action="{!editSession}" rerender="dosageTable,sessionList,time-modal,resources,messages" oncomplete="openTimeModal();">
+				<apex:param assignTo="{!selectedSessionID}" name="selectedSession" value=""/>
+			</apex:actionFunction>
+			<apex:actionFunction name="changeSectionJS" action="{!changeSection}" rerender="modals,sessionList,time-modal,resources,messages" oncomplete="fixGlobalDates();" />
+			<apex:actionFunction name="saveTimeJS" action="{!saveTime}" rerender="sessionList,time-modal,resources,messages,dosageTable" onComplete="fixGlobalDates();" />
+			<apex:actionFunction name="modalCancelJS" action="{!modalCancel}" rerender="sessionList,time-modal,resources,messages" oncomplete="fixGlobalDates();close_modal('#add-session-time');"/>
+			<apex:actionFunction name="initPicklist" action="{!initializePicklist}" rerender="time-modal,messages" oncomplete="clearAndOpenTimeModal();"/>
+		</div>
+	</apex:form>
+</apex:page>

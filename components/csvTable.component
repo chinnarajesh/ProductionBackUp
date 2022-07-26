@@ -1,0 +1,417 @@
+<apex:component access="global" >
+	<apex:attribute access="global" name="loadType" description="This is the type of data to load" type="String" required="true" />
+	<apex:attribute access="global" name="interimValueList" description="This is the list of processed data" type="sObject[]" required="true" />
+	<script>resetTable();</script>
+	
+	<div id="liz" style="margin-left:auto; margin-right:auto;">
+	<apex:variable value="true" var="yes" rendered="{!IF(loadType=='Assignment Types', true, false)}">
+			<apex:dataTable styleclass="tablesorter" value="{!interimValueList}" var="p">
+					<apex:column headerValue="Name">
+						<apex:inputField required="true" value="{!p['name']}"/>
+					</apex:column>
+					<apex:column headerValue="Type" >
+						<apex:outputField value="{!p['type__c']}" />
+					</apex:column>
+					<apex:column headerValue="Setup ID" >
+						<apex:outputField value="{!p['setup__c']}" />
+					</apex:column>
+			</apex:dataTable>
+	</apex:variable>
+ 
+	<apex:variable value="false" var="no" rendered="{!IF(loadType=='Time Options', true, false)}">
+			<apex:dataTable styleclass="tablesorter" value="{!interimValueList}" var="p">
+					<apex:column headerValue="Name">
+						<apex:inputField required="true" value="{!p['name']}"/>
+					</apex:column>
+					<apex:column headerValue="Type" >
+						<apex:outputField value="{!p['type__c']}" />
+					</apex:column>
+					<apex:column headerValue="Category" >
+						<apex:inputField value="{!p['category__c']}" />
+					</apex:column>
+					<apex:column headerValue="Corresponding Value" >
+						<apex:inputField value="{!p['corresponding_value__c']}" />
+					</apex:column>
+			</apex:dataTable>
+	</apex:variable>
+	
+	<apex:variable value="true" var="yes" rendered="{!IF(loadType=='Courses', true, false)}">
+			<apex:dataTable styleclass="tablesorter" value="{!interimValueList}" var="p">
+					<apex:column headerValue="Name">
+						<apex:inputField required="true" value="{!p['name']}"/>
+					</apex:column>
+					<apex:column headerValue="Number" >
+						<apex:inputField value="{!p['course_number__c']}" />
+					</apex:column>
+					<apex:column headerValue="Weighting Records" >
+						<apex:inputField value="{!p['course_weighting_records__c']}" />
+					</apex:column>
+					<apex:column headerValue="Credit Hours" >
+						<apex:inputField value="{!p['credit_hours__c']}" />
+					</apex:column>
+					<apex:column headerValue="Daily Attendance?" >
+						<apex:inputField value="{!p['daily_attendance__c']}" />
+					</apex:column>
+					<apex:column headerValue="Department">
+						<apex:inputField value="{!p['department__c']}"/>
+					</apex:column>
+					<apex:column headerValue="# Reporting Periods" >
+						<apex:inputField value="{!p['number_of_reporting_periods__c']}" />
+					</apex:column>
+					<apex:column headerValue="Has Final Grade?" >
+						<apex:inputField value="{!p['has_final_grade__c']}" />
+					</apex:column>
+					<apex:column headerValue="Homework Based?" >
+						<apex:inputField value="{!p['homework_based__c']}" />
+					</apex:column>
+					<apex:column headerValue="Meets Every Day?" >
+						<apex:inputField value="{!p['meets_every_day__c']}" />
+					</apex:column>
+					<apex:column headerValue="Required for Graduation?" >
+						<apex:inputField value="{!p['required_for_graduation__c']}" />
+					</apex:column>
+					<apex:column headerValue="Grade Scale" >
+						<apex:inputField required="true" value="{!p['grade_scale_lookup__c']}" />
+					</apex:column>
+					<apex:column headerValue="Name in Spanish" >
+						<apex:inputField value="{!p['name_spanish__c']}" />
+					</apex:column>
+					<apex:column headerValue="Subject Area Lookup" >
+						<apex:inputField value="{!p['Subject_Area_Lookup__c']}" />
+					</apex:column>
+					<apex:column headerValue="Include In Section Snapshot" >
+						<apex:inputField value="{!p['Include_in_section_snapshot__c']}" />
+					</apex:column>
+			</apex:dataTable>
+	</apex:variable>
+	
+	<apex:variable value="true" var="yes" rendered="{!IF(loadType=='Schedule Groups', true, false)}">
+			<apex:dataTable styleclass="tablesorter" value="{!interimValueList}" var="p">
+					<apex:column headerValue="Name">
+						<apex:inputField required="true" value="{!p['name']}"/>
+					</apex:column>
+					<apex:column headerValue="Grades" >
+						<apex:inputField required="true" value="{!p['all_grades__c']}" />
+					</apex:column>
+					<apex:column headerValue="Description" >
+						<apex:inputField value="{!p['description__c']}" />
+					</apex:column>
+					<!-- <apex:column headerValue="Setup ID">
+						<apex:outputField value="{!p['setup__c']}"/>
+					</apex:column> Deprecated for Chicago -->
+			</apex:dataTable>
+	</apex:variable>
+	
+	<apex:variable value="true" var="yes" rendered="{!IF(loadType=='Attendance Values', true, false)}">
+			<apex:dataTable styleclass="tablesorter" value="{!interimValueList}" var="p">
+					<apex:column headerValue="Display Value">
+						<apex:inputField required="true" value="{!p['name']}"/>
+					</apex:column>
+					<apex:column headerValue="Display Code">
+						<apex:inputField value="{!p['display_code__c']}"/>
+					</apex:column>
+					<apex:column headerValue="Category" >
+						<apex:inputField required="true" value="{!p['category__c']}" />
+					</apex:column>
+					<apex:column headerValue="Is Unexcused?">
+						<apex:inputField value="{!p['is_unexcused__c']}"/>
+					</apex:column>
+					<apex:column headerValue="Is Tardy?">
+						<apex:inputField value="{!p['is_tardy__c']}"/>
+					</apex:column>
+					<apex:column headerValue="Is Early Departure?">
+						<apex:inputField value="{!p['is_early_departure__c']}"/>
+					</apex:column>
+					<apex:column headerValue="Is Suspension?" >
+						<apex:inputField value="{!p['is_suspension__c']}" />
+					</apex:column>
+					<apex:column headerValue="Short Description" >
+						<apex:inputField value="{!p['short_description__c']}" />
+					</apex:column>
+					<apex:column headerValue="Long Description" >
+						<apex:inputField value="{!p['long_description__c']}" />
+					</apex:column>
+					<apex:column headerValue="Set as Default?" >
+						<apex:inputField value="{!p['set_as_default__c']}" />
+					</apex:column>
+					<apex:column headerValue="Order" >
+						<apex:outputField value="{!p['order__c']}" />
+					</apex:column>
+					<apex:column headerValue="Type" >
+						<apex:outputField value="{!p['type__c']}" />
+					</apex:column>
+					<apex:column headerValue="Setup ID">
+						<apex:outputField value="{!p['setup__c']}"/>
+					</apex:column>
+			</apex:dataTable>
+	</apex:variable>
+	
+	<apex:variable value="true" var="yes" rendered="{!IF(loadType=='Behavior Types', true, false)}">
+			<apex:dataTable styleclass="tablesorter" value="{!interimValueList}" var="p">
+					<apex:column headerValue="Display Value">
+						<apex:inputField required="true" value="{!p['name']}"/>
+					</apex:column>
+					<apex:column headerValue="Behavior Category">
+						<apex:outputField value="{!p['behavior_category__c']}"/>
+					</apex:column>
+					<apex:column headerValue="Incident Level" >
+						<apex:inputField value="{!p['behavior_incident_level__c']}" />
+					</apex:column>
+					<apex:column headerValue="Corresponding Value" >
+						<apex:inputField value="{!p['corresponding_value__c']}" />
+					</apex:column>
+					<apex:column headerValue="Involves Weapon?" >
+						<apex:inputField value="{!p['incident_involves_weapon__c']}" />
+					</apex:column>
+					<apex:column headerValue="Setup ID">
+						<apex:outputField value="{!p['setup__c']}"/>
+					</apex:column>
+			</apex:dataTable>
+	</apex:variable>
+	
+	<apex:variable value="true" var="yes" rendered="{!IF(loadType=='Behavior Consequences', true, false)}">
+			<apex:dataTable styleclass="tablesorter" value="{!interimValueList}" var="p">
+					<apex:column headerValue="Display Value">
+						<apex:inputField required="true" value="{!p['name']}"/>
+					</apex:column>
+					<apex:column headerValue="Incident Level" >
+						<apex:inputField value="{!p['behavior_incident_level__c']}" />
+					</apex:column>
+					<apex:column headerValue="Corresponding Value" >
+						<apex:inputField value="{!p['corresponding_value__c']}" />
+					</apex:column>
+					<apex:column headerValue="Set As Default?" >
+						<apex:inputField value="{!p['set_as_default__c']}" />
+					</apex:column>
+					<apex:column headerValue="Is Suspension?" >
+						<apex:inputField value="{!p['is_suspension__c']}" />
+					</apex:column>
+					<apex:column headerValue="Notify Administration?" >
+						<apex:inputField value="{!p['notify_admin__c']}" />
+					</apex:column>
+					<apex:column headerValue="Consequence Weight" >
+						<apex:inputField value="{!p['consequence_weight__c']}" />
+					</apex:column>
+					<apex:column headerValue="Order" >
+						<apex:outputField value="{!p['order__c']}" />
+					</apex:column>
+					<apex:column headerValue="Setup ID">
+						<apex:outputField value="{!p['setup__c']}"/>
+					</apex:column>
+			</apex:dataTable>
+	</apex:variable>
+	
+	<apex:variable value="true" var="yes" rendered="{!IF(loadType=='Grade Scales', true, false)}">
+			<apex:dataTable styleclass="tablesorter" value="{!interimValueList}" var="p">
+					<apex:column headerValue="Display Value">
+						<apex:inputField required="true" value="{!p['name']}"/>
+					</apex:column>
+					<apex:column headerValue="Set as Default?">
+						<apex:inputField value="{!p['set_as_default__c']}"/>
+					</apex:column>
+					<apex:column headerValue="Category" >
+						<apex:inputField value="{!p['category__c']}" />
+					</apex:column>
+			</apex:dataTable>
+	</apex:variable>
+	
+	<apex:variable value="true" var="yes" rendered="{!IF(loadType=='Homework Values', true, false)}">
+			<apex:dataTable styleclass="tablesorter" value="{!interimValueList}" var="p">
+					<apex:column headerValue="Display Value">
+						<apex:inputField required="true" value="{!p['name']}"/>
+					</apex:column>
+					<apex:column headerValue="Internal Code" >
+						<apex:inputField required="true" value="{!p['internal_code__c']}" />
+					</apex:column>
+					<apex:column headerValue="Set as Default?">
+						<apex:inputField value="{!p['set_as_default__c']}"/>
+					</apex:column>
+					<apex:column headerValue="Order" >
+						<apex:outputField value="{!p['order__c']}" />
+					</apex:column>
+					<apex:column headerValue="Setup ID">
+						<apex:outputField value="{!p['setup__c']}"/>
+					</apex:column>
+			</apex:dataTable>
+	</apex:variable>
+	
+	<apex:variable value="true" var="yes" rendered="{!IF(loadType=='Students', true, false)}">
+			<apex:dataTable styleclass="tablesorter" value="{!interimValueList}" var="p">
+					<apex:column headerValue="Network Code">
+						<apex:inputField value="{!p['network_code__c']}"/>
+					</apex:column>
+					<apex:column headerValue="Student ID" >
+						<apex:inputField required="true" value="{!p['student_id__c']}" />
+					</apex:column>
+					<apex:column headerValue="First Name" >
+						<apex:inputField required="true" value="{!p['first_name__c']}" />
+					</apex:column>
+					<apex:column headerValue="Last Name" >
+						<apex:inputField required="true" value="{!p['last_name__c']}" />
+					</apex:column>
+					<apex:column headerValue="Grade" >
+						<apex:inputField required="true" value="{!p['grade_level__c']}" />
+					</apex:column>
+					<apex:column headerValue="Date of Birth" >
+						<apex:inputField required="true" value="{!p['dob__c']}" />
+					</apex:column>
+					<apex:column headerValue="Sex" >
+						<apex:inputField required="true" value="{!p['sex__c']}" />
+					</apex:column>
+					<apex:column headerValue="Ethnic Code" >
+						<apex:inputField value="{!p['ethnic_cde__c']}" />
+					</apex:column>
+					<apex:column headerValue="Disability Flag">
+						<apex:inputField value="{!p['disability_flag__c']}"/>
+					</apex:column>
+					<apex:column headerValue="ELL" >
+						<apex:inputField value="{!p['ell__c']}" />
+					</apex:column>
+					<apex:column headerValue="Admission Date" >
+						<apex:inputField value="{!p['admission_date__c']}" />
+					</apex:column>
+					<apex:column headerValue="E-mail" >
+						<apex:inputField value="{!p['email__c']}" />
+					</apex:column>
+					<apex:column headerValue="Address" >
+						<apex:inputField value="{!p['address__c']}" />
+					</apex:column>
+					<apex:column headerValue="City" >
+						<apex:inputField value="{!p['city__c']}" />
+					</apex:column>
+					<apex:column headerValue="State">
+						<apex:inputField value="{!p['state__c']}"/>
+					</apex:column>
+					<apex:column headerValue="Zip Code" >
+						<apex:inputField value="{!p['zip__c']}" />
+					</apex:column>
+					<apex:column headerValue="Phone Number" >
+						<apex:inputField value="{!p['phone__c']}" />
+					</apex:column>
+					<apex:column headerValue="Type" >
+						<apex:outputField value="{!p['type__c']}" />
+					</apex:column>
+					<apex:column headerValue="School DBN" >
+						<apex:outputField value="{!p['school_dbn__c']}" />
+					</apex:column>
+					<apex:column headerValue="School Year">
+						<apex:outputField value="{!p['school_year__c']}"/>
+					</apex:column>
+			</apex:dataTable>
+	</apex:variable>
+	
+	<apex:variable value="true" var="yes" rendered="{!IF(loadType=='Staff', true, false)}">
+			<apex:dataTable styleclass="tablesorter" value="{!interimValueList}" var="p">
+					<apex:column headerValue="Network Code">
+						<apex:inputField value="{!p['network_code__c']}"/>
+					</apex:column>
+					<apex:column headerValue="Staff ID" >
+						<apex:inputField required="true" value="{!p['staff_id__c']}" />
+					</apex:column>
+					<apex:column headerValue="First Name" >
+						<apex:inputField required="true" value="{!p['first_name__c']}" />
+					</apex:column>
+					<apex:column headerValue="Last Name" >
+						<apex:inputField required="true" value="{!p['last_name__c']}" />
+					</apex:column>
+					<apex:column headerValue="Sex" >
+						<apex:inputField value="{!p['sex__c']}" />
+					</apex:column>
+					<apex:column headerValue="Age" >
+						<apex:inputField value="{!p['age__c']}" />
+					</apex:column>
+					<apex:column headerValue="E-mail" >
+						<apex:inputField required="true" value="{!p['email__c']}" />
+					</apex:column>
+					<apex:column headerValue="Address" >
+						<apex:inputField value="{!p['address__c']}" />
+					</apex:column>
+					<apex:column headerValue="City" >
+						<apex:inputField value="{!p['city__c']}" />
+					</apex:column>
+					<apex:column headerValue="State">
+						<apex:inputField value="{!p['state__c']}"/>
+					</apex:column>
+					<apex:column headerValue="Zip Code" >
+						<apex:inputField value="{!p['zip__c']}" />
+					</apex:column>
+					<apex:column headerValue="Phone Number" >
+						<apex:inputField value="{!p['phone__c']}" />
+					</apex:column>
+					<apex:column headerValue="Type" >
+						<apex:outputField value="{!p['type__c']}" />
+					</apex:column>
+					<apex:column headerValue="School Year">
+						<apex:outputField value="{!p['school_year__c']}"/>
+					</apex:column>
+					<apex:column headerValue="School DBN" >
+						<apex:outputField value="{!p['school_dbn__c']}" />
+					</apex:column>
+					<apex:column headerValue="School Name" >
+						<apex:outputField value="{!p['school_name__c']}" />
+					</apex:column>
+			</apex:dataTable>
+	</apex:variable>
+	
+	<apex:variable value="true" var="yes" rendered="{!IF(loadType=='Staff/Section', true, false)}">
+			<apex:dataTable styleclass="tablesorter" value="{!interimValueList}" var="p">
+					<apex:column headerValue="Staff ID">
+						<apex:inputField required="true" value="{!p['staff_id__c']}"/>
+					</apex:column>
+					<apex:column headerValue="First Name" >
+						<apex:inputField required="true" value="{!p['first_name__c']}" />
+					</apex:column>
+					<apex:column headerValue="Last Name">
+						<apex:inputField required="true" value="{!p['last_name__c']}"/>
+					</apex:column>
+					<apex:column headerValue="Class Name" >
+						<apex:inputField required="true" value="{!p['class_id__c']}" />
+					</apex:column>
+					<apex:column headerValue="Type" >
+						<apex:outputField value="{!p['type__c']}" />
+					</apex:column>
+					<apex:column headerValue="School Year">
+						<apex:outputField value="{!p['school_year__c']}"/>
+					</apex:column>
+					<apex:column headerValue="School DBN" >
+						<apex:outputField value="{!p['school_dbn__c']}" />
+					</apex:column>
+					<apex:column headerValue="School Name" >
+						<apex:outputField value="{!p['school_name__c']}" />
+					</apex:column>
+			</apex:dataTable>
+	</apex:variable>
+	
+	<apex:variable value="true" var="yes" rendered="{!IF(loadType=='Student/Section', true, false)}">
+		<apex:dataTable styleclass="tablesorter" value="{!interimValueList}" var="p">
+				<apex:column headerValue="Student ID">
+					<apex:inputField required="true" value="{!p['student_id__c']}"/>
+				</apex:column>
+				<apex:column headerValue="First Name" >
+					<apex:inputField required="true" value="{!p['first_name__c']}" />
+				</apex:column>
+				<apex:column headerValue="Last Name">
+					<apex:inputField required="true" value="{!p['last_name__c']}"/>
+				</apex:column>
+				<apex:column headerValue="Grade">
+					<apex:inputField required="true" value="{!p['grade_level__c']}" />
+				</apex:column>
+				<apex:column headerValue="Class Name" >
+					<apex:inputField required="true" value="{!p['class_id__c']}" />
+				</apex:column>
+				<apex:column headerValue="Type" >
+					<apex:outputField value="{!p['type__c']}" />
+				</apex:column>
+				<apex:column headerValue="School Year">
+					<apex:outputField value="{!p['school_year__c']}"/>
+				</apex:column>
+				<apex:column headerValue="School DBN" >
+					<apex:outputField value="{!p['school_dbn__c']}" />
+				</apex:column>
+				<apex:column headerValue="School Name" >
+					<apex:outputField value="{!p['school_name__c']}" />
+				</apex:column>
+		</apex:dataTable>
+	</apex:variable>
+	</div>
+</apex:component>

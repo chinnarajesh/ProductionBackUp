@@ -1,0 +1,471 @@
+<apex:component >
+	<!-- compilation of necessary css/javascript specific for the Gradebook Module -->
+	<!-- compiling from gradebook_style.component, static resource: gradebook.css, static resource: gradebook.js -->
+   
+	<!-- this dataTable plugin requires jquery 1.11.0, which can be set with the option 'bJQuery11' in jQueryInit.componenet -->
+	<apex:includeScript value="{!URLFOR($Resource.Gradebook, '/js/Mousewheel.js')}"/>
+	<apex:includeScript value="{!URLFOR($Resource.jWerty, '/jWerty/jwerty.js')}" />
+	<style> 
+		/* General Menu Styles */
+		
+		.menu {
+		  list-style-type: none;
+		  margin: 0;
+		  background: #eeeeee; /* Old browsers */
+		  padding: 0;
+		  background: -moz-linear-gradient(top,  #eeeeee 0%, #cccccc 100%); /* FF3.6+ */
+		  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#eeeeee), color-stop(100%,#cccccc)); /* Chrome,Safari4+ */
+		  background: -webkit-linear-gradient(top,  #eeeeee 0%,#cccccc 100%); /* Chrome10+,Safari5.1+ */
+		  background: -o-linear-gradient(top,  #eeeeee 0%,#cccccc 100%); /* Opera 11.10+ */
+		  background: -ms-linear-gradient(top,  #eeeeee 0%,#cccccc 100%); /* IE10+ */
+		  background: linear-gradient(top,  #eeeeee 0%,#cccccc 100%); /* W3C */
+		  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#cccccc',GradientType=0 ); /* IE6-9 */
+		  line-height: 1;
+		}
+		
+		.js .menu {
+		  /* If we have JavaScript enabled and we're just waiting for flexMenu to load and run, hide list items that don't fit on one line. If JavaScript is not enabled, just show 'em all. */
+		  height: 1.5em;
+		  overflow: hidden;
+		}
+		
+		.menu > li {
+		  margin: 0 0 0 1.5em;
+		  float: left;
+		}
+		
+		.menu > li:first-child {
+		  margin-left: 0;
+		}
+		
+		.menu a {
+		  display: block;
+		  text-decoration: none;
+		  padding: .25em .25em .25em .25em;
+		  height: 1em;
+		  height: 1em;
+		  color: #000;
+		  font-family: 'Quantico', sans-serif;
+		  font-weight: 700;
+		}
+		
+		.menu a:hover {
+		  background-color: #006363;
+		  color: #fff;
+		}
+		
+		.flex-multi {
+		  float: left;
+		  width: 45%;
+		  margin-bottom: 100px;
+		}
+		
+		.flex-multi + .flex-multi {
+		  float: right;
+		}
+		
+		.clear {
+		  clear: both;
+		}
+		
+		/* flexMenu styles */
+		
+		.flexMenu-viewMore {
+			float: right !important;
+		}
+		
+		.flexMenu-viewMore > a {
+		  background-color: #f0f0f0;
+
+		}
+		
+		.flexMenu-viewMore.active > a, .flexMenu-viewMore > a:hover {
+		  background-color: #006363;
+		  color: white;
+		}
+		
+		.flexMenu-popup {
+		  padding: 0;
+		  background-color: white;
+		  margin: 0;
+		  z-index: 1000;
+		  top: 28px;
+		  right: 0;
+		  border: 1px solid black;
+		  overflow: auto;
+		}
+		
+		.flexMenu-popup > li {
+			border-radius: 0;
+			margin: 0 !important;
+			float: right !important;
+			padding: 0 !important;
+			top: 0 !important;
+			border-width: 1px !important;
+		}
+	
+		.dataTables_wrapper .DTFC_ScrollWrapper .DTFC_LeftWrapper .DTFC_Cloned {
+			background-color: white;
+			border: 1px;
+			/*padding: 1px;*/
+		}
+		.dataTables_wrapper .DTFC_ScrollWrapper .dataTables_scroll .dataTable tr td:first-child {
+			visibility: hidden;
+		}
+		.dataTables_wrapper .DTFC_ScrollWrapper .dataTables_scroll .dataTable th {
+			min-width: 65px;
+			/*max-width: 200px;*/
+
+		}
+		
+		.dataTables_wrapper .DTFC_ScrollWrapper .dataTables_scroll .dataTable tr th:first-child {
+			
+		}
+		
+		
+		
+.cluetip-default {
+font-family:verdana;
+color:#fff;
+  background-color: #d9d9c2;
+}
+.cluetip-default #cluetip-outer {
+  position: relative;
+  margin: 0;
+  padding:3px;
+  background-color: #333;
+  border-radius:4px;
+  -moz-border-radius:4px;
+  border:1px solid #999;
+}
+.cluetip-default h3#cluetip-title {
+  margin: 0 0 5px;
+  padding: 8px 10px 4px;
+  font-size: 1.1em;
+  font-weight: bold;
+  background-color: transparent;
+  color: #fff;
+}
+.cluetip-default #cluetip-title a {
+  color: #fff;
+  font-size: 0.95em;
+}  
+.cluetip-default #cluetip-inner {
+  padding: 10px;
+}
+.cluetip-default div#cluetip-close { 
+  text-align: right;
+  margin: 0 5px 5px;
+  color: #fff;
+}		
+		
+	</style>
+	
+	<style>
+		/* This fixes salesforce not bothering to consider dynamic layouts that might attempt to resize the main content */
+		.zen-tabMenu{
+			overflow:hidden!important;
+		}
+
+		/* General */
+		.bolded{
+			font-weight: bold;
+		}
+		.centered{
+			text-align: center;
+		}
+
+		/*  sidebard action bar */
+		#separator{
+			line-height: 100%;
+			position: relative;
+		}
+
+		.sidebar-action-bar{
+			height: 31px;
+			width: 9px;
+			display:block;
+			position: absolute;
+			z-index: 6;
+		}
+
+		#pinIndicator{
+			top: 0;
+		}
+
+		#pinIndicator2{
+			bottom:0;
+		}
+
+		.collapseIndicator{
+			background: url(/img/alohaSkin/sidebar_sprite.png) 0 0 no-repeat;
+			cursor: url(/img/cursors/col-collapse.cur),pointer;
+		}
+
+		.expandIndicator{
+			background: url(/img/alohaSkin/sidebar_sprite.png) 0 -62px no-repeat;
+			cursor: url(/img/cursors/col-expand.cur),pointer;
+		}
+
+		/* Sidebar */
+		#sidebar{
+			position: relative;
+			min-width: 150px!important;
+		}
+
+		#legend{
+			position: absolute;
+			bottom: 0;
+			margin-left: 3px;
+		}
+
+		.filter_fields h3{
+			margin-right: 7px;
+			min-width: 60px;
+			display:inline-block;
+		}
+
+		/* Legend */
+		.legendEntry{
+			height: 25px;
+			margin-bottom: 3px;
+			vertical-align: middle;
+			line-height: 25px;
+		}
+
+		.legendColorBox{
+			width: 20px;
+			height: 20px;
+			float: left;
+			border: 2px solid #CCC;
+			margin-right: 2px;
+			display:inline;
+		}
+
+		#onTrackLegendBox {
+			background-color: #3C0;
+		}
+
+		#passingLegendBox{
+			background-color: #FFAA00;
+		}
+
+		#failingLegendBox{
+			background-color: #F00;
+		}
+
+		.onTrackColor {
+			color: #3C0!important;
+		}
+
+		.passingColor{
+			color: #FFAA00!important;
+		}
+
+		.failingColor{
+			color: #F00!important;
+		}
+
+		.comment-legend{
+			display:none;
+		}
+
+		.comment-legend span.comment-legend-no-comments{
+			margin-left:4px;
+			background:url({!URLFOR($Resource.Gradebook, '/images/GradebookButtons.png')}) no-repeat -49px 0; 
+			padding-left: 22px;
+		}
+		.comment-legend span.comment-legend-comments{
+			margin-left:4px;
+			background:url({!URLFOR($Resource.Gradebook, '/images/GradebookButtons.png')}) no-repeat -33px -16px;
+			padding-left: 22px;
+		}
+
+		/* Section Comments */
+		a.comment-icon{
+			background:url({!URLFOR($Resource.Gradebook, '/images/GradebookButtons.png')}) no-repeat -49px 0;
+			width:16px;
+			height:16px;
+			cursor:pointer;
+		}
+		
+		a.comment-icon:hover, a.comment-present {
+			background-position: -33px -16px;
+		}
+		
+		a.comment-icon-hidden {
+			display: none;
+		}
+
+		/* Buttons */
+		.darkBlueButton{ /* importants override salesforce button styles (because having customizable UI is overrated)*/
+			color: white!important;
+			padding: 5px!important;
+			margin-bottom: 3px!important;
+			text-transform: uppercase;
+
+			background: #59afcc !important; /* Old browsers */
+			background: -moz-linear-gradient(top,  #59afcc 21%, #0180ab 85%) !important; /* FF3.6+ */
+			background: -webkit-gradient(linear, left top, left bottom, color-stop(21%,#59afcc), color-stop(85%,#0180ab)) !important; /* Chrome,Safari4+ */
+			background: -webkit-linear-gradient(top,  #59afcc 21%,#0180ab 85%) !important; /* Chrome10+,Safari5.1+ */
+			background: -o-linear-gradient(top,  #59afcc 21%,#0180ab 85%) !important; /* Opera 11.10+ */
+			background: -ms-linear-gradient(top,  #59afcc 21%,#0180ab 85%) !important; /* IE10+ */
+			background: linear-gradient(top,  #59afcc 21%,#0180ab 85%) !important; /* W3C */
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#59afcc', endColorstr='#0180ab',GradientType=0 ) !important; /* IE6-9 */
+		}
+
+		.darkBlueButton:hover{
+			background:#0180AB!important;
+		}
+
+		.blackButton{ /* importants override salesforce button styles (because having customizable UI is overrated)*/
+			color: white!important;
+			padding: 5px!important;
+			/*font-weight: normal!important;*/ /*Just in case Elise feels the button still "just doesn't look right"*/
+			text-transform: uppercase;
+
+			background: #4c4c4c !important; /* Old browsers */
+			background: -moz-linear-gradient(top,  #4c4c4c 0%, #474747 29%, #2c2c2c 52%, #000000 64%, #1c1c1c 93%, #131313 100%) !important; /* FF3.6+ */
+			background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#4c4c4c), color-stop(29%,#474747), color-stop(52%,#2c2c2c), color-stop(64%,#000000), color-stop(93%,#1c1c1c), color-stop(100%,#131313)) !important; /* Chrome,Safari4+ */
+			background: -webkit-linear-gradient(top,  #4c4c4c 0%,#474747 29%,#2c2c2c 52%,#000000 64%,#1c1c1c 93%,#131313 100%) !important; /* Chrome10+,Safari5.1+ */
+			background: -o-linear-gradient(top,  #4c4c4c 0%,#474747 29%,#2c2c2c 52%,#000000 64%,#1c1c1c 93%,#131313 100%) !important; /* Opera 11.10+ */
+			background: -ms-linear-gradient(top,  #4c4c4c 0%,#474747 29%,#2c2c2c 52%,#000000 64%,#1c1c1c 93%,#131313 100%) !important; /* IE10+ */
+			background: linear-gradient(top,  #4c4c4c 0%,#474747 29%,#2c2c2c 52%,#000000 64%,#1c1c1c 93%,#131313 100%) !important; /* W3C */
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4c4c4c', endColorstr='#131313',GradientType=0 ) !important; /* IE6-9 */
+		}
+
+		.blackButton:hover{
+			background:#000 !important;
+		}
+
+		/* Grade Table*/
+		#gradebook-results{
+			border: 1px solid #aaa;
+			font-family: Verdana, Geneva, sans-serif!important;
+		}
+
+		#gradebook-results table{
+			border-collapse: collapse; /* Gets rid of the ugly spaces between the cells.*/
+			border-spacing: 0;
+		}
+
+		/* Table Headers */
+		#gradebook-results th{
+			padding: 5px 3px;
+			border:1px solid #CCC;
+			background: #E3F3FF;
+			font-weight:normal;
+		}
+
+		.studentInfoPanel{
+			display:inline-block;
+		}
+
+		#gradebook-results tr:nth-child(odd){
+			background:#E3E3E3;
+		}
+
+		/*
+		.dataTables_scrollBody {
+			overflow-x: scroll !important;
+    		overflow-y: auto !important;
+		}
+		*/
+		/*
+		#gradebookTable {
+			overflow-x: scroll !important;
+    		overflow-y: auto !important;		
+		}
+		*/
+
+		#gradebookTable td, #gradebookTable th, .dataTables_scrollHeadInner th{
+			min-width: 65px;
+			max-width: 120px;
+			text-overflow: ellipsis;
+			border-right: 1px solid #CCC;
+			border-left:  1px solid #CCC;
+			overflow:hidden;
+		}
+
+		.dataTables_scrollHeadInner a{ /* Fixes placement of cluetips for headers */
+			text-overflow: ellipsis;
+			max-width: 120px;
+			overflow:hidden;
+			display:inline-block;
+		}
+
+		#gradebook-results th input{
+			margin-left:22px;
+		}
+
+		.apply-score{
+			display: inline-block;
+			background: url({!URLFOR($Resource.Gradebook, '/images/GradebookButtons.png')}) no-repeat -16px -32px;
+			width: 16px;
+			height: 16px;
+		}
+
+		a.apply-score:hover{
+    		background-position:0 -48px;
+		}
+
+		.first-column{
+			min-width: 250px!important;
+			max-width: initial!important;
+			vertical-align: middle;
+		}
+
+		.DTFC_LeftBodyLiner{
+			 overflow-x: hidden;
+		}
+
+		#gradebook-results a{
+			text-decoration: none;
+			color:black;
+		}
+
+		.bold-header{
+			font-weight: bold!important;
+		}
+
+		.blue-header{
+			background: #099BCC!important; /*use backgroud over background color to force complete jquery UI override */
+			color:white!important;
+			border-color:white;
+			font-style: italic;
+		}
+		.light-blue-header{
+			
+			color:black!important;
+		}
+		/* Assignment cell colors */
+		.orange{
+			background: #c64c01!important;
+			color:black!important;
+		}
+		.blue{
+			background: #7fb9df!important;
+			color:black!important;
+		}
+		.brown{
+			background: #a77443!important;
+			color:black!important;
+		}
+		.tan{
+			background: #dbc092!important;
+			color:black!important;
+		}
+		.green{
+			background: #a9c100!important;
+			color:black!important;
+		}
+		.pink {
+			background: #d4a8d4!important;
+			color:black!important;
+		}
+		.white{
+			background: white!important;
+			color:black!important;
+		}
+	</style>
+</apex:component>

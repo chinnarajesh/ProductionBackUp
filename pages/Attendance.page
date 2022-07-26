@@ -1,0 +1,288 @@
+<apex:page id="thepage" controller="AttendanceController" sidebar="true" tabStyle="Attendance__tab">
+
+<c:jQueryInit bLoadingPanel="true" bTimePicker="true"/>
+<c:loadingPanel />
+<apex:includeScript value="{!URLFOR($Resource.jWerty, '/jWerty/jwerty.js')}" />
+<apex:stylesheet value="{!$Resource.New_Core_UX}"/>
+<style>
+.wrapper {
+	width: 1200px;
+}
+.attendance_results_wrapper {
+	width: 1200px;
+}
+.filter_form .form_fields div select {
+width: 300px;
+}
+ tr .odd {
+        background-color: #F0F0F6;
+    }
+    
+    .even {
+        background-color: white;
+    }
+input.black_btn {
+float: left !important;
+}
+</style>
+
+
+<script>
+var $ = jQuery.noConflict();
+var currentTime = new Date();
+
+var hour = currentTime.getHours();
+var minute = currentTime.getMinutes();
+var ampm;
+ $(document).ready(function() {
+        resetTimePicker();
+
+  });
+  
+function resetTimePicker(){
+    hour = currentTime.getHours();
+    minute = currentTime.getMinutes();
+    if (minute < 10){
+        minute = "0" + minute;
+    }
+
+    if (hour ==0) {
+        ampm="AM";
+        hour=12;
+    }
+    else if(hour > 11){
+        ampm="PM";
+        if (hour!=12) hour=hour-12;
+    }
+    else {
+        ampm="AM";
+    }
+    //alert(ampm);
+
+    $(document).ready(function() {
+ 
+        $('.currentTime').each(function(index) {
+            $(this).html(hour+':'+minute+' '+ampm);
+            $(this).css('text-decoration', 'underline');
+        });
+    
+        $('.statusList').each(function(index) {
+            //alert($(this).html());
+            checkPlValue($(this));
+        });
+     
+        $('.TimePicker').each(function(index) {
+            $(this).timepicker({
+                showPeriod: true, 
+                showLeadingZero: true,
+                showOn: 'focus',
+                defaultTime: hour+':'+minute,
+                //    button: $(this).prev('.ui-icon-clock'),
+            });
+        });
+    });
+} 
+
+var $ = jQuery.noConflict();
+   
+function checkPlValue(plValue){
+    var value = $(plValue).val();
+    for(i = 0; i < statusArray.length; i++) {
+    	if(value == statusArray[i].name){
+    		var code = statusArray[i].code;
+    		var tar = statusArray[i].tardy;
+    		var dep = statusArray[i].depart;
+    		var bDefault = statusArray[i].bDefault;
+    	}
+    }
+    if (tar=="true"){
+            $(plValue).parent().parent().find('.arivdate').show();
+            $(plValue).parent().parent().find('.depdate').hide();
+            $(plValue).parent().parent().find('.commentsDiv').show();
+            //  $(document).find('#arrTimeHeader').show();
+            //  $(document).find('#departureTimeHeader').hide();
+            if(dep=="true") $(plValue).parent().parent().find('.depdate').show();
+    }
+    else if (dep=="true"){
+        $(plValue).parent().parent().find('.depdate').show();
+        $(plValue).parent().parent().find('.arivdate').hide();
+        $(plValue).parent().parent().find('.commentsDiv').show();
+        // $(document).find('#arrTimeHeader').hide();
+        // $(document).find('#departureTimeHeader').show();
+    }
+    else {
+        $(plValue).parent().parent().find('.depdate').hide();
+        $(plValue).parent().parent().find('.arivdate').hide(); 
+        $(plValue).parent().parent().find('.commentsDiv').show();
+        if (bDefault=="true"){
+            $(plValue).parent().parent().find('.commentsDiv').hide();
+        }
+        //  $(document).find('#arrTimeHeader').hide();
+        //  $(document).find('#departureTimeHeader').hide();
+    }
+}
+
+function setFocusOnLoad() {} 
+
+var statusArray = new Array();
+
+jwerty.key('enter',false);
+</script>
+<apex:repeat value="{!pvs}" var="pv" id="picklistArray">
+	<script type="text/javascript">
+		statusArray.push({
+			name : "{!JSENCODE(pv.Name)}",
+			id : 		"{!JSENCODE(pv.id)}",
+			category: "{!JSENCODE(pv.category__c)}",
+			bDefault : "{!pv.set_as_default__c}",
+			tardy : 	"{!pv.is_tardy__c}",
+			depart :"{!pv.is_early_departure__c}"
+		});
+	</script>
+</apex:repeat>
+	<div class="wrapper gradebook">
+<apex:form id="theform">
+
+        <apex:outputPanel id="message">
+            <apex:pageMessages id="themsgs" />
+        </apex:outputPanel>
+        	<apex:outputPanel id="theBlockPanel">
+            <h3>Select Criteria To Take Attendance</h3>
+        		<div class="filter_form">
+            		<div class="form_fields"> 
+	            		<div>
+	                    	<apex:outputText value="School ">&nbsp;</apex:outputText><br />
+	                  		<apex:selectList value="{!schoolId}" multiselect="false" size="1"  onchange="refreshSchoolJS();"> 
+	                        <apex:selectOptions value="{!schoolOptions}"/>
+	                    </apex:selectList>
+	                	</div>
+                		<apex:outputpanel id="schoolfilter">
+			            		<div> 
+				                    <apex:outputText value="Year ">&nbsp;</apex:outputText><br />
+				                   	 	<apex:selectList value="{!yearId}" multiselect="false" size="1" onchange="refreshTermJS();"> 
+				                       	 <apex:selectOptions value="{!yearOptions}"/>
+				                    	</apex:selectList> 
+			                	</div>  
+	                			<apex:outputpanel id="yearfilter">
+				            		<div>
+				                    	<apex:outputText value="Section ">&nbsp;</apex:outputText><br />
+				                  		<apex:selectList value="{!section}" multiselect="false" size="1">
+				                        	<apex:selectOptions value="{!sectList}"></apex:selectOptions>
+				                        </apex:selectList>
+				                	</div>
+				              		<div>
+				              			<apex:outputText value="Date"> &nbsp; </apex:outputText><br/>
+				                        <apex:inputField id="atnDate" value="{!timeEl.Date_Start_Date__c}"/>
+				                    </div>	
+					     			
+				               </apex:outputpanel>
+			          </apex:outputpanel>
+                    </div>
+                    <input  type="button" class="btn drk_blue_btn" value="RETRIEVE RESULTS" onclick="goJs();"  name="thepage:theform:theblock:j_id40" id="thepage:theform:theblock:j_id40" />
+									<apex:actionStatus id="goStatus">
+				                        <apex:facet name="start"><center><img src="{!URLFOR($Resource.resources_Master, '/custom/images/loadingGif.gif')}"/></center></apex:facet>
+				                    </apex:actionStatus>
+                    <div class="clear_fix">&nbsp;</div>  
+                  </div> 
+                             
+                </apex:outputPanel>    
+
+                <apex:outputPanel id="data" >
+                <apex:outputPanel rendered="{!IF(atnWrapList.size>0, true, false)}">
+                        <h3>{!sectionName}: &nbsp;&nbsp;
+                            
+                            <apex:outputText value="{!localStartTime}">
+                            </apex:outputText>&nbsp;-&nbsp;
+                <apex:outputText value="{!localEndTime }">
+                            </apex:outputText>
+                    </h3>
+                <apex:actionStatus id="submitStatus">
+                    <apex:facet name="start">Processing.  Please wait.</apex:facet>
+                </apex:actionStatus>
+				                <div class="attendance_results_wrapper">
+				                <div class="filter_form">
+                    <table width="99%" id="coreTable" class="box-table-a" style="display: {!IF(atnWrapList.size>0,'','none')};">
+                        <tr class="header" style="border-bottom:1px solid black;">
+                            <th width="25%" style="border-bottom:1px solid black;width:25%;" class="leftJ">
+                                <apex:outputText rendered="{!IF(atnWrapList.size>0,true,false)}" value="{0}">
+                                    <apex:param value="Student Name (Tardy/Absent)"></apex:param>
+                                </apex:outputText>
+                            </th>  
+                            <th  width="20%"  style="border-bottom:1px solid black;width:20%;"><apex:commandLink value="Status" /></th>  
+                            
+                            <th  width="20%" style="border-bottom:1px solid black;width:20%;" id="arrTimeHeader">Arrival Time</th>                             
+                            <th  width="20%" style="border-bottom:1px solid black;width:20%;"  id="departureTimeHeader">Departure Time</th>      
+                            <th  style="border-bottom:1px solid black; border-right-width:0px; border-top-right-radius:15px;-moz-border-radius-topright: 15px;"> Comments </th>
+                           
+                           
+                        </tr>
+                        </table>
+                                        <div style="height:400px; overflow:auto">
+                         <table width="100%">
+                        <apex:repeat id="studentTable" value="{!atnWrapList}" var="attend">
+                                <tr class="{!attend.rowStyle}"  id="rowId_{!attend.studID}" >
+                                    <td width="25%" style=" text-align:left;white-space:nowrap;">
+                                        <a href="/{!attend.studId}" target="_blank" tabindex="-1">{!attend.studName} ({!attend.tardyCnt}/{!attend.absentCnt})</a>
+                                    </td>
+                                    <td width="20%" style="width:20%;"> 
+                                     <apex:selectList Styleclass="statusList" onchange="checkPlValue(this);" value="{!attend.statusVal}" multiselect="false" size="1" disabled="{!NOT(baseObj.activeSetup.Active__c) || attend.atn.Locked__c}" title="{!IF(attend.atn.Locked__c,'This record has been locked.','')}">
+                                             <apex:selectOptions value="{!StatusList}"></apex:selectOptions> 
+                                        </apex:selectList>
+                                    </td>
+                                        
+                                    <td width="20%" style="width:20%;" id="arivdate">
+                                        <apex:outputPanel rendered="{!baseObj.activeSetup.Active__c && NOT(attend.atn.Locked__c)}">
+                                            <div class="arivdate" style="display:none">
+                                                <apex:inputText rendered="{!baseObj.activeSetup.Active__c}" styleClass="TimePicker" value="{!attend.te.StartTime__c}"/>
+                                                <apex:outputText rendered="{!!baseObj.activeSetup.Active__c}" styleClass="TimePicker" value="{!attend.te.StartTime__c}"/>
+                                                <a onclick="var currentT = $(this).html(); $(this).prev('.TimePicker').val(currentT);" class="currentTime"></a>
+                                            </div>
+                                        </apex:outputPanel>
+                                        <apex:outputPanel rendered="{!NOT(baseObj.activeSetup.Active__c) || attend.atn.Locked__c}" layout="block" style="text-align:center;">
+                                            {!attend.te.StartTime__c}
+                                        </apex:outputPanel>
+                                    </td>                                   
+                                    <td   width="20%" style="width:20%;" id="deptimeId_{!attend.studID}">
+                                        <apex:outputPanel rendered="{!baseObj.activeSetup.Active__c && NOT(attend.atn.Locked__c)}">
+                                            <div class="depdate" style="display:none">
+                                                <apex:inputText rendered="{!baseObj.activeSetup.Active__c}" styleClass="TimePicker" value="{!attend.te.EndTime__c}"/>
+                                                <apex:outputText rendered="{!!baseObj.activeSetup.Active__c}" styleClass="TimePicker" value="{!attend.te.EndTime__c}"/>
+                                                <a onclick="var currentT = $(this).html(); $(this).prev('.TimePicker').val(currentT);" class="currentTime"></a>
+                                            </div>
+                                        </apex:outputPanel>
+
+                                        <apex:outputPanel rendered="{!NOT(baseObj.activeSetup.Active__c) || attend.atn.Locked__c}" layout="block" style="text-align:center;">
+                                            {!attend.te.EndTime__c}
+                                        </apex:outputPanel>
+                                    </td>
+                                     <td >
+                                        <apex:outputPanel rendered="{!baseObj.activeSetup.Active__c && NOT(attend.atn.Locked__c)}">
+                                            <div class="commentsDiv" style="display:none">
+                                                <apex:inputfield rendered="{!baseObj.activeSetup.Active__c}" value="{!attend.atn.Comments__c}" style="width:90%; height:30px"/>
+                                                <apex:outputfield rendered="{!!baseObj.activeSetup.Active__c}" value="{!attend.atn.Comments__c}" style="width:90%; height:30px"/>
+                                            </div>
+                                        </apex:outputPanel>
+                                        <apex:outputPanel rendered="{!NOT(baseObj.activeSetup.Active__c) || attend.atn.Locked__c}" layout="block">
+                                            <apex:outputText value="{!attend.atn.Comments__c}"/>
+                                        </apex:outputPanel>
+                                    </td>             
+                                </tr>                             
+                         </apex:repeat>
+                    </table>
+                    </div>
+                    </div>
+                    </div>
+                    <br/>
+                <apex:variable value="{!baseObj.activeSetup.Active__c}" var="a" rendered="{!baseObj.activeSetup.Active__c}">    
+                <input type="button"  class="black_btn" onclick="showProgressBar('Saving Attendance Records'); saveJS();" value="Submit" />   
+                 </apex:variable>
+                 </apex:outputPanel>
+                 </apex:outputPanel>
+ <apex:actionfunction action="{!reloadSchool}" name="refreshSchoolJS" rerender="schoolfilter,themsgs"/>
+ <apex:actionfunction action="{!reloadYear}" name="refreshTermJS" rerender="yearfilter,message,themsgs"/>
+ <apex:actionFunction name="saveJS" status="submitStatus" action="{!save}" oncomplete="setTimeout('hideProgressBar()',300);resetTimePicker();" rerender="data, submittedMessage, message"/>
+ <apex:actionFunction name="goJs" status="goStatus" oncomplete="resetTimePicker(); " action="{!retrieveStudents}" rerender="data, submittedMessage, message"/>
+ 
+ </apex:form>
+ </div>
+</apex:page>

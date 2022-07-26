@@ -1,0 +1,7 @@
+<apex:page controller="EOYWiz_SchoolStudentPromotional" contentType="text/csv#{!fileName}.csv" language="en-US">"Id","Student_Id__c","Name","Grade__c","Eligible_For_Enrollment__c","Intent_to_Return_Following_Year__c","Promoted__c","Final_Grade_Level__c","Next_School__c"
+<apex:repeat value="{!thousandBlocks}" var="block">
+<apex:repeat value="{!block.students}" var="student">
+"{!student.Id}","{!student.Student_Id__c}","{!student.Name}","{!student.Grade__c}","{!student.Eligible_For_Enrollment__c}","{!student.Intent_to_Return_Following_Year__c}","{!student.Promoted__c}","{!student.Final_Grade_Level__c}","{!student.Next_School__c}"
+</apex:repeat>
+</apex:repeat>
+</apex:page>

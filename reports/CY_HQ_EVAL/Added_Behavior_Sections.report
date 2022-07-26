@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Program__c$Name</field>
+    </columns>
+    <filter>
+        <criteriaItems>
+            <column>Program__c$Indicator_Area__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>behavior</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Program__c.Sections__r$School__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>contains</operator>
+            <value>Celerity Overfelt High School,Ryan ES,San Antonio ElCrestworth,Joseph S. Clark High School,Langston Hughes Charter School,Phillis Wheatley Community School,Samuel J. Green Charter School,Father Keith B. Kenny,Leataata Floyd Elementary,Chavez ES,Fischer MS,Mathson MS,Ocala MS,ementary School,Aki Kurose Middle School,Emerson Elementary,Martin Luther King Jr. Elementary School,Van Asselt Elementary School</value>
+        </criteriaItems>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Program__c.Sections__r$Location__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Program__c.Sections__r$School__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Added Behavior Sections</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Programs_Sections_Students__c</reportType>
+    <scope>organization</scope>
+    <showDetails>false</showDetails>
+    <showGrandTotal>false</showGrandTotal>
+    <showSubTotals>false</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>Program__c.Sections__r$CreatedDate</dateColumn>
+        <interval>INTERVAL_LAST7</interval>
+    </timeFrameFilter>
+</Report>

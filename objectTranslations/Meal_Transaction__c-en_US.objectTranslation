@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Meal Transaction</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Meal Transactions</value>
+    </caseValues>
+    <fields>
+        <label><!-- Cost Type --></label>
+        <name>Cost_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Daily Meal Summary --></label>
+        <name>Daily_Meal_Summary__c</name>
+        <relationshipLabel><!-- Meal Transactions --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- External Id --></label>
+        <name>External_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Meal Type --></label>
+        <name>Meal_Type__c</name>
+        <picklistValues>
+            <masterLabel>Breakfast</masterLabel>
+            <translation><!-- Breakfast --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Lunch</masterLabel>
+            <translation><!-- Lunch --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Student --></label>
+        <name>Student__c</name>
+        <relationshipLabel><!-- Meal Transactions --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Transaction Amount Rollup --></label>
+        <name>Transaction_Amount_Rollup__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the amount the student is required to pay for their meal. --></help>
+        <label><!-- Transaction Amount --></label>
+        <name>Transaction_Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Transaction Date --></label>
+        <name>Transaction_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Transaction Type --></label>
+        <name>Transaction_Type__c</name>
+        <picklistValues>
+            <masterLabel>Credit</masterLabel>
+            <translation><!-- Credit --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sale</masterLabel>
+            <translation><!-- Sale --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- This should be checked if a transaction is voided. --></help>
+        <label><!-- Void --></label>
+        <name>Void__c</name>
+    </fields>
+    <layouts>
+        <layout>Meal Transaction Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

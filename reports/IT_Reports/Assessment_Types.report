@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Picklist_Value__c$Id</field>
+    </columns>
+    <columns>
+        <field>Picklist_Value__c$Name</field>
+    </columns>
+    <columns>
+        <field>Picklist_Value__c$Fieldset__c</field>
+    </columns>
+    <filter>
+        <criteriaItems>
+            <column>Picklist_Value__c$RecordType</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Picklist_Value__c.Assessment_Type</value>
+        </criteriaItems>
+    </filter>
+    <format>Tabular</format>
+    <name>Assessment Types</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Picklist_Values__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>Picklist_Value__c$CreatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

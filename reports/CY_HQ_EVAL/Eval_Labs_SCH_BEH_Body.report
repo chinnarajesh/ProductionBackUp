@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Program__c.Sections__r$Name</field>
+    </columns>
+    <columns>
+        <field>Program__c.Sections__r.Student_Section__r$Name</field>
+    </columns>
+    <filter>
+        <criteriaItems>
+            <column>Program__c$Indicator_Area__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>behavior</value>
+        </criteriaItems>
+    </filter>
+    <format>Matrix</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Program__c.Sections__r$Location__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Program__c.Sections__r$School__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Eval Labs SCH BEH Body</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Programs_Sections_Students__c</reportType>
+    <scope>organization</scope>
+    <showDetails>false</showDetails>
+    <showGrandTotal>false</showGrandTotal>
+    <showSubTotals>false</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>Program__c$CreatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

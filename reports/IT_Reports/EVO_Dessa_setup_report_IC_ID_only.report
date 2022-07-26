@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Staff__c.First_Name_Staff__c</field>
+    </columns>
+    <columns>
+        <field>Staff__c.Staff_Last_Name__c</field>
+    </columns>
+    <columns>
+        <field>Staff__c.Email__c</field>
+    </columns>
+    <columns>
+        <field>Staff__c.Role__c</field>
+    </columns>
+    <filter>
+        <criteriaItems>
+            <column>Staff__c.Role__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Impact Director,Impact Coach,learning director</value>
+        </criteriaItems>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Staff__c.Site__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>EVO-Dessa setup report IC, ID &amp; LD only</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CustomEntity$Staff__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <sortColumn>Staff__c.Email__c</sortColumn>
+    <sortOrder>Asc</sortOrder>
+    <timeFrameFilter>
+        <dateColumn>Staff__c.Birthday__c</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

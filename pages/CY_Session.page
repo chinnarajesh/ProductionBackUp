@@ -1,0 +1,305 @@
+<apex:page docType="html-5.0" showHeader="false" sidebar="false" controller="ctlAddTimeFlow_dev">
+    <title>Session List</title>
+    <apex:composition template="CY_Template">
+        <apex:define name="body">
+
+    <style type="text/css">
+        @media (min-width: 768px) {
+            .flex-row .form-group {
+                min-width: 200px;
+                margin-right: 30px;
+            }
+        }
+        @media (max-width: 768px){
+            .flex-row .form-group {
+                padding: 5px 5px 0px 5px;;
+                margin-right: 10px;
+            }
+        }
+    </style>
+
+            <apex:form styleClass="container-bs reset-xs">
+                <div class="box data session-list">
+                    <div class="box-header">
+                        <div class="title">
+                            <h2>Session List</h2>
+                        </div><!-- /.title -->
+                        <div class="controls">
+                            <apex:commandLink styleClass="btn-bs btn-blank" action="{!doSessionListCancel}"><span class="icon-arrow_back"></span>Go Back</apex:commandLink>
+                        </div><!-- /.controls -->
+                    </div><!-- /.box-header -->
+
+                    <div class="box-content">
+                        <apex:outputPanel id="msgs">
+                            <apex:pageMessages />
+                        </apex:outputPanel>
+                        <div class="filter-group">
+                            <div class="flex-row">
+
+                                <table>
+                                <tr><td>
+                                    <div class="form-group">
+                                        <label for="student-name">Student Name</label>
+                                        <apex:inputField value="{!ss.Student__c}" styleClass="form-control input-sm" taborderhint="1"  />
+                                    </div><!-- /.form-group -->
+                                    </td>
+                                    <td>
+                                    <div class="form-group">
+                                        <label for="corps-member">Corps Member</label>
+                                        <apex:inputField value="{!sect.Intervention_Primary_Staff__c}" styleClass="form-control input-sm" taborderhint="2" />
+                                        <!-- filter on Intervention_Primary_Staff__c doesn`t work correct witout School__c-->
+                                        <apex:inputField style="display: none;" value="{!sect.School__c}"/>
+
+                                    </div><!-- /.form-group -->
+                                    </td>
+                                    <td>
+                                    <div>
+                                    <apex:commandButton value="Search" status="actStatusId" action="{!searchSession}" styleClass="btn-bs btn-primary" tabindex="41" reRender="rend" oncomplete="resetDatatable()" />
+                                       <apex:actionStatus id="actStatusId" >
+                                            <apex:facet name="start" >
+                                              <img src="/img/loading.gif" />                    
+                                            </apex:facet>
+                                        </apex:actionStatus> 
+                                    </div>
+                                    </td>
+                                    </tr><tr>
+                                    <td>
+                                    <div class="form-group date-group">
+                                        <label for="start-date">Start Date</label>
+                                        <apex:inputField value="{!sect.Start_Date__c}" styleClass="form-control input-sm" taborderhint="3" />
+                                    </div><!-- /.form-group -->
+                                    </td><td colspan="2" align="left">
+                                    <div class="form-group date-group">
+                                        <label for="end-date">End Date</label>
+                                        <apex:inputField value="{!sect.End_Date__c}" styleClass="form-control input-sm" taborderhint="4" />
+                                    </div><!-- /.form-group -->
+
+                                   </td>
+                                   </tr>
+
+
+                </table>
+    </div><!-- /.flex-row -->
+</div><!-- /.filter-group -->
+
+
+                        <apex:outputPanel id="rend">
+                            <apex:outputPanel rendered="{!IF(searchResults==null, false, true)}">
+                                <table class="table" id="sctnList1">
+                                    <thead>
+                                        <tr>
+                                            <th>Session ID</th>
+                                            <th>Date</th>
+                                            <th class="table-p">Section Name</th>
+                                            <th class="desktop">Student List</th>
+                                            <th>Comments</th>
+                                            <th>Primary Skill</th>
+                                            <th>In-Person Service or <br></br>Virtual Service</th>
+                                            <th>Other Skill</th>
+                                            <th>Session Type</th>
+                                            <th>Session Format</th>
+                                            <th>Site Details</th>
+                                            <th>Exit Ticket</th>
+                                            <th>Time(Minimum,Maximum)</th>
+                                            <th class="desktop">Corps Member Name</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <apex:repeat value="{!searchResults}" var="s">
+                                            <tr>
+                                                <td>
+                                                    <apex:commandLink value="{!s.intervSection.Name}" action="{!doUpdateSession}">
+                                                        <apex:param name="updateSessionID" value="{!s.intervSection.ID}" assignTo="{!updateSessionID}" />
+                                                    </apex:commandLink>
+                                                </td>
+                                                <td>
+                                                    <apex:outputText value="{0,date,MM/dd/yyyy}">
+                                                        <apex:param value="{!s.intervSection.Date__c}" />
+                                                    </apex:outputText>
+                                                </td>
+                                                <td><apex:outputField value="{!s.intervSection.Section__r.Name}" /></td>
+                                                
+                                                <td>{!s.studentList}</td>
+                                                 <td><apex:outputField value="{!s.intervSection.Comments__c}"/></td>
+                                                 <td><apex:outputField value="{!s.intervSection.Skill_Primary__r.name}"/></td>
+                                                 <!--<td><apex:outputText value="{!s.Primaryskill}"></apex:outputText></td>-->
+                                                 <td><apex:outputField value="{!s.intervSection.All_avenues__c}"/></td>
+                                                 <td><apex:outputField value="{!s.intervSection.Skills_Covered_for_the_Session__c}"/></td>
+                                                 <td><apex:outputField value="{!s.intervSection.Session_Type__c}"/></td>
+                                                 <td><apex:outputField value="{!s.intervSection.Session_Format__c}"/></td>
+                                                 <td><apex:outputField value="{!s.intervSection.Site_Details__c}"/></td>
+                                                <td><apex:outputText value="{!s.exitTicket}"></apex:outputText></td>
+                                                <td><apex:outputText value="{!s.Timevalue}"></apex:outputText></td>
+                                                 <td><apex:outputField value="{!s.intervSection.Session_Time_Completed_For__r.Name}" /></td>
+                                            </tr>
+                                        </apex:repeat>
+                                    </tbody>
+                                </table>
+
+                                <!-- <apex:dataTable value="{!searchResults}" var="s" id="sctnList1">
+                                    <apex:column headerValue="Section Name">
+                                        <apex:outputField value="{!s.intervSection.Section__r.Name}" />
+                                    </apex:column>
+                                    <apex:column headerValue="Intervention Session ID">
+                                        <apex:commandLink value="{!s.intervSection.Name}" action="{!doUpdateSession}">
+                                            <apex:param name="updateSessionID" value="{!s.intervSection.ID}" assignTo="{!updateSessionID}" />
+                                        </apex:commandLink>
+                                    </apex:column>
+                                    <apex:column headerValue="Corps Member">
+                                        <apex:outputField value="{!s.intervSection.Session_Time_Completed_For__r.Name}" />
+                                    </apex:column>
+                                    <apex:column headerValue="Session Date">
+                                        <apex:outputText value="{0,date,MM/dd/yyyy}">
+                                            <apex:param value="{!s.intervSection.Date__c}" />
+                                        </apex:outputText>
+                                    </apex:column>
+                                    <apex:column headerValue="Student List">
+                                        {!s.studentList}
+                                    </apex:column>
+                                    <apex:facet name="footer">Displaying Page # {!pageNumber} of {!totalPages}</apex:facet>
+                                </apex:dataTable> -->
+                            </apex:outputPanel>
+
+                            <!-- <apex:outputPanel id="mySection" rendered="{!IF(srchop==false, true, false)}">-->
+                            <apex:outputPanel rendered="{!IF(searchResults!=null, false, true)}">
+                                <table class="table" id="sctnList">
+                                    <thead>
+                                        <tr>
+                                            <th>Session ID</th>
+                                            <th>Date</th>
+                                            <!--<th class="table-p">Section Name</th>-->
+                                            <th>Student List</th>
+                                            <th>Comments</th>
+                                            <th>Primary Skill</th>
+                                            <th>In-Person Service or <br></br>Virtual Service</th>
+                                            <!--<th>Tutoring Model</th>-->
+                                            <th>Other Skill</th>
+                                            <th>Session Type</th>
+                                            <th>Session Format</th>
+                                            <th>Site Details</th>
+                                            <!--<th>Exit Ticket</th>-->
+                                            <th>Time(Minimum,Maximum)</th>
+                                            <!--<th class="desktop">Corps Member Name</th>-->
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <apex:repeat value="{!sessionList}" var="s">
+                                            <tr>
+                                                <td>
+                                                    <apex:commandLink value="{!s.intervSection.Name}" action="{!doUpdateSession}">
+                                                        <apex:param name="updateSessionID" value="{!s.intervSection.ID}" assignTo="{!updateSessionID}" />
+                                                    </apex:commandLink>
+                                                </td>
+                                                <td>
+                                                    <apex:outputText value="{0,date,MM/dd/yyyy}">
+                                                        <apex:param value="{!s.intervSection.Date__c}" />
+                                                    </apex:outputText>
+                                                </td>
+                                                <!--<td><apex:outputField value="{!s.intervSection.Section__r.Name}"/></td>-->
+                                                <td style="width: initial;"><apex:outputText value="{!s.studentList}"></apex:outputText></td>
+                                                <td style="width: 1000px;"><apex:outputField value="{!s.intervSection.Comments__c}"/></td>
+                                                <td><apex:outputField value="{!s.intervSection.Skill_Primary__r.name}"/></td>
+                                                <!--<td><apex:outputText value="{!s.Primaryskill}"></apex:outputText></td>-->
+                                                <td><apex:outputField value="{!s.intervSection.All_avenues__c}"/></td>
+                                                <!--<td><apex:outputField value="{!s.intervSection.Tutoring_Model__c}"/></td>-->
+                                                <td><apex:outputField value="{!s.intervSection.Skills_Covered_for_the_Session__c}"/></td>
+                                                <td><apex:outputField value="{!s.intervSection.Session_Type__c}"/></td>
+                                                <td><apex:outputField value="{!s.intervSection.Session_Format__c}"/></td>
+                                                <td><apex:outputField value="{!s.intervSection.Site_Details__c}"/></td>
+                                                <!--<td><apex:outputText value="{!s.exitTicket}"></apex:outputText></td>-->
+                                                <td><apex:outputText value="{!s.Timevalue}"></apex:outputText></td>
+                                              <!--<td><apex:outputField value="{!s.intervSection.Session_Time_Completed_For__r.Name}" /></td>-->
+                                            </tr>
+                                        </apex:repeat>
+                                    </tbody>
+                                </table>
+
+
+                                <!-- <apex:dataTable value="{!sessionList}" var="s" id="sctnList" styleclass="table data-table table-condensed responsive table-striped cy-table" >
+                                    <apex:column headerValue="Section Name">
+                                        <apex:outputField value="{!s.intervSection.Section__r.Name}" />
+                                    </apex:column>
+                                    <apex:column headerValue="Intervention Session ID">
+                                        <apex:commandLink value="{!s.intervSection.Name}" action="{!doUpdateSession}">
+                                            <apex:param name="updateSessionID" value="{!s.intervSection.ID}" assignTo="{!updateSessionID}" />
+                                        </apex:commandLink>
+                                    </apex:column>
+                                    <apex:column headerValue="Corps Member">
+                                        <apex:outputField value="{!s.intervSection.Session_Time_Completed_For__r.Name}" />
+                                    </apex:column>
+                                    <apex:column headerValue="Session Date">
+                                        <apex:outputText value="{0,date,MM/dd/yyyy}">
+                                            <apex:param value="{!s.intervSection.Date__c}" />
+                                        </apex:outputText>
+                                    </apex:column>
+                                    <apex:column headerValue="Student List">
+                                        {!s.studentList}
+                                    </apex:column>
+                                     <apex:facet name="footer">Displaying Page # {!pageNumber} of {!totalPages}</apex:facet>
+                                </apex:dataTable> -->
+                            </apex:outputPanel>
+                        </apex:outputPanel>
+
+                    </div><!-- /.box-content -->
+                </div><!-- /.box data session-list -->
+
+            </apex:form>
+        </apex:define>
+    </apex:composition>
+    <script type="text/javascript">
+        var generated = false;
+        var tabelwidth = 'firstload';
+        // jwerty.key('enter', false);
+        j$ = jQuery.noConflict();
+        j$(document).ready(function() {
+
+            var contactTable1 = j$('[id$="sctnList"]').DataTable({
+                "sScrollY": "500px",
+                "bLengthChange": true,
+                "scrollX": true,
+                "bFilter": true,
+                "bInfo": false,
+                "aoColumnDefs": [{
+                    "sWidth": "30%",
+                    "aTargets": [0]
+                }],
+                "bAutoWidth": true,
+                "bSort": true,
+                "bDestroy": true,
+                "bScrollAutoCss": true,
+                "bPaginate": true,
+                "bScrollCollapse": true,
+                "bJQueryUI": true,
+                "bSaveState": true,
+                iDisplayLength: 10,
+                "asStripClasses": ['odd', 'even']
+            });
+            return false;
+        });
+
+        function resetDatatable() {
+            var contactTable = j$('[id$="sctnList1"]').DataTable({
+                "sScrollY": "500px",
+                "bLengthChange": true,
+                "scrollX": true,
+                "bFilter": true,
+                "bInfo": false,
+                "aoColumnDefs": [{
+                    "sWidth": "30%",
+                    "aTargets": [0]
+                }],
+                "bAutoWidth": true,
+                "bSort": true,
+                "bDestroy": true,
+                "bScrollAutoCss": true,
+                "bPaginate": true,
+                "bScrollCollapse": true,
+                "bJQueryUI": true,
+                "bSaveState": true,
+                iDisplayLength: 10,
+                "asStripClasses": ['odd', 'even'],
+                
+            });
+        }
+    </script>
+</apex:page>

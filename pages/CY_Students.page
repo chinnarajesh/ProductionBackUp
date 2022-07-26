@@ -1,0 +1,253 @@
+<apex:page docType="html-5.0" showHeader="false" sidebar="false" standardStylesheets="false" applyHtmlTag="false" applyBodyTag="false" controller="ctlAddTimeFlow_dev">
+    <html dir="ltr" lang="en-US" >
+        <head>
+            <meta charset="utf-8" />
+            <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+            <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+            <meta name="theme-color" content="#EE3B32" />
+            <apex:stylesheet value="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/css/select2.min.css" />
+            <!--<apex:stylesheet value="https://cdn.datatables.net/u/bs-3.3.6/dt-1.10.12,r-2.1.0,sc-1.4.2/datatables.min.css" />-->
+            <apex:stylesheet value="{!URLFOR($Resource.TWBSSass, 'css/custom-bootstrap.css')}"/>
+            <apex:stylesheet value="{!URLFOR($Resource.TWBSSass, 'css/main.css')}"/>
+            <apex:includeScript value="{!$Resource.Chartjs}"/>
+        </head>
+
+        <body>
+            <c:CY_Header />
+            <apex:insert name="body"/>
+
+            <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" />
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" />
+            <script src="https://cdn.datatables.net/u/bs-3.3.6/dt-1.10.12,r-2.1.0,sc-1.4.2/datatables.min.js"></script>
+            <script src="{!URLFOR($Resource.TWBSSass, 'js/main.min.js')}" />
+
+        </body>
+    </html>
+    <title>Section Details</title>
+        <apex:define name="body">
+            <!--<style>-->
+            <!--</style>-->
+            <apex:pagemessages />
+            <apex:form styleClass="container-bs reset-xs">
+                <apex:inputHidden value="{!slctdStdId}" id="theHiddenInput"/>
+                 <apex:inputHidden value="{!checkState}" id="theHiddenState"/>
+                 <div class="box data">
+                    <div class="box-header">
+                        <div class="title">
+                            <h2>{!sectionName}</h2>
+                            <div class="description">
+                              <span>{!sectionELT}</span>
+                              <apex:outputPanel rendered="{!sectionNickName != null}">
+                                - {!sectionNickName}
+                              </apex:outputPanel>
+                            </div>
+                        </div><!-- /.title -->
+                        <div class="controls">
+                            <apex:commandLink styleClass="btn-bs btn-blank" action="{!doStudentsCancel}"><span class="icon-arrow_back"></span>Go Back</apex:commandLink>
+                            <apex:commandButton styleClass="btn-bs btn-default push-left" action="{!doShowSessions}" value="History" />
+                            <apex:commandLink styleClass="btn-bs btn-primary" action="{!doStudentsAddTime}" onclick="sendData()"><span class="icon-plus"></span>Add Time</apex:commandLink>
+                        </div><!-- /.controls -->
+                    </div>
+                    <div class="box-content">
+              
+                       <apex:outputPanel id="mySection1" styleClass="hidden-xs" rendered="{!IF(showReport==true, true, false)}">
+                            <div style="width:100%;margin:auto;height:40%">
+                               
+               <!--<analytics:reportChart reportId="{!reportID}" showRefreshButton="true" cacheResults="false" filter="{column:'Section__c.Name', operator: 'equals', value: '{!sectionNameEscaped}'}" />-->
+                    
+             
+               <apex:outputLink value="https://cyneworg-cyschoolhouse.force.com/ce/{!reportID}" target="_black">
+               <apex:pageBlock title="Corps Edition Report">
+               <apex:panelGroup >
+                    <apex:chart name="ReportWrapper"
+                                data="{!ReportWrapper}"
+                                width="90%" height="500" theme="Red">
+                            
+                        <apex:legend position="top" />
+
+                        <apex:axis type="Numeric" position="left" grid="true"                              
+                                   title="Sum of Amount of Time(in minutes) per section" 
+                                   fields="AmountOftime"
+                                   steps="10">
+                            <apex:chartLabel />
+                        </apex:axis>
+
+                        <apex:axis type="Category" position="bottom" grid="true"
+                                   title="Intervention Session Date"
+                                   fields="intersessiondate">
+                            <apex:chartLabel />
+                        </apex:axis>
+                <apex:lineSeries axis="left" highlight="true" markerFill="#8E35EF"  markerSize="4" markerType="circle" xField="intersessiondate" yField="AmountOftime"></apex:lineSeries>
+                                            
+                    </apex:chart>
+                </apex:panelGroup>
+             </apex:pageBlock>
+                </apex:outputLink>
+                           </div>
+                           
+                        </apex:outputPanel>
+                           
+                        <table class="table data-table responsive table-striped cy-table" id="srchstdtable">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <apex:inputCheckbox id="mainChk" onclick="selectAllStudents(this,'inputId')" />
+                                    </th>
+                                    <th class="all">Student</th>
+                                    <th class="desktop">Dosage (in minutes)</th><!-- tablet-p -->
+                                    <th class="desktop">Latest Session Date</th>
+                                    <th class="desktop" style="min-width: 80px;">CY-ID</th>
+                                    <th class="desktop">Local ID</th>
+                                    <th class="desktop">Grade</th>
+                                    </tr>
+                            </thead>
+                            <tbody>
+                                <apex:repeat var="e" value="{!studentsInSection}">
+                                <tr id="{!e.stuSecRec.Student__c}" studentId="{!e.stuSecRec.Student__c}"><!-- class="parent"  -->
+                                   <td class="details-control">
+                                        <apex:inputCheckbox value="{!e.selected}" id="inputId" onclick="getStudentArray(this, '{!e.stuSecRec.Student__c}')" html-studentId="{!e.stuSecRec.Student__c}" disabled="{!NOT(e.stuSecRec.Active__c)}" tabindex="1" />
+                                   </td>
+                                    <td id='stIDs{!e.stuSecRec.Student__c}'>{!e.stuSecRec.Student_Name__c}</td>
+                                    <td>{!e.stuSecRec.Dosage_to_Date__c}.0</td>
+                                    <td>
+                                        <apex:outputText value="{0,date,MM'/'dd'/'yyyy}">
+                                            <apex:param value="{!e.Sessiondate}" />
+                                        </apex:outputText>
+                                    </td>
+                                    <td>{!e.stuSecRec.Student__r.Student_Id__c}</td>
+                                    <td>{!e.stuSecRec.Student__r.Local_Student_ID__c}</td>
+                                    <td>{!e.stuSecRec.Student_Grade__c}</td>
+                                </tr>
+                                </apex:repeat>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </apex:form>
+        </apex:define>
+    <script type="text/javascript">
+        var generated = false;
+        var tabelwidth = 'firstload';
+        var statval='{!checkState}';
+        j$ = jQuery.noConflict();
+
+        j$(document).ready(function() {
+            if(statval=='true'){
+              j$('input[ID$=mainChk]').prop('checked','checked');  
+            }
+            
+            var contactTable = j$('[id$="srchstdtable"]').DataTable({
+                "bLengthChange": true,
+                "bFilter": true,
+                "bInfo": false,
+                "aoColumnDefs": [{
+                    "sWidth": "10%",
+                    "aTargets": [0]
+                }
+                ],
+                "bAutoWidth": true,
+                "bSort": true,
+                "bScrollAutoCss": true,
+                "bScrollCollapse": true,
+                "bSaveState": true,
+                "iDisplayLength": 25,
+                "asStripClasses": ['odd', 'even'],
+                "aaSorting": [[0]],
+                "aoColumns": [
+                    { "bSortable": false },
+                    { "bSortable": true },
+                    { "bSortable": true },
+                    { "bSortable": true },
+                    { "bSortable": true },
+                    { "bSortable": true },
+                    { "bSortable": true }
+                ],
+                "searching": true,
+            });
+
+            setStudentArray();
+        });
+
+        //Added By Harsh Singh Begin
+        var studentArray = new Array();
+        var checkStat='false';
+        function selectAllStudents(cb, theClass){
+            studentArray = new Array();
+            var stidsstore='';
+            var data = j$('Table[ID$=srchstdtable]').dataTable();
+            allPages=data.fnGetNodes();
+
+            j$('input[ID$=inputId]', allPages).each( function(index, value) {
+                if(value.disabled === false) {
+                    value.checked = cb.checked==true? 'checked': false;
+                }
+                <!--j$('input[ID$=inputId]', allPages).prop('checked','checked');-->
+            });
+            checkStat = cb.checked==true? 'true': 'false';
+
+            j$.each(j$("Table[ID$=srchstdtable]").dataTable().fnGetNodes(), function (){
+                stidsstore=j$(this).find('td:eq(1)').attr('ID');
+                tdSorting = j$(this).find('td:eq(0)')[0];
+
+                j$('input[ID$=inputId]',tdSorting).each(function(index, value) {
+                    if(value.disabled === false) {
+                        stidsstore=stidsstore.substring(5, stidsstore.length);
+                        getStudentArray(value, stidsstore);
+                    }
+                });
+                <!--console.log(studentArray.length);-->
+            });
+
+        }
+        function Test()
+        {
+        var url ='https://devfull-cyneworg-cyschoolhouse.cs28.force.com/ce/{!reportID}';
+        window.open(url);
+        }
+        function setStudentArray(){
+            studentArray = new Array();
+            j$("Table[ID$=srchstdtable] tr[role='row'] td>input[ID$=inputId]").each(function(index, value){
+                if(value.checked){
+                    studentArray.push(j$(value).attr('studentId'));
+                }
+            });
+        }
+
+        function getStudentArray(elem, stId){
+            if(elem.checked==true && studentArray.indexOf(stId)==-1){
+                studentArray.push(stId);
+            }else if(elem.checked==false && studentArray.indexOf(stId)>=0){
+                studentArray.splice(studentArray.indexOf(stId), 1);
+            }
+        }
+
+        function sendData(){
+            var  res='';
+            <!--var  alrdySelected='{!slctdStdId}';-->
+            var  alrdySelected='';
+            var finalStdAry1=new Array();
+            var finalStdAry2=new Array();
+            if(studentArray!=null){
+                if(alrdySelected!=null && alrdySelected!=''){
+                    alrdySelectedArray = alrdySelected.split(',');
+
+                    finalStdAry1 = studentArray.filter(function(val) {
+                        return alrdySelectedArray.indexOf(val) == -1;
+                    });
+                    finalStdAry2 = alrdySelectedArray.filter(function(val) {
+                        return studentArray.indexOf(val) == -1;
+                    });
+                    finalStdAry1=finalStdAry1.concat(finalStdAry2);
+                }else {
+                    finalStdAry1= studentArray;
+                }
+                res =finalStdAry1.toString();
+                j$("input[ID$='theHiddenInput']").val(res);
+                j$("input[ID$='theHiddenState']").val(checkStat);
+
+            }
+        }
+
+    //Added By Harsh Singh End
+    </script>
+</apex:page>

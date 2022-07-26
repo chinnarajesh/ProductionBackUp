@@ -1,0 +1,465 @@
+<apex:page id="thepage" standardStyleSheets="true" sidebar="true"
+    StandardController="Behavior_Incident__c" showHeader="true"
+    extensions="BehaviorIncidentController" >
+    
+<style type="text/css">
+.Custom92Tab .tertiaryPalette,.individualPalette .Custom92Block .tertiaryPalette,.layoutEdit .individualPalette .Custom92Block .tertiaryPalette
+    {
+    background-color: black;
+    border-color: black;
+}
+
+.req {
+	padding-right:9px;
+	border-right: 3px solid #C00;
+	margin-right:3px;
+	height:100%;
+}
+</style>
+
+<c:jQueryInit bDataTables="true" bLoadingPanel="false"/>
+<apex:includeScript value="{!URLFOR($Resource.jWerty, '/jWerty/jwerty.js')}" />
+<script type="text/javascript">
+    var consequenceArray = new Array();
+    var $ = jQuery.noConflict(); 
+    $(document).ready(function() {
+        initPage();
+    });
+
+    function initPage() {
+        $('.hideListButton').each(
+            function(index) {
+                if (($(this).attr('id').indexOf('timeLocation') == -1) && ($(this).attr('id').indexOf('behaviorDetails') == -1) && ($(this).attr('id').indexOf('StudentBlockSection') == -1)) {
+                    $(this).click();
+                }
+        });
+    }
+	
+    function changeTimeLost(ddl, consequence) {
+        for (i = 0; i < consequenceArray.length; i++) {
+            if(ddl.value == consequenceArray[i].id){
+                var conIndex = ddl.parentNode.id;
+                var rootIndex = conIndex.lastIndexOf(":");
+                var final = document.getElementById(conIndex.substring(0, rootIndex + 1) + 'final');
+                if (final.checked == true && consequenceArray[i].isSuspended == 'true')
+                	final.checked = false;
+                            
+                var timeId = conIndex.substring(0, rootIndex + 1) + 'timeLost';
+                var timeLost = document.getElementById(timeId);
+                timeLost.value = consequenceArray[i].correspondingValue;
+                
+                var weight = document.getElementById('conWeight'+consequence);
+                weight.innerHTML = consequenceArray[i].weight;
+            }
+        }
+    }
+	
+    function confirmDeleteConsequence() {
+        var isCancel = confirm("Are you sure you wish to delete this consequence?");
+        if (isCancel)
+            return true;
+        return false;
+    }
+    
+    function confirmCancelIncident() {
+        var isCancel = confirm("Are you sure you wish to cancel?");
+        if (isCancel)
+            return true;
+        return false;
+    }
+    
+    function confirmDeleteStudent() {
+        var isCancel = confirm("Are you sure you wish to delete this student?");
+        if (isCancel)
+            return true;
+        return false;
+    }
+    
+    function resetDataTables(){ 
+    	$(".tablesorter").dataTable( {
+			"sScrollY": "200px",
+            "bLengthChange": false,
+            "bFilter": true,
+            "bInfo": false,
+            "aoColumnDefs": [{ "sWidth": "100px", "aTargets": [ 0 ]}],
+            "bAutoWidth": false,
+            "bSort" :true,
+            "bDestroy": true,
+            "bPaginate": false,
+            "bScrollCollapse": true,
+        	"bJQueryUI": true,
+        	iDisplayLength : 25,
+        	"asStripClasses": [ 'odd', 'even' ]
+        });
+    }
+    
+    jwerty.key('enter',false);
+    
+    function showAttendanceDates(conid){
+    	$('.attend'+conid).toggle();
+    	$('.attend'+conid + ' input').show();
+    }
+    
+</script>
+<apex:repeat value="{!consequencesValues}" var="c" id="conJSArray">
+    <script type="text/javascript">
+        consequenceArray.push({
+            name : "{!JSENCODE(c.name)}",
+            id : "{!c.id}",
+            isSuspended : "{!c.Is_Suspension__c}",
+            correspondingValue : "{!c.Corresponding_Value__c}",
+            weight : "{!c.Consequence_Weight__c}"    
+        });
+    </script>
+</apex:repeat>
+
+<apex:form id="theform">
+    <apex:actionFunction action="{!fillBehaviorType}" immediate="true"
+            name="fillBehaviorType" reRender="behaviorCatType">
+        <apex:param name="firstParam" assignTo="{!incident.Selected_Behavior_Category__c}" value="" />
+    </apex:actionFunction>
+    <apex:actionFunction action="{!displayWeaponType}" immediate="true"
+            name="displayWeaponTypeJS" reRender="weaponPanel">
+        <apex:param name="firstParam" assignTo="{!selBehType}" value="" />
+        <apex:param name="secondParam" assignTo="{!incident.Selected_Behavior_Incident_Type__c}" value="" />
+    </apex:actionFunction>
+    <apex:actionFunction action="{!changeIncidentType}" name="changeIncidentType" immediate="true"
+            reRender="incidentInformation, StudentBlock, conJSArray">
+        <apex:param name="selectedIncidentType" assignTo="{!incident.Incident_Type__c}" value="" />
+    </apex:actionFunction>
+    
+    <apex:actionFunction action="{!deleteStudent}" name="deleteStudentJs" reRender="StudentBlock, thepage:theform:PageBlock:behaviorCatType">
+        <apex:param name="studentID" assignTo="{!studentInvolvedId}" value="" />
+    </apex:actionFunction>
+    
+    <apex:actionFunction action="{!removeCon}" name="deleteConJS" reRender="StudentBlock">
+        <apex:param name="activeCon" assignTo="{!activeConsequence}" value="" />
+        <apex:param name="studentID" assignTo="{!studentInvolvedId}" value="" />
+    </apex:actionFunction>
+    
+    <apex:actionFunction action="{!storeCon}" name="writeConJS" reRender="messagePanel" immediate="true">
+        <apex:param name="activeCon" assignTo="{!activeConsequence}" value="" />
+        <apex:param name="studentID" assignTo="{!studentInvolvedId}" value="" />
+        <apex:param name="selectedCon" value="" />
+    </apex:actionFunction>
+    
+    <apex:outputPanel id="messagePanel">
+    	<apex:pageMessages />
+    </apex:outputPanel>
+    
+    <apex:outputPanel id="IncidentTypePanel" rendered="{!!bfatalError}">
+        <apex:pageBlock title="Select Incident Type">
+            <apex:pageBlockSection columns="1">
+                <apex:selectList id="incType" value="{!incident.Incident_Type__c}"
+                        multiselect="false" size="1" onchange="changeIncidentType(this.value);">
+                    <apex:selectOptions value="{!recordTypeOption}" />
+                </apex:selectList>
+            </apex:pageBlockSection>               
+        </apex:pageBlock>
+    </apex:outputPanel>
+    
+    <apex:outputPanel id="advSearch" title="Search Instructions:  Enter information in any of the fields below to search for a student." rendered="{!!bfatalError}">
+    <apex:pageBlock title="Student Search" id="advSearchBlock" rendered="{!showSearch}">
+		<apex:actionRegion >
+	    	<apex:pageBlockSection collapsible="false" title="Search Information" columns="2" >
+	            <apex:inputField required="false" value="{!searchInfo.Student_First_Name__c}" />
+	            <apex:inputField value="{!searchInfo.Student_Last_Name__c}" />
+	            <apex:inputField value="{!searchInfo.Grade__c}" />
+	            <apex:inputField value="{!searchInfo.Gender__c}" />
+	            <apex:inputField value="{!searchInfo.Student_Id__c}" />
+	            <apex:pageBlockSectionItem >
+	            	<apex:outputLabel for="searchCalendar" value="Date of Birth" />
+	            	<apex:inputText id="searchCalendar" value="{!searchInfo.Date_of_Birth__c}" />
+	            </apex:pageBlockSectionItem>
+	            <apex:pageBlockSectionItem >
+		            <apex:outputLabel for="schoolOption" value="School"/>
+		            <apex:selectList id="schoolOption" value="{!searchInfo.School__c}" multiselect="false" size="1" >
+	                	<apex:selectOptions value="{!schoolList}" />
+	                </apex:selectList>
+                </apex:pageBlockSectionItem>
+	        </apex:pageBlockSection>
+	        <apex:commandButton value="Search" action="{!searchStudents}"
+	                reRender="advSearch, messagePanel" />
+
+	        <apex:outputPanel id="resultsPanel" rendered="{!showResults}"> 
+	        <apex:pageBlockSection collapsible="false" title="Search Results" columns="1">
+	            <apex:dataTable styleclass="tablesorter" title="Student Results" value="{!results}" var="s">
+	                <apex:column headerValue="Add?" >
+	                    <apex:inputCheckbox styleclass="courseCb" value="{!s.selected}" />
+	                </apex:column>
+	                <apex:column headerValue="Student ID" >
+	                    <apex:outputField value="{!s.student.Student_Id__c}" />
+	                </apex:column>
+	                <apex:column headerValue="Student First Name" >
+	                    <apex:outputField value="{!s.student.Student_First_Name__c}" />
+	                </apex:column>
+	                <apex:column headerValue="Student Last Name" >
+	                    <apex:outputField value="{!s.student.Student_Last_Name__c}" />
+	                </apex:column>
+	                <apex:column headerValue="Grade" >
+	                    <apex:outputField value="{!s.student.Grade__c}" />
+	                </apex:column>
+	            </apex:dataTable>
+	        </apex:pageBlockSection>
+	        <script>
+	            resetDataTables();
+	        </script>
+	        
+	        <apex:commandButton value="Add to Incident" action="{!searchAdd}"
+	                reRender="advSearch, StudentBlock, messagePanel, thepage:theform:PageBlock:behaviorCatType, conJSArray" />
+	         
+	        </apex:outputPanel>
+	        <apex:commandButton value="Cancel" action="{!endSearch}"
+	    		reRender="advSearch, StudentBlock, messagePanel" /> 
+		</apex:actionRegion>
+    </apex:pageBlock>
+    </apex:outputPanel>
+    
+    <apex:outputPanel id="StudentBlock">
+    <apex:pageBlock title="Students Involved" id="StudentPageBlock" rendered="{!!showSearch && !bfatalError}">
+        <apex:actionRegion >
+        <apex:repeat rendered="{!displayStudentTable && !bfatalError}" value="{!stuWrapperList}" var="wrapper" id="StudentTable">
+            <script type="text/javascript">
+                var cid{!wrapper.id};
+                function showSuspension{!wrapper.id}(selectedConsequence, conid, showAttendance) {           	
+                    if(cid{!wrapper.id} == conid){
+                        $('#SuspensionPanel{!wrapper.id}').hide();
+                   	}
+                        
+                    for (i = 0; i < consequenceArray.length; i++) {
+                        if(selectedConsequence == consequenceArray[i].id){
+                            if (consequenceArray[i].isSuspended == 'true') {
+                                $('#SuspensionPanel{!wrapper.id}').show();
+                                cid{!wrapper.id} = conid;
+                                break;
+                            }
+                        }
+                    }
+                }
+            </script>
+            <apex:pageBlockSection id="StudentBlockSection" columns="1">
+                <apex:facet name="header">
+                    {!IF(wrapper.student.Name == null, 'Added Student', wrapper.student.Name)}
+                </apex:facet>
+                <apex:pageBlockSection id="StudentDetails">
+                    <apex:pageBlockSectionItem id="viewstudentLookupItem">
+                        <apex:outputLabel value="Student Name"/>
+                        <apex:outputField id="viewstudentLookupField" value="{!wrapper.sb.Student__c}" />
+                    </apex:pageBlockSectionItem>
+                    <apex:inputField id="viewstudentRole" value="{!wrapper.sb.Incident_Role__c}" rendered="{!IF(incident.Incident_Type__c=='Negative', true, false)}"/>
+                    <apex:inputField id="viewstudentFC" value="{!wrapper.sb.Family_Contacted__c}" rendered="{!IF(incident.Incident_Type__c=='Negative', true, false)}"/>
+                    <apex:inputField id="viewstudentTOC" value="{!wrapper.sb.Type_Of_Contact__c}" rendered="{!IF(incident.Incident_Type__c=='Negative', true, false)}"/>
+                </apex:pageBlockSection>
+                
+                <apex:outputPanel id="consPanel">        
+                    <apex:pageBlockSection rendered="{!wrapper.conList.size > 0}" showheader="true" collapsible="false" columns="1">
+                        <apex:facet name="header">
+                            {!IF(wrapper.student.Name == null, 'Consequences', wrapper.student.Name)}
+                            <span style="{!IF(wrapper.student.Name == null, 'display:none;', '')}">
+                                's Consequences
+                            </span>
+                        </apex:facet>
+                        <apex:pageblockTable value="{!wrapper.conList}" id="consTable" var="cons">
+                            <apex:column >
+                                    <apex:commandLink action="{!removeCon}" reRender="StudentBlock" value="Remove"
+                                            styleClass="btn" style="padding:2px 5px 2px 5px; text-decoration:none;">
+                                        <apex:param name="activeCon" assignTo="{!activeConsequence}" value="{!cons.id}" />
+                                        <apex:param name="studentID" assignTo="{!studentInvolvedId}" value="{!wrapper.id}" />
+                                    </apex:commandLink>
+                            </apex:column>
+                            <apex:column >
+                                <apex:inputField value="{!cons.con.Final_Consequence__c}" id="final" />
+                                <apex:facet name="header">Final</apex:facet>
+                            </apex:column>
+                            <apex:column >
+                                <apex:selectList id="consPLValue" value="{!cons.con.Picklist_Value__c}" multiselect="false" size="1" 
+                                        onchange="changeTimeLost(this, '{!cons.con.id}'); showSuspension{!wrapper.id}(this.value, '{!cons.id}', '{!wrapper.suspension.Show_Suspension_In_Attendance__c}'); writeConJS('{!cons.id}', '{!wrapper.id}', this.value);">
+                                    <apex:selectOptions value="{!wrapper.consequenceOptions}" />
+                                </apex:selectList>
+                                <apex:facet name="header">Consequence</apex:facet>
+                            </apex:column>
+                            <apex:column >
+                                <apex:inputField value="{!cons.con.Time_Lost__c}" id="timeLost"/>
+                                <apex:facet name="header">Time(Minutes)</apex:facet>
+                            </apex:column>
+                            <apex:column >
+                                <apex:inputField value="{!cons.con.Consequence_Category__c}" />
+                                <apex:facet name="header">Category</apex:facet>
+                            </apex:column>
+                            <apex:column >
+                                <div id="conWeight{!cons.con.id}">{!IF(ISNULL(cons.con.Consequence_Weighting__c), 0.0, cons.con.Consequence_Weighting__c)}</div>
+                                <apex:facet name="header">Weighting</apex:facet>
+                            </apex:column>
+                        </apex:pageblockTable>
+                    </apex:pageBlockSection>
+                    
+                    <div id="SuspensionPanel{!wrapper.id}" style="{!IF(wrapper.hasSuspension, '', 'display:none')}">
+                        <apex:pageBlockSection id="theSuspensionDetail" columns="2" showheader="true" collapsible="false">
+                            <apex:facet name="header">
+                                {!IF(wrapper.student.Name == null, 'Suspension Information', wrapper.student.Name)}
+                                <span style="{!IF(wrapper.student.Name == null, 'display:none;', '')}">'s Suspension Information</span>
+                            </apex:facet>
+                            
+                            <apex:outputPanel style="height:100%">
+                            	<apex:outputLabel value="Days Suspended" for="daysSuspended" style="font-weight:bold;color: #4A4A56;font-size: 91%;"/>
+                            	<span class="req">&nbsp;</span>
+                            	<apex:inputField value="{!wrapper.suspension.Days_Suspended__c}" id="daysSuspended"/>
+                           	</apex:outputPanel>
+                           	<apex:outputPanel style="height:100%">
+                            	<apex:outputLabel value="Re-entry Mtg Date" for="meetingDate" style="font-weight:bold;color: #4A4A56;font-size: 91%;"/>
+                            	<span class="req">&nbsp;</span>
+                            	<apex:inputField value="{!wrapper.suspension.Re_entry_Mtg_Date__c}" id="meetingDate"/>
+                           	</apex:outputPanel>
+                            	<apex:outputPanel style="height:100%">
+                            	<apex:outputLabel value="Date of Re-entry" for="backDate" style="font-weight:bold;color: #4A4A56;font-size: 91%;"/>
+                            	<span class="req">&nbsp;</span>
+                            	<apex:inputField value="{!wrapper.suspension.Date_of_Re_entry__c}" id="backdate"/>
+                           	</apex:outputPanel>
+                           	<apex:outputPanel style="height:100%">
+                            	<apex:outputLabel value="Re-entry Mtg Time" for="meetingTime" style="font-weight:bold;color: #4A4A56;font-size: 91%;"/>
+                            	<span class="req">&nbsp;</span>
+                            	 <apex:inputField value="{!wrapper.suspension.Re_entry_Mtg_Time__c}" id="meetingTime"/>
+                           	</apex:outputPanel>
+                            
+                           
+							<apex:inputField value="{!wrapper.suspension.Re_entry_Notes__c}" style="width:600px; height:80px;"  />
+							<apex:pageBlockSectionItem />
+                            <apex:inputField value="{!wrapper.suspension.Show_Suspension_In_Attendance__c}" onChange="showAttendanceDates('{!wrapper.id}');"/>
+							
+							<apex:outputPanel styleClass="attend{!wrapper.id}" style="{!IF(wrapper.suspension.Show_Suspension_In_Attendance__c,'','display:none;')}">
+								<apex:outputLabel value="Suspension Start Date" for="susStart" style="font-weight:bold;color: #4A4A56;font-size: 91%;"/>
+								<span class="req">&nbsp;</span>
+								<apex:inputField value="{!wrapper.suspension.Suspension_Start_Date__c}" styleClass="attend{!wrapper.id}" id="susStart"/>
+                           	</apex:outputPanel>
+                           	<apex:outputPanel styleClass="attend{!wrapper.id}" style="{!IF(wrapper.suspension.Show_Suspension_In_Attendance__c,'','display:none;')}">
+                           		<apex:outputLabel value="Suspension End Date" for="susEnd" style="font-weight:bold;color: #4A4A56;font-size: 91%;"/>
+                           		<span class="req">&nbsp;</span>
+                            	<apex:inputField value="{!wrapper.suspension.Suspension_End_Date__c}" styleClass="attend{!wrapper.id}" id="susEnd" />
+                           	</apex:outputPanel> 
+                        </apex:pageBlockSection>
+                    </div>
+                </apex:outputPanel>
+                <apex:pageBlockSection columns="1">
+                    <apex:outputPanel >
+                        <apex:commandLink styleClass="btn" id="addConButton" value="Add Consequence" rendered="{!wrapper.conList.size < 4}" action="{!addConsequence}"
+                                reRender="StudentBlock, messagePanel" style="padding:2px 5px 2px 5px; text-decoration:none;" immediate="true">
+                            <apex:param name="studentID" assignTo="{!studentInvolvedId}" value="{!wrapper.id}" />
+                        </apex:commandLink>
+                        <apex:commandButton value="Remove Student" action="{!deleteStudent}" onClick="if(!confirmDeleteStudent()) {return false;}"
+	    						reRender="StudentBlock, thepage:theform:PageBlock:behaviorCatType, messagePanel">
+	    					<apex:param name="studentID" assignTo="{!studentInvolvedId}" value="{!wrapper.id}"/>
+	    				</apex:commandButton>
+                        
+                    </apex:outputPanel>
+                </apex:pageBlockSection>           
+            </apex:pageBlockSection>
+        </apex:repeat>
+		<apex:commandButton value="Add Students" action="{!startSearch}"
+                reRender="StudentBlock, advSearch, messagePanel"/>
+        </apex:actionRegion>
+    </apex:PageBlock>
+    </apex:outputPanel>
+        
+        <apex:outputPanel id="incidentInformation">
+        	<apex:actionRegion >
+            <apex:pageBlock rendered="{!!bfatalError}" title="Incident Information" id="PageBlock">
+                <apex:pageBlockButtons location="bottom">
+                    <apex:commandButton value="Save Draft" action="{!saveDraft}" rendered="{! incident.id == null || incident.Incident_Status__c == 'Draft'}"/>
+                    <apex:commandButton value="Save and Notify" action="{!notifyIncidentOwner}" rendered="{!canUserNotify}" /> 
+                    <apex:commandButton value="Save Incident" action="{!saveIncident}" />
+                    <apex:commandButton value="Cancel" action="{!escapeToBehaviorTab}" onclick="return confirmCancelIncident()" immediate="true" />      
+                </apex:pageBlockButtons>
+                
+                <apex:pageBlockSection showHeader="false">
+                    <apex:outputField value="{!incident.Name}" rendered="{!incident.id != null}" />
+                    <apex:outputLabel value="" rendered="{!incident.id = null}" />
+                    <apex:outputField value="{!incident.Incident_Status__c}" />
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="Title" />
+                        <apex:inputField required="true"  value="{!incident.Incident_Title__c}" />   
+                    </apex:pageBlockSectionItem>
+                    
+                    <apex:inputField required="true" value="{!incident.Incident_Date__c}" />
+                    <apex:inputField required="{!IF(incident.Incident_Type__c!='Quick_Hit', true, false)}"
+                        value="{!incident.Incident_Description__c}"  style="width:400px; height:80px;" />
+                    <apex:inputField required="{!IF(incident.Incident_Type__c=='Negative', true, false)}"
+                        value="{!incident.Incident_Time__c}" rendered="{!IF(incident.Incident_Type__c!='Quick_Hit', true, false)}" />      
+                    <apex:inputField required="true"
+                        value="{!incident.Incident_Points__c}" rendered="{!IF(incident.Incident_Type__c=='Quick_Hit', true, false)}" /> 
+                    <apex:inputField value="{!incident.Show_In_Portal__c}" />
+                    <apex:inputField value="{!incident.Preserve__c}" />                     
+                </apex:pageBlockSection>
+
+                <apex:pageBlockSection title="Time Information" columns="1" showHeader="true" id="timeLocation"
+                         rendered="{!IF(incident.Incident_Type__c!='Quick_Hit', true, false)}">
+                    <apex:inputField value="{!incident.Context_Location__c}" id="contextLocation" required="{!IF(incident.Incident_Type__c=='Negative', true, false)}"  />
+                    <apex:inputField value="{!incident.Context_Time__c}" id="contextTime" required="{!IF(incident.Incident_Type__c=='Negative', true, false)}"  />
+                </apex:pageBlockSection>
+                
+                <apex:outputPanel id="behaviorCatType">             
+                    <apex:pageBlockSection columns="1" showHeader="true" title="Behavior Details" collapsible="true"
+                            id="behaviorDetails" rendered="{!IF(incident.Incident_Type__c!='Quick_Hit', true, false)}"> 
+                        <apex:pageBlockSectionItem >
+                            <apex:outputLabel value="Behavior Category" for="behavCtgy"/>
+                            <apex:outputPanel layout="block" styleClass="requiredInput">
+                                <apex:outputPanel layout="block" styleClass="requiredBlock"/>
+                                <apex:selectList id="behavCtgy" value="{!incident.Selected_Behavior_Category__c}" 
+                                        multiselect="false" size="1" onchange="fillBehaviorType(this.value, this.value);" >
+                                    <apex:selectOptions value="{!behaviorCategoryValues}"/>
+                                </apex:selectList>
+                            </apex:outputPanel>                 
+                        </apex:pageBlockSectionItem>
+                    
+                        <apex:pageBlockSectionItem >
+                            <apex:outputLabel value="Behavior Type" for="behavType"/>
+                            <apex:outputPanel layout="block" styleClass="requiredInput">
+                                <apex:outputPanel layout="block" styleClass="requiredBlock"/>
+                                <apex:selectList id="behavType" value="{!incident.Selected_Behavior_Incident_Type__c}"
+                                        multiselect="false" size="1" onchange="displayWeaponTypeJS(this.value);"  >
+                                    <apex:selectOptions value="{!behaviorTypeValues}" />
+                                </apex:selectList>  
+                            </apex:outputPanel>
+                        </apex:pageBlockSectionItem>    
+                    </apex:pageBlockSection>
+                </apex:outputPanel>
+                
+                <apex:outputPanel id="weaponPanel">
+	                <apex:pageBlockSection columns="1" title="Weapon Details"
+	                        showHeader="true" collapsible="true" id="weapon" rendered="{!hasWeapon}">
+	                    <apex:inputField value="{!incident.Weapon_Type__c}" id="weaponType" rendered="{!hasWeapon}" />  
+	                </apex:pageBlockSection>
+                </apex:outputPanel>
+                
+                <apex:pageBlockSection id="adultDetails" title="Witness Details" columns="2" showheader="true"
+                        collapsible="true">
+                    <apex:inputField value="{!incident.Adult_on_Duty__c}" />
+                    <apex:inputField value="{!incident.Request_Info_AoD__c}" />
+                    <apex:inputField value="{!incident.Other_Adult_Involved_1__c}" />
+                    <apex:inputField value="{!incident.Request_Info_Adult1__c}" />
+                    <apex:inputField value="{!incident.Other_Adult_Involved_2__c}" />
+                    <apex:inputField value="{!incident.Request_Info_Adult2__c}" />
+                    <apex:inputField value="{!incident.Student_Witness__c}" />
+                    <apex:outputLabel />
+                    <apex:inputField value="{!incident.Additional_Comments__c}" style="width:400px; height:80px;" />     
+                </apex:pageBlockSection>
+ 
+                <apex:pageBlockSection title="Referral Details" collapsible="true"
+                        id="actionTaken" columns="2" rendered="{!displayActionsTaken}">
+                    <apex:inputField value="{!incident.Verbal_Redirection__c}" />
+                    <apex:inputField value="{!incident.Take_A_Break__c}" />
+                    <apex:inputField value="{!incident.Buddy_Classroom__c}" />
+                    <apex:inputField value="{!incident.Alternative_Seating__c}" />
+                    <apex:inputField value="{!incident.Practice_desired_behavior__c}" />
+                    <apex:inputField value="{!incident.Time_Out__c}" />
+                    <apex:inputField value="{!incident.Verbal_or_written_apology__c}" />
+                    <apex:inputField value="{!incident.Loss_Of_Privilege__c}" />
+                    <apex:inputField value="{!incident.Restitution_Community_Service__c}" />
+                    <apex:inputField value="{!incident.Behavior_Contract__c}" />
+                    <apex:inputField value="{!incident.Other__c}" />
+                    <apex:inputField value="{!incident.Other_Notes__c}" />
+                </apex:pageBlockSection> 
+            </apex:pageBlock>
+            </apex:actionRegion>
+        </apex:outputPanel>
+    </apex:form>
+</apex:page>

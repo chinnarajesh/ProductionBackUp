@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SamlSsoConfig xmlns="http://soap.sforce.com/2006/04/metadata">
+    <identityLocation>SubjectNameId</identityLocation>
+    <identityMapping>Username</identityMapping>
+    <issuer>exk1p4xnpjuQXeCRP0h8</issuer>
+    <loginUrl>https://cityyear.okta.com/app/salesforce/exk1p4xnpjuQXeCRP0h8/sso/saml</loginUrl>
+    <name>cyschfy23</name>
+    <oauthTokenEndpoint>https://cyschoolhouseb.my.salesforce.com/services/oauth2/token?so=00D36000000jJ3t</oauthTokenEndpoint>
+    <redirectBinding>false</redirectBinding>
+    <requestSignatureMethod>1</requestSignatureMethod>
+    <requestSigningCertId>0P11R0000029wYx</requestSigningCertId>
+    <salesforceLoginUrl>https://cyschoolhouseb.my.salesforce.com?so=00D36000000jJ3t</salesforceLoginUrl>
+    <samlEntityId>https://saml.salesforce.com</samlEntityId>
+    <samlVersion>SAML2_0</samlVersion>
+    <useConfigRequestMethod>true</useConfigRequestMethod>
+    <userProvisioning>false</userProvisioning>
+    <validationCert>MIIDoDCCAoigAwIBAgIGAYHorG2WMA0GCSqGSIb3DQEBCwUAMIGQMQswCQYDVQQGEwJVUzETMBEGA1UECAwKQ2FsaWZvcm5pYTEWMBQGA1UEBwwNU2FuIEZyYW5jaXNjbzENMAsGA1UECgwET2t0YTEUMBIGA1UECwwLU1NPUHJvdmlkZXIxETAPBgNVBAMMCGNpdHl5ZWFyMRwwGgYJKoZIhvcNAQkBFg1pbmZvQG9rdGEuY29tMB4XDTIyMDcxMDE1MTI0M1oXDTMyMDcxMDE1MTM0M1owgZAxCzAJBgNVBAYTAlVTMRMwEQYDVQQIDApDYWxpZm9ybmlhMRYwFAYDVQQHDA1TYW4gRnJhbmNpc2NvMQ0wCwYDVQQKDARPa3RhMRQwEgYDVQQLDAtTU09Qcm92aWRlcjERMA8GA1UEAwwIY2l0eXllYXIxHDAaBgkqhkiG9w0BCQEWDWluZm9Ab2t0YS5jb20wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCRTMQVYwovhEYBOBpcXynLfRvVtD5V8H3pODqosMmj96+J+9vfomhm6YY1yM9eHH89P8sCrUdovZ/+/w6QUcW8/NBQ0Tr4xjZH/BsQTn5Vd/OVr3rS69TL2hLv8IqOTJXPpK15m5ze8djcubYJ3wpQE5gZazNIoY7R6ChtcUUHJxA5uImWYQShylViNe5kHOfKLFgtKmT3gvisBE3uHQze0GpWyOmcgbzKrltrcRCPv09KS1MqWN+lgkdn+Fqrzx3K51I2yn9ftieXC8kvvadcYXw6YnnP66WkphAwPJi/2xwM2/sV5HwZwVDyT9PsQh1Pto4HBkSWb68Q4kyeCiUtAgMBAAEwDQYJKoZIhvcNAQELBQADggEBAC0z6XDZkR3tXAA64+ng2Zpa2F4k4+9vnJsy5v6Abs3qGMhGTXzLnstZ/lxTxsxQVjaAontbVKTBxZIVBi7AlK3zw8COIlUZDG6pNugI8tlfWydmYndo6R//SmC2TMlxU2MaVtHzeew+2JNQcERN3Eq8Sjw5xWoBV5DnDmPfd8NpqqT3wLHO6asDau4LnqpdqoUhzLQAF0OoNbaSuD6HtzWQ5Z3UdY3iz5064O/RwijWrOx+xiB9qrlITxjj9dS1xgjpluEkjBPAR8c3B37f0SDiM2R76c1WxLdYW8+6Via0IKwefgGDiPttXdVCugkLvQpEbsxSeJS/Gx769LqrCbo=</validationCert>
+</SamlSsoConfig>

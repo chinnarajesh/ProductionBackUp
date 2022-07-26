@@ -1,0 +1,760 @@
+<apex:page showHeader="true" sidebar="true" controller="Gradebook_RunReportCardsController"
+	title="Generate Report Cards">
+
+	<c:admin />
+	<apex:stylesheet value="{!$Resource.New_Core_UX}" />
+	<apex:stylesheet value="{!URLFOR($Resource.schoolforce_demo_page, '/css/style.css')}" />
+	<style type="text/css">
+		.bPageBlock {
+			border-top:1px solid #eaeaea!important;
+		}
+		.pbBody {
+			padding-top:0!important;
+			margin-bottom: 10px!important;
+		}
+		.generationModal .dataTables_scrollHead{
+			height:18px; //want this to be exact so the scroll doesn't jump tiny fractions
+			min-height:18px;
+		}
+	</style>
+	<script>
+		var sectionModal;
+		var sectionModalTable;
+		var genModal;
+		var genTable;
+		var aborted;
+		var lastScrollPos;
+		var bSchedule = false;
+		function resetJobTable(){
+			j$(".jobTable").dataTable({
+  				"sScrollX": "100%",
+  				"bFilter": false,
+        		"bAutoWidth": true,
+  				"bScrollCollapse": true,
+        		"bPaginate": false,
+        		"bJQueryUI": true,
+        		"bInfo": false,
+        		"iDisplayLength": 1000,
+        		"aoColumnDefs": [
+						{"bVisible": false, "aTargets": [5]},
+						{"iDataSort": [5], "aTargets": [0]}],
+				"aaSorting": [[ 5, "desc" ]] //sort by time as the default
+    		});
+		}
+
+		function dataTables(selector){
+			return j$(selector).dataTable({
+				"sScrollY": "200px",
+				"bAutoWidth": true,
+				"bPaginate": false,
+				"bJQueryUI": true, 
+				"iDisplayLength": 1000,
+				"bDestory": true
+			});
+		}
+
+		function rawTables(selector){
+			return j$(selector).dataTable({
+				"sScrollY": "200px",
+				"bAutoWidth": true,
+				"bPaginate": false,
+				"bJQueryUI": true, 
+				"iDisplayLength": 1000,
+				"bDestroy": true,
+				"bSort": false,
+				"bInfo": false,
+				"bFilter": false
+			});
+		}
+
+		function datefix(){
+			j$('.selectedDate').datepicker({
+				changeMonth: true,
+				changeYear: true,
+				yearRange: '1995:2050'
+			});
+    	}
+		
+		function checkDateChange(){
+			j$('#schoolTable tr').each( function(){
+				if(j$(this).find('[id$="selectedTime"]').val()=='all'){
+					j$(this).find('input:[id$="endDate"]').removeAttr('disabled');
+					j$(this).find('[id$="endDate"] .requiredBlock').show();
+				}
+				else{
+					j$(this).find('input:[id$="endDate"]').attr('disabled','disabled');
+					j$(this).find('[id$="endDate"] .requiredBlock').hide();
+				}
+			});
+		}
+		
+		function openSectionModal(){
+			window.setTimeout(function(){j$.fancybox.close();},500);
+
+			if(j$('#modals .sectionModal tbody tr').size() >= 1){
+				sectionModalTable = dataTables('#modals .tablesorter');
+				j$("#modals [id*='sectionModal']").dialog({
+					modal: true,
+					minWidth: 540, //these keep the modal at least the size of the datatable
+					minHeight: 440,
+					close: function(event,ui){
+						j$(this).dialog('destroy');
+						j$(this).appendTo(j$('[id$=theForm]'));
+					},
+					buttons: {
+	                    "Close": function() {
+	                    	j$(this).dialog('close');
+	                    	hideCurrentSectionsJS();
+	                    }
+	                }
+				});
+				sectionModalTable.fnAdjustColumnSizing();
+			}
+			j$.fancybox.close();
+		}
+
+		function openOptionModal(){
+			j$("#modals .additionalOptions").dialog({
+				modal: true,
+				minWidth: 540, //these keep the modal at least the size of the datatable
+				minHeight: 440,
+				title: 'Student Filter Options',
+				close: function(event,ui){
+					j$(this).dialog('destroy');
+					j$(this).appendTo(j$('[id$=theForm]'));
+				},
+				buttons: {
+                    "Close": function() {
+                    	j$(this).dialog('close');
+                    	saveAdditionalOptionsJS();
+                    }
+                }
+			});
+		}
+
+		function openResultsModal(searchType){
+			var typeString = ''
+			if(searchType == 'true'){
+				typeString = 'Students'
+			} else {
+				typeString = 'Staff'
+			}
+			window.setTimeout(function(){j$.fancybox.close();},500);
+			if(j$('#modals .resultsModal tbody tr').size() >= 1){
+				var resultsTable = dataTables('#modals .resultsTable');
+				j$("#modals [id*='resultsModal']").dialog({
+					modal: true,
+					minWidth: 540, //these keep the modal at least the size of the datatable
+					minHeight: 440,
+					title: typeString + ' Matching Search Criteria',
+					close: function(event,ui){
+						j$(this).dialog('destroy');
+						j$(this).appendTo(j$('[id$=theForm]'));
+					},
+					buttons: {
+	                    "Cancel": function() {
+	                    	j$(this).dialog('destroy');
+	                    },
+	                    "Add Selected": function() {
+	                    	j$(this).dialog('close');
+	                    	showProgressBar('Adding '+typeString+'...');
+	                    	addStudentsToGenerationJS();
+	                    }
+	                }
+				});
+				resultsTable.fnAdjustColumnSizing();
+			}
+			datefix();
+			j$.fancybox.close();
+		}
+
+		function startGeneration(){
+			var r=confirm('Warning! Generating Documents takes a long time and this page must remain open for the duration of the process.');
+			if (r==true){
+				showProgressBar('Setting Up...');
+				aborted = false;
+				setupGenerationModal();
+				startGenerationJS();
+			}
+		}
+
+		function setupGenerationModal(){
+			genModal = j$(".generationModal").dialog({
+				modal: true,
+				minWidth: 700, //these keep the modal at least the size of the datatable
+				minHeight: 440,
+				autoOpen: false, //let us process it first
+				title: 'Generation Status',
+				close: function(event,ui){
+					showProgressBar('Cleaning up...');
+					cleanupJS();
+					j$(this).dialog('destroy');
+				},
+				buttons: {
+                    "Abort": function() {
+                    	j$('.ui-dialog-buttonpane #custom').html('<img src="{!URLFOR($Resource.resources_Master, '/custom/images/AjaxLoader.gif')}" style="width: 100; height: 100; vertical-align: middle;"/>Aborting...');
+                    	aborted = true;
+                    },
+                }
+			});
+			j$('.ui-dialog-buttonpane').append('<div id="custom" style="margin: auto 0;"><img src="{!URLFOR($Resource.resources_Master, '/custom/images/AjaxLoader.gif')}" style="width: 100; height: 100; vertical-align: middle;"/>In Progress</div>');
+			
+		}
+
+		function batchCycle(){
+			//if there are still rows flagged to be done
+			if(j$('#modals .generationModal span.waiting').size() > 0){
+				//unforantly we have to reprocess the table each cycle. The good news is it doesn't cause the table to blink.
+				genTable = rawTables('#modals .genTable');
+				j$(genModal).html(j$('#modals .generationModal').show());
+				if(genModal.dialog( "isOpen" )===false){
+					genModal.dialog('open');
+				}
+				genTable.fnAdjustColumnSizing();
+				j$('.dataTables_scrollBody').scrollTop(lastScrollPos);
+
+				//start the next bunch of kids
+				if(!aborted){
+					generateBatchJS();
+				}else{
+					abortJS();
+				}
+			} else if(j$('#modals .generationModal span').size() > 0){ //basically this prevents the table from showing up if the generation set is empty.
+				genTable = rawTables('#modals .genTable');
+				j$(genModal).html(j$('#modals .generationModal').show());
+				genTable.fnAdjustColumnSizing();
+				j$('.dataTables_scrollBody').scrollTop(lastScrollPos);
+				genModal.dialog("option", "buttons", 
+					{ "Close": function() {
+						 j$(this).dialog("close"); } } );
+				if(!aborted)
+					j$('.ui-dialog-buttonpane').append('<img src="/img/msg_icons/confirm24.png"/> Generation Complete');
+				else
+					j$('.ui-dialog-buttonpane').append('<img src="/img/msg_icons/warning24.png"/> Aborted');
+			} else{
+				genModal.dialog( "destroy" );
+			}
+		}
+		
+		function timeElement() {
+			var id="";
+			var startDate = "";
+			var endDate = "";
+		}
+		
+		teMap = {};
+				
+		function updateDates(teID,schoolID){
+			j$('#'+schoolID+' [id$="startDate"]').val(teMap[teID].startDate);
+			j$('#'+schoolID+' [id$="endDate"]').val(teMap[teID].endDate);
+		}
+		
+		function checkDatesForGeneration(){
+			var noErrors = true;
+			if(bSchedule){
+				var confirmMsg = '';
+				j$("#schoolTable tr").each(function(i,tr){
+					if(j$(this).find("td input:checkbox").is(':checked')){
+						var startDate = new Date(j$(this).find("[id$='startDate']").val());
+						var selectedRP = j$(this).find("[id$='selectedRP']").val();
+						var rpStartDate = new Date(teMap[selectedRP].startDate);
+						var rpEndDate = new Date(teMap[selectedRP].endDate);
+						if(startDate < rpStartDate || startDate > rpEndDate){
+							noErrors = confirm("The Start Date falls outside of the date range for the selected reporting period for "+j$(this).find("[id$='schoolName']").text()+".  The selected reporting period will dictate which bucket in CloudBerry the documents are saved.  Click OK to continue or Cancel to update the Reporting Period or Date.");
+							if(!noErrors) return noErrors;
+						}
+					}
+				});
+			}
+			return noErrors;
+		}
+	</script>
+
+	<apex:form id="theForm">
+		<apex:pageBlock id="filterblock">
+		<apex:outputPanel id="messages">
+			<apex:pagemessages />
+		</apex:outputPanel>
+
+		<!-- Home Panel -->
+		<apex:outputPanel id="homePanel" >
+			<apex:outputPanel rendered="{!bHome}">
+				<h3>What do you want to do?</h3>
+				<div class="section_content">
+					<center>
+						<input type="button" class="drk_blue_btn" style="margin: 0px !important;" value="Generate Documents" onclick="gotoDocumentGenerationJS();" />
+						<input type="button" class="drk_blue_btn" style="margin: 0px !important;" value="Generate Schedules" onclick="gotoScheduleGenerationJS();"/>
+						<input type="button" class="drk_blue_btn" style="margin: 0px !important;" value="Run GPA Calculations" onclick="gotoGPAJS();" />
+					</center>
+					<div class="clear_fix"></div>
+				</div>
+			</apex:outputPanel>
+		</apex:outputPanel>
+		
+		<!-- GPA Batch Panel -->
+		<apex:outputPanel id="gpaBatchPanel">
+			<apex:outputPanel rendered="{!bGPA}">
+				<h4>Run batch to update the Current GPA or the Final GPA</h4>	
+				<div class="section_content">
+					<div style="float: left">
+						<apex:outputlabel value="Set Grades to Final?" />
+						<apex:inputCheckbox value="{!bIsFinal}" />
+						&nbsp;&nbsp;
+						<input type="button" class="black_btn" style="float:none !important;" value="Update GPAs" onClick="rungpaJS();"/>
+					</div>
+					<div class="clear_fix">&nbsp;</div>
+				</div>
+				<apex:outputPanel rendered="{!gpaJobs.size >0}">
+					<h4>Batch Status</h4>
+					<div class="section_content" style="margin-bottom:10px;">
+						<div style="margin-bottom:5px;">
+							Click Update Batch Status to see the progress of the batch.
+						</div>
+						<apex:dataTable value="{!gpaJobs}" var="job" styleClass="jobTable">
+							<apex:column value="{!job.CreatedDate}" headerValue="Scheduled Time"/>
+							<apex:column value="{!job.Status}" headerValue="Status"/>
+							<apex:column value="{!job.JobItemsProcessed}" headerValue="Batches Processed"/>
+							<apex:column value="{!job.NumberOfErrors}" headerValue="Failures"/>
+							<apex:column value="{!job.TotalJobItems}" headerValue="Total Batches"/>
+							<apex:column style="display:none;">
+								<!-- Hidden column is used for sorting column 0 -->
+								<apex:outputText value=" {0,Time,yyyyMMddhhmm}">
+    								<apex:param value="{!job.CreatedDate}" /> 
+    						 	</apex:outputText>
+							</apex:column>
+						</apex:dataTable>
+						<br/>
+						<input type="button" value="Update Batch Status" class="black_btn" onclick="refreshJobInfoJS();" />
+					</div>
+				</apex:outputPanel>
+				<input type="button" class="grey_btn" value="Go Back" onclick="gotoHomeJS();" />
+			</apex:outputPanel>
+		</apex:outputPanel>
+
+		<!-- Generation Panel -->
+		<apex:outputPanel id="genPanel">
+			<script>
+				function populateMap(){
+					var map = '{!reportingPeriods}';
+					map = map.split(", ");
+					map[0] = map[0].replace("[","");
+					map[map.length-1] = map[map.length-1].replace("]","");
+					
+					for(var i=0;i<map.length;i++){
+						var split = map[i].split(";");
+						var t = new timeElement();
+						t.id = split[0];
+						t.startDate = split[1];
+						t.endDate = split[2];
+						teMap[split[0]] = t;
+					}
+				}
+			</script>
+			<apex:outputPanel rendered="{!OR(bDoc,bSched)}">
+				<!-- Top option checkboxes -->
+				<div class="generic" style="align: left; width: 666px; margin-bottom: 15px; {!IF(bDoc,'','display:none;')}">
+					<h3>Overall Options</h3>
+					<table style="align: center; width: 666px;">
+						<tr>
+							<th>Show In Portal?</th>
+							<th>Include Inactive Students?</th>
+							<th>Include Inactive Student Sections?</th>
+							<th>Include Transfered Student Sections?</th>
+						</tr>
+						<tr>
+							<td align="center"><apex:inputCheckBox value="{!bShowInPortal}" /></td>
+							<td align="center"><apex:inputCheckBox value="{!bIncludeInactiveStudents}" /></td>
+							<td align="center"><apex:inputCheckBox value="{!bIncludeInactiveStudentSections}" /></td>
+							<td align="center"><apex:inputCheckBox value="{!bIncludeTransferedSections}" /></td>
+							<td>
+								<input type="button" class="drk_blue_btn" style="margin: 0px !important;" value="Show Inactive Years" onclick="showProgressBar('Retrieving Inactive Schools...'); includeInactiveSetupsJS();" />
+							</td>
+						</tr>
+					</table>
+				</div>
+
+				<div>
+					<div class="no-border" style="{!IF(bSched,'','display:none;')}">
+						<h3>Select Schedule Type</h3>
+						<apex:selectRadio value="{!bStudent}" onchange="j$('.schedToggle').toggle();" disabled="{!bSearch}">
+							<apex:selectOption itemValue="true" itemLabel="Student" />
+							<apex:selectOption itemValue="false" itemLabel="Staff" />
+						</apex:selectRadio>
+					</div>
+					<h3>Select Schools and Additional Criteria</h3>
+					<apex:outputPanel id="schoolTable" styleclass="generic" layout="block">
+						<table id="schoolTable">
+							<thead>
+								<tr>
+									<th>Select</th>
+									<th>School Name</th>
+									<th style="{!IF(bDoc,'','display:none;')}">Document</th>
+									<th>Official?</th>
+									<th>Reporting Period/Sections</th>
+									<th style="{!IF(bSched,'','display:none;')}">Time</th>
+									<th style="{!IF(bSched,'','display:none;')}">Start Date</th>
+									<th style="{!IF(bSched,'','display:none;')}">End Date</th>
+									<th>Filter Sections?</th>
+									<th class="schedToggle" style="{!IF(AND(bStudent,!bSearch),'','display:none;')}">Additional Options</th>
+								</tr>
+							</thead>
+							<tbody>
+								<apex:repeat var="school" value="{!schools}">
+									<tr id="{!school.recordID}">
+										<td>
+											<apex:inputCheckBox value="{!school.Selected}" />
+										</td>
+										<td>
+											<apex:outputText id="schoolName" value="{!school.DisplayName}" />
+										</td>
+										<td style="{!IF(bDoc,'','display:none;')}">
+											<apex:selectList multiselect="0" size="1"
+												value="{!school.selectedDocument}" style="min-width: 257px;" rendered="{!bDoc}">
+												<apex:selectOptions value="{!school.allowedDocuments}" />
+												<apex:actionSupport event="onchange"
+													rerender="messages, genPanel" />
+											</apex:selectList>
+										</td>
+										<!-- US3281 checkbox option for official -->
+										<td>
+											<div style="{!IF(school.selectedDocument == 'Transcript','','display:none;')}">
+												<apex:inputCheckBox value="{!school.bOfficialTranscript}" />
+											</div>
+										</td>										
+										<td>
+											<div style="{!IF(school.selectedDocument != 'Transcript','','display:none;')}">
+												<apex:selectList id="selectedRP" multiselect="0" size="1"
+													value="{!school.selectedReportingPeriod}" onchange="updateDates(this.value,'{!school.recordID}');">
+													<apex:selectOptions value="{!school.reportingPeriods}" />
+												</apex:selectList>
+											</div>
+										</td>
+										<td style="{!IF(bSched,'','display:none;')}">
+											<apex:selectList id="selectedTime" size="1" value="{!school.selectedTime}" onchange="checkDateChange(this,'{!school.recordID}-endDate'); datefix();">
+												<apex:selectOption itemValue="oneweek" itemLabel="1 week" />
+												<apex:selectOption itemValue="twoweeks" itemLabel="2 weeks" />
+												<apex:selectOption itemValue="all" itemLabel="All Dates" />
+											</apex:selectList>
+										</td>
+										<td style="{!IF(bSched,'','display:none;')}">
+											<div class="requiredInput">
+												<div class="requiredBlock"></div>
+												<apex:inputText id="startDate" styleClass="selectedDate" value="{!school.startDate}" />
+											</div>
+										</td>
+										<td style="{!IF(bSched,'','display:none;')}">
+											<div id="{!school.recordID}-endDate">
+												<div class="requiredInput">
+													<div class="requiredBlock" style="{!IF(school.selectedTime!='all','display:none;','')}"></div>
+													<apex:inputText id="endDate" styleClass="selectedDate" value="{!school.endDate}" />
+												</div>
+											</div>
+										</td>
+										<td>
+											<div style="{!IF(school.selectedDocument != 'Transcript','','display:none;')}">
+												<apex:commandLink value="Show"
+													onClick="showProgressBar('Retrieving Sections...');"
+													action="{!showCurrentSections}" rerender="messages, secModalWrapper"
+													onComplete="openSectionModal();">
+													<apex:param name="selectedSection" value="{!school.recordID}" assignTo="{!selectedSectionSchool}"/>
+												</apex:commandLink>
+											</div>
+										</td>
+										<!-- Additional Options Panel -->
+										<td class="schedToggle" style="{!IF(AND(bStudent,!bSearch),'','display:none;')}">
+											<apex:commandLink value="Show"
+												action="{!loadAdditionalOptions}" rerender="messages, theForm"
+												onComplete="openOptionModal();">
+												<apex:param name="selectedSection" value="{!school.recordID}" assignTo="{!selectedSectionSchool}"/>
+											</apex:commandLink>
+										</td>
+									</tr>
+								</apex:repeat>
+							</tbody>
+						</table>
+					</apex:outputPanel>
+				</div>
+				<div class="clear_fix">&nbsp;</div>
+				<!-- Generation Buttons -->
+				<div class="generic" style="border: none;">
+					<input type="button" class="black_btn" style="{!IF(bSearch,'display:none;','')} text-align: center; width:180px;" value="GENERATE DOCUMENTS" onClick="if(checkDatesForGeneration()){ startGeneration(); }"/>
+					<input type="button" class="drk_blue_btn schedToggle" style="{!IF(OR(bSearch,!bStudent),'display:none;','')} margin: 0px !important;" value="Select Individual Students" onclick="startSearchJS();" />
+					<input type="button" class="drk_blue_btn schedToggle" style="{!IF(OR(bSearch,bStudent),'display:none;','')} margin: 0px !important;" value="Select Individual Staff" onclick="startSearchJS();" />
+				</div>
+				<!-- Student Search Panel -->
+				<apex:outputPanel rendered="{!bSearch}" id="studentSelectPanel">
+					<apex:outputPanel rendered="{!IF(peopleToGenerate.size>0,true,false)}">
+						<h3>Currently Selected {!IF(bStudent,'Students','Staff')}</h3>
+						<div class="section_content">
+							<apex:dataTable styleClass="tablesorter"
+								value="{!peopleToGenerate}" var="s" title="{!IF(bStudent,'Students','Staff')}">
+								<apex:column title="Name">
+									<apex:facet name="header">
+										Remove?<input type="checkbox" onClick="selectAll(this, 'removeCb');" />
+									</apex:facet>
+									<apex:inputCheckBox styleclass="removeCb" value="{!s.selected}" />
+								</apex:column>
+								<apex:column title="Name">
+									<apex:facet name="header">Name</apex:facet>
+									<apex:outputLink value="/{!IF(bStudent,s.student.id,s.staff.id)}" target="_blank">{!IF(bStudent,s.student.Name,s.staff.Name)}</apex:outputLink>
+								</apex:column>
+								<apex:column title="Name" rendered="{!bStudent}">
+									<apex:facet name="header">Grade</apex:facet>
+									<apex:outputLink value="/{!s.student.id}" target="_blank">{!s.student.Grade__c}</apex:outputLink>
+								</apex:column>
+							</apex:dataTable>
+							<input type="button" value="Remove Selected" class="drk_blue_btn" style="margin: 0px !important;" onclick="removeStudentsFromGenerationJS();" />
+							<input type="button" value="Generate for Selected {!IF(bStudent,'Students','Staff')}" class="black_btn" onClick="if(checkDatesForGeneration()){ startGeneration(); }"/>
+							<div class="clear_fix">&nbsp;</div>
+						</div>
+					</apex:outputPanel>
+
+					<!-- Student Filter Panel -->
+					<apex:outputPanel id="searchInfo" rendered="{!bStudent}">
+						<h3>Search For Students to Select</h3>
+						<div>
+						<apex:pageBlockSection collapsible="false" columns="2">
+							<apex:inputField required="false"
+								value="{!studentSearchWrapper.Student_First_Name__c}" />
+							<apex:inputField value="{!studentSearchWrapper.Student_Last_Name__c}" />
+							<apex:inputField value="{!studentSearchWrapper.Student_Id__c}" />
+							<apex:pageBlockSectionItem >
+								<apex:outputLabel value="Date of Birth" />
+								<apex:inputText styleClass="selectedDate"
+									value="{!studentSearchWrapper.Date_of_Birth__c}" />
+							</apex:pageBlockSectionItem>
+							<apex:inputField value="{!studentSearchWrapper.Grade__c}" />
+							<apex:pageBlockSectionItem >
+								<apex:outputLabel value="Entry Date" />
+								<apex:inputText styleClass="selectedDate"
+									value="{!studentSearchWrapper.Entry_Date__c}" />
+							</apex:pageBlockSectionItem>
+							<apex:inputField value="{!studentSearchWrapper.Gender__c}" />
+							<apex:inputField value="{!studentSearchWrapper.Race_Multi__c}" />
+							<apex:inputField value="{!studentSearchWrapper.X504_Plan__c}" />
+							<apex:inputField value="{!studentSearchWrapper.Alternate_Language__c}" />
+							<apex:inputField value="{!studentSearchWrapper.ELL__c}" />
+							<apex:inputField value="{!studentSearchWrapper.Gifted__c}" />
+							<apex:inputField value="{!studentSearchWrapper.Grades_Overridden__c}" />
+							<apex:inputField value="{!studentSearchWrapper.IEP_Program__c}" />
+							<apex:inputField value="{!studentSearchWrapper.Retained_in_a_previous_grade_level__c}" />
+							<apex:inputField value="{!studentSearchWrapper.Special_Ed__c}" />
+						</apex:pageBlockSection>
+						<input type="button" class="black_btn" value="Filter Students" onclick="showProgressBar('Retrieving Students...'); searchPeopleJS();" />
+						</div>
+					</apex:outputPanel>
+					
+					<!-- Staff Filter Panel -->
+					<apex:outputPanel id="staffInfo" rendered="{!!bStudent}">
+						<h3>Search For Staff to Select</h3>
+						<div>
+						<apex:pageBlockSection collapsible="false" columns="2">
+							<apex:inputField required="false" value="{!staffSearchWrapper.First_Name_Staff__c}" />
+							<apex:inputField value="{!staffSearchWrapper.Staff_Last_Name__c}" />
+							<apex:inputField value="{!staffSearchWrapper.ID__c}" />
+						</apex:pageBlockSection>
+						<input type="button" class="black_btn" value="Filter Staff" onclick="showProgressBar('Retrieving Staff...'); searchPeopleJS();" />
+						</div>
+					</apex:outputPanel>
+					
+					<input type="button" class="grey_btn" value="Go Back" onclick="exitSearchJS();" />
+					<div class="clear_fix">&nbsp;</div>
+				</apex:outputPanel>
+			</apex:outputPanel>
+		</apex:outputPanel>
+		
+		<div id="modals">
+			<!-- Section Modal -->
+			<apex:outputPanel id="secModalWrapper">
+				<div id="sectionModal" style="display:none;" class="sectionModal">
+					<div id="sectionTable">
+						<apex:dataTable styleClass="tablesorter"
+							value="{!sectionDisplayWrapper}"
+							var="wrapper">
+							<apex:column title="Select" width="5px">
+								<apex:facet name="header">Select? <input
+										type="checkbox" checked="checked"
+										onClick="selectAll(this, 'sectionCb')" />
+								</apex:facet>
+								<apex:inputCheckbox styleClass="sectionCb"
+									value="{!wrapper.selected}" />
+							</apex:column>
+							<apex:column title="Section Name">
+								<apex:facet name="header">Section Name</apex:facet>
+								<apex:outputLink value="/{!wrapper.section.id}" target="">{!wrapper.section.Name}</apex:outputLink>
+							</apex:column>
+							<apex:column title="Grade(s)">
+								<apex:facet name="header">Grade(s)</apex:facet>
+								{!wrapper.section.All_Grades__c}
+							</apex:column>
+						</apex:dataTable>
+					</div>
+				</div>
+			</apex:outputPanel>
+	
+			<!-- Option Modal -->
+			<apex:outputPanel styleClass="additionalOptionsModal" rendered="{!optionDocument != 'Transcript'}">
+				<div class="additionalOptions" style="display: none;">
+					<div class="generic">
+						<table>
+							<tr>
+								<th>504 Plan?</th>
+								<th>Alternate Language</th>
+							</tr>
+							<tr>
+								<td>
+									<apex:inputField value="{!searchOptionWrapper.X504_Plan__c}" />
+								</td>
+								<td>
+									<apex:inputField value="{!searchOptionWrapper.Alternate_Language__c}" />
+								</td>
+							</tr>
+							<tr>
+								<th>ELL</th>
+								<th>Gifted</th>
+							</tr>
+							<tr>
+								<td>
+									<apex:inputField value="{!searchOptionWrapper.ELL__c}" />
+								</td>
+								<td>
+									<apex:inputField value="{!searchOptionWrapper.Gifted__c}" />
+								</td>
+							</tr>
+							<tr>
+								<th>Grades Overridden</th>
+								<th>IEP Program</th>
+							</tr>
+							<tr>
+								<td>
+									<apex:inputField value="{!searchOptionWrapper.Grades_Overridden__c}" />
+								</td>
+								<td>
+									<apex:inputField value="{!searchOptionWrapper.IEP_Program__c}" />
+								</td>
+							</tr>
+							<tr>
+								<th>Immigrant</th>
+								<th>Students Retained?</th>
+							</tr>
+							<tr>
+								<td>
+									<apex:inputField value="{!searchOptionWrapper.Immigrant__c}" />
+								</td>
+								<td>
+									<apex:inputField value="{!searchOptionWrapper.Retained_in_a_previous_grade_level__c}" />
+									
+								</td>
+							</tr>
+							<tr>
+								<th>Grade Span?</th>
+								<th>Special Education?</th>
+							</tr>
+							<tr>
+								<td>
+									<apex:inputField value="{!searchOptionWrapper.Setup__r.Grade_Span__c}" id="gradePicklist" />
+								</td>
+								<td>
+									<apex:inputField value="{!searchOptionWrapper.Special_Ed__c}" />
+								</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</apex:outputPanel>
+			<apex:outputPanel styleClass="additionalOptionsModal" rendered="{!optionDocument == 'Transcript'}">
+				<div class="additionalOptions" style="display: none;">
+					<div class="generic">
+						<table>
+							<tr>
+								<th>Grade Span?</th>
+							</tr>
+							<tr>
+								<td>
+									<apex:inputField value="{!searchOptionWrapper.Setup__r.Grade_Span__c}" id="gradePicklist1" />
+								</td>
+							</tr>
+						</table>
+					</div>
+	
+				</div>
+			</apex:outputPanel>
+	
+			<!-- Results modal -->
+			<apex:outputPanel >
+				<div class="resultsModal" id="resultsModal" style="display:none;" >
+					<apex:dataTable styleClass="resultsTable" value="{!searchResults}" var="s">
+						<apex:column title="Name">
+							<apex:facet name="header">Add?<input
+								type="checkbox" onClick="selectAll(this, 'addCb');" />
+							</apex:facet>
+							<apex:inputCheckBox styleClass="addCb" value="{!s.selected}" />
+						</apex:column>
+						<apex:column title="Name">
+							<apex:facet name="header">{!IF(bStudent,'Student','Staff')} Name</apex:facet>
+							<apex:outputLink value="/{!IF(bStudent,s.student.ID,s.staff.ID)}">{!IF(bStudent,s.student.Name,s.staff.Name)}</apex:outputLink>
+						</apex:column>
+						<apex:column title="Grade" rendered="{!bStudent}">
+							<apex:facet name="header">Grade</apex:facet>
+							<apex:outputLink value="/{!s.student.ID}">{!s.student.Grade__c}</apex:outputLink>
+						</apex:column>
+					</apex:dataTable>
+				</div>
+			</apex:outputPanel>
+
+			<apex:outputPanel >
+				<div class="generationModal" id="generationModal" style="display:none;">
+					<apex:pageMessages />
+					This page must remain open for the duration of the process. Opening a new tab or window will not impact generation.
+					<apex:dataTable styleClass="genTable" value="{!peopleToGenerate}" var="s" >
+						<apex:column title="Name" headerValue="Name">
+							<a href="/{!IF(bStudent,s.student.id,s.staff.id)}" target="_blank">{!IF(bStudent,s.student.Name,s.staff.Name)}</a>
+						</apex:column>
+						<apex:column title="Document Type" headerValue="Document Type" >
+							<span style="{!IF(NOT(CONTAINS(s.log.Status__c,'Complete')),'','display:none;')}">{!s.log.Document_Type__c}</span>
+							<a href="/{!s.attachmentID}" target="_blank" title="Click to view generated document." style="{!IF(CONTAINS(s.log.Status__c,'Complete'),'','display:none;')}">{!s.log.Document_Type__c}</a>
+						</apex:column>
+						<apex:column title="Status" headerValue="Status">
+							<a href="/{!s.log.id}" target="_blank" title="Click to view log.">
+								<span class="{!IF(CONTAINS(s.log.Status__c, 'Queue'),'waiting','')}">
+									{!s.log.Status__c}
+									<img src="/img/msg_icons/warning16.png" style="{!IF(CONTAINS(s.log.Status__c,'Warnings'),'','display:none;')}"/>
+									<img src="/img/msg_icons/error16.png" style="{!IF(s.log.Status__c='Failed','','display:none;')}"/>
+									<img src="/img/msg_icons/confirm16.png" style="{!IF(s.log.Status__c= 'Complete','','display:none;')}"/>
+								</span>
+							</a>
+						</apex:column>
+						<apex:column title="Transmitted to S3" headerValue="Transmitted to S3" rendered="{!useS3}">
+							<apex:outputField value="{!s.log.Transmitted_to_S3__c}" rendered="{!IF(CONTAINS(s.log.Status__c,'Complete'),'','display:none;')}"/>
+						</apex:column>
+					</apex:dataTable>
+				</div>
+			</apex:outputPanel>
+		</div>
+		
+		<apex:actionFunction name="gotoDocumentGenerationJS" action="{!gotoDocumentGeneration}" rerender="messages, homePanel, genPanel" />
+		<apex:actionFunction name="gotoScheduleGenerationJS" action="{!gotoScheduleGeneration}" rerender="messages, homePanel, genPanel" onComplete="bSchedule=true; populateMap(); checkDateChange(); datefix();" />
+		<apex:actionFunction name="gotoGPAJS" action="{!gotoGPA}" rerender="messages, homePanel, gpaBatchPanel" onComplete="resetJobTable();" />
+		
+		<apex:actionFunction name="refreshJobInfoJS" action="{!refreshJobInfo}" rerender="messages, gpaBatchPanel" onComplete="resetJobTable();" />
+		<apex:actionFunction name="gotoHomeJS" action="{!gotoHome}" rerender="gpaBatchPanel, homePanel" />
+		
+		<apex:actionFunction name="includeInactiveSetupsJS" action="{!includeInactiveSetups}" rerender="schoolTable, messages" oncomplete="setTimeout('hideProgressBar()',500);" />
+		
+		<apex:actionFunction name="startSearchJS" action="{!startSearch}" rerender="messages,genPanel" onComplete="checkDateChange(); datefix();"/>
+		<apex:actionFunction name="searchPeopleJS" action="{!searchPeople}" rerender="theForm, messages" onComplete="openResultsModal('{!bStudent}'); checkDateChange(); datefix();" />
+		<apex:actionFunction name="removeStudentsFromGenerationJS" action="{!removeStudentsFromGeneration}" rerender="messages, studentSelectPanel" onComplete="resetTable();datefix();" />
+		<apex:actionFunction name="exitSearchJS" action="{!exitSearch}" rerender="messages, theForm" onComplete="resetTable(); checkDateChange(); datefix();" />
+		
+		<apex:actionFunction rerender="messages, gpaBatchPanel" action="{!runGPA}" onComplete="resetJobTable();" name="rungpaJS"/>
+		<apex:actionFunction rerender="messages, theForm" action="{!hideCurrentSections}" name="hideCurrentSectionsJS" oncomplete="checkDateChange(); datefix();"/>
+		<apex:actionFunction rerender="messages, theForm" action="{!saveAdditionalOptions}" name="saveAdditionalOptionsJS" oncomplete="checkDateChange(); datefix();"/>
+		<apex:actionFunction rerender="messages, studentSelectPanel" action="{!addStudentsToGeneration}" name="addStudentsToGenerationJS" onComplete="dataTables('.tablesorter');setTimeout(function() {hideProgressBar();},500);"/>
+		
+		<apex:actionFunction action="{!startGeneration}" name="startGenerationJS" rerender="theForm" onComplete="checkDateChange(); window.setTimeout(function(){j$.fancybox.close();},500); batchCycle();"/>
+		<apex:actionFunction action="{!generateBatch}" name="generateBatchJS" rerender="theForm" onComplete="batchCycle();" onBeforeDOMUpdate="lastScrollPos=j$('.dataTables_scrollBody').scrollTop()+j$('.dataTables_scrollHead').outerHeight(true)+6;"/>
+		<apex:actionFunction action="{!abortBatch}" name="abortJS" rerender="theForm" onComplete="batchCycle();" onBeforeDOMUpdate="lastScrollPos=j$('.dataTables_scrollBody').scrollTop()+j$('.dataTables_scrollHead').outerHeight(true)+6;"/>
+		<apex:actionFunction action="{!cleanup}" name="cleanupJS" rerender="theForm" onBeforeDOMUpdate="j$('.generationModal').remove();" oncomplete="checkDateChange(); datefix(); setTimeout('hideProgressBar()',500);"/>
+	</apex:pageBlock>
+	</apex:form>
+</apex:page>

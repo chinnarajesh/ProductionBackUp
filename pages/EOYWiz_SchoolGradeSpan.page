@@ -1,0 +1,116 @@
+<apex:page controller="EOYWiz_SchoolGradeSpan" tabStyle="EOY_Wizard__tab">
+
+	<apex:includeScript value="{!URLFOR($Resource.jWerty, '/jWerty/jwerty.js')}" />
+  	<c:jQueryInit bLoadingPanel="true" bDataTables="true"/>
+	<apex:stylesheet value="{!$Resource.New_Core_UX}"/>
+	<apex:stylesheet value="{!URLFOR($Resource.schoolforce_demo_page, 'css/style.css')}"/>
+	<c:EOYWiz_StyleModifications />
+	
+	<script>
+		var j$ = jQuery.noConflict();
+		var unsavedPop = false;
+		
+		j$(document).ready(function() {
+			//nothing here yet?
+		});
+		
+		//outside the ready function
+		window.onbeforeunload = unloadMessage;
+		
+		function unloadMessage() {
+			if(unsavedPop) {
+				return "There are unsaved changes!";
+			}
+		}
+	</script>
+	
+	<apex:form id="mainForm" >
+		<apex:outputPanel id="outerPanel" layout="block">
+			
+			<div id="schoolforce-wrapper" class="wrapper">
+			
+				<apex:outputPanel id="errorMessages" layout="block" styleClass="pageMessages">
+					<apex:pageMessages /> <script> unsavedPop = {!unsaved}; </script>
+				</apex:outputPanel>			
+			
+				<h1 id="navPanel" class="centerHeader">
+					<input type="button" class="grey_btn_arrow" onClick="goHomeJS();" value="Previous" />
+					<div style="display: inline-block;">{!schoolProgress.School__r.Name} End of Year Wizard School Setup<br></br>Confirm Grade Span</div>
+					<input id="next" type="button" class="green_btn_arrow" onClick="gotoSchoolStudentPromotionalJS();" value="Next" />
+					<script>if({!!schoolProgress.School_Grade_Span_Completed__c}){document.getElementById('next').disabled = 'disabled';}</script>
+				</h1>
+
+			
+				<apex:outputPanel id="summary" styleClass="adminSummary">
+					<br></br>
+					<p>Confirm your school's grade span for next year.  This is important when creating new student records for next year in the upcoming steps. If there are no changes, click "Finalize Grade Span".</p>
+					<br></br>
+				</apex:outputPanel>
+				
+				<div class="content-wrapper">
+					<apex:pageBlock id="setupBlock" >
+						<apex:outputPanel id="setupPanel" >
+							<apex:pageBlockSection columns="1">
+								<h2 style="margin-left:0px">Current School Setup</h2>
+								<!-- <apex:outputLabel value="School" for="activeSchool" > 
+									<apex:outputLink id="activeSchool" value="/{!activeSetup.School__c}" >{!activeSetup.School__r.Name}</apex:outputLink>
+								</apex:outputLabel> -->
+								<!-- <apex:outputField value="{!activeSetup.ID}" /> -->
+								<!-- <apex:outputLabel value="Year" for="activeYear" >
+									<apex:outputLink id="activeYear" value="/{!activeSetup.Year__c}" >{!activeSetup.Year__r.Name__c}</apex:outputLink>
+								</apex:outputLabel> -->
+								<apex:outputField value="{!activeSetup.School__c}" />
+								<!-- <apex:outputField value="{!activeSetup.Year__c}" ></apex:outputField> -->
+								<apex:pageBlockSectionItem >
+									<apex:outputLabel value="Year" for="activeSetup" />
+									<apex:outputLink id="activeSetup" value="/{!activeSetup.Year__c}">{!activeSetup.Year__r.Name__c}</apex:outputLink>
+								</apex:pageBlockSectionItem>
+								<apex:outputField value="{!activeSetup.Grade_Span__c}" />
+							</apex:pageBlockSection>
+							<br></br>
+							<br></br>
+							<apex:pageBlockSection id="nextSetup" columns="1" >
+								<h2 style="margin-left:0px;">Next Year's School Setup</h2>
+								<!-- <apex:outputLabel value="School" for="nextSchool" >
+									<apex:outputLink id="nextSchool" value="/{!nextSetup.School__c}" >{!nextSetup.School__r.Name}</apex:outputLink>
+								</apex:outputLabel> -->
+								<!-- <apex:outputField id="nextSchoolID" value="{!nextSetup.ID}" /> -->
+								<!-- <apex:outputLabel value="Year" for="nextYear" >
+									<apex:outputLink id="nextYear" value="/{!nextSetup.Year__c}" >{!nextSetup.Year__r.Name__c}</apex:outputLink>
+								</apex:outputLabel> -->
+								<apex:outputField value="{!nextSetup.School__c}" />
+								<!-- <apex:outputField value="{!nextSetup.Year__c}" ></apex:outputField> -->
+								<apex:pageBlockSectionItem >
+									<apex:outputLabel value="Year" for="nextSetup" />
+									<apex:outputLink id="nextSetup" value="/{!nextSetup.Year__c}">{!nextSetup.Year__r.Name__c}</apex:outputLink>
+								</apex:pageBlockSectionItem>
+								<apex:inputField id="nextGradeSpan" value="{!nextSetup.Grade_Span__c}" rendered="{!!schoolProgress.School_Grade_Span_Completed__c}" onChange="editNextGradeSpanJS();"/>
+								<apex:outputField value="{!nextSetup.Grade_Span__c}" rendered="{!schoolProgress.School_Grade_Span_Completed__c}" />
+							</apex:pageBlockSection>
+							
+							<apex:outputPanel id="summaryFooter" style="text-align:center;">
+								<p>Last Modified: {!schoolProgress.School_Grade_Span_Last_Modified__c} </p>
+								<br></br>
+								<br></br>
+								<br></br>					
+							</apex:outputPanel>							
+							
+						</apex:outputPanel>
+						
+						<apex:commandButton styleClass="black_btn" value="Save Grade Span" action="{!saveNextSetup}" onClick="showProgressBar('Saving grade span changes');" onComplete="setTimeout('hideProgressBar()', 300);" rerender="setupPanel, summaryFooter, errorMessages" disabled="{!schoolProgress.School_Grade_Span_Completed__c}" />
+						<apex:commandButton styleClass="red_btn" value="Finalize Grade Span" onClick="if(confirm('Are you sure you want to finalize the grade span for the next school year?')) {showProgressBar('Finalizing next school year grade span'); finalizeNextSetupJS();}" rerender="summaryFooter" disabled="{!schoolProgress.School_Grade_Span_Completed__c}" />
+					</apex:pageBlock>
+				</div>
+				
+			</div>
+		</apex:outputPanel>
+		
+		<apex:actionFunction name="goHomeJS" action="{!gotoEOYLandingPage}" />
+		<apex:actionFunction name="gotoSchoolStudentPromotionalJS" action="{!gotoSchoolStudentPromotional}" />
+		<apex:actionFunction name="editNextGradeSpanJS" action="{!editNextGradeSpan}" rerender="nextGradeSpan, errorMessages" />
+		<apex:actionFunction name="saveNextSetupJS" action="{!saveNextSetup}" rerender="setupPanel, summaryFooter, errorMessages" onComplete="setTimeout('hideProgressBar()', 300);" />
+		<apex:actionFunction name="finalizeNextSetupJS" action="{!finalizeNextSetup}" rerender="summaryFooter, setupBlock, errorMessages, navPanel" onComplete="if({!schoolProgress.School_Grade_Span_Completed__c}){document.getElementById('next').disabled = '';} setTimeout('hideProgressBar()', 300);" />
+		
+	</apex:form>
+	
+</apex:page>

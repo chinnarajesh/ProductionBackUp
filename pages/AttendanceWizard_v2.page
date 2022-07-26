@@ -1,0 +1,672 @@
+<apex:page controller="AttendanceWizard_v2" showHeader="true" sidebar="false">
+	<c:AttendanceWizard_v2 />
+
+	<apex:form id="form">
+		<apex:outputPanel id="messages">
+			<apex:pageMessages />
+		</apex:outputPanel>	
+		<!-- dummy input, will fix later -->
+		<input style="height:0px; position:absolute; z-index: -1;" type="text" value=""/>
+		<apex:outputPanel >
+			<apex:pageBlock >
+				<div class="topHeader">
+					<h5 style="font-size: large">Attendance Wizard</h5>
+
+					<div class="topRightHeader">
+						<apex:selectList value="{!currentSchool}" multiSelect="false" size="1">
+							<apex:selectOptions value="{!activeSchools}"/>
+						</apex:selectList>
+
+						<apex:selectList value="{!currentYear}" multiSelect="false" size="1" disabled="true">
+							<apex:selectOption itemValue="{!currentYearRecord.ID}" itemLabel="{!currentYearRecord.Name__c}" />
+						</apex:selectList>
+					</div>
+				</div>
+				<apex:outputPanel >	
+					<div id="tabs">
+						<div id="tabList">
+							<ul>
+								<li>
+									<a href="#Student" onclick="showProgressBar('Switching...'); j$('#tabContentPanel').css('visibility', 'hidden'); tabSwitchJS('Student');">
+										Student
+									</a>
+								</li>
+
+								<li>
+									<a href="#Section" onclick="showProgressBar('Switching...'); j$('#tabContentPanel').css('visibility', 'hidden'); tabSwitchJS('Section');">									
+										Section
+									</a>
+								</li>
+							</ul>
+						</div>
+						<div id="tabContents">
+							<apex:outputPanel id="tabContentPanel">						
+								<div id="Student">
+									<apex:outputPanel rendered="{!bMode == 'Student'}">
+										<p class="textStyle" style="margin: 2px;">Search Student</p>
+										<div id="filterBox" class="boxBorder">
+											<div class="boxBorderContent side">
+												<p>
+													<h3>Step 1: Pick date</h3>
+												</p>
+												<table class="boxBorderTable">
+													<tbody>
+														<tr>
+															<td>
+																<div class="taRight">
+																	Attendance Date:
+																</div>
+																<div class="taLeft">
+																	<apex:outputPanel styleClass="requiredInput" style="margin-left: 1px;">
+																		<apex:outputPanel styleClass="requiredBlock" style="height: 100%;"/>
+																		<apex:inputText value="{!attendanceDate}" style="width: 50%;" styleClass="dateMinWidth datepicker"/>
+																	</apex:outputPanel>
+																</div>
+															</td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+											<div class="boxBorderContent center">
+												<p>
+													<h3>Step 2: Populate at least one search criteria</h3>
+												</p>
+												<table class="boxBorderTable">
+													<tbody>
+														<tr>
+															<td>
+																<div class="taRight">First Name:</div>
+																<div class="taLeft">
+																	<apex:inputField required="false" value="{!stSearch.sCriteria.Student.Student_First_Name__c}" styleClass="width100"/>		
+																</div>	
+															</td>
+															<td>
+																<div class="taRight">Last Name:</div>
+																<div class="taLeft">
+																	<apex:inputField value="{!stSearch.sCriteria.Student.Student_Last_Name__c}" styleClass="width100"/>
+																</div>
+															</td>
+															<td>
+																<div class="taRight">Student Id:</div>
+																<div class="taLeft">
+																	<apex:inputField value="{!stSearch.sCriteria.Student.Student_Id__c}" styleClass="width100"/>
+																</div>
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<div class="taRight">Gender:</div>
+																<div class="taLeft">
+																	<apex:inputField value="{!stSearch.sCriteria.Student.Gender__c}" styleClass="width100"/>
+																</div>
+															</td>
+															<td>
+																<div class="taRight">Date of Birth:</div>
+																<div class="taLeft">
+																	<apex:inputField value="{!stSearch.sCriteria.Student.Date_of_Birth__c}" showDatePicker="false" styleClass="dateMinWidth datepicker"/>
+																</div>
+															</td>
+															<td>
+																<div class="taRight">Grade:</div>
+																<div class="taLeft">
+																	<apex:inputField value="{!stSearch.sCriteria.Student.Grade__c}" styleClass="width100"/>
+																</div>												
+															</td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+											<div class="boxBorderContent side">
+												<p>
+													<h3>Step 3: Press button</h3>
+												</p>
+												<table class="boxBorderTable">
+													<tbody>
+														<tr>
+															<td>
+															<apex:commandButton action="{!retrieveResults}" onClick="showProgressBar('Retrieving results...'); j$('#studentResultDiv').css('visibility', 'hidden');" value="Retrieve Results" reRender="messages, studentTable" oncomplete="setTimeout(function() { j$('#studentResultDiv').css('visibility', 'visible'); hideProgressBar();}, 250);" styleClass="darkBlueButton">
+															</apex:commandButton>
+															</td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+										</div>
+										<div id="studentResultWrapper" class="boxBorder" style="overflow: auto;">
+											<apex:outputPanel id="studentTable">
+												<script type="text/javascript">
+													(function() {
+														table('#studentResultTable'); 
+														bindOnRowStudentClick('#studentResultTable');
+													})();
+												</script>											
+												<div id="studentResultDiv">
+													<table id="studentResultTable" class="width100 tableStyle">
+														<thead>
+															<tr>
+																<th>
+																	Last Name
+																</th>
+																<th>
+																	First Name
+																</th>
+																<th>
+																	Student Id
+																</th>
+																<th>
+																	Grade
+																</th>
+																<th>
+																	Date of Birth
+																</th>
+																<th>
+																	Gender
+																</th>
+															</tr>
+														</thead>
+														<tbody>
+															<apex:repeat value="{!stSearch.sCriteria.studResults}" var="student">
+																<tr id="{!student.ID}">		
+																	<td>
+																		<apex:outputField value="{!student.Student_Last_Name__c}" />
+																	</td>
+																	<td>
+																		<apex:outputField value="{!student.Student_First_Name__c}" />
+																	</td>
+																	<td>
+																		<apex:outputField value="{!student.Student_Id__c}" />
+																	</td>
+																	<td>
+																		<apex:outputField value="{!Student.Grade__c}" />
+																	</td>
+																	<td>
+																		<apex:outputField value="{!Student.Date_of_Birth__c}" />
+																	</td>
+																	<td>
+																		<apex:outputField value="{!Student.Gender__c}" />
+																	</td>
+																</tr>
+															</apex:repeat>
+														</tbody>
+													</table>
+												</div>								
+											</apex:outputPanel>
+										</div>
+									</apex:outputPanel>
+								</div>
+								<div id="Section">
+									<apex:outputPanel rendered="{!bMode == 'Section'}">
+										<p class="textStyle" style="margin: 2px;">Search Section</p>
+										<div id="filterBox" class="boxBorder">
+											<div class="boxBorderContent side">
+												<p>
+													<h3>Step 1: Pick date</h3>
+												</p>
+												<table class="boxBorderTable">
+													<tbody>
+														<tr>
+															<td>
+																<div class="taRight">
+																	Attendance Date:
+																</div>
+																<div class="taLeft">
+																	<apex:outputPanel styleClass="requiredInput" style="margin-left: 1px;">
+																		<apex:outputPanel styleClass="requiredBlock" style="height: 100%;"/>
+																		<apex:inputText value="{!attendanceDate}" style="width: 50%;" styleClass="dateMinWidth datepicker"/>
+																	</apex:outputPanel>
+																</div>
+															</td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+											<div class="boxBorderContent center">
+												<p>
+													<h3>Step 2: Populate at least one search criteria</h3>
+												</p>
+												<table class="boxBorderTable">
+													<tbody>
+														<tr>
+															<td style="vertical-align: bottom;">
+																<div class="taRight">
+																	<div style="text-align: left;">
+																		Section Name:
+																	</div>
+																	<span class="helpButton" title="Enter all or part of the section name to return sections with that name.">
+																	<img src="/s.gif" class="helpOrb" />
+																	</span>	
+																</div>
+																<div class="taLeft">
+																	
+																	<apex:inputText value="{!snSearch.sectionName}" styleClass="width100"/>		
+																</div>
+															</td>
+															<td style="vertical-align: bottom;">
+																<div class="taRight">
+																	<div style="text-align: left;">
+																		Session Time:
+																	</div>
+																	<span class="helpButton" title="Enter a time to return sections that have that time within its scheduled range. For example, if you enter 10:30 AM, sections with a scheduled time range of 10:00 AM to 10:55 AM or 10:30 AM to 11:15 AM would display.">
+																	<img src="/s.gif" class="helpOrb" />
+																	</span>	
+																</div>
+																<div class="taLeft">
+																	
+																	<apex:inputText value="{!snSearch.sessionTime}" styleClass="width100 TimePicker"/>
+																	<a onclick="var currentT = j$(this).html(); j$(this).prev('.TimePicker').val(currentT);" class="currentTime"/>
+																</div>
+															</td>
+															<td style="vertical-align: bottom;">
+																<div class="taRight">
+																	<div style="text-align: left;">
+																		Staff:
+																	</div> 
+																	<span class="helpButton" title="Enter all or part of a staff member's name to return sections to which that staff member is associated. The search returns results for any of the staff members associated to the section.">
+																	<img src="/s.gif" class="helpOrb" />
+																	</span>	
+																</div>
+																<div class="taLeft">
+																	
+																	<apex:inputText value="{!snSearch.staffMembers}" styleClass="width100"/>
+																</div>
+															</td>
+														</tr>
+														<tr>
+															<td>
+
+															</td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+											<div class="boxBorderContent side">
+												<p>
+													<h3>Step 3: Press button</h3>
+												</p>
+												<table class="boxBorderTable">
+													<tbody>
+														<tr>
+															<td>
+																<apex:commandButton value="Retrieve Results" action="{!retrieveResults}" onClick="showProgressBar('Retrieving Results...'); j$('#sectionResultDiv').css('visibility', 'hidden');" reRender="messages, sectionTable" onComplete="setTimeout(function() {j$('#sectionResultDiv').css('visibility', 'visible'); hideProgressBar();}, 250);" styleClass="darkBlueButton"/>
+															</td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+										</div>
+										<div id="sectionResultWrapper" class="boxBorder" style="overflow: auto;">
+											<apex:outputPanel id="sectionTable">
+												<script type="text/javascript">
+													(function() {
+														table('#sectionResultTable'); 
+														bindOnRowSessionClick('#sectionResultTable');
+													})();
+												</script>											
+												<div id="sectionResultDiv">
+													<table id="sectionResultTable" class="width100 tableStyle">
+														<thead>
+															<tr>
+																<th>
+																	Section Name
+																</th>
+																<th>
+																	Session Time
+																</th>
+																<th>
+																	Staff
+																</th>
+																<!-- <th>
+																	Attendance Submitted
+																</th> -->
+															</tr>
+														</thead>
+														<tbody>
+															<apex:repeat value="{!snSearch.sessionResults}" rendered="{!snSearch.sessionResults.size > 0}" var="sKey">
+																<tr id="{!sKey}">
+																	<td>
+																		<apex:outputText value="{!snSearch.sessionSectionNames[sKey]}" />
+																	</td>
+																	<td>
+																		<apex:outputText value="{!snSearch.sessionTimes[sKey]}" />
+																	</td>
+																	<td>
+																		<apex:outputText value="{!snSearch.sessionStaffMembers[sKey]}"/>
+																	</td>
+																	<!-- <td>
+																		<apex:inputCheckbox value="{!snSearch.sessionAttendanceSubmitted[sKey]}" disabled="true"/>
+																	</td> -->
+																</tr>
+															</apex:repeat>
+														</tbody>
+													</table>
+												</div>
+											</apex:outputPanel>
+										</div>
+									</apex:outputPanel>
+								</div>
+							</apex:outputPanel>
+						</div>
+					</div>
+				</apex:outputPanel>
+			</apex:pageBlock>
+		</apex:outputPanel>
+
+		<div id="studentSelected" class="displayNone">
+			<apex:outputPanel id="studentSelectedPanel">
+				<apex:outputPanel rendered="{!stSearch.swAttendance != null && stSearch.swAttendance.size > 0}">
+				<apex:outputPanel id="modalStudentMessages">
+					<apex:pageMessages />
+				</apex:outputPanel>
+				<div class="boxBorder">
+					<div style="padding: 10px 20px 10px 20px;">
+						Student: 
+						<a href="/{!stSearch.selectedStudent.Id}" target="_blank" >{!stSearch.selectedStudent.Name}</a>
+					</div>
+				</div>
+				<div id="studentModalTableDiv" class="boxBorder" style="padding: 10px 20px 10px 20px;">
+					<div style="text-align: center; padding: 3px;">
+						Date:
+						<apex:outputText value="{!attendanceDate}" />
+					</div>
+					<apex:outputPanel id="studentSelectedTable">
+					<div>
+						<table id="studentModalTable" class="width100 tableStyle">
+							<thead>
+								<tr>
+									<th>
+										All
+										<span class="helpButton" title="To update more than one row at a time, select all or several of the checkboxes in this column. You can then use the down arrow to populate all selected rows for the Status and Comments columns." style="z-index: 1000; vertiical-align: top;">
+												<img src="/s.gif" class="helpOrb" />
+											</span>
+										<div>
+											<apex:inputCheckBox value="{!stSearch.selectAll}" onclick="selectAll(this, 'multiSelect'); bSessionAllClicked = true;" />
+										</div>
+									</th>
+									<th>
+										Section
+									</th>
+									<th>
+										Schedule Time
+									</th>
+									<th>
+										Status
+										<div>
+											<script type="text/javascript">
+												statusArray = [];
+											</script>
+											<apex:repeat value="{!stSearch.pvList}" var="pv" id="picklistArray">
+												<script type="text/javascript">
+													statusArray.push({
+														name : "{!JSENCODE(pv.Name)}",
+														id : 		"{!JSENCODE(pv.id)}",
+														category: "{!JSENCODE(pv.category__c)}",
+														bDefault : "{!pv.set_as_default__c}",
+														tardy : 	"{!pv.is_tardy__c}",
+														depart :"{!pv.is_early_departure__c}"
+													});	
+												</script>
+											</apex:repeat>
+											<apex:selectList value="{!stSearch.statusCopyDown}" multiselect="false" size="1" styleClass="statusCopyDown">
+												<!-- <apex:selectOption itemValue="" itemLabel="--None--"/> -->
+												<apex:selectOptions value="{!stSearch.attendancePV}" />
+											</apex:selectList>
+											<a class="apply-score" onclick="copyDown('#studentModalTable', j$(this).prev('.statusCopyDown').val(), 'statusColumn');"/>
+										</div>
+									</th>
+									<th>
+										Arrival Time
+									</th>
+									<th>
+										Departure Time
+									</th>
+									<th>
+										Comments
+										<div>
+											<apex:inputTextarea value="{!stSearch.commentCopyDown}" styleClass="commentCopyDown"/>
+											<a class="apply-score" onclick="copyDown('#studentModalTable', j$(this).prev('.commentCopyDown').val(), 'commentColumn');"/>
+										</div>
+									</th>
+								</tr>
+							</thead>
+							<tbody>
+								<apex:repeat value="{!stSearch.swAttendance}" var="attendance">
+									<tr style="{!IF(attendance.bDailyAttendance, 'font-weight: bold;', '')}">
+										<td>
+											<apex:inputCheckBox styleClass="multiSelect"/>
+										</td>
+										<td>
+											<apex:outputText value="{!attendance.sessionSection}" />
+										</td>
+										<td style="min-width: 130px;">
+											<apex:outputText value="{!attendance.sessionTime}" />
+										</td>
+										<td class="statusCell" style="min-width: 130px;">
+											<apex:selectList onchange="checkPLV(this); bUnSaved = true;" value="{!attendance.at.Picklist_Value__c}" multiselect="false" size="1" styleClass="statusColumn" style="{!attendance.statusStyle}">
+												<apex:selectOptions value="{!stSearch.attendancePV}" />
+											</apex:selectList>
+										</td>
+										<td class="arrivalTimeCell">
+											<apex:inputText value="{!attendance.at.Arrival_Time_Text__c}" styleClass="dateMinWidth dateWidth90 TimePicker" style="{!attendance.arrivalStyle}" onchange="bUnSaved = true;"/>
+											<a onclick="var currentT = j$(this).html(); j$(this).prev('.TimePicker').val(currentT);" class="currentTime"/>
+										</td>
+										<td class="departureTimeCell">
+											<apex:inputText value="{!attendance.at.Departure_Time_Text__c}" styleClass="dateMinWidth dateWidth90 TimePicker" style="{!attendance.departureStyle}" onchange="bUnSaved = true;"/>
+											<a onclick="var currentT = j$(this).html(); j$(this).prev('.TimePicker').val(currentT);" class="currentTime"/>
+										</td>
+										<td>
+											<apex:inputField value="{!attendance.at.Comments__c}" styleClass="commentColumn" style="{!attendance.commentStyle}" onchange="bUnSaved = true;"/>
+										</td>
+									</tr>
+								</apex:repeat>
+							</tbody>
+						</table>
+					</div>
+					</apex:outputPanel>
+				</div>
+				<div>
+					<apex:commandButton id="submitButton" value="Submit Attendance" action="{!stSearch.submitAttendance}" 
+					onclick="if(bSessionAllClicked && bUnSaved) {
+						if(!confirm('You have selected the All check box at one point during this session. You may be updating multiple records. Are you sure you want to submit?')) {
+							return false;
+						}
+						else {
+							showProgressBar('Saving...');
+						}
+					} 
+					else if(!bUnSaved) {
+						alert('There are no changes to save.');
+						return false;
+					}
+					else {
+						showProgressBar('Saving...');
+					}
+					" rerender="studentSelectedPanel" style="float: right;"  oncomplete="submitDailyAttendanceJS();" styleClass="blackButton"/>
+
+					<apex:actionFunction id="sdaJS" name="submitDailyAttendanceJS" action="{!stSearch.submitDailyAttendance}" reRender="sdaJS"
+					onComplete="
+					if({!stSearch.closeModal}) {
+						bUnSaved = false;
+						j$('#studentSelected').dialog('close');
+					} 
+					else {
+						modalTable('#studentModalTable'); initializePLV('statusColumn');
+						setTimeout('hideProgressBar()', 250);
+					}"
+					/>
+
+					<apex:commandButton value="Cancel" onclick="j$('#studentSelected').dialog('close');" reRender="messages" style="float: right;" styleClass="blackButton"/>
+				</div>
+				</apex:outputPanel>
+			</apex:outputPanel>
+		</div>
+
+		<div id="sessionSelected" class="displayNone">
+			<apex:outputPanel id="sessionSelectedPanel">
+				<apex:outputPanel rendered="{!snSearch.swAttendance != null && snSearch.swAttendance.size > 0}">
+
+				<apex:outputPanel id="modalSessionMessages">
+					<apex:pageMessages />
+				</apex:outputPanel>
+			
+				<div class="boxBorder">
+					<div style="padding: 10px 20px 10px 20px;">
+						Session: 
+						<a href="/{!snSearch.selectedSession.ID}" target="_blank" >{!snSearch.selectedSession.Name}</a>
+						<span style="margin: 0 10px 0 10px;">
+							Time: {!snSearch.selectedSessionTime}
+						</span>
+						
+					</div>
+				</div>
+				<div id="sessionModalTableDiv" class="boxBorder" style="padding: 10px 20px 10px 20px;">
+					<div style="text-align: center; padding: 3px;">
+						Date:
+						<apex:outputText value="{!attendanceDate}"/>
+					</div>
+					<div>
+						<table id="sessionModalTable" class="width100 tableStyle">
+							<thead>
+								<tr>
+									<th>
+										All
+										<span class="helpButton" title="To update more than one row at a time, select all or several of the checkboxes in this column.  You can then use the down arrow to populate all selected rows for the Status, Arrival time, Departure Time, and Comments columns." style="z-index: 1000; vertical-align: top;">
+										<img src="/s.gif" class="helpOrb" />
+										</span>
+										<div>
+											<apex:inputcheckBox value="{!snSearch.selectAll}" onclick="selectAll(this, 'multiSelect'); bSessionAllClicked = true;" />
+										</div>
+									</th>
+									<th>
+										Student
+									</th>
+									<th>
+										Status
+										<div>
+											<script type="text/javascript">
+												statusArray = [];
+											</script>
+											<apex:repeat value="{!snSearch.pvList}" var="pv">
+												<script type="text/javascript">	
+													statusArray.push({
+														name : "{!JSENCODE(pv.Name)}",
+														id : "{!JSENCODE(pv.id)}",
+														category : "{!JSENCODE(pv.category__c)}",
+														bDefault : "{!pv.set_as_default__c}",
+														tardy : "{!pv.is_tardy__c}",
+														depart : "{!pv.is_early_departure__c}"
+													});
+												</script>
+											</apex:repeat>
+											<apex:selectList value="{!snSearch.statusCopyDown}" multiSelect="false" size="1" styleClass="statusCopyDown">
+												<apex:selectOptions value="{!snSearch.attendancePV}"/>
+											</apex:selectList>
+											<a class="apply-score" onclick="copyDown('#sessionModalTable', j$(this).prev('.statusCopyDown').val(), 'statusColumn');"/>
+										</div>
+									</th>
+									<th>
+										Arrival Time
+										<div>
+											<apex:inputText value="{!snSearch.arrivalCopyDown}" styleClass="dateMinWidth dateWidth90 TimePicker arrivalCopyDown"/>
+											<a onclick="var currentT = j$(this).html(); j$(this).prev('.TimePicker').val(currentT);" class="currentTime"/>
+											<a class="apply-score" onclick="copyDown('#sessionModalTable', j$(this).prev().prev('.arrivalCopyDown').val(), 'arrivalColumn');"/>
+										</div>
+									</th>
+									<th>
+										Departure Time
+										<div>
+											<apex:inputText value="{!snSearch.departureCopyDown}" styleClass="dateMinWidth dateWidth90 TimePicker departureCopyDown"/>
+											<a onclick="var currentT = j$(this).html(); j$(this).prev('.TimePicker').val(currentT);" class="currentTime"/>
+											<a class="apply-score" onclick="copyDown('#sessionModalTable', j$(this).prev().prev('.departureCopyDown').val(), 'departureColumn');"/>
+										</div>										
+									</th>
+									<th>
+										Comments
+										<div>
+											<apex:inputTextArea value="{!snSearch.commentCopyDown}" styleClass="commentCopyDown"/>
+											<a class="apply-score" onclick="copyDown('#sessionModalTable', j$(this).prev('.commentCopyDown').val(), 'commentColumn');"/>
+										</div>
+									</th>
+								</tr>
+							</thead>
+							<tbody>
+								<!-- <apex:repeat value="{!snSearch.swAttendance}" var="attendance"> -->
+								<apex:repeat value="{!snSearch.thousandBlocks}" var="display" >
+									<apex:repeat value="{!display.aww}" var="attendance">
+									<tr>
+										<td>
+											<apex:inputCheckbox styleClass="multiSelect" />
+										</td>
+										<td>
+											<apex:outputText value="{!attendance.studentName}" />
+										</td>
+										<td class="statusCell" style="min-width: 130px;">
+											<apex:selectList value="{!attendance.at.Picklist_Value__c}" multiSelect="false" size="1" styleClass="statusColumn" onchange="checkPLV(this); bUnSaved = true;" style="{!attendance.statusStyle}">
+												<apex:selectOptions value="{!snSearch.attendancePV}"/>
+											</apex:selectList>
+										</td>
+										<td class="arrivalTimeCell">
+											<apex:inputText value="{!attendance.at.Arrival_Time_Text__c}" styleClass="dateMinWidth dateWidth90 TimePicker arrivalColumn" onchange="bUnSaved = true;" style="{!attendance.arrivalStyle}"/>
+											<a onclick="var currentT = j$(this).html(); j$(this).prev('.TimePicker').val(currentT);" class="currentTime"/>
+										</td>
+										<td class="departureTimeCell">
+											<apex:inputText value="{!attendance.at.Departure_Time_Text__c}" styleClass="dateMinWidth dateWidth90 TimePicker departureColumn" onchange="bUnSaved = true;" style="{!attendance.departureStyle}"/>
+											<a onclick="var currentT = j$(this).html(); j$(this).prev('.TimePicker').val(currentT);" class="currentTime"/>
+										</td>
+										<td>
+											<apex:inputField value="{!attendance.at.Comments__c}" styleClass="commentColumn" onchange="bUnSaved = true;" style="{!attendance.commentStyle}"/>
+										</td>
+									</tr>
+									</apex:repeat>
+								</apex:repeat>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div>
+					<apex:commandButton value="Submit Attendance" 
+					onclick="if(bSessionAllClicked && bUnSaved) {
+							if(!confirm('You have selected the All check box at one point during this session. You may be updating multiple records. Are you sure you want to submit?')) {
+								return false;
+							}
+							else {
+								showProgressBar('Saving...');
+							}
+						} 
+						else if(!bUnSaved) {
+							alert('There are no changes to save.');
+							return false;
+						}
+						else {
+							showProgressBar('Saving...');
+						}
+						" action="{!snSearch.submitAttendance}" reRender="sessionSelectedPanel" style="float: right;" styleClass="blackButton" onComplete="
+						if({!snSearch.closeModal}) {
+							bUnSaved = false;
+							j$('#sessionSelected').dialog('close');
+						}
+						else {
+							modalTable('#sessionModalTable'); initializePLV('statusColumn');
+							setTimeout('hideProgressBar()', 250);
+						}
+					"/>
+					<apex:commandButton value="Cancel" onclick="j$('#sessionSelected').dialog('close');" reRender="messages" style="float: right;" styleClass="blackButton" />
+				</div>
+			</apex:outputPanel>
+			</apex:outputPanel>
+		</div>
+
+		<apex:actionFunction name="onRowClickStudentJS" action="{!stSearch.getEnrolledAttendance}" onComplete="if({!stSearch.swAttendance != null && stSearch.swAttendance.size > 0}) {j$('#studentSelected').dialog('open'); modalTable('#studentModalTable'); initializePLV('statusColumn');} setTimeout('hideProgressBar()', 250);" reRender="messages, modalStudentMessages, studentSelectedPanel" >
+			<apex:param name="studentID" value=""/>
+		</apex:actionFunction>
+
+		<apex:actionFunction name="onRowClickSessionJS" action="{!snSearch.getEnrolledAttendance}" onComplete="if({!snSearch.swAttendance != null && snSearch.swAttendance.size > 0}) {j$('#sessionSelected').dialog('open'); modalTable('#sessionModalTable'); initializePLV('statusColumn');} setTimeout('hideProgressBar()', 250);" reRender="messages, modalSessionMessages, sessionSelectedPanel" >
+			<apex:param name="sessionID" value=""/>
+		</apex:actionFunction>
+
+		<apex:actionFunction name="tabSwitchJS" action="{!loadInitialSearch}" onComplete="setTimeout(function() {hideProgressBar(); j$('#tabContentPanel').css('visibility', 'visible'); date(); timePicker();}, 250);" reRender="messages, tabContentPanel">
+			<apex:param name="bMode" value="" />
+		</apex:actionFunction>			
+
+		<apex:actionFunction name="reRenderMessagesJS" action="{!getAfterSubmissionSuccess}" reRender="messages"/>
+	</apex:form>
+</apex:page>

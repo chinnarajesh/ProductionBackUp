@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Community Service</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Community Service</value>
+    </caseValues>
+    <fieldSets>
+        <label><!-- Community Service Wizard --></label>
+        <name>Community_Service_Wizard</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- MassAdd --></label>
+        <name>MassAdd</name>
+    </fieldSets>
+    <fields>
+        <help><!-- What is the primary contact&apos;s email address? --></help>
+        <label><!-- Contact Email --></label>
+        <name>Contact_Email__c</name>
+    </fields>
+    <fields>
+        <help><!-- Who is the primary contact for this project? --></help>
+        <label><!-- Contact Name --></label>
+        <name>Contact_Name__c</name>
+    </fields>
+    <fields>
+        <help><!-- What is the primary contact&apos;s phone number? --></help>
+        <label><!-- Contact Phone --></label>
+        <name>Contact_Phone__c</name>
+    </fields>
+    <fields>
+        <label><!-- Master Student Record --></label>
+        <name>Contact__c</name>
+        <relationshipLabel><!-- Community Service --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- External Id --></label>
+        <name>External_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Location of Service --></label>
+        <name>Location_of_Service__c</name>
+    </fields>
+    <fields>
+        <help><!-- What is the name of the organization that facilitated this project? --></help>
+        <label><!-- Organization Name --></label>
+        <name>Organization_Name__c</name>
+    </fields>
+    <fields>
+        <help><!-- When did this project end? --></help>
+        <label><!-- Service End Date --></label>
+        <name>Service_End_Date__c</name>
+    </fields>
+    <fields>
+        <help><!-- How many hours of community service did the student complete for this project? --></help>
+        <label><!-- Service Hours Completed --></label>
+        <name>Service_Hours_Completed__c</name>
+    </fields>
+    <fields>
+        <help><!-- When did this project begin? --></help>
+        <label><!-- Service Start Date --></label>
+        <name>Service_Start_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Student --></label>
+        <name>Student__c</name>
+        <relationshipLabel><!-- Community Service --></relationshipLabel>
+    </fields>
+    <layouts>
+        <layout>Community Service Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- Service Hours Completed must non-negative. --></errorMessage>
+        <name>Non_Negative_Service_Hours</name>
+    </validationRules>
+    <webLinks>
+        <label><!-- Contact_New_Community_Service --></label>
+        <name>Contact_New_Community_Service</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Student_New_Community_Service --></label>
+        <name>Student_New_Community_Service</name>
+    </webLinks>
+</CustomObjectTranslation>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Assesment__c$Type__c</field>
+    </columns>
+    <columns>
+        <field>Assesment__c$Student__c.Student_ID_Auto_Number__c</field>
+    </columns>
+    <columns>
+        <field>Assesment__c$Student__c</field>
+    </columns>
+    <columns>
+        <field>Assesment__c$SEL_Composite_T_Score__c</field>
+    </columns>
+    <columns>
+        <field>Assesment__c$Date_Administered__c</field>
+    </columns>
+    <columns>
+        <field>Assesment__c$Rater_Name__c</field>
+    </columns>
+    <description>Pull this report and add to the Data Review Template DESSA tab. This report does not refresh immediately, so this report updates the week after DESSA testing, not instantly.</description>
+    <filter>
+        <criteriaItems>
+            <column>Assesment__c$Type__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>DESSA 40</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Assesment__c$Location__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>san antonio</value>
+        </criteriaItems>
+    </filter>
+    <format>Tabular</format>
+    <name>Data Review - DESSA</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Assessments__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <sortColumn>Assesment__c$SEL_Composite_T_Score__c</sortColumn>
+    <sortOrder>Asc</sortOrder>
+    <timeFrameFilter>
+        <dateColumn>Assesment__c$Date_Administered__c</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

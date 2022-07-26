@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>EOY Progress</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>EOY Progresses</value>
+    </caseValues>
+    <fields>
+        <label><!-- Attendance Wizard Completed --></label>
+        <name>Attendance_Wizard_Completed__c</name>
+    </fields>
+    <fields>
+        <label><!-- Attendance Wizard Started --></label>
+        <name>Attendance_Wizard_Started__c</name>
+    </fields>
+    <fields>
+        <label><!-- Behavior Wizard Completed --></label>
+        <name>Behavior_Wizard_Completed__c</name>
+    </fields>
+    <fields>
+        <label><!-- Behavior Wizard Started --></label>
+        <name>Behavior_Wizard_Started__c</name>
+    </fields>
+    <fields>
+        <label><!-- Documents Wizard Completed --></label>
+        <name>Documents_Wizard_Completed__c</name>
+    </fields>
+    <fields>
+        <label><!-- Documents Wizard Started --></label>
+        <name>Documents_Wizard_Started__c</name>
+    </fields>
+    <fields>
+        <help><!-- This will be checked when data and reports are successfully exported. --></help>
+        <label><!-- EOY Export Completed --></label>
+        <name>EOY_Export_Completed__c</name>
+    </fields>
+    <fields>
+        <help><!-- Last user to modify and the time. --></help>
+        <label><!-- EOY Export Last Modified --></label>
+        <name>EOY_Export_Last_Modified__c</name>
+    </fields>
+    <fields>
+        <help><!-- This will be checked if the next school year is created. --></help>
+        <label><!-- EOY Next School Year Completed --></label>
+        <name>EOY_Next_School_Year_Completed__c</name>
+    </fields>
+    <fields>
+        <help><!-- Last user to modify and the time. --></help>
+        <label><!-- EOY Next School Year Last Modified --></label>
+        <name>EOY_Next_School_Year_Last_Modified__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is set to true if the EOY Purge custom settings are configured for the year. --></help>
+        <label><!-- EOY Purge Settings Completed --></label>
+        <name>EOY_Purge_Settings_Completed__c</name>
+    </fields>
+    <fields>
+        <help><!-- Last user to modify and the time. --></help>
+        <label><!-- EOY Purge Settings Last Modified --></label>
+        <name>EOY_Purge_Settings_Last_Modified__c</name>
+    </fields>
+    <fields>
+        <label><!-- External Id --></label>
+        <name>External_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Gradebook Type Finalized --></label>
+        <name>Gradebook_Type_Finalized__c</name>
+    </fields>
+    <fields>
+        <label><!-- Gradebook Wizard Completed --></label>
+        <name>Gradebook_Wizard_Completed__c</name>
+    </fields>
+    <fields>
+        <label><!-- Gradebook Wizard Started --></label>
+        <name>Gradebook_Wizard_Started__c</name>
+    </fields>
+    <fields>
+        <label><!-- Is Complete --></label>
+        <name>Is_Complete__c</name>
+    </fields>
+    <fields>
+        <label><!-- Module Name --></label>
+        <name>Module_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Parent Progress --></label>
+        <name>Parent_Progress__c</name>
+        <relationshipLabel><!-- EOY Progresses --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Last user to modify and the time. --></help>
+        <label><!-- Purge Historical Data Last Modified --></label>
+        <name>Purge_Historical_Data_Last_Modified__c</name>
+    </fields>
+    <fields>
+        <help><!-- This will be checked when the grade span has been confirmed for the next school year. --></help>
+        <label><!-- School Grade Span Completed --></label>
+        <name>School_Grade_Span_Completed__c</name>
+    </fields>
+    <fields>
+        <help><!-- Last user to modify and the time. --></help>
+        <label><!-- School Grade Span Last Modified --></label>
+        <name>School_Grade_Span_Last_Modified__c</name>
+    </fields>
+    <fields>
+        <help><!-- This will be checked when the net new student records are generated for the next year. --></help>
+        <label><!-- School Next Year Students Completed --></label>
+        <name>School_Next_Year_Students_Completed__c</name>
+    </fields>
+    <fields>
+        <help><!-- Last user to modify and the time. --></help>
+        <label><!-- School Next Year Students Last Modified --></label>
+        <name>School_Next_Year_Students_Last_Modified__c</name>
+    </fields>
+    <fields>
+        <help><!-- This will be checked when the EOY Data is deactivated and archived has been verified. --></help>
+        <label><!-- School Process Data Completed --></label>
+        <name>School_Process_Data_Completed__c</name>
+    </fields>
+    <fields>
+        <help><!-- Last user to modify and the time. --></help>
+        <label><!-- School Process Data Last Modified --></label>
+        <name>School_Process_Data_Last_Modified__c</name>
+    </fields>
+    <fields>
+        <help><!-- This will be checked when the EOY Data has successfully been purged. --></help>
+        <label><!-- School Purge EOY Data Completed --></label>
+        <name>School_Purge_EOY_Data_Completed__c</name>
+    </fields>
+    <fields>
+        <help><!-- Last user to modify and the time. --></help>
+        <label><!-- School Purge EOY Data Last Modified --></label>
+        <name>School_Purge_EOY_Data_Last_Modified__c</name>
+    </fields>
+    <fields>
+        <help><!-- This will be checked when Historical Data has been successfully purged. --></help>
+        <label><!-- School Purge Historical Data Completed --></label>
+        <name>School_Purge_Historical_Data_Completed__c</name>
+    </fields>
+    <fields>
+        <label><!-- School Selections Completed --></label>
+        <name>School_Selections_Completed__c</name>
+    </fields>
+    <fields>
+        <help><!-- This will be checked when snapshots are successfully created for the year. --></help>
+        <label><!-- School Snapshots Completed --></label>
+        <name>School_Snapshots_Completed__c</name>
+    </fields>
+    <fields>
+        <help><!-- Last user to modify and the time. --></help>
+        <label><!-- School Snapshots Last Modified --></label>
+        <name>School_Snapshots_Last_Modified__c</name>
+    </fields>
+    <fields>
+        <help><!-- This will be checked when the student&apos;s record is verified for: Intent to return, Promoted, Next year School, and Final Grade Level. --></help>
+        <label><!-- School Student Promotional Completed --></label>
+        <name>School_Student_Promotional_Completed__c</name>
+    </fields>
+    <fields>
+        <help><!-- Last user to modify and the time. --></help>
+        <label><!-- School Student Promotional Last Modified --></label>
+        <name>School_Student_Promotional_Last_Modified__c</name>
+    </fields>
+    <fields>
+        <help><!-- This field is required for EOY Progression on schools. --></help>
+        <label><!-- School --></label>
+        <name>School__c</name>
+        <relationshipLabel><!-- EOY Progresses --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Determine the progress for an active setup to a school. --></help>
+        <label><!-- Setup --></label>
+        <name>Setup__c</name>
+        <relationshipLabel><!-- EOY Progresses --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- The year for the EOY Wizard to process. --></help>
+        <label><!-- Year --></label>
+        <name>Year__c</name>
+        <relationshipLabel><!-- EOY Progresses --></relationshipLabel>
+    </fields>
+    <layouts>
+        <layout>EOY Progress Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>School Progress Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Setup Wizard Progress Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <label><!-- EOY --></label>
+        <name>EOY</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Setup Wizard --></label>
+        <name>Setup_Wizard</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

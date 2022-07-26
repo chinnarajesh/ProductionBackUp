@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Account.Students__r$Name</field>
+    </columns>
+    <columns>
+        <field>Account.Students__r.Grades__r$Name</field>
+    </columns>
+    <columns>
+        <field>Account.Students__r.Grades__r$Student_Section__c.Name</field>
+    </columns>
+    <columns>
+        <field>Account.Students__r.Grades__r$Id</field>
+    </columns>
+    <columns>
+        <field>Account.Students__r.Grades__r$Entered_Grade__c</field>
+    </columns>
+    <columns>
+        <field>Account.Students__r$Location__c</field>
+    </columns>
+    <columns>
+        <field>Account.Students__r$School__c</field>
+    </columns>
+    <columns>
+        <field>Account.Students__r.Grades__r$Course__c</field>
+    </columns>
+    <format>Tabular</format>
+    <name>Test grade reports</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Accounts_with_Students_with_Grades__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>Account.Students__r$Actual_graduation_date__c</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

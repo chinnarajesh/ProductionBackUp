@@ -1,0 +1,1173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Staff</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Staff</value>
+    </caseValues>
+    <fields>
+        <label><!-- Active --></label>
+        <name>Active__c</name>
+    </fields>
+    <fields>
+        <label><!-- Home Address --></label>
+        <name>Address_1__c</name>
+    </fields>
+    <fields>
+        <label><!-- Address 2 --></label>
+        <name>Address_2__c</name>
+    </fields>
+    <fields>
+        <label><!-- Afterschool --></label>
+        <name>Afterschool__c</name>
+    </fields>
+    <fields>
+        <label><!-- Age --></label>
+        <name>Age__c</name>
+    </fields>
+    <fields>
+        <label><!-- Attendance --></label>
+        <name>Attendance__c</name>
+    </fields>
+    <fields>
+        <label><!-- Base School --></label>
+        <name>Base_School__c</name>
+    </fields>
+    <fields>
+        <label><!-- Behavior --></label>
+        <name>Behavior__c</name>
+    </fields>
+    <fields>
+        <label><!-- Birthday --></label>
+        <name>Birthday__c</name>
+    </fields>
+    <fields>
+        <label><!-- Campus --></label>
+        <name>Campus__c</name>
+        <picklistValues>
+            <masterLabel>Base School</masterLabel>
+            <translation><!-- Base School --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Campus</masterLabel>
+            <translation><!-- Campus --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DC-Georgia Ave</masterLabel>
+            <translation><!-- DC-Georgia Ave --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Kansas</masterLabel>
+            <translation><!-- Kansas --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Organization</masterLabel>
+            <translation><!-- Organization --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Certificate Expiration Date --></label>
+        <name>Certificate_Expiration_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Home City --></label>
+        <name>City__c</name>
+    </fields>
+    <fields>
+        <label><!-- CreateSections --></label>
+        <name>CreateSections__c</name>
+        <picklistValues>
+            <masterLabel>50 Acts of Greatness &amp; Extended Learning</masterLabel>
+            <translation><!-- 50 Acts of Greatness &amp; Extended Learning --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>50 Acts of Greatness &amp; In School</masterLabel>
+            <translation><!-- 50 Acts of Greatness &amp; In School --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>50 Acts of Leadership &amp; Extended Learning</masterLabel>
+            <translation><!-- 50 Acts of Leadership &amp; Extended Learning --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>50 Acts of Leadership &amp; In School</masterLabel>
+            <translation><!-- 50 Acts of Leadership &amp; In School --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Attendance Check In Check Out &amp; Extended Learning</masterLabel>
+            <translation><!-- Attendance Check In Check Out &amp; Extended Learning --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Attendance Check In Check Out &amp; In School</masterLabel>
+            <translation><!-- Attendance Check In Check Out &amp; In School --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Coaching: Attendance &amp; Extended Learning</masterLabel>
+            <translation><!-- Coaching: Attendance &amp; Extended Learning --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Coaching: Attendance &amp; In School</masterLabel>
+            <translation><!-- Coaching: Attendance &amp; In School --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Coaching: SEL/SED (Local) &amp; Extended Learning</masterLabel>
+            <translation><!-- Coaching: SEL/SED (Local) &amp; Extended Learning --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Coaching: SEL/SED (Local) &amp; In School</masterLabel>
+            <translation><!-- Coaching: SEL/SED (Local) &amp; In School --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DESSA &amp; In School</masterLabel>
+            <translation><!-- DESSA &amp; In School --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Enrichment &amp; Extended Learning</masterLabel>
+            <translation><!-- Enrichment &amp; Extended Learning --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Enrichment &amp; In School</masterLabel>
+            <translation><!-- Enrichment &amp; In School --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Homework Assistance &amp; Extended Learning</masterLabel>
+            <translation><!-- Homework Assistance &amp; Extended Learning --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Homework Assistance &amp; In School</masterLabel>
+            <translation><!-- Homework Assistance &amp; In School --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Math Inventory &amp; In School</masterLabel>
+            <translation><!-- Math Inventory &amp; In School --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Reading Inventory &amp; In School</masterLabel>
+            <translation><!-- Reading Inventory &amp; In School --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SEL/SED Check In Check Out &amp; Extended Learning</masterLabel>
+            <translation><!-- SEL/SED Check In Check Out &amp; Extended Learning --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SEL/SED Check In Check Out &amp; In School</masterLabel>
+            <translation><!-- SEL/SED Check In Check Out &amp; In School --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Tutoring: Literacy &amp; Extended Learning</masterLabel>
+            <translation><!-- Tutoring: Literacy &amp; Extended Learning --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Tutoring: Literacy &amp; In School</masterLabel>
+            <translation><!-- Tutoring: Literacy &amp; In School --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Tutoring: Math &amp; Extended Learning</masterLabel>
+            <translation><!-- Tutoring: Math &amp; Extended Learning --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Tutoring: Math &amp; In School</masterLabel>
+            <translation><!-- Tutoring: Math &amp; In School --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Doctorate Degree 1 --></label>
+        <name>Doctorate_Degree_1__c</name>
+    </fields>
+    <fields>
+        <label><!-- Doctorate Institute --></label>
+        <name>Doctorate_Institute__c</name>
+    </fields>
+    <fields>
+        <label><!-- ES Focus Lists --></label>
+        <name>ES_Focus_Lists__c</name>
+    </fields>
+    <fields>
+        <label><!-- Email --></label>
+        <name>Email__c</name>
+    </fields>
+    <fields>
+        <help><!-- What is the emergency contact&apos;s email? --></help>
+        <label><!-- Emergency Contact Email --></label>
+        <name>Emergency_Contact_Email__c</name>
+    </fields>
+    <fields>
+        <help><!-- The name of the emergency contact for this staff member --></help>
+        <label><!-- Emergency Contact POC --></label>
+        <name>Emergency_Contact_POC__c</name>
+    </fields>
+    <fields>
+        <help><!-- What is the emergency contact&apos;s phone number? --></help>
+        <label><!-- Emergency Contact Phone --></label>
+        <name>Emergency_Contact_Phone__c</name>
+    </fields>
+    <fields>
+        <label><!-- Extension --></label>
+        <name>Extension__c</name>
+    </fields>
+    <fields>
+        <label><!-- External Id --></label>
+        <name>External_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Staff First Name --></label>
+        <name>First_Name_Staff__c</name>
+    </fields>
+    <fields>
+        <label><!-- Gender --></label>
+        <name>Gender__c</name>
+        <picklistValues>
+            <masterLabel>Female</masterLabel>
+            <translation><!-- Female --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Male</masterLabel>
+            <translation><!-- Male --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Grade --></label>
+        <name>Grade__c</name>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>10</masterLabel>
+            <translation><!-- 10 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>11</masterLabel>
+            <translation><!-- 11 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>12</masterLabel>
+            <translation><!-- 12 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2</masterLabel>
+            <translation><!-- 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3</masterLabel>
+            <translation><!-- 3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4</masterLabel>
+            <translation><!-- 4 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5</masterLabel>
+            <translation><!-- 5 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>6</masterLabel>
+            <translation><!-- 6 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7</masterLabel>
+            <translation><!-- 7 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>8</masterLabel>
+            <translation><!-- 8 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>9</masterLabel>
+            <translation><!-- 9 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>K</masterLabel>
+            <translation><!-- K --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Highest Education --></label>
+        <name>Highest_Education__c</name>
+        <picklistValues>
+            <masterLabel>Doctorate</masterLabel>
+            <translation><!-- Doctorate --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Graduate</masterLabel>
+            <translation><!-- Graduate --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Masters</masterLabel>
+            <translation><!-- Masters --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Undergraduate</masterLabel>
+            <translation><!-- Undergraduate --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Holding Source --></label>
+        <name>Holding_Source__c</name>
+        <relationshipLabel><!-- Staff --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- ID --></label>
+        <name>ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Individual --></label>
+        <name>Individual__c</name>
+        <relationshipLabel><!-- Staff --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Instructional Staff --></label>
+        <name>Instructional_Staff__c</name>
+    </fields>
+    <fields>
+        <label><!-- DESSA --></label>
+        <name>IsSectionDESSA__c</name>
+    </fields>
+    <fields>
+        <label><!-- ELA/Literacy --></label>
+        <name>IsSectionLiteracy__c</name>
+    </fields>
+    <fields>
+        <label><!-- Math Inventory --></label>
+        <name>IsSectionMathInventory__c</name>
+    </fields>
+    <fields>
+        <label><!-- Math --></label>
+        <name>IsSectionMath__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reading Inventory --></label>
+        <name>IsSectionReadingInventory__c</name>
+    </fields>
+    <fields>
+        <label><!-- Active? --></label>
+        <name>Is_Active__c</name>
+    </fields>
+    <fields>
+        <label><!-- Licensure  Institution --></label>
+        <name>Licensure_Institution__c</name>
+    </fields>
+    <fields>
+        <label><!-- Licensure Type --></label>
+        <name>Licensure_Type__c</name>
+        <picklistValues>
+            <masterLabel>Admin</masterLabel>
+            <translation><!-- Admin --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Principal</masterLabel>
+            <translation><!-- Principal --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pupil Personnel Services</masterLabel>
+            <translation><!-- Pupil Personnel Services --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Special Education</masterLabel>
+            <translation><!-- Special Education --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Teacher</masterLabel>
+            <translation><!-- Teacher --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Master&apos;s Degree 1 --></label>
+        <name>Master_s_Degree_1__c</name>
+    </fields>
+    <fields>
+        <label><!-- Master&apos;s Degree 2 --></label>
+        <name>Master_s_Degree_2__c</name>
+    </fields>
+    <fields>
+        <label><!-- Master&apos;s Degree 3 --></label>
+        <name>Master_s_Degree_3__c</name>
+    </fields>
+    <fields>
+        <label><!-- Masters Institution 1 --></label>
+        <name>Masters_Institution_1__c</name>
+    </fields>
+    <fields>
+        <label><!-- Masters Institution 2 --></label>
+        <name>Masters_Institution_2__c</name>
+    </fields>
+    <fields>
+        <label><!-- Masters Institution 3 --></label>
+        <name>Masters_Institution_3__c</name>
+    </fields>
+    <fields>
+        <label><!-- Staff Middle Name --></label>
+        <name>Middle_Name_Staff__c</name>
+    </fields>
+    <fields>
+        <label><!-- New/Returning --></label>
+        <name>New_Returning__c</name>
+        <picklistValues>
+            <masterLabel>New</masterLabel>
+            <translation><!-- New --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Returning</masterLabel>
+            <translation><!-- Returning --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Nickname --></label>
+        <name>Nickname__c</name>
+    </fields>
+    <fields>
+        <label><!-- Official First Name --></label>
+        <name>Official_First_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Organization --></label>
+        <name>Organization__c</name>
+        <relationshipLabel><!-- Staff --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Personal Phone --></label>
+        <name>Personal_Phone__c</name>
+    </fields>
+    <fields>
+        <label><!-- Position 2 --></label>
+        <name>Position_2__c</name>
+        <picklistValues>
+            <masterLabel>Admin</masterLabel>
+            <translation><!-- Admin --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Coordinators/Dir</masterLabel>
+            <translation><!-- Coordinators/Dir --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Operations</masterLabel>
+            <translation><!-- Operations --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Social Worker</masterLabel>
+            <translation><!-- Social Worker --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Teacher</masterLabel>
+            <translation><!-- Teacher --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>YRP</masterLabel>
+            <translation><!-- YRP --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Position --></label>
+        <name>Position__c</name>
+        <picklistValues>
+            <masterLabel>Admin</masterLabel>
+            <translation><!-- Admin --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Aide</masterLabel>
+            <translation><!-- Aide --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Behavior Coor</masterLabel>
+            <translation><!-- Behavior Coor --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CTR</masterLabel>
+            <translation><!-- CTR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Coordinators/Dir</masterLabel>
+            <translation><!-- Coordinators/Dir --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Coordintaors/Dir</masterLabel>
+            <translation><!-- Coordintaors/Dir --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ELL</masterLabel>
+            <translation><!-- ELL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Family Outreach Coordinator</masterLabel>
+            <translation><!-- Family Outreach Coordinator --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>General Ed Teacher</masterLabel>
+            <translation><!-- General Ed Teacher --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Inclusion</masterLabel>
+            <translation><!-- Inclusion --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Marketing/Dev</masterLabel>
+            <translation><!-- Marketing/Dev --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NLNS Resdient</masterLabel>
+            <translation><!-- NLNS Resdient --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NLNS Resident</masterLabel>
+            <translation><!-- NLNS Resident --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Nurse</masterLabel>
+            <translation><!-- Nurse --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Operations</masterLabel>
+            <translation><!-- Operations --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Project Manager</masterLabel>
+            <translation><!-- Project Manager --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Social Work</masterLabel>
+            <translation><!-- Social Work --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Special</masterLabel>
+            <translation><!-- Special --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Speech Language Pathologist</masterLabel>
+            <translation><!-- Speech Language Pathologist --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Wilson</masterLabel>
+            <translation><!-- Wilson --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>YRP</masterLabel>
+            <translation><!-- YRP --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Preferred classroom --></label>
+        <name>Preferred_classroom__c</name>
+        <relationshipLabel><!-- Teachers --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Qualifications --></label>
+        <name>Qualifications__c</name>
+        <picklistValues>
+            <masterLabel>AP</masterLabel>
+            <translation><!-- AP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ELA</masterLabel>
+            <translation><!-- ELA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Honors</masterLabel>
+            <translation><!-- Honors --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IB</masterLabel>
+            <translation><!-- IB --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Race --></label>
+        <name>Race__c</name>
+        <picklistValues>
+            <masterLabel>African American</masterLabel>
+            <translation><!-- African American --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>American Indian or Alaskan Native</masterLabel>
+            <translation><!-- American Indian or Alaskan Native --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Asian</masterLabel>
+            <translation><!-- Asian --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hispanic or Latino</masterLabel>
+            <translation><!-- Hispanic or Latino --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>White</masterLabel>
+            <translation><!-- White --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Reference Id --></label>
+        <name>Reference_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Role Type --></label>
+        <name>Role_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Role --></label>
+        <name>Role__c</name>
+    </fields>
+    <fields>
+        <label><!-- Secondary Email --></label>
+        <name>Secondary_Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- Location --></label>
+        <name>Site__c</name>
+    </fields>
+    <fields>
+        <label><!-- Staff 18 digit id --></label>
+        <name>Staff_18_digit_id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Staff Code --></label>
+        <name>Staff_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Staff Email --></label>
+        <name>Staff_Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- Staff Last Name --></label>
+        <name>Staff_Last_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Staff Photo --></label>
+        <name>Staff_Photo__c</name>
+    </fields>
+    <fields>
+        <label><!-- Staff Picture --></label>
+        <name>Staff_Picture_c__c</name>
+    </fields>
+    <fields>
+        <label><!-- Start Date --></label>
+        <name>Start_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Home State --></label>
+        <name>State__c</name>
+        <picklistValues>
+            <masterLabel>DC</masterLabel>
+            <translation><!-- DC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MD</masterLabel>
+            <translation><!-- MD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VA</masterLabel>
+            <translation><!-- VA --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Supervisor --></label>
+        <name>Supervisor__c</name>
+        <relationshipLabel><!-- Staff --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Title --></label>
+        <name>Title__c</name>
+        <picklistValues>
+            <masterLabel>1st Grade Teacher</masterLabel>
+            <translation><!-- 1st Grade Teacher --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2nd Grade Teacher</masterLabel>
+            <translation><!-- 2nd Grade Teacher --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3rd Grade Teacher</masterLabel>
+            <translation><!-- 3rd Grade Teacher --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4th Grade Teacher</masterLabel>
+            <translation><!-- 4th Grade Teacher --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5th Grade Teacher</masterLabel>
+            <translation><!-- 5th Grade Teacher --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>6th Grade Teacher</masterLabel>
+            <translation><!-- 6th Grade Teacher --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7th Grade Teacher</masterLabel>
+            <translation><!-- 7th Grade Teacher --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>8th Grade Teacher</masterLabel>
+            <translation><!-- 8th Grade Teacher --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AmeriCorps - Extended Day Leader</masterLabel>
+            <translation><!-- AmeriCorps - Extended Day Leader --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Art Teacher</masterLabel>
+            <translation><!-- Art Teacher --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Behavior Analyst</masterLabel>
+            <translation><!-- Behavior Analyst --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Behavior and Culture Coordinator</masterLabel>
+            <translation><!-- Behavior and Culture Coordinator --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Capital Teaching Resident</masterLabel>
+            <translation><!-- Capital Teaching Resident --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Chief Academic Officer</masterLabel>
+            <translation><!-- Chief Academic Officer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Child Care Subsidy Manager</masterLabel>
+            <translation><!-- Child Care Subsidy Manager --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Curriculum Coordinator</masterLabel>
+            <translation><!-- Curriculum Coordinator --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dance Teacher</masterLabel>
+            <translation><!-- Dance Teacher --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Director of Family and Community Outreach</masterLabel>
+            <translation><!-- Director of Family and Community Outreach --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Director of Marketing and Development</masterLabel>
+            <translation><!-- Director of Marketing and Development --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Director of Operations and Finance</masterLabel>
+            <translation><!-- Director of Operations and Finance --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Director of Student Support Services</masterLabel>
+            <translation><!-- Director of Student Support Services --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Director of Year Round Programs</masterLabel>
+            <translation><!-- Director of Year Round Programs --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>English Language Learning Teacher</masterLabel>
+            <translation><!-- English Language Learning Teacher --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Facility Aide</masterLabel>
+            <translation><!-- Facility Aide --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Facility Project Manager</masterLabel>
+            <translation><!-- Facility Project Manager --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Food Manager and Facility Assistant</masterLabel>
+            <translation><!-- Food Manager and Facility Assistant --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Founder and Head of School</masterLabel>
+            <translation><!-- Founder and Head of School --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Health and Fitness Teacher</masterLabel>
+            <translation><!-- Health and Fitness Teacher --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Inclusion Teacher</masterLabel>
+            <translation><!-- Inclusion Teacher --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Kindergardent Teacher</masterLabel>
+            <translation><!-- Kindergardent Teacher --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Kindergarten Teacher</masterLabel>
+            <translation><!-- Kindergarten Teacher --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Literacy Coordinator</masterLabel>
+            <translation><!-- Literacy Coordinator --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Maintenance</masterLabel>
+            <translation><!-- Maintenance --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Marketing and Development Manager</masterLabel>
+            <translation><!-- Marketing and Development Manager --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Music Teacher</masterLabel>
+            <translation><!-- Music Teacher --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NLNS Resident Principal</masterLabel>
+            <translation><!-- NLNS Resident Principal --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NLNS Residentail Principal</masterLabel>
+            <translation><!-- NLNS Residentail Principal --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Nurse</masterLabel>
+            <translation><!-- Nurse --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Office Manager/Registrar</masterLabel>
+            <translation><!-- Office Manager/Registrar --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Operations Manager, Georgia Avenue</masterLabel>
+            <translation><!-- Operations Manager, Georgia Avenue --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Operations Manager, Kansas Avenue</masterLabel>
+            <translation><!-- Operations Manager, Kansas Avenue --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PK3 Teacher</masterLabel>
+            <translation><!-- PK3 Teacher --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PK4 Teacher</masterLabel>
+            <translation><!-- PK4 Teacher --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Planning, Policy and Finance Fellow for Year Round Programs</masterLabel>
+            <translation><!-- Planning, Policy and Finance Fellow for Year Round Programs --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Principal, 3rd-8th Grades</masterLabel>
+            <translation><!-- Principal, 3rd-8th Grades --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Principal, High School</masterLabel>
+            <translation><!-- Principal, High School --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Principal, PK-2nd Grades</masterLabel>
+            <translation><!-- Principal, PK-2nd Grades --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Process Improvement and Dissemination Coordinator</masterLabel>
+            <translation><!-- Process Improvement and Dissemination Coordinator --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Recruitment Specialist and Development Associate</masterLabel>
+            <translation><!-- Recruitment Specialist and Development Associate --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Social Worker</masterLabel>
+            <translation><!-- Social Worker --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Spanish Teacher</masterLabel>
+            <translation><!-- Spanish Teacher --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Speech Langauge Pathologist</masterLabel>
+            <translation><!-- Speech Langauge Pathologist --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Speech Language Pathologist</masterLabel>
+            <translation><!-- Speech Language Pathologist --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Strategic Planning Associate</masterLabel>
+            <translation><!-- Strategic Planning Associate --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Student Support Team Coordinator</masterLabel>
+            <translation><!-- Student Support Team Coordinator --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Teaching Aide</masterLabel>
+            <translation><!-- Teaching Aide --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Translation and Communication Specialist</masterLabel>
+            <translation><!-- Translation and Communication Specialist --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Wilson Reading Teacher</masterLabel>
+            <translation><!-- Wilson Reading Teacher --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Year Round Programs Site Manager</masterLabel>
+            <translation><!-- Year Round Programs Site Manager --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Undergraduate Degree 1 --></label>
+        <name>Undergraduate_Degree_1__c</name>
+    </fields>
+    <fields>
+        <label><!-- Undergraduate Degree 2 --></label>
+        <name>Undergraduate_Degree_2__c</name>
+    </fields>
+    <fields>
+        <label><!-- Undergraduate Degree 3 --></label>
+        <name>Undergraduate_Degree_3__c</name>
+    </fields>
+    <fields>
+        <label><!-- Undergraduate Institution 1 --></label>
+        <name>Undergraduate_Institution_1__c</name>
+    </fields>
+    <fields>
+        <label><!-- Undergraduate Institution 2 --></label>
+        <name>Undergraduate_Institution_2__c</name>
+    </fields>
+    <fields>
+        <label><!-- Undergraduate Institution 3 --></label>
+        <name>Undergraduate_Institution_3__c</name>
+    </fields>
+    <fields>
+        <label><!-- Unique Staff --></label>
+        <name>Unique_Staff__c</name>
+    </fields>
+    <fields>
+        <label><!-- User ID --></label>
+        <name>User_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- User Name --></label>
+        <name>User_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Utilization --></label>
+        <name>Utilization__c</name>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>10</masterLabel>
+            <translation><!-- 10 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2</masterLabel>
+            <translation><!-- 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3</masterLabel>
+            <translation><!-- 3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4</masterLabel>
+            <translation><!-- 4 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5</masterLabel>
+            <translation><!-- 5 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>6</masterLabel>
+            <translation><!-- 6 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7</masterLabel>
+            <translation><!-- 7 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>8</masterLabel>
+            <translation><!-- 8 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>9</masterLabel>
+            <translation><!-- 9 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Years at School --></label>
+        <name>Years_at_School__c</name>
+    </fields>
+    <fields>
+        <label><!-- Home Zip Code --></label>
+        <name>Zip_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- legacy key1 --></label>
+        <name>legacy_key1__c</name>
+    </fields>
+    <fields>
+        <label><!-- legacy key2 --></label>
+        <name>legacy_key2__c</name>
+    </fields>
+    <layouts>
+        <layout>Admin Staff Layout</layout>
+        <sections>
+            <label><!-- Contact Information --></label>
+            <section>Contact Information</section>
+        </sections>
+        <sections>
+            <label><!-- Credentials --></label>
+            <section>Credentials</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Demographics --></label>
+            <section>Demographics</section>
+        </sections>
+        <sections>
+            <label><!-- Education --></label>
+            <section>Education</section>
+        </sections>
+        <sections>
+            <label><!-- Map --></label>
+            <section>Map</section>
+        </sections>
+        <sections>
+            <label><!-- School Information --></label>
+            <section>School Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>CY Staff Layout</layout>
+        <sections>
+            <label><!-- Contact Information --></label>
+            <section>Contact Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Map --></label>
+            <section>Map</section>
+        </sections>
+        <sections>
+            <label><!-- Section Assignments --></label>
+            <section>Section Assignments</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>CY Staff Layout - End User</layout>
+        <sections>
+            <label><!-- Contact Information --></label>
+            <section>Contact Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Emergency Contact Information --></label>
+            <section>Emergency Contact Information</section>
+        </sections>
+        <sections>
+            <label><!-- Map --></label>
+            <section>Map</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>CY Staff Layout - Sys Admin</layout>
+        <sections>
+            <label><!-- ACM Level Pilot Programs --></label>
+            <section>ACM Level Pilot Programs</section>
+        </sections>
+        <sections>
+            <label><!-- Contact Information --></label>
+            <section>Contact Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Map --></label>
+            <section>Map</section>
+        </sections>
+        <sections>
+            <label><!-- Section Assignments --></label>
+            <section>Section Assignments</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Non Admin Staff Layout</layout>
+        <sections>
+            <label><!-- Contact Information --></label>
+            <section>Contact Information</section>
+        </sections>
+        <sections>
+            <label><!-- Credentials --></label>
+            <section>Credentials</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Demographics --></label>
+            <section>Demographics</section>
+        </sections>
+        <sections>
+            <label><!-- Education --></label>
+            <section>Education</section>
+        </sections>
+        <sections>
+            <label><!-- Map --></label>
+            <section>Map</section>
+        </sections>
+        <sections>
+            <label><!-- School Information --></label>
+            <section>School Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Staff Layout</layout>
+        <sections>
+            <label><!-- Contact Information --></label>
+            <section>Contact Information</section>
+        </sections>
+        <sections>
+            <label><!-- Credentials --></label>
+            <section>Credentials</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Demographics --></label>
+            <section>Demographics</section>
+        </sections>
+        <sections>
+            <label><!-- Education --></label>
+            <section>Education</section>
+        </sections>
+        <sections>
+            <label><!-- Map --></label>
+            <section>Map</section>
+        </sections>
+        <sections>
+            <label><!-- School Information --></label>
+            <section>School Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Teacher Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <quickActions>
+        <label><!-- New Staff --></label>
+        <name>New_Staff</name>
+    </quickActions>
+    <startsWith>Consonant</startsWith>
+    <webLinks>
+        <label><!-- Print_Schedule --></label>
+        <name>Print_Schedule</name>
+    </webLinks>
+</CustomObjectTranslation>

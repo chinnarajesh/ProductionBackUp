@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Section__c$Id</field>
+    </columns>
+    <columns>
+        <field>Section__c$School__c.Name</field>
+    </columns>
+    <columns>
+        <field>Section__c$Intervention_Primary_Staff__c</field>
+    </columns>
+    <columns>
+        <field>Section__c$Intervention_Primary_Staff__c.ID__c</field>
+    </columns>
+    <columns>
+        <field>Section__c$Section_Nickname__c</field>
+    </columns>
+    <columns>
+        <field>Section__c$Program__c</field>
+    </columns>
+    <columns>
+        <field>Section__c$Program__c.Active__c</field>
+    </columns>
+    <columns>
+        <field>Section__c$Name</field>
+    </columns>
+    <columns>
+        <field>Section__c$of_Students__c</field>
+    </columns>
+    <format>Tabular</format>
+    <name>Sections Created Per ACM</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Sections__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <sortColumn>Section__c$Intervention_Primary_Staff__c</sortColumn>
+    <sortOrder>Asc</sortOrder>
+    <timeFrameFilter>
+        <dateColumn>Section__c$End_Date__c</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

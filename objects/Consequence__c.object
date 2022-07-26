@@ -1,0 +1,669 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableEnhancedLookup>false</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>Behavior_Incident_ID_Formula__c</fullName>
+        <externalId>false</externalId>
+        <formula>Student__r.Behavior_Incident__r.Id</formula>
+        <label>Behavior Incident ID Formula</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Behavior_Type_Formula__c</fullName>
+        <externalId>false</externalId>
+        <formula>Text(Student__r.Behavior_Incident__r.Behavior_Type__c)</formula>
+        <label>Behavior Type Formula</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Consequence_Category__c</fullName>
+        <externalId>false</externalId>
+        <formula>CASE( Consequence__c , 
+&quot;Suspension (Out of School)&quot;, &quot;Time Away&quot;, 
+&quot;Suspension (In School)&quot;, &quot;Time Away&quot;, 
+&quot;Student Sent Home (Not Suspended)&quot;, &quot;Time Away&quot;, 
+&quot;Conference with Administrator&quot;, &quot;Time Away&quot;, 
+&quot;Conference with BCC&quot;, &quot;Time Away&quot;, 
+&quot;Buddy Classroom/Reflection Room&quot;, &quot;Time Away&quot;, 
+&quot;Other Time Away&quot;, &quot;Time Away&quot;, 
+&quot;Saturday Detention&quot;,  &quot;Loss of Privilege&quot;, 
+&quot;Refocus Center (Time after school)&quot;, &quot;Loss of Privilege&quot;, 
+&quot;Fieldwork Restriction&quot;, &quot;Loss of Privilege&quot;, 
+&quot;Lose Free Time (Recess)&quot;, &quot;Loss of Privilege&quot;, 
+&quot;Lose Free Time (Choice Time)&quot;, &quot;Loss of Privilege&quot;, 
+&quot;Silent Lunch&quot;,  &quot;Loss of Privilege&quot;, 
+&quot;Other Loss of Privilege&quot;, &quot;Loss of Privilege&quot;, 
+&quot;Suspendable (Waived)&quot;,  &quot;Other&quot;, 
+&quot;Service (Break It Fix it)&quot;, &quot;Other&quot;, 
+&quot;Other&quot;, &quot;Other&quot;, &quot;&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Consequence Category</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Consequence_Read_Only__c</fullName>
+        <externalId>false</externalId>
+        <formula>Picklist_Value__r.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Consequence Read Only</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Consequence_Weighting__c</fullName>
+        <externalId>false</externalId>
+        <formula>Picklist_Value__r.Consequence_Weight__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Consequence Weighting</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Consequence__c</fullName>
+        <externalId>false</externalId>
+        <label>Consequence</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Awaiting Admin Decision</fullName>
+                    <default>false</default>
+                    <label>Awaiting Admin Decision</label>
+                </value>
+                <value>
+                    <fullName>Buddy Classroom/Reflection Room</fullName>
+                    <default>false</default>
+                    <label>Buddy Classroom/Reflection Room</label>
+                </value>
+                <value>
+                    <fullName>Conference with Administrator</fullName>
+                    <default>false</default>
+                    <label>Conference with Administrator</label>
+                </value>
+                <value>
+                    <fullName>Conference with BCC</fullName>
+                    <default>false</default>
+                    <label>Conference with BCC</label>
+                </value>
+                <value>
+                    <fullName>Fieldwork Restriction</fullName>
+                    <default>false</default>
+                    <label>Fieldwork Restriction</label>
+                </value>
+                <value>
+                    <fullName>Lose Free Time (Choice Time)</fullName>
+                    <default>false</default>
+                    <label>Lose Free Time (Choice Time)</label>
+                </value>
+                <value>
+                    <fullName>Lose Free Time (Recess)</fullName>
+                    <default>false</default>
+                    <label>Lose Free Time (Recess)</label>
+                </value>
+                <value>
+                    <fullName>Other</fullName>
+                    <default>false</default>
+                    <label>Other</label>
+                </value>
+                <value>
+                    <fullName>Other Loss of Privilege</fullName>
+                    <default>false</default>
+                    <label>Other Loss of Privilege</label>
+                </value>
+                <value>
+                    <fullName>Other Time Away</fullName>
+                    <default>false</default>
+                    <label>Other Time Away</label>
+                </value>
+                <value>
+                    <fullName>Refocus Center (Time after school)</fullName>
+                    <default>false</default>
+                    <label>Refocus Center (Time after school)</label>
+                </value>
+                <value>
+                    <fullName>Saturday Detention</fullName>
+                    <default>false</default>
+                    <label>Saturday Detention</label>
+                </value>
+                <value>
+                    <fullName>Service (Break It Fix it)</fullName>
+                    <default>false</default>
+                    <label>Service (Break It Fix it)</label>
+                </value>
+                <value>
+                    <fullName>Silent Lunch</fullName>
+                    <default>false</default>
+                    <label>Silent Lunch</label>
+                </value>
+                <value>
+                    <fullName>Student Sent Home (Not Suspended)</fullName>
+                    <default>false</default>
+                    <label>Student Sent Home (Not Suspended)</label>
+                </value>
+                <value>
+                    <fullName>Suspendable (Waived)</fullName>
+                    <default>false</default>
+                    <label>Suspendable (Waived)</label>
+                </value>
+                <value>
+                    <fullName>Suspension (In School)</fullName>
+                    <default>false</default>
+                    <label>Suspension (In School)</label>
+                </value>
+                <value>
+                    <fullName>Suspension (Out of School)</fullName>
+                    <default>false</default>
+                    <label>Suspension (Out of School)</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Date_of_Re_entry__c</fullName>
+        <externalId>false</externalId>
+        <label>Date of Re-entry</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Days_Suspended__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>In Days</inlineHelpText>
+        <label>Days Suspended</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>External_Id__c</fullName>
+        <externalId>true</externalId>
+        <label>External Id</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Final_Consequence__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Final Consequence</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Incident_Date_Formula__c</fullName>
+        <externalId>false</externalId>
+        <formula>Student__r.Behavior_Incident__r.Incident_Date__c</formula>
+        <label>Incident Date Formula</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Is_Suspended__c</fullName>
+        <description>Used to determine if consequence should be included in Behavior Reporting Stats</description>
+        <externalId>false</externalId>
+        <formula>IF( Picklist_Value__r.Is_Suspension__c ,&quot;Yes&quot;,&quot;No&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Is Suspended?</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Picklist_Value__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Picklist Value</label>
+        <referenceTo>Picklist_Value__c</referenceTo>
+        <relationshipLabel>Consequences</relationshipLabel>
+        <relationshipName>Consequences</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Re_entry_Mtg_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Re-entry Mtg Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Re_entry_Mtg_Time__c</fullName>
+        <externalId>false</externalId>
+        <label>Re-entry Mtg Time</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>7:00 AM</fullName>
+                    <default>false</default>
+                    <label>7:00 AM</label>
+                </value>
+                <value>
+                    <fullName>7:30 AM</fullName>
+                    <default>false</default>
+                    <label>7:30 AM</label>
+                </value>
+                <value>
+                    <fullName>8:00 AM</fullName>
+                    <default>false</default>
+                    <label>8:00 AM</label>
+                </value>
+                <value>
+                    <fullName>8:30 AM</fullName>
+                    <default>false</default>
+                    <label>8:30 AM</label>
+                </value>
+                <value>
+                    <fullName>9:00 AM</fullName>
+                    <default>false</default>
+                    <label>9:00 AM</label>
+                </value>
+                <value>
+                    <fullName>9:30 AM</fullName>
+                    <default>false</default>
+                    <label>9:30 AM</label>
+                </value>
+                <value>
+                    <fullName>10:00 AM</fullName>
+                    <default>false</default>
+                    <label>10:00 AM</label>
+                </value>
+                <value>
+                    <fullName>10:30 AM</fullName>
+                    <default>false</default>
+                    <label>10:30 AM</label>
+                </value>
+                <value>
+                    <fullName>11:00 AM</fullName>
+                    <default>false</default>
+                    <label>11:00 AM</label>
+                </value>
+                <value>
+                    <fullName>11:30 AM</fullName>
+                    <default>false</default>
+                    <label>11:30 AM</label>
+                </value>
+                <value>
+                    <fullName>12:00 PM</fullName>
+                    <default>false</default>
+                    <label>12:00 PM</label>
+                </value>
+                <value>
+                    <fullName>12:30 PM</fullName>
+                    <default>false</default>
+                    <label>12:30 PM</label>
+                </value>
+                <value>
+                    <fullName>1:00 PM</fullName>
+                    <default>false</default>
+                    <label>1:00 PM</label>
+                </value>
+                <value>
+                    <fullName>1:30 PM</fullName>
+                    <default>false</default>
+                    <label>1:30 PM</label>
+                </value>
+                <value>
+                    <fullName>2:00 PM</fullName>
+                    <default>false</default>
+                    <label>2:00 PM</label>
+                </value>
+                <value>
+                    <fullName>2:30 PM</fullName>
+                    <default>false</default>
+                    <label>2:30 PM</label>
+                </value>
+                <value>
+                    <fullName>3:00 PM</fullName>
+                    <default>false</default>
+                    <label>3:00 PM</label>
+                </value>
+                <value>
+                    <fullName>3:30 PM</fullName>
+                    <default>false</default>
+                    <label>3:30 PM</label>
+                </value>
+                <value>
+                    <fullName>4:00 PM</fullName>
+                    <default>false</default>
+                    <label>4:00 PM</label>
+                </value>
+                <value>
+                    <fullName>4:30 PM</fullName>
+                    <default>false</default>
+                    <label>4:30 PM</label>
+                </value>
+                <value>
+                    <fullName>5:00 PM</fullName>
+                    <default>false</default>
+                    <label>5:00 PM</label>
+                </value>
+                <value>
+                    <fullName>5:30 PM</fullName>
+                    <default>false</default>
+                    <label>5:30 PM</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Re_entry_Notes__c</fullName>
+        <externalId>false</externalId>
+        <label>Re-entry Notes</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Show_Suspension_In_Attendance__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>If selected, the students attendance records for the days they have been suspended will be marked to reflect the suspension.</inlineHelpText>
+        <label>Show Suspension In Attendance</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Student_Consequence__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Student Consequence</label>
+        <referenceTo>Student__c</referenceTo>
+        <relationshipLabel>Consequences</relationshipLabel>
+        <relationshipName>Consequences</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Student_Name_Formula__c</fullName>
+        <externalId>false</externalId>
+        <formula>Student__r.Student__r.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Student Name Formula</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Student__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Student Behavior Lookup</label>
+        <referenceTo>Student_Behavior__c</referenceTo>
+        <relationshipLabel>Consequences</relationshipLabel>
+        <relationshipName>Consequences</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Student_s_Grade__c</fullName>
+        <description>To enable reporting object to capture grade with id as unique reference</description>
+        <externalId>false</externalId>
+        <formula>TEXT(Student_Consequence__r.Grade__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Student&apos;s Grade</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Suspension_End_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Suspension End Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Suspension_Start_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Suspension Start Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Time_Lost__c</fullName>
+        <defaultValue>0</defaultValue>
+        <externalId>false</externalId>
+        <label>Time Lost</label>
+        <precision>5</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <label>Consequence</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Consequence__c</columns>
+        <columns>Student_Consequence__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <displayFormat>CQ-{000000}</displayFormat>
+        <label>Consequence ID</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Consequences</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

@@ -1,0 +1,542 @@
+<apex:page sidebar="false" controller="WeeklyDosageController" >
+    <c:resourceComponent />
+    <style>
+        #schoolforce-wrapper input[type="text"] {
+            width: auto;
+        }
+        .fakeTextArea{
+            border: 1px solid darkgray;
+            width: 30px;
+            padding: 2px 6px 2px 6px;
+            background-color: rgb(235, 235, 228);
+            color: rgb(84, 84, 84);
+            cursor: default;
+            margin:1px;
+        }
+/*      .fakeTextArea:hover{
+            border:2px solid blue;
+            margin:0;
+            cursor:pointer;
+        }*/
+        .leftList{
+            overflow: auto;
+        }
+        .rightList{
+            overflow: auto;
+        }
+        #studentDetailModal{
+            top: 0px !important;
+        }
+        .requiredInput {
+            position: relative;
+            height: 100%;
+        }
+        .requiredBlock {
+            background-color: #c00;
+            position: absolute;
+            left: -4px;
+            width: 3px;
+            top: 1px;
+            bottom: 1px;
+        }
+        .overlay {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            transition: opacity 500ms;
+            //opacity: 0;
+        }
+        .overlay:target {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .popup {
+            margin: 10rem auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 5px;
+            width: 20%;
+            position: relative;
+            transition: all 5s ease-in-out;
+            text-align: center;
+            border: 1px solid #009BC4;
+            font-size: initial;
+        }
+
+        .popup .content {
+            max-height: 30%;
+            overflow: auto;
+        }
+
+        @media screen and (max-width: 700px){
+            .popup{
+                width: 70%;
+            }
+        }
+    </style>
+    <script type="text/javascript">
+        var hasChanges = false;
+        var CITY = CITY || {};
+
+        // error object for keeping track of errors in data entry
+        // in the student table above.
+        CITY.errorMarker = function(id){
+            this.id =   id;
+        }
+        CITY.errorMarker.prototype.toString = function(){return this.id;}
+        
+        CITY.errorStudentTable = {};
+        window.onload = function() {
+            j$("#popup1").css("display", "none");
+        }
+        // function to validate that dosage amount isn't a decimal number
+        CITY.checkDosage =   function(pTime,id) {
+            if(checkDosage(id)){
+                j$("#dosageErrorSpan").show();
+                //$("#btnSubmit").hide();
+                j$(pTime).css('background-color', 'red');
+                CITY.errorStudentTable[new CITY.errorMarker(pTime.id)] = pTime.id;
+                j$(pTime).siblings('img').hide();
+            } else {                 
+                j$(pTime).css('background-color', 'white');
+                
+                if(pTime.id in CITY.errorStudentTable){
+                    delete CITY.errorStudentTable[pTime.id];    // remove the object property for that time              
+                }   // end if
+                
+                if(j$.isEmptyObject(CITY.errorStudentTable)){
+                    j$("#dosageErrorSpan").hide();
+                    //j$("#btnSubmit").show();       
+                    j$(pTime).siblings('img').show();
+                }   // end if
+            }   // end if
+
+        }   // end CITY.checkDosage
+
+        function setFocusOnLoad() {}
+              
+        function selectSection(selectBox){
+            var sectionId = selectBox.options[selectBox.selectedIndex].value;
+            setSection(sectionId);
+        }
+        
+        window.onbeforeunload = function(){
+            var valid = document.getElementById("validSkills").value;
+            if(!isSaving && hasChanges)
+                return 'You have unsaved work on this page. If you proceed, this work will be lost.';
+            else if(!isSaving && valid=="false")
+                return 'It looks like your last save wasn\'t successful.  Are you sure you\'d like to leave this page?';
+        }
+        
+        function checkChangeWeek(){
+            if(hasChanges){ 
+                if(confirm('You have unsaved time changes for this week.  Are you sure you want to change weeks?')) { 
+                    return true;
+                } else { 
+                    alert('Please submit time to save changes to this week.');
+                    return false; 
+                } 
+            }
+            return true;
+        }
+
+        function populateDown(inputBox){
+            console.log('Starting to populate down');
+            var tableColumn = j$('#'+inputBox).closest('th').index()+1;
+            console.log(tableColumn);
+            console.log(j$('tr','#StudentTable tbody').find(':nth-child('+tableColumn+')').find('input:enabled'));
+            console.log(j$('#'+inputBox).val());
+            j$('tr','#StudentTable tbody').find(':nth-child('+tableColumn+')').find('input:enabled').val(j$('#'+inputBox).val());
+        }
+
+        function changeDosage(inputBox){
+            CITY.checkDosage(inputBox,inputBox.id);
+            hasChanges = true;
+            
+            var val = inputBox.value;
+            
+            if(validatebelowtime(val) != false){
+              $("input[id$='timeEntry']").val(); 
+            }
+        }
+        
+       function validatebelowtime(value){
+         var x = parseInt(value,0);
+         
+          let conftext;
+          if( x < 5){
+           conftext="That's a very short session. Are you sure?";
+            if(confirm(conftext)==true){
+               return true;
+           }else{
+               return false;
+           }
+          }
+           if( x > 300){
+           conftext="That's a very long session. Are you sure?";
+            if(confirm(conftext)==true){
+               return true;
+           }else{
+               return false;
+           }
+          }
+         
+        }
+        
+        function openModal(dataPosition){
+            j$('#loadedPos','#sessionDataModal').val(dataPosition);
+            j$('.leftList option').remove();
+            j$('.rightList option').remove();
+            console.log('=======' + j$('.available'+dataPosition).val());
+            
+            var leftText = j$('.available'+dataPosition,'#dailySessionPanel').val();
+            var leftarray = leftText.split(',');
+            var rightText = j$('.selected'+dataPosition,'#dailySessionPanel').val();
+            var rightarray = rightText.split(',');
+                  
+            if(leftarray.length > 0 && leftarray[0] != ''){
+                j$.each(leftarray, function(i) {   
+                j$('.leftList')
+                     .append(j$("<option></option>")
+                     .attr("value",leftarray[i])
+                     .text(leftarray[i])); 
+                });
+            }
+            if(rightarray.length > 0 && rightarray[0] != ''){
+                j$.each(rightarray, function(i) {   
+                j$('.rightList')
+                     .append(j$("<option></option>")
+                     .attr("value",rightarray[i])
+                     .text(rightarray[i])); 
+                });
+            }
+            
+            //j$('.left','#sessionDataModal').val(j$('.available'+dataPosition,'#dailySessionPanel').val());
+            j$('select[id$=primaryOptionsId]').val(j$('.primarySkill'+dataPosition,'#dailySessionPanel').val());
+            j$('#sessionSkills','#sessionDataModal').val(j$('.skills'+dataPosition,'#dailySessionPanel').val());
+            j$('#sessionComments','#sessionDataModal').val(j$('.comments'+dataPosition,'#dailySessionPanel').val());
+            j$("select[id$='allAvenuesID'] option[value='"+j$('.allAvenues'+dataPosition,'#dailySessionPanel').val()+"']").attr('selected', true);
+            j$("select[id$='tutoringModelId'] option[value='"+j$('.tutoringModel'+dataPosition,'#dailySessionPanel').val()+"']").attr('selected', true);
+            j$("select[id$='sessionTypeId'] option[value='"+j$('.sessionType'+dataPosition,'#dailySessionPanel').val()+"']").attr('selected', true);
+            j$("select[id$='sessionFormatId'] option[value='"+j$('.sessionFormat'+dataPosition,'#dailySessionPanel').val()+"']").attr('selected', true);
+            j$("select[id$='siteDetailsId'] option[value='"+j$('.siteDetails'+dataPosition,'#dailySessionPanel').val()+"']").attr('selected', true);
+
+            j$('#jumpLink').click();
+        }
+
+        function storeSessionChanges(){
+            var isError = false;
+
+            var allAvenues = j$("select[id$='allAvenuesID'] option:selected").text();
+            if(allAvenues=='None'){
+                j$("#serviceErrorSpan").show();
+                isError = true;
+            } else {
+                j$("#serviceErrorSpan").hide();
+            }
+
+            var primarySkill = j$('select[id$=primaryOptionsId]').val();
+            //if(allAvenues!='Virtual Service' && (primarySkill==null || primarySkill=='')){
+            //    j$("#skillsErrorSpan").show();
+            //    isError = true;
+            //} else {
+            //    j$("#skillsErrorSpan").hide();
+            //}
+            // var selectedTextLeft = j$.map( j$('.leftList option'), function( o ){
+            //      return o.text;
+            //  }).join(', ')
+            // var selectedTextRight = j$.map( j$('.rightList option'), function( o ){
+            //      return o.text;
+            //  }).join(', ')
+
+            var selectedLength = j$.map( j$('.rightList option'), function( o ){ 
+                return o.text; 
+            }).join(', ').length; 
+            if(selectedLength > 2000){
+                j$("#skillsLengthErrorSpan").show();
+                isError = true;
+            } else {
+                j$("#skillsLengthErrorSpan").hide()
+            }       
+            if(isError) {
+                isSaving=false;             
+            }
+            else {
+            
+            hasChanges = true;
+            var dataPosition = j$('#loadedPos','#sessionDataModal').val();
+            
+            var textToAppendLeft = "";
+             var selMulti = j$(".leftList option").each(function(){
+                   textToAppendLeft += (textToAppendLeft == "") ? "" : ",";
+                   textToAppendLeft += j$(this).text();           
+             });
+                
+             var textToAppendRight = "";
+             var selMultiRight = j$(".rightList option").each(function(){
+                   textToAppendRight += (textToAppendRight == "") ? "" : ",";
+                   textToAppendRight += j$(this).text();           
+             });
+            
+            //j$('.skills'+dataPosition,'#dailySessionPanel').val(j$('#sessionSkills','#sessionDataModal').val());
+            j$('.skillPrimary'+dataPosition,'#dailySessionPanel').val(primarySkill);
+            j$('.primarySkill'+dataPosition,'#dailySessionPanel').val(primarySkill);
+            j$('.available'+dataPosition,'#dailySessionPanel').val(textToAppendLeft);
+            j$('.selected'+dataPosition,'#dailySessionPanel').val(textToAppendRight);
+            j$('.comments'+dataPosition,'#dailySessionPanel').val(j$('#sessionComments','#sessionDataModal').val());
+            j$('.allAvenues'+dataPosition,'#dailySessionPanel').val(j$("select[id$='allAvenuesID'] option:selected").text());
+            j$('.tutoringModel'+dataPosition,'#dailySessionPanel').val(j$("select[id$='tutoringModelId'] option:selected").attr('value'));
+            j$('.siteDetails'+dataPosition,'#dailySessionPanel').val(j$("select[id$='siteDetailsId'] option:selected").attr('value'));
+            j$('.sessionType'+dataPosition,'#dailySessionPanel').val(j$("select[id$='sessionTypeId'] option:selected").attr('value'));
+            j$('.sessionFormat'+dataPosition,'#dailySessionPanel').val(j$("select[id$='sessionFormatId'] option:selected").attr('value'));
+            j$('.isProceed'+dataPosition,'#dailySessionPanel').attr('checked', true);
+            close_modal('#sessionDataModal');
+            
+            }
+        }
+
+        function openStudentDetail(studentId, sectionId, date){
+            j$('#studentFrame').attr('src','/apex/IM_StudentDetail?StudentId='+studentId+'&sectionID='+sectionId+'&date='+date).hide();
+            j$('#detailFrame').click();
+        }
+        
+        
+    </script>
+
+    <div id="popup1" class="overlay">
+        <div class="popup">
+            <div class="content">
+                Please, wait, page is loading.
+            </div>
+        </div>
+    </div>
+
+    <apex:form >
+        <div id="schoolforce-wrapper" class="wrapper">
+            <h1>Add Weekly Time</h1>
+            <hr />
+            <apex:outputPanel id="messages" styleClass="no-border"  onclick="clearMessage();">
+                <apex:pageMessages />
+            </apex:outputPanel>
+              <apex:outputPanel id="timerPanel">
+        <apex:actionPoller reRender="messages" 
+                  interval="10" 
+                  enabled="{!timer}" 
+                  action="{!timerOff}"/> 
+      </apex:outputPanel>
+
+     <apex:actionFunction name="clearMessage" 
+                action="{!timerOff}" 
+                reRender="messagePanel"/>
+                
+            <apex:outputPanel id="fullPanel" rendered="{!(schools.size > 0)}">
+                <div class="content">
+                    <apex:selectList value="{!selectedSchool}" onchange="changeSchoolJS();" multiselect="false" size="1" id="school-selector">
+                        <apex:selectOptions value="{!schools}"/>                                
+                    </apex:selectList>
+                    <p>
+                        <label>Session time entered for:</label>
+                        <apex:selectList id="staffSelectBox" value="{!selectedStaff}" onchange="changeStaffJS();" multiselect="false" size="1">
+                            <apex:selectOptions value="{!staff}"/>                              
+                        </apex:selectList>
+                    </p>
+                    <p>
+                        <label>Select Section:</label>       
+                        <apex:selectList id="sectionSelectBox" value="{!selectedSection}" onchange="changeSectionJS();" multiselect="false" size="1">
+                            <apex:selectOptions value="{!sections}"/>                               
+                        </apex:selectList>
+                    </p>
+                </div>
+                <apex:outputpanel id="StudentPanel">
+                    <span class="section-header">{!currentSection.Name}
+                        <span id="minutereminder" style="padding-left: 10px;"><i>(Enter time in minutes.)</i></span>
+                    </span>
+                    <div class="field">
+                        <center>
+                            <a href="" onclick="if(checkChangeWeek()){doPrevWeek();}" style="padding-right:18px;padding-top:10px"><img src="{!URLFOR($Resource.Style_Bundle, 'images/arrow-left.png')}" width="16" height="18" alt="Add" title="Previous Week"/></a>
+                            <span> 
+                            Week Ending <apex:inputField value="{!weekEndHolder.Date__c}" style="margin-left:10px;" onclick="j$('#prevDate').val(this.value);" onchange="if(checkChangeWeek()){ doChangeDate(); }else{ this.value = j$('#prevDate').val(); }"/>
+                             </span>
+                             <a href="" onclick="if(checkChangeWeek()){ doNextWeek(); }"><img src="{!URLFOR($Resource.Style_Bundle, 'images/arrow-right.png')}" width="16" height="18" alt="Add" title="Next Week"/></a>
+                             
+                             </center>
+                             
+                        </div>
+<div class="content-list">
+    <div class="content">
+        <!--<span id="dosageErrorSpan" style="color:red;display:none">Please enter a valid value for dosage. (A whole number.  No decimals or non numeric values)</span><br />-->
+        <span id="dosageErrorSpan" style="color:red;display:none">Please enter a valid amount of time (a whole number, no decimals or non-numeric values, and must be between 1-500 minutes)</span><br />
+        <table id="StudentTable">
+            <thead>
+                <th onclick="toggleDirection();">Student Name</th>
+                <apex:repeat value="{!tableHeaders}" var="dayOfWeek">
+                    <th style="{!IF(dayOfWeek.isError, 'border: 2px solid red; border-radius: 7px;', '')}">
+                        {!dayOfWeek.displayHeader}<br/>
+                        <apex:outputPanel rendered="{!dayOfWeek.isDisabled}">
+                        <!--<div class="requiredInput">
+                          <div class="requiredBlock"></div>-->
+                            <input type="text" size="2" onchange="" title="{!dayOfWeek.title}" disabled="true"/>
+                            <img src="{!URLFOR($Resource.Style_Bundle, 'images/arrow-down.png')}" title="Add Time to Column"/>
+                            <img src="{!URLFOR($Resource.Style_Bundle, 'images/comment.png')}" title="Edit Details for Session"/>
+                            <!--</div>-->
+                        </apex:outputPanel>
+                        <apex:outputPanel rendered="{!NOT(dayOfWeek.isDisabled)}">
+                        <div class="requiredInput">
+                          <div class="requiredBlock"></div>
+                            <input type="text" size="2" onchange="changeDosage(this);" title="{!dayOfWeek.title}" id="populateTime{!dayOfWeek.positionIdentifer}"/>
+                            <img src="{!URLFOR($Resource.Style_Bundle, 'images/arrow-down.png')}" onclick="populateDown('populateTime{!dayOfWeek.positionIdentifer}');openModal({!dayOfWeek.positionIdentifer});" title="Add Time to Column"/>
+                            <img src="{!URLFOR($Resource.Style_Bundle, 'images/comment.png')}" onclick="openModal({!dayOfWeek.positionIdentifer})" title="Edit Details for Session"/>
+                       </div>
+                        </apex:outputPanel>
+                    </th>
+                </apex:repeat>
+            </thead>
+            <tbody>
+                <apex:repeat value="{!resultsData}" var="student">
+                    <tr>
+                        <td>{!student.studentName}</td>
+                        <apex:repeat value="{!student.dosages}" var="sessionPlaceHolder">
+                            <td>
+                                <apex:outputPanel rendered="{!sessionPlaceHolder.isDisabled}">
+                                    <input value="{!sessionPlaceHolder.isr.Amount_of_Time__c}" readonly="true" class="fakeTextArea"/>
+                                    <!-- onClick="openStudentDetail('{!student.studentId}','{!selectedSection}','{!sessionPlaceHolder.dateString}');" -->
+                                </apex:outputPanel>
+                                <apex:outputPanel rendered="{!NOT(sessionPlaceHolder.isDisabled)}">
+                                    <apex:inputField style="width:30px;" onchange="changeDosage(this);" value="{!sessionPlaceHolder.isr.Amount_of_Time__c}"  id="timeEntry"/>
+                                </apex:outputPanel>
+                            </td>  
+                        </apex:repeat>   
+                    </tr>
+                </apex:repeat>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    j$('input[readonly]').live('focus', function(e) {
+        j$(this).blur();
+    });
+</script>
+</apex:outputpanel>
+</apex:outputPanel>
+    
+<div class="content" style="margin-top:10px;">
+    <a href="#sessionDataModal" id="jumpLink" rel="leanModal"></a>
+    <a href="#studentDetailModal" id="detailFrame" rel="leanModal"></a>
+    <input id="btnSubmit" type="button" class="black_btn" value="Submit Time" onclick="if(!isSaving) { isSaving = true; saveNewSessionsJS(); } else {isSaving = false; saveNewSessionsJS(); }"/>
+    
+    <input type="button" class="grey_btn" value="Cancel" onclick="resetPage();"/>
+</div>
+    
+    <apex:outputPanel id="dailySessionRender">
+        <div id="dailySessionPanel" style="display:none;">
+            <apex:repeat value="{!tableHeaders}" var="dayOfWeek">
+                <apex:inputTextarea value="{!dayOfWeek.availableSkills}" styleClass="available{!dayOfWeek.positionIdentifer}"/>
+                <apex:inputTextarea value="{!dayOfWeek.selectedSkills}" styleClass="selected{!dayOfWeek.positionIdentifer}"/>
+                <apex:inputTextarea value="{!dayOfWeek.primarySkill}" styleClass="primarySkill{!dayOfWeek.positionIdentifer}"/>
+                <apex:inputTextarea value="{!dayOfWeek.tutoringModel}" styleClass="tutoringModel{!dayOfWeek.positionIdentifer}"/>
+                <apex:inputTextarea value="{!dayOfWeek.siteDetails}" styleClass="siteDetails{!dayOfWeek.positionIdentifer}"/>
+                <apex:inputTextarea value="{!dayOfWeek.sessionType}" styleClass="sessionType{!dayOfWeek.positionIdentifer}"/>
+                <apex:inputTextarea value="{!dayOfWeek.sessionFormat}" styleClass="sessionFormat{!dayOfWeek.positionIdentifer}"/>
+                <apex:inputTextarea value="{!dayOfWeek.session.Skills_Covered_for_the_Session__c}" styleClass="skills{!dayOfWeek.positionIdentifer}"/>
+                <apex:inputTextarea value="{!dayOfWeek.session.Skill_Primary__c}" styleClass="skillPrimary{!dayOfWeek.positionIdentifer}"/>
+                <apex:inputTextarea value="{!dayOfWeek.session.Comments__c}" styleClass="comments{!dayOfWeek.positionIdentifer}"/>
+                <apex:inputTextarea value="{!dayOfWeek.session.All_avenues__c}" styleClass="allAvenues{!dayOfWeek.positionIdentifer}"/>
+                <apex:inputTextarea value="{!dayOfWeek.session.Tutoring_Model__c}" styleClass="tutoringModel{!dayOfWeek.positionIdentifer}"/>
+                <apex:inputTextarea value="{!dayOfWeek.session.Site_Details__c}" styleClass="siteDetails{!dayOfWeek.positionIdentifer}"/>
+                <apex:inputTextarea value="{!dayOfWeek.session.Session_Type__c}" styleClass="sessionType{!dayOfWeek.positionIdentifer}"/>
+                <apex:inputTextarea value="{!dayOfWeek.session.Session_Format__c}" styleClass="sessionFormat{!dayOfWeek.positionIdentifer}"/>
+                <apex:inputCheckbox value="{!dayOfWeek.isProceed}" styleClass="isProceed{!dayOfWeek.positionIdentifer}"/>
+            </apex:repeat>
+        </div>
+    </apex:outputPanel>
+
+    <!-- MODALS -->
+    <apex:outputPanel id="test1">
+    <div id="sessionDataModal" class="modal_window" style="width:max-content;">
+        <a class="modal_close" href="#"></a>
+        <p></p>
+        <br/>
+        <div class="content">
+            <div style="width: max-content; display: inline-flex;">
+                <input type="hidden" id="loadedPos"/>
+                <div class="requiredInput" style="margin-bottom: 10px;">
+                    <div class="requiredBlock"></div>
+                    <label><strong>In-Person Service or Virtual Service:</strong></label>
+                    <apex:selectList size="1" value="{!allAvenuesSelected}" id="allAvenuesID" >
+                        <apex:selectOptions value="{!allAvenuesOptions}"/>
+                    </apex:selectList>
+                </div>
+                <div style="margin-left: 15px; display: inline-block;">
+                    <label><strong>Session Type:</strong></label>
+                    <apex:selectList size="1" value="{!sessionTypeSelected}" id="sessionTypeId" >
+                        <apex:selectOption itemLabel="None" Itemvalue=""/>
+                        <apex:selectOption itemLabel="1:1" Itemvalue="1:1"/>
+                        <apex:selectOption itemLabel="Small Group" Itemvalue="Small Group"/>
+                    </apex:selectList>
+                </div>
+                <!--<div style="{!IF(!showTutoringModel, "display:none", "margin-left: 15px; display: inline-block;")}">
+                    <label><strong>Tutoring Model:</strong></label>
+                    <apex:selectList size="1" value="{!tutoringModelSelected}" id="tutoringModelId" >
+                        <apex:selectOption itemLabel="None" Itemvalue=""/>
+                        <apex:selectOption itemLabel="Catch Up" Itemvalue="Catch Up"/>
+                        <apex:selectOption itemLabel="Keep Up" Itemvalue="Keep Up"/>
+                    </apex:selectList>
+                </div>-->
+                <div style="margin-left: 15px; display: inline-block;">
+                    <label><strong>Session Format:</strong></label>
+                    <apex:selectList size="1" value="{!sessionFormatSelected}" id="sessionFormatId" >
+                        <apex:selectOption itemLabel="None" Itemvalue=""/>
+                        <apex:selectOption itemLabel="Push In" Itemvalue="Push In"/>
+                        <apex:selectOption itemLabel="Pull Out" Itemvalue="Pull Out"/>
+                    </apex:selectList>
+                </div>
+                <div style="{!IF(!showSiteDetails, "display:none", "margin-left: 15px; display: inline-block;")}">
+                    <label><strong>Site Details:</strong></label>
+                    <apex:selectList size="1" value="{!siteDetailsSelected}" id="siteDetailsId" >
+                        <apex:selectOptions value="{!siteDetailsOptions}"/>
+                    </apex:selectList>
+                </div>
+            </div>
+            <!--<h4>{!$ObjectType.Intervention_Session__c.fields.Skills_Covered_for_the_Session__c.Label}:</h4>-->
+<!--            <textarea id="sessionSkills"></textarea> -->
+            <c:MultiselectPicklist leftLabel="Other Skills" leftOption="{!avaliableFields}"
+                rightLabel="Selected Skills" rightOption="{!selectedFields}" isPrimaryOption="true" Alldata="{!allPrimaryFields}" primaryLabel="Primary Skill" primaryOption="{!primarySkill}" size="14" width="450px"/>
+            <span id="serviceErrorSpan" style="color:red;display:none">{!$Label.Required_Service}</span>
+            <span id="skillsErrorSpan" style="color:red;display:none">{!$Label.Skills_Required}</span>
+            <span id="skillsLengthErrorSpan" style="color:red;display:none">{!$Label.Exceeded_Skill_Length}</span>
+            <span id="requiredSkillsErrorSpan" style="color:red;display:none">{!$Label.Required_Skill_for_Literacy_Math}</span>
+            <h4>{!$ObjectType.Intervention_Session__c.fields.Comments__c.Label}:</h4>
+            <textarea id="sessionComments"></textarea>
+        </div>
+        
+        <div id="options">
+            <input type="button" class="black_btn" value="Proceed" onclick="storeSessionChanges();" />
+            <input type="button" class="grey_btn" value="Cancel" onclick="close_modal('#sessionDataModal');"/>
+        </div>
+        
+    </div>
+    </apex:outputPanel>
+    <div id="studentDetailModal" class="modal_window" style="width:1200px;top:0px !important;">
+        <a class="modal_close" href="#" onclick="if(!hasChanges){changeSectionJS();}"></a>
+        <iframe id="studentFrame" scr="" style="border:none;width:100%;margin-top:10px;margin-bottom:10px;height:640px;display:none;" onLoad="j$(this).show();"/>   
+    </div>
+</div>
+        <apex:actionFunction name="doChangeDate" action="{!changeWeek}" rerender="messages,StudentPanel,dailySessionRender" oncomplete="hasChanges=false;"/>
+        <apex:actionFunction name="doPrevWeek" action="{!lastWeek}" rerender="messages,StudentPanel,dailySessionRender" oncomplete="hasChanges=false;"/>
+        <apex:actionFunction name="doNextWeek" action="{!nextWeek}" rerender="messages,StudentPanel,dailySessionRender" oncomplete="hasChanges=false;"/>
+        <apex:actionfunction name="toggleDirection" action="{!toggleSortDirection}" rerender="StudentPanel"/>
+        <apex:actionFunction name="resetPage" action="{!resetPage}"/>
+
+        <apex:actionFunction action="{!changeSection}" name="changeSectionJS" rerender="messages,StudentPanel, dailySessionRender, sessionDataModal, test1" oncomplete="hasChanges=false;"/>
+        <apex:actionFunction action="{!changeStaff}" name="changeStaffJS" rerender="sectionSelectBox,messages,StudentPanel, dailySessionRender, test1" oncomplete="hasChanges=false;"/>
+        <apex:actionFunction action="{!changeSchool}" name="changeSchoolJS" rerender="staffSelectBox,sectionSelectBox,messages,StudentPanel, dailySessionRender, test1" oncomplete="hasChanges=false;"/>
+        <apex:actionFunction action="{!saveNewSessions}" name="saveNewSessionsJS" rerender="messages,StudentPanel, dailySessionRender,timerPanel" onComplete="isSaving = false;hasChanges = false;"/>
+        <apex:actionFunction action="{!changeSection}" name="changeSectionJSAfterSubmit" rerender="StudentPanel, dailySessionRender, sessionDataModal, test1" oncomplete="hasChanges=false;"/>
+    </apex:form>
+</apex:page>

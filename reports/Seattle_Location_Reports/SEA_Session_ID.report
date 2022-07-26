@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <buckets>
+        <bucketType>text</bucketType>
+        <developerName>BucketField_31530342</developerName>
+        <masterLabel>Student ID</masterLabel>
+        <nullTreatment>n</nullTreatment>
+        <sourceColumnName>Intervention_Session__c.Intervention_Session_Results__r$Student_Section__c.Reference_ID__c</sourceColumnName>
+        <useOther>false</useOther>
+    </buckets>
+    <columns>
+        <field>BucketField_31530342</field>
+    </columns>
+    <columns>
+        <field>Intervention_Session__c$Date__c</field>
+    </columns>
+    <columns>
+        <field>Intervention_Session__c.Intervention_Session_Results__r$Amount_of_Time__c</field>
+    </columns>
+    <columns>
+        <field>Intervention_Session__c$Name</field>
+    </columns>
+    <columns>
+        <field>Intervention_Session__c.Intervention_Session_Results__r$Student_Section__c.Student__c</field>
+    </columns>
+    <columns>
+        <field>Intervention_Session__c$Section__c</field>
+    </columns>
+    <columns>
+        <field>Intervention_Session__c$Section__c.Indicator_Area__c</field>
+    </columns>
+    <columns>
+        <field>Intervention_Session__c$Section__c.Intervention_Primary_Staff__c</field>
+    </columns>
+    <columns>
+        <field>Intervention_Session__c$Section__c.School__c</field>
+    </columns>
+    <description>Seattle session participation with IDs, Student Names, Sections, School</description>
+    <filter>
+        <criteriaItems>
+            <column>Intervention_Session__c.Intervention_Session_Results__r$Amount_of_Time__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>notEqual</operator>
+            <value></value>
+        </criteriaItems>
+    </filter>
+    <format>Tabular</format>
+    <name>SEA Session &amp; ID</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Intervention_Sessions__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>false</showGrandTotal>
+    <showSubTotals>false</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>Intervention_Session__c$CreatedDate</dateColumn>
+        <interval>INTERVAL_CURFY</interval>
+    </timeFrameFilter>
+</Report>

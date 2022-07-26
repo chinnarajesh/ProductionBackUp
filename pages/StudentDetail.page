@@ -1,0 +1,406 @@
+<apex:page StandardController="Student__c" extensions="Student_Redirect" >
+<apex:variable value="{!linkSetting.Student_Tab_Layout__c}" var="stl" rendered="{!!linkSetting.Student_Tab_Layout__c}">
+<apex:detail relatedList="true" inlineEdit="true"/>
+</apex:variable>
+<apex:variable value="{!linkSetting.Student_Tab_Layout__c}" var="stl" rendered="{!linkSetting.Student_Tab_Layout__c}">
+    <apex:includeScript value="{!URLFOR($Resource.resources_Master, '/jQuery/js/jquery-1.6.2.min.js')}" />
+    <apex:includeScript value="{!URLFOR($Resource.resources_Master, '/jQuery/js/jquery-ui-1.8.16.custom.min.js')}" />
+  <apex:stylesheet value="{!URLFOR($Resource.resources_Master, '/custom/css/start/jquery-ui-1.8.20.custom.css')}" />
+<style>
+.header {
+    width:100%; 
+    border-bottom: 1px solid #333;
+    color:#333; }
+    
+    .ui-tabs .ui-tabs-nav {background:none !important; padding:0px;border:none; border-radius:0px; border-bottom:2px solid #4297D7;}
+
+
+.Custom15Tab .secondaryPalette, .individualPalette .Custom15Block .secondaryPalette {
+background-color: 
+#4297D7;
+border-color: 
+#4297D7;
+background:none !important;
+border:0px !important;
+}
+
+.zen .zen-tabMenu .zen-active {
+background-color: 
+#4297D7;
+border-color: 
+#4297D7;
+}
+
+.bRelatedList {border:1px solid #91bcce; border-radius:3px; background:#F2FAFC !important; }
+
+.ui-tabs .ui-tabs-nav li {top:5px;}
+
+.header {font-size:16px; border-bottom:3px solid #4297D7;text-transform:uppercase; padding:3px;}
+h3 {font-size:16px; text-transform:uppercase; padding:3px;}
+
+.Custom15Tab .brdPalette {
+border-top-color: 
+#4297D7;
+}
+
+Custom15Tab .primaryPalette, .individualPalette .Custom15Block .primaryPalette {
+background-color: 
+#4297D7;
+border-color: 
+#4297D7;
+}
+
+
+
+
+</style>
+ 
+<script>
+    var j$ = jQuery.noConflict();
+    function resetTabs(){
+                j$(".tabs").tabs();
+            }
+    j$(document).ready(function() {
+           resetTabs();
+           j$(document).find('#header').show();
+         });
+</script>
+<table style="width:100%">
+<tr>
+<td style="width:95%">
+<apex:pageBlock >
+
+ 
+<h3>Student</h3><br/>
+<h3><apex:outputText value="{!Student__c.Name}"/></h3><br/>
+
+
+
+
+
+<div class="tabs" style="width:100%;">
+                            <ul style=" position:relative;  overflow-y:hidden">
+                            <li style="cursor:pointer; list-style-type:none; float:left;">
+                                                <a href="#header" onClick="j$(document).find('#header').show();" style="cursor:hand;text-decoration:none;" >Header</a>
+                                
+                                </li>
+                            
+                                <li style="cursor:pointer; list-style-type:none; float:left;">
+                                                <a href="#profile" onClick="j$(document).find('#profile').show();" style="cursor:hand;text-decoration:none;" >Student Profile</a>
+                            
+                                </li>
+                                    <li style="cursor:pointer; list-style-type:none; float:left;">
+                                                <a href="#contact" onClick="j$(document).find('#contact').show();" style="cursor:hand;text-decoration:none;" >Contact Info</a>
+                            
+                                </li>
+                                    <li style="cursor:pointer; list-style-type:none; float:left;">
+                                                        <a href="#academics" onClick="j$(document).find('#academics').show();" style="cursor:hand;text-decoration:none;" >Academics</a>
+                                
+                                </li>
+                                <li style="cursor:pointer; list-style-type:none; float:left;">
+                                                <a href="#behavior" onClick="j$(document).find('#behavior').show();" style="cursor:hand;text-decoration:none;" >Behavior</a>
+                            
+                                </li>
+                                <li style="cursor:pointer; list-style-type:none; float:left;">
+                                                <a href="#attendance" onClick="j$(document).find('#attendance').show();" style="cursor:hand;text-decoration:none;" >Attendance/Schedule</a>
+                            
+                                </li>
+                                
+                                <li style="cursor:pointer; list-style-type:none; float:left;">
+                                                <a href="#ledger" onClick="j$(document).find('#ledger').show();" style="cursor:hand;text-decoration:none;" >Points Ledger</a>
+                            
+                                </li>
+                                
+                                
+                            </ul>
+                            <div style="display:none" id="header">
+                            <center>
+<input value=" Edit " class="btn" title="Edit" name="edit" onclick="navigateToUrl('/{!JSENCODE(Student__c.Id)}/e?retURL={!JSENCODE(Student__c.Id)}','DETAIL','edit');" type="button"/>
+    <input value="Report Card" class="btn" title="Report Card" name="report_card" onclick="window.open('/apex/Student_report_card?student={!JSENCODE(Student__c.Id)}&studentID={!JSENCODE(Student__c.Student_Id__c)}','Report Cards','width=500,height=700')"  type="button"/>
+     <input value="Email/Print Schedule" class="btn" title="Email/Print Schedule" name="print_schedule" onclick="window.open('/apex/printSchedule?preloadType=studentSchedule&firstName={!JSENCODE(Student__c.Student_First_Name__c)}&lastName={!JSENCODE(Student__c.Student_Last_Name__c)}','Print Schedule')" type="button"/>
+
+
+</center>
+                            
+                                <apex:pageBlockSection columns="2">
+                                <apex:pageBlockSectionItem >
+                                    <apex:outputField value="{!Student__c.Student_Picture__c}"/>
+                                </apex:pageBlockSectionItem>
+                                <apex:pageBlockSectionItem >
+                                <div class="header" style="border-bottom:0px; background:none;">    <h3>Student Location</h3></div>
+                                            <iframe src="/apex/student_SectionLocator?id={!Student__c.id}" style="width:100%; height:100px;"></iframe>
+                                               
+                                </apex:pageBlockSectionItem>
+                                
+                                </apex:pageBlockSection>
+                                <div class="header"></div>
+                                    <apex:pageBlockSection columns="2">
+                                
+                                    <apex:repeat value="{!$ObjectType.Student__c.FieldSets.Detail_Header}" var="f">
+                                        <apex:pageBlockSectionItem >
+                                            <apex:outputLabel value="{!f.Label}" />
+                                            <apex:outputField value="{!Student__c[f]}"/>
+                                        </apex:pageBlockSectionItem>
+                                    </apex:repeat>
+                                
+                                </apex:pageBlockSection>
+                                
+                    <apex:relatedList list="NotesAndAttachments"/> 
+                            
+                            </div>
+                                <div style="display:none" id="profile">
+                            
+                            <div class="header">        <h3>Student Information</h3></div>
+                                <apex:pageBlockSection columns="2">
+                                    <apex:repeat value="{!$ObjectType.Student__c.FieldSets.Detail_Profile_Student_Information}" var="f">
+                                        <apex:pageBlockSectionItem >
+                                            <apex:outputLabel value="{!f.Label}" />
+                                            <apex:outputField value="{!Student__c[f]}"/>
+                                        </apex:pageBlockSectionItem>
+                                    </apex:repeat>
+                                </apex:pageBlockSection>
+                            
+                            
+                            <div class="header">        <h3>Demographics</h3></div>
+                                <apex:pageBlockSection columns="2">
+                                    <apex:repeat value="{!$ObjectType.Student__c.FieldSets.Detail_Profile_Demo}" var="f">
+                                        <apex:pageBlockSectionItem >
+                                            <apex:outputLabel value="{!f.Label}" />
+                                            <apex:outputField value="{!Student__c[f]}"/>
+                                        </apex:pageBlockSectionItem>
+                                    </apex:repeat>
+                                </apex:pageBlockSection>
+                                <div class="header">        <h3>Student Services</h3></div>
+                                <apex:pageBlockSection columns="2">
+                                    <apex:repeat value="{!$ObjectType.Student__c.FieldSets.Student_Services}" var="f">
+                                        <apex:pageBlockSectionItem >
+                                            <apex:outputLabel value="{!f.Label}" />
+                                            <apex:outputField value="{!Student__c[f]}"/>
+                                        </apex:pageBlockSectionItem>
+                                    </apex:repeat>
+                                </apex:pageBlockSection>
+                                
+                            
+                                    
+                                    
+                                    
+                                <div class="header">        <h3 > English Language Learner Information</h3></div>
+                                <apex:pageBlockSection columns="2">
+                                    <apex:repeat value="{!$ObjectType.Student__c.FieldSets.Detail_ELL_Information}" var="f">
+                                        <apex:pageBlockSectionItem >
+                                            <apex:outputLabel value="{!f.Label}" />
+                                            <apex:outputField value="{!Student__c[f]}"/>
+                                        </apex:pageBlockSectionItem>
+                                    </apex:repeat>
+                                </apex:pageBlockSection>
+                                
+                                
+                            
+                            <div class="header">        <h3 >Special Ed Info</h3></div>
+                                <apex:pageBlockSection columns="2">
+                                    <apex:repeat value="{!$ObjectType.Student__c.FieldSets.Detail_Profile_Special_Ed}" var="f">
+                                        <apex:pageBlockSectionItem >
+                                            <apex:outputLabel value="{!f.Label}" />
+                                            <apex:outputField value="{!Student__c[f]}"/>
+                                        </apex:pageBlockSectionItem>
+                                    </apex:repeat>
+                                </apex:pageBlockSection>
+                                
+                                
+                                    <div class="header">        <h3 >Special Ed Info</h3></div>
+                                <apex:pageBlockSection columns="2">
+                                    <apex:repeat value="{!$ObjectType.Student__c.FieldSets.Detail_YoY_Information}" var="f">
+                                        <apex:pageBlockSectionItem >
+                                            <apex:outputLabel value="{!f.Label}" />
+                                            <apex:outputField value="{!Student__c[f]}"/>
+                                        </apex:pageBlockSectionItem>
+                                    </apex:repeat>
+                                </apex:pageBlockSection>
+                                
+                                
+                                
+                                    
+                            <div class="header">        <h3 >Meals Information</h3></div>
+                                <apex:pageBlockSection columns="2">
+                                    <apex:repeat value="{!$ObjectType.Student__c.FieldSets.Detail_Profile_Meals}" var="f">
+                                        <apex:pageBlockSectionItem >
+                                            <apex:outputLabel value="{!f.Label}" />
+                                            <apex:outputField value="{!Student__c[f]}"/>
+                                        </apex:pageBlockSectionItem>
+                                    </apex:repeat>
+                                </apex:pageBlockSection>
+                        <apex:relatedList list="Meal_Transactions__r"/>
+                            
+                            
+                            <div class="header">        <h3 >Additional Information</h3></div>
+                                <apex:pageBlockSection columns="2">
+                                    <apex:repeat value="{!$ObjectType.Student__c.FieldSets.Detail_Profile_Additional}" var="f">
+                                        <apex:pageBlockSectionItem >
+                                            <apex:outputLabel value="{!f.Label}" />
+                                            <apex:outputField value="{!Student__c[f]}"/>
+                                        </apex:pageBlockSectionItem>
+                                    </apex:repeat>
+                                </apex:pageBlockSection>
+                            </div>
+                            
+                            
+                            <div style="display:none" id="contact">
+                                
+                                
+                                
+                                <div class="header">        <h3>Contact Information</h3></div>
+                                <apex:pageBlockSection columns="2">
+                                    <apex:repeat value="{!$ObjectType.Student__c.FieldSets.Detail_Contact_Info}" var="f">
+                                        <apex:pageBlockSectionItem >
+                                            <apex:outputLabel value="{!f.Label}" />
+                                            <apex:outputField value="{!Student__c[f]}"/>
+                                        </apex:pageBlockSectionItem>
+                                    </apex:repeat>
+                                </apex:pageBlockSection>
+                                
+                                <div class="header">        <h3>Emergency Contact Information</h3></div>
+                                <apex:pageBlockSection columns="2">
+                                    <apex:repeat value="{!$ObjectType.Student__c.FieldSets.Detail_Contact_Emergency}" var="f">
+                                        <apex:pageBlockSectionItem >
+                                            <apex:outputLabel value="{!f.Label}" />
+                                            <apex:outputField value="{!Student__c[f]}"/>
+                                        </apex:pageBlockSectionItem>
+                                    </apex:repeat>
+                                </apex:pageBlockSection>
+                                
+                                    <apex:relatedList list="Student_PG__r"/>
+                                    
+                                    
+                                    
+                                <div class="header">        <h3 >Authorizations</h3></div>
+                                <apex:pageBlockSection columns="2">
+                                    <apex:repeat value="{!$ObjectType.Student__c.FieldSets.Detail_Contact_Authorizations}" var="f">
+                                        <apex:pageBlockSectionItem >
+                                            <apex:outputLabel value="{!f.Label}" />
+                                            <apex:outputField value="{!Student__c[f]}"/>
+                                        </apex:pageBlockSectionItem>
+                                    </apex:repeat>
+                                </apex:pageBlockSection>
+                                
+                                
+                            
+                            <div class="header">        <h3 >Authorized Pickup Info</h3></div>
+                                <apex:pageBlockSection columns="2">
+                                    <apex:repeat value="{!$ObjectType.Student__c.FieldSets.Detail_Authorized_Pickup}" var="f">
+                                        <apex:pageBlockSectionItem >
+                                            <apex:outputLabel value="{!f.Label}" />
+                                            <apex:outputField value="{!Student__c[f]}"/>
+                                        </apex:pageBlockSectionItem>
+                                    </apex:repeat>
+                                </apex:pageBlockSection>
+                            
+                            </div>
+                    
+                        
+                            
+                            <div style="display:none" id="academics">
+                                <div class="header">        <h3 >Academic Information</h3></div>
+                                <apex:pageBlockSection columns="1">
+                                	<iframe src="/apex/student_SectionGrades?id={!Student__c.id}" style="width:100%; height:300px;"></iframe>
+                                </apex:pageBlockSection>
+                               
+                                <apex:pageBlockSection columns="2">
+                                    <apex:repeat value="{!$ObjectType.Student__c.FieldSets.Detail_Academics_Information}" var="f">
+                                        <apex:pageBlockSectionItem >
+                                            <apex:outputLabel value="{!f.Label}" />
+                                            <apex:outputField value="{!Student__c[f]}"/>
+                                        </apex:pageBlockSectionItem>
+                                    </apex:repeat>
+                                </apex:pageBlockSection>
+                            <apex:relatedList list="Student_Reporting_Periods__r"/>
+                            <apex:relatedList list="Homework_Tracking__r"/>
+                            <apex:relatedList list="Final_Grades__r"/>
+                            <apex:relatedList list="Grades__r"/>
+                             <apex:relatedList list="Standard_Grades__r"/>
+                              <apex:relatedList list="Strand_Grades__r"/>
+                            <apex:relatedList list="Assesment__r"/>
+                            
+<!--                             <div class="header">        <h3 >Reading Level</h3></div>
+                                <apex:pageBlockSection columns="2">
+                                    <apex:repeat value="{!$ObjectType.Student__c.FieldSets.Detail_Academics_Reading}" var="f">
+                                        <apex:pageBlockSectionItem >
+                                            <apex:outputLabel value="{!f.Label}" />
+                                            <apex:outputField value="{!Student__c[f]}"/>
+                                        </apex:pageBlockSectionItem>
+                                    </apex:repeat>
+                                </apex:pageBlockSection> -->
+                                
+                                <div class="header">        <h3 >Educational History</h3></div>
+                                <apex:pageBlockSection columns="2">
+                                    <apex:repeat value="{!$ObjectType.Student__c.FieldSets.Detail_Academics_History}" var="f">
+                                        <apex:pageBlockSectionItem >
+                                            <apex:outputLabel value="{!f.Label}" />
+                                            <apex:outputField value="{!Student__c[f]}"/>
+                                        </apex:pageBlockSectionItem>
+                                    </apex:repeat>
+                                </apex:pageBlockSection>
+                                
+                                
+                                 <div class="header">        <h3 >MOU/ILP Information</h3></div>
+                                <apex:pageBlockSection columns="2">
+                                    <apex:repeat value="{!$ObjectType.Student__c.FieldSets.Detail_Academics_MOU}" var="f">
+                                        <apex:pageBlockSectionItem >
+                                            <apex:outputLabel value="{!f.Label}" />
+                                            <apex:outputField value="{!Student__c[f]}"/>
+                                        </apex:pageBlockSectionItem>
+                                    </apex:repeat>
+                                </apex:pageBlockSection>
+                    
+                            
+                            </div>
+                            
+                            <div style="display:none" id="behavior">
+                            
+                            <div class="header">        <h3 >Behavior Profile</h3></div>
+                                <apex:pageBlockSection columns="2">
+                                    <apex:repeat value="{!$ObjectType.Student__c.FieldSets.Detail_Behavior_Profile}" var="f">
+                                        <apex:pageBlockSectionItem >
+                                            <apex:outputLabel value="{!f.Label}" />
+                                            <apex:outputField value="{!Student__c[f]}"/>
+                                        </apex:pageBlockSectionItem>
+                                    </apex:repeat>
+                                </apex:pageBlockSection>
+                                <apex:relatedList list="Student_Behavior__r"/>
+                            <apex:relatedList list="Consequences__r"/>
+                            <apex:relatedList list="Awards__r"/>
+                            
+                            
+                            </div>
+                            
+                            <div style="display:none" id="attendance">
+
+                            
+                            <div class="header">        <h3 >Attendance and Schedule</h3></div>
+                                <apex:pageBlockSection columns="2">
+                                    <apex:repeat value="{!$ObjectType.Student__c.FieldSets.Detail_Attendance_Schedule}" var="f">
+                                        <apex:pageBlockSectionItem >
+                                            <apex:outputLabel value="{!f.Label}" />
+                                            <apex:outputField value="{!Student__c[f]}"/>
+                                        </apex:pageBlockSectionItem>
+                                    </apex:repeat>
+                                </apex:pageBlockSection>
+                        
+                        <apex:relatedList list="Attendance__r"/>
+                            <apex:relatedList list="Enrollment_Tracking__r"/>
+                            <apex:relatedList list="Student_Section__r"/>
+                            <apex:relatedList list="Attendance_Tracking__r"/>
+                            
+                            </div>
+                            
+                                <div style="display:none" id="ledger">
+                                
+                                <iframe style="width:100%; height:1000px" src="/apex/Points_StudentLedger?id={!Student__c.Id}&showheader=false"/>
+                                
+                                </div>
+                            
+                            
+</div>
+</apex:pageBlock>
+</td></tr></table>
+</apex:variable>
+</apex:page>

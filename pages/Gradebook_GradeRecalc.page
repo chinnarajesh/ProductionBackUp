@@ -1,0 +1,35 @@
+<apex:page controller="Gradebook_GradeRecalcController" showheader="false" sidebar="false">
+
+<apex:outputpanel id="results">
+<apex:pagemessages />
+</apex:outputpanel>
+<apex:form >
+<br/>
+<center>
+                    <b><apex:outputtext >Select School</apex:outputtext></b>
+                    <apex:selectList style="margin-left:5px; margin-right:25px;" value="{!schoolID}" multiselect="false" size="1" rendered="true" onchange="filtersJS();">
+                                <apex:selectOptions value="{!schoolSelect}"/>
+                    </apex:selectList>
+                    
+<apex:outputpanel id="thefilters">
+                    <b><apex:outputtext >Select Section</apex:outputtext></b>
+                    <apex:selectList style="margin-left:5px; margin-right:25px;" value="{!sectionID}" multiselect="false" size="1" rendered="true" >
+                                <apex:selectOptions value="{!sectionSelect}"/>
+                    </apex:selectList>
+                    
+                    <b><apex:outputtext >Select Reporting Period</apex:outputtext></b>
+                    <apex:selectList style="margin-left:5px; margin-right:25px;" value="{!timeID}" multiselect="false" size="1" rendered="true" >
+                                <apex:selectOptions value="{!timeSelect}"/>
+                    </apex:selectList>
+                </apex:outputpanel>
+</center>
+<apex:actionfunction action="{!reloadFilters}" name="filtersJS" rerender="thefilters"/>
+
+<br/>
+<br/>
+<center>
+<apex:commandButton action="{!recalcGrades}" value="Recalculate" rerender="results"/>
+</center>
+
+</apex:form>
+</apex:page>

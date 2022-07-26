@@ -1,0 +1,101 @@
+<apex:page controller="ctlAddTimeFlow" sidebar="false">
+ <c:jQueryInit bDataTables="true" bLoadingPanel="false"/>   
+ <apex:includeScript value="{!URLFOR($Resource.jWerty, '/jWerty/jwerty.js')}" />
+    <apex:stylesheet value="{!$Resource.New_Core_UX}"/>
+    <script type="text/javascript">
+       var generated = false;
+    var tabelwidth = 'firstload';
+    jwerty.key('enter',false);
+    
+     j$ = jQuery.noConflict();
+			j$(document).ready( function () {
+				var contactTable = j$('[id$="srchstdtable"]').DataTable({
+				 "sScrollY": "200px",
+            "bLengthChange": true,
+            "bFilter": true,
+            "bInfo": false,
+            "aoColumnDefs": [{ "sWidth": "100px", "aTargets": [ 0 ]}, {
+                aTargets: [ 0 ],
+                bSortable: false,
+            }],
+            "bAutoWidth": true,
+            "bSort" :true,
+            "bDestroy": true,
+            "bScrollAutoCss": true,
+            "bPaginate": false,
+            "bScrollCollapse": true,
+            "bJQueryUI": true,
+            "bSaveState": true,
+            iDisplayLength : 25,
+            "asStripClasses": [ 'odd', 'even' ]	
+				});
+			});
+    
+    </script>
+    <script type="text/javascript">
+        function selectall(obj,receivedInputID){
+            var inputCheckBox = document.getElementsByTagName("input");
+            for(var i=0; i<inputCheckBox.length; i++){
+                if(inputCheckBox[i].id.indexOf(receivedInputID)!=-1 && inputCheckBox[i].disabled==false){
+                    inputCheckBox[i].checked = obj.checked;
+                }
+            }
+        }
+    </script><apex:pagemessages />
+<apex:form >
+<!--<apex:outputText value="{!$CurrentPage.parameters.urlparm}" style="background-color: #01A9DB;font-weight: bold;font-size: 14px;" />-->
+ <div style="font-weight: bold;font-size: 13px;white-space: nowrap;">{!sectionName}&nbsp;&nbsp;&nbsp;{!sectionNickName}&nbsp;&nbsp;&nbsp;{!sectionELT}</div>
+  <apex:outputPanel id="mySection1" rendered="{!IF(showReport==true, true, false)}" >
+    <div style="width:100%;margin:auto;height:40%">
+            <analytics:reportChart reportId="{!reportID}" showRefreshButton="true" cacheResults="false"
+            filter="{column:'Section__c.Name', operator: 'equals', value: '{!sectionName}'}"/>
+        <!--filter="{column:'Section__c.Name', operator: 'equals', value: '{!sectionName}'}"    -->
+  </div> 
+  </apex:outputPanel> 
+    <apex:pageBlock title="" >
+     <apex:pageBlockSection >
+        </apex:pageBlockSection> 
+        
+        <apex:pageblockButtons >
+            <apex:commandButton action="{!doStudentsAddTime}" value="Add Time" />
+            <apex:commandButton action="{!doShowSessions}" value="Session History" />
+            <apex:commandButton action="{!doStudentsCancel}" value="Cancel" />
+        </apex:pageblockButtons>
+      <apex:pageBlockSection collapsible="false" columns="1" id="Section">
+      <apex:pageBlockTable value="{!studentsInSection}" var="e" id="srchstdtable" styleclass="tablesorter">
+        <apex:column >
+            <apex:facet name="header">
+            <apex:inputCheckbox onclick="selectall(this,'inputId')"/>
+            </apex:facet>
+            <apex:inputCheckbox value="{!e.selected}" id="inputId" disabled="{!NOT(e.stuSecRec.Active__c)}" tabindex="1" />
+        </apex:column>
+        <apex:column headerValue="Student">
+            <apex:outputField value="{!e.stuSecRec.Student_Name__c}" styleClass="header" />
+        </apex:column>
+
+        <apex:column headerValue="Dosage(in minutes)">
+            {!e.stuSecRec.Dosage_to_Date__c}.0
+        </apex:column>
+        <apex:column headerValue="Grade">
+            <apex:outputField value="{!e.stuSecRec.Student_Grade__c}"/>
+        </apex:column>
+        <apex:column headerValue="Latest Session Date">
+            <apex:outputText value="{0,date,MM'/'dd'/'yyyy}">
+            <apex:param value="{!e.Sessiondate}" />
+            </apex:outputText>
+        </apex:column>
+                  <apex:column headerValue="Active">
+                      <apex:image value="/img/permissions_confirm16.gif" rendered="{!e.stuSecRec.Active__c}" />
+                  <apex:image value="/img/permissions_deny16.gif" rendered="{!NOT(e.stuSecRec.Active__c)}" />
+        </apex:column>
+
+      </apex:pageBlockTable>
+      </apex:pageBlockSection>
+      
+
+  </apex:pageBlock>
+
+</apex:form>
+
+
+</apex:page>

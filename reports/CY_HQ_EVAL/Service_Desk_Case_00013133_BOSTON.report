@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Section__c$Location__c</field>
+    </columns>
+    <columns>
+        <field>Section__c.Student_Section__r$Name</field>
+    </columns>
+    <columns>
+        <field>Section__c.Student_Section__r$Student_Name__c</field>
+    </columns>
+    <columns>
+        <field>Section__c.Student_Section__r$Student_Grade__c</field>
+    </columns>
+    <columns>
+        <field>Section__c.Student_Section__r$Intervention_Enrollment_Start_Date__c</field>
+    </columns>
+    <columns>
+        <field>Section__c.Student_Section__r$Enrollment_End_Date__c</field>
+    </columns>
+    <columns>
+        <field>Section__c$Target_Dosage_Org_Goal__c</field>
+    </columns>
+    <description>Literacy Dosage Goal Report(by month)
+*For this variation of the report, we would like to have the &quot;Dosage to Date&quot; to count only dosage that has occurred over a particular month. Add fields: School, Student Grade, Enrollment &amp; Exit Dates from the Section</description>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Section__c$School__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Section__c$Program__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Section__c$Name</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Service Desk Case $00013133 (BOSTON)</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Sections_with_Student_Section_with_Intervention_Session_Results__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>false</showGrandTotal>
+    <showSubTotals>false</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>Section__c.Student_Section__r.Intervention_Session_Results__r$Intervention_Session_Date__c</dateColumn>
+        <interval>INTERVAL_CURFY</interval>
+    </timeFrameFilter>
+</Report>

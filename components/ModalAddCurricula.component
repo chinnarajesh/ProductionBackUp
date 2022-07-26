@@ -1,0 +1,153 @@
+<apex:component controller="ModalAddCurriculaController" allowDML="true" access="global">
+	<apex:attribute name="recSection" type="Section__c" assignTo="{!section}" access="global" required="true" description="Main Section."/>
+	<apex:attribute name="lstStudentSections" type="StudentInfoWrapper[]" assignTo="{!studentSections}" access="global" required="true" description="List StudentWrapper."/>
+
+	<style>
+		.form-control{
+			width: 98%!important;
+		}
+		.form-group{
+			background: #dcdcdc;
+		}
+        #schoolforce-wrapper table th {
+            font-size: 11px;
+        }
+        @media only screen and (max-device-width : 768px) {
+
+	    }
+    </style>
+
+	<div id="add-curricula" class="modal_window" style="z-index:14000;position: relative;top:0px !important;width:90%;">
+		<div class = "modal-top" style="cursor:move;" >
+			<span class="modalCloseButton" onClick="close_modal('#add-curricula');"></span>
+			<p>&nbsp;</p>
+ 		</div>
+ 		<apex:outputPanel id="addСurriculaMessages">
+ 			<apex:pageMessages />
+ 		</apex:outputPanel>
+		<span class="section-header">Enter Сurricula for {!section.Name}</span>
+
+		<apex:outputPanel id="addСurriculaInfo" style="position: relative;">
+		<div id="sclWinCurricula" style="height: auto; overflow-y: scroll;">
+		<apex:outputPanel id="curriculaPanel" layout="block">
+			<div id="main-box" class="box-content">
+				<div class="form-group date-group m-t">
+					<label for="date">Date of Assignment</label>
+					<div class="field">
+						<apex:inputField styleClass="form-control" value="{!curriculum.Date_of_Module__c}" showDatePicker="true" id="curriculaDateID" />
+					</div>
+					<apex:message for="curriculaDateID" />
+				</div>
+				<div class="form-group">
+					<label for="name">Curriculum Name</label>
+					<div class="requiredInput">
+                    <div class="requiredBlock"></div>							
+					<div class="field">
+						<apex:inputField value="{!curriculum.Curriculum_Name__c}" styleClass="form-control" required="false" />
+					</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="module">Module Name</label>
+					<div class="requiredInput">
+                    <div class="requiredBlock"></div>							
+					<div class="field">
+						<apex:inputField value="{!curriculum.Module_Name__c}" styleClass="form-control" required="false" />
+					</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="assignments">Module Assignments</label>
+					<div class="requiredInput">
+                    <div class="requiredBlock"></div>							
+					<div class="field">
+						<apex:inputField value="{!curriculum.Module_Assignments__c}" styleClass="form-control" required="false" />
+					</div>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="comments">Comments</label>
+					<apex:inputTextarea value="{!curriculum.Comments__c}" styleClass="form-control" onblur="ValidateLen(this.value)" style="height: 30px;"/>
+				</div>
+
+				<hr />
+				<div class="table-group">
+					<table class="table table-responsive table-striped">
+						<thead>
+							<tr>
+								<th>Student</th>
+								<th>Score</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<apex:repeat var="e" value="{!curriculumStudents}">
+								<tr>
+									<td data-label="Student">{!e.Student__r.Name}</td>
+									<td data-label="Module Score"> 
+									<div class="requiredInput">
+                    				<div class="requiredBlock"></div>
+									<apex:inputField value="{!e.Module_Score__c}" onblur="ValidateTime(this.value)" id="timeEntry" styleClass="form-control input-sm time" required="false" />
+									</div>
+									</td>
+									<td data-label="Action">
+										<apex:commandLink value="Delete" action="{!removeStudentFromCurriculum}" rerender="curriculaPanel, messages"><apex:param name="sID" value="{!e.Student__c}" /></apex:commandLink>
+									</td>
+								</tr>
+							</apex:repeat>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</apex:outputPanel>
+		</div>
+		</apex:outputPanel>
+		<div id="options" class="clear_fix">
+			<hr />
+			<input type="button" class="black_btn" onclick="showProgressBar('Please wait.'); saveСurriculaJS();" value="Submit"/>
+			<input type="button" class="grey_btn" onclick="close_modal('#add-curricula')" value="Cancel"/>
+		</div>
+		<p>&nbsp;</p>
+	</div>
+	
+	<script type="text/javascript">
+	  	j$(document).ready(function() {
+	    	j$('option.selected').each(function() {
+	      		j$(this).attr('selected', 'selected');
+	    	});
+  			//disable search field
+  			j$('span.select2 li>input.select2-search__field').attr("readonly","true");
+  			//set scroll height
+  			var heightPage = j$(window).height();
+  			var heightModal = j$('#add-curricula').height();
+  			if(heightModal+320>heightPage){
+  				j$('#sclWinCurricula').css('height',heightPage-250+'px');
+  			}
+    	});
+
+		function ValidateTime(value) {
+			var x = parseInt(value, 0);
+			//BGR 03252015 Ensure time is 1-500
+			if (value.length > 0 && (isNaN(x) || x < 1 || x >= 500)) {
+				alert('Time value should be numeric between 1-500');
+				return false;
+			}
+		}
+		function ValidateLen(value) {
+			if (value.length > 255)
+			//BGR 03252015 field len is only 255 in the managed app which we cant control
+			{
+				alert('Skills or Comments can not be longer than 255 characters. Extra characters will be removed. Length: ' + value.length);
+				return false;
+			}
+		}
+	</script>
+
+	<apex:actionFunction name="startAddСurriculaJS" action="{!startAddCurricula}" status="loadExit" onComplete="checkDisabled(); if(j$('.errorM3','.primaryErrorPanel').size() == 0){openModal('#curricula_modal'); resetWindowSize();}" rerender="curriculaPanel, messages"/>
+	<apex:actionFunction name="startEditСurriculaJS" action="{!startEditCurricula}" status="loadExit" onComplete="checkDisabled(); if(j$('.errorM3','.primaryErrorPanel').size() == 0){openModal('#curricula_modal'); resetWindowSize();}" rerender="curriculaPanel, messages">
+		<apex:param value="" assignTo="{!curriculumId}" name="curriculumId"/>
+	</apex:actionFunction>
+	<apex:actionFunction name="saveСurriculaJS" action="{!saveCurricula}" status="loadExit" onComplete="if(j$('.errorM3','.primaryErrorPanel').size() == 0){close_modal('#add-curricula');}isSaving=false; checkDisabled();" rerender="studentTable, curriculaPanel, addСurriculaMessages, messages"/>	
+
+</apex:component>

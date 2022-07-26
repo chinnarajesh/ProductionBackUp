@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>CUST_NAME</field>
+    </columns>
+    <columns>
+        <field>Course__c.Name_Spanish__c</field>
+    </columns>
+    <columns>
+        <field>Course__c.Course_Notes__c</field>
+    </columns>
+    <columns>
+        <field>Course__c.Credits__c</field>
+    </columns>
+    <columns>
+        <field>Course__c.Subject_Area__c</field>
+    </columns>
+    <columns>
+        <field>Course__c.Course_Number__c</field>
+    </columns>
+    <columns>
+        <field>Course__c.Course_Weighting_Records__c</field>
+    </columns>
+    <columns>
+        <field>Course__c.Credit_Hours__c</field>
+    </columns>
+    <columns>
+        <field>Course__c.Description__c</field>
+    </columns>
+    <columns>
+        <field>Course__c.Department__c</field>
+    </columns>
+    <columns>
+        <field>Course__c.GPA_Added_Value_Points__c</field>
+    </columns>
+    <columns>
+        <field>Course__c.Grade_Scale__c</field>
+    </columns>
+    <description>What are the details of the courses in my school?</description>
+    <format>Tabular</format>
+    <name>Course Detail Report</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CustomEntity$Course__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>false</showGrandTotal>
+    <showSubTotals>false</showSubTotals>
+    <sortColumn>CUST_NAME</sortColumn>
+    <sortOrder>Asc</sortOrder>
+    <timeFrameFilter>
+        <dateColumn>CUST_CREATED_DATE</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

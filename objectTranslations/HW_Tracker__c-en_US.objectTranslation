@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Homework</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Homework</value>
+    </caseValues>
+    <fields>
+        <label><!-- Comments --></label>
+        <name>Comments__c</name>
+    </fields>
+    <fields>
+        <label><!-- Due Date --></label>
+        <name>Due_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Extension Date --></label>
+        <name>Extension_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- External Id --></label>
+        <name>External_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- HW Missed Date --></label>
+        <name>HW_Missed_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- HW Status --></label>
+        <name>HW_Status__c</name>
+        <picklistValues>
+            <masterLabel>Abs When Due</masterLabel>
+            <translation><!-- Abs When Due --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Abs When Given</masterLabel>
+            <translation><!-- Abs When Given --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Complete</masterLabel>
+            <translation><!-- Complete --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Counts On Time</masterLabel>
+            <translation><!-- Counts On Time --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Exempt</masterLabel>
+            <translation><!-- Exempt --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Extension</masterLabel>
+            <translation><!-- Extension --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Extension Con&apos;t</masterLabel>
+            <translation><!-- Extension Con&apos;t --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Inc. Sentences</masterLabel>
+            <translation><!-- Inc. Sentences --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No Homework</masterLabel>
+            <translation><!-- No Homework --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No Work</masterLabel>
+            <translation><!-- No Work --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Not Signed</masterLabel>
+            <translation><!-- Not Signed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Poor Quality</masterLabel>
+            <translation><!-- Poor Quality --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Poor Rdng Log</masterLabel>
+            <translation><!-- Poor Rdng Log --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Flag to determine if a missed HW is considered Late or Missing --></help>
+        <label><!-- Late or Missing --></label>
+        <name>Late_or_Missing__c</name>
+    </fields>
+    <fields>
+        <label><!-- First Notification Required? --></label>
+        <name>Notification_Required__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>Picklist_Value__c</name>
+        <relationshipLabel><!-- Homework --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Did Parent/Guardian of this Student receive the an Alert? --></help>
+        <label><!-- Received Today&apos;s Alert? --></label>
+        <name>Received_First_Alert__c</name>
+    </fields>
+    <fields>
+        <label><!-- Responsibility Center --></label>
+        <name>Responsibility_Center__c</name>
+    </fields>
+    <fields>
+        <label><!-- Second Notification Required? --></label>
+        <name>Second_Notification_Required__c</name>
+    </fields>
+    <fields>
+        <label><!-- Section Name --></label>
+        <name>Section_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status Read Only --></label>
+        <name>Status_Read_Only__c</name>
+    </fields>
+    <fields>
+        <label><!-- Student/Section --></label>
+        <name>Student_Section__c</name>
+        <relationshipLabel><!-- Homework --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Student --></label>
+        <name>Student__c</name>
+        <relationshipLabel><!-- Homework --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Reporting Period --></label>
+        <name>Time__c</name>
+        <relationshipLabel><!-- Homework --></relationshipLabel>
+    </fields>
+    <layouts>
+        <layout>Homework Tracker Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

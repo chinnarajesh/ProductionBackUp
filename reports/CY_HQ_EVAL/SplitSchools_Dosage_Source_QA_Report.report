@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <buckets>
+        <bucketType>number</bucketType>
+        <developerName>BucketField_18818911</developerName>
+        <masterLabel>Dosage Category</masterLabel>
+        <nullTreatment>n</nullTreatment>
+        <sourceColumnName>Program__c.Sections__r.Student_Section__r$Dosage_to_Date_hrs__c</sourceColumnName>
+        <useOther>false</useOther>
+        <values>
+            <sourceValues>
+                <to>0</to>
+            </sourceValues>
+            <value>0 hours</value>
+        </values>
+        <values>
+            <sourceValues>
+                <from>0</from>
+                <to>4.99</to>
+            </sourceValues>
+            <value>0-4.99 hours</value>
+        </values>
+        <values>
+            <sourceValues>
+                <from>4.99</from>
+                <to>9.99</to>
+            </sourceValues>
+            <value>5-9.99 hours</value>
+        </values>
+        <values>
+            <sourceValues>
+                <from>9.99</from>
+                <to>14.99</to>
+            </sourceValues>
+            <value>10-14.99 hours</value>
+        </values>
+        <values>
+            <sourceValues>
+                <from>14.99</from>
+                <to>19.99</to>
+            </sourceValues>
+            <value>15-19.99 hours</value>
+        </values>
+        <values>
+            <sourceValues>
+                <from>19.99</from>
+                <to>24.99</to>
+            </sourceValues>
+            <value>20-24.99 hours</value>
+        </values>
+        <values>
+            <sourceValues>
+                <from>24.99</from>
+                <to>29.99</to>
+            </sourceValues>
+            <value>25-29.99 hours</value>
+        </values>
+        <values>
+            <sourceValues>
+                <from>29.99</from>
+            </sourceValues>
+            <value>More than 30 hours</value>
+        </values>
+    </buckets>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>Program__c.Sections__r.Student_Section__r$Student__c.Count__c</field>
+    </columns>
+    <columns>
+        <field>Program__c.Sections__r.Student_Section__r$Dosage_to_Date__c</field>
+    </columns>
+    <columns>
+        <field>Program__c.Sections__r.Student_Section__r$Dosage_to_Date_hrs__c</field>
+    </columns>
+    <columns>
+        <field>Program__c.Sections__r.Student_Section__r$Student__c.Id</field>
+    </columns>
+    <columns>
+        <field>Program__c.Sections__r.Student_Section__r$Student__c.Student_Id__c</field>
+    </columns>
+    <columns>
+        <field>Program__c.Sections__r.Student_Section__r$Student_Name__c</field>
+    </columns>
+    <columns>
+        <field>Program__c$Name</field>
+    </columns>
+    <columns>
+        <field>Program__c.Sections__r$Intervention_Primary_Staff__c</field>
+    </columns>
+    <columns>
+        <field>Program__c.Sections__r$Name</field>
+    </columns>
+    <description>Use this to QA dosage at split schools for monthly impact reports</description>
+    <filter>
+        <criteriaItems>
+            <column>Program__c$Indicator_Area__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>contains</operator>
+            <value>attendance,behavior,ELA,math</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Program__c.Sections__r.Student_Section__r$Location__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>notEqual</operator>
+            <value></value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Program__c.Sections__r$School__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>Aptitude Community at Goss ES,Rosa Parks K-8 School,Father Keith B. Kenny,Curley K-8,Sarah Greenwood K-8,Mildred Ave K-8 School,Higginson Lewis K-8 School,Orchard Gardens,McKay K-8 School,Hennigan Elementary School,Trotter Elementary School,Condon Elementary School,PS 96M,PS- MS 57M</value>
+        </criteriaItems>
+    </filter>
+    <format>Matrix</format>
+    <groupingsAcross>
+        <dateGranularity>Day</dateGranularity>
+        <field>Program__c$Indicator_Area__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsAcross>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Program__c.Sections__r.Student_Section__r$School__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>BucketField_18818911</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>SplitSchools Dosage Source QA Report</name>
+    <params>
+        <name>co</name>
+        <value>0</value>
+    </params>
+    <reportType>Programs_Sections_Students__c</reportType>
+    <scope>organization</scope>
+    <showDetails>false</showDetails>
+    <showGrandTotal>false</showGrandTotal>
+    <showSubTotals>false</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>Program__c.Sections__r.Student_Section__r$CreatedDate</dateColumn>
+        <interval>INTERVAL_CURFY</interval>
+    </timeFrameFilter>
+</Report>

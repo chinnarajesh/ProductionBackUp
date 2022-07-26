@@ -1,0 +1,160 @@
+<apex:component >
+
+<style>
+	.breadcrumb { 
+		list-style: none; 
+		overflow: hidden; 
+		font: 14px;
+	}
+	.breadcrumb li { 
+		float: left;
+		margin-right:1px; 
+		margin-left:2px;
+		margin-top:2px;
+		margin-bottom:2px;
+		
+	}
+	.breadcrumb li a {
+		color: white;
+		text-decoration: none; 
+		padding: 10px 10px 10px 25px;
+		background: green;                   /* fallback color */
+		background: hsla(97,55%,55%,1); 
+		position: relative; 
+		display: block;
+		float: left;
+	}
+	.breadcrumb li a:after { 
+		content: " "; 
+		display: block; 
+		width: 0; 
+		height: 0;
+		border-top: 19px solid transparent;           /* Go big on the size, and let overflow hide */
+		border-bottom: 19px solid transparent;
+		border-left: 19px solid hsla(97,55%,55%,1);
+		position: absolute;
+		top: 50%;
+		margin-top: -19px; 
+		left: 100%;
+		z-index: 2; 
+	}	
+	.breadcrumb li a:before { 
+		content: " "; 
+		display: block; 
+		width: 0; 
+		height: 0;
+		border-top: 19px solid transparent;       
+		border-bottom: 19px solid transparent;
+		border-left: 19px solid white;
+		position: absolute;
+		top: 50%;
+		margin-top: -19px; 
+		margin-left: 1px;
+		left: 100%;
+		z-index: 1; 
+	}
+
+	.breadcrumb li:nth-child a       { background:        hsla(97,55%,55%,1);}
+	.breadcrumb li:nth-child a:after { border-left-color: hsla(97,55%,55%,1);}
+
+	.breadcrumb li:last-child a 		{ background:		 hsla(97,55%,55%,1);}
+	.breadcrumb li:last-child a:after 	{border-left-color:  hsla(97,55%,55%,1);}
+		
+	.breadcrumb li a:hover { background: hsla(97,35%,45%,1); }
+	.breadcrumb li a:hover:after { border-left-color: hsla(97,35%,45%,1); }	
+
+
+	.breadcrumb li a.disabledcrumb {background: hsla(57, 5%, 65%, 1) !important; pointer-events: none;}
+	.breadcrumb li a.disabledcrumb:after {border-left-color: hsla(57, 5%, 65%, 1) !important; pointer-events: none;}	
+	
+	.breadcrumb li a.oncrumb {background: hsla(54, 85%, 55%, 1); }
+	.breadcrumb li a.oncrumb:after {border-left-color: hsla(54, 85%, 55%, 1); }
+	
+	.breadcrumb li a.oncrumb:hover {background: hsla(54, 75%, 55%, 1); }
+	.breadcrumb li a.oncrumb:hover:after {border-left-color: hsla(54, 75%, 55%, 1); }
+
+
+
+	.schoolcrumb { 
+		list-style: none; 
+		overflow: hidden; 
+		font: 14px;
+	}
+	.schoolcrumb li { 
+		float: left;
+		margin-right:1px; 
+		margin-left:2px;
+		margin-top:2px;
+		margin-bottom:2px;
+		
+	}
+	.schoolcrumb li a {
+		color: white;
+		text-decoration: none; 
+		padding: 10px 10px 10px 25px;
+		background: green;                   /* fallback color */
+		background: hsla(97,55%,55%,1); 
+		position: relative; 
+		display: block;
+		float: left;
+	}
+	.schoolcrumb li a:after { 
+		content: " "; 
+		display: block; 
+		width: 0; 
+		height: 0;
+		border-top: 19px solid transparent;           /* Go big on the size, and let overflow hide */
+		border-bottom: 19px solid transparent;
+		border-left: 19px solid hsla(97,55%,55%,1);
+		position: absolute;
+		top: 50%;
+		margin-top: -19px; 
+		left: 100%;
+		z-index: 2; 
+	}	
+	.schoolcrumb li a:before { 
+		content: " "; 
+		display: block; 
+		width: 0; 
+		height: 0;
+		border-top: 19px solid transparent;       
+		border-bottom: 19px solid transparent;
+		border-left: 19px solid white;
+		position: absolute;
+		top: 50%;
+		margin-top: -19px; 
+		margin-left: 1px;
+		left: 100%;
+		z-index: 1; 
+	}
+
+	.schoolcrumb li:first-child a {
+		background: #848484;
+		pointer-events: none;
+	}
+	.schoolcrumb li:first-child a:after {
+		border-left-color: #848484;
+		pointer-events: none;
+	}	
+	.schoolcrumb li:nth-child a       { background:        hsla(97,55%,55%,1);}
+	.schoolcrumb li:nth-child a:after { border-left-color: hsla(97,55%,55%,1);}
+
+	.schoolcrumb li:last-child a 		{ background:		 hsla(97,55%,55%,1);}
+	.schoolcrumb li:last-child a:after 	{border-left-color:  hsla(97,55%,55%,1);}
+		
+	.schoolcrumb li a:hover { background: hsla(97,35%,45%,1); }
+	.schoolcrumb li a:hover:after { border-left-color: hsla(97,35%,45%,1); }	
+
+
+	.schoolcrumb li a.disabledcrumb {background: hsla(57, 5%, 65%, 1) !important; pointer-events: none;}
+	.schoolcrumb li a.disabledcrumb:after {border-left-color: hsla(57, 5%, 65%, 1) !important; pointer-events: none;}	
+	
+	.schoolcrumb li a.oncrumb {background: hsla(54, 85%, 55%, 1); }
+	.schoolcrumb li a.oncrumb:after {border-left-color: hsla(54, 85%, 55%, 1); }
+	
+	.schoolcrumb li a.oncrumb:hover {background: hsla(54, 75%, 55%, 1); }
+	.schoolcrumb li a.oncrumb:hover:after {border-left-color: hsla(54, 75%, 55%, 1); }
+
+</style>
+
+</apex:component>

@@ -1,0 +1,471 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>The Intervention Session object captures that an Intervention Section met on a particular day. The outcome of the session is attached to the Intervention Session record.</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableEnhancedLookup>false</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ControlledByParent</externalSharingModel>
+    <fields>
+        <fullName>All_avenues__c</fullName>
+        <externalId>false</externalId>
+        <label>All avenues</label>
+        <required>true</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>In-Person Service</fullName>
+                    <default>false</default>
+                    <label>In-Person Service</label>
+                </value>
+                <value>
+                    <fullName>Virtual Service</fullName>
+                    <default>false</default>
+                    <label>Virtual Service</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Comments__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Are there any additional comments for this Intervention Session?</inlineHelpText>
+        <label>Add&apos;l Comments for Session</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Date__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>What was the date that this Intervention Session took place?</inlineHelpText>
+        <label>Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>ISR_Count__c</fullName>
+        <externalId>false</externalId>
+        <label>ISR Count</label>
+        <summaryForeignKey>Intervention_Session_Result__c.Intervention_Session__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Month_of_Year__c</fullName>
+        <description>Month of the Year the Intervention Session occurred.</description>
+        <externalId>false</externalId>
+        <formula>MONTH(Date__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Month of Year</inlineHelpText>
+        <label>MOY</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Section__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>This field connects the Intervention Session record to the correct intervention Section.</inlineHelpText>
+        <label>Section</label>
+        <referenceTo>Section__c</referenceTo>
+        <relationshipLabel>Intervention Sessions</relationshipLabel>
+        <relationshipName>Intervention_Sessions</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Session_Format__c</fullName>
+        <externalId>false</externalId>
+        <label>Session Format</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Push In</fullName>
+                    <default>false</default>
+                    <label>Push In</label>
+                </value>
+                <value>
+                    <fullName>Pull Out</fullName>
+                    <default>false</default>
+                    <label>Pull Out</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Session_Time_Completed_For__c</fullName>
+        <deleteConstraint>Restrict</deleteConstraint>
+        <externalId>false</externalId>
+        <inlineHelpText>Who was the staff member that led the Intervention Section? This field allows a user to enter Session time on behalf of another user.</inlineHelpText>
+        <label>Session Time Completed For</label>
+        <referenceTo>Staff__c</referenceTo>
+        <relationshipLabel>Intervention Sessions</relationshipLabel>
+        <relationshipName>Intervention_Sessions</relationshipName>
+        <required>true</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Session_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Session Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>1:1</fullName>
+                    <default>false</default>
+                    <label>1:1</label>
+                </value>
+                <value>
+                    <fullName>Small Group</fullName>
+                    <default>false</default>
+                    <label>Small Group</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Site_Details__c</fullName>
+        <externalId>false</externalId>
+        <label>Site Details</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Skill_Primary__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Primary Skill</label>
+        <referenceTo>Skill__c</referenceTo>
+        <relationshipLabel>Intervention Sessions</relationshipLabel>
+        <relationshipName>Intervention_Sessions</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Skills_Covered_for_the_Session__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>What specific skills were covered in this Intervention Session?</inlineHelpText>
+        <label>Other Skills</label>
+        <length>2000</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Skills__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>What specific skills were covered in this Intervention Session?</inlineHelpText>
+        <label>Skills Covered for the Session</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Tutoring_Model__c</fullName>
+        <externalId>false</externalId>
+        <label>Tutoring Model</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Catch Up</fullName>
+                    <default>false</default>
+                    <label>Catch Up</label>
+                </value>
+                <value>
+                    <fullName>Keep Up</fullName>
+                    <default>false</default>
+                    <label>Keep Up</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Week_of_Year__c</fullName>
+        <description>Week of the year the intervention section occurred on</description>
+        <externalId>false</externalId>
+        <formula>MOD(FLOOR( (Date__c - DATEVALUE(&quot;2006-01-01&quot; ))/7),52)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Week of the year the intervention section occurred on</inlineHelpText>
+        <label>WOY</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <label>Intervention Session</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Date__c</columns>
+        <columns>Section__c</columns>
+        <columns>Session_Time_Completed_For__c</columns>
+        <columns>Skills__c</columns>
+        <columns>Comments__c</columns>
+        <columns>CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <listViews>
+        <fullName>All1</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <displayFormat>IS-{000000}</displayFormat>
+        <label>Inter. Session ID</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Intervention Sessions</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>Date__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Section__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Session_Time_Completed_For__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Skills__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Comments__c</customTabListAdditionalFields>
+        <excludedStandardButtons>New</excludedStandardButtons>
+        <excludedStandardButtons>ChangeOwner</excludedStandardButtons>
+        <excludedStandardButtons>Accept</excludedStandardButtons>
+        <lookupDialogsAdditionalFields>Date__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Section__c</lookupDialogsAdditionalFields>
+        <searchResultsAdditionalFields>Date__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Section__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Session_Time_Completed_For__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Skills__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ControlledByParent</sharingModel>
+    <validationRules>
+        <fullName>Date_range_in_section</fullName>
+        <active>true</active>
+        <errorConditionFormula>OR( Date__c &lt; Section__r.Start_Date__c, Date__c &gt; Section__r.End_Date__c )</errorConditionFormula>
+        <errorDisplayField>Date__c</errorDisplayField>
+        <errorMessage>Date should be within the start and end of the section.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Date_required</fullName>
+        <active>true</active>
+        <errorConditionFormula>ISNULL( Date__c)</errorConditionFormula>
+        <errorMessage>Date can&apos;t be empty</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Dosage_denied</fullName>
+        <active>true</active>
+        <errorConditionFormula>Section__r.Account_Program__r.Program__r.SkipDosage__c</errorConditionFormula>
+        <errorMessage>This program does not allow dosage to be logged</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Skill_Category_Check</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND( NOT(ISBLANK(Skill_Primary__c)), IF(Section__r.Account_Program__r.Program__r.Name == &apos;Tutoring: Math&apos;, TEXT(Skill_Primary__r.Category__c) &lt;&gt; &apos;Math&apos;, 
+IF(Section__r.Account_Program__r.Program__r.Name == &apos;Tutoring: Literacy&apos;, TEXT(Skill_Primary__r.Category__c) &lt;&gt; &apos;Literacy&apos;,
+TEXT(Skill_Primary__r.Category__c) &lt;&gt; &apos;SEL/Behavior and Attendance Interventions&apos;)))</errorConditionFormula>
+        <errorDisplayField>Skill_Primary__c</errorDisplayField>
+        <errorMessage>Skill category should be match</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Validation_Curriculum</fullName>
+        <active>true</active>
+        <errorConditionFormula>Section__r.RecordType.Name == &apos;Curriculum&apos; ||  ISPICKVAL(Section__r.In_After_School__c, &apos;Curriculum&apos;)</errorConditionFormula>
+        <errorMessage>This is a curriculum section and is unable to add dosage.</errorMessage>
+    </validationRules>
+    <visibility>Public</visibility>
+</CustomObject>

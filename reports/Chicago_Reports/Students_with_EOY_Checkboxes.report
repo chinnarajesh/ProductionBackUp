@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Student__c$Name</field>
+    </columns>
+    <columns>
+        <field>Student__c$Intent_to_Return_Following_Year__c</field>
+    </columns>
+    <columns>
+        <field>Student__c$Promoted__c</field>
+    </columns>
+    <columns>
+        <field>Student__c$Eligible_For_Enrollment__c</field>
+    </columns>
+    <columns>
+        <field>Student__c$Created_Next_Year_Student__c</field>
+    </columns>
+    <columns>
+        <field>Student__c$Next_School__c</field>
+    </columns>
+    <description>Which students have I updated for EOY processing?</description>
+    <filter>
+        <criteriaItems>
+            <column>Student__c$Active__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>1</value>
+        </criteriaItems>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Student__c$Grade__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Students with EOY Checkboxes</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Students__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>false</showGrandTotal>
+    <showSubTotals>false</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>Student__c$CreatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

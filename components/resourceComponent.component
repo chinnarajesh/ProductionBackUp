@@ -1,0 +1,332 @@
+<apex:component >
+	<apex:attribute name="bLoadingPanel" description="Boolean to indicate whether loadingPanel component should be included" type="boolean" required="false"/>
+
+	<apex:stylesheet value="{!$Resource.New_Core_UX}" />
+	<apex:stylesheet value="{!URLFOR($Resource.schoolforce_demo_page, '/css/style.css')}" />
+	<apex:stylesheet value="{!URLFOR($Resource.Style_Bundle, 'css/style.css')}"/>
+	
+	<style>
+		.pbBody {
+			padding-top: 0px !important;
+		}
+		
+		table.list {
+			margin-top: 0px !important;
+		}
+		.no-border table{
+			border: 0px !important;
+			margin: 0px !important;
+			width: auto !important;
+		}
+		.no-border table tr:hover{
+			text-decoration: none !important;
+		}
+		.no-border table td{
+			vertical-align: middle;
+		}
+	
+	.adminSummary{
+		display:block;
+	}
+	.childSummary{
+		margin: 18px;
+	}
+	.helpText {
+		z-index:11001;
+	}
+	</style>
+	
+	<c:jQueryInit bDataTables="true" bLoadingPanel="{!bLoadingPanel}" />
+	<script type="text/javascript" src="{!URLFOR($Resource.Style_Bundle, '/js/jquery.leanModal.min.js')}"></script>
+	<script type="text/javascript" src="{!URLFOR($Resource.Style_Bundle, '/js/jquery.tsort.js')}"></script>
+	
+	<!-- JAVASCRIPT -->
+	<script type="text/javascript" >
+		j$ = jQuery.noConflict();
+		var isSaving = false;
+		function getRow(row) {
+			var cell = row.getElementsByTagName("td")[0];
+			var cell2 = row.getElementsByTagName("td")[1];
+			var id = cell.innerHTML;
+			var name = cell2.innerHTML;
+			return id;
+		}
+	
+		function grabHighlighted(elementId){
+			var table = document.getElementById(elementId);
+			var ids="";
+			var highlight = '#acacac';
+			var rows = table.getElementsByTagName("tr");
+			for (i = 0; i < rows.length; i++) {
+				var currentRow = table.rows[i];
+				if(currentRow.bgColor == highlight) {
+					var id = currentRow.id;
+					ids += id+';';
+				}
+			}
+			//alert(ids);
+			return ids;
+		}
+	
+		function highlightRow(obj) {
+			var row = obj;
+			if(row.bgColor == '#acacac'){
+				row.bgColor = '#ffffff';
+				return false;
+			}
+			else { 
+				row.bgColor = '#acacac';
+				return true;
+			}
+		}
+		
+		function toggleRow(obj,bool) {
+			var row = obj;
+			if(!bool){
+				row.bgColor = '#ffffff';
+			}
+			else { 
+				row.bgColor = '#acacac';
+			}
+		}
+		
+		function filterName(query, tableID) {
+			var val = query.value.toLowerCase();
+			var table = document.getElementById(tableID);
+			for (i = 1; i < table.rows.length; i++) {
+				toggleRow(table.rows[i],false);
+				var cell = table.rows[i].cells[1];
+				var name = cell.innerHTML;
+				if(val == "" || name.toLowerCase().indexOf(val) >-1 ) {
+					table.rows[i].style.display = '';
+				}
+				else table.rows[i].style.display ='none';
+			}
+		}
+		
+		function filterTable(selectBox, tableId, index){
+			var table = document.getElementById(tableId);
+			var siteFilter = selectBox.options[selectBox.selectedIndex].value;
+			for (i = 0; i < table.rows.length; i++){
+				var cell = table.rows[i].cells[index];
+				var name = j$.trim(cell.innerHTML);
+				if(siteFilter == "All" || siteFilter==name) {
+					console.log('showing '+i+': ' +siteFilter+'=='+name);
+					table.rows[i].style.display = '';
+				} else{
+					table.rows[i].style.display ='none';
+					console.log('hiding '+i+': '+siteFilter+'!='+name);
+				}
+			}
+		}
+	
+		function highlightAllRows(elementName, checkBox) {
+			var table = document.getElementById(elementName)
+			var check = checkBox;
+			var rows = table.getElementsByTagName("tr");
+			for (i = 1; i < rows.length; i++) {
+				var row = table.rows[i];
+				var isChecked = (check.checked && row.style.display != 'none')?true:false;
+				toggleRow(row,isChecked);
+				check
+			}
+		}
+	
+		function toggleAllChecks(checkBox,elementName) {
+			var table = document.getElementById(elementName);
+			var isChecked = checkBox.checked;
+			for (i = 1; i < table.rows.length; i++) {
+				var row = table.rows[i];
+				if(row.cells[1].children[0].disabled != true)
+					row.cells[1].children[0].checked = isChecked;
+			}
+		}
+
+		function selectAllCheckboxes(obj,InputID){
+			var inputCheckBox = document.getElementsByTagName("input");
+			for(var i=0; i<inputCheckBox.length; i++){
+				if(inputCheckBox[i].id.indexOf(InputID)!=-1){
+					inputCheckBox[i].checked = obj.checked;
+				}
+			}
+		}
+		
+		j$(document).ready(function () {
+			var isMouseDown = false,
+					isHighlighted;
+			j$(document).delegate(".table_row","mousedown mouseover",function (event) {
+				if(event.type=="mousedown"){
+					isMouseDown = true;
+					isHighlighted = highlightRow(this);
+					return false; // prevent text selection
+				}
+				else if(event.type=="mouseover") {
+					if (isMouseDown) {
+						toggleRow(this,isHighlighted);
+					}
+				}
+			});
+			j$(".table_row").bind("selectstart", function () {
+				return false;
+			});
+			j$(document).mouseup(function () {
+				isMouseDown = false;
+			});
+		});
+	</script>
+	
+	<script type="text/javascript">
+		function checkSkills(skillsElement) {
+			var skills = document.getElementById(skillsElement).value;
+			if(skills == null || skills == "") {
+				return true;
+			} else return false;
+		}
+		function checkDosage(dosageElement,checkNull) {
+			var dosage = document.getElementById(dosageElement).value;
+			CITY.floatComp	=	parseFloat(dosage);
+			CITY.integerComp	=	parseInt(dosage);
+			if(checkNull){
+				if(CITY.floatComp !== CITY.integerComp || isNaN(dosage) || dosage < 0 || dosage >= 500){
+					return true;
+				}
+				else{
+					return false;
+				}
+			} else {
+				if(dosage!=null && dosage!='' && (CITY.floatComp !== CITY.integerComp || isNaN(dosage) || dosage < 0 || dosage >= 500)){
+					return true;
+				}
+				else{
+					return false;
+				}
+			}
+		}
+		
+		function convertDate(dateString){
+			var newDate = new Date(dateString);
+			// adjust dates for time zones, make sure date doesn't change due to different time zones
+			return new Date(newDate.getTime() + newDate.getTimezoneOffset()*60000);
+		}
+		
+		function checkDate(dateElement,errorElement) {
+			var enteredDate = document.getElementById(dateElement).value;
+			var isError = false;
+			if(enteredDate == null || enteredDate == "") {
+				isError= true;
+				j$(errorElement).text('Session Date cannot be empty.');
+			} else {
+				var dosageToEnter = new Date(enteredDate);
+				var todayDate = new Date();
+				if(CITY.studEnrollDate != null && dosageToEnter < CITY.studEnrollDate){
+					j$(errorElement).text('Session Date cannot before a student\'s enrollment date into the section.');
+					isError=true;
+				}
+				else if(dosageToEnter > CITY.sectionEndDate){
+					j$(errorElement).text('Session Date cannot occur after the section end date.');
+					isError = true;		
+				} else if(dosageToEnter < CITY.sectionStartDate){
+					j$(errorElement).text('Session Date cannot occur before the section start date.');
+					isError = true;
+				} else if(dosageToEnter > todayDate ){
+					j$(errorElement).text('Session Date cannot be for future dates.');
+					isError = true;			
+				} // end if
+			}
+			return isError
+		}
+	</script>
+	
+	<script type="text/javascript">
+		j$(function() {
+			j$('a[rel*=leanModal]').leanModal({top: 100, closeButton: ".modal_close" });
+		});
+		
+		j$(function() { 
+			var modal;
+			var drag = {
+				elem: null,
+				x: 0,
+				y: 0,
+				state: false
+			};
+			var delta = {
+				x: 0,
+				y: 0
+			};
+			j$(".modal-top").mousedown(function(e){
+				modal = j$(this).parent(".modal_window");
+				if (!drag.state) {
+					drag.elem = modal;
+					drag.x = e.pageX;
+					drag.y = e.pageY;
+					drag.state = true;
+				}
+				return false;
+			});
+			
+			
+			j$(document).mousemove(function(e) {
+				if (drag.state) {
+					delta.x = e.pageX - drag.x;
+					delta.y = e.pageY - drag.y;
+			
+					var cur_offset = j$(drag.elem).offset();
+					var doOffset = true;
+					var modalWidth = parseInt(j$(drag.elem).css('width'));
+					var modalHeight = parseInt(j$(drag.elem).css('height'));
+					if(cur_offset.left + delta.x < 0 || cur_offset.top + delta.y < 0) doOffset = false;
+					if((cur_offset.left + delta.x)+ modalWidth > j$(window).width() || (cur_offset.top + delta.y)+modalHeight > j$(document).height() ) doOffset = false;
+				  
+					if(doOffset){
+						var top = e.pageY - j$(window).scrollTop();
+						j$(drag.elem).offset({
+							left: (cur_offset.left + delta.x),
+							top: (cur_offset.top + delta.y)
+						});
+					
+						drag.x = e.pageX;
+						drag.y = e.pageY;
+					}
+				}
+			});
+			
+			 j$(document).mouseup(function(){
+				 if (drag.state) {
+					drag.state = false;
+				}
+			});
+		});
+		
+		function close_modal(modal_id){
+			if(j$(".modal_window:visible").size() > 1){
+				var highestModal;
+				j$(".modal_window:visible").each(function() {
+					console.log(highestModal);
+					console.log(j$(this).zIndex());
+					console.log(j$(this).attr('id'));
+					var thisModalId = '#'+j$(this).attr('id');
+					if(highestModal === undefined || (highestModal < j$(this).zIndex() && thisModalId != modal_id)){
+						highestModal = j$(this).zIndex();
+					}
+				});
+				j$("#lean_overlay").zIndex(highestModal-100);
+			} else {
+				j$("#lean_overlay").fadeOut(200);
+				j$("#lean_overlay").css('display','none');
+			}
+			
+			j$(modal_id).css({ 'display' : 'none' });
+			console.log(modal_id);
+		}
+
+		function closeModal(modal_id){
+			close_modal(modal_id);
+		}
+
+		function openModal(openLinkID){
+			j$('#lean_overlay').css("z-index",100);
+			j$(openLinkID).click();
+		}
+	</script>
+</apex:component>

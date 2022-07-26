@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Notification</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Notifications</value>
+    </caseValues>
+    <fields>
+        <help><!-- Denotes if this notification tracking record tracks Daily Attendance or Section Attendance --></help>
+        <label><!-- Daily Tracking --></label>
+        <name>Daily_Tracking__c</name>
+    </fields>
+    <fields>
+        <label><!-- End Date --></label>
+        <name>End_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- External Id --></label>
+        <name>External_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Grade --></label>
+        <name>Grade__c</name>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>10</masterLabel>
+            <translation><!-- 10 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>11</masterLabel>
+            <translation><!-- 11 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>12</masterLabel>
+            <translation><!-- 12 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2</masterLabel>
+            <translation><!-- 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3</masterLabel>
+            <translation><!-- 3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4</masterLabel>
+            <translation><!-- 4 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5</masterLabel>
+            <translation><!-- 5 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>6</masterLabel>
+            <translation><!-- 6 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7</masterLabel>
+            <translation><!-- 7 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>8</masterLabel>
+            <translation><!-- 8 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>9</masterLabel>
+            <translation><!-- 9 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Kindergarten</masterLabel>
+            <translation><!-- Kindergarten --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PK-3</masterLabel>
+            <translation><!-- PK-3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PK-4</masterLabel>
+            <translation><!-- PK-4 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Module --></label>
+        <name>Module__c</name>
+        <picklistValues>
+            <masterLabel>Attendance</masterLabel>
+            <translation><!-- Attendance --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Points</masterLabel>
+            <translation><!-- Points --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Does this notification record trigger parental notification? --></help>
+        <label><!-- Parental Notification? --></label>
+        <name>Parental_Notification__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>Picklist_Value__c</name>
+        <relationshipLabel><!-- Notifications --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Setup --></label>
+        <name>Setup__c</name>
+        <relationshipLabel><!-- Notifications --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Start Date --></label>
+        <name>Start_Date__c</name>
+    </fields>
+    <layouts>
+        <layout>Notification Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

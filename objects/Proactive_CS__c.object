@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <description>Proactive Conversion Values</description>
+    <enableEnhancedLookup>false</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>Name_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Name Type</label>
+        <length>50</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Proactive_Attendance_Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Proactive Attendance Status</label>
+        <length>20</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Proactive_Attendance_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Proactive Attendance Type</label>
+        <length>20</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Proactive_PG_Relationship__c</fullName>
+        <description>P/G Proactive conversion Value</description>
+        <externalId>false</externalId>
+        <inlineHelpText>P/G Proactive conversion Value</inlineHelpText>
+        <label>Proactive P/G Relationship</label>
+        <length>4</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Proactive_SPED_School__c</fullName>
+        <externalId>false</externalId>
+        <label>Proactive SPED School</label>
+        <length>10</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Proactive_Student_Entry__c</fullName>
+        <externalId>false</externalId>
+        <label>Proactive Student Entry</label>
+        <length>4</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Proactive_Student_Exit__c</fullName>
+        <externalId>false</externalId>
+        <label>Proactive Student Exit</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Proactive_TitleI__c</fullName>
+        <externalId>false</externalId>
+        <label>Proactive TitleI</label>
+        <length>10</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SF_Attendance_Status__c</fullName>
+        <externalId>false</externalId>
+        <label>SF Attendance Status</label>
+        <length>100</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SF_Attendance_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>SF Attendance Type</label>
+        <length>100</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SF_PG_Relationship__c</fullName>
+        <description>SF Value for PG Relationship</description>
+        <externalId>false</externalId>
+        <inlineHelpText>SF Value for PG Relationship</inlineHelpText>
+        <label>SF P/G Relationship</label>
+        <length>50</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SF_SPED_School__c</fullName>
+        <externalId>false</externalId>
+        <label>SF SPED School</label>
+        <length>100</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SF_Student_Entry__c</fullName>
+        <externalId>false</externalId>
+        <label>SF Student Entry</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SF_Student_Exit__c</fullName>
+        <externalId>false</externalId>
+        <label>SF Student Exit</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SF_TitleI__c</fullName>
+        <externalId>false</externalId>
+        <label>SF TitleI</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Student_Exit_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Student Exit Type</label>
+        <length>50</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Proactive Attendance/Demographics</label>
+    <visibility>Public</visibility>
+</CustomObject>

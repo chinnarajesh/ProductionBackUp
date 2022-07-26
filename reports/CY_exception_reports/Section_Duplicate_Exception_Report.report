@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Section__c$Name</field>
+    </columns>
+    <columns>
+        <field>Section__c$Start_Date__c</field>
+    </columns>
+    <columns>
+        <field>Section__c$End_Date__c</field>
+    </columns>
+    <columns>
+        <field>Section__c$Location__c</field>
+    </columns>
+    <description>This report summarizes based Primary Point Person and dates to help show duplicates</description>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Section__c$Intervention_Primary_Staff__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Section__c$Program__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Section Duplicate Exception Report</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Sections__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>false</showGrandTotal>
+    <showSubTotals>false</showSubTotals>
+    <sortColumn>Section__c$Location__c</sortColumn>
+    <sortOrder>Asc</sortOrder>
+    <timeFrameFilter>
+        <dateColumn>Section__c$End_Date__c</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

@@ -1,0 +1,11 @@
+*REQ*Assignment Type Name
+Test
+Quiz
+Homework
+Project
+Classwork
+Assessment
+Extra Credit Assignment
+Reading Level
+Reading Log
+Final Exam

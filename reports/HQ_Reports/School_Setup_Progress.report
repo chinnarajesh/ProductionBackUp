@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Setup__c$Name</field>
+    </columns>
+    <columns>
+        <field>Setup__c$School__c</field>
+    </columns>
+    <columns>
+        <field>Setup__c$Configure_School_Term__c</field>
+    </columns>
+    <columns>
+        <field>Setup__c$Configure_Course_Catalog__c</field>
+    </columns>
+    <filter>
+        <criteriaItems>
+            <column>Setup__c$School__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>notContain</operator>
+            <value>zzz</value>
+        </criteriaItems>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Setup__c$School__c.Site__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>School Setup Progress</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Setups_with_Account_Site__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>false</showGrandTotal>
+    <showSubTotals>false</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>Setup__c$CreatedDate</dateColumn>
+        <interval>INTERVAL_CURFY</interval>
+    </timeFrameFilter>
+</Report>

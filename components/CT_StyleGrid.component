@@ -1,0 +1,101 @@
+<!-- 
+/******************************************************************************************************************
+*   Copyright ©2011 Acumen Solutions, Inc. All Rights Reserved.  This software and source code is proprietary to Acumen Solutions, Inc. ("Acumen") and is protected by copyright and other intellectual property laws.  
+*   This source code may only be used by an authorized licensee of Acumen and may only be used by such licensee in accordance with the terms and conditions of an executed license agreement between such licensee
+*   and Acumen (the "License Agreement").  This source code may not be reproduced, published, or disclosed to others except as provided in the License Agreement.  
+*
+* Description:
+* 
+* 
+*
+* Modification Log:
+* -----------------------------------------------------------------------------------------------------------------
+* Mod ID        |   Date        | Mod Author   		 | Brief Mod Description 
+* -----------------------------------------------------------------------------------------------------------------
+* 00001         |    			| Peter Nebel    	 | Initial code creation.
+* -----------------------------------------------------------------------------------------------------------------
+* 
+*
+*******************************************************************************************************************/
+-->
+<apex:component access="global">
+<style>
+
+
+#calendarHeader span {
+background: #47c8e2;
+-ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#47c8e2', endColorstr='#329bc9');
+background: -webkit-gradient(linear, left top, left bottom, from(#47c8e2), to(#329bc9));
+background: -moz-linear-gradient(top, #47c8e2, #329bc9);
+color: #444;
+border: solid 2px #FFFFFF;
+-webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .2);
+-moz-box-shadow: 0 1px 1px rgba(0, 0, 0, .2);
+box-shadow: 0 1px 1px rgba(0, 0, 0, .2);
+text-shadow: 0 1px 0 rgba(255, 255, 255, .8);
+
+font-weight: bold;
+color: #ffffff;
+text-decoration: none;
+display: block;
+padding: 8px 20px;
+margin: 0;
+-webkit-border-radius: .4em;
+-moz-border-radius: .4em;
+text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
+}
+
+.calendarHeadering, .headerStyle {
+background: #47c8e2;
+-ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#47c8e2', endColorstr='#329bc9');
+background: -webkit-gradient(linear, left top, left bottom, from(#47c8e2), to(#329bc9));
+background: -moz-linear-gradient(top, #47c8e2, #329bc9);
+color: #444;
+border: solid 2px #FFFFFF;
+-webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .2);
+-moz-box-shadow: 0 1px 1px rgba(0, 0, 0, .2);
+box-shadow: 0 1px 1px rgba(0, 0, 0, .2);
+text-shadow: 0 1px 0 rgba(255, 255, 255, .8);
+
+font-weight: bold;
+color: #ffffff;
+text-decoration: none;
+display: block;
+padding: 8px 20px;
+margin: 0;
+-webkit-border-radius: .4em;
+-moz-border-radius: .4em;
+text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
+}
+
+.connectedSortable {width:30px;height:43px; font-size:11px; font-weight:bold;}
+#templateHolder {border:2px solid #333; border-radius:3px; padding:6px; position:fixed; top:230px; right:30px;
+background-color:#fff;
+-ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e6f3f7', endColorstr='#cbe9f0');
+background: -webkit-gradient(linear, left top, left bottom, from(#e6f3f7), to(#cbe9f0));
+background: -moz-linear-gradient(top, #e6f3f7, #cbe9f0);
+} 
+#sidebarHolder {
+background-color:#fff;
+-ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e6f3f7', endColorstr='#cbe9f0');
+background: -webkit-gradient(linear, left top, left bottom, from(#e6f3f7), to(#cbe9f0));
+background: -moz-linear-gradient(top, #e6f3f7, #cbe9f0);
+}  
+.sched {
+margin-top:5px;
+}
+.header {
+-webkit-border-radius: 2px;
+-moz-border-radius: 2px;
+border:1px solid #329bc9;
+padding:3px;
+-webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .2);
+-moz-box-shadow: 0 1px 1px rgba(0, 0, 0, .2);
+box-shadow: 0 1px 1px rgba(0, 0, 0, .2);
+}
+
+
+
+</style>
+
+</apex:component>

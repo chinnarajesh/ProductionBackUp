@@ -1,0 +1,132 @@
+<apex:page controller="Gradebook_Controller_v2" sidebar="false" showheader="false" cache="true" contentType="application/vnd.ms-excel#GradebookExport.xls">
+
+	<apex:outputPanel id="theBlockPanel">
+		<table class="leftTable" id="leftTable" border="1">
+			<thead>
+				<apex:variable value="{!loadedSchoolSection.assignmentExportHeader}" var="ah" rendered="{!loadedSchoolSection.orderBy == 'assignment'}">
+					<tr class="header">
+						<th colspan="2">
+							<i>Assignments</i>
+						</th>
+						<apex:repeat value="{!ah}" var="assignment">
+							<th colspan="{!assignment.gradeList.size}">
+								<apex:outputText value="{!assignment.assignment.Name_in_Gradebook__c}" />
+							</th>
+						</apex:repeat>
+					</tr>
+					<tr class="header">
+						<th colspan="2">
+							<i>Standards</i>
+							<apex:repeat value="{!ah}" var="standard">
+								<apex:repeat value="{!standard.gradeList}" var="colGrade">
+									<th>
+										<apex:outputText value="{!colGrade.mainGrade.Standard__r.Name}"/>
+									</th>
+								</apex:repeat>
+							</apex:repeat>
+						</th>
+					</tr>
+					<tr class="header">
+						<th colspan="2">
+							<i>Due Date</i>
+						</th>
+						<apex:repeat value="{!ah}" var="dueDate">
+							<apex:repeat value="{!dueDate.gradeList}" var="colDate">
+								<th>
+									<apex:outputText value="{0,date,MM/dd}">
+										<apex:param value="{!colDate.mainGrade.Assignment__r.Due_Date__c}"/>
+									</apex:outputText>
+								</th>
+							</apex:repeat>
+						</apex:repeat>
+					</tr>
+					<tr class="header">
+						<th colspan="2">
+							<i>Student</i>
+						</th>
+
+					</tr>
+				</apex:variable>
+				
+				<apex:variable value="{!loadedSchoolSection.standardExportHeader}" var="sh" rendered="{!loadedSchoolSection.orderBy == 'standard'}">
+					<tr class='header'>
+						<th colspan="2">
+							<i>Standards</i>
+						</th>
+						<apex:repeat value="{!sh}" var="standard">
+							<th colspan="{!standard.gradeList.size}">
+								<apex:outputText value="{!standard.standardname}"/>
+							</th>
+						</apex:repeat>
+					</tr>
+					<tr class="header">
+						<th colspan="2">
+							<i>Assignments</i>
+						</th>
+						<apex:repeat value="{!sh}" var="assignment">
+							<apex:repeat value="{!assignment.gradeList}" var="colGrade">
+								<th>
+									<apex:outputText value="{!colGrade.mainGrade.Assignment__r.Name_in_Gradebook__c}"/>
+								</th>
+							</apex:repeat>
+						</apex:repeat>
+					</tr>
+					<tr class="header">
+						<th colspan="2">
+							<i>Due Date</i>
+						</th>
+						<apex:repeat value="{!sh}" var="dueDate">
+							<apex:repeat value="{!dueDate.gradeList}" var="colDate">
+								<th>
+									<apex:outputText value="{0,date,MM/dd}">
+										<apex:param value="{!colDate.mainGrade.Assignment__r.Due_Date__c}"/>
+									</apex:outputText>
+								</th>
+							</apex:repeat>
+						</apex:repeat>
+					</tr>
+					<tr class="header">
+						<th colspan="2">
+							<i>Student</i>
+						</th>
+
+					</tr>
+				</apex:variable>
+			</thead><!-- end of gradebook headers -->
+			<tbody>
+				<apex:repeat value="{!loadedSchoolSection.exportStudentWrapperKeys}" var="key">
+					<tr>
+						<td>
+							<apex:outputText value="{!loadedSchoolSection.studentGradeWrapperExportMap[key].studentName}" />
+						</td>
+						<td>
+							<apex:outputText value="{!loadedSchoolSection.studentGradeWrapperExportMap[key].sectionGrade.Display_Grade_Formula__c}" />
+						</td>
+						
+						<!-- by assignment -->
+						<apex:variable value="{!loadedSchoolSection.assignmentExportHeader}" var="ah" rendered="{!loadedSchoolSection.orderBy == 'assignment'}">
+							<apex:repeat value="{!loadedSchoolSection.studentGradeWrapperExportMap[key].assignmentDisplayWrapperList}" var="assignmentOrder">
+								<apex:repeat value="{!assignmentOrder.gradeList}" var="assignmentOrderGrade">
+									<td>
+										<apex:outputText value="{!assignmentOrderGrade.mainGrade.Entered_Grade__c}"/>
+									</td>
+								</apex:repeat>
+							</apex:repeat>
+						</apex:variable>
+						
+						<!-- by standard -->
+						<apex:variable value="{!loadedSchoolSection.standardExportHeader}" var="sh" rendered="{!loadedSchoolSection.orderBy == 'standard'}">
+							<apex:repeat value="{!loadedSchoolSection.studentGradeWrapperExportMap[key].standardDisplayWrapperList}" var="standardOrder">
+								<apex:repeat value="{!standardOrder.gradeList}" var="standardOrderGrade">
+									<td>
+										<apex:outputText value="{!standardOrderGrade.mainGrade.Entered_Grade__c}"/>
+									</td>
+								</apex:repeat>
+							</apex:repeat>
+						</apex:variable>
+					</tr>
+				</apex:repeat>
+			</tbody>
+		</table>
+	</apex:outputPanel>
+</apex:page>

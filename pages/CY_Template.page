@@ -1,0 +1,26 @@
+<apex:page docType="html-5.0" showHeader="false" sidebar="false" standardStylesheets="false" applyHtmlTag="false" applyBodyTag="false" >
+    <html dir="ltr" lang="en-US" >
+        <head>
+            <meta charset="utf-8" />
+            <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+            <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+            <meta name="theme-color" content="#EE3B32" />
+            <apex:stylesheet value="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/css/select2.min.css" />
+            <apex:stylesheet value="https://cdn.datatables.net/u/bs-3.3.6/dt-1.10.12,r-2.1.0,sc-1.4.2/datatables.min.css" />
+            <apex:stylesheet value="{!URLFOR($Resource.TWBSSass, 'css/custom-bootstrap.css')}"/>
+            <apex:stylesheet value="{!URLFOR($Resource.TWBSSass, 'css/main.css')}"/>
+        </head>
+
+        <body>
+            <c:CY_Header />
+            <apex:insert name="body"/>
+
+            <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" />
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" />
+            <script src="https://cdn.datatables.net/u/bs-3.3.6/dt-1.10.12,r-2.1.0,sc-1.4.2/datatables.min.js"></script>
+            <!-- <script src="{!URLFOR($Resource.TWBSSass, 'js/bs-data-tables.js')}" /> -->
+            <script src="{!URLFOR($Resource.TWBSSass, 'js/main.min.js')}" />
+
+        </body>
+    </html>
+</apex:page>

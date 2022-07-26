@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>LLI</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>LLI</value>
+    </caseValues>
+    <fields>
+        <help><!-- Range 0-3
+If in Blue level select 0 --></help>
+        <label><!-- About the Text --></label>
+        <name>About_the_Text__c</name>
+        <picklistValues>
+            <masterLabel>0</masterLabel>
+            <translation><!-- 0 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2</masterLabel>
+            <translation><!-- 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3</masterLabel>
+            <translation><!-- 3 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Accuracy --></label>
+        <name>Accuracy__c</name>
+    </fields>
+    <fields>
+        <help><!-- Range 0-3 --></help>
+        <label><!-- Beyond the Text --></label>
+        <name>Beyond_the_Text__c</name>
+        <picklistValues>
+            <masterLabel>0</masterLabel>
+            <translation><!-- 0 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2</masterLabel>
+            <translation><!-- 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3</masterLabel>
+            <translation><!-- 3 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Comprehension --></label>
+        <name>Comprehension__c</name>
+    </fields>
+    <fields>
+        <label><!-- Date --></label>
+        <name>Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Fluency --></label>
+        <name>Fluency__c</name>
+    </fields>
+    <fields>
+        <help><!-- Color Values are Blue, Gold, Purple, Red or Teal --></help>
+        <label><!-- LLI Color System --></label>
+        <name>LLI_Color_System__c</name>
+        <picklistValues>
+            <masterLabel>Blue</masterLabel>
+            <translation><!-- Blue --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Gold</masterLabel>
+            <translation><!-- Gold --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Purple</masterLabel>
+            <translation><!-- Purple --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Red</masterLabel>
+            <translation><!-- Red --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Teal</masterLabel>
+            <translation><!-- Teal --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Lesson Number --></label>
+        <name>Lesson_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Level --></label>
+        <name>Level__c</name>
+    </fields>
+    <fields>
+        <label><!-- Self Correction --></label>
+        <name>Self_Correction__c</name>
+    </fields>
+    <fields>
+        <label><!-- Student --></label>
+        <name>Student__c</name>
+        <relationshipLabel><!-- LLI --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Sum of Comprehension --></label>
+        <name>Sum_of_Comprehension__c</name>
+    </fields>
+    <fields>
+        <help><!-- Score range 0-3 --></help>
+        <label><!-- Within the Text --></label>
+        <name>Within_the_Text__c</name>
+        <picklistValues>
+            <masterLabel>0</masterLabel>
+            <translation><!-- 0 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2</masterLabel>
+            <translation><!-- 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3</masterLabel>
+            <translation><!-- 3 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- converted comprehension --></label>
+        <name>converted_comprehension__c</name>
+    </fields>
+    <layouts>
+        <layout>LLI Layout</layout>
+        <sections>
+            <label><!-- Lesson --></label>
+            <section>Lesson</section>
+        </sections>
+        <sections>
+            <label><!-- Score Detail --></label>
+            <section>Score Detail</section>
+        </sections>
+        <sections>
+            <label><!-- Summary of Scores --></label>
+            <section>Summary of Scores</section>
+        </sections>
+        <sections>
+            <label><!-- custom --></label>
+            <section>custom</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- Levels must Capital Alpha A-Z --></errorMessage>
+        <name>Alpha_Level</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Color Levels must be one of the following: Bluc, Gold, Purple, Red or Teal --></errorMessage>
+        <name>Color_levels</name>
+    </validationRules>
+</CustomObjectTranslation>

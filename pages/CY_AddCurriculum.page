@@ -1,0 +1,164 @@
+<apex:page docType="html-5.0" showHeader="false" sidebar="false" controller="ctlAddTimeFlow_dev">
+	<style>
+	  	span.select2-search>input.select2-search__field{
+	  		display: none
+	  	}
+	  	.requiredInput {
+    		position: relative;
+    		height: 100%;
+		}
+		.requiredBlock {
+		    background-color: #c00;
+		    position: absolute;
+		    left: -4px;
+		    width: 3px;
+		    top: 1px;
+		    bottom: 1px;
+		}		
+	</style>
+
+	<title>Curriculum Detail</title>
+	<apex:composition template="CY_Template">
+		<apex:define name="body">
+			<style>
+				.sorting_disabled {
+					width: 16px !important;
+					padding-right: 0;
+				}
+			</style>
+			<apex:pagemessages />
+			<apex:form styleClass="container-bs reset-xs">
+				<div class="box data session-detail">
+					<div class="box-header">
+						<div class="title">
+							<h2>Curriculum Detail</h2>
+						</div><!-- /.title -->
+						<div class="controls">
+							<apex:commandLink styleClass="btn-bs btn-blank"  action="{!doCurriculumCancel}" ><span class="icon-arrow_back"></span>Go Back</apex:commandLink>
+                       	<apex:commandButton styleClass="btn-bs btn-primary push-left" action="{!doCurriculumSubmit}" onclick="calljsActionFunction();" value="Submit" />
+						</div><!-- /.controls -->
+					</div><!-- /.box-header -->
+					<div class="box-content">
+						<div class="form-group date-group m-t">
+							<label for="date">Date of Assignment</label>
+							<div class="field">
+								<apex:inputField styleClass="form-control" value="{!currenCurriculum.Date_of_Module__c}" showDatePicker="{!showCalDatePicker}" id="dosageDateID" />
+							</div><!-- /.field -->
+						</div><!-- /.form-group -->
+						<div class="form-group">
+							<label for="name">Curriculum Name</label>
+							<div class="requiredInput">
+                            <div class="requiredBlock"></div>							
+							<div class="field">
+								<apex:inputField value="{!currenCurriculum.Curriculum_Name__c}" styleClass="form-control" required="false" />
+							</div>
+							</div>
+						</div><!-- /.form-group -->
+						<div class="form-group">
+							<label for="module">Module Name</label>
+							<div class="requiredInput">
+                            <div class="requiredBlock"></div>							
+							<div class="field">
+								<apex:inputField value="{!currenCurriculum.Module_Name__c}" styleClass="form-control" required="false" />
+							</div>
+							</div>
+						</div><!-- /.form-group -->
+						<div class="form-group">
+							<label for="assignments">Module Assignments</label>
+							<div class="requiredInput">
+                            <div class="requiredBlock"></div>							
+							<div class="field">
+								<apex:inputField value="{!currenCurriculum.Module_Assignments__c}" styleClass="form-control" required="false" />
+							</div>
+							</div>
+						</div><!-- /.form-group -->
+
+						<div class="form-group">
+							<label for="comments">Comments</label>
+							<apex:inputTextarea value="{!currenCurriculum.Comments__c}" styleClass="form-control" onblur="ValidateLen(this.value)" />
+							<apex:message for="dosageDateID" />
+						</div><!-- /.form-group -->
+
+						<hr />
+
+						<div class="section-heading">
+							<div class="title">
+								<h3>Attendee(s)</h3>
+							</div>
+							<div class="buttons">
+								<apex:commandButton styleClass="btn-bs btn-default btn-sm" action="{!doAddStudentToCurriculum}" title="Add" value="Add" />
+							</div><!-- /.controls -->
+						</div><!-- /.heading -->
+
+						<div class="table-group">
+							<table class="table table-responsive table-striped">
+								<thead>
+									<tr>
+										<th>Student</th>
+										<th>Score</th>
+										<th></th>
+									</tr>
+								</thead>
+								<tbody>
+									<apex:repeat var="e" value="{!studentsInCurriculum}">
+										<tr>
+											<td data-label="Student">{!e.Student__r.Name}</td>
+											<td data-label="Module Score"> 
+											<div class="requiredInput">
+                            				<div class="requiredBlock"></div>
+											<apex:inputField value="{!e.Module_Score__c}" onblur="ValidateTime(this.value)" id="timeEntry" type="auto" styleClass="form-control input-sm time" required="false" />
+											</div>
+											</td>
+											<td data-label="Action">
+												<apex:commandLink value="Delete" action="{!doDeleteStudentFromCurriculum}"><apex:param name="sID" value="{!e.Student__c}" /></apex:commandLink>
+											</td>
+										</tr>
+									</apex:repeat>
+								</tbody>
+							</table>
+						</div><!-- /.table-group -->
+
+					</div><!-- /.box-content -->
+					<div class="box-footer">
+						<div class="controls">
+                       	<apex:commandButton styleClass="btn-bs btn-primary push-left" action="{!doCurriculumSubmit}" onclick="calljsActionFunction();" value="Submit" />
+						</div><!-- /.controls -->
+					</div><!-- /.box-footer -->
+				</div><!-- /.box data -->
+
+			</apex:form>
+		</apex:define>
+	</apex:composition>
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/js/select2.min.js"></script>
+	<script type="text/javascript">
+	  	$(document).ready(function() {
+	    	$('option.selected').each(function() {
+	      		$(this).attr('selected', 'selected');
+	    	});
+  		// Select2 plugin
+  			$('.tags').select2({
+				tags: true
+  			});
+  			//disable search field
+  			$('span.select2 li>input.select2-search__field').attr("readonly","true");
+    	});
+
+		function ValidateTime(value) {
+			var x = parseInt(value, 0);
+			//BGR 03252015 Ensure time is 1-500
+			if (value.length > 0 && (isNaN(x) || x < 1 || x >= 500)) {
+				alert('Time value should be numeric between 1-500');
+				return false;
+			}
+		}
+		function ValidateLen(value) {
+			if (value.length > 255)
+			//BGR 03252015 field len is only 255 in the managed app which we cant control
+			{
+				alert('Skills or Comments can not be longer than 255 characters. Extra characters will be removed. Length: ' + value.length);
+				return false;
+			}
+		}
+	</script>
+</apex:page>

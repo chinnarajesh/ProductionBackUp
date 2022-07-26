@@ -1,0 +1,206 @@
+<apex:page controller="SchoolSetup_Home" tabStyle="SchoolForce_Setup__tab" sidebar="false">
+	<c:setupWizardSharedComponents summerSchoolMode="{!schoolSetup.School__r.ParentId != null}"/>
+	<script>
+		function refreshStudDocs(gradebookSelect){
+			j$('#studDocs').toggle(gradebookSelect);
+		}
+
+		function rerenderSummerSchool(checkbox){
+			var toggle = j$(checkbox).attr('checked')=='checked';
+			j$('#summerSchoolSetupButton').toggle(toggle);
+		}
+	</script>
+	<body>
+		<apex:form id="mainForm">
+			<apex:outputPanel id="homePanel">
+				<table style="width: 100%">
+					<tr>
+						<td style="vertical-align: top; width: 15%">
+							<!-- <c:setupWizardSidebar /> -->
+						</td>
+						<td style="vertical-align: top; width: 85%">
+							<div id="schoolforce-wrapper" class="wrapper">
+								<apex:outputPanel id="messages" styleClass="pageMessages">
+									<apex:pageMessages />
+								</apex:outputPanel>
+								<h1 class="centerHeader">
+									<span style="display:inline-block">School Setup Wizard<br/>{!schoolSetup.School__r.Name}, {!schoolSetup.Year__r.Name__c}</span>
+								</h1>
+								<apex:outputPanel styleClass="adminSummary">
+									<br/>
+									<p>
+										Welcome to the SchoolForce School Setup Wizard!  
+										From this screen, you can manage the setup for the selected school and school year.  
+										This wizard will step you through the Core Setup and module selection and setup.
+										<br/>
+										<br/>  
+										There is not a required order for the completion of the Module Setup, Core Setup, and Advanced Setup; however, you cannot complete some steps if you have not completed some items in the module setup.
+										For example, because courses require you to select a grade scale, you must create the grade scales your school will use in the Gradebook module setup before you can complete the Setup Courses step of the Core Setup.
+										<br/>
+										<br/>
+										You must complete and finalize each module setup you have selected to use before you can publish records in the Publish step.
+									</p>
+									<br/>
+								</apex:outputPanel>
+								<div class="content-wrapper">
+									<h3>Module Setup</h3>
+									<div class="childSummary" >
+										Select the modules you want the school to use, and then click <b>Save Module Selections</b>. 
+										A button displays for each module you selected. Click the button for the module to access its wizard.
+										<br/>
+										<br/>
+										For modules that are listed as "Under Development," click the <b>Setup Additional Modules</b> button. 
+										The Setup Detail screen for the school displays, which displays additional information about the school and contains an area for each module you can set up.
+										<br/>
+										<br/>
+										<i><b>Note:</b> If this is a new school, you must enter the grades that will be taught in the school in the <b>Grade Span</b> field on this screen.</i>
+										<br/>
+										<br/>
+										When you have completed the required items for a module and finalized the setup, the module button will display green and the <b>Status</b> column will display a green check, indicating that the setup is complete. 
+										You must complete the setup for all the modules you selected before you can publish data in the Publish step.
+									</div>
+									<div class="section_content no-border">
+										<apex:outputPanel id="moduleSetup" >
+											<table style="table-layout: fixed; margin-bottom: 25px;">
+												<tr>
+													<th>Module</th>
+													<th>Selected</th>
+													<th>Status</th>
+												</tr>
+												<tr>
+													<td>
+														<div style="{!IF(!schoolSetup.Using_Attendance__c,'','display:none;')}">Attendance</div>
+														<input style="margin: 0px !important; {!IF(schoolSetup.Using_Attendance__c,'','display:none;')}" type="button" class="{!IF(progress.Attendance_Wizard_Completed__c,'green_btn','grey_btn')}" value="Attendance" onclick="redirectToWizardJs('{!ATTENDANCE}');" />
+													</td>
+													<td><apex:inputField value="{!schoolSetup.Using_Attendance__c}" /></td>
+													<td>
+														<apex:outputPanel rendered="{!schoolSetup.Using_Attendance__c}">
+															<img style="{!IF(AND(!progress.Attendance_Wizard_Started__c,!progress.Attendance_Wizard_Completed__c),'','display:none;')}" class="errorMedium" src="/s.gif" title="Not Started" alt="Not Started" />
+															<img style="{!IF(AND(progress.Attendance_Wizard_Started__c,!progress.Attendance_Wizard_Completed__c),'','display:none;')}" class="warningMedium" src="/s.gif" title="Saved, but Not Completed" alt="Saved, but Not Completed" />
+															<img style="{!IF(progress.Attendance_Wizard_Completed__c,'','display:none;')}" class="confirmMedium" src="/s.gif" title="Completed" alt="Completed" />
+														</apex:outputPanel>
+													</td>
+												</tr>
+												<tr>
+													<td>
+														<div style="{!IF(!schoolSetup.Using_Behavior__c,'','display:none;')}">Behavior</div>
+														<input style="margin: 0px !important; {!IF(schoolSetup.Using_Behavior__c,'','display:none;')}" type="button" class="{!IF(progress.Behavior_Wizard_Completed__c,'green_btn','grey_btn')}" value="Behavior" onclick="redirectToWizardJs('{!BEHAVIOR}');" />
+													</td>
+													<td><apex:inputField value="{!schoolSetup.Using_Behavior__c}" /></td>
+													<td>
+														<apex:outputPanel rendered="{!schoolSetup.Using_Behavior__c}">
+															<img style="{!IF(AND(!progress.Behavior_Wizard_Started__c,!progress.Behavior_Wizard_Completed__c),'','display:none;')}" class="errorMedium" src="/s.gif" title="Not Started" alt="Not Started" />
+															<img style="{!IF(AND(progress.Behavior_Wizard_Started__c,!progress.Behavior_Wizard_Completed__c),'','display:none;')}" class="warningMedium" src="/s.gif" title="Saved, but Not Complete" alt="Saved, but Not Completed" />
+															<img style="{!IF(progress.Behavior_Wizard_Completed__c,'','display:none;')}" class="confirmMedium" src="/s.gif" title="Completed" alt="Completed" />
+														</apex:outputPanel>
+													</td>
+												</tr>
+												<tr>
+													<td>
+														<div style="{!IF(!schoolSetup.Using_Gradebook__c,'','display:none;')}">Gradebook</div>
+														<input style="margin: 0px !important; {!IF(schoolSetup.Using_Gradebook__c,'','display:none;')}" type="button" class="{!IF(progress.Gradebook_Wizard_Completed__c,'green_btn','grey_btn')}" value="Gradebook" onclick="redirectToWizardJs('{!GRADEBOOK}');" />
+													</td>
+													<td><apex:inputField onchange="var bool=(j$(this).is(':checked')); refreshStudDocs(bool);" value="{!schoolSetup.Using_Gradebook__c}" /></td>
+													<td>
+														<apex:outputPanel rendered="{!schoolSetup.Using_Gradebook__c}">
+															<img style="{!IF(AND(!progress.Gradebook_Wizard_Started__c,!progress.Gradebook_Wizard_Completed__c),'','display:none;')}" class="errorMedium" src="/s.gif" title="Not Started" alt="Not Started" />
+															<img style="{!IF(AND(progress.Gradebook_Wizard_Started__c,!progress.Gradebook_Wizard_Completed__c),'','display:none;')}" class="warningMedium" src="/s.gif" title="Saved, but Not Complete" alt="Saved, but Not Completed" />
+															<img style="{!IF(progress.Gradebook_Wizard_Completed__c,'','display:none;')}" class="confirmMedium" src="/s.gif" title="Complete" alt="Completed" />
+														</apex:outputPanel>
+													</td>
+												</tr>
+												<tr id="studDocs" style="{!IF(schoolSetup.Using_Gradebook__c,'','display:none;')}" >
+													<td>
+														<div style="{!IF(!schoolSetup.Using_Student_Documents__c,'','display:none;')}">Student Documents</div>
+														<input style="margin: 0px !important; {!IF(schoolSetup.Using_Student_Documents__c,'','display:none;')}" type="button" class="{!IF(progress.Documents_Wizard_Completed__c,'green_btn','grey_btn')}" value="Student Documents" onclick="redirectToWizardJs('{!DOCUMENTS}');" />
+													</td>
+													<td><apex:inputField value="{!schoolSetup.Using_Student_Documents__c}" /></td>
+													<td>
+														<apex:outputPanel rendered="{!schoolSetup.Using_Student_Documents__c}">
+															<img style="{!IF(AND(!progress.Documents_Wizard_Started__c,!progress.Documents_Wizard_Completed__c),'','display:none;')}" class="errorMedium" src="/s.gif" title="Not Started" alt="Not Started" />
+															<img style="{!IF(AND(progress.Documents_Wizard_Started__c,!progress.Documents_Wizard_Completed__c),'','display:none;')}" class="warningMedium" src="/s.gif" title="Saved, but Not Complete" alt="Saved, but Not Completed" />
+															<img style="{!IF(progress.Documents_Wizard_Completed__c,'','display:none;')}" class="confirmMedium" src="/s.gif" title="Completed" alt="Completed" />
+														</apex:outputPanel>
+													</td>
+												</tr>
+												<tr>
+													<td>Assessments</td>
+													<td>Under Development<!-- <apex:inputField value="{!schoolSetup.Using_Assessments__c}" /> --></td>
+													<td></td>
+												</tr>
+												<tr>
+													<td>Homework</td>
+													<td>Under Development<!-- <apex:inputField value="{!schoolSetup.Using_Homework__c}" /> --></td>
+													<td></td>
+												</tr>
+												<tr>
+													<td>Meals</td>
+													<td>Under Development<!-- <apex:inputField value="{!schoolSetup.Using_Meals__c}" /> --></td>
+													<td></td>
+												</tr>
+												<tr>
+													<td>Points</td>
+													<td>Under Development<!-- <apex:inputField value="{!schoolSetup.Using_Points__c}" /> --></td>
+													<td></td>
+												</tr>
+												<tr>
+													<td>Portal</td>
+													<td>Under Development<!-- <apex:inputField value="{!schoolSetup.Using_Portal__c}" /> --></td>
+													<td></td>
+												</tr>
+											</table>
+										</apex:outputPanel>
+										<input type="button" class="drk_blue_btn" value="Setup Additional Modules" style="margin: 0px !important;" onclick="var win = window.open('/{!schoolSetup.id}','_blank'); win.focus();" />
+										<input type="button" class="black_btn" value="Save Module Selections" style="margin: 0px !important;" onclick="if(confirm('Are you sure you would like to save these module selections?')){
+																																							showProgressBar(' Saving Module Selections ');
+																																							saveModulesJs();
+																																						}" />
+										
+									</div>
+									<apex:outputPanel id="schoolSetup" >
+										<h3>Core Setup</h3>
+										<div class="childSummary" >
+											Click the + next to Core Setup to open the Core Setup steps. 
+											Click the link for the step you want to access. 
+											If you have not yet completed the Core Setup, only the steps you have completed and the proceeding step are available.
+										</div>
+										<c:setupWizardSidebar setupId="{!schoolSetup.id}" />
+										<!-- <input type="button" value="{!buttonText}" class="drk_blue_btn" onclick="continueSetupJs()" /> -->
+									</apex:outputPanel>
+									<apex:outputPanel id="summerSchoolSetup" rendered="{!hasSummerSchool}" >
+										<h3>Summer School Setup</h3>
+										<div class="childSummary" >
+											Select the <b>Using Summer School?</b> check box if you will use a summer school during this school year, and then click <b>Continue to Summer School Setup</b> to access the SchoolForce Setup Wizard for the summer school.
+										</div>
+										<div class="section_content no-border">
+											<apex:outputLabel style="font-weight:normal;" value="Using Summer School?" for="summerSchoolCB" />
+											<apex:inputCheckbox id="summerSchoolCB" value="{!schoolSetup.Using_Summer_School__c}" onchange="rerenderSummerSchool(this);" />
+											<center>
+												<input id="summerSchoolSetupButton" type="button" value="Continue to Summer School Setup" class="drk_blue_btn" onclick="redirectToSummerSchoolJs();" style="{!IF(schoolSetup.Using_Summer_School__c,'','display:none;')}" />
+											</center>
+											<div class="clear_fix" />
+										</div>
+									</apex:outputPanel>
+									<apex:outputPanel id="advancedSetup" >
+										<h3>Advanced Setup</h3>
+										<div class="childSummary">
+											Click the <b>DOCUMENTATION: Advanced Setup</b> link to view the links for SchoolForce Help articles that describe optional features you can set up to optimize your SchoolForce experience.
+										</div>
+										<div class="section_content">
+											<apex:outputLink value="{!$Page.SetupWizard_AdvancedSetup}" >DOCUMENTATION: Advanced Setup</apex:outputLink>
+										</div>
+									</apex:outputPanel>
+								</div>
+							</div>
+						</td>
+					</tr>
+				</table>
+			</apex:outputPanel>
+			<apex:actionFunction name="redirectToWizardJs" action="{!redirectToWizard}" rerender="moduleSetup">
+				<apex:param name="wizardName" value="" assignTo="{!wizardName}" />
+			</apex:actionFunction>
+			<apex:actionFunction name="saveModulesJs" action="{!saveModules}" rerender="moduleSetup" oncomplete="setTimeout('hideProgressBar()',500);" />
+			<apex:actionFunction name="redirectToSummerSchoolJs" action="{!redirectToSummerSchool}" rerender="messages"/>
+		</apex:form>
+	</body>
+</apex:page>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Grade Normalization</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Grade Normalizations</value>
+    </caseValues>
+    <fields>
+        <label><!-- External Id --></label>
+        <name>External_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- GP Value --></label>
+        <name>GP_Value__c</name>
+    </fields>
+    <fields>
+        <help><!-- What is the final value for this grade? --></help>
+        <label><!-- Grade Value --></label>
+        <name>Grade_Value__c</name>
+    </fields>
+    <fields>
+        <label><!-- Is Max Value --></label>
+        <name>Is_Max_Value__c</name>
+    </fields>
+    <fields>
+        <label><!-- Grade Scale Types --></label>
+        <name>Picklist_Value__c</name>
+        <relationshipLabel><!-- Grade Normalizations --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Setup --></label>
+        <name>Setup__c</name>
+        <relationshipLabel><!-- Grade Normalizations --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Transformed Grade --></label>
+        <name>Transformed_Grade__c</name>
+    </fields>
+    <fields>
+        <label><!-- isFinal --></label>
+        <name>isFinal__c</name>
+    </fields>
+    <layouts>
+        <layout>Grade Normalization Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

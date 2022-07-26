@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Student__c.Grades__r$Assignment__c.Id</field>
+    </columns>
+    <columns>
+        <field>Student__c.Grades__r$Assignment__c.Name</field>
+    </columns>
+    <columns>
+        <field>Student__c.Grades__r$Due_Date__c</field>
+    </columns>
+    <columns>
+        <field>Student__c.Grades__r$Reporting_Period_Name__c</field>
+    </columns>
+    <filter>
+        <criteriaItems>
+            <column>Student__c.Grades__r$Assignment__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>contains</operator>
+            <value>reporting period</value>
+        </criteriaItems>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Student__c$Location__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Student__c$School_Name__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Student__c.Grades__r$Assignment__c.Section__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Gradebook Assignments by locations1</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Students_and_Grades_with_Assignments__c</reportType>
+    <scope>organization</scope>
+    <showDetails>false</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>Student__c$CreatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

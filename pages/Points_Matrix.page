@@ -1,0 +1,565 @@
+<apex:page controller="Points_Matrix" id="thePage">
+    <c:admin />
+    <c:gradebook_style />
+    <c:jQueryInit bClueTip="true" />
+
+    <apex:includeScript value="{!URLFOR($Resource.Gradebook, '/js/FixedHeaderTable.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.Gradebook, '/js/Mousewheel.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.Gradebook, '/js/GradebookScripts.js')}"/>
+    
+    <apex:includeScript value="{!URLFOR($Resource.jWerty, '/jWerty/jwerty.js')}" />
+    <apex:includeScript value="{!URLFOR($Resource.Gradebook, '/js/Gradebook.js')}"/>
+    
+    <apex:stylesheet value="{!URLFOR($Resource.Gradebook, '/css/Gradebook.css')}"/>
+    
+    <script type="text/javascript">
+        function scrollVertical(){
+            var docHeight = j$(document).height();
+            var winHeight = j$(window).height();
+            j$('html,body').animate({scrollTop: 0}, 700);
+        } 
+            
+        function setFocusOnLoad() {}
+        jwerty.key('enter',false);//keep unexpected page submssions from pressing enter
+        window.onbeforeunload = function(){
+            if(closepop==true){
+                return "Please save your work!";
+            }
+        }
+        
+        function fixTable(){
+            j$("#gradebook-results table tbody tr").click(function(){                   
+                j$(".row-highlight").removeClass('row-highlight');                  
+                (j$(this).find("span")).each(function(){                
+                    var e = j$(this);
+                    var studentID = e.attr('class');                        
+                    if(studentID != "letGrade" && studentID != "numGrade"){                  
+                        j$("." + studentID).each(function(){                        
+                            var e = j$(this).closest("tr");
+                            j$(e).addClass('row-highlight'); 
+                        });
+                    }
+                });
+            });
+            
+            j$(".fht-fixed-body th:first").css("width", "2001px !important");
+            //updateFilters(j$("[id*='sectionfilter']").value());
+        }
+        
+        function deactivateJS(studentID){
+            if(j$("."+studentID).prop('disabled'))
+                j$("."+studentID).prop('disabled', false);
+            else 
+                j$("."+studentID).prop('disabled', true);
+        }
+        
+        function deactivateRedeemJS(studentID){
+        	if(j$("."+studentID).prop('disabled'))
+                j$(".redeem"+studentID).prop('disabled', false);
+            else 
+                j$(".redeem"+studentID).prop('disabled', true);
+        }
+        
+        function copyDownJS(catID, value){
+            j$(".copydownupdate"+catID+':enabled').val(value);         
+        }
+        
+		function copyDownRJS(Redeem, value){
+			if(Redeem=="redeem"){
+				j$(".copydownupdateredeem:enabled").val(value);
+			}else{
+				j$(".copydownupdatecomment:enabled").val(value);
+			}
+		}
+        
+        function redeemPoints(){
+                var modalHeight = j$('[id$="theForm"]').height();
+                j$('#terms').dialog({
+                    autoOpen: true,
+                    modal: true,
+                    show: 'blind',
+                    width: 600,
+                    height: modalHeight*.80,
+                    open: function(type,data) {
+    				    j$(this).parent().appendTo("form[id*='theForm']");
+                    }
+                });
+                j$('#terms').dialog("open");
+        }
+        
+        function deactivateAll(value){
+            if(value == false){
+                j$(".studentdeactivate").prop("checked", false);
+                j$(".deactivateField").prop('disabled', true);
+            }else{
+                j$(".studentdeactivate").prop("checked", true);
+                j$(".deactivateField").prop('disabled', false);
+            }
+        }
+        
+        function deactivateAllRedeemJS(value){
+        	if(value == false){
+                j$(".studentredeemdeactivate").prop("checked", false);
+                j$(".deactivateRedeemField").prop('disabled', true);
+            }else{
+                j$(".studentredeemdeactivate").prop("checked", true);
+                j$(".deactivateRedeemField").prop('disabled', false);
+            }
+        }
+        
+        function datefix(){
+            j$('input[id$="selectedDate"]').datepicker(
+                {
+                    changeMonth: true,
+                    changeYear: true,
+                    yearRange: '1985:2020'
+                }
+            );
+        }
+         
+        function commentsJS(loadedRecord){
+            j$('#commentsHolder').empty();
+            j$('.commentsRefID').empty();
+            
+            j$('.commentsRefID').val(loadedRecord);
+            
+            if(j$('.comments'+loadedRecord).val() != undefined)
+                j$('#commentsHolder').val(j$('.comments'+loadedRecord).val());
+        	else
+        		alert('Unable to find orginal comments.');
+            j$('#commentsModal').dialog({ autoOpen: true, modal: true, show: 'blind', minWidth: 400});
+            j$('#commentsModal').dialog("open");
+        }
+        
+        function saveCommentsJS(){
+            j$('.comments'+j$('.commentsRefID').val()).val(j$('#commentsHolder').val());
+            j$('#commentsModal').dialog("close");
+            
+            if(j$('#commentsHolder').val() != ''){
+            	j$('#link'+j$('.commentsRefID').val()+' > .nocomment').hide();
+            	j$('#link'+j$('.commentsRefID').val()+' > .comment').show();
+            } else {
+            	j$('#link'+j$('.commentsRefID').val()+' > .nocomment').show();
+            	j$('#link'+j$('.commentsRefID').val()+' > .comment').hide();
+            }
+        }
+        
+        function cancelComment(){
+            j$('#commentsModal').dialog("close");
+        }
+        
+        function saveRedeem(){
+        	j$('#terms').dialog("close");
+        	RedeemPoints();
+        }
+        
+        function fixHeaders(){
+        	j$('#studentHeader').height(j$('#catHeader').height());
+        }
+        function updateFilters(value){
+        	if(value != '--None--'){
+        		j$("[id*='gradefilter']").removeAttr('disabled');
+        	} else {
+        		j$("[id*='gradefilter']").attr('disabled','disabled');
+        	}
+        }
+    </script>
+    <style type="text/css">
+      
+          #gradebookTable a.apply-score{
+            background: url(/resource/1335480870000/Gradebook/images/GradebookButtons.png) no-repeat -16px -32px;
+            width: 16px;
+            height: 16px;
+            text-indent: -9999px;
+            position: absolute;
+            top: 10px;
+            left: 66px;
+            cursor: pointer;
+        }
+        
+        .fht-table-wrapper .fht-fixed-body {
+            top: 0;
+            left: 0;
+            position: absolute;
+            width:1008px !important;
+            z-index:1;
+        }
+       
+        .fht-table-wrapper .fht-fixed-column{
+            z-index:2;
+            width:323px !important;
+        }
+       
+        .fht-table-wrapper .fht-fixed-column .fht-thead{
+           padding-bottom:0px;
+        }
+        
+        @media screen and (-webkit-min-device-pixel-ratio:0) {
+             .fht-table-wrapper .fht-fixed-column .fht-thead{ padding-bottom:2px; }
+        } 
+        
+        #gradebook-results .gradebook {
+            width:1008px !important;
+            border-radius:7px;
+            overflow:hidden;
+     
+        }
+        
+        #gradebook-results th.cats{
+            width:200px;
+            padding:0 5px;
+            overflow:hidden;
+        }
+        
+        #gradebook-results th.cats p {
+            margin:0;
+            height:30px;
+        }
+        
+        #gradebook-results th.cats a.apply-score,
+        #gradebookTable th a.apply-score {
+           position:static;
+           display:inline-block;
+           float:none;   
+        }
+        
+        
+        #gradebook-results th.cats input {
+            }
+        
+        
+        #gradebook-results th.cats div {
+            width:75px margin:0 auto;
+        }
+        
+        #gradebook-results {
+           border:none;
+           border-radius:7px;
+           overflow:hidden; 
+        }
+        
+        #gradebook-results th:first-child {
+            border-top-left-radius: 5px;
+        }
+        
+        #gradebook-results .gradebook tbody tr td {
+            width:210px;
+        }
+    
+        .small_Submit_btn_wrapper{
+            float:left;
+            border-left:1px solid #ccc;
+            padding:0 0 0 35px;
+            vertical-align: middle;
+        }
+        #awardsdetail{
+            background-color:#fffcab;
+            height:500px;
+            padding:0px;
+            margin:0px;
+            font-size:14px;
+        }
+        
+        #gradebook-results .apply-score,
+        #gradebookTable .apply-score {
+            float:right;
+            position:static;
+            
+        }
+        
+        #gradebookTable {
+            border:1px solid #CCC;
+            border-radius:5px;
+            width:100%;
+        }
+        
+        #gradebookTable th {
+            background:#E3F3FF;
+            padding:5px 10px 0 10px;
+            text-align:center;
+            border-bottom:1px solid #ccc;
+        }
+        
+       #gradebookTable th:first-child {
+            background:#099BCC;
+            color:#fff;
+            text-align:left;
+        }
+        
+        #gradebookTable th:last-child {
+            border-left:1px solid #ccc;
+        }
+        
+        #gradebookTable th.points input {
+            width:25px;
+        }
+        
+        #gradebookTable tr td{
+            border-bottom:1px solid #ccc !important;
+            border-right:1px solid #ccc !important;
+        }
+        
+        #gradebookTable td{
+            padding:5px;
+        }
+        
+        #gradebookTable tr td:first-child {
+            background-color:#eee;
+            border-right:1px solid #ccc;
+        }
+        
+        #gradebookTable td:last-child {
+            border-left:1px solid #ccc;
+        }
+        
+        #gradebookTable td input{
+            width:25px;
+        }
+        
+
+        .fht-fixed-body th:first-child {
+           /* width:200px !important; */
+        }
+        
+        #gradebook-results .gradebook thead tr th:first-child {
+              width:200px !important;
+        }
+        
+        
+        #gradebook-results .fht-tbody td {
+            background:none !important;
+        }
+        
+        #gradebook-results .fht-fixed-column tbody{
+           background:#fff; 
+           border-bottom:1px solid #ccc;
+        }
+        
+        #gradebook-results .fht-fixed-column tbody td{
+            border-bottom:1px solid #ccc;
+        }
+        
+        #gradebook-results .fht-fixed-body .fht-thead th {
+            background:none !important;
+            border-right:1px solid #ccc;
+        }
+        
+      #gradebook-results .fht-fixed-body .fht-thead thead tr {
+             background:#E3F3FF !important;
+      }
+    </style>
+<div class="wrapper">
+<apex:form id="theForm">
+    <apex:outputpanel id="errorMessages">
+        <apex:pageMessages />
+    </apex:outputpanel>
+    
+    <apex:outPutPanel id="thePageBlockPanel">
+        <apex:outPutPanel id="commentsModal" style="display:none;">
+            <div id="commentsModal">
+                Comments<br />
+                <div style="max-width:375px;">
+	                <textArea id="commentsHolder" rows="10" cols="50"></textArea>
+	                <input type="text" class="commentsRefID" style="display:none;"/>
+	                <br/>
+	                <input class="black_btn" type="button" value="Save Comments" onclick="saveCommentsJS();" />
+	                <input class="black_btn" type="button" value="Cancel" onclick="cancelComment();" />
+                </div>
+            </div>
+        </apex:outPutPanel>
+        <div id="terms" style="display:none;">
+        	<table cellpadding="0" cellspacing="0" id="gradebookTable">
+            	<thead>
+                	<tr>
+                    	<th style="height:63px; padding-bottom:3px;">
+                    		<input type="checkbox" onChange="deactivateAllRedeemJS(this.checked);" checked="checked" />
+                    		Student Name
+                    	</th> 
+                    	<th class="points">Points<br/>
+                    		<input id="redeem" type="text" value=""/>
+                            <a class="apply-score" onclick="copyDownRJS('redeem',j$('#redeem').val());">&nbsp;</a>
+                        </th>
+                        <th>Comments<br/>
+							<input id="Comment" style="height:20px; width:100px" type="text" value=""/>
+                            <a class="apply-score" onclick="copyDownRJS('Comment',j$('#Comment').val());">&nbsp;</a>
+                        </th>
+                    </tr>           
+                </thead>
+				<tbody>
+                       <apex:repeat value="{!redeempoints}" var="p">
+                            <tr>
+                                <td class="studCol" style="vertical-align:middle;">
+                                    <apex:inputCheckbox styleclass="studentredeemdeactivate" value="{!p.isActive}" onChange="deactivateRedeemJS('{!p.studentID}');"/>
+                                    {!p.studentName}
+                                </td>
+                                <td align="center" nowrap="nowrap"><apex:inputField styleclass="copydownupdateredeem redeem{!p.studentID} deactivateRedeemField"  value="{!p.redeemPoint.Points__c}"/></td>
+                                <td align="center" nowrap="nowrap"><apex:inputField styleclass="copydownupdatecomment redeem{!p.studentID} deactivateRedeemField"  value="{!p.redeemPoint.Comments__c}"/></td>
+                            </tr>
+                        </apex:repeat>
+                    </tbody>
+                </table>
+                <input class="black_btn" style="margin-top:25px;" type="button" value="Redeem" onclick="saveRedeem();" title="Click to redeem entered Points" />
+            </div>       
+
+    	<apex:outputPanel id="filterPanel">
+        <h3>Student Points Entry</h3>
+        <script>
+                j$(document).ready(function() {                    
+                    var leftWidth = j$('#gradebook-results').css('width');
+                    j$('#gradebook-results').css('left',leftWidth);     
+                    gradebookResultsLoad();
+                    datefix();
+                    fixHeaders();
+                });
+                
+                j$("#gradebook-results table tbody tr").click(function(){                    
+                   j$(".row-highlight").removeClass('row-highlight');                   
+                   (j$(this).find("span")).each(function(){              
+                      var e = j$(this);
+                      var studentID = e.attr('class');                      
+                      if(studentID != "letGrade" && studentID != "numGrade"){                     
+                            j$("." + studentID).each(function(){                       
+                                var e = j$(this).closest("tr");
+                                j$(e).addClass('row-highlight'); 
+                            });
+                       }
+                    });
+                });   
+                
+                j$(".gradebook-assignment").cluetip({
+                    cluezIndex: 999,
+                    local: true,
+                    cursor: 'pointer', 
+                    clickThrough: true
+                }); 
+                </script>
+        <apex:actionRegion >
+        <div class="filter_form">
+            <div class="form_fields">   
+                <div>
+                    School<br />
+                    <apex:selectList value="{!selectedSchool}" size="1" onChange="changeSchoolJS(this.value);">
+                         <apex:selectOptions value="{!Schools}"/>
+                    </apex:selectList>
+                </div> 
+                <div>Grade<br />
+                    <apex:selectList value="{!selectedGrade}" size="1" onChange="changeGradeJS(this.value);" disabled="{!selectedSchool == '--None--'  && selectedSection == '--None--' && sections.size>1}" id="gradefilter">
+                         <apex:selectOptions value="{!grades}"/>
+                    </apex:selectList>
+                </div>
+                <div>
+                    Section<br />
+                    <apex:selectList value="{!selectedSection}" size="1" onChange="updateFilters(this.value);" id="sectionfilter">
+                         <apex:selectOptions value="{!sections}" />
+                    </apex:selectList>
+                </div>
+                <div>
+                    Date<br />
+                    <apex:inputText id="selectedDate" value="{!prettyDate}" onChange="changeDateJS(); return true;"/>
+                </div>
+            </div>
+            <div class="small_Submit_btn_wrapper" style="border-left:1px solid #ccc; padding:0 0 0 35px;">
+                <input class="drk_blue_btn" style="width:150px;" type="button" value="RETRIEVE RESULTS" onclick="filterAndLoadJS();" title="Click to retrieve selected students." />
+            </div>
+            <div class="clear_fix" style="height:1px;">&nbsp;</div> 
+        </div>
+        </apex:actionRegion>
+        </apex:outputPanel>
+        <!-- START MATRIX -->
+        <apex:actionRegion >
+        <apex:outputPanel rendered="{!showMatrix}" id="theMatrix">
+        <div id="group" class="fixedTable">
+            <div style="float:right;">
+                <input class="blue_btn" type="button" value="REDEEM POINTS" onclick="redeemPoints();" title="Click to redeem points" />
+            </div>       
+        <div class="clear_fix" style="height:50%">&nbsp;</div>
+        <div class="table_top">
+            <div>
+                <h3>Points Balance &amp; Entry{!IF(selectedSectionName != null,': Section '+ selectedSectionName, '')}</h3>
+            </div>
+        </div>
+                
+                
+                <!-- GRADEBOOK -->
+
+                <div id="gradebook-results">
+
+                <table cellpadding="0" cellspacing="0" id="gradebookTable" style="height:50%;">
+                    <thead>
+                        <tr style="min-height:63px;">
+                            <th style="min-height:63px;" id="studentHeader">
+	                            <br/>
+	                            <input type="checkbox" onChange="deactivateAll(this.checked);" checked="checked"/>
+	                            Student Name
+                            </th> 
+                            <!--  Sorry if this looks bad, but really don't mess with the CSS here -->
+                            <apex:repeat value="{!currentCats}" var="cat">
+                                <th class="cats" style="max-width:200px;vertical-align:middle;" id="catHeader">
+									<p style="clear:both;white-space:normal;padding: 0 2px;display:inline;">
+										{!cat.Name}
+									</p>
+									<br/>
+                                    <div style="display:inline;position:static;clear:both;">
+                                        <input type="text" class="{!cat.id}" value="{!cat.Default_Points__c}" style="display:inline; position:static;"/>
+                                        <a class="apply-score" id="copydown" onclick="copyDownJS('{!cat.id}',j$('.{!cat.id}').val());" style="display:inline; position:static;">
+                                        	<apex:image url="{!URLFOR($Resource.Gradebook, '/images/bullet-arrow-down-icon.png')}"/>
+                                        </a>
+                                    </div>
+                                    <div class="clear_fix"></div>
+                                </th>
+                                
+                            </apex:repeat>
+                        </tr>           
+                    </thead>
+                    
+                    <tbody>
+                        <apex:repeat value="{!points}" var="p">
+                            <tr>
+                                <td class="studCol" style="vertical-align:middle;">
+                                    <apex:inputCheckbox styleclass="studentdeactivate" value="{!p.isActive}" onChange="deactivateJS('{!p.studentID}');"/>
+                                    <a style="{!IF(isManagedPackage,'display:none', '')}" href="/apex/Points_StudentLedger?id={!p.studentID}" target="_blank">{!p.studentName}</a>
+                                    <a style="{!IF(isManagedPackage,'', 'display:none')}" href="/apex/SchoolForce__Points_StudentLedger?id={!p.studentID}" target="_blank">{!p.studentName}</a>
+                                </td>
+                                <apex:repeat value="{!p.Points}" var="point">
+                                    <td align="center" nowrap="nowrap">
+                                        <apex:inputField styleclass="copydownupdate{!point.Category__r.id} {!point.Student__c} deactivateField" value="{!point.Points__c}"/>
+
+                                        <a onclick="commentsJS('{!IF(ISNULL(point.id),point.Reference_Id__c, point.id)}');" id="link{!IF(ISNULL(point.id),point.Reference_Id__c, point.id)}">
+                                            <apex:image styleClass="comment" 
+                                                    style="cursor:pointer; border:0px; display:{!IF(point.Comments__c != '','inline','none')};" 
+                                                    url="{!URLFOR($Resource.Gradebook, '/images/commentbubble.png')}"/>             
+                                            <apex:image styleClass="nocomment" 
+                                                    style="cursor:pointer; border:0px; display:{!IF(point.Comments__c != '','none','inline')};" 
+                                                    url="{!URLFOR($Resource.Gradebook, '/images/commentbubble_green.png')}"/>
+                                            <apex:inputField styleClass="comments{!IF(ISNULL(point.id),point.Reference_Id__c, point.id)}" value="{!point.Comments__c}" style="display:none" />                                           
+                                        </a>
+                                    </td>
+                               </apex:repeat>
+                            </tr>
+                        </apex:repeat>
+                    </tbody>
+                </table>
+            </div>       
+        </div>
+
+        <input class="black_btn" style="margin-top:25px;" type="button" value="SUBMIT POINTS" onclick="SavePoints();" title="Click to submit and save your entered Points" />
+        </apex:outputPanel>
+        </apex:actionRegion>        
+        </apex:outputPanel>
+    
+    <apex:actionFunction action="{!changeSchool}" name="changeSchoolJS" reRender="filterPanel, errorMessages"
+            onComplete="fixTable();">
+        <apex:param name="selectedSchool" assignTo="{!selectedSchool}" value=""/>
+    </apex:actionFunction>
+    <apex:actionFunction action="{!changeGrade}" name="changeGradeJS" reRender="filterPanel, errorMessages"
+            onComplete="fixTable();">
+        <apex:param name="selectedSchool" assignTo="{!selectedGrade}" value=""/>
+    </apex:actionFunction>
+    <apex:actionFunction action="{!filterAndLoad}" name="filterAndLoadJS" reRender="thePageBlockPanel, errorMessages"
+            onComplete="fixTable(); datefix();" />
+    <apex:actionFunction action="{!changeDate}" name="changeDateJS" reRender="errorMessages, filterPanel" onComplete="fixTable(); datefix();"/>
+    <apex:actionFunction name="SavePoints" action="{!SavePoints}" onComplete="fixTable(); datefix();"/>
+    <apex:actionFunction name="RedeemPoints" action="{!RedeemPoints}" />
+</apex:form>
+</div>
+</apex:page>

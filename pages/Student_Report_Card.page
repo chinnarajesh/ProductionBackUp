@@ -1,0 +1,160 @@
+<apex:page controller="Gradebook_RunReportCardsController" action="{!setupSingleGeneration}" showheader="false" sidebar="false">
+	<apex:form >
+		<c:jQueryInit bLoadingPanel="true"/>
+		<apex:includeScript value="{!URLFOR($Resource.jWerty, '/jWerty/jwerty.js')}" />
+		<apex:stylesheet value="{!$Resource.New_Core_UX}"/>
+		
+		<script>
+			jwerty.key('enter',false);
+			
+			function runDocument(key){
+				showProgressBar('Generating requested document...');
+				startGenerationJS(key);
+				return true;
+			}
+		</script>
+	<apex:pageBlock title="Student Documents">
+		<apex:actionFunction oncomplete="generateBatchJS();" action="{!startGeneration}" rerender="all, messages" name="startGenerationJS">
+			<apex:param value="" name="key" assignTo="{!selectedReportingPeriod}"/>
+		</apex:actionFunction>
+		<apex:actionFunction oncomplete="setTimeout('hideProgressBar()',500);" action="{!generateBatch}" rerender="all, messages" name="generateBatchJS"/>
+		<apex:outputPanel id="messages">
+			<apex:pageMessages />
+		</apex:outputPanel>
+		<apex:outputPanel id="all">
+			<div class="clear-fix section-devider">
+				<apex:outputPanel rendered="{!AND(schools.size>0,schools[0].allowedDocuments.size>0)}">
+					<div id="student-report"  style="width:100%;">
+	                	<div class="generic">
+							<table>
+								<tr>
+									<th>Document To Be Generated</th>
+									<th>Additional Options</th>
+								</tr>
+								<tr>
+									<td>
+										<apex:selectRadio value="{!schools[0].selectedDocument}">
+											<apex:selectOptions value="{!schools[0].allowedDocuments}"/>
+											<apex:actionSupport event="onchange"
+													rerender="messages, all" />
+										</apex:selectRadio>
+									</td >
+									<td>
+										<apex:outputpanel id="Additional">
+									 		<apex:outputPanel rendered="{!(schools[0].selectedDocument != 'Transcript')}">
+												<table style="width:100%;">
+													<tr>
+														<td>
+															<apex:outputLabel value="Include Inactive Sections?"/>
+														</td>
+														<td>
+															<apex:inputCheckBox value="{!bIncludeInactiveStudentSections}"/>
+														</td>
+														<td>
+															<apex:outputLabel value="Include Transferred Sections?"/>
+														</td>
+														<td>
+															<apex:inputCheckBox value="{!bIncludeTransferedSections}"/>
+														</td>
+													</tr>
+													<tr>
+														<td>
+															<apex:outputLabel value="Show Report Cards in Portal?"/>
+														</td>
+														<td>
+															<apex:inputCheckBox value="{!bShowInPortal}"/>
+														</td>
+										   			</tr>
+												</table>
+											</apex:outputPanel>
+											<apex:outputPanel rendered="{!(schools[0].selectedDocument == 'Transcript')}">
+												<table style="width:100%;">
+													<tr>
+														<td>
+															<apex:outputLabel value="Official?"/>
+														</td>
+														<td>
+															<apex:inputCheckBox value="{!schools[0].bOfficialTranscript}" />
+														</td>
+													</tr>
+												</table>
+											</apex:outputPanel>
+										</apex:outputpanel>
+								</td>
+							</tr>
+						</table>
+					</div>
+					<br/>
+					<div class="generic">
+						<apex:outputpanel id="Generate">
+							<apex:outputPanel rendered="{!(schools[0].selectedDocument != 'Transcript')}">
+								<table class="bordered-cells">
+									<tr>
+									    <th>Reporting Period</th>
+										<th>Current Report Card</th>
+										<th>Progress Report</th>
+										<th>Generate New</th>
+									</tr>
+									<apex:repeat value="{!studentReportingPeriods}" var="s">
+										<tr>
+											<td>
+												{!s.Time__r.Name__c}
+											</td>
+											<td>
+												<center>
+													<apex:outputPanel rendered="{!s.Attachment_Link__c!=null}">
+														<a href="{!s.Attachment_Link__c}" target="_blank">View</a>
+													</apex:outputPanel>
+												</center>
+											</td>
+											<td>
+												<center>
+													<apex:outputPanel rendered="{!s.Latest_Progress_Report__c!=null}">
+														<a href="{!s.Latest_Progress_Report__c}" target="_blank">View</a>
+													</apex:outputPanel>
+												</center>
+											</td>
+											<td>
+												<center>
+													<input class="drk_blue_btn" value="Generate" onclick="runDocument('{!s.id}');" type="button" style=""/>
+												</center>
+											</td>
+										</tr>
+									</apex:repeat>
+								</table>
+							</apex:outputpanel>
+						</apex:outputpanel>
+						<apex:outputPanel id="Transcripts" rendered="{!(schools[0].selectedDocument == 'Transcript')}">
+							<table class="bordered-cells">
+								<tr>
+									<th>Document Type</th>
+									<th>Latest Transcript</th>
+									<th>Generate New</th>
+								</tr>
+								<tr>
+									<td>
+										<center>
+											Transcript
+										</center>
+									</td>
+									<td>
+										<div style="{!IF(lastTranscript != null,'','display:none;')}">
+											<a href="/{!lastTranscript}" target="_blank">View</a>
+										</div>
+									</td>
+									<td>
+										<center>
+											<input class="drk_blue_btn" value="Generate" onclick="runDocument('');" type="button" style=""/>
+										</center>
+									</td>
+								</tr>
+							</table>
+						</apex:outputpanel>
+					</div>	
+				</div>		
+			</apex:outputPanel>
+		</div>
+	</apex:outputPanel>
+</apex:pageBlock>
+</apex:form>
+</apex:page>

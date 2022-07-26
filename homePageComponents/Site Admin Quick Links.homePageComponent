@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HomePageComponent xmlns="http://soap.sforce.com/2006/04/metadata">
+    <links>Add_Students_to_Indicator_Areas</links>
+    <links>Data_Uploads_Folder</links>
+    <pageComponentType>links</pageComponentType>
+</HomePageComponent>

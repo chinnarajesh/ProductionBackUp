@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Intervention Session</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Intervention Sessions</value>
+    </caseValues>
+    <fields>
+        <label><!-- All avenues --></label>
+        <name>All_avenues__c</name>
+        <picklistValues>
+            <masterLabel>In-Person Service</masterLabel>
+            <translation><!-- In-Person Service --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Virtual Service</masterLabel>
+            <translation><!-- Virtual Service --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Are there any additional comments for this Intervention Session? --></help>
+        <label><!-- Add&apos;l Comments for Session --></label>
+        <name>Comments__c</name>
+    </fields>
+    <fields>
+        <help><!-- What was the date that this Intervention Session took place? --></help>
+        <label><!-- Date --></label>
+        <name>Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- ISR Count --></label>
+        <name>ISR_Count__c</name>
+    </fields>
+    <fields>
+        <help><!-- Month of Year --></help>
+        <label><!-- MOY --></label>
+        <name>Month_of_Year__c</name>
+    </fields>
+    <fields>
+        <help><!-- This field connects the Intervention Session record to the correct intervention Section. --></help>
+        <label><!-- Section --></label>
+        <name>Section__c</name>
+        <relationshipLabel><!-- Intervention Sessions --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Session Format --></label>
+        <name>Session_Format__c</name>
+        <picklistValues>
+            <masterLabel>Pull Out</masterLabel>
+            <translation><!-- Pull Out --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Push In</masterLabel>
+            <translation><!-- Push In --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Who was the staff member that led the Intervention Section? This field allows a user to enter Session time on behalf of another user. --></help>
+        <label><!-- Session Time Completed For --></label>
+        <name>Session_Time_Completed_For__c</name>
+        <relationshipLabel><!-- Intervention Sessions --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Session Type --></label>
+        <name>Session_Type__c</name>
+        <picklistValues>
+            <masterLabel>1:1</masterLabel>
+            <translation><!-- 1:1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Small Group</masterLabel>
+            <translation><!-- Small Group --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Site Details --></label>
+        <name>Site_Details__c</name>
+    </fields>
+    <fields>
+        <label><!-- Primary Skill --></label>
+        <name>Skill_Primary__c</name>
+        <relationshipLabel><!-- Intervention Sessions --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- What specific skills were covered in this Intervention Session? --></help>
+        <label><!-- Other Skills --></label>
+        <name>Skills_Covered_for_the_Session__c</name>
+    </fields>
+    <fields>
+        <help><!-- What specific skills were covered in this Intervention Session? --></help>
+        <label><!-- Skills Covered for the Session --></label>
+        <name>Skills__c</name>
+    </fields>
+    <fields>
+        <label><!-- Tutoring Model --></label>
+        <name>Tutoring_Model__c</name>
+        <picklistValues>
+            <masterLabel>Catch Up</masterLabel>
+            <translation><!-- Catch Up --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Keep Up</masterLabel>
+            <translation><!-- Keep Up --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Week of the year the intervention section occurred on --></help>
+        <label><!-- WOY --></label>
+        <name>Week_of_Year__c</name>
+    </fields>
+    <layouts>
+        <layout>Intervention Session Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Intervention Session Layout - Admin</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- New Section --></label>
+            <section>New Section</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- Date should be within the start and end of the section. --></errorMessage>
+        <name>Date_range_in_section</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Date can&apos;t be empty --></errorMessage>
+        <name>Date_required</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- This program does not allow dosage to be logged --></errorMessage>
+        <name>Dosage_denied</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Skill category should be match --></errorMessage>
+        <name>Skill_Category_Check</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- This is a curriculum section and is unable to add dosage. --></errorMessage>
+        <name>Validation_Curriculum</name>
+    </validationRules>
+</CustomObjectTranslation>

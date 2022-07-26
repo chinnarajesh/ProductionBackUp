@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Intervention_Session__c.Intervention_Session_Results__r$Related_Student_s_Name__c</field>
+    </columns>
+    <columns>
+        <field>Intervention_Session__c.Intervention_Session_Results__r$Amount_of_Time__c</field>
+    </columns>
+    <columns>
+        <field>Intervention_Session__c$Comments__c</field>
+    </columns>
+    <columns>
+        <field>Intervention_Session__c$Section__c.In_After_School__c</field>
+    </columns>
+    <columns>
+        <field>Intervention_Session__c.Intervention_Session_Results__r$Student_Section__c.Reference_ID__c</field>
+    </columns>
+    <description>Each intervention time period with student name, school, CY ID, and comment codes</description>
+    <format>Tabular</format>
+    <name>Intervention time with session comments</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Intervention_Sessions__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>Intervention_Session__c$CreatedDate</dateColumn>
+        <interval>INTERVAL_PREVFY</interval>
+    </timeFrameFilter>
+</Report>

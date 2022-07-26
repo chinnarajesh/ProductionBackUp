@@ -1,0 +1,462 @@
+<apex:page docType="html-5.0" showHeader="false" sidebar="false" controller="ctlAddTimeFlow_dev">
+    <style>
+        span.select2-search > input.select2-search__field {
+            display: none
+        }
+
+        .requiredInput {
+            position: relative;
+        }
+
+        .requiredBlock {
+            background-color: #c00;
+            position: absolute;
+            left: -4px;
+            width: 3px;
+            top: 1px;
+            bottom: 1px;
+        }
+
+        .flex-column {
+            display: flex;
+        }
+
+        .exitTicketInput {
+            width: 70px;
+        }
+
+        .attendee-buttons {
+            display: none;
+        }
+
+        .session-detail .form-group {
+            padding: 0 15px;
+        }
+
+        @media screen and (max-width: 600px) {
+            .flex-column {
+                display: block;
+            }
+
+            .attendee-buttons {
+                display: block;
+            }
+
+            .section-heading {
+                -webkit-justify-content: unset;
+                justify-content: unset;
+            }
+
+            .session-detail .section-heading .title {
+                margin-right: 0;
+            }
+
+            .exitTicketInput {
+                margin-left: auto;
+            }
+        }
+    </style>
+
+    <title>Session Detail</title>
+    <apex:composition template="CY_Template">
+        <apex:define name="body">
+            <style>
+                .sorting_disabled {
+                    width: 16px !important;
+                    padding-right: 0;
+                }
+            </style>
+            <apex:pagemessages />
+            <apex:form styleClass="container-bs reset-xs">
+                <div class="box data session-detail">
+                    <div class="box-header">
+                        <div class="title">
+                            <h2>Session Detail</h2>
+                        </div>
+                        <div class="controls">
+                            <apex:commandLink styleClass="btn-bs btn-blank" action="{!doSessionCancel}"><span
+                                        class="icon-arrow_back"></span>Go Back
+                            </apex:commandLink>
+                            <apex:commandButton styleClass="btn-bs btn-default push-left" action="{!backToSession}"
+                                                value="Back to History"/>
+                            <apex:commandButton styleClass="btn-bs btn-primary push-left" 
+                                                onClick="return calljsActionFunction();" value="Submit" action="{!doSessionSubmit}" />
+                        </div>
+                    </div>
+                    <div class="box-content">
+                        <div class="m-t flex-column">
+                            <div class="form-group date-group">
+                                <label for="date">Date</label>
+                                <div class="requiredInput field">
+                                    <div class="requiredBlock"></div>
+                                    <apex:inputField styleClass="form-control" value="{!currentSession.Date__c}"
+                                                     showDatePicker="{!showCalDatePicker}" id="dosageDateID"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="allAvenuesID">In-Person Service or Virtual Service</label>
+                                <div class="requiredInput field">
+                                    <div class="requiredBlock"></div>
+                                    <apex:selectList size="1" value="{!currentSession.All_avenues__c}" id="allAvenuesID"
+                                                     styleClass="form-control">
+                                        <apex:selectOptions value="{!allAvenuesOptions}"/>
+                                    </apex:selectList>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label><strong>Session Type:</strong></label>
+                                <div class="field">
+                                    <apex:inputField value="{!currentSession.Session_Type__c}"
+                                                     styleClass="form-control">
+                                    </apex:inputField>
+                                </div>
+                            </div>
+                            <!--<div class="form-group" style="{!IF(!showTutoringModel, "display:none", "")}">
+                                <label><strong>Tutoring Model:</strong></label>
+                                <div class="field">
+                                    <apex:inputField value="{!currentSession.Tutoring_Model__c}"
+                                                     styleClass="form-control">
+                                    </apex:inputField>
+                                </div>
+                            </div>-->
+                            <div class="form-group">
+                                <label><strong>Session Format:</strong></label>
+                                <div class="field">
+                                    <apex:inputField value="{!currentSession.Session_Format__c}"
+                                                     styleClass="form-control">
+                                    </apex:inputField>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <apex:outputPanel rendered="{!siteDetailsOptions != null && siteDetailsOptions.size > 0}">
+                                    <label><strong>Site Details:</strong></label>
+                                    <div class="field">
+                                        <apex:selectList size="1" value="{!currentSession.Site_Details__c}"
+                                                         id="siteDetailsID" styleClass="form-control">
+                                            <apex:selectOptions value="{!siteDetailsOptions}"/>
+                                        </apex:selectList>
+                                    </div>
+                                </apex:outputPanel>
+                            </div>
+                        </div>
+                        <div id="skillGroup" class="form-group">
+                            <apex:outputLabel style="font-size: 16px;" for="primarySkill">Primary Skill
+                            </apex:outputLabel>
+                            <br/>
+                            <div class="requiredInput">
+                                <!--<div class="requiredBlock"></div>-->
+                                <apex:selectList id="primarySkill" value="{!primaryField}" size="1"
+                                                 styleClass="form-control tags"
+                                                 onchange="javascript:updatePrimaryField(this);">
+                                    <apex:selectOptions value="{!allPrimaryFields}"/>
+                                </apex:selectList>
+                            </div>
+                            <label for="skills">Other Skills</label>
+                            <select name="skills" id="skills" class="form-control tags" multiple="multiple"
+                                    data-placeholder="Tap here to add skills" onChange="addSelected();"
+                                    onclick="checkSelected();">
+                                <apex:repeat var="availField" value="{!avaliableFields}">
+                                    <option value="{!availField.label}"
+                                            class="{!IF(contains(studentSelectedSkills, availField.label), 'selected', '')}">{!availField.Label}</option>
+                                </apex:repeat>
+                            </select>
+                            <span id="requiredSkillsErrorSpan"
+                                  style="color:red;display:none">{!$Label.Required_Skill_for_Literacy_Math}</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="comments">Comments</label>
+                            <apex:inputTextarea value="{!currentSession.Comments__c}" styleClass="form-control"
+                                                onblur="ValidateLen(this.value)"/>
+                            <apex:message for="dosageDateID"/>
+                        </div>
+
+                        <hr/>
+
+                        <div class="section-heading">
+                            <div class="title">
+                                <h3>Attendee(s)</h3>
+                            </div>
+                            <div class="attendee-buttons">
+                                <input type="number" size="2" onchange="changeDosage(this);" title="Populate Time"
+                                       style="width: 70px;" placeholder="Add Time"/>
+                                <img src="{!URLFOR($Resource.Style_Bundle, 'images/arrow-down.png')}"
+                                     title="Add Time to Column"/>
+                                <input type="text" size="255" onchange="changeExitTicket(this);"
+                                       title="Populate Exit Ticket" style="width: 70px;" placeholder="Exit Ticket"/>
+                                <img src="{!URLFOR($Resource.Style_Bundle, 'images/arrow-down.png')}"
+                                     title="Add Exit Ticket to Column"/>
+                                <apex:commandButton styleClass="btn-bs btn-default btn-sm"
+                                                    action="{!doAddStudentToSession}" title="Add" value="Add"/>
+                            </div>
+                        </div>
+                        <apex:outputPanel id="studentTable">
+                            <div class="table-group">
+                                <table class="table table-responsive table-striped">
+                                    <thead>
+                                    <tr>
+                                    </tr>
+                                    <th></th>
+                                    <th>
+                                     <div class="requiredInput">
+                                            <div class="requiredBlock"></div>
+                                    <input type="number" size="2" onchange="changeDosage(this);"
+                                               title="Populate Time" style="width: 70px;"/>
+                                        <img src="{!URLFOR($Resource.Style_Bundle, 'images/arrow-down.png')}"
+                                             title="Add Time to Column"/>
+                                             </div></th>
+                                    <th><input type="text" size="255" onchange="changeExitTicket(this);"
+                                               title="Populate Exit Ticket" style="width: 70px;"/>
+                                        <img src="{!URLFOR($Resource.Style_Bundle, 'images/arrow-down.png')}"
+                                             title="Add Exit Ticket to Column"/></th>
+
+                                    <th>
+                                        <apex:commandButton styleClass="btn-bs btn-default btn-sm"
+                                                            action="{!doAddStudentToSession}" title="Add" value="Add"/>
+                                    </th>
+                                    <tr>
+                                        <th>Student</th>
+                                        <th>Time (in minutes)</th>
+                                        <th>Exit Ticket</th>
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <apex:repeat var="e" value="{!studentsInSession}">
+                                        <tr>
+                                            <td data-label="Student">{!e.Student_Section__r.Student__r.Name}</td>
+                                            <td data-label="Time (in minutes)">
+                                            <div class="requiredInput">
+                                            <div class="requiredBlock"></div>
+                                                <apex:inputField value="{!e.Amount_of_Time__c}"
+                                                                 onblur="ValidateTime(this.value)" onchange="testCheck()" id="timeEntry"
+                                                                 type="number" styleClass="form-control input-sm time"/>
+                                              </div>
+                                            </td>
+                                            
+                                            <td data-label="Exit Ticket">
+                                                <apex:inputField value="{!e.Exit_Ticket__c}" id="exitTicketEntry"
+                                                                 type="text"
+                                                                 styleClass="form-control input-sm exitTicketInput"
+                                                                 style="width:70px;"/>
+                                            </td>
+                                            <td data-label="Action">
+                                                <!--
+                                                                                            <apex:commandLink value="Delete" action="{!doDeleteStudentFromSession}"><apex:param name="ssID" value="{!e.Student_Section__c}" /></apex:commandLink>
+
+                                                -->
+                                                <apex:commandLink value="Delete"
+                                                                  onclick="deleteStudentJS('{!e.Student_Section__c}');return false;"></apex:commandLink>
+                                            </td>
+                                        </tr>
+                                    </apex:repeat>
+                                    </tbody>
+                                </table>
+                                <!--<span id="dosageError" style="color:red;display:none">That's a very short session. Are you sure?</span><br/>-->
+                            </div>
+                          
+                        </apex:outputPanel>
+                        
+                    </div>
+                    <div class="box-footer">
+                        <div class="controls">
+                            <apex:commandButton styleClass="btn-bs btn-primary push-left" 
+                                                 onClick="return calljsActionFunction();" value="Submit" action="{!doSessionSubmit}" />
+                                                
+                        </div>
+                    </div>
+                </div>
+                <apex:inputHidden value="{!selectedFieldsitem}" id="inputSkill"/>
+                <apex:actionFunction name="deleteStudentJS" action="{!doDeleteStudentFromSession}" onComplete=""
+                                     reRender="studentTable">
+                    <apex:param name="ssID" value=""/>
+                </apex:actionFunction>
+               
+
+            </apex:form>
+        </apex:define>
+    </apex:composition>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/js/select2.min.js"></script>
+    <script type="text/javascript">
+        var primarySkillOld;
+
+        $(document).ready(function () {
+            $('option.selected').each(function () {
+                $(this).attr('selected', 'selected');
+            });
+            // Select2 plugin
+            $('.tags').select2({
+                tags: true
+            });
+            $('select[id$=primarySkill]').each(function (idx, elem) {
+                elem.insertAdjacentHTML('afterbegin', '<option value="" disabled selected hidden>Select primary skill...</option>');
+                elem.value = '{!primaryField}';
+                $(elem).change();
+            });
+            //disable search field
+            $('span.select2 li>input.select2-search__field').attr("readonly", "true");
+        });
+
+        function updatePrimaryField(elem) {
+            var selOption = elem.selectedOptions[0];
+            if (primarySkillOld != null) {
+                $('#skills').append(primarySkillOld);
+            }
+            primarySkillOld = $('#skills option[value="' + selOption.label + '"]').removeAttr('selected').remove();
+            $('#skillGroup span li[title="' + selOption.label + '"]').remove();
+            addSelected();
+        }
+
+        //$(document).ready(function() {
+        //  $('.data-table').DataTable({
+        //      "aaSorting": [
+        //          [0]
+        //      ],
+        //      "aoColumns": [{
+        //          "bSortable": false
+        //      }, {
+        //          "bSortable": true
+        //      }, {
+        //          "bSortable": true
+        //      }, {
+        //          "bSortable": true
+        //      }, {
+        //          "bSortable": true
+        //      }, {
+        //          "bSortable": true
+        //      }]
+        //  });
+        //});
+        
+      //function testCheck(){
+        // var value =$("input[id$='timeEntry']").val();
+        //console.log('##'+value);
+       //alert('Thats a very short session. Are you sure?');
+       
+       //if(validatebelowtime(value) !=false){
+              //$("input[id$='timeEntry']").value(); 
+            //}
+       //}
+       
+       
+        function changeDosage(inputBox) {
+            var val = inputBox.value;
+            if (ValidateTime(val) != false) {
+                $("input[id$='timeEntry']").val(val);
+                
+            }
+        }
+
+        function changeExitTicket(inputBox){
+            var val = inputBox.value;
+            $("input[id$='exitTicketEntry']").val(val);
+            
+        }
+        function validatebelowtime(value){
+         var x = parseInt(value, 0);
+          let cnfText;
+          if( x < 5){
+          cnfText="That's a very short session. Are you sure?";
+          if(confirm(cnfText)==true){
+               return true;
+           }else{
+               return false;
+           }
+          }
+           if(x > 300){
+          cnfText="That's a very long session. Are you sure?";
+          if(confirm(cnfText)==true){
+               return true;
+           }else{
+               return false;
+           }
+          } 
+        }
+        function ValidateTime(value) {
+            var x = parseInt(value, 0);
+            //BGR 03252015 Ensure time is 1-500
+            if (value.length > 0 && (isNaN(x) || x < 1 || x >= 500)) {
+                alert('Time value should be numeric between 1-500');
+                return false;
+            }
+        }
+
+        function ValidateLen(value) {
+            if (value.length > 255)
+                //BGR 03252015 field len is only 255 in the managed app which we cant control
+            {
+                alert('Skills or Comments can not be longer than 255 characters. Extra characters will be removed. Length: ' + value.length);
+                return false;
+            }
+        }
+     
+        function checkSkills() {
+            var isError = false;
+            // var selectedTextLeft = j$.map(j$('.leftList option'), function(o) {
+            //  return o.text;
+            // }).join(', ')
+            // var selectedTextRight = j$.map(j$('.rightList option'), function(o) {
+            //  return o.text;
+            // }).join(', ')
+            // if (selectedTextLeft.indexOf("*") >= 0) {
+            //  if (selectedTextRight.indexOf("*") == -1) {
+            //      j$("#requiredSkillsErrorSpan").show();
+            //      isError = true;
+            //  } else {
+            //      j$("#requiredSkillsErrorSpan").hide();
+            //  }
+            // }
+            var primaryOPt = $('select[id$=primarySkill]')[0];
+            if (primaryOPt.value == null || primaryOPt.value == '') {
+                j$("#requiredSkillsErrorSpan").show();
+                isError = true;
+            } else {
+                j$("#requiredSkillsErrorSpan").hide();
+            }
+            if (!isError) {
+                sessionSubmit();
+            }
+        
+        }
+
+        //Added by Harsh Singh to pass the Available skills to controller begin
+        var singleValues;
+
+        function addSelected() {
+            singleValues = $("#skills").val();
+        }
+
+        <!--function submitSessions() {-->
+        <!--var res = singleValues.toString();-->
+        <!--}-->
+
+        function calljsActionFunction() {
+            var res = '';
+            
+        var value =$("input[id$='timeEntry']").val();
+        console.log('@@'+value);
+        
+          if(validatebelowtime(value) !=false){
+              $("input[id$='timeEntry']").value();
+            
+           
+            if (singleValues == null) {
+                addSelected();
+            }
+            if (singleValues != null) {
+                res = singleValues.toString();
+                if (res != null && res != '') {
+                    $("input[ID$='inputSkill']").val(res);
+                }
+            } 
+             SesseionActionFunction();
+             console.log('sessetionsubmit');
+             return true;
+          }else{
+            return false;
+          }
+         
+        }
+
+        //Added by Harsh Singh to pass the Available skills to controller end
+    </script>
+</apex:page>

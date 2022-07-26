@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Strand Grade</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Strand Grades</value>
+    </caseValues>
+    <fields>
+        <label><!-- External Id --></label>
+        <name>External_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Grade Overridden --></label>
+        <name>Grade_Overridden__c</name>
+    </fields>
+    <fields>
+        <label><!-- Grade Override --></label>
+        <name>Grade_Override__c</name>
+    </fields>
+    <fields>
+        <label><!-- Calculated Grade --></label>
+        <name>Grade__c</name>
+    </fields>
+    <fields>
+        <label><!-- Key --></label>
+        <name>Key__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reporting Period Name --></label>
+        <name>Reporting_Period_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reporting Period --></label>
+        <name>Reporting_Period__c</name>
+        <relationshipLabel><!-- Strand Grades --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Strand Description --></label>
+        <name>Strand_Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Grade --></label>
+        <name>Strand_Grade__c</name>
+    </fields>
+    <fields>
+        <label><!-- Strand ID --></label>
+        <name>Strand_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Strand --></label>
+        <name>Strand__c</name>
+        <relationshipLabel><!-- Strand Grades --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Student --></label>
+        <name>Student__c</name>
+        <relationshipLabel><!-- Strand Grades --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Subject --></label>
+        <name>Subject__c</name>
+    </fields>
+    <layouts>
+        <layout>Strand Grade Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Strand Grade Layout_admin</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

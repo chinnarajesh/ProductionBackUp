@@ -1,0 +1,372 @@
+<apex:page id="CT_Unpublished_Data" controller="CT_Unpublished_Data" sidebar="false" tabStyle="Schoolforce_Setup__tab">
+
+    <c:CT_setupWizardSharedComponents />
+    <apex:outputPanel id="script" >
+        <script type="text/javascript">
+            j$(document).ready(function () {
+                j$(".trees").treeview({
+                    persist: "location",
+                    collapsed: true,
+                    //unique: true
+                });
+            });
+
+        </script>
+    </apex:outputPanel>
+
+    <body>
+    <apex:form id="mainForm">
+        <apex:outputPanel id="homePanel">
+            <table style="width: 100%">
+                <tr>
+                    <td style="vertical-align: top; width: 15%">
+                        <!-- <c:setupWizardSidebar /> -->
+                    </td>
+                    <td style="vertical-align: top; width: 85%">
+                        <apex:outputPanel id="error" styleClass="pageMessages">
+                            <apex:pageMessages escape="false" />
+                        </apex:outputPanel>
+                        <div id="schoolforce-wrapper" class="wrapper">
+                            <h1 class="centerHeader">
+                                Unpublished Data
+                            </h1>
+                            <div class="content-wrapper">
+                                <apex:outputPanel id="schoolSetup">
+                                    <h3>School Setup</h3>
+                                    <div class="childSummary">
+                                        Select the verification status, location, year and school you want to publish,
+                                        and then click <b>Publish</b>.
+                                    </div>
+                                    <div class="section_content no-border">
+                                        <table>
+                                            <tr>
+                                                <td style="text-align:center;">
+                                                    <apex:outputLabel value="Verification Status" for="status"/>
+                                                    <apex:selectList id="status" value="{!selectedStatus}" size="1"
+                                                                     onChange="search()">
+                                                        <apex:selectOptions id="status1" value="{!statuses}"/>
+                                                    </apex:selectList>
+                                                </td>
+                                                <td style="text-align:center;">
+                                                    <apex:outputLabel value="Select Year" for="years"/>
+                                                    <apex:selectList id="years" value="{!selectedYear}" size="1"
+                                                                     onChange="search()">
+                                                        <apex:selectOptions value="{!years}"/>
+                                                    </apex:selectList>
+                                                </td>
+                                                <td style="text-align:center;">
+                                                    <apex:outputLabel value="Select Location" for="locations"/>
+                                                    <apex:selectList id="locations" value="{!selectedLocation}" size="1"
+                                                                     onChange="search()">
+                                                        <apex:selectOptions value="{!locations}"/>
+                                                    </apex:selectList>
+                                                </td>
+                                                <!--<td style="text-align:center;">-->
+                                                    <!--<apex:outputLabel value="Select School" for="schools"/>-->
+                                                    <!--<apex:selectList id="schools" value="{!selectedSchool}" size="1">-->
+                                                        <!--<apex:selectOptions value="{!schools}"/>-->
+                                                    <!--</apex:selectList>-->
+                                                <!--</td>-->
+                                            </tr>
+                                            <!--<tr>-->
+                                                <!--<td colspan="3">-->
+                                                    <!--<center>-->
+                                                        <!--<input type="button" class="drk_blue_btn" value="Publish"-->
+                                                               <!--onclick="schoolSetupJs();"/>-->
+                                                        <!--&lt;!&ndash;class="{!IF(OR(needSchools,needYears),'grey_btn','drk_blue_btn')}"&ndash;&gt;-->
+                                                    <!--</center>-->
+
+                                                <!--</td>-->
+                                            <!--</tr>-->
+                                        </table>
+                                        <!--<c:CT_Summary/>-->
+                                        <!--<input type="button" class="drk_blue_btn" value="Publish" style="float: right;"-->
+                                               <!--onclick="publishSchoolJs();" disabled="{!!bOccupancyError}" id="publishButton"-->
+                                        <!--/>-->
+                                        <!--<apex:commandButton styleClass="drk_blue_btn" value="Publish" style="position:relative; left:835px" onclick="publishSchoolJs();" disabled="{!bOccupancyError}" id="publishButton"  />-->
+                                        <!--style="float: right; right: 20px; "-->
+                                        <apex:outputPanel id="main">
+                                            <!--<div class="section_content" id="summaryBar">-->
+                                            <br/>
+                                            <table>
+                                                <tr>
+                                                    <td>
+                                                        <ul class="trees">
+                                                            <apex:repeat value="{!treeBuilder.locations}" var="location" >
+                                                                <li id="{!location}_id" onclick="querySchool('{!location}');" ><apex:outputLabel value="{!location}"/>
+
+                                                                    <ul class="trees" >
+                                                                        <apex:repeat value="{!treeBuilder.accountWithSetupMap[location]}" var="school">
+                                                                            <!--<li>-->
+                                                                            <li id="{!school.accountWithSetup.Id}_id" onclick="queryTerm('{!school.accountWithSetup.Id}')">
+                                                                                <!--<apex:outputLabel value="{!school.accountWithSetup.School__r.Name}"/>-->
+                                                                                <apex:outputLink value="/apex/CT_core_PublishSetup?setupId={!school.accountWithSetup.Id}" target="_blank">{!school.accountWithSetup.School__r.Name}</apex:outputLink>
+                                                                                <apex:inputCheckbox value="{!school.isSelected}"  styleClass="inputClass" onChange="checkTermsJs();" onClick="event.stopPropagation();"
+                                                                                    disabled="{!IF((school.accountWithSetup.Verification_Status__c == 'Verification'),false, true)}" >
+                                                                                    <apex:actionSupport event="onchange" reRender="error, publishButton"/>
+                                                                                </apex:inputCheckbox>
+
+                                                                                <ul class="trees">
+                                                                                    <apex:repeat value="{!IF(CONTAINS(termIdString, school.accountWithSetup.Id),treeBuilder.termsMap[school.accountWithSetup.Id],'Empty')}" var="term">
+                                                                                    <!--<apex:repeat value="{!IF(CONTAINS(termIdString, school.accountWithSetup.Id),treeBuilder.termsMap[school.accountWithSetup.Id],'Empty')}" var="term">-->
+                                                                                        <li id="{!term}_id" onclick="queryReportingPeriods('{!term}')">
+                                                                                            <apex:outputLabel value="{!IF(OR(term=='Empty', term.Time_Element__r.Id==null), term, term.Time_Element__r.Name__c)}"/>
+
+                                                                                            <ul class="trees">
+                                                                                                <apex:repeat value="{!IF(AND(term!='Empty', term.Time_Element__r.Id!=null), IF(CONTAINS(reportingPeriodIdString, term.Time_Element__r.Id),treeBuilder.reportingPeriodsMap[term.Time_Element__r.Id],'Empty'),'Empty')}" var="reportingPeriod">
+                                                                                                    <li id="{!term}r_id" onclick="querySchedTemplatesPeriods('{!reportingPeriod}r')">
+                                                                                                        <apex:outputLabel value="{!IF((reportingPeriod == 'Empty'), reportingPeriod, reportingPeriod.Name__c)}"/>
+                                                                                                        <ul class="trees">
+                                                                                                            <apex:repeat value="{!IF((reportingPeriod != 'Empty'),  reportingPeriod.Schedule_Templates__r , 'Empty')}" var="scheduleTemplate">
+                                                                                                                <li>
+                                                                                                                    <apex:outputLabel value="{!IF((scheduleTemplate == 'Empty'), scheduleTemplate, scheduleTemplate.Name)}"/>
+                                                                                                                    <ul class="trees">
+                                                                                                                        <apex:repeat value="{!IF((scheduleTemplate != 'Empty'),IF(CONTAINS(periodIdString, scheduleTemplate.Id),treeBuilder.periodsMap[scheduleTemplate.Id],'Empty'),'Empty')}" var="period">
+                                                                                                                            <li><apex:outputLabel value="{!IF((period == 'Empty'), period, Text(period.Order__c) + ' ' + period.Key__c + ' ' + period.Start_Time_Text__c + ' - ' + period.End_Time_Text__c)}"/>
+                                                                                                                            </li>
+                                                                                                                        </apex:repeat>
+                                                                                                                    </ul>
+                                                                                                                </li>
+                                                                                                            </apex:repeat>
+                                                                                                        </ul>
+                                                                                                        <ul class="trees">
+                                                                                                            <apex:repeat value="{!IF((reportingPeriod != 'Empty'),  reportingPeriod.Scheduled_Sections__r , 'Empty')}" var="scheduleSections">
+                                                                                                                <li><apex:outputLabel value="{!IF((scheduleSections == 'Empty'), scheduleSections, scheduleSections.Section__r.Name + ' - ' + scheduleSections.Staff__r.Name)}"/>
+                                                                                                                </li>
+                                                                                                            </apex:repeat>
+                                                                                                        </ul>
+                                                                                                    </li>
+                                                                                                </apex:repeat>
+                                                                                            </ul>
+                                                                                        </li>
+                                                                                    </apex:repeat>
+                                                                                </ul>
+                                                                            </li>
+                                                                        </apex:repeat>
+                                                                    </ul>
+                                                                </li>
+                                                            </apex:repeat>
+                                                        </ul>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </apex:outputPanel>
+                                        <apex:commandButton styleClass="drk_blue_btn" value="Publish" style="position:relative; left:835px" onclick="publishSchoolJs();" disabled="{!bOccupancyError}" id="publishButton"  reRender="error, schoolSetup, script" onComplete="reload();"/>
+
+                                    </div>
+                                </apex:outputPanel>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </apex:outputPanel>
+        <apex:actionFunction name="querySchoolsJs" action="{!querySchoolsForTree}" reRender="main, script" onComplete="showCityBranch('{!selectedLocationString}')">
+            <apex:param name="location" assignTo="{!selectedLocationString}" value="" />
+        </apex:actionFunction>
+        <apex:actionFunction name="removeSchoolsJs" action="{!deleteSchoolsFromTree}" reRender="main, script" onComplete="hideCityBranch('{!selectedLocationString}')">
+            <apex:param name="locationToDelete" assignTo="{!selectedLocationString}" value="" />
+        </apex:actionFunction>
+
+
+
+        <apex:actionFunction name="queryTermJs" action="{!queryTermsForTree}" reRender="main, script" onComplete="showSchoolBranch('{!selectedSetupId}')">
+            <apex:param name="termToOpen" assignTo="{!selectedSetupId}" value="" />
+        </apex:actionFunction>
+        <apex:actionFunction name="removeTermJs" action="{!deleteTermsFromTree}" reRender="main, script" onComplete="hideSchoolBranch('{!selectedSetupId}')">
+            <apex:param name="termToDelete" assignTo="{!selectedSetupId}" value="" />
+        </apex:actionFunction>
+
+
+        <apex:actionFunction name="queryReportingPeriodJs" action="{!queryReportingPeriodsForTree}" reRender="main, script" onComplete="showTermBranch('{!selectedTermId}')">
+            <apex:param name="termToOpen" assignTo="{!selectedTermId}" value="" />
+        </apex:actionFunction>
+        <apex:actionFunction name="removeReportingPeriodJs" action="{!deleteReportingPeriodFromTree}" reRender="main, script" onComplete="hideTermBranch('{!selectedTermId}')">
+            <apex:param name="termToDelete" assignTo="{!selectedTermId}" value="" />
+        </apex:actionFunction>
+
+        <apex:actionFunction name="checkTermsJs" action="{!checkTermsOccupancy}" reRender="error, publishButton"/>
+        <apex:actionFunction name="publishSchoolJs" action="{!publishSchools}" reRender="error"/>
+        <apex:actionFunction name="reload" action="{!fillCollectionsWithQueryData}" reRender="schoolSetup, script"/>
+        <apex:actionFunction name="search" action="{!runSearch}" reRender="homePanel, script " oncomplete="newContainer();">
+        <!--rerender=" schoolSetup, error, summary"-->
+        </apex:actionFunction>
+        <apex:outputPanel id="treeScript">
+            <script>
+                var CityIdsContainer = function() {
+                    this.cityIds = [];
+                    this.schoolIds = [];
+                    this.termIds = [];
+
+                    this.addNewCityId = function(newCity) {
+                        if(!this.cityIds.includes(newCity)) {
+                            this.cityIds.push(newCity);
+                        }
+                    };
+
+                    this.addNewSchoolId = function(newSchool) {
+                        if(!this.schoolIds.includes(newSchool)) {
+                            this.schoolIds.push(newSchool);
+                        }
+                    };
+
+                    this.addNewTermId = function(newTerm) {
+                        if(!this.termIds.includes(newTerm)) {
+                            this.termIds.push(newTerm);
+                        }
+                    };
+
+                    this.removeNewCityId = function(newCity) {
+                        var position = this.cityIds.indexOf(newCity);
+                        this.cityIds.splice(position, 1);
+                    };
+
+                    this.removeNewSchoolId = function(newSchool) {
+                        var position = this.schoolIds.indexOf(newSchool);
+                        this.schoolIds.splice(position, 1);
+                    };
+
+                    this.removeNewTermId = function(newTerm) {
+                        var position = this.termIds.indexOf(newTerm);
+                        this.termIds.splice(position, 1);
+                    };
+
+                    return {
+                        cityIds: this.cityIds,
+                        addNewCityId: this.addNewCityId,
+                        removeNewCityId: this.removeNewCityId,
+
+                        schoolIds : this.schoolIds,
+                        addNewSchoolId: this.addNewSchoolId,
+                        removeNewSchoolId: this.removeNewSchoolId,
+
+                        termIds : this.termIds,
+                        addNewTermId: this.addNewTermId,
+                        removeNewTermId: this.removeNewTermId
+                    };
+                };
+
+                var cityIdsToShow = new CityIdsContainer();
+
+                function newContainer(){
+                    cityIdsToShow = new CityIdsContainer();
+                }
+                function querySchool(city){
+                    event.preventDefault();
+                    event.stopPropagation();
+
+                    if(document.getElementById(city + '_id').children[0].className === 'hitarea collapsable-hitarea' ||
+                            document.getElementById(city + '_id').children[0].className === 'hitarea collapsable-hitarea lastCollapsable-hitarea') {
+                        if(cityIdsToShow.cityIds.length > 20) {
+                            alert('To open more, close previous cities/schools.');
+                        } else {
+                            querySchoolsJs(city);
+                        }
+                    } else {
+                        var cityTree = document.getElementById(city + '_id');
+                        var schoolsInCity = cityTree.children[2];
+                        for(var i = 0; i < schoolsInCity.children.length; i++) {
+                            var school = schoolsInCity.children[i];
+                            if (schoolsInCity.children[i].id) {
+                                cityIdsToShow.removeNewSchoolId(schoolsInCity.children[i].id);
+                            }
+                            var termsInSchool = school.children[3];
+                            for(var j = 0; j < termsInSchool.children.length; j++) {
+                                <!--if (termsInSchool.children[i]) {-->
+                                    <!--cityIdsToShow.removeNewTermId(termsInSchool.children[i].id);-->
+                                <!--}-->
+                                if(termsInSchool.children[i]) {
+                                    var sign = termsInSchool.children[i].children[0];
+                                    var tmpClass = sign.className;
+                                    if(sign) {
+                                        sign.className = 'hitarea expandable-hitarea';
+                                        <!--cityIdsToShow.removeNewTermId(sign.Id);-->
+                                    }
+                                    var deepTree = termsInSchool.children[i].children[2];
+                                    deepTree.style.display = 'none';
+                                }
+                            }
+                        }
+
+                        removeSchoolsJs(city);
+                    }
+                }
+
+                function queryTerm(setup){
+                    event.preventDefault();
+                    event.stopPropagation();
+                    if(document.getElementById(setup + '_id').children[0].className === 'hitarea collapsable-hitarea' ||
+                            document.getElementById(setup + '_id').children[0].className === 'hitarea collapsable-hitarea lastCollapsable-hitarea') {
+                        queryTermJs(setup);
+                    } else {
+                        removeTermJs(setup);
+                    }
+                }
+
+                function queryReportingPeriods(term){
+                    event.preventDefault();
+                    event.stopPropagation();
+                    if(document.getElementById(term + '_id').children[0].className === 'hitarea collapsable-hitarea' ||
+                            document.getElementById(term + '_id').children[0].className === 'hitarea collapsable-hitarea lastCollapsable-hitarea') {
+                        queryReportingPeriodJs(term);
+                    } else {
+                        removeReportingPeriodJs(term);
+                    }
+                }
+
+                function querySchedTemplatesPeriods(reportingPeriod) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+
+                function showCityBranch(city) {
+                    cityIdsToShow.addNewCityId(city + '_id');
+
+                    showBranches();
+                }
+                function showSchoolBranch(school) {
+                    cityIdsToShow.addNewSchoolId(school + '_id');
+
+                    showBranches();
+                }
+                function showTermBranch(term) {
+                    cityIdsToShow.addNewTermId(term + '_id');
+
+                    showBranches();
+                }
+
+                function hideCityBranch(city) {
+                    cityIdsToShow.removeNewCityId(city + '_id');
+
+                    showBranches();
+                }
+                function hideSchoolBranch(school) {
+                    cityIdsToShow.removeNewSchoolId(school + '_id');
+
+                    showBranches();
+                }
+                function hideTermBranch(term) {
+                    cityIdsToShow.removeNewTermId(term + '_id');
+
+                    showBranches();
+                }
+
+                function showBranches() {
+                    for(var i = 0; i < cityIdsToShow.cityIds.length; i++) {
+                        document.getElementById(cityIdsToShow.cityIds[i]).children[0].className = 'hitarea collapsable-hitarea';
+                        document.getElementById(cityIdsToShow.cityIds[i]).children[2].style.display = 'block';
+                    }
+                    for(var i = 0; i < cityIdsToShow.schoolIds.length; i++) {
+                        document.getElementById(cityIdsToShow.schoolIds[i]).children[0].className = 'hitarea collapsable-hitarea';
+                        document.getElementById(cityIdsToShow.schoolIds[i]).children[3].style.display = 'block';
+                    }
+                    for(var i = 0; i < cityIdsToShow.termIds.length; i++) {
+                        document.getElementById(cityIdsToShow.termIds[i]).children[0].className = 'hitarea collapsable-hitarea';
+                        document.getElementById(cityIdsToShow.termIds[i]).children[2].style.display = 'block';
+                    }
+                }
+            </script>
+        </apex:outputPanel>
+    </apex:form>
+    </body>
+</apex:page>

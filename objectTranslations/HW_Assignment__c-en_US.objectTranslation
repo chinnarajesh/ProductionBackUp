@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>HW Assignment</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>HW Assignments</value>
+    </caseValues>
+    <fields>
+        <label><!-- External Id --></label>
+        <name>External_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- HWT Date --></label>
+        <name>HWT_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Section --></label>
+        <name>Section__c</name>
+        <relationshipLabel><!-- HW Assignments --></relationshipLabel>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Daily Meal Summary</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Daily Meal Summaries</value>
+    </caseValues>
+    <fields>
+        <help><!-- This is the number of additional breakfasts served that day. --></help>
+        <label><!-- Additional Breakfasts Served --></label>
+        <name>Additional_Breakfasts_Served__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the number of additional lunches served that day. --></help>
+        <label><!-- Additional Lunches Served --></label>
+        <name>Additional_Lunches_Served__c</name>
+    </fields>
+    <fields>
+        <label><!-- External Id --></label>
+        <name>External_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Key --></label>
+        <name>Key__c</name>
+    </fields>
+    <fields>
+        <help><!-- Breakfast that is not scanned should be manually totalled and entered here. --></help>
+        <label><!-- Non-Scan Reimbursable Breakfasts --></label>
+        <name>Non_Scan_Reimbursable_Breakfasts__c</name>
+    </fields>
+    <fields>
+        <label><!-- School --></label>
+        <name>School__c</name>
+        <relationshipLabel><!-- Daily Meal Summaries --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- This is the date the transaction records are being aggregated for . --></help>
+        <label><!-- Summary Date --></label>
+        <name>Summary_Date__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the total number of breakfasts served that day. --></help>
+        <label><!-- Total Breakfasts --></label>
+        <name>Total_Breakfasts__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the total amount of federal reimbursement for a given day based on the meal prices established in the Meals Setup object. --></help>
+        <label><!-- Total Federal Reimbursement --></label>
+        <name>Total_Federal_Reimbursement__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the total number of free breakfasts served that day. --></help>
+        <label><!-- Total Free Breakfasts --></label>
+        <name>Total_Free_Breakfasts__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the total number of free lunches served that day. --></help>
+        <label><!-- Total Free Lunches --></label>
+        <name>Total_Free_Lunches__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the total number of full-priced breakfasts served that day. --></help>
+        <label><!-- Total Full-Price Breakfasts --></label>
+        <name>Total_Full_Price_Breakfasts__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the total number of full-priced lunches served that day. --></help>
+        <label><!-- Total Full-Price Lunches --></label>
+        <name>Total_Full_Price_Lunches__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the total number of lunches served that day. --></help>
+        <label><!-- Total Lunches --></label>
+        <name>Total_Lunches__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the total amount received from students paying for either full-priced or reduced meals for the day. --></help>
+        <label><!-- Total Monies Received --></label>
+        <name>Total_Monies_Received__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the total number of reduced breakfasts served that day. --></help>
+        <label><!-- Total Reduced Breakfasts --></label>
+        <name>Total_Reduced_Breakfasts__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the total number of reduced lunches served that day. --></help>
+        <label><!-- Total Reduced Lunches --></label>
+        <name>Total_Reduced_Lunches__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the total amount of State/Local reimbursement for a given day based on the meal prices established in the Meals Setup object. --></help>
+        <label><!-- Total State/Local Reimbursement --></label>
+        <name>Total_State_Local_Reimbursement__c</name>
+    </fields>
+    <layouts>
+        <layout>Daily Meal Summary Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Meals Totals --></label>
+            <section>Meals Totals</section>
+        </sections>
+        <sections>
+            <label><!-- Reimbursement Amounts --></label>
+            <section>Reimbursement Amounts</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

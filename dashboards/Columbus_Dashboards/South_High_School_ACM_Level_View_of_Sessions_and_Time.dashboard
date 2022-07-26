@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Dashboard xmlns="http://soap.sforce.com/2006/04/metadata">
+    <backgroundEndColor>#FFFFFF</backgroundEndColor>
+    <backgroundFadeDirection>Diagonal</backgroundFadeDirection>
+    <backgroundStartColor>#FFFFFF</backgroundStartColor>
+    <dashboardFilters>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>Coaching: Behavior (Local)</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>Homework Assistance</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>Tutoring: Literacy</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>Tutoring: Math</values>
+        </dashboardFilterOptions>
+        <name>Program</name>
+    </dashboardFilters>
+    <dashboardFilters>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>Alex Ryan</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>Andrew Steinke</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>Isabella Niemeyer</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>Jordan Gilligan</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>Katie Marshall</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>Kemonta Fuqua</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>Marcos Cruz</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>Michael Hilty</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>Michaela Chairez</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>Serenity Scanlan</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>Shi Brown</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>Stephanie McGivern</values>
+        </dashboardFilterOptions>
+        <name>AmeriCorps member</name>
+    </dashboardFilters>
+    <dashboardType>SpecifiedUser</dashboardType>
+    <isGridLayout>false</isGridLayout>
+    <leftSection>
+        <columnSize>Wide</columnSize>
+        <components>
+            <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
+            <chartAxisRange>Auto</chartAxisRange>
+            <chartSummary>
+                <axisBinding>y</axisBinding>
+                <column>RowCount</column>
+            </chartSummary>
+            <componentType>Pie</componentType>
+            <dashboardFilterColumns>
+                <column>Section__c$Program__c</column>
+            </dashboardFilterColumns>
+            <dashboardFilterColumns>
+                <column>Section__c.Intervention_Sessions__r$Session_Time_Completed_For__c</column>
+            </dashboardFilterColumns>
+            <displayUnits>Auto</displayUnits>
+            <drillEnabled>false</drillEnabled>
+            <drillToDetailEnabled>false</drillToDetailEnabled>
+            <enableHover>true</enableHover>
+            <expandOthers>true</expandOthers>
+            <groupingColumn>Section__c$Program__c</groupingColumn>
+            <groupingSortProperties/>
+            <header># of Sessions by Program</header>
+            <legendPosition>Bottom</legendPosition>
+            <report>Columbus_Location_Reports/of_Sessions_and_Amount_of_Time_per_ACM_C</report>
+            <showPercentage>true</showPercentage>
+            <showValues>true</showValues>
+            <sortBy>RowLabelAscending</sortBy>
+            <useReportChart>false</useReportChart>
+        </components>
+        <components>
+            <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
+            <chartAxisRange>Auto</chartAxisRange>
+            <chartSummary>
+                <axisBinding>y</axisBinding>
+                <column>RowCount</column>
+            </chartSummary>
+            <componentType>LineGrouped</componentType>
+            <dashboardFilterColumns>
+                <column>Section__c$Program__c</column>
+            </dashboardFilterColumns>
+            <dashboardFilterColumns>
+                <column>Section__c.Intervention_Sessions__r$Session_Time_Completed_For__c</column>
+            </dashboardFilterColumns>
+            <displayUnits>Auto</displayUnits>
+            <drillEnabled>false</drillEnabled>
+            <drillToDetailEnabled>false</drillToDetailEnabled>
+            <enableHover>true</enableHover>
+            <expandOthers>false</expandOthers>
+            <groupingColumn>Section__c.Intervention_Sessions__r.Intervention_Session_Results__r$Intervention_Session_Date__c</groupingColumn>
+            <groupingColumn>Section__c$Program__c</groupingColumn>
+            <groupingSortProperties/>
+            <header># of Sessions by Month</header>
+            <legendPosition>Bottom</legendPosition>
+            <report>Columbus_Location_Reports/Time_Logged_by_Month_COL</report>
+            <showPercentage>false</showPercentage>
+            <showValues>false</showValues>
+            <sortBy>RowLabelAscending</sortBy>
+            <useReportChart>false</useReportChart>
+        </components>
+    </leftSection>
+    <middleSection>
+        <columnSize>Wide</columnSize>
+        <components>
+            <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
+            <chartAxisRange>Auto</chartAxisRange>
+            <chartSummary>
+                <aggregate>Sum</aggregate>
+                <axisBinding>y</axisBinding>
+                <column>Section__c.Intervention_Sessions__r.Intervention_Session_Results__r$Amount_of_Time__c</column>
+            </chartSummary>
+            <componentType>Column</componentType>
+            <dashboardFilterColumns>
+                <column>Section__c$Program__c</column>
+            </dashboardFilterColumns>
+            <dashboardFilterColumns>
+                <column>Section__c.Intervention_Sessions__r$Session_Time_Completed_For__c</column>
+            </dashboardFilterColumns>
+            <displayUnits>Auto</displayUnits>
+            <drillEnabled>false</drillEnabled>
+            <drillToDetailEnabled>false</drillToDetailEnabled>
+            <enableHover>true</enableHover>
+            <expandOthers>false</expandOthers>
+            <groupingColumn>Section__c$Program__c</groupingColumn>
+            <groupingSortProperties/>
+            <header># of Minutes</header>
+            <legendPosition>Bottom</legendPosition>
+            <report>Columbus_Location_Reports/of_Sessions_and_Amount_of_Time_per_ACM_C</report>
+            <showPercentage>false</showPercentage>
+            <showValues>true</showValues>
+            <sortBy>RowLabelAscending</sortBy>
+            <useReportChart>false</useReportChart>
+        </components>
+        <components>
+            <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
+            <chartAxisRange>Auto</chartAxisRange>
+            <chartSummary>
+                <aggregate>Average</aggregate>
+                <axisBinding>y</axisBinding>
+                <column>Section__c.Intervention_Sessions__r.Intervention_Session_Results__r$Amount_of_Time__c</column>
+            </chartSummary>
+            <componentType>Column</componentType>
+            <dashboardFilterColumns>
+                <column>Section__c$Program__c</column>
+            </dashboardFilterColumns>
+            <dashboardFilterColumns>
+                <column>Section__c.Intervention_Sessions__r$Session_Time_Completed_For__c</column>
+            </dashboardFilterColumns>
+            <displayUnits>Auto</displayUnits>
+            <drillEnabled>false</drillEnabled>
+            <drillToDetailEnabled>false</drillToDetailEnabled>
+            <enableHover>true</enableHover>
+            <expandOthers>false</expandOthers>
+            <groupingColumn>Section__c$Program__c</groupingColumn>
+            <groupingSortProperties/>
+            <header>Average Length of Session (minutes)</header>
+            <legendPosition>Bottom</legendPosition>
+            <report>Columbus_Location_Reports/Primary_Skill_and_Max_Min_Sessions_COL</report>
+            <showPercentage>false</showPercentage>
+            <showValues>true</showValues>
+            <sortBy>RowLabelAscending</sortBy>
+            <useReportChart>false</useReportChart>
+        </components>
+    </middleSection>
+    <rightSection>
+        <columnSize>Wide</columnSize>
+        <components>
+            <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
+            <chartAxisRange>Auto</chartAxisRange>
+            <chartSummary>
+                <axisBinding>y</axisBinding>
+                <column>RowCount</column>
+            </chartSummary>
+            <componentType>BarStacked</componentType>
+            <dashboardFilterColumns>
+                <column>Section__c$Program__c</column>
+            </dashboardFilterColumns>
+            <dashboardFilterColumns>
+                <column>Section__c.Intervention_Sessions__r$Session_Time_Completed_For__c</column>
+            </dashboardFilterColumns>
+            <displayUnits>Auto</displayUnits>
+            <drillEnabled>false</drillEnabled>
+            <drillToDetailEnabled>false</drillToDetailEnabled>
+            <enableHover>true</enableHover>
+            <expandOthers>false</expandOthers>
+            <groupingColumn>Section__c.Intervention_Sessions__r.Intervention_Session_Results__r$Primary_Skill__c</groupingColumn>
+            <groupingColumn>Section__c$Program__c</groupingColumn>
+            <groupingSortProperties/>
+            <header>Primary Skill Focused on During Sessions</header>
+            <legendPosition>Bottom</legendPosition>
+            <report>Columbus_Location_Reports/Primary_Skill_and_Max_Min_Sessions_COL</report>
+            <showPercentage>false</showPercentage>
+            <showValues>false</showValues>
+            <sortBy>RowLabelAscending</sortBy>
+            <useReportChart>false</useReportChart>
+        </components>
+        <components>
+            <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
+            <chartAxisRange>Auto</chartAxisRange>
+            <chartSummary>
+                <aggregate>Maximum</aggregate>
+                <axisBinding>y</axisBinding>
+                <column>Section__c.Intervention_Sessions__r.Intervention_Session_Results__r$Amount_of_Time__c</column>
+            </chartSummary>
+            <chartSummary>
+                <aggregate>Minimum</aggregate>
+                <axisBinding>y</axisBinding>
+                <column>Section__c.Intervention_Sessions__r.Intervention_Session_Results__r$Amount_of_Time__c</column>
+            </chartSummary>
+            <componentType>Column</componentType>
+            <dashboardFilterColumns>
+                <column>Section__c$Program__c</column>
+            </dashboardFilterColumns>
+            <dashboardFilterColumns>
+                <column>Section__c.Intervention_Sessions__r$Session_Time_Completed_For__c</column>
+            </dashboardFilterColumns>
+            <displayUnits>Auto</displayUnits>
+            <drillEnabled>false</drillEnabled>
+            <drillToDetailEnabled>false</drillToDetailEnabled>
+            <enableHover>true</enableHover>
+            <expandOthers>false</expandOthers>
+            <groupingColumn>Section__c$Program__c</groupingColumn>
+            <groupingSortProperties/>
+            <header>Longest Session and Shortest Session</header>
+            <legendPosition>Bottom</legendPosition>
+            <report>Columbus_Location_Reports/Primary_Skill_and_Max_Min_Sessions_COL</report>
+            <showPercentage>false</showPercentage>
+            <showValues>true</showValues>
+            <sortBy>RowLabelAscending</sortBy>
+            <useReportChart>false</useReportChart>
+        </components>
+    </rightSection>
+    <runningUser>juturi.rajesh@jaxconsult.com.cyschorgb</runningUser>
+    <textColor>#000000</textColor>
+    <title>South High School ACM-Level View of Sessions and Time</title>
+    <titleColor>#000000</titleColor>
+    <titleSize>12</titleSize>
+</Dashboard>

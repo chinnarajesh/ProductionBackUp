@@ -1,0 +1,369 @@
+<apex:page id="thePage" standardController="Student_Section__c" extensions="Scheduler_SectionWizard" tabStyle="Student__c" sidebar="true" showHeader="true">
+<c:admin />
+<style>
+	div.dataTables_scroll { clear: both; }
+	.requiredBlock {
+	    background-color: #c00;
+	    position: absolute;
+	    left: -4px;
+	    width: 3px;
+	    top: 1px;
+	    bottom: 1px;
+	}
+	.requiredInput {
+		position: relative;
+		height: 100%;
+	}
+</style>
+
+<script>
+
+j$(document).ready(function(){
+	resetTable();
+	var selectedCatalogId = '{!JSENCODE($CurrentPage.parameters.selectedCatalogId)}';
+	if (selectedCatalogId){
+		j$('.catalogsTable').find('.radio').each(function() { 
+			//alert(j$(this).html()); 
+			var sfdcId = j$(this).attr('sfdcid');
+			//alert(sfdcId);
+			if (sfdcId.indexOf(selectedCatalogId)!=-1){
+				j$(this).click();
+				getCatalogDetailsJs(selectedCatalogId);
+			}
+		});
+	}
+});
+		
+function withdraw(){
+	var r = confirm("Are you sure you want to withdraw the selected students?");
+	if(r==true){
+		withdrawStudentsJS();
+	}
+}
+
+function datefix(){
+	j$('input[id$="Calendar"]').datepicker(
+		{changeMonth: true,
+		changeYear: true,
+		yearRange: '1985:2020'}
+	);
+}
+
+jwerty.key('enter',false);
+
+</script>
+	
+	<!-- End Scripts -->
+
+	<apex:outputPanel id="thePanel">
+	
+	<!-- ERROR -->
+	<apex:outputPanel id="messagePanel" >
+		<apex:pageMessages id="messages" />
+	</apex:outputPanel>
+	<!-- ERROR -->
+	
+	<apex:form >
+
+	<!-- PAGE 1: FIND STUDENTS (EITHER BY ADDING NEW STUDENTS OR SEARCHING FOR OLD STUDENTS) -->
+		<apex:pageBlock title="Student Wizard">
+		<apex:outputPanel id="page1" >
+
+		<!-- BUTTONS--ADD A NEW STUDENT OR SEARCH FOR OLD STUDENTS -->
+		<apex:outputPanel id="buttons" >
+		 <div style="{!IF(buttons,'','display:none')}" >
+			   <h3>Select an Action</h3>
+		<div class="section_content"  >
+   
+			<!--<apex:commandButton reRender="buttons, page1, messagePanel" oncomplete=" resetTable(); datefix();"  value="ADD STUDENT" action="{!enableAddStudent}" disabled="{!disable}" styleClass="drk_blue_btn"/>-->
+			<apex:commandButton reRender="buttons, newStud, searchInfo, messagePanel" oncomplete=" resetTable(); datefix();" value="SEARCH FOR STUDENTS" action="{!enableSearch}" disabled="{!disable}" styleClass="drk_blue_btn"/>
+		</div>
+		<div class="clear_fix">&nbsp;</div>
+		</div>
+		</apex:outputPanel>
+		
+		<!-- ADD A NEW STUDENT -->
+		<apex:outputPanel rendered="{!newStuds}" id="newStud" >
+	  
+		<h3>Add a New Student</h3>
+			<div class="section_content">
+		<apex:pageBlockSection collapsible="false"  columns="2" >
+			<apex:inputField value="{!studentToAdd.stud.Student_First_Name__c}" />
+			<apex:inputField required="true" value="{!studentToAdd.stud.Student_Last_Name__c}" />
+			<apex:inputField required="true" value="{!studentToAdd.stud.Student_Id__c}" />
+			<apex:pageBlockSectionItem >
+				<apex:outputLabel for="newCalendar" value="Date of Birth" />
+				<apex:outputPanel layout="block" styleClass="requiredInput">
+				<apex:outputPanel layout="block" styleClass="requiredBlock" ></apex:outputPanel>
+					<apex:inputText id="newCalendar" value="{!studentToAdd.dateOfBirth}" />
+				</apex:outputPanel>
+			</apex:pageBlockSectionItem>
+			<!-- DE2727 -->
+			<apex:pageBlockSectionItem >
+				<apex:outputLabel for="gradeList" value="Grade" />
+				<apex:outputPanel layout="block" styleClass="requiredInput">
+				<apex:outputPanel layout="block" styleClass="requiredBlock" ></apex:outputPanel>
+					<apex:selectList id="gradeList" size="1" value="{!selectedGrade}">
+						<apex:selectOptions value="{!gradeSelections}" />
+					</apex:selectList>
+				</apex:outputPanel>
+			</apex:pageBlockSectionItem>
+			<!--<apex:inputField required="true" value="{!studentToAdd.stud.Grade__c}" />-->
+			<apex:pageBlockSectionItem >
+				<apex:outputLabel for="cohort" value="Cohort" />
+				<apex:outputPanel layout="block" styleClass="requiredInput">
+				<apex:outputPanel layout="block" styleClass="requiredBlock" ></apex:outputPanel>			
+					<apex:selectList id="cohort" value="{!selectedCohort}" multiselect="false" size="1" >
+						<apex:selectOptions value="{!cohortSelections}" />
+					</apex:selectList>
+				</apex:outputPanel>
+			</apex:pageBlockSectionItem>			
+			<apex:pageBlockSectionItem >
+				<apex:outputLabel for="enterCalendar" value="Entry Date" />
+				<apex:outputPanel layout="block" styleClass="requiredInput">
+				<apex:outputPanel layout="block" styleClass="requiredBlock" ></apex:outputPanel>
+					<apex:inputField id="enterCalendar" value="{!studentToAdd.stud.Entry_Date__c}" />
+				</apex:outputPanel>
+			</apex:pageBlockSectionItem>
+			<apex:inputField required="true" value="{!studentToAdd.stud.Gender__c}" />
+			<apex:inputField required="true" value="{!studentToAdd.stud.Race_Multi__c}" />
+			<!-- US1393 -->
+			<!-- 
+			<apex:pageBlockSectionItem >
+				<apex:outputLabel for="sy" value="School Year" />
+				<apex:outputPanel layout="block" styleClass="requiredInput">
+				<apex:outputPanel layout="block" styleClass="requiredBlock" ></apex:outputPanel>
+				<apex:selectList id="sy" value="{!studentToAdd.stud.School_Year__c}" multiselect="false" size="1" >
+					<apex:selectOptions value="{!schoolYears}" />
+				</apex:selectList>
+				</apex:outputPanel>
+			</apex:pageBlockSectionItem>
+			-->
+		</apex:pageBlockSection>
+		
+		
+	</div>
+	<apex:commandButton styleClass="drk_blue_btn" disabled="{!disable}" reRender="page1, page3, messagePanel" value="GO BACK" action="{!cancel}"  />
+			<apex:commandButton styleClass="drk_blue_btn" disabled="{!disable}" rendered="{!(!groupBased)}" reRender="page2sections, page1, messagePanel" onComplete=" resetTable(); datefix(); setTimeout('hideProgressBar()',300);" onclick="showProgressBar('Saving...');" value="SAVE AND CONTINUE" action="{!newStudent}" />
+			<apex:commandButton styleClass="drk_blue_btn" disabled="{!disable}" rendered="{!groupBased}" reRender="page2groups, page1, messagePanel" onComplete=" resetTable(); datefix(); setTimeout('hideProgressBar()',300);" onclick="showProgressBar('Saving...');" value="SAVE AND CONTINUE" action="{!newStudent}" />
+			
+   	<div class="clear_fix">&nbsp;</div>
+		
+
+		</apex:outputPanel>
+				
+		<!-- SEARCH FOR OLD STUDENTS -->
+		<apex:outputPanel id="searchInfo" >
+		<apex:outputPanel rendered="{!oldStuds}" >
+			<h3>Search Students</h3>
+			<div class="section_content">
+				<apex:pageBlockSection collapsible="false"   columns="2" >
+					<apex:inputField required="false" value="{!searchStudent.student.Student_First_Name__c}" />
+					<apex:inputField value="{!searchStudent.student.Student_Last_Name__c}" />
+					<apex:inputField value="{!searchStudent.student.Student_Id__c}" />
+					<apex:pageBlockSectionItem >
+						<apex:outputLabel for="searchCalendar" value="Date of Birth" />
+						<apex:inputText id="searchCalendar" value="{!searchStudent.Student.Date_of_Birth__c}" />
+					</apex:pageBlockSectionItem>
+					<apex:inputField value="{!searchStudent.Student.Grade__c}" />
+					<!-- <apex:inputfield value="{!searchStudent.Student.Cohort__c}"	/> -->
+<!--					<apex:pageBlockSectionItem >-->
+<!--						<apex:outputLabel for="cohort1" value="Cohort" />		  -->
+<!--							<apex:selectList id="cohort1" value="{!selectedCohort}" multiselect="false" size="1" >-->
+<!--								<apex:selectOptions value="{!cohortSelections}" />-->
+<!--							</apex:selectList>-->
+<!--					</apex:pageBlockSectionItem>			-->
+					<apex:inputField value="{!searchStudent.student.Gender__c}" />
+					<apex:pageBlockSectionItem >
+						<apex:outputLabel for="oldCalendar" value="Entry Date" />
+						<apex:inputText id="oldCalendar" value="{!searchStudent.student.Entry_Date__c}" />
+					</apex:pageBlockSectionItem>
+					<apex:inputField value="{!searchStudent.student.Race_Multi__c}" />
+					<!-- US1393 -->
+					<!-- 
+					<apex:pageBlockSectionItem >
+						<apex:outputLabel for="sy1" value="School Year" />
+						<apex:selectList id="sy1" value="{!searchStudent.student.School_Year__c}" multiselect="false" size="1" >
+							<apex:selectOptions value="{!schoolYears}" />
+						</apex:selectList>
+					</apex:pageBlockSectionItem> 
+					-->		   
+				</apex:pageBlockSection> 
+				
+				<apex:commandButton styleClass="drk_blue_btn" disabled="{!disable}" reRender="page1, page3, messagePanel" value="GO BACK" action="{!cancel}"  />
+				<apex:commandButton styleClass="drk_blue_btn" onComplete="resetTable();" disabled="{!disable}" rendered="{!oldStuds}" reRender="studResults, messagePanel"  value="SEARCH" action="{!searchStudents}"/>
+			 
+					<div class="clear_fix">&nbsp;</div>
+			 </div>
+		</apex:outputPanel>
+		
+		</apex:outputPanel>
+		
+		<!-- LIST OF STUDENTS MATCHING THE SEARCH CRITERIA -->
+		<apex:outputPanel id="studResults" >
+			<apex:outputPanel rendered="{!results}">
+				<h3>Student Results</h3>
+				<div class="section_content">
+					<input type="checkbox" style="float:left; margin:0 5px 0 0;" onclick="selectAll(this,'searchResultCb')" />
+					<apex:outputText style="font-weight:bold; float:left;" value="Select All?" />&nbsp;
+					<table class="tablesorter" >
+						<thead>
+							<tr>
+								<th>Selected</th>
+								<th>Student ID</th>
+								<th>Student First Name</th>
+								<th>Student Last Name</th>
+								<th>Grade</th>
+							</tr>
+						</thead>
+						<tbody>
+							<apex:repeat value="{!studResults}" var="stud" >
+							<apex:repeat value="{!stud}" var="s" >
+								<tr>
+									<td><apex:inputCheckbox styleclass="searchResultCb" value="{!s.selected}" /></td>
+									<td><apex:outputField value="{!s.stud.Student_Id__c}" /></td>
+									<td><apex:outputField value="{!s.stud.Student_First_Name__c}" /></td>
+									<td><apex:outputField value="{!s.stud.Student_Last_Name__c}" /></td>
+									<td><apex:outputField value="{!s.stud.Grade__c}" /></td>
+								</tr>
+							</apex:repeat>
+							</apex:repeat>
+						</tbody>
+					</table>
+					
+					<!-- BUTTONS--TRANSFER OR WITHDRAW STUDENTS FROM GROUPS -->
+					
+					<apex:commandButton styleClass="drk_blue_btn" disabled="{!disable}" rendered="{!groupBased}" reRender="page1, page2groups, page3, messagePanel" value="TRANSFER BETWEEN GROUPS" action="{!transfer}" onComplete="resetTable();" />
+					<apex:commandButton styleClass="drk_blue_btn" disabled="{!disable}" rendered="{!(!groupBased)}" reRender="page1, page2sections, messagePanel" value="TRANSFER BETWEEN SECTIONS" action="{!transfer}"  onComplete="resetTable();" />
+					<apex:commandButton styleClass="drk_blue_btn" disabled="{!disable}" reRender="page1, page3, messagePanel" value="WITHDRAW STUDENTS" action="{!withdraw}"   onComplete="resetTable();"/>
+				
+					<div class="clear_fix">&nbsp;</div>
+				</div>
+			</apex:outputPanel>
+		</apex:outputPanel>
+   
+	</apex:outputPanel>
+	
+	<!-- PAGE 2: TRANSFER STUDENTS BETWEEN GROUPS/SECTIONS PART 1: GROUPS -->
+	<apex:outputPanel id="page2groups" >
+	<apex:outputPanel rendered="{!IF(page2&&groupBased,true,false)}" >
+		
+		<h3>Students To Transfer Groups</h3>
+		<div class="section_content">
+		<apex:pageBlockSection collapsible="false"  columns="1">
+			<apex:dataTable styleclass="tablesorter" title="Students to Transfer" value="{!addStuds}" var="s" >
+				<apex:column headerValue="Student ID" value="{!s.stud.Student_Id__c}" />
+				<apex:column headerValue="Student First Name" value="{!s.stud.Student_First_Name__c}" />
+				<apex:column headerValue="Student Last Name" value="{!s.stud.Student_Last_Name__c}" />
+				<apex:column headerValue="Grade" value="{!s.stud.Grade__c}" />
+				<apex:column headerValue="Current Group" value="{!s.stud.Primary_Schedule_Group__c}" />
+				<apex:column headerValue="New Group" >
+					<apex:selectList value="{!s.chosen}" size="1">
+						<apex:selectOptions value="{!s.available}" />
+					</apex:selectList>
+				</apex:column>
+				<apex:column headerValue="Transfer Date"><apex:inputField required="true" value="{!s.stud.Exit_Date__c}"></apex:inputField></apex:column>
+			</apex:dataTable>
+		</apex:pageBlockSection>
+		
+	 <apex:commandButton styleClass="drk_blue_btn" disabled="{!disable}" reRender="page2groups, page1, messagePanel" immediate="true" value="CANCEL" action="{!cancel}" />
+	  		  <apex:commandButton styleClass="drk_blue_btn" disabled="{!disable}"  reRender="page1, page2groups, messagePanel"  immediate="true"  value="BACK TO SEARCH" action="{!backToSearch}"  onComplete="resetTable();"   />
+	
+			<apex:commandButton styleClass="black_btn" disabled="{!disable}" reRender="page2groups, page1, messagePanel" value="SUBMIT" onclick="showProgressBar('Saving...');" oncomplete="setTimeout('hideProgressBar()',300);resetTable();"  action="{!saveGroups}" />
+		  <div class="clear_fix">&nbsp;</div>
+		</div>
+  	</apex:outputPanel>
+	</apex:outputPanel>
+	
+	<!-- PAGE 2: TRANSFER STUDENTS BETWEEN GROUPS/SECTIONS PART 2: SECTIONS -->
+	<apex:outputPanel id="page2sections" >
+	<apex:outputPanel rendered="{!IF(page2&&!groupBased,true,false)}" >
+	   
+		<h3>Students to Transfer</h3>
+		<div class="section_content">
+
+			<apex:dataTable styleclass="tablesorter" title="Students to Transfer" value="{!addStuds}" var="s" >
+				<apex:column headerValue="Student ID" value="{!s.stud.Student_Id__c}" />
+				<apex:column headerValue="Student First Name" value="{!s.stud.Student_First_Name__c}" />
+				<apex:column headerValue="Student Last Name" value="{!s.stud.Student_Last_Name__c}" />
+				<apex:column headerValue="Grade" value="{!s.stud.Grade__c}" />
+			</apex:dataTable>
+
+		<table style="width:100%">
+		
+	<tr><td style="width:50%">
+		<h3>Current Sections</h3>  <div class="clear_fix">&nbsp;</div>
+					<apex:dataTable styleclass="tablesorter" title="Current Sections" value="{!toRemove}" var="os" >
+				<apex:column headerValue="Remove?" >
+					<apex:inputCheckbox value="{!os.selected}" />
+				</apex:column>
+				<apex:column headerValue="Course" value="{!os.ss.Section__r.Course__c}" />
+				<apex:column headerValue="Section Name" value="{!os.ss.Section__r.Name}" />
+								<apex:column headerValue="Grade Level" value="{!os.ss.Section__r.Grade_Level__c}" />
+									 <apex:column headerValue="Exit Date"><apex:inputField value="{!os.ss.Enrollment_End_Date__c}" /></apex:column>
+			</apex:dataTable>
+		
+	 
+	  </td>
+	  <td style="width:50%">
+	  	<h3>Available Sections</h3>  <div class="clear_fix">&nbsp;</div>
+			<apex:dataTable styleclass="tablesorter" title="Available Sections" value="{!toAdd}" var="sec" >
+				<apex:column headerValue="Add?" >
+					<apex:inputCheckbox value="{!sec.selected}" />
+				</apex:column>
+				<apex:column headerValue="Course" value="{!sec.sec.Course__c}" />
+				<apex:column headerValue="Section Name" value="{!sec.sec.Name}" />
+				<apex:column headerValue="Grade Level" value="{!sec.sec.Grade_Level__c}" />
+				<apex:column headerValue="Entry Date"><div class="requiredInput"><div class="requiredBlock"/><apex:inputField value="{!sec.ss.Enrollment_Start_Date__c}"/></div></apex:column>
+		 </apex:dataTable>
+		</td></tr></table>
+	
+			<apex:commandButton styleClass="drk_blue_btn" disabled="{!disable}" reRender="page2sections, page1, messagePanel" value="CANCEL" action="{!cancel}" />
+	  		  <apex:commandButton styleClass="drk_blue_btn" disabled="{!disable}"  reRender="page1, page2sections, messagePanel" value="BACK TO SEARCH" action="{!backToSearch}" onComplete="resetTable();"   />
+	  
+			<apex:commandButton styleClass="black_btn" disabled="{!disable}" reRender="page2sections, page1, messagePanel" value="SAVE" onclick="showProgressBar('Saving...');" onComplete=" resetTable(); setTimeout('hideProgressBar()',300); "  action="{!saveSections}" />
+		   <div class="clear_fix">&nbsp;</div>
+		</div>
+ </apex:outputPanel>
+	</apex:outputPanel>
+	
+	<!-- PAGE 3: WITHDRAW STUDENTS FROM SYSTEM -->
+	<apex:outputPanel id="page3" >
+	<apex:outputPanel rendered="{!page3}">
+	<h3>Withdraw Students</h3>
+	<div class="section_content">
+		<apex:pageBlockSection collapsible="false"  columns="1">
+			<apex:dataTable styleclass="tablesorter" title="Students to Withdraw" value="{!addStuds}" var="s" >
+				<apex:column headerValue="Student ID" value="{!s.stud.Student_Id__c}" />
+				<apex:column headerValue="Student First Name" value="{!s.stud.Student_First_Name__c}" />
+				<apex:column headerValue="Student Last Name" value="{!s.stud.Student_Last_Name__c}" />
+				<apex:column headerValue="Exit Date" >
+					<apex:inputField value="{!s.stud.Exit_Date__c}" />
+				</apex:column>
+				<apex:column headerValue="Exit Reason" >  
+					  <apex:selectList value="{!s.exitReason}" multiselect="false" size="1" rendered="true" >
+					   	<apex:selectOptions value="{!exitReasons}"/>
+					   </apex:selectList> 
+				</apex:column>
+				<apex:column headerValue="Exit Status" >
+					<apex:inputField value="{!s.stud.Exit_Status__c}" />
+				</apex:column>
+			</apex:dataTable>
+		</apex:pageBlockSection>
+
+		   <apex:commandButton styleClass="drk_blue_btn" disabled="{!disable}" reRender="page3, page1, messagePanel" value="CANCEL" action="{!cancel}" />
+	
+		<apex:commandButton styleClass="black_btn" disabled="{!disable}" reRender="page3, page1, messagePanel" value="WITHDRAW STUDENTS" onclick="withdraw();" />
+		<div class="clear_fix">&nbsp;</div>
+		</div>
+	</apex:outputPanel>
+	</apex:outputPanel>
+	
+	<!-- ACTION FUNCTIONS -->
+	<apex:actionFunction action="{!withdrawStudents}" name="withdrawStudentsJS"/>
+	</apex:pageBlock>
+	</apex:form>
+	
+	</apex:outputPanel>
+
+</apex:page>

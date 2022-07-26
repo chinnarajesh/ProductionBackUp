@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Section__c$School__c</field>
+    </columns>
+    <columns>
+        <field>Section__c$Intervention_Primary_Staff__c</field>
+    </columns>
+    <columns>
+        <field>Section__c$Indicator_Area__c</field>
+    </columns>
+    <columns>
+        <field>Section__c.Student_Section__r$Student__c.Student_ID_Auto_Number__c</field>
+    </columns>
+    <columns>
+        <field>Section__c.Student_Section__r.Intervention_Session_Results__r$Intervention_Session_Date__c</field>
+    </columns>
+    <columns>
+        <field>Section__c.Student_Section__r.Intervention_Session_Results__r$Amount_of_Time__c</field>
+    </columns>
+    <columns>
+        <field>Section__c.Student_Section__r.Intervention_Session_Results__r$Primary_Skill__c</field>
+    </columns>
+    <columns>
+        <field>Section__c.Student_Section__r.Intervention_Session_Results__r$SkillsCovered__c</field>
+    </columns>
+    <columns>
+        <field>Section__c.Student_Section__r.Intervention_Session_Results__r$Intervention_Session__c.Comments__c</field>
+    </columns>
+    <description>During audit period; enter the student CY-ID numbers that they are looking to pull (~30) and print this report to report back on the types of intervention the students are receiving.</description>
+    <filter>
+        <criteriaItems>
+            <column>Section__c$Location__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>San Antonio</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Section__c.Student_Section__r$Student__c.Student_ID_Auto_Number__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>CY-283410,CY-286006,CY-282519,CY-284701,CY-284166,CY-282806,CY-284400,CY-282466,CY-377612,CY-285590,CY-280301,CY-280072,CY-397469,CY-285778,CY-283560,CY-285130,CY-280396,CY-280028,CY-283705,CY-280937,CY-283110,CY-280246,CY-285305,CY-282801,CY-282697,CY-285339,CY-282595,CY-283814,CY-280191,CY-281878</value>
+        </criteriaItems>
+    </filter>
+    <format>Tabular</format>
+    <name>CoSA - Intervention Session Records</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Sections_with_Student_Section_with_Intervention_Session_Results__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>Section__c$CreatedDate</dateColumn>
+        <interval>INTERVAL_CURFY</interval>
+    </timeFrameFilter>
+</Report>

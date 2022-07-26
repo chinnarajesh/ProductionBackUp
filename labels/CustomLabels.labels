@@ -1,0 +1,483 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>AssessmentWizardImportProcessRecordsLimit</fullName>
+        <categories>Assessment Wizard</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AssessmentWizardImportProcessRecordsLimit</shortDescription>
+        <value>400</value>
+    </labels>
+    <labels>
+        <fullName>CommunityAddTimeInvalidSkillsErrorMessageText</fullName>
+        <categories>Communtiy - Add Time Page</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CommunityAddTimeInvalidSkillsErrorMessageText</shortDescription>
+        <value>The skills provided does not match with available skills.</value>
+    </labels>
+    <labels>
+        <fullName>CurriculumMessage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CurriculumMessage</shortDescription>
+        <value>Your curricula has been entered successfully.</value>
+    </labels>
+    <labels>
+        <fullName>Empty_Search_Reult</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Empty Search Reult</shortDescription>
+        <value>No Result Found.Please Refine your search Criteria</value>
+    </labels>
+    <labels>
+        <fullName>Exceeded_Skill_Length</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Exceeded Skill Length</shortDescription>
+        <value>You have selected too many skills.  Please reduce the number of selected skills.</value>
+    </labels>
+    <labels>
+        <fullName>Help_Text</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Help Text for Null Date Administer</shortDescription>
+        <value>When you select this search option only records with no value for the Date Administered will be returned.  The Start and End Dates will be ignored.</value>
+    </labels>
+    <labels>
+        <fullName>Intervention_validation</fullName>
+        <categories>StudentSection</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Intervention validation</shortDescription>
+        <value>Intervention Exit Date cannot be before Intervention Enrollment Start Date.</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_AddQuestion</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Add Question</shortDescription>
+        <value>Add Question</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_Anonymous</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Anonymous</shortDescription>
+        <value>Anonymous</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_Answer_as</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Answer as</shortDescription>
+        <value>Answer as</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_Cancel</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Cancel</shortDescription>
+        <value>Cancel</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_Chatter</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Chatter</shortDescription>
+        <value>Chatter</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_Chatter_Link</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Chatter Link</shortDescription>
+        <value>Chatter Link</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_Community</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Community</shortDescription>
+        <value>Community</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_Edit</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Edit</shortDescription>
+        <value>Edit</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_Email_Link_Anonymous</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Email Link, Anonymous</shortDescription>
+        <value>Email Link, Anonymous</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_Email_Link_w_Contact_Case_Merge</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Email Link w/ Contact &amp; Case Merge</shortDescription>
+        <value>Email Link w/ Contact &amp; Case Merge</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_Email_Link_w_Contact_Merge</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Email Link w/ Contact Merge</shortDescription>
+        <value>Email Link w/ Contact Merge</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_External_Please_Create_Site</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>For external facing surveys, please create a site first.  You may still create i</shortDescription>
+        <value>For external facing surveys, please create a site first.  You may still create internal surveys without creating a site.</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_For_community_assistance_with_Survey_Force</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>For community assistance with Survey Force</shortDescription>
+        <value>For community assistance with Survey Force</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_Getting_Help</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Getting Help</shortDescription>
+        <value>Getting Help</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_HeaderAndThankYou</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Header and Thank You</shortDescription>
+        <value>Header, Thank You &amp; CSS</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_Installation_Guide</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Installation Guide</shortDescription>
+        <value>Installation Guide</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_Learn_More</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Learn More</shortDescription>
+        <value>Learn More</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_MakeANewSurvey</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Make A New Survey</shortDescription>
+        <value>Make A New Survey</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_MakeNewSurvey</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Make New Survey</shortDescription>
+        <value>Make New Survey</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_Make_a_Sample_Survey</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Make a Sample Survey</shortDescription>
+        <value>Make a Sample Survey</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_Next_Steps</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Next Steps</shortDescription>
+        <value>Next Steps</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_PleaseEnterTheList</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Please enter the list</shortDescription>
+        <value>Please enter the list of answers/responses in the field below. Each value should be separated by a new line.</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_Question</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Question</shortDescription>
+        <value>Question</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_Required</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Required</shortDescription>
+        <value>required</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_RequiredQuestion</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Required Question</shortDescription>
+        <value>Required Question</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_Resources</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Resources</shortDescription>
+        <value>Resources</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_Results</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Results</shortDescription>
+        <value>Results</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_SELECTTYPE</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>--SELECT--</shortDescription>
+        <value>--SELECT--</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_Salesforce_Answers</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Salesforce Answers</shortDescription>
+        <value>Salesforce Answers</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_Save</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Save</shortDescription>
+        <value>Save</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_SaveOrder</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Save Order</shortDescription>
+        <value>Save Order</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_SelectQuestionType</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Select Question Type</shortDescription>
+        <value>Select Question Type</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_Share</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Share</shortDescription>
+        <value>Share</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_Share_My_Survey</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Share My Survey</shortDescription>
+        <value>Share My Survey</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_Sharing_Options</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Sharing Options</shortDescription>
+        <value>Sharing Options</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_SubmitSurvey</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Submit Survey</shortDescription>
+        <value>Submit Survey</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_SurveyForceIsOpenSource</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>SurveyForceIsOpenSource</shortDescription>
+        <value>Survey Force is Open Source software.  We welcome your issue reports, ideas, documentation, code tweaks and all other participation.</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_Survey_Force_is_unsupported</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Survey Force is unsupported</shortDescription>
+        <value>Survey Force is unsupported.</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_Survey_Force_on_Github</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Survey Force on Github</shortDescription>
+        <value>Survey Force on Github</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_Survey_Submitted_Thank_you</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Your survey has been submitted. Thank you for taking our survey.</shortDescription>
+        <value>Your survey has been submitted. Thank you for taking our survey.</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_To_submit_ideas_or_issues</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>To submit ideas or issues</shortDescription>
+        <value>To submit ideas or issues</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_User_Guide</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>User Guide</shortDescription>
+        <value>User Guide</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_View_Results_In_New_Window</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>View Results In New Window</shortDescription>
+        <value>View Results In New Window</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_View_Sample_Survey</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>View Sample Survey</shortDescription>
+        <value>View Sample Survey</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_Welcome_to_Survey_Force</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Welcome to Survey Force</shortDescription>
+        <value>Welcome to Survey Force</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_X1_Create_a_sample_survey</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>1. Create a sample survey by clicking the button below.</shortDescription>
+        <value>1. Create a sample survey by clicking the button below.</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_X2_External_Setup_Site</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>2. Set up a site if you would like to have external-facing surveys.</shortDescription>
+        <value>2. Set up a site if you would like to have external-facing surveys.</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_X3_Start_creating_your_first_survey</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>3. Start creating your first survey.</shortDescription>
+        <value>3. Start creating your first survey.</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_You_have_already_taken_this_survey</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>You have already taken this survey!</shortDescription>
+        <value>You have already taken this survey!</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_Your_next_few_steps_are_easy</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Your next few steps are easy.</shortDescription>
+        <value>Your next few steps are easy.</value>
+    </labels>
+    <labels>
+        <fullName>LABS_SF_please_visit</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>please visit</shortDescription>
+        <value>please visit</value>
+    </labels>
+    <labels>
+        <fullName>MissingDate</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>MissingDate</shortDescription>
+        <value>All records in your template must contain a Date Administered value.  Please correct and then click Save.</value>
+    </labels>
+    <labels>
+        <fullName>Record_Count</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Limit on number of records allowed for import</shortDescription>
+        <value>600</value>
+    </labels>
+    <labels>
+        <fullName>Record_Count_Search</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Limit of records returned when generating import file</shortDescription>
+        <value>600</value>
+    </labels>
+    <labels>
+        <fullName>Required_Service</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Required_Service</shortDescription>
+        <value>Service is required.</value>
+    </labels>
+    <labels>
+        <fullName>Required_Skill_for_Literacy_Math</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Required Skill for Literacy Math</shortDescription>
+        <value>You must select at least one required skill (indicated with an asterisk &quot;*&quot;) for this session.</value>
+    </labels>
+    <labels>
+        <fullName>SessionMessage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SessionMessage</shortDescription>
+        <value>Your time has been entered successfully.</value>
+    </labels>
+    <labels>
+        <fullName>Skills_Required</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Skills Required</shortDescription>
+        <value>Please select at least one skill before proceeding.</value>
+    </labels>
+    <labels>
+        <fullName>StartEndDateError</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>StartEndDateError</shortDescription>
+        <value>Start Date cannot be greater than End Date</value>
+    </labels>
+    <labels>
+        <fullName>Student_Corps_Edition_Portal_Report</fullName>
+        <categories>CY Pages</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Student Corps Edition Portal Report</shortDescription>
+        <value>Corps Edition Report</value>
+    </labels>
+    <labels>
+        <fullName>Validation_Intervention_Session</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Validation Intervention Session</shortDescription>
+        <value>Intervention session requires 1 intervention session result, it can not be blank.</value>
+    </labels>
+</CustomLabels>

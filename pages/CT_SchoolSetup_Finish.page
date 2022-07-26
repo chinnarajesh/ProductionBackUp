@@ -1,0 +1,32 @@
+<apex:page controller="CT_SchoolSetup_Finish" sidebar="false" tabStyle="SchoolForce_Setup__tab" >
+    <c:CT_setupWizardSharedComponents summerSchoolMode="{!schoolSetup.School__r.ParentId != null}"/>
+    <apex:form id="mainForm">
+        <table style="width:100%">
+            <tr>
+                <td style="vertical-align:top; width:15%">
+                    <c:CT_setupWizardSidebar setupId="{!schoolSetup.id}"/>
+                </td>
+                <td style="vertical-align:top; width:85%">
+                    <div id="schoolforce-wrapper" class="wrapper">
+                        <!-- Error -->
+                        <apex:outputPanel id="error" styleClass="pageMessages">
+                            <apex:pageMessages />
+                        </apex:outputPanel>
+                        <!-- Error -->
+                        <h1 class="centerHeader">
+                            <input type="button" onclick="prevJs();" class="grey_btn_arrow" value="Previous" />
+                            <span style="display:inline-block"> {!schoolSetup.School__r.Name} Core Setup<br/>SUCCESS!<br/>School setup creation finished, administrator will be notified!</span>
+                        </h1>
+                        <apex:outputPanel styleClass="adminSummary">
+                            <br/>
+                            <p>
+                            </p>
+                            <br/>
+                        </apex:outputPanel>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <apex:actionFunction name="prevJs" action="{!prev}" />
+    </apex:form>
+</apex:page>

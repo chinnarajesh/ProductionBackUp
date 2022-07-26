@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Meals Setup</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Meals Setup</value>
+    </caseValues>
+    <fields>
+        <label><!-- Active --></label>
+        <name>Active__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the amount for an additional reimbursement applied at the state level. --></help>
+        <label><!-- Additional Reimbursement 1 Amount --></label>
+        <name>Additional_Reimbursement_1_Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Additional Reimbursement 1 Applies To --></label>
+        <name>Additional_Reimbursement_1_Applies_To__c</name>
+        <picklistValues>
+            <masterLabel>Both</masterLabel>
+            <translation><!-- Both --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Breakfast</masterLabel>
+            <translation><!-- Breakfast --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Lunch</masterLabel>
+            <translation><!-- Lunch --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- This is the description for an additional reimbursement applied at the state level. --></help>
+        <label><!-- Additional Reimbursement 1 Description --></label>
+        <name>Additional_Reimbursement_1_Description__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the amount for an additional reimbursement applied at the state level. --></help>
+        <label><!-- Additional Reimbursement 2 Amount --></label>
+        <name>Additional_Reimbursement_2_Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Additional Reimbursement 2 Applies To --></label>
+        <name>Additional_Reimbursement_2_Applies_To__c</name>
+        <picklistValues>
+            <masterLabel>Both</masterLabel>
+            <translation><!-- Both --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Breakfast</masterLabel>
+            <translation><!-- Breakfast --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Lunch</masterLabel>
+            <translation><!-- Lunch --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- This is the description for an additional reimbursement applied at the state level. --></help>
+        <label><!-- Additional Reimbursement 2 Description --></label>
+        <name>Additional_Reimbursement_2_Description__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the amount for an additional reimbursement applied at the state level. --></help>
+        <label><!-- Additional Reimbursement 3 Amount --></label>
+        <name>Additional_Reimbursement_3_Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Additional Reimbursement 3 Applies To --></label>
+        <name>Additional_Reimbursement_3_Applies_To__c</name>
+        <picklistValues>
+            <masterLabel>Both</masterLabel>
+            <translation><!-- Both --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Breakfast</masterLabel>
+            <translation><!-- Breakfast --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Lunch</masterLabel>
+            <translation><!-- Lunch --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- This is the description for an additional reimbursement applied at the state level. --></help>
+        <label><!-- Additional Reimbursement 3 Description --></label>
+        <name>Additional_Reimbursement_3_Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- External Id --></label>
+        <name>External_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Fed Free Breakfast Reimbursement --></label>
+        <name>Fed_Free_Breakfast_Reimbursement__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the amount of money that the school is reimbursed for free lunches that are served. --></help>
+        <label><!-- Fed Free Lunch Reimbursement --></label>
+        <name>Fed_Free_Lunch_Reimbursement__c</name>
+    </fields>
+    <fields>
+        <label><!-- Fed Full-Price Breakfast Reimbursement --></label>
+        <name>Fed_Full_Price_Breakfast_Reimbursement__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the amount of money that the school is reimbursed for full-priced lunches that are served. --></help>
+        <label><!-- Fed Full-Price Lunch Reimbursement --></label>
+        <name>Fed_Full_Price_Lunch_Reimbursement__c</name>
+    </fields>
+    <fields>
+        <label><!-- Fed Reduced Breakfast Reimbursement --></label>
+        <name>Fed_Reduced_Breakfast_Reimbursement__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the amount of money that the school is reimbursed for reduced lunches that are served. --></help>
+        <label><!-- Fed Reduced Lunch Reimbursement --></label>
+        <name>Fed_Reduced_Lunch_Reimbursement__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the threshold percentage for students that are eligible for free or reduced meals.  If the actual percentage is above this threshold all students get free breakfast. --></help>
+        <label><!-- Free/Reduced Threshold --></label>
+        <name>Free_Reduced_Threshold__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the amount a student pays for a full-priced breakfast. --></help>
+        <label><!-- Full-Price Breakfast Price --></label>
+        <name>Full_Price_Breakfast_Price__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the amount a student pays for a full-priced lunch. --></help>
+        <label><!-- Full-Price Lunch Price --></label>
+        <name>Full_Price_Lunch_Price__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the amount a student pays for a reduced breakfast. --></help>
+        <label><!-- Reduced Breakfast Price --></label>
+        <name>Reduced_Breakfast_Price__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the amount a student pays for a reduced lunch. --></help>
+        <label><!-- Reduced Lunch Price --></label>
+        <name>Reduced_Lunch_Price__c</name>
+    </fields>
+    <fields>
+        <label><!-- School --></label>
+        <name>School__c</name>
+        <relationshipLabel><!-- Meals --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- This should be checked if breakfast is free for all students. --></help>
+        <label><!-- Schoolwide Free Breakfast --></label>
+        <name>Schoolwide_Free_Breakfast__c</name>
+    </fields>
+    <fields>
+        <label><!-- Setup --></label>
+        <name>Setup__c</name>
+        <relationshipLabel><!-- Meals Setup --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- State Free Breakfast Reimbursement --></label>
+        <name>State_Free_Breakfast_Reimbursement__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the amount of money that the school is reimbursed for free lunches that are served. --></help>
+        <label><!-- State Free Lunch Reimbursement --></label>
+        <name>State_Free_Lunch_Reimbursement__c</name>
+    </fields>
+    <fields>
+        <label><!-- State Full-Price Breakfast Reimbursement --></label>
+        <name>State_Full_Price_Breakfast_Reimbursement__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the amount of money that the school is reimbursed for full-priced lunches that are served. --></help>
+        <label><!-- State Full-Price Lunch Reimbursement --></label>
+        <name>State_Full_Price_Lunch_Reimbursement__c</name>
+    </fields>
+    <fields>
+        <label><!-- State Reduced Breakfast Reimbursement --></label>
+        <name>State_Reduced_Breakfast_Reimbursement__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the amount of money that the school is reimbursed for reduced lunches that are served. --></help>
+        <label><!-- State Reduced Lunch Reimbursement --></label>
+        <name>State_Reduced_Lunch_Reimbursement__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the percentage of students who are eligible to receive free or reduced meals. --></help>
+        <label><!-- % Students Eligible for Free/Reduced --></label>
+        <name>Students_Eligible_for_Free_Reduced__c</name>
+    </fields>
+    <fields>
+        <label><!-- # of Students Receiving Free Meals --></label>
+        <name>of_Students_Receiving_Free_Meals__c</name>
+    </fields>
+    <fields>
+        <label><!-- # of Students Receiving Full-Price Meals --></label>
+        <name>of_Students_Receiving_Full_Price_Meals__c</name>
+    </fields>
+    <fields>
+        <label><!-- # of Students Receiving Reduced Meals --></label>
+        <name>of_Students_Receiving_Reduced_Meals__c</name>
+    </fields>
+    <layouts>
+        <layout>Meals Setup Layout</layout>
+        <sections>
+            <label><!-- Additional Reimbursements --></label>
+            <section>Additional Reimbursements</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Federal Reimbursement --></label>
+            <section>Federal Reimbursement</section>
+        </sections>
+        <sections>
+            <label><!-- Meal Prices --></label>
+            <section>Meal Prices</section>
+        </sections>
+        <sections>
+            <label><!-- State Reimbursement --></label>
+            <section>State Reimbursement</section>
+        </sections>
+        <sections>
+            <label><!-- Student Statistics --></label>
+            <section>Student Statistics</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

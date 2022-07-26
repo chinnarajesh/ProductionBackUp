@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Account.Students__r.Indicator_Area_Student__r$Id</field>
+    </columns>
+    <columns>
+        <field>Account.Students__r$Location__c</field>
+    </columns>
+    <columns>
+        <field>Account.Students__r$School_Name__c</field>
+    </columns>
+    <columns>
+        <field>Account.Students__r$Name</field>
+    </columns>
+    <columns>
+        <field>Account.Students__r$Student_ID_Auto_Number__c</field>
+    </columns>
+    <columns>
+        <field>Account.Students__r$Id</field>
+    </columns>
+    <columns>
+        <field>Account.Students__r.Indicator_Area_Student__r$Name</field>
+    </columns>
+    <columns>
+        <field>Account.Students__r.Indicator_Area_Student__r$Indicator_Area__c.Name</field>
+    </columns>
+    <columns>
+        <field>Account.Students__r.Indicator_Area_Student__r$Active__c</field>
+    </columns>
+    <columns>
+        <field>Account.Students__r.Indicator_Area_Student__r$Indicator_Area__c.Id</field>
+    </columns>
+    <columns>
+        <field>Account.Students__r.Indicator_Area_Student__r$CreatedDate</field>
+    </columns>
+    <columns>
+        <field>Account.Students__r.Indicator_Area_Student__r$CreatedBy</field>
+    </columns>
+    <description>Shows when IA assignments were assigned.</description>
+    <format>Tabular</format>
+    <name>IA Assignment Creation Date</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Accounts_with_Students_with_Indicator_Area_Student__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>Account.Students__r.Indicator_Area_Student__r$CreatedDate</dateColumn>
+        <interval>INTERVAL_LAST30</interval>
+    </timeFrameFilter>
+</Report>

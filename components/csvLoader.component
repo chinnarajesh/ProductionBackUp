@@ -1,0 +1,51 @@
+<apex:component allowDML="true">
+	<apex:attribute name="csvLoaderObject" description="This is object for the csvLoaderClass" type="core_LoadCsvData"/>
+	<!-- <apex:includeScript value="{!URLFOR($Resource.jWerty, '/jWerty/jwerty.js')}" />
+	<apex:stylesheet value="{!URLFOR($Resource.resources_Master, '/custom/css/course_Catalog.css')}"/> -->
+	<script>
+	function confirmSetup(){
+		showProgressBar('Please wait while data is processed.');
+		loadData();
+		setTimeout('hideProgressBar()',5000);
+	}
+	</script>
+	<style>
+		#loadWrapper .dataTables_scroll{
+			overflow-x:scroll;
+		}
+		#loadWrapper .dataTables_scrollBody{
+			overflow:auto;
+		}
+	</style>
+	<h3>Data Load {!csvLoaderObject.selectedLoadType} for {!csvLoaderObject.cSetup.setup.school__r.name} {!csvLoaderObject.cSetup.setup.year__r.Name__c}</h3>
+	<apex:pageBlock >  
+		<apex:pageBlockSection collapsible="false" columns="2">
+			<apex:selectList label="Please select the type of object to load:" style="margin-left:5px; margin-right:25px;" value="{!csvLoaderObject.selectedLoadType}" multiselect="false" size="1" rendered="{!csvLoaderObject.bNeedsType}">
+				<apex:selectOptions value="{!csvLoaderObject.loadTypeOptionList}"/>
+			</apex:selectList>
+			<apex:outputText label="Selected Load Type" value="{!csvLoaderObject.selectedLoadType}" rendered="{!!csvLoaderObject.bNeedsType}" />
+			<apex:inputCheckbox label="Load default template file?" value="{!csvLoaderObject.bUseDefault}"/>
+			<apex:inputFile contentType="{!csvLoaderObject.fileContentType}" fileName="{!csvLoaderObject.fileName}" fileSize="{!csvLoaderObject.fileSize}" value="{!csvLoaderObject.fileBlob}" />
+			<apex:outputLink value="{!csvLoaderObject.linkPathDefault}">Download Template</apex:outputLink>  
+		</apex:pageBlockSection>
+		<div class="clear_fix">&nbsp;</div>
+		<apex:commandButton styleClass="black_btn" onclick="confirmSetup(); return false;" value="Process File"/>
+		<div class="clear_fix">&nbsp;</div>
+	</apex:pageBlock>
+	
+	<apex:outputPanel rendered="{!csvLoaderObject.bProcessed}">
+		<h3>Review Values to Load to {!csvLoaderObject.selectedLoadType} </h3>
+		<p style="padding-left:2em">Review the table and make any desired changes. To insert the records, click the <b>Insert Values</b> button.</p>
+		<div class="content-wrapper no-border" id="loadWrapper">
+			<c:csvTable loadType="{!csvLoaderObject.selectedLoadType}" interimValueList="{!csvLoaderObject.interimValueList}" />
+		</div>
+		<br/>
+		<div class="clear_fix">&nbsp;</div>
+		<apex:commandButton styleClass="grey_btn" action="{!csvLoaderObject.initPage}" value="Cancel" />
+		<apex:commandButton styleClass="black_btn" action="{!csvLoaderObject.insertList}" value="Insert Values"/>
+		<div class="clear_fix">&nbsp;</div>
+	</apex:outputPanel>
+	
+	<apex:actionFunction name="changeLink" action="{!csvLoaderObject.changeLink}" />
+	<apex:actionFunction name="loadData" action="{!csvLoaderObject.loadData}" />
+</apex:component>

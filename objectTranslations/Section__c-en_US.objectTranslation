@@ -1,0 +1,1247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Section</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Sections</value>
+    </caseValues>
+    <fieldSets>
+        <label><!-- Mass Scheduler Grid --></label>
+        <name>Mass_Scheduler_Grid</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Schedule Groups Template --></label>
+        <name>Schedule_Groups_Template</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Scheduler Grid --></label>
+        <name>Scheduler_Grid</name>
+    </fieldSets>
+    <fields>
+        <help><!-- For schools receiving whole-class data feeds only --></help>
+        <label><!-- ACM deployed? --></label>
+        <name>ACM_deployed__c</name>
+    </fields>
+    <fields>
+        <help><!-- What intervention Program is this intervention Section associated to? --></help>
+        <label><!-- School Program --></label>
+        <name>Account_Program__c</name>
+        <relationshipLabel><!-- Sections --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Check this box if the section is a currently active section --></help>
+        <label><!-- Active --></label>
+        <name>Active__c</name>
+    </fields>
+    <fields>
+        <help><!-- Information about the intervention Program --></help>
+        <label><!-- Additional Information --></label>
+        <name>Additional_Information__c</name>
+    </fields>
+    <fields>
+        <help><!-- Is this section an Advisory? --></help>
+        <label><!-- Advisory? --></label>
+        <name>Advisory__c</name>
+    </fields>
+    <fields>
+        <help><!-- Select the grade(s) for which the section is available. SchoolForce uses this field to determine the available sectons into which you can schedule a student when you use the Section Wizard. --></help>
+        <label><!-- All Grades --></label>
+        <name>All_Grades__c</name>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>10</masterLabel>
+            <translation><!-- 10 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>11</masterLabel>
+            <translation><!-- 11 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>12</masterLabel>
+            <translation><!-- 12 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2</masterLabel>
+            <translation><!-- 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3</masterLabel>
+            <translation><!-- 3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4</masterLabel>
+            <translation><!-- 4 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5</masterLabel>
+            <translation><!-- 5 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>6</masterLabel>
+            <translation><!-- 6 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7</masterLabel>
+            <translation><!-- 7 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>8</masterLabel>
+            <translation><!-- 8 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>9</masterLabel>
+            <translation><!-- 9 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>K</masterLabel>
+            <translation><!-- K --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PK</masterLabel>
+            <translation><!-- PK --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PS</masterLabel>
+            <translation><!-- PS --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Archived --></label>
+        <name>Archived__c</name>
+    </fields>
+    <fields>
+        <help><!-- This name is created using the Program Name, the Primary Point person, and an automatically generated number. This field cannot be modified here. --></help>
+        <label><!-- Intervention Section Name --></label>
+        <name>Auto_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Available Credit --></label>
+        <name>Available_Credit__c</name>
+        <picklistValues>
+            <masterLabel>0</masterLabel>
+            <translation><!-- 0 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2</masterLabel>
+            <translation><!-- 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3</masterLabel>
+            <translation><!-- 3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4</masterLabel>
+            <translation><!-- 4 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5</masterLabel>
+            <translation><!-- 5 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Available Grade Levels --></label>
+        <name>Available_Grade_Levels__c</name>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>10</masterLabel>
+            <translation><!-- 10 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>11</masterLabel>
+            <translation><!-- 11 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>12</masterLabel>
+            <translation><!-- 12 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2</masterLabel>
+            <translation><!-- 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3</masterLabel>
+            <translation><!-- 3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4</masterLabel>
+            <translation><!-- 4 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5</masterLabel>
+            <translation><!-- 5 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>6</masterLabel>
+            <translation><!-- 6 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7</masterLabel>
+            <translation><!-- 7 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>8</masterLabel>
+            <translation><!-- 8 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>9</masterLabel>
+            <translation><!-- 9 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>K</masterLabel>
+            <translation><!-- K --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PK</masterLabel>
+            <translation><!-- PK --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PS</masterLabel>
+            <translation><!-- PS --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- The real-time average section grade for all students in this section. Ex: The average section grade is 86%. --></help>
+        <label><!-- Average Section Grade --></label>
+        <name>Average_Section_Grade__c</name>
+    </fields>
+    <fields>
+        <help><!-- The structure in which class instruction is arranged. --></help>
+        <label><!-- Class Organization --></label>
+        <name>Class_Organization__c</name>
+        <picklistValues>
+            <masterLabel>Ability Group Class</masterLabel>
+            <translation><!-- Ability Group Class --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Departmentalized Instruction</masterLabel>
+            <translation><!-- Departmentalized Instruction --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Elementary Enrichment Class</masterLabel>
+            <translation><!-- Elementary Enrichment Class --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pull-Out Class</masterLabel>
+            <translation><!-- Pull-Out Class --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Self-Contained Class</masterLabel>
+            <translation><!-- Self-Contained Class --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Self-Contained Class (Special Education)</masterLabel>
+            <translation><!-- Self-Contained Class (Special Education) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Team-Taught Class</masterLabel>
+            <translation><!-- Team-Taught Class --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Class Pace --></label>
+        <name>Class_Pace__c</name>
+        <picklistValues>
+            <masterLabel>Combination of self-paced and control paced</masterLabel>
+            <translation><!-- Combination of self-paced and control paced --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Controlled Pace</masterLabel>
+            <translation><!-- Controlled Pace --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Self-paced</masterLabel>
+            <translation><!-- Self-paced --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Select the color you want to display for this section in the Scheduled Sections grid. This color only appears on the schedule grid and is meant to help you differentiate between sections. --></help>
+        <label><!-- Color --></label>
+        <name>Color__c</name>
+    </fields>
+    <fields>
+        <help><!-- When section has been marked competed for all reporting periods it meets for this flag will be checked. --></help>
+        <label><!-- Completed? --></label>
+        <name>Completed__c</name>
+    </fields>
+    <fields>
+        <label><!-- Core Class --></label>
+        <name>Core_Class__c</name>
+    </fields>
+    <fields>
+        <label><!-- Course Name Spanish --></label>
+        <name>Course_Name_Spanish__c</name>
+    </fields>
+    <fields>
+        <help><!-- Select the course associated to the section you want to create. --></help>
+        <label><!-- Course --></label>
+        <name>Course__c</name>
+        <relationshipLabel><!-- Sections --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Select if staff members will take daily attendance in this section. The section will display in the All Day grid and you will not be able to add it to a specific period in your schedule. You must also select the Record Attendance check box. --></help>
+        <label><!-- Daily Attendance? --></label>
+        <name>Daily_Attendance__c</name>
+    </fields>
+    <fields>
+        <label><!-- Deactivated --></label>
+        <name>Deactivated__c</name>
+    </fields>
+    <fields>
+        <label><!-- Dependent Section --></label>
+        <name>Dependent_Section__c</name>
+        <relationshipLabel><!-- Sections --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Enter a description of the section. This field only displays in the Description field on the Section record. You can use it on reports. --></help>
+        <label><!-- Description --></label>
+        <name>Description__c</name>
+    </fields>
+    <fields>
+        <help><!-- When does the Intervention Section end? --></help>
+        <label><!-- End Date --></label>
+        <name>End_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Exclude From Attendance --></label>
+        <name>Exclude_From_Attendance__c</name>
+    </fields>
+    <fields>
+        <label><!-- Exclude From GPA --></label>
+        <name>Exclude_From_GPA__c</name>
+        <picklistValues>
+            <masterLabel>Exclude</masterLabel>
+            <translation><!-- Exclude --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Include</masterLabel>
+            <translation><!-- Include --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Same as Course</masterLabel>
+            <translation><!-- Same as Course --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Exclude From Storing Final Grades --></label>
+        <name>Exclude_From_Storing_Final_Grades__c</name>
+    </fields>
+    <fields>
+        <label><!-- External Id --></label>
+        <name>External_Id__c</name>
+    </fields>
+    <fields>
+        <help><!-- # of Failing Students in the section based on the school&apos;s passing grade threshold --></help>
+        <label><!-- # Failing --></label>
+        <name>Failing__c</name>
+    </fields>
+    <fields>
+        <help><!-- Select the grade level of the course, if desired. SchoolForce uses the All Grades list box to determine the grade level(s) for which the section is available. You can use the Grade Level drop-down list on reports. --></help>
+        <label><!-- Grade Level --></label>
+        <name>Grade_Level__c</name>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>10</masterLabel>
+            <translation><!-- 10 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>11</masterLabel>
+            <translation><!-- 11 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>12</masterLabel>
+            <translation><!-- 12 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2</masterLabel>
+            <translation><!-- 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3</masterLabel>
+            <translation><!-- 3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4</masterLabel>
+            <translation><!-- 4 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5</masterLabel>
+            <translation><!-- 5 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>6</masterLabel>
+            <translation><!-- 6 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7</masterLabel>
+            <translation><!-- 7 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>8</masterLabel>
+            <translation><!-- 8 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>9</masterLabel>
+            <translation><!-- 9 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>K</masterLabel>
+            <translation><!-- K --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PK</masterLabel>
+            <translation><!-- PK --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PS</masterLabel>
+            <translation><!-- PS --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Grade Scale --></label>
+        <name>Grade_Scale__c</name>
+        <picklistValues>
+            <masterLabel>4ELH 1-2-3-4 Rubric TENTHS</masterLabel>
+            <translation><!-- 4ELH 1-2-3-4 Rubric TENTHS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Default</masterLabel>
+            <translation><!-- Default --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ELH 1-2-3-4 Rubric</masterLabel>
+            <translation><!-- ELH 1-2-3-4 Rubric --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ELH Traditional</masterLabel>
+            <translation><!-- ELH Traditional --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Percentage</masterLabel>
+            <translation><!-- Percentage --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Same as Course</masterLabel>
+            <translation><!-- Same as Course --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Select if you want to make this section available in the Homework module. --></help>
+        <label><!-- Has Homework --></label>
+        <name>Has_Homework__c</name>
+    </fields>
+    <fields>
+        <label><!-- Holding Source --></label>
+        <name>Holding_Source__c</name>
+        <relationshipLabel><!-- Sections --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Check box if this section is Home Room --></help>
+        <label><!-- Homeroom? --></label>
+        <name>Homeroom__c</name>
+    </fields>
+    <fields>
+        <label><!-- Homework Based --></label>
+        <name>Homework_Based__c</name>
+    </fields>
+    <fields>
+        <help><!-- Is this Intervention Section considered in school or extended learning? --></help>
+        <label><!-- In School/Extended Learning/Curriculum --></label>
+        <name>In_After_School__c</name>
+        <picklistValues>
+            <masterLabel>Curriculum</masterLabel>
+            <translation><!-- Curriculum --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Extended Learning</masterLabel>
+            <translation><!-- Extended Learning --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>In School</masterLabel>
+            <translation><!-- In School --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- What Indicator Area is this Program addressing? This field cannot be modified here. --></help>
+        <label><!-- Indicator Area --></label>
+        <name>Indicator_Area__c</name>
+    </fields>
+    <fields>
+        <help><!-- Who is the primary staff member associated with this Intervention Section? --></help>
+        <label><!-- Intervention Primary Staff --></label>
+        <lookupFilter>
+            <errorMessage><!-- Intervention Primary Staff does not match filter criteria. --></errorMessage>
+        </lookupFilter>
+        <name>Intervention_Primary_Staff__c</name>
+        <relationshipLabel><!-- Intervention Sections --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Truncated Intervention System Auto Number --></help>
+        <label><!-- Intervention Section Number --></label>
+        <name>Intervention_Section_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Is Section --></label>
+        <name>Is_Section__c</name>
+    </fields>
+    <fields>
+        <label><!-- Legacy ID --></label>
+        <name>Legacy_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Location --></label>
+        <name>Location__c</name>
+    </fields>
+    <fields>
+        <label><!-- MEP Session Type --></label>
+        <name>MEP_Session_Type__c</name>
+        <picklistValues>
+            <masterLabel>Regular School Year (Services provided during the school day only)</masterLabel>
+            <translation><!-- Regular School Year (Services provided during the school day only) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Regular School Year (Some or all services provided during an extended Day/week)</masterLabel>
+            <translation><!-- Regular School Year (Some or all services provided during an extended Day/week) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Summer Term or Intersession for Instructional or Support Service</masterLabel>
+            <translation><!-- Summer Term or Intersession for Instructional or Support Service --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Year round project (Services provided throughout the regular school year and summer/intersession terms)</masterLabel>
+            <translation><!-- Year round project (Services provided throughout the regular school year and summer/intersession terms) --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Maximum # of Seats --></label>
+        <name>Maximum_of_Seats__c</name>
+    </fields>
+    <fields>
+        <label><!-- Medium of Instruction --></label>
+        <name>Medium_of_Instruction__c</name>
+        <picklistValues>
+            <masterLabel>Center-based instruction</masterLabel>
+            <translation><!-- Center-based instruction --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Correspondence instruction</masterLabel>
+            <translation><!-- Correspondence instruction --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Face-to-face instruction</masterLabel>
+            <translation><!-- Face-to-face instruction --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Independent study</masterLabel>
+            <translation><!-- Independent study --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Internship</masterLabel>
+            <translation><!-- Internship --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Technology</masterLabel>
+            <translation><!-- Technology --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Virtual/On-line</masterLabel>
+            <translation><!-- Virtual/On-line --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Enter the Spanish translation for the section name. This field only displays in the Name in Spanish field on the Section record. You can use it on reports. The Name in Spanish field on the Course displays on report cards/progress reports. --></help>
+        <label><!-- Name in Spanish --></label>
+        <name>Name_Spanish__c</name>
+    </fields>
+    <fields>
+        <help><!-- Select if you do not want to schedule this section for a specific period. The section will display in the All Day grid. --></help>
+        <label><!-- No Meeting --></label>
+        <name>No_Meeting__c</name>
+    </fields>
+    <fields>
+        <help><!-- Add any additional Notes that would be helpful for a person reviewing this Section to see --></help>
+        <label><!-- Notes --></label>
+        <name>Notes__c</name>
+    </fields>
+    <fields>
+        <help><!-- Select the number of periods over which you will schedule the section. SchoolForce will create a section square for the number of periods you select, enabling you to add the section to the schedule for multiple periods. --></help>
+        <label><!-- Number of Periods --></label>
+        <name>Number_of_Periods__c</name>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2</masterLabel>
+            <translation><!-- 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3</masterLabel>
+            <translation><!-- 3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4</masterLabel>
+            <translation><!-- 4 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Select the number of reporting periods this section meets. SchoolForce will create a section square in each reporting period for the number you select. A grade weighting must be set up in the course for the selected number of reporting periods. --></help>
+        <label><!-- Number of Reporting Periods --></label>
+        <name>Number_of_Reporting_Periods__c</name>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2</masterLabel>
+            <translation><!-- 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3</masterLabel>
+            <translation><!-- 3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4</masterLabel>
+            <translation><!-- 4 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5</masterLabel>
+            <translation><!-- 5 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>6</masterLabel>
+            <translation><!-- 6 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7</masterLabel>
+            <translation><!-- 7 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Select the number of staff members who will teach this section. SchoolForce will create a section square for the number of staff members you select, enabling you to schedule the section for multiple teachers. --></help>
+        <label><!-- Number of Staff --></label>
+        <name>Number_of_Staff__c</name>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2</masterLabel>
+            <translation><!-- 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3</masterLabel>
+            <translation><!-- 3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4</masterLabel>
+            <translation><!-- 4 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Total percentage of present students in this section.  Ex: This section has an 80% present attendance rate. --></help>
+        <label><!-- % Present --></label>
+        <name>Percent_Present__c</name>
+    </fields>
+    <fields>
+        <label><!-- Period --></label>
+        <name>Period__c</name>
+    </fields>
+    <fields>
+        <label><!-- Present Attendance --></label>
+        <name>Present_Attendance__c</name>
+    </fields>
+    <fields>
+        <help><!-- What intervention Program is this Intervention Section for? --></help>
+        <label><!-- Program --></label>
+        <name>Program__c</name>
+        <relationshipLabel><!-- Sections --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Recommended amount of time (in min) that each meeting, or session, of this Intervention should take. For example, if Program A is most effective with instructional segments of 20 minutes each then 20 minutes is the Recommended Time per Session. --></help>
+        <label><!-- Recommended Time per Session (in mins) --></label>
+        <name>Recommended_Time_per_Session__c</name>
+    </fields>
+    <fields>
+        <help><!-- Recommended frequency that this intervention Section should meet in order to be effective. --></help>
+        <label><!-- Recommended Weekly Frequency --></label>
+        <name>Recommended_Weekly_Frequency__c</name>
+    </fields>
+    <fields>
+        <help><!-- Leave this check box selected if staff members will take daily or sectional attendance in this section. This field determines whether or not this section is available in the Attendance Wizard. --></help>
+        <label><!-- Record Attendance --></label>
+        <name>Record_Attendance__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reference Id --></label>
+        <name>Reference_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reporting Period Name --></label>
+        <name>Reporting_Period_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reporting Period Parent --></label>
+        <name>Reporting_Period_Parent__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reporting Period --></label>
+        <name>Reporting_Period__c</name>
+        <relationshipLabel><!-- Sections (First Reporting Period) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Reporting Periods NotCompleted --></label>
+        <name>Reporting_Periods_NotCompleted__c</name>
+    </fields>
+    <fields>
+        <label><!-- Room --></label>
+        <name>Room__c</name>
+        <relationshipLabel><!-- Sections --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Schedule Group Name Spanish --></label>
+        <name>Schedule_Group_Name_Spanish__c</name>
+    </fields>
+    <fields>
+        <label><!-- Schedule Group Name --></label>
+        <name>Schedule_Group_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Schedule Group --></label>
+        <name>Schedule_Group__c</name>
+        <relationshipLabel><!-- Sections (Schedule Group) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Scheduler Reference Id --></label>
+        <name>Scheduler_Reference_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- School --></label>
+        <name>School__c</name>
+        <relationshipLabel><!-- Sections --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Section Exit Date --></label>
+        <name>Section_Exit_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Section Exit Reason --></label>
+        <name>Section_Exit_Reason__c</name>
+    </fields>
+    <fields>
+        <help><!-- Which days will this Intervention Section meet each week? --></help>
+        <label><!-- Section Frequency --></label>
+        <name>Section_Frequency__c</name>
+        <picklistValues>
+            <masterLabel>Friday</masterLabel>
+            <translation><!-- Friday --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Monday</masterLabel>
+            <translation><!-- Monday --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Saturday</masterLabel>
+            <translation><!-- Saturday --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sunday</masterLabel>
+            <translation><!-- Sunday --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Thursday</masterLabel>
+            <translation><!-- Thursday --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Tuesday</masterLabel>
+            <translation><!-- Tuesday --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Wednesday</masterLabel>
+            <translation><!-- Wednesday --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- If you would like, you can add a Section Nickname. --></help>
+        <label><!-- Section Nickname --></label>
+        <name>Section_Nickname__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enter the section number. This field only displays in the Section Number field on the Section record. You can use it on reports. --></help>
+        <label><!-- Section Number --></label>
+        <name>Section_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Section RT --></label>
+        <name>Section_RT__c</name>
+    </fields>
+    <fields>
+        <label><!-- Section --></label>
+        <name>Section__c</name>
+        <relationshipLabel><!-- Groups in Section --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Show in portal --></label>
+        <name>Show_in_portal__c</name>
+    </fields>
+    <fields>
+        <label><!-- Skip Dosage --></label>
+        <name>SkipDosage__c</name>
+    </fields>
+    <fields>
+        <label><!-- Staff --></label>
+        <name>Staff__c</name>
+        <relationshipLabel><!-- Sections --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- What is the start date for this intervention Section? --></help>
+        <label><!-- Start Date --></label>
+        <name>Start_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Student Section Active Count --></label>
+        <name>Student_Section_Active_Count__c</name>
+    </fields>
+    <fields>
+        <label><!-- Subject --></label>
+        <name>Subject__c</name>
+        <picklistValues>
+            <masterLabel>Math</masterLabel>
+            <translation><!-- Math --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Reading</masterLabel>
+            <translation><!-- Reading --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Science</masterLabel>
+            <translation><!-- Science --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Social Studies</masterLabel>
+            <translation><!-- Social Studies --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Spanish</masterLabel>
+            <translation><!-- Spanish --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Writing</masterLabel>
+            <translation><!-- Writing --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- This number is used to create the Intervention Section Name. It cannot be changed. --></help>
+        <label><!-- System Auto Number --></label>
+        <name>System_Auto_Number__c</name>
+    </fields>
+    <fields>
+        <help><!-- This number is the Program&apos;s Target Dosage and is the recommended dosage.  You can modify this section&apos;s goal in the &quot;Target Dosage Section Goal (in mins)&quot; field. --></help>
+        <label><!-- Target Dosage - Org Goal (in mins) --></label>
+        <name>Target_Dosage_Org_Goal__c</name>
+    </fields>
+    <fields>
+        <help><!-- What is the specific target dosage goal for this Intervention Section? It may be the same or different than the Program Target Dosage goal. --></help>
+        <label><!-- Target Dosage - Section Goal (in mins) --></label>
+        <name>Target_Dosage_Section_Goal__c</name>
+    </fields>
+    <fields>
+        <label><!-- Teachers --></label>
+        <name>Teachers__c</name>
+    </fields>
+    <fields>
+        <label><!-- Term Identifier --></label>
+        <name>Term_Identifier__c</name>
+    </fields>
+    <fields>
+        <label><!-- Text Color --></label>
+        <name>Text_Color__c</name>
+    </fields>
+    <fields>
+        <label><!-- Time --></label>
+        <name>Time__c</name>
+        <relationshipLabel><!-- Sections --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Total Attendance --></label>
+        <name>Total_Attendance__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total Average Grade --></label>
+        <name>Total_Average_Grade__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total Grade Value --></label>
+        <name>Total_Grade_Value__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total Section Grades --></label>
+        <name>Total_Section_Grades__c</name>
+    </fields>
+    <fields>
+        <label><!-- Type --></label>
+        <name>Type__c</name>
+        <picklistValues>
+            <masterLabel>Custom Group</masterLabel>
+            <translation><!-- Custom Group --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Section</masterLabel>
+            <translation><!-- Section --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Standard Group</masterLabel>
+            <translation><!-- Standard Group --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Unique Section --></label>
+        <name>Unique_Section__c</name>
+    </fields>
+    <fields>
+        <label><!-- Year Name --></label>
+        <name>Year_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- # inactive students --></label>
+        <name>inactive_students__c</name>
+    </fields>
+    <fields>
+        <label><!-- isGroup --></label>
+        <name>isGroup__c</name>
+    </fields>
+    <fields>
+        <label><!-- isNeedActivate --></label>
+        <name>isNeedActivate__c</name>
+    </fields>
+    <fields>
+        <label><!-- # of Active Students --></label>
+        <name>of_Active_Students__c</name>
+    </fields>
+    <fields>
+        <help><!-- This field is updated nightly and keeps track of whether grades were entered in the gradebook for that day. --></help>
+        <label><!-- # of Consecutive Days without Grades --></label>
+        <name>of_Consecutive_Days_without_Grades__c</name>
+    </fields>
+    <fields>
+        <help><!-- System generated tally of number of homework assignments for the particular section --></help>
+        <label><!-- # of Homework Assignments --></label>
+        <name>of_Homework_Assignments__c</name>
+    </fields>
+    <fields>
+        <help><!-- System generated calculation of percent of homework that was completed in the particular section --></help>
+        <label><!-- % of Homework Completed --></label>
+        <name>of_Homework_Completed__c</name>
+    </fields>
+    <fields>
+        <help><!-- System generated tally of number of late homework assignments for the particular section --></help>
+        <label><!-- # of Late Homework --></label>
+        <name>of_Late_Homework__c</name>
+    </fields>
+    <fields>
+        <help><!-- System generated tally of number of missing homework assignments for the particular section --></help>
+        <label><!-- # of Missing Homework --></label>
+        <name>of_Missing_Homework__c</name>
+    </fields>
+    <fields>
+        <help><!-- The percentage of students failing a section --></help>
+        <label><!-- % Students Failing --></label>
+        <name>of_Students_Failing__c</name>
+    </fields>
+    <fields>
+        <label><!-- # of Students --></label>
+        <name>of_Students__c</name>
+    </fields>
+    <fields>
+        <label><!-- % of Time by Medium of Instruction --></label>
+        <name>of_Time_by_Medium_of_Instruction__c</name>
+    </fields>
+    <layouts>
+        <layout>Admin Section</layout>
+        <sections>
+            <label><!-- Class Information --></label>
+            <section>Class Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Curriculum</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Details --></label>
+            <section>Details</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Curriculum - CM</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Notes &amp; Comments --></label>
+            <section>Notes &amp; Comments</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Curriculum - End User</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Notes &amp; Comments --></label>
+            <section>Notes &amp; Comments</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Curriculum - HQ &amp; Admins</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Notes &amp; Comments --></label>
+            <section>Notes &amp; Comments</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Curriculum - Sys Admin</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Notes &amp; Comments --></label>
+            <section>Notes &amp; Comments</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Intervention Sections</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Details --></label>
+            <section>Details</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Intervention Sections - CM</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Notes &amp; Comments --></label>
+            <section>Notes &amp; Comments</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Intervention Sections - End User</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Notes &amp; Comments --></label>
+            <section>Notes &amp; Comments</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Intervention Sections - HQ &amp; Admins</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Notes &amp; Comments --></label>
+            <section>Notes &amp; Comments</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Intervention Sections - Sys Admin</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Notes &amp; Comments --></label>
+            <section>Notes &amp; Comments</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Non Admin Section Layout</layout>
+        <sections>
+            <label><!-- Attendance Detail --></label>
+            <section>Attendance Detail</section>
+        </sections>
+        <sections>
+            <label><!-- Class Information --></label>
+            <section>Class Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Grading Detail --></label>
+            <section>Grading Detail</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Non-Admin Section</layout>
+        <sections>
+            <label><!-- Attendance Detail --></label>
+            <section>Attendance Detail</section>
+        </sections>
+        <sections>
+            <label><!-- Class Information --></label>
+            <section>Class Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Grading Detail --></label>
+            <section>Grading Detail</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Schedule Group Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Section Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Unpublished Layout</layout>
+        <sections>
+            <label><!-- Attendance Detail --></label>
+            <section>Attendance Detail</section>
+        </sections>
+        <sections>
+            <label><!-- Class Information --></label>
+            <section>Class Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Grading Detail --></label>
+            <section>Grading Detail</section>
+        </sections>
+        <sections>
+            <label><!-- Homework Details --></label>
+            <section>Homework Details</section>
+        </sections>
+        <sections>
+            <label><!-- Strands and Standards --></label>
+            <section>Strands and Standards</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <label><!-- Curriculum --></label>
+        <name>Curriculum</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Used for custom gradebook groups --></description>
+        <label><!-- Gradebook Group --></label>
+        <name>Gradebook_Group</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Intervention Section --></label>
+        <name>Intervention_Section</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Sections that have been Published and are Viewable by Standard Users --></description>
+        <label><!-- Published --></label>
+        <name>Published</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Groups of Students Used for Scheduling Purposes --></description>
+        <label><!-- Schedule Group --></label>
+        <name>Schedule_Group</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Unpublished Sections Used for Scheduler --></description>
+        <label><!-- Unpublished --></label>
+        <name>Unpublished</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- You may not change the School Program field when cloning a section. If you want to create a new section, please go to the Section tab and create &quot;New.&quot; --></errorMessage>
+        <name>Cannot_change_existing_School_Program</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Deactivation error: either Active with exit date/reason or inactive without exit date/reason --></errorMessage>
+        <name>Deactivation_Error</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Exit date can&apos;t be in future --></errorMessage>
+        <name>Exit_Date_cant_be_in_future</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please select Exit Reason --></errorMessage>
+        <name>Exit_reason_is_required</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Section_Exit_Date is required. --></errorMessage>
+        <name>Section_Exit_Date</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Section Start Date cannot be greater than the End Date. --></errorMessage>
+        <name>Section_Start_End_Date</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Section name can&apos;t be modified. --></errorMessage>
+        <name>Section_name_cannot_be_changed</name>
+    </validationRules>
+    <webLinks>
+        <label><!-- Clone --></label>
+        <name>Clone</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Section_Curriculum_Data --></label>
+        <name>Section_Curriculum_Data</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Section_Intervention_Data --></label>
+        <name>Section_Intervention_Data</name>
+    </webLinks>
+</CustomObjectTranslation>

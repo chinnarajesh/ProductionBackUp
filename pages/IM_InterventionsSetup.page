@@ -1,0 +1,174 @@
+<apex:page controller="InterventionsSetup" tabstyle="Interventions_Setup__tab">
+	<c:resourceComponent />
+	<apex:includeScript value="{!URLFOR($Resource.resources_Master, '/jQuery/js/jquery-ui-1.8.16.custom.min.js')}" />
+	<style>
+	.tabs #tabList .ui-widget-content {
+		border: 0px solid #AAA !important;
+	}
+	.tabs #tabList .ui-widget-header {
+		background-color: white !important; border:0px solid #fff;
+		border: 0px solid #67B2CE !important;
+	}
+	.tabs #tabList .ui-tabs-nav {
+		border-width: 0px 0px 1px 0px;
+		border-radius: 0px;
+		-moz-border-radius: 0px;
+		-webkit-border-radius: 0px;
+	}
+	.tabs #tabList .ui-widget-header {
+		border: 0px;
+		background: white;
+		color: #222;
+	}
+	.tabs #tabList .ui-state-active a {
+		background: -webkit-gradient(linear, left top, left bottom, from(#e6f3f7), to(#cbe9f0));
+		background: -moz-linear-gradient(top, #e6f3f7, #cbe9f0);
+	}
+	.tabs .ui-tabs-panel {
+		padding: 0px;
+	}
+	</style>
+	<apex:form >
+	<div id="schoolforce-wrapper" class="wrapper">
+		<br/>
+		<h1 class="centerHeader">Interventions Setup</h1>
+		<apex:outputPanel styleClass="adminSummary">
+			<p>
+				Welcome to the Interventions Setup homepage.  
+				The SchoolForce Interventions App allows schools to track the amount of time students spend in specialized interventions sections.  
+				In order to use the Interventions App, please complete the steps below.  
+				You may return to this page at any point throughout the year to update this information.  
+				Please refer to “SchoolForce Help” for more information.
+			</p>
+		</apex:outputPanel>
+		<div class="tabs" style="border: 0px;">
+			<div id="tabList">
+				<ul style="position:relative; overflow-y:hidden;">
+					<li style="cursor:pointer; list-style-type:none; float:left;">
+						<a href="#setup" style="cursor:pointer;text-decoration:none;margin:0px;" >SchoolForce Setup</a>
+					</li>
+					<li style="cursor:pointer; list-style-type:none; float:left;">
+						<a href="#indicatorAreas" style="cursor:pointer;text-decoration:none;margin:0px;" >Indicator Areas</a>
+					</li>
+					<li style="cursor:pointer; list-style-type:none; float:left;">
+						<a href="#studentIAs" style="cursor:pointer;text-decoration:none;margin:0px;" >Add Students to Indicator Areas</a>
+					</li>
+					<li style="cursor:pointer; list-style-type:none; float:left;">
+						<a href="#programs" style="cursor:pointer;text-decoration:none;margin:0px;" >Add Programs</a>
+					</li>
+					<li style="cursor:pointer; list-style-type:none; float:left;">
+						<a href="#sections" style="cursor:pointer;text-decoration:none;margin:0px;" >Create Sections</a>
+					</li>
+					<li style="cursor:pointer; list-style-type:none; float:left;">
+						<a href="#layouts" style="cursor:pointer;text-decoration:none;margin:0px;" >Page Layouts</a>
+					</li>
+					<li style="cursor:pointer; list-style-type:none; float:left;">
+						<a href="#picklist" style="cursor:pointer;text-decoration:none;margin:0px;" >Picklist Values</a>
+					</li>
+				</ul>
+			</div>
+			<div class="content-wrapper" style="margin-top:0px;">
+				<div id="setup">
+					<h3>Basic SchoolForce Setup Required</h3>
+					<div class="childSummary">
+						In order to set up Interventions, you must complete a basic setup of SchoolForce.  
+						If you are already using SchoolForce Core (e.g., attendance, behavior) then you can skip this tab and start on the Indicator Areas tab.  
+						For all others, the following steps are required in order to use Interventions: Setup Schools, Setup Years, and adding students and staff.
+					</div>
+					<div class="section_content">
+						To set up schools and the year, proceed to the <a style="margin-left:0px;" href="/apex/core_SetupWizard?iStep=1">SchoolForce Start Up</a> in the SchoolForce Setup Wizard.  For more information, refer to the following articles: <a style="margin-left:0px;" href="https://acumensolutions.force.com/sfinfo/articles/procedure/100-schoolforce-setup-wizard-start-up-create-new-schools" target="_blank">SchoolForce Setup Wizard Start Up: Create New Schools</a> and <a style="margin-left:0px;" href="https://acumensolutions.force.com/sfinfo/articles/procedure/200-schoolforce-setup-wizard-start-up-create-new-school-year" target="_blank">SchoolForce Setup Wizard Start Up: Create New School Year</a>.
+						<br/>
+						<br/>
+						To add students and staff, return to this screen <b>after</b> you have completed SchoolForce Start Up.  
+						Select the school and year in the drop-down lists below, and then click Load Students/Staff. Follow the on-screen instructions to add students and staff, and then publish. For  more information, refer to the following article: <a style="margin-left:0px;" href="https://acumensolutions.force.com/sfinfo/articles/procedure/700-schoolforce-setup-wizard-create-new-staff-students" target="_blank">SchoolForce Setup Wizard: Create New Staff &amp; Students</a>.
+						<br/>
+						<apex:outputLabel value="Select School" for="schools" />
+						<apex:selectList id="schools" value="{!selectedSchool}" size="1" >
+							<apex:selectOptions value="{!schools}" />
+						</apex:selectList>
+						<apex:outputLabel value="Select Year" for="years" />
+						<apex:selectList id="years" value="{!selectedYear}" size="1" >
+							<apex:selectOptions value="{!years}" />
+						</apex:selectList>
+						<input type="button" class="drk_blue_btn" value="Load Students/Staff" onclick="goToSchoolSetupJS();" />
+					</div>
+				</div>
+				<div id="indicatorAreas">
+					<h3>Create Indicator Areas</h3>
+					<div class="childSummary" >
+						Indicator Areas are high-level focus areas that align with specific Programs.  
+						Indicator Areas typically are broad intervention categories, such as attendance, literacy, and behavior.<br/>
+						<br/>
+						Indicator Areas are created at the SchoolForce organization level and remain in SchoolForce year over year.  
+						They typically do not change over time, though they can be modified at any time if required.
+					</div>
+					<div class="section_content">
+						<apex:outputLink value="/{!iaPrefix}/o">Create Indicator Areas</apex:outputLink>
+					</div>
+				</div>
+				<div id="studentIAs">
+					<h3>Add Students to Indicator Areas</h3>
+					<div class="childSummary">
+						After defining a set of Indicator Areas, you must add students to the Indicator Areas.  
+						Students can be added to as many Indicator Areas as needed.  
+						When scheduling students for interventions, only those students that you have added to Indicator Areas will be eligible for intervention Program enrollment.  
+						When you go to schedule students for interventions, you will locate the students based on the Indicator Areas.  
+						You will also be able to run reports on how many students are in each Indicator Area.<br/>
+						<br/>
+						Because you will be adding and removing students from Indicator Areas throughout the year based on updated performance information, you can access this link throughout the year.  
+					</div>
+					<div class="section_content">
+						<apex:outputLink value="{!$Page.IM_Indicator_Areas}">Add Students to Indicator Areas</apex:outputLink>
+					</div>
+				</div>
+				<div id="programs">
+					<h3>Create and Add Programs to Schools</h3>
+					<div class="childSummary">
+						Programs are aligned to an Indicator Area and are a set of methods and objectives to help improve student performance within that Indicator Area.  
+						For example, you may have a one-on-one reading program.  
+						Programs have a defined objective, recommended frequency, and recommended amount of meeting time.<br/>
+						<br/>
+						Programs are created at the SchoolForce organization level.  
+						Admins can determine whether the Programs are required for a specific school or optional.  
+					</div>
+					<div class="section_content">
+						<apex:outputLink value="{!$Page.IM_AddSchoolsToPrograms}">Create and Add Programs to Schools</apex:outputLink>
+					</div>
+				</div>
+				<div id="sections">
+					<h3>Create Intervention Sections</h3>
+					<div class="childSummary">
+						After Programs are associated to schools, you will need to create Intervention Sections.  
+						An Intervention Section is an instance of a Program for a duration of time that is associated with one or more staff members and a set of students.  
+						An example of an Intervention Section is a one-on-one reading program that meets every Friday in October.
+					</div>
+					<div class="section_content">
+						<apex:outputLink value="{!$Page.IM_AddStudentsToPrograms}">Create Intervention Section</apex:outputLink>
+					</div>
+				</div>
+				<div id="layouts">
+					<h3>Update Page Layouts</h3>
+					<div class="childSummary">
+						The Interventions App contains additional items (e.g., fields, buttons, related lists) that you should add to your school’s page layouts. 
+						For more information about modifying page layouts for Interventions, refer to the following article: <a style="margin-left:0px;" href="https://acumensolutions.force.com/sfinfo/articles/informational/700-update-intervention-page-layouts" target="_blank">Update Interventions Page Layouts</a>.  
+						For more information about modifying page layouts, refer to the following article: <a style="margin-left:0px;" href="https://acumensolutions.force.com/sfinfo/articles/procedure/customize-schoolforce-page-layouts" target="_blank">Customize SchoolForce Page Layouts</a>.
+					</div>
+				</div>
+				<div id="picklist">
+					<h3>Update Picklist Values</h3>
+					<div class="childSummary">
+						The Interventions App contains several fields with picklist values that you can customize for your organization.  
+						For a full list of the picklist values you can customize for Interventions and instructions on modifying them, refer to the following  article: <a style="margin-left:0px;" href="https://acumensolutions.force.com/sfinfo/articles/procedure/800-update-intervention-picklist-values" target="_blank">Update Interventions Picklist Values</a>.
+					</div> 
+				</div>
+			</div>
+		</div>
+	</div>
+	<apex:actionFunction name="goToSchoolSetupJS" action="{!goToStaffStudentLoad}" />
+	</apex:form>
+	<script>
+	j$(document).ready(function() {
+		j$(".tabs").tabs();
+	});
+	</script>
+</apex:page>

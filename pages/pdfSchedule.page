@@ -1,0 +1,129 @@
+<apex:page sidebar="false" showHeader="false" controller="scheduler_printPageController" extensions="Scheduler_PrintPageController_R" renderAs="{!IF(bpdf,'pdf','')}" cache="false">
+<!-- renderAs="pdf" -->
+	<head>
+		<style>
+		 	body {
+		 		//font-family: Arial Unicode MS;
+		 		font-family:'Gotham','Segoe UI',Trebuchet,Arial,Sans-Serif;
+		 		font-size:10px;
+		 	}
+			@page{
+				size:landscape!important;
+				@bottom-left{
+                    content: "{!IF(scheduleType=='student',selectedStudent.School__r.Name,selectedStaff.Organization__r.Name)}, {!IF(scheduleType=='student',selectedStudent.School_Year__r.Name__c,staffSetup.Year__r.Name__c)}";
+                }
+                @bottom-right {
+                    content: "{!IF(scheduleType=='student',selectedStudent.Name,selectedStaff.Name)}{!IF(scheduleType=='student',', Grade '+selectedStudent.Grade__c,'')}";
+                }
+                @bottom-center {
+                    content : counter(page) " of " counter(pages);
+                }
+			}
+
+			.datePicker{
+				display:none;
+			}
+			.largeText{
+				font-size: 14px;
+			}
+
+			.nobreak{
+				page-break-inside: avoid;
+				page-break-after: auto;
+				page-break-before: auto;
+			}
+			.scheduleTable{
+				margin-top:15px;
+			}
+			.scheduleTable th{
+				text-align:center;
+				border:1px solid black;
+			}
+
+			.scheduleTable td{
+				border:1px solid black;
+				width: {!maxWidth};
+			}
+
+			.innertable td{
+				border:none;
+			}
+
+			.class-header td {
+				border-top:1px black solid;
+			}
+
+			.class-info td {
+				border-bottom:1px black solid;
+			}
+		</style>
+	</head>
+	<body>
+	<apex:form >
+		<apex:outputPanel id="thePanel">
+			<div id="innerDiv" style="width:950px;">
+				<div style="font-weight:bold; font-size:20px; text-align:center; margin-bottom-10px;">
+		    		Schedule For: {!displayName}
+		    	</div>
+				<apex:repeat value="{!scheduleWrapper}" var="week">
+					<table style="width:100%;" cellspacing="0" cellpadding="0" class="scheduleTable nobreak">
+						<tr>
+							<apex:repeat value="{!week.days}" var="day">
+								<th class="largeText">
+									{!day.dayName}&nbsp;{!day.dateString}
+								</th>
+							</apex:repeat>
+						</tr>
+						<tr>
+							<apex:repeat value="{!week.days}" var="day">
+								<td style="{!IF(day.sections.size > 0,'vertical-align:top;','')}">
+									<table class="innertable" style="width:100%;" cellspacing="0" cellpadding="0">
+										<apex:repeat value="{!day.sections}" var="section" rendered="{!day.sections.size > 0}">
+											<tr class="class-header nobreak">
+												<td colspan="2" style="font-weight:bold;text-align:center;">
+													{!section.courseName}
+												</td>
+											</tr>
+											<tr style="{!IF(section.room == '' || section.staffNames == '','display:none;','')}" class="nobreak">
+												<td style="text-align:center;">
+													{!IF(section.room == '','',section.staffNames)}
+												</td>
+												<td style="text-align:center;">
+													 Room: {!section.room}
+												</td>
+											</tr>
+											<tr style="{!IF(section.room == '','','display:none;')}" class="nobreak">
+												<td style="text-align:center;" colspan="2">
+													{!IF(section.room == '',section.staffNames,'')}
+												</td>
+											</tr>
+											<tr style="{!IF(section.room != '' && section.staffNames == '','','display:none;')}" class="nobreak">
+												<td style="text-align:center;" colspan="2">
+													Room: {!IF(section.staffNames == '',section.room,'')}
+												</td>
+											</tr>
+											<tr class="class-info nobreak">
+												<td style="text-align:center;">
+													Start: {!section.startTime}
+												</td>
+												<td style="text-align:center;">
+													End: {!section.endTime}
+												</td>
+											</tr>
+										</apex:repeat>
+										<tr style="{!IF(AND(day.isInside,day.sections.size = 0),'','display:none;')}" class="nobreak">
+											<td style="text-align:center;vertical-align:middle;">
+												No class is scheduled for this day.
+											</td>
+										</tr>
+									</table>
+								</td>
+							</apex:repeat>
+						</tr>
+					</table>
+				</apex:repeat>
+			</div>
+		</apex:outputPanel>
+	</apex:form>
+	</body>
+</apex:page>

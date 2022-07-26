@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Attendance</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Attendance</value>
+    </caseValues>
+    <fields>
+        <help><!-- Displays the time the student arrived to class. This field displays in the Attendance tab and the Attendance Wizard. --></help>
+        <label><!-- Arrival Time --></label>
+        <name>Arrival_Time_Text__c</name>
+    </fields>
+    <fields>
+        <help><!-- Displays the date and time the student arrived to class. This value is used to calculate the time lost displayed in the Instructional Time Lost field. --></help>
+        <label><!-- Arrival Time --></label>
+        <name>Arrival_Time__c</name>
+    </fields>
+    <fields>
+        <help><!-- This field is an exact copy of the Status field and was created for use in Student record rollups. This field is used for Student/Parent Portal calculations. This field can be used in reports. --></help>
+        <label><!-- Attendance Status Read Only --></label>
+        <name>Attendance_Status_Read_Only__c</name>
+    </fields>
+    <fields>
+        <help><!-- Comments regarding attendance entered via the Attendance tab or Attendance Wizard. This field can also be updated on the Attendance record. --></help>
+        <label><!-- Comments --></label>
+        <name>Comments__c</name>
+    </fields>
+    <fields>
+        <help><!-- Indicates the Attendance record is for daily attendance. Otherwise, it is for sectional attendance. --></help>
+        <label><!-- Daily --></label>
+        <name>Daily__c</name>
+    </fields>
+    <fields>
+        <help><!-- Displays the date and time the system sent an alert to parent/guardian informing them that their child had an unexcused absence/tardy. Parent notification must be setup or this field will always be blank. --></help>
+        <label><!-- Date/Time of Parental Notification --></label>
+        <name>Date_Time_of_Parental_Notification__c</name>
+    </fields>
+    <fields>
+        <help><!-- Displays the time the student departed from class. This field displays in the Attendance tab and the Attendance Wizard. --></help>
+        <label><!-- Departure Time Text --></label>
+        <name>Departure_Time_Text__c</name>
+    </fields>
+    <fields>
+        <help><!-- Displays the date and time the student departed from class. This value is used to calculate the time lost displayed in the Instructional Time Lost field. --></help>
+        <label><!-- Departure Time --></label>
+        <name>Departure_Time__c</name>
+    </fields>
+    <fields>
+        <help><!-- This field is for technical use only. It was created to help with the managed package data conversion. --></help>
+        <label><!-- External Id --></label>
+        <name>External_Id__c</name>
+    </fields>
+    <fields>
+        <help><!-- This field is an exact copy of the Instructional Time Lost field. It is used to calculate the following fields on the Student record: Daily Attendance Time Lost and Sectional Attendance Time Lost. --></help>
+        <label><!-- Instructional Time Lost --></label>
+        <name>Instructional_Time_Lost__c</name>
+    </fields>
+    <fields>
+        <help><!-- Do not use this field; it is no longer used by SchoolForce. --></help>
+        <label><!-- Internal Code *Retired* --></label>
+        <name>Internal_Code__c</name>
+    </fields>
+    <fields>
+        <help><!-- If checked, users cannot modify this Attendance record through some SchoolForce screens. --></help>
+        <label><!-- Locked --></label>
+        <name>Locked__c</name>
+    </fields>
+    <fields>
+        <help><!-- Do not use this field; it is no longer used by SchoolForce. --></help>
+        <label><!-- NCES Status *Retired* --></label>
+        <name>NCES_Status__c</name>
+        <picklistValues>
+            <masterLabel>Absent- Disciplinary action, not receiving instruction</masterLabel>
+            <translation><!-- Absent- Disciplinary action, not receiving instruction --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Absent- Family activity</masterLabel>
+            <translation><!-- Absent- Family activity --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Absent- Family emergency or bereavement</masterLabel>
+            <translation><!-- Absent- Family emergency or bereavement --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Absent- Legal or judicial requirement</masterLabel>
+            <translation><!-- Absent- Legal or judicial requirement --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Absent- Noninstructional activity recognized by state or school</masterLabel>
+            <translation><!-- Absent- Noninstructional activity recognized by state or school --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Absent- Religious obsesrvation</masterLabel>
+            <translation><!-- Absent- Religious obsesrvation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Absent- Situation unknown</masterLabel>
+            <translation><!-- Absent- Situation unknown --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Absent- Student employment</masterLabel>
+            <translation><!-- Absent- Student employment --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Absent- Student is skipping school</masterLabel>
+            <translation><!-- Absent- Student is skipping school --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Absent- Transportation not available</masterLabel>
+            <translation><!-- Absent- Transportation not available --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Absent- illness, injury, health treatment, or examination</masterLabel>
+            <translation><!-- Absent- illness, injury, health treatment, or examination --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Present- Disciplinary action, receiving instruction</masterLabel>
+            <translation><!-- Present- Disciplinary action, receiving instruction --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Present- In School, regular instructional program</masterLabel>
+            <translation><!-- Present- In School, regular instructional program --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Present- Nontraditional school setting, regular instructiona program</masterLabel>
+            <translation><!-- Present- Nontraditional school setting, regular instructiona program --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Present- Out of school, regular instructional program activity</masterLabel>
+            <translation><!-- Present- Out of school, regular instructional program activity --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Present- Out of school, school-approved extracurricular or cocurricular activity</masterLabel>
+            <translation><!-- Present- Out of school, school-approved extracurricular or cocurricular activity --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Displays the value that users select to describe the student&apos;s attendance using the Attendance tab or Attendance Wizard. These picklist options are chosen by your school. --></help>
+        <label><!-- Status --></label>
+        <name>Picklist_Value__c</name>
+        <relationshipLabel><!-- Attendance --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Displays the date and time of the Session record. This field should not be modified. --></help>
+        <label><!-- Session Date --></label>
+        <name>Session_Date__c</name>
+    </fields>
+    <fields>
+        <help><!-- SchoolForce uses this field and others to calculate the Instructional Time Lost field. This field should not be modified. --></help>
+        <label><!-- Session End Time --></label>
+        <name>Session_End_Time__c</name>
+    </fields>
+    <fields>
+        <help><!-- SchoolForce uses this field and others to calculate the Instructional Time Lost field. This field should not be modified. --></help>
+        <label><!-- Session Start Time --></label>
+        <name>Session_Start_Time__c</name>
+    </fields>
+    <fields>
+        <help><!-- Displays the date and time of the Session. Do not update this field. --></help>
+        <label><!-- Session --></label>
+        <name>Session__c</name>
+        <relationshipLabel><!-- Attendance --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Status Category --></label>
+        <name>Status_Category__c</name>
+    </fields>
+    <fields>
+        <help><!-- Do not use this field; it is no longer used by SchoolForce. --></help>
+        <label><!-- Status *Retired* --></label>
+        <name>Status__c</name>
+        <picklistValues>
+            <masterLabel>Early Departure</masterLabel>
+            <translation><!-- Early Departure --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Excused Absence</masterLabel>
+            <translation><!-- Excused Absence --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Excused Early Departure</masterLabel>
+            <translation><!-- Excused Early Departure --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Excused Tardy</masterLabel>
+            <translation><!-- Excused Tardy --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>In-school Suspension</masterLabel>
+            <translation><!-- In-school Suspension --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Out of school Suspension</masterLabel>
+            <translation><!-- Out of school Suspension --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Present</masterLabel>
+            <translation><!-- Present --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Tardy</masterLabel>
+            <translation><!-- Tardy --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Unexcused Absence</masterLabel>
+            <translation><!-- Unexcused Absence --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- This field is a modified copy of the Status field and was created to allow for numeric rollups on the Student record (e.g., Total # of Unexcused Daily Absences). --></help>
+        <label><!-- Status for Rollup --></label>
+        <name>Status_for_Rollup__c</name>
+    </fields>
+    <fields>
+        <help><!-- This field provides a link to the Student record for the year. Do not update this field. --></help>
+        <label><!-- Student --></label>
+        <name>Student__c</name>
+        <relationshipLabel><!-- Attendance --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- This formula field displays the student&apos;s grade level and can be used in reports. This field is pulled from the Student record. --></help>
+        <label><!-- Student&apos;s Grade --></label>
+        <name>Student_s_Grade__c</name>
+    </fields>
+    <fields>
+        <help><!-- Displays the date and time from the Created By field. It can be used in reports. --></help>
+        <label><!-- Submission Time --></label>
+        <name>Submission_Time__c</name>
+    </fields>
+    <fields>
+        <help><!-- This field is an exact copy of the Instructional Time Lost field and was created to allow for rollups. It is used to calculate the following fields on the Student record: Daily Attendance Time Lost and Sectional Attendance Time Lost. --></help>
+        <label><!-- Time Lost For Rollup --></label>
+        <name>Time_Lost_Rollup__c</name>
+    </fields>
+    <layouts>
+        <layout>Attendance Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Vowel</startsWith>
+</CustomObjectTranslation>

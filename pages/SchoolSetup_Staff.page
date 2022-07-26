@@ -1,0 +1,87 @@
+<apex:page controller="SchoolSetup_Staff" sidebar="false" tabStyle="SchoolForce_Setup__tab" >
+	<c:setupWizardSharedComponents summerSchoolMode="{!setup.School__r.ParentId != null}"/>
+	<script>
+		j$(document).ready(function(){
+			resetTable();
+		});
+	</script>
+	<apex:outputPanel id="scripts">
+		<script>
+		function checkBatch(){
+			var bool = "{!bProcessing}";
+			if(bool=="true"){
+				showProgressBar("{!batch.status}"+'... '+"{!batch.processed}"+' of '+"{!batch.totalItems}"+' batch jobs completed.');
+				continueJs();
+			}
+		}
+		
+		function wait(){
+			window.setInterval("checkBatch()",5000);
+		}
+		</script>
+	</apex:outputPanel>
+	<table style="width:100%">
+		<tr>
+			<td style="width:15%;vertical-align:top;">
+				<c:setupWizardSidebar setupId="{!setupId}" />
+			</td>
+			<td style="max-width:85%;vertical-align:top;">
+				<div id="schoolforce-wrapper" class="wrapper">
+					<apex:outputPanel id="error" styleClass="pageMessages">
+						<apex:pagemessages />
+					</apex:outputPanel>
+					<apex:form >
+						<h1 class="centerHeader">
+							<input type="button" onclick="prevJs();" class="grey_btn_arrow" value="Previous" />
+							<span style="display:inline-block">{!schoolName} Core Setup<br/>Create New Staff &amp; Students</span>
+							<input type="button" onclick="nextJs();" class="green_btn_arrow" value="Next" />
+						</h1>
+						<apex:outputPanel styleClass="adminSummary">
+							<br/>
+							<p>
+								In this step, you can upload <b>new</b> staff members and students using the CSV Loader, which you can access by clicking the <b>Load From CSV</b> button. 
+								Once you have uploaded the staff members or students, you must return to this screen to publish the records into SchoolForce by clicking <b>Publish Staff/Student Records</b>.
+								<br/><br/>
+								At minimum, you must upload the staff members who will teach the sections you will schedule in the Schedule Sections step. 
+								If your school uses group-based scheduling, you must also upload any new students you intend to assign to a schedule group.
+								<br/><br/>
+								You can return to this step at a later time to add additional staff members and students if teachers have not yet begun taking grades for assignments in the Gradebook. 
+								After teachers begin entering grades, you should only add new students to SchoolForce using the Section Wizard.
+								<br/><br/>
+								<i><b>Note:</b> Students who already attend your school should not be added here. The End of Year (EOY) Wizard will make those students available for scheduling.</i>
+								<br/><br/>
+								For more information, refer to SchoolForce Help.
+							</p>
+							<br/>
+						</apex:outputPanel>
+						<div class="content-wrapper no-border">
+							<h3>Load Staff &amp; Student Values</h3>
+							<div class="section_content" style="margin-bottom:0;">
+								<input type="button" class="black_btn" value="Load From CSV" onClick="openCSVLoader('Staff','{!setupId}',{!isManaged});" />
+								<input type="button" class="red_btn" value="Publish Staff/Student Records" onclick="showProgressBar('Publishing data.  Please wait.  Do not refresh.'); publishDataJs();"/>
+								<div class="clear_fix" />
+							</div>
+
+							<div class="section_content">
+								<div style="font-weight:bold;margin-top:10px;">Data logs from previous publishes:</div>
+								<apex:dataTable styleclass="tablesorter" title="Log History" value="{!logs}" var="l">
+									<apex:column headerValue="Log Type" value="{!l.Type__c}" />
+									<apex:column headerValue="Status" value="{!l.Status__c}" />
+									<apex:column headerValue="Total Records Processed" value="{!l.Total_Records__c}" />
+									<apex:column headerValue="Records Failed" value="{!l.Failed_Records__c}" />
+									<apex:column headerValue="Run Complete" value="{!l.End_Time_Text__c}" />
+									<apex:column headerValue="Owner" value="{!l.OwnerId}" />
+								</apex:dataTable>
+							</div>
+						</div>
+
+						<apex:actionFunction name="nextJs" action="{!next}" />
+						<apex:actionFunction name="prevJs" action="{!prev}" />
+						<apex:actionFunction name="continueJs" action="{!continueBatch}" rerender="error, scripts" />
+						<apex:actionFunction name="publishDataJs" action="{!publishData}" oncomplete="wait();" rerender="error, scripts" />
+					</apex:form>
+				</div>
+			</td>
+		</tr>
+	</table>
+</apex:page>

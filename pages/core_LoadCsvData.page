@@ -1,0 +1,91 @@
+<apex:page controller="core_LoadCsvData" tabStyle="SchoolForce_Setup__tab" sidebar="false">
+<c:setupWizardSharedComponents />
+<apex:stylesheet value="{!URLFOR($Resource.resources_Master, '/custom/css/course_Catalog.css')}"/>
+
+<script>
+j$(document).ready(function(){
+    resetTable();
+})
+
+function confirmSetup(){
+	if(!"{!JSENCODE(setupId)}"){
+		var bool = confirm("There is no school related to this load!  Are you sure you would like to continue?");
+		if(bool){
+			showProgressBar('Please wait while data is processed.');
+			loadData();
+			setTimeout('hideProgressBar()',5000);
+		}
+	}
+	showProgressBar('Please wait while data is processed.');
+	loadData();
+	setTimeout('hideProgressBar()',5000);
+}
+
+</script>
+    
+<table style="width:100%">
+<tr>
+	<td style="vertical-align:top; width:15%">
+		 <!-- <c:setup_sidebar setup="{!cSetup}"/>  -->
+		 <c:setupWizardSidebar setupId="{!cSetup.setup.id}" />
+	</td>
+	<td style="vertical-align:top; max-width: 85%">
+    
+    <!-- ERROR -->
+    <apex:outputPanel id="messagePanel" >
+        <apex:pageMessages id="messages" />
+    </apex:outputPanel>
+    <!-- ERROR -->
+<apex:form >
+	<h3>Data Load Selection for {!cSetup.setup.school__r.name} {!cSetup.setup.year__r.Name__c}</h3><br/>
+	<br/>
+	Welcome to the CSV Loader! On this screen, you can upload a CSV file containing the records you want to load into an object.<br/> 
+	<br/>
+	Select the object you want to update from the <b>Please select the type of object to load</b> drop-down list.<br/>
+	<br/>
+	If you need a template of the CSV file for the selected object, click the <b>Download Template</b> link. 
+	Once the template downloads, enter the records you want to upload.<br/>
+	<br/>
+	Click <b>Choose File</b> and select the CSV file that contains the student/section assignments you want to upload. Then, click the <b>Process File</b> button to view a table that contains an editable list of the records from the CSV file.<br/>
+	<br/>
+	Refer to SchoolForce Help for more Information.
+	<apex:pageBlock >
+		<apex:pageBlockSection collapsible="false">
+			<apex:selectList label="Please select the type of object to load:" style="margin-left:5px; margin-right:25px;" value="{!selectedLoadType}" onchange="changeLink();" multiselect="false" size="1" rendered="{!bNeedsType}">
+				<apex:selectOptions value="{!loadTypeOptionList}"/>
+			</apex:selectList>
+			<apex:outputText label="Selected Load Type" value="{!selectedLoadType}" rendered="{!!bNeedsType}" />
+			<apex:outputLink value="{!linkPathDefault}">Download Template</apex:outputLink>  
+			<apex:inputFile contentType="{!fileContentType}" fileName="{!fileName}" fileSize="{!fileSize}" value="{!fileBlob}" />
+			<apex:inputCheckbox label="Load default template file?" value="{!bUseDefault}"/>
+		</apex:pageBlockSection>
+		<div class="clear_fix">&nbsp;</div>
+		<apex:commandButton styleClass="black_btn" onclick="confirmSetup(); return false;" value="Process File"/>
+		<div class="clear_fix">&nbsp;</div>
+	</apex:pageBlock> 
+
+	<apex:outputPanel rendered="{!bProcessed}">
+		<h3>Review Values to Load to {!selectedLoadType} </h3>
+		<p style="padding-left:2em">Review the table and make any desired changes. To insert the records, click the <b>Insert Values</b> button.</p>
+	</apex:outputPanel>
+	<apex:pageBlock rendered="{!bProcessed}">
+	<apex:pageBlockSection columns="1" rendered="{!bProcessed}">
+		<c:csvTable loadType="{!selectedLoadType}" interimValueList="{!interimValueList}" />
+	</apex:pageBlockSection> 
+		
+		<br/>
+		<div class="clear_fix">&nbsp;</div>
+		<apex:commandButton styleClass="grey_btn" action="{!initPage}" value="Cancel" />
+		<apex:commandButton styleClass="black_btn" action="{!insertList}" value="Insert Values"/>
+		<div class="clear_fix">&nbsp;</div>
+	</apex:pageBlock>
+	
+	<apex:actionFunction name="changeLink" action="{!changeLink}" />
+	<apex:actionFunction name="loadData" action="{!loadData}" />
+
+</apex:form>
+
+</td>
+</tr>
+</table>
+</apex:page>

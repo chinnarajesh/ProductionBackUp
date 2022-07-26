@@ -1,0 +1,263 @@
+<!-- 
+/******************************************************************************************************************
+*    Copyright ©2011 Acumen Solutions, Inc. This source code is CONFIDENTIAL and PROPRIETARY to Acumen Solutions, Inc. and may not be reproduced, 
+*    published, or disclosed to others without company authorization. All Rights Reserved
+* Description:
+* 
+* 
+*
+* Modification Log:       
+* -----------------------------------------------------------------------------------------------------------------
+* Mod ID        |   Date        | Mod Author    | Brief Mod Description 
+* -----------------------------------------------------------------------------------------------------------------
+* 00001         |               | Peter Nebel   | Initial code creation.
+* -----------------------------------------------------------------------------------------------------------------
+* 
+*
+*******************************************************************************************************************/
+-->
+<apex:component access="global">
+    <style>
+.selected a {
+    color: white;
+    font-weight: bold;
+    '
+}
+
+.selected a:hover {
+    color: white;
+    font-weight: bold;
+    '
+}
+
+.selected {
+    color: white;
+    font-weight: bold;
+    '
+}
+
+.sidebarDiv {
+    border: 2px solid #333;
+    border-radius: 3px;
+    padding: 6px;
+    position: fixed;
+    top: 230px;
+    right: 10px;
+}
+
+.setupTest {background:#1b6682; padding:3px 0px 3px 0px;}
+
+.sidebar_table {width:200px;}
+
+.sidebar_table td {padding-left:10px; height:17px;}
+.sidebar_table tr {margin-bottom:10px;}
+
+</style>
+    <c:StyleGrid />
+    <apex:attribute access="global" name="setup" description="Setup Wrapper"
+        type="core_SetupWrapper" required="true" />
+
+    <div id="sidebarDiv" class="collapsible">
+        <div class="sidebarModule recentItemModule">
+            <div class="calendarHeadering">
+                Setup Control Panel
+            </div>
+            <div id="sidebarHolder">
+                <table cellpadding="0" cellspacing="0" class="sidebar_table">
+
+                    <tr>
+                        <td class="{!IF(setup.selectedTab=='schools', 'setupTest','')}">
+                        <a class="{!IF(setup.selectedTab=='schools', 'selected','')}"
+                            href="/apex/core_setupWizard?iStep=2">View/Maintain Schools</a> <apex:variable value="{!setup.selectedTab}" var="b"
+                                rendered="{!IF(setup.selectedTab=='schools', true, false)}">
+                                <img src="/s.gif" alt="" class="showListButton" id="slb"
+                                    style="cursor: pointer;" title="Selected View" />
+
+                            </apex:variable></td>
+                    </tr>
+
+
+                    <tr>
+                           <td class="{!IF(setup.selectedTab=='years', 'setupTest','')}"> <a class="{!IF(setup.selectedTab=='years', 'selected','')}"
+                            href="/apex/core_setupWizard?iStep=3">View/Maintain Years</a><apex:variable value="{!setup.selectedTab}" var="b"
+                                rendered="{!IF(setup.selectedTab=='years', true, false)}">
+                                <img src="/s.gif" alt="" class="showListButton" id="slb"
+                                    style="cursor: pointer;" title="Selected View" />
+
+                            </apex:variable></td>
+                    </tr>
+
+
+                    <tr>
+                        <td class="{!IF(setup.selectedTab=='setups', 'setupTest','')}"> <a class="{!IF(setup.selectedTab=='setups', 'selected','')}"
+                            href="/apex/core_setupWizard?iStep=4">View Setups</a><apex:variable value="{!setup.selectedTab}" var="b"
+                                rendered="{!IF(setup.selectedTab=='setups', true, false)}">
+                                <img src="/s.gif" alt="" class="showListButton" id="slb"
+                                    style="cursor: pointer;" title="Selected View" />
+
+                            </apex:variable></td>
+                    </tr>
+                    <apex:outputPanel rendered="{!IF(setup.bHasSetup, true,false)}">
+                        <tr>
+                            
+                                        <td style="padding:6px 0px 6px 2px;"><apex:outputLabel style="font-style:italic; font-weight:bold;"
+                                                value="School: {!setup.school.Name}" /><br />
+                                                <apex:outputLabel style="font-style:italic; " 
+                                                value="Year: {!setup.setup.year__r.Name__c} " /></td>
+                                    </tr>
+                                    
+                                    <tr>            
+                                         <td class="{!IF(setup.selectedTab=='home', 'setupTest','')}">
+                                            
+                                                
+                                            <a href="/{!setup.setup.id}"  class="{!IF(setup.selectedTab=='home', 'selected','')}">View Setup Home</a>
+                                            <apex:variable value="{!setup.selectedTab}" var="b"
+                                                rendered="{!IF(setup.selectedTab=='home', true, false)}">&nbsp;&nbsp;<img src="/s.gif" alt="" class="showListButton" id="slb"
+                                                    style="cursor: pointer;" title="Selected View" /></apex:variable></td>
+                                    </tr>
+                                    
+                                     <tr>            
+                                         <td class="{!IF(setup.selectedTab=='createNewStudents', 'setupTest','')}">
+                                            <a href="/apex/EOY_CreateStudents?id={!setup.setup.id}"  class="{!IF(setup.selectedTab=='createNewStudents', 'selected','')}">Create Students for Next Year</a>
+                                            <apex:variable value="{!setup.selectedTab}" var="b"
+                                                rendered="{!IF(setup.selectedTab=='createNewStudents', true, false)}">&nbsp;&nbsp;<img src="/s.gif" alt="" class="showListButton" id="slb"
+                                                    style="cursor: pointer;" title="Selected View" /></apex:variable>
+                                    	</td>
+                                    </tr>
+                                    <!-- EE: ADDED COMPONENT TO DISPLAY "Load CSV Data" IN SETUP SIDEBAR -->
+                                    
+                                    <tr>            
+                                         <td class="{!IF(setup.selectedTab=='load', 'setupTest','')}">
+                                            <a href="/apex/core_LoadCsvData?setupId={!setup.setup.id}"  class="{!IF(setup.selectedTab=='load', 'selected','')}">Load CSV Data</a>
+                                            <apex:variable value="{!setup.selectedTab}" var="b"
+                                                rendered="{!IF(setup.selectedTab=='load', true, false)}">&nbsp;&nbsp;<img src="/s.gif" alt="" class="showListButton" id="slb"
+                                                    style="cursor: pointer;" title="Selected View" /></apex:variable>
+                                    	</td>
+                                    </tr>
+									 <tr>
+                                         <td ><apex:outputLabel style="font-weight:bold"
+                                                value="Terms/Reporting Periods: " /></td></tr><tr><td class="{!IF(setup.selectedTab=='term', 'setupTest','')}"> <apex:outputText styleClass="{!IF(setup.selectedTab=='term', 'selected','')}"
+                                                escape="false"
+                                                value="{!setup.setup.Configure_School_Term__c}" /><apex:variable value="{!setup.selectedTab}" var="b"
+                                                rendered="{!IF(setup.selectedTab=='term', true, false)}">
+                                                <img src="/s.gif" alt="" class="showListButton" id="slb"
+                                                    style="cursor: pointer;" title="Selected View" />
+                                            </apex:variable> </td>
+                                    </tr>
+                                    <tr>
+                                        <td><apex:outputLabel style="font-weight:bold"
+                                                value="Course Catalog: " /></td>
+                                    </tr> 
+                                    <tr>        <td class="{!IF(setup.selectedTab=='course', 'setupTest','')}">   
+                                                 <apex:outputText styleClass="{!IF(setup.selectedTab=='course', 'selected','')}"
+                                                escape="false"
+                                                value="{!setup.setup.Configure_Course_Catalog__c}" />
+                                                &nbsp;&nbsp; <apex:variable value="{!setup.selectedTab}" var="b"
+                                                rendered="{!IF(setup.selectedTab=='course', true, false)}">
+                                                <img src="/s.gif" alt="" class="showListButton" id="slb"
+                                                    style="cursor: pointer;" title="Selected View" />
+                                            </apex:variable></td>
+                                    </tr>
+                                    <tr>
+                                        <td><apex:outputLabel style="font-weight:bold"
+                                                value="Grade Scale Catalog: " /></td>
+                                    </tr>
+                                    <tr>         <td class="{!IF(setup.selectedTab=='gradescale', 'setupTest','')}">   
+                                                 <apex:outputText styleClass="{!IF(setup.selectedTab=='gradescale', 'selected','')}"
+                                                escape="false"
+                                                value="{!setup.setup.Configure_Grade_Scale_Catalog__c}" />
+                                                &nbsp;&nbsp; <apex:variable value="{!setup.selectedTab}" var="b"
+                                                rendered="{!IF(setup.selectedTab=='gradescale', true, false)}">
+                                                <img src="/s.gif" alt="" class="showListButton" id="slb"
+                                                    style="cursor: pointer;" title="Selected View" />
+                                            </apex:variable>
+                                                </td>
+                                    </tr>
+                                    <apex:variable rendered="{!setup.setup.Room_Dependent__c}"
+                                        var="e" value="{!setup.setup.Room_Dependent__c}">
+                                        <tr>
+                                            <td><apex:outputLabel style="font-weight:bold"
+                                                    value="Rooms: " /></td>
+                                        </tr>
+                                        <tr>         <td class="{!IF(setup.selectedTab=='room', 'setupTest','')}">   
+                                                     <a
+                                                class="{!IF(setup.selectedTab=='room', 'selected','')}"
+                                                href="/apex/core_RoomCreate?setupid={!setup.setup.id}">
+                                                    View Configuration</a>
+                                                    &nbsp;&nbsp; <apex:variable value="{!setup.selectedTab}" var="b"
+                                                    rendered="{!IF(setup.selectedTab=='room' , true, false)}">
+                                                    <img src="/s.gif" alt="" class="showListButton" id="slb"
+                                                        style="cursor: pointer;" title="Selected View" />
+                                                </apex:variable> 
+                                                    </td>
+                                        </tr>
+                                    </apex:variable>
+                                   
+                                    <tr>
+                                        <td><apex:outputLabel style="font-weight:bold"
+                                                value="Schedule Configuration: " /><br /></td>
+                                    </tr>
+                                    <apex:variable value="{!setup.setup.Group_Based__c}" var="b"
+                                        rendered="{!setup.setup.Group_Based__c}">
+                                        <tr>
+                                            <td class="{!IF(setup.selectedTab=='group', 'setupTest','')}"><a
+                                                class="{!IF(setup.selectedTab=='group', 'selected','')}"
+                                                href="/apex/core_GroupConfiguration?setupId={!setup.setup.id}">Schedule
+                                                    Groups</a><apex:variable value="{!setup.selectedTab}" var="b"
+                                                    rendered="{!IF(setup.selectedTab=='group', true, false)}">
+                                                    <img src="/s.gif" alt="" class="showListButton" id="slb"
+                                                        style="cursor: pointer;" title="Selected View" />
+                                                </apex:variable> &nbsp;&nbsp;</td>
+                                        </tr>
+
+                                    </apex:variable>
+                                 
+                                    <apex:variable value="{!!setup.setup.Group_Based__c}" var="b"
+                                        rendered="{!!setup.setup.Group_Based__c}">
+                                        <tr>
+                                            <td>&nbsp;&nbsp;<apex:outputLabel style="font-weight:bold" value="Master Schedule Grid: " /><br />
+                                                <table>
+                                                <apex:repeat value="{!setup.reportingPeriodList}" var="r">
+                                                <tr><td class="{!IF(setup.selectedTab==r.Name__c+'grid', 'setupTest','')}">
+                                                   
+&nbsp;&nbsp;&nbsp;&nbsp; <a
+                                                        class="{!IF(setup.selectedTab==r.Name__c+'grid', 'selected','')}"
+                                                        href="/apex/scheduler_Grid?setupId={!setup.setup.id}&id={!r.id}">{!r.Name__c}</a> <apex:variable value="{!setup.selectedTab}" var="b"
+                                                        rendered="{!IF(setup.selectedTab==r.Name__c+'grid', true, false)}">
+                                                        <img src="/s.gif" alt="" class="showListButton" id="slb"
+                                                            style="cursor: pointer;" title="Selected View" />
+                                                    </apex:variable>
+                                                    <br />
+                                                    </td></tr>
+                                                </apex:repeat></table></td>
+                                        </tr>
+
+                                    </apex:variable>
+                                    <tr>
+                                      <td class="{!IF(setup.selectedTab=='calendar', 'setupTest','')}"><a
+                                            class="{!IF(setup.selectedTab=='calendar', 'selected','')}"
+                                            href="apex/ReportingPeriodCalendarView?setupid={!setup.setup.id}">School
+                                                Calendar</a><apex:variable value="{!setup.selectedTab}" var="b"
+                                                rendered="{!IF(setup.selectedTab=='calendar', true, false)}">
+                                                <img src="/s.gif" alt="" class="showListButton" id="slb"
+                                                    style="cursor: pointer;" title="Selected View" />
+                                            </apex:variable> &nbsp;&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="{!IF(setup.selectedTab=='publish', 'setupTest','')}"><a
+                                            class="{!IF(setup.selectedTab=='publish', 'selected','')}"
+                                            href="apex/core_PublishSetup?id={!setup.setup.id}">Publish</a><apex:variable value="{!setup.selectedTab}" var="b"
+                                                rendered="{!IF(setup.selectedTab=='publish', true, false)}">
+                                                <img src="/s.gif" alt="" class="showListButton" id="slb"
+                                                    style="cursor: pointer;" title="Selected View" />
+                                            </apex:variable> &nbsp;&nbsp;
+                                       
+                            </td>
+                        </tr>
+                    </apex:outputPanel>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</apex:component>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Team</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Teams</value>
+    </caseValues>
+    <fields>
+        <label><!-- External ID --></label>
+        <name>External_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- School Name --></label>
+        <name>School_Name__c</name>
+        <relationshipLabel><!-- Teams --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Team Description --></label>
+        <name>Team_Description__c</name>
+    </fields>
+    <layouts>
+        <layout>Team Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Team Layout - End Users</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Team Layout - HQ &amp; Admins</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

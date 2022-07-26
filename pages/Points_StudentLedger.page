@@ -1,0 +1,443 @@
+<apex:page controller="Points_StudentLedger" sidebar="{!showheader}" showHeader="{!showheader}" standardStylesheets="false">
+<apex:form >
+
+<div id="errorMessages" class="message errorM3" style="display:none;">
+</div>
+ <apex:outputpanel id="messages">
+         <apex:pagemessages />
+    </apex:outputpanel>
+
+<c:admin />
+
+<apex:stylesheet value="{!URLFOR($Resource.Points_Resources, '/style/style.css')}"/>
+<style>
+.new-points{
+background-color:#E8E8E8;
+//background: url('{!URLFOR($Resource.Points_Resources, '/images/modal_bkgd.png')}') 0 0 no-repeat;
+position: absolute;
+width: 700px;
+z-index: 2;
+height: 300px;
+display: none;
+}
+
+.new-points-submit {
+display: inline-block;
+width: 120px;
+padding: 5px 15px 5px 10px;
+text-transform: uppercase;
+background: #A3DB9E;
+border-radius: 5px;
+font-size: 11px;
+margin: 20px 0 0 10px;
+font-weight: bold;
+box-shadow: inset 0px 1px 3px 
+#999;
+
+}
+
+input.drk_blue_btn {margin:15px 15px 0 0 !important; padding:6px 10px !important; color:#fff !important; background: #59afcc !important; /* Old browsers */
+background: -moz-linear-gradient(top,  #59afcc 21%, #0180ab 85%) !important; /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(21%,#59afcc), color-stop(85%,#0180ab)) !important; /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  #59afcc 21%,#0180ab 85%) !important; /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  #59afcc 21%,#0180ab 85%) !important; /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  #59afcc 21%,#0180ab 85%) !important; /* IE10+ */
+background: linear-gradient(top,  #59afcc 21%,#0180ab 85%) !important; /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#59afcc', endColorstr='#0180ab',GradientType=0 ) !important; /* IE6-9 */
+ }
+ input.drk_blue_btn:hover { background:#0180AB !important; }
+</style>
+    <script>
+    j$(document).ready(function(){
+        resetTable1();
+        datefix();
+      });
+    function resetTable1(){
+    j$(".tablesorter").dataTable( {
+        "sScrollY": "400px",
+        "sScrollX": "100%",
+        "bAutoWidth": true,
+        "aoColumnDefs": [
+            { "sWidth": "200px", 
+            "aTargets": [ 0 ]}
+        ],
+        "bPaginate": false,
+        "bJQueryUI": true, 
+        "iDisplayLength": 20
+    } );
+    
+    j$(".noFilter").dataTable( {
+        "sScrollY": "400px",
+        "sScrollX": "100%",
+        "bFilter": false,
+        "bAutoWidth": true,
+        "aoColumnDefs": [
+            { "sWidth": "200px", 
+            "aTargets": [ 0 ]}
+        ],
+        "bPaginate": false,
+        "bJQueryUI": true, 
+        "iDisplayLength": 20
+    } );
+
+}
+        function datefix(){
+            j$('.datepicker').datepicker(
+                {changeMonth: true,
+                changeYear: true,
+                yearRange: '1985:2020'}
+            );
+            }
+        function printModal(){
+            j$('#printLedger').dialog({ autoOpen: true, modal: true, show: 'blind', width: 500});
+            if(j$('tbody[id$="mainTable:tb"] tr').length != 1){
+                j$('#recordTotal').html(j$('tbody[id$="mainTable:tb"] tr').length);
+            }
+            j$('#printLedger').dialog("open");
+        }
+        function openPrintPage(){
+            var printNumber = parseInt(j$('#printNumber').val());
+            var startDate = j$('input[id$="startDate"]').val();
+            var endDate = j$('input[id$="endDate"]').val();
+            if(printNumber > 0){
+                if('{!isManagedPackage}' == 'false'){
+                    window.open('/apex/Points_PrintLedger?id={!student.id}&sd='+startDate+'&ed='+endDate+'&printsize='+printNumber,'_blank');
+                } else {
+                    window.open('/apex/SchoolForce__Points_PrintLedger?id={!student.id}&sd='+startDate+'&ed='+endDate+'&printsize='+printNumber,'_blank');
+                }
+                j$('#printLedger').dialog('close');
+            } else {
+                j$('#printNumber').val('');
+                alert('Please select the number of rows to print.');
+            }
+        }
+    </script>   
+<apex:outputpanel id="rerenderScripts">
+<script>
+resetTable1();
+
+</script>
+</apex:outputpanel> 
+<div id="student-redeem">
+	
+    <div id="printLedger" style="display:none;">
+        Select number of records to print:<br />
+        <input type="text" id="printNumber"/> of <span id="recordTotal">{!pointsLedger.size}</span>
+        
+         <input class="black_btn" type="button" value="Print" onclick="openPrintPage();" />
+         <input class="black_btn" type="button" value="Cancel" onclick="j$('#printNumber').val('');j$('#printLedger').dialog('close');" />
+    </div>
+    <h3>Student Points Ledger</h3>
+    <div class="section_content">
+    <div class="top-wrap">
+        <div class="right" style="width:630px;margin-right: 0cm;">
+            <div class="filter" style="width:600px;float:right;margin-right:0cm;">
+                <p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button"  class="btn drk_blue_btn" style="margin-right:0cm;margin-left:0px;float:right;" onclick="getpointsJS();" value="RETRIEVE RESULTS"/></p>
+                <p><label>End Date</label><br /><apex:inputText id="endDate" styleClass="datepicker" value="{!toDateString}"/><!-- <input type="Date" /> --></p>
+                <p><label>Start Date</label><br /><apex:inputText id="startDate" styleClass="datepicker" value="{!fromDateString}"/><span>to</span></p>
+                <p>Set Date Range</p>
+                </div><!-- /filter -->
+            <div class="buttons" style="float:right;margin-right: 0px;">
+                
+                <a class="blue-btn redeem-points-link" id="redeem-points-link" >Redeem points<span>&nbsp;</span></a>
+                <a class="blue-btn new-points-link" id="new-points-link" onclick="openPencil('', '' ,'', '', '', 'false', '{!isAdmin}','new-points-link','false','');">New Points Entry<span>&nbsp;</span></a>
+                
+            </div><!-- /buttons -->
+            <div class="buttons">
+             
+                <a href="#" onclick="window.open('/apex/Points_Matrix','_self')" style="font-size:16px;color:#015BA7;text-decoration:underline;float:right;margin-right:0px;{!IF(isManagedPackage, 'display:none;', '')}">Group View<span>&nbsp;</span></a>
+                <a href="#" onclick="window.open('/apex/SchoolForce__Points_Matrix','_self')" style="font-size:16px;color:#015BA7;text-decoration:underline;float:right;margin-right:0px;{!IF(isManagedPackage, '', 'display:none;')}">Group View<span>&nbsp;</span></a>
+                <a href="#" onclick="printModal();" style="font-size:16px;color:#015BA7;text-decoration:underline;float:right;margin-right:10px;">Print Ledger</a>
+                <a href="#"><span>&nbsp;</span></a>
+                <a href="#"><span>&nbsp;</span></a>
+                <a href="#"><span>&nbsp;</span></a>
+            </div>
+        </div><!-- right -->
+        <div class="left">
+                    <h2> <apex:outputField value="{!Student.Student_Picture__c}"/> {!student.Name}</h2>
+                </div><!-- /left -->
+    </div><!-- /topwrap -->
+    
+
+    <div class="main-wrap clear">
+    <apex:outputpanel id="pointsOuter">
+    <apex:outputpanel id="pointsInner"> 
+        
+        <div>
+            <p class="left" style="font-size:14px;">Points Balance Report</p>
+            <p class="right" style="color:black;font-size:14px;font-weight:bold;">Today's Current Balance: <span>{!student.Today_s_Points_Balance__c}</span></p>
+        </div>
+        
+        <apex:dataTable styleClass="noFilter"  id="mainTable" title="Points Balance Report" value="{!pointsLedger}" var="p" >
+                                             
+                                                <apex:column headerValue="Action" >
+                                                 <apex:variable value="{!isAdmin}" var="a" rendered="{!isAdmin}">
+                                                 <a href="#" class="editPoints" onclick="openPencil('{!ROUND(p.points.Points__c,0)}', '{!p.points.Category__r.Name}' ,'{!p.points.Student_Section__r.Section__r.Name}', '{!p.points.Comments__c}', '{!MONTH(p.points.Points_Date__c)}'+'/{!DAY(p.points.Points_Date__c)}'+'/{!YEAR(p.points.Points_Date__c)}', '{!p.points.Is_Redeem__c}', '{!isAdmin}','editPoints','true','{!p.points.Id}');"> <span style="font-size:12px;color:#015BA7;">Edit</span></a>    
+                                                 |
+                                                 <a href="#" onclick="if (confirm('Are you sure you want to delete this record?')){ 
+                                       				 deletepointsJS('{!p.points.Id}');}"><span style="font-size:12px;color:#015BA7;">Del</span></a>
+                                        		</apex:variable>       
+                                                </apex:column>
+                                               <apex:column styleclass="dtDate" headerValue="Date">
+                                                    <apex:outputField value="{!p.points.Points_Date__c}"/>
+                                               </apex:column>
+                                               
+                                               <apex:column headerValue="Comment">
+                                                    <apex:outputField value="{!p.points.Comments__c}"/>
+                                               </apex:column>
+                                               <apex:column headervalue="Submitted By">
+                                               		<apex:outputField value="{!p.points.Staff__r.Name}"/>
+                                               </apex:column>
+                                               
+                                               <apex:column headerValue="Category" style="max-width:450px;">
+                                               		  <apex:variable value="{!p.points.Is_Redeem__c}" var="r" rendered="{!p.points.Is_Redeem__c}">
+                                                   		 <apex:outputText value="Points Redeemed!"/>
+                                                   	  </apex:variable>	
+                                                   	   <apex:variable value="{!p.points.Is_Redeem__c}" var="r" rendered="{!!p.points.Is_Redeem__c}">
+                                                   		 <apex:outputText value="{!p.points.Category__r.Name}"/>
+                                                   	  </apex:variable> 
+                                               </apex:column>
+                                                <apex:column styleclass="dtpoints" style="{!IF(p.points.Is_Redeem__c,'color:red;','')}" headerValue="Amount">
+                                                    <apex:outputField value="{!p.points.Points__c}"/>
+                                               </apex:column>
+                                               <apex:column headerValue="Balance">
+                                                     {!ROUND(p.runningBal,0)} 
+                                                    <apex:variable value="{!p.points.Is_Redeem__c}" var="r" rendered="{!p.points.Is_Redeem__c}">
+                                                   <span class="star" title="Redeemed Points" style="cursor:pointer;" >&nbsp;</span>
+                                                    </apex:variable>
+                                                    <apex:variable value="{!p.points.Is_Redeem__c}" var="r" rendered="{!!p.points.Is_Redeem__c}">
+                                                    <span>&nbsp;&nbsp;  </span>
+                                                    </apex:variable>
+                                               </apex:column> 
+                </apex:dataTable>
+               
+              <!--   <div >
+                <table>
+                <tr>
+                <td>
+                 <span class="star"></span>- <p> Redeem points</p>
+                </td>
+                
+                </tr>
+                </table>
+                </div> -->
+            </apex:outputpanel>
+            </apex:outputpanel>  
+        
+    </div><!-- /main-wrap -->
+    
+    
+        <div id="redeem-points" class="redeem-points" >
+            <h2>{!student.Name}</h2> 
+            <p><span>Points Redeemed:</span> 
+            <input type="text" id="redeem-points-number" class="redeem-points-number"/>
+            </p>
+            <div class="clear">
+                <br/>
+                <span style="float:left;margin-left:0.5cm;">Comments:</span> 
+                <textarea id="redeem-points-comment" class="redeem-points-comment"></textarea>
+                <input type="button"  class="btn black_btn" onclick="savePoints('r');" value="REDEEM POINTS"/>
+            </div>
+        </div><!-- /redeem-points -->
+        
+        
+        <div id="new-points" class="new-points">
+            <h2>{!student.Name}</h2> 
+             <p id="new-points-section"><label>Section:</label>
+                     <apex:selectList styleclass="new-points-section" value="{!selectedSection}" multiselect="false" size="1">
+                                     <apex:selectOptions value="{!sections}"/>
+                                     </apex:selectList> 
+                     </p>
+                     <div class="new-points-wrapper">
+                      <p>
+                      <label>Date:</label>
+                      <input type="text" id="new-points-date" class="new-points-date datepicker"/>
+                      </p>
+                      <p>
+                      <label id="label-new-points-category">Category:</label>
+                      <apex:selectList styleclass="new-points-category"  value="{!selectedCategory}" multiselect="false" size="1">
+                            <apex:selectOptions value="{!categories}"/>
+                         </apex:selectList> 
+                      </p>
+                      <p>
+                      <label>Points:</label>
+                      <input type="text" id="new-points-points" class="new-points-points"/>   
+                     </p>
+                    </div>
+                <p><label>Comments:</label><br />
+                      <textarea id="new-points-comment" class="new-points-comment"></textarea>
+                    </p>
+                     <span id ="stuId"><apex:inputText styleclass="stuId" style="display:none;" /> </span>
+                     <span id ="staffId"><apex:inputText styleclass="staffId" style="display:none;" /> </span>
+                     <span id ="isredeem"><apex:inputText styleclass="isredeem" style="display:none;" /> </span>
+                     <span id ="isadmin"><apex:inputText styleclass="isadmin" style="display:none;" /> </span>
+                      <span id ="pId"><apex:inputText styleclass="pId" style="display:none;" /> </span>
+                       <input type="button"  class="btn black_btn" onclick="savePoints('n');" value="SUBMIT"/>
+
+        </div>
+        
+        
+        <div id="balanceDetail" class="balanceDetail">
+            <h2>{!student.Name}</h2> <p ><span>Points Redeemed:</span><span class="redeem-points"></span></p>
+            <div class="clear">
+                <p><span class="redeem-comments"></span></p>
+            </div>
+        </div><!-- /redeem-points -->
+         
+</div><!-- /stuent-redeem -->
+ <apex:actionFunction action="{!refreshPoints}" name="getpointsJS"  rerender="pointsInner,rerenderScripts,messages" />
+ <apex:actionFunction action="{!deletePoints}" oncomplete="getpointsJS();" name="deletepointsJS"  rerender="pointsInner,rerenderScripts,messages">
+ <apex:param name="pId" value=""/>
+ </apex:actionFunction>
+    </div>
+<script>
+    function closeModal(e){ 
+        j$(".cover").hide();
+        j$(".modalOpen").fadeOut(250).removeClass("modalOpen");
+    }
+    
+    j$(".redeem-points-link").click(function(){
+        j$("body").prepend('<div id="cover" class="cover" style="width:100%; height:100%; position:absolute; z-index:1">&nbsp;</div>');
+        var tempPos = j$(this).offset();
+        tempPos.left += -470;
+        tempPos.top += -25;
+         j$("#stuId").find('.stuId').val('{!JSENCODE(stuId)}');
+        j$("#staffId").find('.staffId').val('{!staffId}');
+        j$(".redeem-points").fadeIn(250).offset(tempPos).addClass("modalOpen");
+    });
+    
+
+     function openPencil(points, catName ,secName, comments, pdate, isRedeem,isAdmin,className,isEdit,pId){
+    j$("body").prepend('<div id="cover" class="cover" style="width:100%; height:100%; position:absolute; z-index:1">&nbsp;</div>');
+        var tempPos = j$('.'+className).offset();
+        if(isEdit == 'true'){
+            tempPos.left += 100;
+            tempPos.top += -25;
+         }
+         else{
+            tempPos.left += -470;
+            tempPos.top += -25;
+         }
+        j$("#stuId").find('.stuId').val('{!JSENCODE(stuId)}');
+        j$("#staffId").find('.staffId').val('{!JSENCODE(staffId)}');
+        j$("#isredeem").find('.isredeem').val(isRedeem);
+        j$("#isadmin").find('.isadmin').val(isAdmin);
+        j$("#pId").find('.pId').val(pId);
+         
+        
+            j$("#new-points-section").find(".new-points-section").find('option').each(function() {
+                    if (j$(this).html() == '--None--') j$(this).attr("selected","selected") ;
+                  
+            });
+            j$(".new-points-category").find('option').each(function() {
+                    if (j$(this).html() == '--None--') j$(this).attr("selected","selected") ;
+                  
+            });
+        if(isRedeem == 'true'){
+            j$("#new-points-section").css({'display':'none'});
+            j$(".new-points-category").css({'display':'none'});
+            j$("#label-new-points-category").css({'display':'none'});
+        }
+        else{
+            j$("#new-points-section").css({'display':'inline'});
+            j$(".new-points-category").css({'display':'inline'});
+            j$("#label-new-points-category").css({'display':'inline'});
+        }
+        j$('.new-points-points').val('');
+        j$('.new-points-comment').val('');
+        j$('.new-points-date').val('');
+        
+        j$("#new-points-section").find(".new-points-section").find('option').each(function() {
+                if (j$(this).html() == secName) j$(this).attr("selected","selected") ;
+        });
+        j$(".new-points-category").find('option').each(function() {
+                if (j$(this).html() == catName){ 
+               // alert('^^^'+j$(this).html()); alert('$$$'+catName);
+                j$(this).attr("selected","selected") ;}
+        });
+        
+        j$('.new-points-points').val(points);
+        j$('.new-points-comment').val(comments);
+        j$('.new-points-date').val(pdate);
+        
+        
+    j$(".new-points").fadeIn(250).offset(tempPos).addClass("modalOpen");
+    }
+    
+    
+function savePoints(mode){
+       var stuId = '';
+       var staffId = '';
+       var secId = '';
+       var categoryId = '';
+       var points = '';
+       var ddate = '';
+       var comments = '';
+       var isRedeem = '';
+       var isAdmin = '';
+       var pId ='';
+       
+       stuId = j$("#stuId").find('.stuId').val();
+       staffId = j$("#staffId").find('.staffId').val();
+      // alert('STAFF:::'+stuId+'STUDNET:::'+staffId);
+       if(mode == 'r'){
+         points = j$("#redeem-points-number").val();  
+         comments = j$("#redeem-points-comment").val();
+         isRedeem = 'true';
+        }
+        else if(mode == 'n'){
+             
+             secId =j$("#new-points-section").find('.new-points-section').val();
+             categoryId = j$('.new-points-category').val();
+             points = j$("#new-points-points").val();
+             ddate = j$("#new-points-date").val();
+             comments = j$("#new-points-comment").val();
+             isRedeem = j$("#isredeem").find('.isredeem').val();
+             isAdmin = j$("#isadmin").find('.isadmin').val();
+             pId= j$("#pId").find('.pId').val();
+             //alert('S::'+secId+'C::'+categoryId+'P::'+points+'D::'+ddate+'CO::'+comments+'isAdmin'+isAdmin+'isRedeem::::'+isRedeem+'Pid:::'+pId);
+        }
+       
+      Visualforce.remoting.Manager.invokeAction('{!$RemoteAction.Points_StudentLedger.submitPoints}',stuId, points, categoryId, secId, comments, staffId, ddate, isRedeem, isAdmin, pId,handleComments); 
+      //Points_StudentLedger.submitPoints(stuId, points, categoryId, secId, comments, staffId, ddate, isRedeem, isAdmin, pId,handleComments);
+    }
+    
+   j$(".cover").live('click', function(){
+        closeModal();
+    });
+    
+    
+    function handleComments(result, event) {
+        if(event.type == 'exception') {
+        alert('Failed!'+event.message);
+            
+        } 
+        else {
+        j$("#errorMessages").html('');
+         j$("#errorMessages").css('display','none');
+             if(result != null){
+                var resultsize = result.length;
+                var htmlString = ' <table border="0" cellpadding="0" cellspacing="0" class="messageTable" style="padding:0px;margin:0cm;"><tbody>';
+        
+                    for(var i = 0 ;i < resultsize;i++){
+                        htmlString += '<tr valign="top">   <td> <img alt="ERROR" class="msgIcon" src="/s.gif" title="ERROR"/></td>  <td class="messageCell"><div  class="messageText"><span  style="color:#cc0000"> <h4>Error:</h4></span>';
+                        
+                        htmlString+=result[i];
+                        htmlString+='<br/></div></td> </tr>';
+                        
+                    }   
+                    htmlString+='<tr> <td></td> <td>  </td> </tr> </tbody></table> ';   
+                    j$("#errorMessages").show("fast");
+                    j$("#errorMessages").prepend(htmlString);
+            }
+            else{
+                alert('Success!');
+                closeModal();
+                getpointsJS();
+            }
+        }
+    }
+</script>
+
+</apex:form>
+</apex:page>

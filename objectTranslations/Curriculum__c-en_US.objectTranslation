@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Curriculum</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Curricula</value>
+    </caseValues>
+    <fields>
+        <label><!-- Comments --></label>
+        <name>Comments__c</name>
+    </fields>
+    <fields>
+        <label><!-- Curriculum Name --></label>
+        <name>Curriculum_Name__c</name>
+        <picklistValues>
+            <masterLabel>Do The Math</masterLabel>
+            <translation><!-- Do The Math --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Do the Math Now!</masterLabel>
+            <translation><!-- Do the Math Now! --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Date of Assignment --></label>
+        <name>Date_of_Module__c</name>
+    </fields>
+    <fields>
+        <label><!-- Module Assignments --></label>
+        <name>Module_Assignments__c</name>
+        <picklistValues>
+            <masterLabel>Beginning of Module Assessment</masterLabel>
+            <translation><!-- Beginning of Module Assessment --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>End of Module Assessment</masterLabel>
+            <translation><!-- End of Module Assessment --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SWYK: Lesson 10</masterLabel>
+            <translation><!-- SWYK: Lesson 10 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SWYK: Lesson 15</masterLabel>
+            <translation><!-- SWYK: Lesson 15 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SWYK: Lesson 20</masterLabel>
+            <translation><!-- SWYK: Lesson 20 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SWYK: Lesson 25</masterLabel>
+            <translation><!-- SWYK: Lesson 25 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SWYK: Lesson 30</masterLabel>
+            <translation><!-- SWYK: Lesson 30 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SWYK: Lesson 5</masterLabel>
+            <translation><!-- SWYK: Lesson 5 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Module Name --></label>
+        <name>Module_Name__c</name>
+        <picklistValues>
+            <masterLabel>Addition &amp; Subtraction: Module A</masterLabel>
+            <translation><!-- Addition &amp; Subtraction: Module A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Addition &amp; Subtraction: Module B</masterLabel>
+            <translation><!-- Addition &amp; Subtraction: Module B --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Addition &amp; Subtraction: Module C</masterLabel>
+            <translation><!-- Addition &amp; Subtraction: Module C --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Addition &amp; Subtraction: Number Core</masterLabel>
+            <translation><!-- Addition &amp; Subtraction: Number Core --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Division: Module A</masterLabel>
+            <translation><!-- Division: Module A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Division: Module B</masterLabel>
+            <translation><!-- Division: Module B --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Division: Module C</masterLabel>
+            <translation><!-- Division: Module C --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fractions: Module A</masterLabel>
+            <translation><!-- Fractions: Module A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fractions: Module B</masterLabel>
+            <translation><!-- Fractions: Module B --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fractions: Module C</masterLabel>
+            <translation><!-- Fractions: Module C --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Multiplication: Module A</masterLabel>
+            <translation><!-- Multiplication: Module A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Multiplication: Module B</masterLabel>
+            <translation><!-- Multiplication: Module B --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Multiplication: Module C</masterLabel>
+            <translation><!-- Multiplication: Module C --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Unit 10: Develop Fraction Number Sense</masterLabel>
+            <translation><!-- Unit 10: Develop Fraction Number Sense --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Unit 1: Build a Foundation for Multiplication</masterLabel>
+            <translation><!-- Unit 1: Build a Foundation for Multiplication --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Unit 2: Develop Multiplication Number Sense</masterLabel>
+            <translation><!-- Unit 2: Develop Multiplication Number Sense --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Unit 3: Use Place-Value Strategies to Multiply</masterLabel>
+            <translation><!-- Unit 3: Use Place-Value Strategies to Multiply --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Unit 4: Connect Multiplication and Division</masterLabel>
+            <translation><!-- Unit 4: Connect Multiplication and Division --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Unit 5: Use Place Value Strategies to Divide</masterLabel>
+            <translation><!-- Unit 5: Use Place Value Strategies to Divide --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Unit 6: Develop Understanding of Fractions</masterLabel>
+            <translation><!-- Unit 6: Develop Understanding of Fractions --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Unit 7: Reason with Fractions</masterLabel>
+            <translation><!-- Unit 7: Reason with Fractions --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Unit 8: Extend Fraction Concepts and Comparing Strategies</masterLabel>
+            <translation><!-- Unit 8: Extend Fraction Concepts and Comparing Strategies --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Unit 9: Build on Equivalence to Estimate, Compare, Add, and Subtract</masterLabel>
+            <translation><!-- Unit 9: Build on Equivalence to Estimate, Compare, Add, and Subtract --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Score --></label>
+        <name>Module_Score__c</name>
+    </fields>
+    <fields>
+        <label><!-- Section --></label>
+        <name>Section__c</name>
+        <relationshipLabel><!-- Curricula --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Student CY ID --></label>
+        <name>Student_CY_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Student CY-ID --></label>
+        <name>Student_CY_ID_del__c</name>
+        <relationshipLabel><!-- Curricula (Student CY-ID) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Student ID --></label>
+        <name>Student_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Student Local ID --></label>
+        <name>Student_Local_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Student/Section --></label>
+        <name>Student_Section__c</name>
+        <relationshipLabel><!-- Curricula --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Student Name --></label>
+        <name>Student__c</name>
+        <relationshipLabel><!-- Curricula --></relationshipLabel>
+    </fields>
+    <layouts>
+        <layout>Curriculum Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

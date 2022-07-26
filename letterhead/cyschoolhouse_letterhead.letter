@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Letterhead xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <backgroundColor>#CCCCCC</backgroundColor>
+    <bodyColor>#FFFFFF</bodyColor>
+    <bottomLine>
+        <color>#FFFFFF</color>
+        <height>0</height>
+    </bottomLine>
+    <description>cyschoolhouse letterhead test</description>
+    <footer>
+        <backgroundColor>#FFFFFF</backgroundColor>
+        <height>0</height>
+        <horizontalAlignment>Left</horizontalAlignment>
+        <verticalAlignment>Top</verticalAlignment>
+    </footer>
+    <header>
+        <backgroundColor>#FFFFFF</backgroundColor>
+        <height>100</height>
+        <horizontalAlignment>Left</horizontalAlignment>
+        <logo>SharedDocuments/cyschCore4Logo.png</logo>
+        <verticalAlignment>Top</verticalAlignment>
+    </header>
+    <middleLine>
+        <color>#EF3E33</color>
+        <height>3</height>
+    </middleLine>
+    <name>cyschoolhouse letterhead</name>
+    <topLine>
+        <color>#EF3E33</color>
+        <height>3</height>
+    </topLine>
+</Letterhead>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Assignment Library</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Assignment Libraries</value>
+    </caseValues>
+    <fields>
+        <label><!-- Long Description --></label>
+        <name>Assignment_Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Course --></label>
+        <name>Course__c</name>
+        <relationshipLabel><!-- Assignment Libraries --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Curriculum --></label>
+        <name>Curriculum__c</name>
+        <picklistValues>
+            <masterLabel>Please Setup</masterLabel>
+            <translation><!-- Please Setup --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Values Needed</masterLabel>
+            <translation><!-- Values Needed --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Description --></label>
+        <name>Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- External Id --></label>
+        <name>External_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Instructional Approach --></label>
+        <name>Instructional_Approach__c</name>
+        <picklistValues>
+            <masterLabel>Please Setup</masterLabel>
+            <translation><!-- Please Setup --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Values Needed</masterLabel>
+            <translation><!-- Values Needed --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Objective/Skill --></label>
+        <name>Objective_Skill__c</name>
+    </fields>
+    <fields>
+        <label><!-- Assignment Type --></label>
+        <name>Picklist_Value__c</name>
+        <relationshipLabel><!-- Assignment Libraries --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Related Outside Source --></label>
+        <name>Related_Outside_Source__c</name>
+    </fields>
+    <fields>
+        <label><!-- Type --></label>
+        <name>Type__c</name>
+    </fields>
+    <layouts>
+        <layout>Assignment Library Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Assignment Library Layout - Admin</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Vowel</startsWith>
+    <validationRules>
+        <errorMessage><!-- Assignment library name cannot be changed. --></errorMessage>
+        <name>Assignment_Library_Name_not_be_changed</name>
+    </validationRules>
+    <webLinks>
+        <label><!-- Upload_Assignment --></label>
+        <name>Upload_Assignment</name>
+    </webLinks>
+</CustomObjectTranslation>

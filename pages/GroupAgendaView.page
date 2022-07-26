@@ -1,0 +1,294 @@
+<apex:page controller="GroupAgendaViewController" sidebar="false" tabStyle="SchoolForce_Setup__tab">
+<c:setupWizardSharedComponents summerSchoolMode="{!cSetup.setup.School__r.ParentId != null}"/>
+<apex:stylesheet value="{!URLFOR($Resource.resources_Master, '/custom/css/GroupAgenda.css')}" />
+<apex:includeScript value="{!URLFOR($Resource.resources_Master, '/custom/js/GroupAgenda.js')}" />
+
+<apex:form id="mainForm">
+	<table style="width:100%">
+		<tr>
+			<td style="vertical-align:top; width:15%">
+				<!-- <c:setup_sidebar setup="{!cSetup}"/> -->
+				<c:setupWizardSidebar setupId="{!cSetup.setup.id}"/>
+			</td>
+			<td style="vertical-align:top; width:85%">
+				<div id="schoolforce-wrapper" class="wrapper">
+					<!-- Error -->
+					<apex:outputPanel id="error" styleClass="pageMessages">
+						<apex:pageMessages />
+					</apex:outputPanel>
+					<!-- Error -->
+					<h1 class="centerHeader">
+						<input type="button" onclick="prevJs();" class="grey_btn_arrow" value="Previous" />
+						<span style="display:inline-block;">{!cSetup.school.Name} Core Setup<br/>Schedule Sections</span>
+						<input type="button" onclick="nextJs();" class="green_btn_arrow" value="Next" />
+					</h1>
+					<apex:outputPanel styleClass="adminSummary">
+						<br/>
+						<p>
+						In this step, you must schedule the sections for the courses each schedule group will take. 
+						Select the reporting period and schedule template for which you want to schedule sections, and then click <b>See Agenda View</b>.
+						<br/><br/>
+						Once you have completed a schedule template, you can return to the Configure Schedule Templates step and clone the template to another schedule template in the same or next reporting period. 
+						SchoolForce copies the sections you scheduled to the cloned schedule template. 
+						Once copied, you can modify the sections as needed. 
+						This procedure can save you time when scheduling similar sections across multiple reporting periods.
+						<br/><br/>
+						Refer to SchoolForce Help for more information.
+						</p>
+						<br/>
+					</apex:outputPanel>
+					<div class="content-wrapper">
+						<h3>Select Reporting Period and Schedule Template</h3>
+						<div class="section_content no-border">
+							<apex:pageBlock id="selectPanel" >
+								<apex:pageBlockSection >
+									<apex:pageBlockSectionItem >
+										<apex:outputLabel for="rps" value="Select Reporting Period" />
+										<apex:selectList id="rps" value="{!reptPeriod}" onchange="showProgressBar('Loading Templates'); getTemplatesJs();" size="1">
+											<apex:selectOptions value="{!reportingPeriods}" />
+										</apex:selectList>
+									</apex:pageBlockSectionItem>
+									<apex:pageBlockSectionItem >
+										<apex:outputLabel for="templates" value="Select Schedule Template" />
+										<apex:selectList id="templates" value="{!schedTempId}" size="1">
+											<apex:selectOptions value="{!scheduleTemplates}" />
+										</apex:selectList>
+									</apex:pageBlockSectionItem>
+								</apex:pageBlockSection>
+							</apex:pageBlock>
+							<input type="button" class="drk_blue_btn" value="See Agenda View" onclick="initAgendaViewJs();" />
+							<apex:actionFunction action="{!getTemplates}" name="getTemplatesJs" rerender="selectPanel,agendaView" onComplete="j$.fancybox.close();"/>
+							<apex:actionFunction action="{!initAgendaView}" name="initAgendaViewJs" rerender="agendaView,sectionModal"/>
+						</div>
+						<apex:outputPanel id="agendaView">
+							<apex:outputPanel rendered="{!bAgendaView}">
+								<h3>School: {!cSetup.setup.school__r.name} / Group Agenda View / Template Name:  {!gavw.schedTemp.Name}</h3>
+								<div class="section_content no-border">
+									<apex:outputpanel id="schedgrp">
+									    <p>
+									    A tab displays for each schedule group in your school. 
+									    Click the tab for the schedule group for which you want to schedule sections. 
+									    When you create a section, you will assign the staff member who teaches that section.
+									    </p>	
+										<table style="width:100%">
+											<tr>
+												<td style="width:100%">
+													<div class="tabs" style="width:100%;">
+														<ul style=" position:relative;  overflow-y:hidden">
+															<apex:repeat value="{!gavw.schedGrpsList}" var="g">
+																<li style="cursor:pointer; list-style-type:none; float:left;">
+																	<a href="#tabs-{!g.Id}" style="cursor:hand;text-decoration:none;" onclick="refreshCalsJS('{!g.Id}');"> {!g.Name}</a>
+																</li>
+															</apex:repeat>
+														</ul>
+														<apex:repeat value="{!gavw.schedGrpsList}" var="g">
+															<div style="display:none"  id="tabs-{!g.Id}"></div>
+														</apex:repeat>
+													</div>
+												</td>
+											</tr>
+										</table>
+									</apex:outputpanel>
+									<apex:outputpanel id="alldayDataTable">
+										<script>resetJquery();</script>
+										<h3>ALL DAY CLASSES<a class="helpButton" href="javascript:void(0);" style="cursor:hand;text-decoration:none;text-align:center;"><img src="/s.gif" alt="" class="helpOrb" title="Sections scheduled in this area do not have a specific meeting time. For example, you can schedule daily attendance and gradebook only sections in this area. Refer to SchoolForce Help for more information."/></a></h3>
+										<div class="section_content">
+											<apex:dataTable styleClass="tablesorter" title="All Day Classes" value="{!gavw.alldayClasses}" var="ss" >
+												<apex:facet name="header"><a href="javascript:void(0);" style="cursor:hand;text-decoration:none;text-transform:none;font-size:12px;" onclick="showSchedSecPopup('', '','','{!JSENCODE(gavw.schedTemp.Start_Time_Text__c)}','{!JSENCODE(gavw.schedTemp.End_Time_Text__c)}','','','','','{!JSENCODE(IF(cSetup.setup.Room_Dependent__c,'true','false'))}','','false');"><br/><img src="/img/feeds/follow12.png"/>Add Section</a></apex:facet>
+												<apex:column >
+													<a href="javascript:void(0);" onClick="showSchedSecPopup('{!JSENCODE(ss.Staff__r.Name)}', '{!JSENCODE(ss.Room__r.Name)}','{!HTMLENCODE(ss.Course__r.Name)}','{!JSENCODE(ss.Start_Time_Text__c)}','{!JSENCODE(ss.End_Time_Text__c)}','{!JSENCODE(IF(ss.Daily_Attendance__c,'true','false'))}','{!JSENCODE(IF(ss.Record_Attendance__c,'true','false'))}','{!JSENCODE(IF(ss.No_Meeting__c,'true','false'))}','{!JSENCODE(ss.Id)}','{!JSENCODE(IF(cSetup.setup.Room_Dependent__c,'true','false'))}','','false');"><img src="/img/func_icons/util/pencil12.gif"/></a>
+												</apex:column>
+												<apex:column headerValue="Course Name">
+													<apex:outputText value="{!ss.Course__r.Name}"/>
+												</apex:column>
+												<apex:column headerValue="Teacher Name" >
+													<apex:outputText value="{!ss.Staff__r.Name}"/>
+												</apex:column>
+												<apex:column headerValue="Start Time" >
+													<apex:outputText value="{!ss.Start_Time_Text__c}"/>
+												</apex:column>
+												<apex:column headerValue="End Time" >
+													<apex:outputText value="{!ss.End_Time_Text__c}"/>
+												</apex:column>
+												<apex:column headerValue="Daily Attendance" >
+													<apex:outputField value="{!ss.Daily_Attendance__c}"/>
+												</apex:column>
+												 <apex:column headerValue="Sectional Attendance">
+													<apex:outputField value="{!ss.Record_Attendance__c}"/>
+												</apex:column>
+												<apex:column headerValue="No Meeting">
+													<apex:outputField value="{!ss.No_Meeting__c}"/>
+												</apex:column>
+											</apex:dataTable>
+											<div class="clear_fix">&nbsp;</div>
+										</div>
+									</apex:outputpanel>
+									<h3>AGENDA<a class="helpButton" href="javascript:void(0);" style="cursor:hand;text-decoration:none;text-align:center;"><img src="/s.gif" alt="" class="helpOrb" title="Sections scheduled in this area meet at a specific time every day. Refer to SchoolForce Help for more information."/></a></h3>
+									&nbsp;&nbsp;<a style="height:100px; cursor:pointer;" onClick="showSchedSecPopup('', '','','','','','true','','','','#333333','true');"><img src="/img/feeds/follow12.png"/>Add Section</a>
+									<div class="section_content" style="height: {!gavw.iHeight}px;" >
+										<div id="container"   style="vertical-align:top;  position:relative; top:0px; height: {!gavw.iHeight}px;">
+											<table style="height: {!gavw.iHeight}px;"> 
+												<tr>
+													<td style="width:100px; vertical-align:top ">
+														<apex:repeat value="{!gavw.strtTime}" var="time">
+															<div style="border-top:1px solid black; vertical-align:top;  position:absolute; width:100px;  top:{!time.iTop}px;"  >
+																<apex:outputText value="{!time.sTime}" />
+															</div>
+														</apex:repeat>
+													</td>
+													<td >
+														<apex:outputpanel id="scheduleGroups" >
+															<!-- <div style="background-color: LemonChiffon"> -->
+															<apex:repeat value="{!gavw.regularClasses}" var="gr">
+																<div maxHeight="{!gr.iMaxHeight}"  class="{!IF(gr.schedsec.Id == null,'blank','agendaRow')}" style="position:absolute;  top:{!gr.iTop}px; height:{!gr.iHeight}px; background-color:{!gr.color}; color:{!gr.textColor};" >
+																	<apex:variable value="{!gr}" var="g" rendered="{!IF(gr.isheader,true,false)}">
+																		<a href="javascript:void(0);" onclick="showSchedSecPopup('{!JSENCODE(gr.schedsec.Staff__r.Name)}', '{!JSENCODE(gr.schedsec.Room__r.Name)}','{!HTMLENCODE(gr.schedsec.Course__r.Name)}',j$(this).parent().find('#startTime').html(), j$(this).parent().find('#endTime').html(),'{!JSENCODE(IF(gr.schedsec.Daily_Attendance__c,'true','false'))}','{!JSENCODE(IF(gr.schedsec.Record_Attendance__c,'true','false'))}',null,'{!JSENCODE(gr.schedsec.Id)}','{!JSENCODE(IF(cSetup.setup.Room_Dependent__c,'true','false'))}','{!JSENCODE(gr.schedsec.Color__c)}','true');">
+																			<img src="/img/func_icons/util/pencil12.gif"/>
+																		</a>
+																		<b>
+																			<span id="ssId" style="display:none;">{!gr.schedsec.id}</span>
+																			<span id="startTime">{!gr.displaystartTime}</span> - <span id="endTime">{!gr.displayendTime}</span>
+																			&nbsp;
+																			<span id="cellHeight" style="display:none;">{!gr.iHeight}</span>
+																			&nbsp;
+																			{!gr.schedsec.Course__r.Name}
+																		</b>
+																		<a id="removeLink" style="cursor:pointer; left: 5px; float: right; " onClick="deleteJS('{!gr.schedsec.id}')"> <img  title="Remove Section"  src="{!URLFOR($Resource.resources_Master, '/custom/images/cancel.png')}"/></a>
+																	</apex:variable>
+																</div>
+															</apex:repeat>
+														</apex:outputpanel>
+													</td>
+												</tr>
+											</table>
+										</div>
+									</div>
+								</div>
+							</apex:outputPanel>
+						</apex:outputPanel>
+					</div>
+				</div>
+			</td>
+		</tr>
+	</table>
+	<apex:actionFunction action="{!refreshGroups}" name="refreshCalsJS" rerender="alldayDataTable,scheduleGroups,error" onComplete="refreshAgendaJs();" >
+		<apex:param value="" name="grpId" />
+	</apex:actionFunction>
+	<apex:actionFunction action="{!saveJS}" name="saveJS" onComplete="refreshAgendaJs(); setTimeout('hideProgressBar()',500);" rerender="alldayDataTable,scheduleGroups,error" >
+		<apex:param value="" name="staffId" />
+		<apex:param value="" name="roomId" />
+		<apex:param value="" name="courseId" />
+		<apex:param value="" name="startTime" />
+		<apex:param value="" name="endTime" />
+		<apex:param value="" name="dailyAtt" />
+		<apex:param value="" name="recordAtt" />
+		<apex:param value="" name="noclass" />
+		<apex:param value="" name="schedId" />
+		<apex:param value="" name="color" />
+	</apex:actionFunction>
+	<apex:actionFunction action="{!deleteJS}" name="deleteJS" rerender="alldayDataTable,scheduleGroups,error"  onComplete="refreshAgendaJs(); setTimeout('hideProgressBar()',500);" >
+		<apex:param value="" name="schedId_del" />
+	</apex:actionFunction> 
+	<apex:actionFunction action="{!handleError}" name="errorJs" rerender="error, scheduleGroups" onComplete="refreshAgendaJs();">
+		<apex:param name="firstParam" assignTo="{!errorMsg}" value="" />
+	</apex:actionFunction>
+	<apex:actionFunction action="{!refreshAfterSave}" name="refreshJs" rerender="error, scheduleGroups, agendaView" onComplete="refreshAgendaJs();" />
+	<apex:actionFunction action="{!prev}" name="prevJs" />
+	<apex:actionFunction action="{!next}" name="nextJs" />
+	<div id="editClassDetail" class="editClassDetail" title="Add Class - Edit Details" style="display:none;background:#fffcab;">
+		<apex:outputPanel id="sectionModal">
+			<div id="editClass">
+				<table cellpadding="0" cellspacing="0" >
+					<tr><td>&nbsp;</td></tr>
+					<tr> 
+						<th>Teacher:</th>
+						<td id ="staffId">
+							<apex:selectList styleClass="staffId" value="{!gavw.selectedStaff}" multiselect="false" size="1">
+								<apex:selectOptions value="{!gavw.staffOptionList}"/>
+							</apex:selectList> 
+						</td>
+					</tr>
+					<tr><td>&nbsp;</td></tr>
+					<tr> 
+						<th id="roomhr">Room:</th>
+						<td id ="roomid">
+							<apex:selectList styleClass="roomid" value="{!gavw.selectedRoom}" multiselect="false" size="1">
+								<apex:selectOptions value="{!gavw.roomOptionList}"/>
+							</apex:selectList> 
+						</td>
+					</tr>
+					<tr><td>&nbsp;</td></tr>
+					<tr> 
+						<th>Course:</th>
+						<td id ="courseId">
+							<apex:selectList style="width:200px" styleClass="courseId" multiselect="false" size="1">
+								<apex:selectOptions value="{!gavw.courseOptionList}"/>
+							</apex:selectList>
+						</td>
+					</tr>
+					<tr><td>&nbsp;</td></tr> 
+					<tr> 
+						<th id="starttimeheader">Start Time:&nbsp;&nbsp;&nbsp;</th>
+						<td id ="starttime"><apex:inputText styleclass="timepicker"  /></td>
+					</tr>
+					<tr><td>&nbsp;</td></tr>
+					<tr> 
+						<th id="endtimeheader">End Time: </th>&nbsp;
+						<td id ="endtime"><apex:inputText styleclass="timepicker" /></td>
+					</tr>
+					<tr><td>&nbsp;</td></tr>
+					<tr>
+						<th>
+							<a class="helpButton" href="#helptextAllDay" style="cursor:hand;text-decoration:none;">Daily Attendance ?<img src="/s.gif" alt="" class="helpOrb" title="Daily attendance captures a student’s time at schools for the entire school day, rather than each separate class. Check this box for daily attendance sections.  You must also check the “Record Attendance” option.  Any Daily Attendance section will automatically be considered an All Day Meeting."/></a>
+						</th>&nbsp;
+						<td id ="dailyatt"><apex:inputField styleClass="dailyatt" value="{!currSchedSec.Daily_Attendance__c}"/></td>
+					</tr>
+					<tr><td>&nbsp;</td></tr>
+					<tr> 
+						<th>
+							<a class="helpButton" href="#helptextAllDay" style="cursor:hand;text-decoration:none;">Record Attendance ?<img src="/s.gif" alt="" class="helpOrb" title="Check this box for scheduled sections which require sectional attendance as well as daily attendance."/></a>
+						</th>&nbsp;
+						<td id ="recordatt"><apex:inputField styleClass="recordatt" value="{!currSchedSec.Record_Attendance__c}"/></td>
+					</tr>
+					<tr><td>&nbsp;</td></tr>
+					<tr> 
+						<th id="colorheader">Color:&nbsp;&nbsp;&nbsp;</th>
+						<td id ="color"><input   value="{!currSchedSec.Color__c}" id="colorSelector" class="colorSelector" data-text="hidden" style="height:20px;width:20px;" data-hex="true"/></td>
+					</tr>
+					<tr><td>&nbsp;</td></tr>
+					<tr>
+						<td id ="tempColor"><apex:inputText style="display:none;" styleclass="tempColor" value="{!currSchedSec.Color__c}"/> </td>
+					</tr>
+					<tr> 
+						<th>
+							<a class="helpButton" href="#helptextAllDay" style="cursor:hand;text-decoration:none;">No Meeting ?<img src="/s.gif" alt="" class="helpOrb" title="Check this box for any section which requires a gradebook but does not require attendance to be taken."/></a>
+						</th>&nbsp;
+						<td id ="nomeet"><apex:inputField onclick="hideTimes('{!JSENCODE(gavw.schedTemp.Start_Time_Text__c)}','{!JSENCODE(gavw.schedTemp.End_Time_Text__c)}');" styleClass="nomeet" value="{!currSchedSec.No_Meeting__c}"/></td>
+					</tr>
+					<tr><td>&nbsp;</td></tr>
+					<tr> 
+						<td id ="schedSecId"><apex:inputText styleclass="schedSecId" style="display:none;" value="{!currSchedSec.Id}"/> </td>
+					</tr>
+					<tr><td>&nbsp;</td></tr>
+					<tr>
+						<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+						<td>
+							<input class="btn" id="regSave" type="submit" value="Save" onclick="if(confirm('Are you sure you would like to save this section?')){
+																									showProgressBar(' Saving Section ');
+																									saveSchedSec();
+																								}"/>
+							<input class="btn" type="submit" value="Cancel" onclick="closeModal('#editClassDetail');"/>
+							<input class="btn" id="delBut" type="submit" value="Delete" onclick="if(confirm('Are you sure you would like to delete this section?  This cannot be undone.')){
+																									showProgressBar(' Deleting Section ');
+																									deleteRec();
+																								}"/>
+						</td>
+					</tr>
+				</table>
+				
+			</div>
+			<br/>
+		</apex:outputPanel>
+	</div>
+</apex:form>
+</apex:page>

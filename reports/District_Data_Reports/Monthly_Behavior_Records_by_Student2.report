@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <aggregates>
+        <calculatedFormula>(Assesment__c.Days_Enrolled__c:SUM-Assesment__c.Number_of_Absences__c:SUM)/Assesment__c.Days_Enrolled__c:SUM</calculatedFormula>
+        <datatype>percent</datatype>
+        <description>This field calculates ADA from days enrolled and days absent</description>
+        <developerName>FORMULA1</developerName>
+        <isActive>false</isActive>
+        <isCrossBlock>false</isCrossBlock>
+        <masterLabel>Calculated ADA</masterLabel>
+        <scale>2</scale>
+    </aggregates>
+    <buckets>
+        <bucketType>number</bucketType>
+        <developerName>BucketField_62396997</developerName>
+        <masterLabel>Data entered</masterLabel>
+        <nullTreatment>n</nullTreatment>
+        <sourceColumnName>Assesment__c$Days_Enrolled__c</sourceColumnName>
+        <useOther>false</useOther>
+        <values>
+            <sourceValues>
+                <to>0</to>
+            </sourceValues>
+            <value>Error</value>
+        </values>
+        <values>
+            <sourceValues>
+                <from>0</from>
+            </sourceValues>
+            <value>Valid</value>
+        </values>
+    </buckets>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>Assesment__c$Number_of_Suspensions__c</field>
+    </columns>
+    <description>Shows number of suspensions, detentions, &amp; office referrals uploaded by SDS, by student by month</description>
+    <filter>
+        <criteriaItems>
+            <column>Assesment__c$Assessment_Name__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>contains</operator>
+            <value>Time Based Behavior Tracker - BEHAVIOR</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Assesment__c$CreatedBy</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>CY Integration</value>
+        </criteriaItems>
+    </filter>
+    <format>Matrix</format>
+    <groupingsAcross>
+        <dateGranularity>Day</dateGranularity>
+        <field>Assesment__c$Assessment_Name__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsAcross>
+    <groupingsAcross>
+        <dateGranularity>Month</dateGranularity>
+        <field>Assesment__c$Date_Administered__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsAcross>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Assesment__c$School__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Assesment__c$Student__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Monthly Behavior Records by Student- SDS</name>
+    <params>
+        <name>co</name>
+        <value>0</value>
+    </params>
+    <reportType>Assessments__c</reportType>
+    <scope>organization</scope>
+    <showDetails>false</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>Assesment__c$Date_Administered__c</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

@@ -1,0 +1,312 @@
+<apex:page controller="AttendanceDateWizardController" tabStyle="Attendance__tab" id="page">
+<c:admin />
+<c:jQueryInit bTimePicker="true"/>
+	<style>
+	
+	div.gradebook h3 {
+	float:none;
+	}
+	
+	.bPageBlock .labelCol {
+		white-space:nowrap;
+	}
+	
+	</style>
+	
+    <apex:outputPanel id="thePanel">
+    
+    <script>
+    var j$ = jQuery.noConflict();
+   
+    function toggle(){
+    	j$(".aa").toggle();
+   
+    }
+    function scrollVertical(){
+        var docHeight = j$(document).height();
+        var winHeight = j$(window).height();
+        j$('html,body').animate({scrollTop: $("#attendanceInfoPanel").offset().top}, 700);
+    }
+     function scrollVerticalNoDelay(){
+        var docHeight = j$(document).height();
+        var winHeight = j$(window).height();
+        j$('html,body').animate({scrollTop: $("#attendanceInfoPanel").offset().top}}, 0);
+    }
+	
+	j$(document).keypress(function(event){
+		if(j$('.firstname').is(':focus') || j$('.lastname').is(':focus')){
+			jwerty.key('enter',function() {
+				showProgressBar('Searching...');
+        		buttonclickjs();
+			});
+		}
+		else{
+			jwerty.key('enter',false);
+		}
+	});
+	
+	j$(document).ready(function() {
+        resetTimePicker();
+
+  });
+  
+function resetTimePicker(){
+    hour = currentTime.getHours();
+    minute = currentTime.getMinutes();
+    if (minute < 10){
+        minute = "0" + minute;
+    }
+
+    if (hour ==0) {
+        ampm="AM";
+        hour=12;
+    }
+    else if(hour > 11){
+        ampm="PM";
+        if (hour!=12) hour=hour-12;
+    }
+    else {
+        ampm="AM";
+    }
+        
+    </script>
+    	<div class="wrapper gradebook">
+    	<apex:outputPanel id="messages">
+		<apex:pageMessages />
+	</apex:outputPanel>
+    <apex:form id="form1">
+     
+
+   
+         <apex:pageBlock >  
+        <apex:outputPanel id="seachPanel">
+          	<h3>Search For Student to Update Attendance</h3>
+          	   <div class="filter_form">
+            		<div class="form_fields">   
+     	    		
+             <apex:pageBlockSection collapsible="false"  columns="2" >
+            
+            <apex:inputField required="false" value="{!searchStudent.student.Student_First_Name__c}" />
+            <apex:inputField value="{!searchStudent.student.Student_Last_Name__c}" />
+            <apex:inputField value="{!searchStudent.student.Student_Id__c}" />
+			<apex:inputField value="{!searchStudent.student.Date_of_Birth__c}" />
+            <apex:inputField value="{!searchStudent.student.Grade__c}" />
+            
+         
+            
+        </apex:pageBlockSection>              
+          
+      
+           
+					</div>
+					<apex:commandButton styleClass="drk_blue_btn" value="SEARCH" onclick="showProgressBar('Searching...');" oncomplete="setTimeout('hideProgressBar()',300);resetTable();" rerender="results, messages" action="{!Go}" id="sBtn"/>
+					 <div class="clear_fix">&nbsp;</div>  
+					
+					   </div></apex:outputPanel></apex:pageBlock>
+				<apex:outputPanel id="results">
+
+				<apex:outputPanel id="studFound" rendered="{!StudentExists}">
+				<h3>Search Results</h3>   
+				
+                   	<div class="section_content">
+			
+                <apex:dataTable styleClass="tablesorter" value="{!studentSearchresults}" var="table" id="studentRecords" >
+                    <apex:actionSupport event="onRowClick"  onsubmit=" removeHighlight();        j$(this).addClass('datahighlight');showProgressBar('Loading Attendance...');" oncomplete="setTimeout('hideProgressBar()',300); scrollVertical();" action="{!displaySections}" rerender="attendanceInfoPanel, messages">
+                        <apex:param name="studID" value="{!table.Id}"/>
+                        <apex:param name="firstName" value="{!table.Student_First_Name__c}"/>
+                        <apex:param name="lastName" value="{!table.Student_Last_Name__c}"/>
+                        
+                     </apex:actionSupport>
+
+                    <apex:column title="Name">
+                        <apex:facet name="header">Name</apex:facet>
+                        <apex:outputText value="{!table.Student_First_Name__c}"/>
+                        <apex:outputText value=" "/>
+                        <apex:outputText value="{!table.Student_Last_Name__c}"/>
+                    </apex:column>
+                    
+                    <apex:column title="Grade">
+                        <apex:facet name="header">Grade</apex:facet>
+                        <apex:outputText value="{!table.Grade__c}"/>
+                    </apex:column>
+                    
+                         <apex:column title="ID">
+                        <apex:facet name="header">ID</apex:facet>
+                        <apex:outputText value="{!table.Student_Id__c}"/>
+                    </apex:column>
+                    
+                    <apex:column title="Address">
+                        <apex:facet name="header">Address</apex:facet>
+                        <apex:outputText value="{!table.Individual__r.MailingStreet}"/>
+                    </apex:column>                 
+                </apex:dataTable>
+                 <div class="clear_fix">&nbsp;</div>  
+                </div>
+          
+
+          </apex:outputPanel>
+          </apex:outputPanel>
+
+
+          <apex:outputPanel id="attendanceInfoPanel">
+ 
+          <apex:outputPanel rendered="{!searched}" >
+         		<apex:pageMessages />
+				<h3>Attendance Record - {!selectedStudent.Student_First_Name__c} {!selectedStudent.Student_Last_Name__c}</h3>
+
+          		 <div class="filter_form">
+          			<br/>
+          			
+            		<div class="form_fields">   
+          			<apex:selectRadio value="{!selectedFunction}" style="font-weight:bold" onchange="j$('.aa').toggle(); ">
+          				<apex:selectOption itemValue="Range" itemLabel="Update attendance for a range of dates" />
+          				<apex:selectOption itemValue="Date" itemLabel="Update attendance for a single day"/>
+          			</apex:selectRadio>
+          			</div>
+         			<div class="clear_fix">&nbsp;</div>
+          		<div class="aa">
+          		<apex:outputPanel id="dailyAttendance">
+          		<div class="form_fields">  
+          			<table>
+	          			<tr>
+			      			<td>
+			      				<apex:outputLabel value="Section"/>
+			      			</td>
+			       			<td>
+			      				 <apex:selectList value="{!selectedSection2}"  multiselect="false" size="1">
+				                    <apex:selectOptions value="{!selectSection}"/>
+				                </apex:selectList>
+			       			</td>
+		          		</tr>
+		          		<tr>
+			      			<td>
+			      				<apex:outputLabel value="Select Date: "/>
+			      			</td>
+		      			
+			      			<td>
+			      				<apex:inputField value="{!SearchDate.Expiration_Date__c}"/>
+			      				
+			      			</td>
+		          		</tr>
+		          		
+					</table>
+					</div>
+					<apex:commandButton styleClass="drk_blue_btn" value="SEARCH" onclick="showProgressBar('Retrieving attendance...');" action="{!displayAttendance}" oncomplete="setTimeout('hideProgressBar()',500);" rerender="dailyAttendance, attendanceInfoPanel	"/>
+          			 <div class="clear_fix">&nbsp;</div>  
+          				<apex:outputPanel rendered="{!searchedDaily}" >
+          				<div class="section_content">
+          				<script>
+          				   resetTimePicker();
+          				</script>
+			          		<table>
+			          			<tr>
+			          				<td>
+			          					<apex:outputLabel value="Arrival Time: "/>
+			          				</td>
+			          				<td>
+			          					<apex:inputText styleClass="TimePicker" value="{!attendanceResult.Arrival_Time_Text__c}"/>
+			          				</td>
+			          					
+			          				<td>
+			          					<apex:outputLabel value="Departure Time: "/>
+			          				</td>
+			          				<td>
+			          					<apex:inputText styleClass="TimePicker" value="{!attendanceResult.Departure_Time_Text__c}"/>  
+			          				</td>
+			          			</tr>
+				               	<tr/>
+				               	<tr>
+				               		<td>
+				               			<apex:outputLabel value="Status: "/>
+				               		</td>
+				               		<td>
+				               			<apex:selectList value="{!attendanceResult.Picklist_Value__c}" multiselect="false" size="1">
+					                		<apex:selectOptions value="{!StatusList2}"></apex:selectOptions>
+					                	</apex:selectList>
+				               		</td>
+				               	</tr>
+								<tr>
+									<td>
+										<apex:outputLabel value="Comments: "/>	
+									</td>
+									<td>
+									 	<apex:inputTextArea style="width:300px; height:150px;" value="{!attendanceResult.Comments__c}" /> 
+									</td>
+								</tr>
+								<tr/>
+								  </table>
+			               </div>
+			               <input type="button" class="black_btn" value="SAVE"  style="float:right" onclick="showProgressBar('Saving Attendance Records'); saveJS();" rerender="messages"/>
+										 <apex:commandButton styleClass="grey_btn" value="CANCEL" action="{!cancel}" immediate="true"/>
+										 	<div class="clear_fix">&nbsp;</div>
+			               </apex:outputPanel>
+           				</apex:outputPanel>
+   					</div>
+       			<div class="aa" style="display: none">
+  
+              		<table>
+	                <tr>
+	                	<td>
+	                		<apex:outputLabel value="Section"/>
+	                	</td>
+	                	<td>
+	                		<apex:selectList value="{!selectedSection1}"  multiselect="false" size="1">
+                        		<apex:selectOptions value="{!selectSection}"/>
+                    		</apex:selectList>
+	                	</td>
+	                	<td>
+	                		<apex:outputLabel value="New Status"/>
+	                	</td>
+	                	<td>
+               		 		<apex:selectList value="{!setStatus}" multiselect="false" size="1">
+                				<apex:selectOptions value="{!StatusList1}"></apex:selectOptions>
+                			</apex:selectList>
+	                	</td>
+	                </tr>
+	                <tr>
+	                	<td>
+	                		<apex:outputLabel value="Start Date "/>
+	                	</td>
+	                	<td>
+	                	<apex:outputPanel layout="block" styleClass="requiredInput">
+            				<apex:outputPanel layout="block" styleClass="requiredBlock" />
+	                		<apex:inputField value="{!startDate.Expiration_Date__c}"/>
+	                	</apex:outputPanel>
+	                	</td>
+	                		
+	                	<td>
+	                		<apex:outputLabel value="End Date "/>
+	                	</td>
+	                	<td>
+	                	<apex:outputPanel layout="block" styleClass="requiredInput">
+            				<apex:outputPanel layout="block" styleClass="requiredBlock" />
+	                		<apex:inputField value="{!endDate.Expiration_Date__c}"/>
+	                	</apex:outputPanel>
+	                	</td>
+	                </tr>
+	                <tr>
+	                	<td>
+               		  		<apex:outputLabel value="Comments"/>
+	                	</td>
+	                	<td>
+                			<apex:inputTextArea style="width:300px; height:150px;" value="{!setComments}"  />
+	                	</td>
+	                </tr>
+                </table> 
+          
+           		<br/>
+        	
+	                <input type="button" class="black_btn" value="SAVE" onclick="showProgressBar('Saving Attendance Records'); saveJS();"/>
+	                <apex:commandButton styleClass="grey_btn" value="CANCEL" action="{!cancel}" immediate="true"/>
+       		<div class="clear_fix">&nbsp;</div>
+			</div>
+		</div>
+		</apex:outputPanel>
+</apex:outputPanel>
+
+<apex:actionFunction name="saveJS" action="{!save}"  oncomplete="setTimeout('hideProgressBar()',300); resetTable();" rerender="attendanceInfoPanel,results, messages, seachPanel"/>
+<apex:actionFunction name="buttonclickjs" action="{!Go}" rerender="results, messages" oncomplete="setTimeout('hideProgressBar()',300);" />
+</apex:form>
+</div>
+</apex:outputpanel>
+</apex:page>

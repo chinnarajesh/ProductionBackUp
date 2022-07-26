@@ -1,0 +1,451 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Snapshot Summary</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Snapshot Summaries</value>
+    </caseValues>
+    <fields>
+        <label><!-- Average Class Size --></label>
+        <name>Average_Class_Size__c</name>
+    </fields>
+    <fields>
+        <label><!-- Average GPA --></label>
+        <name>Average_GPA__c</name>
+    </fields>
+    <fields>
+        <label><!-- Behavior Points --></label>
+        <name>Behavior_Points__c</name>
+    </fields>
+    <fields>
+        <label><!-- Cohort --></label>
+        <name>Cohort__c</name>
+        <relationshipLabel><!-- Snapshot Summaries --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Community Service Hours --></label>
+        <name>Community_Service_Hours__c</name>
+    </fields>
+    <fields>
+        <label><!-- Contact --></label>
+        <name>Contact__c</name>
+        <relationshipLabel><!-- Snapshot Summaries --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Credit Earned Career --></label>
+        <name>Credit_Earned_Career__c</name>
+    </fields>
+    <fields>
+        <label><!-- Credit Earned YTD --></label>
+        <name>Credit_Earned_YTD__c</name>
+    </fields>
+    <fields>
+        <label><!-- Daily Attendance % --></label>
+        <name>Daily_Attendance__c</name>
+    </fields>
+    <fields>
+        <label><!-- Excused Absences --></label>
+        <name>Excused_Absences__c</name>
+    </fields>
+    <fields>
+        <label><!-- Excused Tardies --></label>
+        <name>Excused_Tardies__c</name>
+    </fields>
+    <fields>
+        <label><!-- External Id --></label>
+        <name>External_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Free Breakfasts --></label>
+        <name>Free_Breakfasts__c</name>
+    </fields>
+    <fields>
+        <label><!-- Free Lunches --></label>
+        <name>Free_Lunches__c</name>
+    </fields>
+    <fields>
+        <label><!-- Full Price Breakfasts --></label>
+        <name>Full_Price_Breakfasts__c</name>
+    </fields>
+    <fields>
+        <label><!-- Full Price Lunches --></label>
+        <name>Full_Price_Lunches__c</name>
+    </fields>
+    <fields>
+        <label><!-- In School Suspension Days --></label>
+        <name>In_School_Suspension_Days__c</name>
+    </fields>
+    <fields>
+        <label><!-- In School Suspensions --></label>
+        <name>In_School_Suspensions__c</name>
+    </fields>
+    <fields>
+        <label><!-- Instructional Time Lost --></label>
+        <name>Instructional_Time_Lost__c</name>
+    </fields>
+    <fields>
+        <label><!-- Negative Behavior Incidents --></label>
+        <name>Negative_Behavior__c</name>
+    </fields>
+    <fields>
+        <label><!-- Neutral Behavior Incidents --></label>
+        <name>Neutral_Behavior__c</name>
+    </fields>
+    <fields>
+        <label><!-- Out of School Suspension Days --></label>
+        <name>Out_School_Suspension_Days__c</name>
+    </fields>
+    <fields>
+        <label><!-- Out of School Suspensions --></label>
+        <name>Out_School_Suspensions__c</name>
+    </fields>
+    <fields>
+        <label><!-- Paycheck Points --></label>
+        <name>Paycheck_Points__c</name>
+    </fields>
+    <fields>
+        <label><!-- Percent Excused Absences --></label>
+        <name>Percent_Excused_Absences__c</name>
+    </fields>
+    <fields>
+        <label><!-- Percent Excused Tardies --></label>
+        <name>Percent_Excused_Tardies__c</name>
+    </fields>
+    <fields>
+        <label><!-- Percent Unexcused Absences --></label>
+        <name>Percent_Unexcused_Absences__c</name>
+    </fields>
+    <fields>
+        <label><!-- Percent Unexcused Tardies --></label>
+        <name>Percent_Unexcused_Tardies__c</name>
+    </fields>
+    <fields>
+        <label><!-- Positive Behavior Incidents --></label>
+        <name>Positive_Behavior__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reduced Price Breakfasts --></label>
+        <name>Reduced_Price_Breakfasts__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reduced Price Lunches --></label>
+        <name>Reduced_Price_Lunches__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reenrollment Rate --></label>
+        <name>Reenrollment_Rate__c</name>
+    </fields>
+    <fields>
+        <label><!-- School --></label>
+        <name>School__c</name>
+        <relationshipLabel><!-- Snapshot Summaries --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Snapshot ID --></label>
+        <name>Snapshot_ID__c</name>
+        <relationshipLabel><!-- Snapshot Summaries --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Student Teacher Ratio --></label>
+        <name>Student_Teacher_Ratio__c</name>
+    </fields>
+    <fields>
+        <label><!-- Student --></label>
+        <name>Student__c</name>
+        <relationshipLabel><!-- Snapshot Summaries --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Students droppedout from original list --></label>
+        <name>Students_droppedout_from_original_list__c</name>
+    </fields>
+    <fields>
+        <label><!-- Students retained from original list --></label>
+        <name>Students_retained_from_original_list__c</name>
+    </fields>
+    <fields>
+        <label><!-- Students transferred from Current Year --></label>
+        <name>Students_transferred_from_Current_Year__c</name>
+    </fields>
+    <fields>
+        <label><!-- Students transferred from original list --></label>
+        <name>Students_transferred_from_original_list__c</name>
+    </fields>
+    <fields>
+        <label><!-- Students Withdrawn From Original List --></label>
+        <name>Students_withdrawn_from_original_list__c</name>
+    </fields>
+    <fields>
+        <label><!-- Summary Type --></label>
+        <name>Summary_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total Count of Students (today) --></label>
+        <name>Total_Count_of_Students_today__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total Original Students In Cohort --></label>
+        <name>Total_Original_Students_In_Cohort__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total Students In Cohort --></label>
+        <name>Total_Students_In_Cohort__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total # of Suspension Days --></label>
+        <name>Total_of_Suspension_Days__c</name>
+    </fields>
+    <fields>
+        <label><!-- Unexcused Absences --></label>
+        <name>Unexcused_Absences__c</name>
+    </fields>
+    <fields>
+        <label><!-- Unexcused Tardies --></label>
+        <name>Unexcused_Tardies__c</name>
+    </fields>
+    <fields>
+        <label><!-- 1907 --></label>
+        <name>X1907__c</name>
+    </fields>
+    <fields>
+        <label><!-- 1908 --></label>
+        <name>X1908__c</name>
+    </fields>
+    <fields>
+        <label><!-- 1909 --></label>
+        <name>X1909__c</name>
+    </fields>
+    <fields>
+        <label><!-- 1910 --></label>
+        <name>X1910__c</name>
+    </fields>
+    <fields>
+        <label><!-- 1911 --></label>
+        <name>X1911__c</name>
+    </fields>
+    <fields>
+        <label><!-- 1912 --></label>
+        <name>X1912__c</name>
+    </fields>
+    <fields>
+        <label><!-- 1913 --></label>
+        <name>X1913__c</name>
+    </fields>
+    <fields>
+        <label><!-- 1914 --></label>
+        <name>X1914__c</name>
+    </fields>
+    <fields>
+        <label><!-- 1915 --></label>
+        <name>X1915__c</name>
+    </fields>
+    <fields>
+        <label><!-- 1916 --></label>
+        <name>X1916__c</name>
+    </fields>
+    <fields>
+        <label><!-- 1917 --></label>
+        <name>X1917__c</name>
+    </fields>
+    <fields>
+        <label><!-- 1918 --></label>
+        <name>X1918__c</name>
+    </fields>
+    <fields>
+        <label><!-- 1920 --></label>
+        <name>X1920__c</name>
+    </fields>
+    <fields>
+        <label><!-- 1921 --></label>
+        <name>X1921__c</name>
+    </fields>
+    <fields>
+        <label><!-- 1922 --></label>
+        <name>X1922__c</name>
+    </fields>
+    <fields>
+        <label><!-- 1923 --></label>
+        <name>X1923__c</name>
+    </fields>
+    <fields>
+        <label><!-- 1924 --></label>
+        <name>X1924__c</name>
+    </fields>
+    <fields>
+        <label><!-- 1925 --></label>
+        <name>X1925__c</name>
+    </fields>
+    <fields>
+        <label><!-- 1926 --></label>
+        <name>X1926__c</name>
+    </fields>
+    <fields>
+        <label><!-- 1927 --></label>
+        <name>X1927__c</name>
+    </fields>
+    <fields>
+        <label><!-- 1928 --></label>
+        <name>X1928__c</name>
+    </fields>
+    <fields>
+        <label><!-- 1930 --></label>
+        <name>X1930__c</name>
+    </fields>
+    <fields>
+        <label><!-- 1931 --></label>
+        <name>X1931__c</name>
+    </fields>
+    <fields>
+        <label><!-- 3499 --></label>
+        <name>X3499__c</name>
+    </fields>
+    <fields>
+        <label><!-- 3500 --></label>
+        <name>X3500__c</name>
+    </fields>
+    <fields>
+        <label><!-- 3501 --></label>
+        <name>X3501__c</name>
+    </fields>
+    <fields>
+        <label><!-- 3502 --></label>
+        <name>X3502__c</name>
+    </fields>
+    <fields>
+        <label><!-- 3503 --></label>
+        <name>X3503__c</name>
+    </fields>
+    <fields>
+        <label><!-- 3504 --></label>
+        <name>X3504__c</name>
+    </fields>
+    <fields>
+        <label><!-- 3505 --></label>
+        <name>X3505__c</name>
+    </fields>
+    <fields>
+        <label><!-- 3508 --></label>
+        <name>X3508__c</name>
+    </fields>
+    <fields>
+        <label><!-- 3509 --></label>
+        <name>X3509__c</name>
+    </fields>
+    <fields>
+        <help><!-- Students added to the cohort who were not original members. --></help>
+        <label><!-- # of Students Net New --></label>
+        <name>of_Students_Net_New__c</name>
+    </fields>
+    <layouts>
+        <layout>School Snapshot</layout>
+        <sections>
+            <label><!-- Academics --></label>
+            <section>Academics</section>
+        </sections>
+        <sections>
+            <label><!-- Attendance --></label>
+            <section>Attendance</section>
+        </sections>
+        <sections>
+            <label><!-- Behavior --></label>
+            <section>Behavior</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Meals --></label>
+            <section>Meals</section>
+        </sections>
+        <sections>
+            <label><!-- School --></label>
+            <section>School</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Section Snapshot</layout>
+        <sections>
+            <label><!-- Academics --></label>
+            <section>Academics</section>
+        </sections>
+        <sections>
+            <label><!-- Attendance --></label>
+            <section>Attendance</section>
+        </sections>
+        <sections>
+            <label><!-- Behavior --></label>
+            <section>Behavior</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Meals --></label>
+            <section>Meals</section>
+        </sections>
+        <sections>
+            <label><!-- School --></label>
+            <section>School</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Snapshot Summary Layout</layout>
+        <sections>
+            <label><!-- Academics --></label>
+            <section>Academics</section>
+        </sections>
+        <sections>
+            <label><!-- Attendance --></label>
+            <section>Attendance</section>
+        </sections>
+        <sections>
+            <label><!-- Behavior --></label>
+            <section>Behavior</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Meals --></label>
+            <section>Meals</section>
+        </sections>
+        <sections>
+            <label><!-- School --></label>
+            <section>School</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Student Snapshot</layout>
+        <sections>
+            <label><!-- Attendance --></label>
+            <section>Attendance</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <description><!-- A simple summary of cohort yearly data --></description>
+        <label><!-- Cohort --></label>
+        <name>Cohort</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- School Summary --></label>
+        <name>School_Summary</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Section Summary --></label>
+        <name>Section_Summary</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Student Summary --></label>
+        <name>Student_Summary</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

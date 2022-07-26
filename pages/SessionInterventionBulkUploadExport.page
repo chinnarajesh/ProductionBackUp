@@ -1,0 +1,2 @@
+<apex:page controller="SessionInterventionBulkUploadController" sidebar="false"
+           showheader="false" contenttype="application/vnd.ms-excel#{!fileName}.csv">{!csvData}</apex:page>

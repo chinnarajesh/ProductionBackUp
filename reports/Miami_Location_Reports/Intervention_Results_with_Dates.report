@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Section__c$Name</field>
+    </columns>
+    <columns>
+        <field>Section__c.Intervention_Sessions__r.Intervention_Session_Results__r$CreatedDate</field>
+    </columns>
+    <columns>
+        <field>Section__c.Intervention_Sessions__r.Intervention_Session_Results__r$Intervention_Session_Date__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>Section__c.Intervention_Sessions__r.Intervention_Session_Results__r$Amount_of_Time__c</field>
+    </columns>
+    <description>Shows all intervention session results with creation dates and intervention session dates to highlight any sessions that were logged in the system later than they occurred.</description>
+    <filter>
+        <criteriaItems>
+            <column>Section__c$Program__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>contains</operator>
+            <value>literacy,math,attendance,behavior,50 acts,heroes,starfish,homework,enrichment</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Section__c$Indicator_Area__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>contains</operator>
+            <value>,literacy,math,attendance,behavior</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Section__c$In_After_School__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>contains</operator>
+            <value>,In School,Extended Learning</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Section__c$Location__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>Miami</value>
+        </criteriaItems>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Section__c$Program__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Section__c.Intervention_Sessions__r.Intervention_Session_Results__r$Related_Student_s_Name__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>All Intervention Results w/Dates</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Sections_with_Intervention_Sessions_with_Intervention_Session_Results__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>false</showGrandTotal>
+    <showSubTotals>false</showSubTotals>
+    <sortColumn>Section__c$Name</sortColumn>
+    <sortOrder>Asc</sortOrder>
+    <timeFrameFilter>
+        <dateColumn>Section__c.Intervention_Sessions__r$CreatedDate</dateColumn>
+        <interval>INTERVAL_CURFY</interval>
+    </timeFrameFilter>
+</Report>

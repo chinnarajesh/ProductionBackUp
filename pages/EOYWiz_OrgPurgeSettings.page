@@ -1,0 +1,183 @@
+<apex:page controller="EOYWiz_OrgPurgeSettings" tabStyle="EOY_Wizard__tab">
+	
+	<apex:includeScript value="{!URLFOR($Resource.jWerty, '/jWerty/jwerty.js')}" />
+  	<c:jQueryInit bLoadingPanel="true" bDataTables="true"/>
+	<apex:stylesheet value="{!$Resource.New_Core_UX}"/>
+	<apex:stylesheet value="{!URLFOR($Resource.schoolforce_demo_page, 'css/style.css')}"/>
+	<c:EOYWiz_StyleModifications />	
+	
+	<script>
+		var j$ = jQuery.noConflict();
+		var oTable;
+		var unsavedPop = false;
+		
+		j$(document).ready(function() {
+			resetTables();
+			//createModal();
+			//j$("#dialog-modal").dialog("close");	
+		});							
+		
+		//outside of the ready function
+		window.onbeforeunload = unloadMessage;		
+		
+		function unloadMessage() {
+			checkChangesJS();
+			if(unsavedPop) {
+				return "There are unsaved changes!";
+			}
+		}
+		
+		//need destroy in this version, that's why not using admin component
+		function resetTables(){
+			oTable = j$(".tablesorter").dataTable( {
+				"sScrollY": "200px",
+				"sScrollX": "100%",
+		        "bAutoWidth": true,
+		        "bDestroy": true,
+				"aoColumnDefs": [
+					{ "sWidth": "100px", 
+					"aTargets": [ 0 ]}
+				],
+		        "bPaginate": false,
+		        "bJQueryUI": true, 
+		        "iDisplayLength": 1000
+    		});     			
+    	}   	    	
+		
+		/*
+		function createModal() {
+			j$("#dialog-modal").dialog({
+				autoOpen: false,
+				minHeight: 500,
+				minWidth: 700,
+				modal: true,
+				close: function(event, ui) {
+					j$(this).dialog('destroy');
+					j$(this).appendTo(j$('[id$=mainForm]'));
+				},
+				buttons: {
+					"Add Selected": function() {								
+						j$(this).dialog("close");
+						addSelectedJS();
+						usavedPopup = true;
+					},
+					Cancel: function() {
+						j$(this).dialog("close");
+					}
+				}	
+			});	
+		}
+
+		function openModal() {
+			j$("#dialog-modal").dialog("open");	
+			resetTables();		
+		}
+		*/	
+	</script>
+
+	<apex:form id="mainForm">
+	
+		<apex:outputPanel id="outerPanel" layout="block">
+		
+			<div id="schoolforce-wrapper" class="wrapper">
+
+				<apex:outputPanel id="errorMessages" layout="block" styleClass="pageMessages">
+					<!-- It makes more sense to place this assignment with the actual calls, but for ease of use and check,
+						 We know that the errorMessages gets rerendered for every change made to let the user knows what happened -->
+					<apex:pageMessages />  <script> unsavedPop = {!unsaved}; </script>
+				</apex:outputPanel>	
+
+				<!-- need to change the css -->
+				<h1 id="navPanel" class="centerHeader">
+					<input type="button" class="grey_btn_arrow" onClick="goHomeJS();" value="Previous" />
+					<div style="display: inline-block;">End of Year Wizard Organizational Setup<br></br>Confirm Custom Settings</div>
+					<input id="next" type="button" class="green_btn_arrow" onClick="gotoOrgNextYearJS();" value="Next" />
+					<script>if({!!orgWideProgress.EOY_Purge_Settings_Completed__c}){document.getElementById('next').disabled = 'disabled';}</script>
+				</h1>
+
+				<apex:outputPanel id="summary" styleClass="adminSummary">
+					<br></br>
+					<p>Due to  data storage limitations, we recommend purging, or deleting, certain information either every year or after 2 years. For a full list of objects that are never deleted please see SchoolForce Help. </p>
+					<p>In this step you are deciding when data gets purged. Later in the EOY Wizard, you will have an opportunity to export all data for your own historical tracking purposes. You will also be prompted to create high level summary snapshots of key information needed for reporting. You will not actually be purging, or deleting, data until the final steps of the school’s EOY Process.</p>
+					<p>The table below outlines all of the objects that SchoolForce will purge. To complete the table, please update the settings by checking or unchecking the box in the “Purge Data This Year?” column. You may save this page and return to it as many times as you wish before finalizing these settings. Once the settings are finalized, they can not be modified.</p>
+					<p>If the checkbox is selected, that object will be deleted this year. For example, we recommend deleting Alerts every year. If the Alerts checkbox is selected then no Alerts data from the current year (or any years prior) will be in SchoolForce for the next school year.</p>
+					<p>If the checkbox is unselected, the object will keep all historical records for the previous 2 years.  For example, we recommend keeping Assignments in Gradebook for 2 years.  If you’re currently completing EOY for school year 2012-2013 and have the box unselected, SchoolForce will keep all Assignments for school years 2011-2012 and 2012-2013.  If your school has any Assignment data from 2010-2011, it will be deleted.  Please see SchoolForce Help for more information. </p>
+					<br></br>
+				</apex:outputPanel>					
+					
+				<div class="content-wrapper" >	
+				<apex:pageBlock ><!-- title="Step 1: Setup for Custom Purge Settings" -->
+					<apex:outputPanel id="purgeObjectPanel" layout="block">		
+						<h2 style="margin-left: 0px;">Custom Purge Settings</h2>
+						<apex:dataTable id="purgeObjectTable" styleClass="tablesorter" value="{!dPurgeCustomSettings}" var="display" >
+							<!-- <apex:column headerValue="Remove" >
+								<apex:outputLink value="#" onclick="removeSelectedJS('{!JSENCODE(display.pcs.Name__c)}');" rendered="{!!orgWideProgress.EOY_Purge_Settings_Completed__c}">Remove&nbsp;</apex:outputLink>
+							</apex:column> -->
+							<apex:column headerValue="Name" >
+								<apex:outputText value="{!display.displayName}" />
+							</apex:column>
+							
+							<apex:column headerValue="Description">
+								<apex:outputText value="{!display.description}" />
+							</apex:column>
+							
+							<apex:column headerValue="Purge Data this Year?" style="width : 80px !important;">
+								<apex:inputCheckbox id="pEOYHeader" value="{!display.pcs.Purged_EOY__c}" onclick="editSelectedJS('{!JSENCODE(display.pcs.Name__c)}')" disabled="{!orgWideProgress.EOY_Purge_Settings_Completed__c}"/>
+							</apex:column>
+						</apex:dataTable>
+						
+						<apex:outputPanel id="summaryFooter" style="text-align:center;">
+							<p>Last Modified: {!orgWideProgress.EOY_Purge_Settings_Last_Modified__c} </p>
+							<br></br>
+							<br></br>
+							<br></br>
+						</apex:outputPanel>							
+						
+						<apex:outputPanel id="buttons">
+							<apex:commandButton styleClass="black_btn" value="Save Custom Purge Settings" action="{!savePCS}" onClick="showProgressBar('Saving Purge Settings');" onComplete="setTimeout('hideProgressBar()',300);" rerender="summaryFooter, errorMessages" disabled="{!orgWideProgress.EOY_Purge_Settings_Completed__c}" />	
+							<!-- <apex:commandButton styleClass="black_btn" value="Add Custom Purge Settings" action="{!getSuggestedPurgeCustomSettings}" onClick="createModal();" onComplete="openModal();" rerender="suggestedPurgeObjectPanel" disabled="{!orgWideProgress.EOY_Purge_Settings_Completed__c}" /> -->			
+							<!-- need a safe rerender spot.  If no value is provided then the whole page gets rerendered, and we would not like that.  It is to preserve the messages -->
+							<apex:commandButton styleClass="red_btn" value="Finalize Custom Purge Settings" onclick="if(confirm('Purging data will remove all records in that object from SchoolForce once you complete each School\'s EOY Wizard.  These settings apply to the entire Organization.')) {showProgressBar('Finalizing Purge Settings'); finalizePCSJS();}" disabled="{!orgWideProgress.EOY_Purge_Settings_Completed__c}" rerender="summaryFooter"/>
+						</apex:outputPanel>
+					</apex:outputPanel>
+				
+				</apex:pageBlock>
+				</div>
+			</div>
+
+			
+			<apex:actionFunction name="goHomeJS" action="{!gotoEOYLandingPage}" />
+			<apex:actionFunction name="gotoOrgNextYearJS" action="{!gotoOrgNextYear}" />
+			<!-- <apex:actionFunction name="addSelectedJS" action="{!addSelected}" rerender="purgeObjectPanel, errorMessages" onComplete="resetTables();" /> -->
+			<!-- <apex:actionFunction name="removeSelectedJS" action="{!removeSelected}" rerender="purgeObjectPanel, errorMessages" onComplete="resetTables();" >
+				<apex:param name="selectedRowName" assignTo="{!selectedRowName}" value="" />
+			</apex:actionFunction> -->
+			<apex:actionFunction name="editSelectedJS" action="{!editSelected}" rerender="pEOYHeader, errorMessages" >
+				<apex:param name="selectedRowName" assignTo="{!selectedRowName}" value="" />
+			</apex:actionFunction>
+			<apex:actionFunction name="finalizePCSJS" action="{!finalizePCS}" rerender="navPanel, summaryFooter, pEOYHeader, buttons, errorMessages" onComplete="if({!orgWideProgress.EOY_Purge_Settings_Completed__c}){document.getElementById('next').disabled = '';} setTimeout('hideProgressBar()', 300);"/>
+			<apex:actionFunction name="checkChangesJS" action="{!checkChanges}" rerender="summaryFooter" />
+		</apex:outputPanel>
+		
+		
+		<!-- <div id="dialog-modal" title="Custom Purge Settings">
+			<p>Explain that there are suggested values to add for the year</p>
+			
+			<apex:outputPanel id="suggestedPurgeObjectPanel" >
+				<apex:dataTable id="suggestedPurgeObjectTable" styleClass="tablesorter" value="{!dSuggestedPurgeCustomSettings}" var="suggested">		
+					<apex:column headerValue="Select" >
+						<apex:inputCheckbox id="checked" value="{!suggested.Selected}" />
+					</apex:column>
+					<apex:column headerValue="Name" >
+						<apex:outputField value="{!suggested.pcs.Name__c}" />
+					</apex:column>
+					<apex:column headerValue="Purge Data this year?" style="width : 80px !important;">					
+						<apex:outputField value="{!suggested.pcs.Purged_EOY__c}" />
+					</apex:column>									
+				</apex:dataTable>
+			</apex:outputPanel>		
+	
+		</div>-->
+						
+	</apex:form>
+</apex:page>

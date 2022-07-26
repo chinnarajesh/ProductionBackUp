@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>CREATED</field>
+    </columns>
+    <columns>
+        <field>CREATED_DATE</field>
+    </columns>
+    <columns>
+        <field>field_key</field>
+    </columns>
+    <columns>
+        <field>OLDVAL</field>
+    </columns>
+    <columns>
+        <field>NEWVAL</field>
+    </columns>
+    <columns>
+        <field>CUST_OWNER_NAME</field>
+    </columns>
+    <columns>
+        <field>Enrollment_Tracking__c.Student_Section__c</field>
+    </columns>
+    <columns>
+        <field>Enrollment_Tracking__c.Student__c</field>
+    </columns>
+    <description>Use this report to view the history of changes made to Enrollment Tracking records as users enroll and exit students from sections.</description>
+    <filter>
+        <criteriaItems>
+            <column>CREATED</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>notEqual</operator>
+            <value>hannah im,nikolaus komrosky,pau aragay</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>CREATED_ROLE</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>New York Site User</value>
+        </criteriaItems>
+    </filter>
+    <format>Tabular</format>
+    <name>CYNY Audit Enrollment Tracking</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CustomEntityAuditHistory$Enrollment_Tracking__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>CREATED_DATE</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

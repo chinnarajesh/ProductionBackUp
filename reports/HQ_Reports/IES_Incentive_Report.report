@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <aggregates>
+        <calculatedFormula>RowCount</calculatedFormula>
+        <datatype>number</datatype>
+        <developerName>FORMULA1</developerName>
+        <isActive>true</isActive>
+        <isCrossBlock>false</isCrossBlock>
+        <masterLabel>% of Total</masterLabel>
+        <scale>2</scale>
+    </aggregates>
+    <columns>
+        <field>Student__c$Student_Id__c</field>
+    </columns>
+    <filter>
+        <criteriaItems>
+            <column>Student__c$Grade__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>6</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Student__c$School__c.Name</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Bronx Early College Academy (324X),Carver MS,Clinton MS,Davis Middle School,Highlands Middle School,Hollenbeck MS,IS 123X,IS 126Q,IS 303X Leadership &amp; Community Service,Isaac Newton Middle School,Jean Ribault Middle School,JHS 218K James P Sinnott,John Liechty Middle School,Markham MS,Matthew Gilbert Middle School,Meadowbrook Middle School,Memorial Middle School,Northwestern Middle School,Rhodes Middle School (San Antonio),Stevenson MS,The Leadership Schools at Eugene Butler Middle School,Walker Middle School</value>
+        </criteriaItems>
+    </filter>
+    <format>Matrix</format>
+    <groupingsAcross>
+        <dateGranularity>Day</dateGranularity>
+        <field>Student__c$IES_Consent_Accepted__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsAcross>
+    <groupingsAcross>
+        <dateGranularity>Day</dateGranularity>
+        <field>Student__c$IES_Incentive_Given__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsAcross>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Student__c$Location__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Student__c$School__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>IES Incentive Report</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Students__c</reportType>
+    <scope>organization</scope>
+    <showDetails>false</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>Student__c$Actual_graduation_date__c</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

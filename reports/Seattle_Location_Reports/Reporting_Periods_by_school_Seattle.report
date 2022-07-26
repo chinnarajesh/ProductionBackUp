@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Time_Element__c.Time__r$Date_Start_Date__c</field>
+    </columns>
+    <columns>
+        <field>Time_Element__c.Time__r$End_Date__c</field>
+    </columns>
+    <columns>
+        <field>Time_Element__c$Reporting_Period__c</field>
+    </columns>
+    <columns>
+        <field>Time_Element__c.Time__r$Name_On_Report_Card__c</field>
+    </columns>
+    <filter>
+        <criteriaItems>
+            <column>Time_Element__c$Parent_Time_Element__c.Name__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>contains</operator>
+            <value>Aki Kurose,Concord,Denny,Graham Hill,Highland Park,MLK,Roxhill,Sanislo,South Shore K-8,Van Asselt,Wing Luke</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Time_Element__c$Parent_Time_Element__c.Name__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>notEqual</operator>
+            <value>2018-2019</value>
+        </criteriaItems>
+    </filter>
+    <format>Matrix</format>
+    <groupingsAcross>
+        <dateGranularity>Day</dateGranularity>
+        <field>Time_Element__c$Parent_Time_Element__c.Reporting_Period_Value__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsAcross>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Time_Element__c$Parent_Time_Element__c.Name__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Reporting Periods by school-Seattle</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Time_with_parent_and_location__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>Time_Element__c$CreatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

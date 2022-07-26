@@ -1,0 +1,1173 @@
+<apex:page controller="Gradebook_AssignmentController_v2" tabStyle="gradebook__tab" showHeader="true" sidebar="true" action="{!existingAssignmentFlow}">
+
+    <apex:includeScript value="{!URLFOR($Resource.jWerty, '/jWerty/jwerty.js')}" />
+    <c:jQueryInit bDataTables="true" bLoadingPanel="true" bDateJs="true"/>
+    <c:loadingPanel />
+    <apex:stylesheet value="{!$Resource.New_Core_UX}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.resources_Master, '/custom/css/course_Catalog.css')}"/>
+    
+    <style>
+        .datahighlight {
+            background-color: #ffffcc !important;
+        }
+        .padded_rows > td {
+            padding-top: 3px;
+            padding-bottom: 3px;
+        }
+        .section_content {
+            margin-bottom: 25px;
+        }
+        .innerHeightFix >td {
+            height: 100%;
+        }
+    </style> 
+
+    <script>
+    
+        function noenter() {
+            return !(window.event && window.event.keyCode == 13); 
+        }
+    
+        pageMap = {};
+        var map;
+        var mapValues;
+        
+        function timeElement() {
+            var startDate = "";
+            var endDate = "";
+            this.setStartDate = setStartDate;
+            this.setEndDate = setEndDate;
+            this.getStartDate = getStartDate;
+            this.getEndDate = getEndDate;
+        
+            function setStartDate(sd) {
+                this.startDate = sd;
+            }
+            
+            function setEndDate(ed) {
+                this.endDate = ed;
+            }
+            
+            function getStartDate() {
+                return this.startDate;
+            }
+            
+            function getEndDate() {
+                return this.endDate;
+            }               
+        }
+        
+        function populateTimeElement( timeKey, timeValues ) {    
+            //map = "{!timeMapKeySet}";
+            map = timeKey;
+            map = map.slice(1, map.length-1);
+            map = map.split(", ");    
+        
+            //mapValues = "{!timeMapValues}";
+            mapValues = timeValues;
+            mapValues = mapValues.slice(1, mapValues.length-1);
+            mapValues = mapValues.split(", ");      
+          
+            for(var i = 0; i < map.length; i++) {
+                var j = 2*i ;
+                t = new timeElement();
+                t.setStartDate(mapValues[j]);
+                t.setEndDate(mapValues[j+1]);
+                pageMap[map[i]] = t;
+            }
+        }   
+    
+        var j$ = jQuery.noConflict();
+        var oTable;
+        var currentTab = 1;
+        j$(document).ready(function() {
+            populateTimeElement('{!timeMapKeySet}', '{!timeMapValues}');
+            j$(".tabs").tabs({
+                active: -1,
+                show: function(event, ui) {
+                    resetTables();
+                    if(oTable != null && oTable.size()>0)
+                        oTable.fnAdjustColumnSizing();
+                }
+            });
+            
+            j$('#createNewA').click('tabsbeforeload', function(event, ui) {
+                if(currentTab != j$('.tabs').tabs('option', 'selected')) {
+                    showProgressBar('Creating New Assignment'); 
+                    newAssignmentFlowJS();  
+                    currentTab = 0;
+                }   
+            });
+            
+            j$('#addExistingA').click('tabsbeforeload', function(event, ui) {
+                if(currentTab != j$('.tabs').tabs('option', 'selected')) {
+                    showProgressBar('Add Existing Assignment'); 
+                    existingAssignmentFlowJS();
+                    currentTab = 1;
+                }
+            });
+            
+            j$('#addExistingA').click();
+            resetTables();
+        });
+        
+        function addHighlight(element){
+            removeHighlight();
+            j$(element).parent().addClass('datahighlight');
+        }
+        
+        function removeHighlight(){
+            j$('.datahighlight').removeClass('datahighlight');
+        }       
+        
+        function datefix(rpThis){
+            var rpID = j$(rpThis).parent().nextAll().find(".rPeriod").attr('value');
+            j$(rpThis).parent().nextAll().find(".datepicker").datepicker("destroy");
+            j$(rpThis).parent().nextAll().find(".datepicker").datepicker({
+                 changeMonth: true,
+                 changeYear: true,
+                 minDate: new Date(pageMap[rpID].getStartDate()),
+                 maxDate: new Date(pageMap[rpID].getEndDate()),
+                 defaultDate: new Date(pageMap[rpID].getEndDate())
+            });
+            j$(rpThis).parent().nextAll().find(".datepicker").datepicker("refresh");
+            //j$(rpThis).parent().nextAll().find(".datepicker").attr('value',null);
+        }
+        
+        function datefix2(rpID, rpThis) {
+            j$(rpThis).parent().nextAll().find(".datepicker").datepicker("destroy");
+            j$(rpThis).parent().nextAll().find(".datepicker").datepicker({
+                 changeMonth: true,
+                 changeYear: true,
+                 minDate: new Date(pageMap[rpID].getStartDate()),
+                 maxDate: new Date(pageMap[rpID].getEndDate()),
+                 defaultDate: new Date(pageMap[rpID].getEndDate())
+            });
+            j$(rpThis).parent().nextAll().find(".datepicker").datepicker("refresh");      
+        }
+        
+        function scrollToDiv(id) {
+            j$('html,body').animate({scrollTop: j$(id).offset().top}, 700);
+        }
+        
+        function showRequiredDueDate(cb){
+            var b = j$(cb).is(':checked'); 
+            if (b) j$(cb).parent().parent().find('.requiredInput').css('visibility','visible');
+            else j$(cb).parent().parent().find('.requiredInput').css('visibility','hidden');
+        }       
+        
+        function selectAll(cb, theClass) {
+            var b = j$(cb).is(':checked'); 
+            j$('.'+theClass).each(function() {
+                j$(this).attr('checked', b); 
+            });
+        }
+        
+        function selectAll2(cb, theClass) {
+            var b = j$(cb).is(':checked'); 
+            j$('.'+theClass).each(function() {
+                j$(this).attr('checked', b); 
+                showRequiredDueDate(this);
+                datefix(this);
+            });
+        }   
+        function resetTables() {
+            oTable = j$(".tablesorter").dataTable( {
+                "sScrollY": "400px",
+                "sScrollX": "100%",
+                "bAutoWidth": false,
+                "bDestroy": true,
+                "bPaginate": false,
+                "bJQueryUI": true, 
+                "iDisplayLength": 1000,
+            });
+        
+            j$(".tablesorter tr:odd").css("background-color", "#CFEEF8");
+            j$(".tablesorter tr:even").css("background-color", "#F3F3EC");          
+        }
+    </script>
+
+    <apex:form id="mainForm" style="max-width: 1024px;">
+        <apex:outputPanel id="mainPanel">
+        
+            <!-- Displays the error messages here -->
+            <apex:outputPanel id="topMessages">
+                <apex:pageMessages />
+            </apex:outputPanel>     
+                
+            <apex:actionFunction name="newAssignmentFlowJS" action="{!newAssignmentFlow}" onComplete="setTimeout('hideProgressBar()', 500); resetTables();" rerender="existing, topMessages, bottomMessages, sharedContentPanel"/>
+            <apex:actionFunction name="existingAssignmentFlowJS" action="{!existingAssignmentFlow}" onComplete="setTimeout('hideProgressBar()', 500); resetTables();" rerender="existing, topMessages, bottomMessages, sharedContentPanel"/>    
+
+            <apex:pageBlock >
+                <div class="tabs" style="width: 100%;">
+                    <ul>
+                        <li id="createNewTab" style="display: none;">
+                            <a id="createNewA" href="#createNew"><h2>Create New Assignment</h2></a>
+                        </li>
+                        <li id="addExistingTab">
+                            <a id="addExistingA" href="#existingUpper"><h2>Add Existing Assignment to Section(s)</h2></a>
+                        </li>
+                    </ul>
+
+                    <div id="existingUpper">{!rExisting && NOT(rNew)}
+                        <apex:outputPanel id="existing">
+                            <apex:outputPanel rendered="{!rExisting && NOT(rNew)}">
+                                <h3>Search Existing Assignments</h3>
+                                <div class="section_content">
+                                    <div>
+                                        Use the fields to search for the assignment you want to use. You do not have to complete all the fields. SchoolForce returns more specific results for each field you complete.
+                                        <br/><br/>
+                                    </div>
+                                
+                                    <table cellpadding="5">
+                                        <tr>
+                                            <td align="RIGHT">
+                                                <apex:outputLabel value="Assignment Name" style="font-weight:bold; margin-right: auto;" />
+                                                <span class="helpButton"  id="assignment_name_exist-_help" >
+                                                    <img src="/s.gif" class="helpOrb" />
+                                                    <apex:outputPanel >
+                                                        <script type="text/javascript">
+                                                            sfdcPage.setHelp('assignment_name_exist','Enter all or part of the assignment name to search for assignments with that name.');
+                                                        </script>
+                                                    </apex:outputPanel>
+                                                </span>                                                 
+                                            </td>
+                                            <td>
+                                                <apex:inputText value="{!assignmentWrapper.assignmentNameSearch}" onkeypress="return noenter();"/>
+                                            </td>
+                                            <td align="RIGHT">
+                                                <apex:outputLabel value="Assignment Type" style="font-weight:bold; margin-right: auto;"/>
+                                                    <span class="helpButton"  id="assignment_type_exist-_help" >
+                                                        <img src="/s.gif" class="helpOrb" />
+                                                        <script type="text/javascript">
+                                                            sfdcPage.setHelp('assignment_type_exist','Select an assignment type (e.g., Classwork, Homewor, Test) to search for existing assignments with that assignment type.');
+                                                        </script>
+                                                    </span>
+                                            </td>
+                                            <td>
+                                                <apex:selectList value="{!assignmentWrapper.assignmentTypeSearch}"
+                                                    multiselect="false" size="1">
+                                                    <apex:selectOption itemValue="Any" itemLabel="Any" />
+                                                    <!-- type is somehow going to help with the default weighting lookups later -->
+                                                    <apex:selectOptions value="{!assignmentTypeOptions}" />
+                                                </apex:selectList>
+                                            </td>
+                                        </tr>
+                                        <tr >
+                                            <td align="RIGHT">
+                                                <apex:outputLabel value="Course" style="font-weight:bold; margin-right: auto;"/>
+                                                <span class="helpButton"  id="course_exist-_help" >
+                                                    <img src="/s.gif" class="helpOrb" />
+                                                    <script type="text/javascript">
+                                                        sfdcPage.setHelp('course_exist','Select a course to search for the existing assignments for that course.');
+                                                    </script>
+                                                </span>                                                 
+                                            </td>
+                                            <td>
+                                                <apex:selectList value="{!assignmentWrapper.courseSearch}"
+                                                    multiselect="false" size="1">
+                                                    <apex:selectOption itemValue="All" itemLabel="All" />
+                                                    <apex:selectOptions value="{!courseOptions}" />
+                                                </apex:selectList>
+                                            </td>
+                                            
+                                            <td align="RIGHT">
+                                                <apex:outputLabel value="Created By" style="font-weight: bold; margin-right: auto;"/>
+                                                <span class="helpButton"  id="create_by_exist-_help" >
+                                                    <img src="/s.gif" class="helpOrb" />
+                                                    <script type="text/javascript">
+                                                        sfdcPage.setHelp('create_by_exist','Enter all or part of a staff member\'s name to search for existing assignments created by that staff member.');
+                                                    </script>
+                                                </span>                                                     
+                                            </td>
+                                            <td>
+                                                <apex:inputText value="{!assignmentWrapper.createdBySearch}" onkeypress="return noenter();"/>
+                                            </td>
+                                            
+                                        </tr>
+                                    </table>
+                                    <center>
+                                        <apex:actionStatus id="mySaveStatus">
+                                            <apex:facet name="stop">        
+                                                <apex:commandButton value="Search Assignments" styleClass="drk_blue_btn"
+                                                    status="mySaveStatus" action="{!searchAssignmentMethod}"
+                                                    onclick="showProgressBar('Searching Assignments');"
+                                                    rerender="topMessages, bottomMessages, selectAssignments, sharedContentPanel"
+                                                    oncomplete="resetTables(); setTimeout('hideProgressBar()', 500); 
+                                                        if({!assignmentWrapper.noResults}){
+                                                            alert('No assignments found, please try again');
+                                                        }
+                                                        else{
+                                                            if({!assignmentWrapper.over50}){
+                                                                alert('Your search returend more than 50 assignments. Refine the search criteria in the Search Existing Assignments area if you cannot find the assignment you want to select.');
+                                                            }                                                       
+                                                        }" />
+                                            </apex:facet>
+                                            <apex:facet name="start">
+                                                <apex:commandButton styleClass="drk_blue_btn" value="Searching..." disabled="true" status="mySaveStatus" rendered="true" rerender="topMessages, bottomMessages, selectAssignments" />
+                                            </apex:facet>
+                                        </apex:actionStatus>
+                                    </center>                               
+                                </div>
+                            </apex:outputPanel>
+                            
+                            <apex:outputPanel id="selectAssignments">
+                                <apex:outputPanel rendered="{!assignmentWrapper.showAssignmentResults}">
+                                    <div class="section" id="A" >
+                                        <h3>Existing Assignments</h3><div style="float:right; color:#666;">Click on a row to select an assignment </div>
+                                        
+                                        <div class="section_content">
+                                            <apex:pageBlockSection columns="1">
+                                                <apex:pageBlockTable title="Existing Assignment Libraries" id="existingTable" value="{!assignmentWrapper.searchAssignmentResults}" var="a" onClick="showProgressBar('Retrieving Record...');">
+                                                    <apex:actionSupport event="onRowClick" action="{!selectAssignment}" rerender="topMessages, bottomMessages, sharedContentPanel" 
+                                                        onComplete="resetTables(); 
+                                                                    setTimeout('hideProgressBar()',500); " >
+                                                        <apex:param name="assignmentLibraryID" value="{!a.ID}" />
+                                                    </apex:actionSupport>
+                                                    <apex:column title="Name">
+                                                        <apex:facet name="header">Assignment Name</apex:facet>
+                                                        <apex:outputText value="{!a.Name}" />
+                                                    </apex:column>
+                                                    <apex:column title="Name">
+                                                        <apex:facet name="header">Created By</apex:facet>
+                                                        <apex:outputText value="{!a.CreatedBy.FirstName} {!a.CreatedBy.LastName}" />
+                                                    </apex:column>
+                                                    <apex:column title="Name">
+                                                        <apex:facet name="header">Created On</apex:facet>
+                                                        <apex:outputText value="{0,date,MM/dd/yyyy hh:mm:ss}">
+                                                            <apex:param value="{!a.CreatedDate}" />
+                                                        </apex:outputText>
+                                                    </apex:column>
+                                                    <apex:column title="Name">
+                                                        <apex:facet name="header">Description</apex:facet>
+                                                        <apex:outputText value="{!a.Description__c}" />
+                                                    </apex:column>                                          
+                                                </apex:pageBlockTable>
+                                            </apex:pageBlockSection>
+                                        </div>
+                                    </div>          
+                                </apex:outputPanel>
+                            </apex:outputPanel>
+                        </apex:outputPanel>
+                    </div>
+
+                    <div id="createNew" style="padding:0!important;height:0px;">
+
+                    </div>
+
+                    <!-- the classes here are critical for rendering properly in both panels -->
+                    <div class="ui-tabs-panel ui-widget-content ui-corner-bottom" id="sharedContent">
+                        <apex:outputPanel id="sharedContentPanel">
+                            <div id="sectionsOrCourses">
+                                <apex:outputPanel rendered="{!rNew && NOT(rExisting)}">
+                                    <div class="section" id="SorC">
+                                        <h3>Sections or Courses?</h3>
+                                        <div class="section_content">
+                                            <table>
+                                                <tr>
+                                                    <td style="vertical-align: middle;">
+                                                        <div style="padding-top: 2px; padding-bottom: 4px;">
+                                                            <span class="helpButton"  id="addToSections-_help" >
+                                                                <img src="/s.gif" class="helpOrb" />
+                                                                <script type="text/javascript">
+                                                                    sfdcPage.setHelp('addToSections','Select this option to include the assignment in the Gradebook, allowing it to be graded immediately.');
+                                                                </script>
+                                                            </span>
+                                                        </div>
+                                                        <div style="padding-top: 2px; padding-bottom: 4px;">
+                                                            <span class="helpButton"  id="addToCourse-_help">
+                                                                <img src="/s.gif" class="helpOrb" />
+                                                                <script type="text/javascript">
+                                                                    sfdcPage.setHelp('addToCourse','Select this option to add the assignment to the Assignment Library only. The assignment can be added to the Gradebook later by the “Add Existing Assignment to Course or Section(s)” button above.');
+                                                                </script>
+                                                            </span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <apex:selectRadio value="{!sectionOrCourseChoice}" layout="pageDirection">
+                                                            <apex:selectOptions value="{!sectionCourseOptions}"/>
+                                                            <apex:actionSupport event="onclick" onsubmit="showProgressBar('Setting Up Assignment...')" action="{!newFlowChoice}" rerender="topMessages, bottomMessages, sharedContentPanel" oncomplete="setTimeout('hideProgressBar()',500);"/>
+                                                        </apex:selectRadio>                                     
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </apex:outputPanel>
+                            </div>
+
+                            <div id="assignmentDetails">
+                                <h3>Assignment Details</h3>
+                                <div class="section_content">
+                                    <apex:outputPanel rendered="{!rNew && NOT(rExisting)}">                                     
+                                        <table cellpadding="5" style="width: 100%">
+                                            <tr>
+                                                <td style="width: 100%;">
+                                                    <apex:outputLabel value="Select Course" style="font-weight: bold"/>
+                                                    <br/>
+                                                    <apex:outputPanel id="selectCourse">
+                                                        <apex:selectRadio value="{!assignmentWrapper.assignmentCourse}">
+                                                            <apex:selectOptions value="{!courseOptions}" />
+                                                            <apex:actionSupport event="onchange" action="{!setSelectedAssignmentTypeOptions}" rerender="topMessages, bottomMessages, sharedContentPanel" oncomplete="resetTables();" />
+                                                        </apex:selectRadio>                          
+                                                    </apex:outputPanel>                                             
+                                                </td>                                       
+                                            </tr>
+                                        </table>
+                                    </apex:outputPanel>
+                                    
+                                    <apex:outputPanel rendered="{!rExisting}">
+                                        This area displays the assignment details from the assignment as it is stored in the assignment library. You can modify these values or use the existing values.
+                                        <br></br>
+                                    </apex:outputPanel>
+                                    
+                                    <table cellpadding="5" style="width: 100%;">                                
+                                        <tr>
+                                            <td style="width: 40%;">
+                                                <table cellpadding="5" style="width: 100%;">
+                                                    <tr>
+                                                        <td style="width: 50%;" align="RIGHT">
+                                                            <apex:outputLabel value="Assignment Name" style="font-weight: bold; margin-right: auto;" />
+                                                            <span class="helpButton"  id="assignment_name-_help">
+                                                                <img src="/s.gif" class="helpOrb" />
+                                                                <apex:outputPanel rendered="{!rNew}">
+                                                                    <script type="text/javascript">
+                                                                        sfdcPage.setHelp('assignment_name','Enter the name for the assignment.');
+                                                                    </script>
+                                                                </apex:outputPanel>
+                                                                <apex:outputPanel rendered="{!rExisting}">
+                                                                    <script type="text/javascript">
+                                                                        sfdcPage.setHelp('assignment_name','Displays the assignment name. You can modify this value for the new assignment or use the original name. Changes you make to this value will not affect the assignment in the assignment library.');
+                                                                    </script>
+                                                                </apex:outputPanel>                                                                 
+                                                            </span>                 
+                                                        </td>
+                                                        <td style="width: 50%;">
+                                                            <apex:outputPanel id="assignmentName">
+                                                                <apex:outputPanel styleClass="requiredInput">
+                                                                    <apex:outputPanel styleClass="requiredBlock"/>
+                                                                    <apex:inputText value="{!assignmentWrapper.assignmentName}" onchange="setGradebookNameJS();" onkeypress="return noenter();"/>
+                                                                </apex:outputPanel>
+                                                            </apex:outputPanel>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                            <td style="width: 40%;">
+                                                <table cellpadding="5" style="width: 100%">
+                                                    <tr>
+                                                        <td style="width: 50%;" align="RIGHT">
+                                                            <apex:outputLabel value="Name in Gradebook" style="font-weight: bold; margin-right: auto;" rendered="{!sectionOrCourseChoice == 'section'}"/>
+                                                            <apex:outputPanel rendered="{!sectionOrCourseChoice == 'section'}">
+                                                            <span class="helpButton"  id="gradebook_name-_help">
+                                                                <img src="/s.gif" class="helpOrb" />
+                                                                <apex:outputPanel rendered="{!rNew && sectionOrCourseChoice == 'section'}">
+                                                                    <script type="text/javascript">
+                                                                        sfdcPage.setHelp('gradebook_name','Enter the 5-character name for the assignment as you want it to display in the gradebook assignments grid. By default, this field contains the first 5 characters of the assignment name.');
+                                                                    </script>
+                                                                </apex:outputPanel>
+                                                                <apex:outputPanel rendered="{!rExisting && sectionOrCourseChoice == 'section'}">
+                                                                    <script type="text/javascript">
+                                                                        sfdcPage.setHelp('gradebook_name','Enter the 5-character name for the assignment as you want it to display in the gradebook assignments grid. By default, this field contains the first 5 characters of the assignment name.');
+                                                                    </script>
+                                                                </apex:outputPanel>
+                                                            </span>
+                                                            </apex:outputPanel>                                                     
+                                                        </td>
+                                                        <td style="width: 50%;" title="{!$ObjectType.Assignment__c.fields.Name_in_Gradebook__c.inlineHelpText}">
+                                                            <apex:outputPanel id="gradebookName" rendered="{!sectionOrCourseChoice == 'section'}">
+                                                                <apex:outputPanel styleClass="requiredInput">
+                                                                    <apex:outputPanel styleClass="requiredBlock"/>
+                                                                    <apex:inputText value="{!assignmentWrapper.gradebookName}" onkeypress="return noenter();"/>
+                                                                </apex:outputPanel>
+                                                            </apex:outputPanel>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 40%;">
+                                                <table cellpadding="5" style="width: 100%;">
+                                                    <tr>
+                                                        <td style="width: 50%;" align="RIGHT">
+                                                            <apex:outputLabel value="Assignment Type" style="font-weight: bold; margin-right: auto;"/>
+                                                            <span class="helpButton"  id="assignment_type-_help">
+                                                                <img src="/s.gif" class="helpOrb" />
+                                                                <apex:outputPanel rendered="{!rNew}">
+                                                                    <script type="text/javascript">
+                                                                        sfdcPage.setHelp('assignment_type','Select the type of assignment (e.g., Classwork, Homework, Test).');
+                                                                    </script>
+                                                                </apex:outputPanel>
+                                                                <apex:outputPanel rendered="{!rExisting}">
+                                                                    <script type="text/javascript">
+                                                                        sfdcPage.setHelp('assignment_type','Displays the type of assignment (e.g., Classwork, Homework, Test). You can select another value for the new assignment or use the original assignment type. Changes you make to this value will not affect the assignment in the assignment library.');
+                                                                    </script>
+                                                                </apex:outputPanel>
+                                                            </span>                                                                 
+                                                        </td>
+                                                        <td style="width: 50%;">
+                                                            <apex:outputPanel id="assignmentType">
+                                                                <apex:outputPanel >
+                                                                    <apex:outputPanel styleClass="requiredInput">
+                                                                        <apex:outputPanel styleClass="requiredBlock"/>
+                                                                        <apex:selectList value="{!assignmentWrapper.assignmentType}" multiselect="false" size="1" disabled="{!IF(selectedAssignmentTypeOptions != null && selectedAssignmentTypeOptions.size > 0, false, true)}">
+                                                                            <apex:selectOption itemValue="" itemLabel=""/>                      
+                                                                            <apex:selectOptions value="{!selectedAssignmentTypeOptions}" />
+                                                                            <apex:actionSupport event="onchange" action="{!setDefaultAssignmentWeighting}" rerender="optionalDetails, weightingValue" />
+                                                                        </apex:selectList>
+                                                                    </apex:outputPanel>
+                                                                </apex:outputPanel>
+                                                            </apex:outputPanel>                                     
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                            <td style="width: 40%;">
+                                                <table cellpadding="5" style="width: 100%;">
+                                                    <tr>
+                                                        <td style="width: 40%;" align="RIGHT">
+                                                            <apex:outputPanel id="weightingValueLabel" rendered="{!sectionOrCourseChoice == 'section'}">
+                                                                <apex:outputPanel rendered="{!rIntegers}">
+                                                                    <apex:outputLabel value="Weighting Value" style="font-weight: bold; margin-right: auto;"/>
+                                                                    <span class="helpButton"  id="weighting_value-_help">
+                                                                        <img src="/s.gif" class="helpOrb" />
+                                                                        <apex:outputPanel rendered="{!IF(assignmentWrapper.assignmentCourse != null, rNew && courseToScaleMap[assignmentWrapper.assignmentCourse] != 'Points', true) || !rPoints}">
+                                                                            <script type="text/javascript">
+                                                                                sfdcPage.setHelp('weighting_value','If you want to override the weighting defined for this assignment type, select the weighting you want to apply to this assignment. SchoolForce uses the weighting to calculate the grade.');
+                                                                            </script>
+                                                                        </apex:outputPanel>
+                                                                        <apex:outputPanel rendered="{!rExisting}">
+                                                                            <script type="text/javascript">
+                                                                                sfdcPage.setHelp('weighting_value','If you want to override the weighting defined for this assignment type, select the weighting you want to apply to this assignment. SchoolForce uses the weighting to calculate the grade.');
+                                                                            </script>
+                                                                        </apex:outputPanel>                                                                     
+                                                                        <apex:outputPanel rendered="{!IF(assignmentWrapper.assignmentCourse != null, courseToScaleMap[assignmentWrapper.assignmentCourse] == 'Points' || rPoints, false)}">
+                                                                            <script type="text/javascript">
+                                                                                sfdcPage.setHelp('weighting_value','A points grade scale is assigned to this course or assignment. You cannot edit the assignment weighting for points-based courses or assignments. If the weighting value is not correct, please contact your system administrator.');
+                                                                            </script>                                                                           
+                                                                        </apex:outputPanel>
+                                                                    </span>             
+                                                                </apex:outputPanel>                                                     
+                                                            </apex:outputPanel>
+                                                        </td>
+                                                        <td style="width: 15%;" title="{!$ObjectType.Assignment__c.fields.Weighting_Value__c.inlineHelpText}">
+                                                            <apex:outputPanel id="weightingValue" rendered="{!sectionOrCourseChoice == 'section'}">
+                                                                <apex:outputPanel rendered="{!rIntegers}">
+                                                                    <apex:outputPanel id="integerField" styleClass="requiredInput">
+                                                                        <apex:outputPanel styleClass="requiredBlock" />
+                                                                        <apex:selectList value="{!assignmentWrapper.assignmentWeighting}" multiselect="false" size="1" rendered="{!IF(assignmentWrapper.assignmentCourse != null, courseToScaleMap[assignmentWrapper.assignmentCourse] != 'Points', true) && !rPoints}">
+                                                                            <apex:selectOption itemValue="" itemLabel=""/>  
+                                                                            <apex:selectOptions value="{!integerAssignmentWeightingOptions}"/>
+                                                                        </apex:selectList>
+                                                                        <apex:selectList value="{!assignmentWrapper.assignmentWeighting}" multiselect="false" size="1" rendered="{!IF(assignmentWrapper.assignmentCourse != null, courseToScaleMap[assignmentWrapper.assignmentCourse] == 'Points', false) || rPoints}" disabled="true">
+                                                                            <apex:selectOption itemValue="1" itemLabel="1"/>    
+                                                                        </apex:selectList>
+                                                                    </apex:outputPanel>
+                                                                </apex:outputPanel> 
+                                                            </apex:outputPanel>                                         
+                                                        </td>               
+                                                        <td align="RIGHT">
+                                                            <apex:outputPanel id="colorLabel" rendered="{!sectionOrCourseChoice == 'section'}">
+                                                                <apex:outputPanel rendered="{!rColor}">
+                                                                    <apex:outputLabel value="Color" style="font-weight: bold; margin-right: auto;"/>
+                                                                    <span class="helpButton"  id="color_label-_help">
+                                                                        <img src="/s.gif" class="helpOrb"/>
+                                                                        <apex:outputPanel rendered="{!rNew}">
+                                                                            <script type="text/javascript">
+                                                                                sfdcPage.setHelp('color_label','Select the color in which you want the assignment information to display in the gradebook assignments grid.');
+                                                                            </script>
+                                                                        </apex:outputPanel>
+                                                                        <apex:outputPanel rendered="{!rExisting}">
+                                                                            <script type="text/javascript">
+                                                                                sfdcPage.setHelp('color_label','Select the color in which you want the assignment information to display in the gradebook assignments grid.');
+                                                                            </script>
+                                                                        </apex:outputPanel>
+                                                                    </span> 
+                                                                </apex:outputPanel>
+                                                            </apex:outputPanel>
+                                                        </td>
+                                                        <td>
+                                                            <apex:outputPanel id="colorValue" rendered="{!sectionOrCourseChoice == 'section'}">
+                                                                <apex:selectList value="{!assignmentWrapper.color}" multiselect="false" size="1" rendered="{!rColor}">
+                                                                    <apex:selectOptions value="{!colorOptions}" />
+                                                                </apex:selectList>                  
+                                                            </apex:outputPanel>                     
+                                                        </td>                                                       
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 40%;">
+                                                <table cellpadding="5" style="width: 100%;">
+                                                    <tr>
+                                                        <td style="width: 50%;" align="RIGHT">
+                                                            <apex:outputPanel id="gradeScalesLabel" rendered="{!rGradeScale && !standardOnly && sectionOrCourseChoice == 'section'}">
+                                                                <apex:outputLabel value="Grading Scale " style="font-weight: bold;"/>
+                                                                <span class="helpButton"  id="grading_scale-_help">
+                                                                    <img src="/s.gif" class="helpOrb"/>
+                                                                    <apex:outputPanel rendered="{!IF(assignmentWrapper.assignmentCourse != null, courseToScaleMap[assignmentWrapper.assignmentCourse] != 'Points', true) || !rPoints}">
+                                                                        <script type="text/javascript">
+                                                                            sfdcPage.setHelp('grading_scale','Select the grade scale you want to use for this assignment.');
+                                                                        </script>
+                                                                    </apex:outputPanel>
+                                                                    <apex:outputPanel rendered="{!IF(assignmentWrapper.assignmentCourse != null, courseToScaleMap[assignmentWrapper.assignmentCourse] == 'Points' || rPoints, false)}">
+                                                                        <script type="text/javascript">
+                                                                            sfdcPage.setHelp('grading_scale','A points grade scale is assigned to this course. You cannot edit this field because you can only use a points grade scale on assignments in a points-based course.');
+                                                                        </script>                                                                           
+                                                                    </apex:outputPanel>                                                                             
+                                                                </span>                                                                 
+                                                            </apex:outputPanel>
+                                                            
+                                                            <!-- for standards only show standard scale instead of grade scale -->
+                                                            <apex:outputPanel rendered="{!standardOnly && sectionOrCourseChoice == 'section'}">
+                                                                <apex:outputLabel value="Standards Grading Scale" style="font-weight:bold; margin-right: auto;"/>
+                                                                <span class="helpButton"  id="standards_grading_scale-_help">
+                                                                    <img src="/s.gif" class="helpOrb"/>
+                                                                    <apex:outputPanel rendered="{!standardOnly}">
+                                                                        <script type="text/javascript">
+                                                                            sfdcPage.setHelp('standards_grading_scale','Displays the grade scale this assignment will use. The grade scale for this assignment is determined by the grade scale assigned to the course.');
+                                                                        </script>
+                                                                    </apex:outputPanel>
+                                                                    <apex:outputPanel rendered="{!!standardOnly}">
+                                                                        <script type="text/javascript">
+                                                                            sfdcPage.setHelp('standards_grading_scale','Select the standards-based grade scale you want to use for this assignment. SchoolForce uses this grade scale to calculate the grade for the standards you selected on the assignment.');
+                                                                        </script>
+                                                                    </apex:outputPanel>
+                                                                </span>                                                             
+                                                            </apex:outputPanel>
+                                                        </td>
+                                                        <td style="width: 50%;">
+                                                            <apex:outputPanel id="gradeScalesValue" rendered="{!rGradeScale && !standardOnly && sectionOrCourseChoice == 'section'}">
+                                                                <apex:outputPanel styleClass="requiredInput">
+                                                                <apex:outputPanel styleClass="requiredBlock"/>
+                                                                    <apex:selectList value="{!assignmentWrapper.gradeScale}" multiselect="false" size="1" onchange="showProgressBar('Please Wait...'); renderPointsFieldJS();" disabled="{!IF(standardOnly, true, IF(assignmentWrapper.assignmentCourse != null, courseToScaleMap[assignmentWrapper.assignmentCourse] == 'Points', true))}">
+                                                                        <apex:selectOption itemValue="" itemLabel=""/>
+                                                                        <apex:selectOptions value="{!gradeScaleOptions}" />             
+                                                                    </apex:selectList>
+                                                                </apex:outputPanel>
+                                                            </apex:outputPanel>
+                                                            
+                                                            <apex:outputPanel id="standardScales2" rendered="{!standardOnly && sectionOrCourseChoice == 'section'}">
+                                                                <apex:outputPanel rendered="{!standardOnly}">
+                                                                    <apex:outputPanel styleClass="requiredInput">
+                                                                        <apex:outputPanel styleClass="requiredBlock" rendered="{!standardOnly}"/>
+                                                                        <apex:selectList value="{!assignmentWrapper.standardGradeScale}"
+                                                                                multiselect="false" size="1" disabled="{!IF(standardOnly, true, IF(standardScaleOptions != null && standardScaleOptions.size > 0, false, true))}">
+                                                                                <apex:selectOption itemValue="" itemLabel=""/>
+                                                                                <apex:selectOptions value="{!standardScaleOptions}" />
+                                                                        </apex:selectList>
+                                                                    </apex:outputPanel>
+                                                                </apex:outputPanel>
+                                                                <apex:outputPanel rendered="{!!standardOnly}">
+                                                                    <apex:selectList value="{!assignmentWrapper.standardGradeScale}"
+                                                                            multiselect="false" size="1" disabled="{!IF(standardOnly, true, IF(standardScaleOptions != null && standardScaleOptions.size > 0, false, true))}">
+                                                                            <apex:selectOption itemValue="" itemLabel=""/>
+                                                                            <apex:selectOptions value="{!standardScaleOptions}" />
+                                                                    </apex:selectList>                                                                  
+                                                                </apex:outputPanel>
+                                                            </apex:outputPanel>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                            <td style="width: 40%;">
+                                                <table cellpadding="5" style="width: 100%;">
+                                                    <tr>
+                                                        <td style="width: 50%;" align="RIGHT">
+                                                            <apex:outputPanel id="pointsLabel" rendered="{!sectionOrCourseChoice == 'section'}">
+                                                                <apex:outputPanel rendered="{!rPoints}">
+                                                                    <apex:outputLabel style="font-weight: bold;" value="Possible Points"/>                                  
+                                                                    <span class="helpButton"  id="points_label-_help">
+                                                                        <img src="/s.gif" class="helpOrb"/>
+                                                                        <apex:outputPanel rendered="{!rNew}">   
+                                                                            <script type="text/javascript">
+                                                                                sfdcPage.setHelp('points_label','Enter the total points possible for this assignment. This field only displays if you selected \"Points\" in the Grading Scale field.');
+                                                                            </script>
+                                                                        </apex:outputPanel>                                                                     
+                                                                        <apex:outputPanel rendered="{!rExisting}">
+                                                                            <script type="text/javascript">
+                                                                                sfdcPage.setHelp('points_label','Enter the total points possible for this assignment. This field only displays if you selected \"Points\" in the Grading Scale field.');
+                                                                            </script>
+                                                                        </apex:outputPanel>
+                                                                    </span>                                                                 
+                                                                </apex:outputPanel>
+                                                            </apex:outputPanel>
+                                                        </td>
+                                                        <td style="width: 50%;">
+                                                            <apex:outputPanel id="pointsField" rendered="{!sectionOrCourseChoice == 'section'}">
+                                                                <apex:outputPanel styleClass="requiredInput">
+                                                                    <apex:outputPanel styleClass="requiredBlock" rendered="{!rPoints}"/>
+                                                                    <apex:inputText value="{!assignmentWrapper.assignmentPossiblePoints}" rendered="{!rPoints}" onkeypress="return noenter();"/>
+                                                                </apex:outputPanel>
+                                                            </apex:outputPanel>                                                     
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 40%;">
+                                                <table cellpadding="5" style="width: 100%; table-layout: fixed;">
+                                                    <tr>
+                                                        <td style="width: 50%; word-wrap: normal;" align="RIGHT">
+                                                            <apex:outputPanel rendered="{!sectionOrCourseChoice == 'section'}">
+                                                                <!-- modification on display here to not show the standard scale here when it's standardOnly -->
+                                                                <apex:outputPanel rendered="{!rStandardScale && !standardOnly}">
+                                                                    <apex:outputLabel value="Standards Grading Scale" style="font-weight:bold; margin-right: auto;"/>
+                                                                    <span class="helpButton"  id="standards_grading_scale-_help">
+                                                                        <img src="/s.gif" class="helpOrb"/>
+                                                                        <apex:outputPanel rendered="{!standardOnly}">
+                                                                            <script type="text/javascript">
+                                                                                sfdcPage.setHelp('standards_grading_scale','Displays the grade scale this assignment will use. The grade scale for this assignment is determined by the grade scale assigned to the course.');
+                                                                            </script>
+                                                                        </apex:outputPanel>
+                                                                        <apex:outputPanel rendered="{!!standardOnly}">
+                                                                            <script type="text/javascript">
+                                                                                sfdcPage.setHelp('standards_grading_scale','Select the standards-based grade scale you want to use for this assignment. SchoolForce uses this grade scale to calculate the grade for the standards you selected on the assignment.');
+                                                                            </script>
+                                                                        </apex:outputPanel>
+                                                                    </span>             
+                                                                </apex:outputPanel>                                                     
+                                                            </apex:outputPanel>
+                                                        </td>
+                                                        <td style="width: 50%;">
+                                                            <apex:outputPanel id="standardScales" rendered="{!rStandardScale && !standardOnly && sectionOrCourseChoice == 'section'}">
+                                                                <apex:outputPanel rendered="{!standardOnly}">
+                                                                    <apex:outputPanel styleClass="requiredInput">
+                                                                        <apex:outputPanel styleClass="requiredBlock" rendered="{!standardOnly}"/>
+                                                                        <apex:selectList value="{!assignmentWrapper.standardGradeScale}"
+                                                                                multiselect="false" size="1" disabled="{!IF(standardOnly, true, IF(standardScaleOptions != null && standardScaleOptions.size > 0, false, true))}">
+                                                                                <apex:selectOption itemValue="" itemLabel=""/>
+                                                                                <apex:selectOptions value="{!standardScaleOptions}" />
+                                                                        </apex:selectList>
+                                                                    </apex:outputPanel>
+                                                                </apex:outputPanel>
+                                                                <apex:outputPanel rendered="{!!standardOnly}">
+                                                                    <apex:selectList value="{!assignmentWrapper.standardGradeScale}"
+                                                                            multiselect="false" size="1" disabled="{!IF(standardOnly, true, IF(standardScaleOptions != null && standardScaleOptions.size > 0, false, true))}">
+                                                                            <apex:selectOption itemValue="" itemLabel=""/>
+                                                                            <apex:selectOptions value="{!standardScaleOptions}" />
+                                                                    </apex:selectList>                                                                  
+                                                                </apex:outputPanel>
+                                                            </apex:outputPanel>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>                                       
+                                    </table>                    
+                                </div>
+                            </div> <!-- END ASSIGNMENT DETAILS -->
+
+                            <apex:outputPanel rendered="{!rStandards}">
+                                <div class="section" id="AS">
+                                    <h3>Standards</h3>
+                                    <div class="section_content">
+                                        <apex:outputPanel rendered="{!rExisting}">
+                                            This area displays the standards associated to this assignment as it is stored in the assignment library. You can add additional standards, remove any of the existing standards, or use the existing standards.
+                                            <br/><br/>
+                                        </apex:outputPanel>
+                                        
+                                        <table cellpadding="5">
+                                            <tr>
+                                                <td ALIGN="right">
+                                                    <apex:outputLabel value="Standard Name" style="font-weight:bold; margin-right: auto;"/>
+                                                    <span class="helpButton"  id="identifier-_help">
+                                                        <img src="/s.gif" class="helpOrb" />
+                                                        <script type="text/javascript">
+                                                            sfdcPage.setHelp('identifier','Enter all or part of the standard name to search for standards with that name.');
+                                                        </script>
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    <apex:inputText value="{!searchFeature.identifierSearch}" onkeypress="return noenter();"/>
+                                                </td>
+                                                <td ALIGN="right">
+                                                    <apex:outputLabel value="Parent Standard" style="font-weight:bold; margin-right: auto;"/>
+                                                    <span class="helpButton"  id="parent_standard-_help">
+                                                        <img src="/s.gif" class="helpOrb" />
+                                                        <script type="text/javascript">
+                                                            sfdcPage.setHelp('parent_standard','Enter all or part of the parent strand to search for strands with the entered parent standard.');
+                                                        </script>
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    <apex:inputText value="{!searchFeature.parentStandardSearch}" onkeypress="return noenter();"/>
+                                                </td>
+                                                <td ALIGN="right">
+                                                    <apex:outputLabel value="Attribute" style="font-weight:bold; margin-right: auto;"/>
+                                                    <span class="helpButton"  id="attribute_standard-_help">
+                                                        <img src="/s.gif" class="helpOrb" />
+                                                        <script type="text/javascript">
+                                                            sfdcPage.setHelp('attribute_standard','Select an attribute to search for standards or strands with that attribute.');
+                                                        </script>
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    <apex:selectList value="{!searchFeature.attributeSearch}" multiSelect="false" size="1">
+                                                        <apex:selectOptions value="{!standardAttributeOptions}"/>
+                                                    </apex:selectList>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td ALIGN="right">
+                                                    <apex:outputLabel value="Strand" style="font-weight:bold; margin-right: auto;"/>
+                                                    <span class="helpButton"  id="strand-_help">
+                                                        <img src="/s.gif" class="helpOrb" />
+                                                        <script type="text/javascript">
+                                                            sfdcPage.setHelp('strand','Enter all or part of the strand name to search for strands with that name.');
+                                                        </script>
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    <apex:inputText value="{!searchFeature.strandSearch}" onkeypress="return noenter();"/>
+                                                </td>
+                                                <td ALIGN="right">
+                                                    <apex:outputLabel value="Subject" style="font-weight:bold; margin-right: auto;"/>
+                                                    <span class="helpButton"  id="subject-_help">
+                                                        <img src="/s.gif" class="helpOrb" />
+                                                        <script type="text/javascript">
+                                                            sfdcPage.setHelp('subject','Enter all or part of the strand or standard subject to search for strands or standards in a particular subject area (i.e., math, science, language arts).');
+                                                        </script>
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    <apex:inputText value="{!searchFeature.subjectSearch}" onkeypress="return noenter();"/>
+                                                </td>                                                                                                                                   
+                                            </tr>
+                                        </table>
+                                        <center>
+                                            <apex:actionStatus id="mySaveStatus1">
+                                                <apex:facet name="stop">    
+                                                    <apex:commandButton value="Search Standards" title="After completing the search criteria and clicking Search Standards, the table loads with the applicable standards. Select each standard you want to include in the assignment. You can enter new search criteria to search for additional standards. The previously standards remain selected and will be added to the assignment." styleClass="drk_blue_btn" style="margin: 0 0 0 0 !important;"
+                                                        rerender="topMessages, bottomMessages, selectedStandards" status="mySaveStatus1"
+                                                        action="{!searchFeature.searchMethod}" onclick="showProgressBar('Searching standards. Please wait.');"
+                                                        oncomplete="
+                                                            resetTables();  
+                                                            if({!searchFeature.noResults}){
+                                                                alert('No standards found! Please try again.'); 
+                                                            }
+                                                            else{
+                                                                if({!searchFeature.over500}) {
+                                                                    alert('Your search returned over 500 results.  Refine your search if you do not see the relevant standards.');
+                                                                }                              
+                                                            }
+                                                            setTimeout('hideProgressBar()',500);                                                                                                                        
+                                                        " />
+                                                </apex:facet>
+                                                <apex:facet name="start">
+                                                    <apex:commandButton styleClass="drk_blue_btn" style="margin: 0 0 0 0 !important;" value="Searching..." disabled="true" status="mySaveStatus1" rendered="true" rerender="topMessages, bottomMessages, mySaveStatus1" />
+                                                </apex:facet>
+                                            </apex:actionStatus>
+                                        </center>
+                                        <br/>
+                                        <apex:outputPanel id="selectedStandards">
+                                            <apex:dataTable styleClass="tablesorter" id="selectedStandardsTable"
+                                                value="{!searchFeature.searchStandardResults}" var="sStandard" width="100%">                        
+                                                <apex:column >
+                                                    <apex:facet name="header">Select</apex:facet>
+                                                    <apex:inputCheckBox id="selected" value="{!sStandard.selected}"/>
+                                                </apex:column>
+                                                <apex:column >
+                                                    <apex:facet name="header">Include In <br/>Standard Grade</apex:facet>
+                                                    <apex:inputCheckBox id="included" value="{!sStandard.includeStandardGrade}" />
+                                                </apex:column>          
+
+                                                <apex:column >
+                                                    <apex:facet name="header">Standard Name</apex:facet>
+                                                    <apex:outputLink value="/{!sStandard.standard.ID}" target="_blank">{!sStandard.standard.Name}</apex:outputLink>
+                                                </apex:column>
+                                                <apex:column >
+                                                    <apex:facet name="header">Strand</apex:facet>
+                                                    <apex:outputLink value="/{!sStandard.standard.Strand__c}" target="_blank">{!sStandard.standard.Strand__r.Name}</apex:outputLink>
+                                                </apex:column>
+                                                <apex:column >
+                                                    <apex:facet name="header">Standard Description</apex:facet>
+                                                    <apex:outputText value="{!sStandard.standard.Long_Text__c}"/>
+                                                </apex:column>
+                                                <apex:column >
+                                                    <apex:facet name="header">Subject</apex:facet>
+                                                    <apex:outputText value="{!sStandard.standard.Subject__c}" rendered="{!sStandard.standard.Subject__c != null}"/>
+                                                    <apex:outputText value="{!sStandard.standard.Standard_Subject__r.Name}" rendered="{!sStandard.standard.Subject__c == null}"/>
+                                                </apex:column>                                                  
+                                                <apex:column >
+                                                    <apex:facet name="header">Attribute</apex:facet>
+                                                    <apex:outputText value="{!sStandard.standard.Attribute__c}" />
+                                                </apex:column>
+                                                <apex:column >
+                                                    <apex:facet name="header">Level</apex:facet>
+                                                    <apex:outputText value="{!sStandard.standard.Level__c}" />
+                                                </apex:column>                                              
+                                            </apex:dataTable>                                       
+                                        </apex:outputPanel>
+                                    </div>
+                                </div>
+                            </apex:outputPanel> <!-- END STANDARD ADD/SEARCH PANEL -->
+
+                            <apex:outputPanel rendered="{!rCourse}" id="courses">
+                                <div class="section" id="C">
+                                    <h3>Course Assignment Details</h3>
+                                    <div class="section_content">
+                                        <apex:outputLabel value="Attach Assignments?" style="font-weight:bold"/>
+                                        <apex:inputCheckBox value="{!assignmentWrapper.attachAssignment}" />
+                                        <br/>
+                                    </div>
+                                </div>
+                            </apex:outputPanel>
+
+                            <div id="optionalDetails">
+                                <apex:outputPanel rendered="{!rDetails}">
+                                    <div class="section">
+                                        <h3>Optional Details</h3>
+                                        <div class="section_content">
+                        
+                                        <span style="margin-bottom:4px; margin-top:4px; color:rgb(102, 102, 102); font-family: Arial, Helvetica, sans-serif; font-weight: bold;" >
+                                            Short Description
+                                            <span class="helpButton"  id="shortDesc-_help" title="This description is limited to 255 characters.  This information will display in the Portal (if applicable) , PGV (if applicable), and in Gradebook as hover text over the assignment.">
+                                                <img src="/s.gif" class="helpOrb" />
+                                            </span>
+                                        </span>
+                                        <apex:inputTextArea value="{!assignmentWrapper.assignmentShortDescription}" id="assignmentDescription" onkeyup="
+                                                                                                                                    var value = j$(this).val();
+                                                
+                                                                                                                                    if(value.length>=255){
+                                                                                                                                        alert('Sorry, but the system is currently limited to 255 characters for the short description field.');
+                                                                                                                                        j$(this).val(value.substring(0,254));
+                                                                                                                                    }
+                                                                                                                                    "
+                                                                                                                                    onblur="
+                                                                                                                                    var value = j$(this).val();
+                                                
+                                                                                                                                    if(value.length>=255){
+                                                                                                                                        alert('Sorry, but the system is currently limited to 255 characters for the short description field.');
+                                                                                                                                        j$(this).val(value.substring(0,254));
+                                                                                                                                    }"
+                                                                                                                                    style="height:50px; width:921px;"/>
+                                        
+                                        <span style="margin-bottom:4px; margin-top:4px; color:rgb(102, 102, 102); font-family: Arial, Helvetica, sans-serif; font-weight: bold;" >
+                                            Long Description
+                                            <span class="helpButton"  id="longDesc-_help" title="This description is limited to 32000 characters. This information will display in the Assignment Library and on the Assignment Details page.">
+                                                <img src="/s.gif" class="helpOrb" />
+                                            </span>
+                                        </span>
+                                        <apex:inputTextArea value="{!assignmentWrapper.assignmentLongDescription}" id="courseLongDesc" style="height:50px; width:921px;"/>
+                                                                
+                                        
+                                            <table cellpadding="5" style="width: 100%;">
+                                                <tr>
+                                                    <td align="RIGHT">
+                                                        <apex:outputPanel rendered="{!rAssessments}">
+                                                            <apex:outputLabel value="Assessment Type" style="font-weight:bold; margin-right: auto;" />
+                                                            <span class="helpButton" id="assessment_type-_help">
+                                                                <img src="/s.gif" class="helpOrb" />
+                                                                <script type="text/javascript">
+                                                                    sfdcPage.setHelp('assessment_type','add in Summer 2014: iteration 2');
+                                                                </script>
+                                                            </span> 
+                                                        </apex:outputPanel>                                                 
+                                                    </td>
+                                                    <td>
+                                                        <apex:selectList value="{!assignmentWrapper.assignmentAssessmentType}" rendered="{!rAssessments}"
+                                                                multiselect="false" size="1" onchange="showProgressBar('Please Wait...'); renderPointsFieldJS();">
+                                                            <apex:selectOption itemValue="" itemLabel="-Select One-"/>
+                                                            <apex:selectOptions value="{!assessmentTypeOptions}" />     
+                                                        </apex:selectList>
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td align="RIGHT">
+                                                        <apex:outputLabel value="Media Name" style="font-weight: bold; margin-right: auto;"/>
+                                                        <span class="helpButton" id="media_name-_help">
+                                                            <img src="/s.gif" class="helpOrb" />
+                                                            <script type="text/javascript">
+                                                                sfdcPage.setHelp('media_name','Enter the name you want to display in the Student Portal if you are attaching media, such as a YouTube or Khan Academy video, to the assignment.');
+                                                            </script>
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        <apex:inputText value="{!assignmentWrapper.mediaName}" onkeypress="return noenter();"/>
+                                                    </td>
+                                                    <td align="RIGHT">
+                                                        <apex:outputLabel value="Media Source" style="font-weight: bold; margin-right: auto;"/>
+                                                        <span class="helpButton" id="media_source-_help">
+                                                            <img src="/s.gif" class="helpOrb" />
+                                                            <script type="text/javascript">
+                                                                sfdcPage.setHelp('media_source','Enter the URL for the website that contains the media you want to attach to the assignment. You can enter a relative URL (without the \"http:\" or \"https\"). For example: //www.khanacademy.org/embed_\nvideo?v=Q1vMNyIP4Us');
+                                                            </script>
+                                                        </span>                                                     
+                                                    </td>
+                                                    <td>
+                                                        <apex:inputText value="{!assignmentWrapper.mediaSource}" onkeypress="return noenter();"/>
+                                                    </td>
+                                                </tr>
+                                                
+                                                <tr>                                                
+                                                    <td align="RIGHT">
+                                                        <apex:outputLabel value="Show in portal?" style="font-weight:bold; margin-right: auto;"/>
+                                                        <span class="helpButton" id="show_in_portal-_help">
+                                                            <img src="/s.gif" class="helpOrb"/>
+                                                            <!-- {!$ObjectType.Assignment__c.fields.Show_in_portal__c.inlineHelpText} -->
+                                                            <script type="text/javascript">
+                                                                sfdcPage.setHelp('show_in_portal', 'Select whether or not you want this assignment to display in the Student Portal. This check box is selected by default.');
+                                                            </script>
+                                                        </span>                                                     
+                                                    </td>
+                                                    <td>
+                                                        <apex:inputCheckBox value="{!assignmentWrapper.showInPortal}"/>
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td align="RIGHT">
+                                                        <apex:outputLabel value="Include in final grade?" style="font-weight:bold; margin-right: auto;"/>
+                                                        <span class="helpButton" id="includeInFinal-_help">
+                                                            <img src="/s.gif" class="helpOrb" />
+                                                            <script type="text/javascript">
+                                                                sfdcPage.setHelp('includeInFinal','Select whether or not you want to include this assignment in the section grade and final grade calculation for this section. This check box is selected by default.');
+                                                            </script>
+                                                        </span>         
+                                                    </td>
+                                                    <td>
+                                                        <apex:inputCheckBox value="{!assignmentWrapper.includeInFinalGrade}" />
+                                                    </td>
+                
+                                                    <td align="RIGHT">
+                                                        <apex:outputLabel value="Attach Assignment?" style="font-weight:bold; margin-right: auto;"/>
+                                                        <span class="helpButton" id="attach_assignment-_help">
+                                                            <img src="/s.gif" class="helpOrb" />
+                                                            <script type="text/javascript">
+                                                                sfdcPage.setHelp('attach_assignment','Select whether or not you want to include an attachment for this assignment. The first attachment you add displays in the Student/Parent Portal.');
+                                                            </script>
+                                                        </span>                                                             
+                                                    </td>   
+                                                    <td>
+                                                        <apex:inputCheckBox value="{!assignmentWrapper.attachAssignment}" />
+                                                    </td>
+                                                </tr>
+                                            </table>                                                                
+                                        </div>
+                                    </div>
+                                </apex:outputPanel>
+                            </div> <!-- END OPTIONAL DETAILS -->
+
+                            <div id="selectSections">
+                                <apex:outputPanel rendered="{!rDetails}">
+                                    <div class="section">
+                                        <h3>Select Section(s)</h3>
+                                        <div class="section_content">
+                                            <apex:pageBlockTable value="{!sections}" var="section" style="margin: 0 0 0 0;">
+                                                <apex:column width="15px">
+                                                    <apex:facet name="header">
+                                                      <input type="checkbox" style="float:left; margin:0 5px 0 0;" onclick="selectAll2(this,'addAssCb'); " />
+                                                      Add
+                                                    </apex:facet>
+                                                    <apex:inputCheckBox styleClass="addAssCb" value="{!section.selected}" onChange="showRequiredDueDate(this); 
+                                                    datefix(this);"/>    
+                                                </apex:column>
+                                                <apex:column title="Name">
+                                                    <apex:facet name="header">Section Name</apex:facet>
+                                                    <apex:outputText value="{!section.sectionName}" />
+                                                </apex:column>
+                                                <apex:column title="Reporting Period">
+                                                    <apex:facet name="header">Reporting Period</apex:facet>
+                                                    <apex:selectList id="reportingPeriod" value="{!section.reportingPeriod}" onChange="datefix2(this.value, this); console.log(this);"
+                                                        multiselect="false" size="1" styleClass="rPeriod">
+                                                        <apex:selectOptions value="{!section.reportingPeriodOptions}" />
+                                                    </apex:selectList>
+                                                    <apex:actionSupport event="onChange" rerender="dueDate" />
+                                                </apex:column>                          
+                                                <apex:column title="Due Date">
+                                                    <apex:facet name="header">Due Date</apex:facet>
+                                                    <!-- DE1621 NYC and RTTT really desire something like this -->                              
+                                                    <apex:outputPanel style="visibility:hidden" layout="block" styleClass="requiredInput">
+                                                        <apex:outputPanel layout="block" styleClass="requiredBlock" />
+                                                             <apex:inputText id="dueDate" value="{!section.dueDate}" styleClass="datepicker" onkeypress="return noenter();"/>   
+                                                    </apex:outputPanel>
+                                                </apex:column>                                  
+                                                <apex:column title="Number of Students">
+                                                    <apex:facet name="header"># of Students</apex:facet>
+                                                    <apex:outputText value="{!section.numberOfStudents}" />
+                                                </apex:column>
+                                                <apex:column title="Period">
+                                                    <apex:facet name="header">Period</apex:facet>
+                                                    <apex:outputText value="{!section.periods}" />
+                                                </apex:column>                              
+                                            </apex:pageBlockTable>
+                                            <br></br>
+                                            <apex:pageBlockTable id="gradebookGroup" rendered="{!IF(rGroups, true, false)}"
+                                                value="{!gradebookGroups}" var="group">
+                                                <apex:column width="15px">
+                                                    <apex:facet name="header">
+                                                        <input type="checkbox" style="float:left; margin:0 5px 0 0;" onclick="selectAll2(this,'addAssGpCb'); " />
+                                                        Add
+                                                    </apex:facet>
+                                                    <apex:inputCheckBox styleClass="addAssGpCb" value="{!group.selected}" onChange="showRequiredDueDate(this, j$(this)); datefix(this);"/>
+                                                </apex:column>
+                                                <apex:column title="Name"> 
+                                                    <apex:facet name="header">Group Name</apex:facet>
+                                                    <apex:outputText value="{!group.sectionName}" />
+                                                </apex:column>
+                                                <apex:column title="Reporting Period">
+                                                    <apex:facet name="header">Reporting Period</apex:facet>
+                                                    <apex:selectList id="gReportingPeriod" value="{!group.reportingPeriod}" onChange="datefix2(this.value, this);console.log(this);"
+                                                        multiselect="false" size="1" styleClass="rPeriod">
+                                                        <apex:selectOptions value="{!group.reportingPeriodOptions}" />
+                                                    </apex:selectList>
+                                                </apex:column>                          
+                                                <apex:column title="Due Date">
+                                                    <apex:facet name="header">Due Date</apex:facet>
+                                                       <!-- DE1621 NYC and RTTT really desire something like this -->                               
+                                                      <apex:outputPanel style="visibility:hidden" layout="block" styleClass="requiredInput" >
+                                                          <apex:outputPanel layout="block" styleClass="requiredBlock" />
+                                                               <apex:inputText id="gDueDate" value="{!group.dueDate}" styleClass="datepicker" onkeypress="return noenter();"/>  
+                                                      </apex:outputPanel>               
+                                                </apex:column>                           
+                                                <apex:column >
+                                                    <apex:facet name="header">Section Name</apex:facet>
+                                                    <apex:outputText value="{!group.parentSectionName}" />
+                                                </apex:column>
+                                                <apex:column title="Number of Students">
+                                                    <apex:facet name="header"># of Students</apex:facet>
+                                                    <apex:outputText value="{!group.numberOfStudents}" />
+                                                </apex:column>
+                                                <apex:column title="Period">
+                                                    <apex:facet name="header">Period</apex:facet>
+                                                    <apex:outputText value="{!group.periods}" />
+                                                </apex:column>
+                                            </apex:pageBlockTable>      
+                                        </div>      
+                                    </div>                  
+                                </apex:outputPanel>
+                            </div>
+
+                            <apex:outputPanel id="submitButtons">
+                                <apex:outputPanel >
+                                    <br></br>
+                                    <apex:commandButton styleClass="black_btn" value="Submit" action="{!submit}" onClick="showProgressBar('Submitting...')" onComplete="setTimeout('hideProgressBar()', 500); scrollToDiv(document.getElementById('scrollBottom'));" rerender="topMessages, bottomMessages"/>
+                                    <apex:commandButton styleClass="black_btn" value="Submit and New" action="{!submitAndNew}" onClick="showProgressBar('Submitting...');" onComplete="setTimeout('hideProgressBar()', 500); scrollToDiv(document.getElementById('scrollBottom'));" rerender="topMessages, bottomMessages"/>
+                                    <apex:commandButton styleClass="black_btn" value="Cancel" action="{!cancel}" immediate="true" />
+                                    <div class="clear_fix"></div>
+                                </apex:outputPanel>
+                            </apex:outputPanel> 
+                        </apex:outputPanel> <!-- END SHARED CONTENT RERENDER PANEL -->
+                    </div> <!-- END SHARED CONTENT -->
+                </div> <!-- End of tabs -->     
+            </apex:pageBlock>
+        
+            <div id="scrollBottom">
+                <apex:outputPanel id="bottomMessages">
+                    <apex:pageMessages />
+                </apex:outputPanel>     
+            </div>
+            
+        </apex:outputPanel><!-- mainPanel -->
+        
+        <apex:actionFunction name="renderPointsFieldJS" action="{!renderPointsField}" rerender="pointsLabel, pointsField, integerLabel, integerField, weightingValue" onComplete="setTimeout('hideProgressBar()', 500);"/>
+        <apex:actionFunction name="setGradebookNameJS" action="{!setGradebookName}" rerender="gradebookName"/>
+        
+    </apex:form>
+
+</apex:page>

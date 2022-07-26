@@ -1,0 +1,234 @@
+<!-- 
+/******************************************************************************************************************
+*   Copyright ©2011 Acumen Solutions, Inc. All Rights Reserved.  This software and source code is proprietary to Acumen Solutions, 
+
+Inc. ("Acumen") and is protected by copyright and other intellectual property laws.  
+*   This source code may only be used by an authorized licensee of Acumen and may only be used by such licensee in accordance with 
+
+the terms and conditions of an executed license agreement between such licensee
+*   and Acumen (the "License Agreement").  This source code may not be reproduced, published, or disclosed to others except as 
+
+provided in the License Agreement.  
+*
+* Description: Layout for the time/section gird for the scheduler page.
+* 
+* 
+*
+* Modification Log:
+* -----------------------------------------------------------------------------------------------------------------
+* Mod ID        |   Date        | Mod Author        | Brief Mod Description 
+* -----------------------------------------------------------------------------------------------------------------
+* 00001         |               | Peter Nebel       | Initial code creation.
+* -----------------------------------------------------------------------------------------------------------------
+* 
+*
+*******************************************************************************************************************/
+-->
+<apex:component access="global">
+	<c:CT_jQueryInit bColorPicker="true" bClueTip="true" bLoadingPanel="true" />
+  <apex:stylesheet value="{!$Resource.New_Core_UX}"/>
+ <script>
+ j$  =jQuery.noConflict();
+ </script>
+	<script type="text/javascript"
+		src="{!URLFOR($Resource.resources_Master, '/plugin/floatHeader/js/floatHeader.js')}"
+		charset="UTF-8"></script>
+
+	
+	<apex:outputPanel id="scriptPanel">
+<script>
+
+	        
+	    
+
+</script>
+     
+    </apex:outputPanel>
+
+<style>
+.ui-widget-content {
+    border: 0px solid #AAA !important;
+}
+.ui-widget-header {
+    background-color: white !important; border:0px solid #fff;
+    border: 0px solid #67B2CE !important;
+}
+.customModal{
+                        background-color: white;
+                        border-width: 2px;
+                        border-style: solid;
+                        z-index: 10;
+                        top: 20%;
+                        padding:10px;
+                        position: fixed;
+                        overflow:auto;
+                        /* These are the 3 css properties you will need to change so the popup 
+                        displays in the center of the screen. First set the width. Then set 
+                        margin-left to negative half of what the width is. You can add 
+                        the height property for a fixed size pop up if you want.*/
+                    }
+                    .modalBackground{
+                        background-color:black;
+                        opacity: 0.30;
+                        filter: alpha(opacity = 30);
+                        position: fixed;
+                        width: 100%;
+                        height: 100%;
+                        top: 0;
+                        left: 0;
+                        z-index: 9;
+                        
+                    }
+      
+      
+     .targetSect {
+         height:100%;
+     }
+     
+     .recentItemModule li {
+        height:46px;
+        padding:10px;
+        width:170px;
+        margin:3px;
+        background:url();
+        }
+    
+    .cell {
+        border-radius:0;
+        padding:5px;
+    }
+
+    .cell li {
+        box-shadow: 1px 1px 3px #888;
+    }
+    
+    .headerCell {
+        border-radius:0;
+        padding:10px;
+    }
+    
+    .courseLi {
+        box-shadow:1px 1px 3px #888;
+    }
+    
+    .targetSect a#changeRoom,
+    a#pencil-edit-icon{ /* DEFAULT TO WHITE ICONS */
+        display:inline-block;
+        width:15px;
+        height:15px;
+        background:url({!URLFOR($Resource.resources_Master, '/custom/images/scheduler-gird-sprite.png')}) 0 -15px no-repeat;
+    }
+    
+    .courseLi a#sectionTip,
+    .targetSect a#sectionTip{
+        display:inline-block;
+        width:15px;
+        height:15px;
+        background:url({!URLFOR($Resource.resources_Master, '/custom/images/scheduler-gird-sprite.png')}) -15px -15px no-repeat;
+    }
+    
+    .courseLi a#removeLink,
+    .targetSect a#removeLink {
+        display:inline-block;
+        width:15px;
+        height:15px;
+        background:url({!URLFOR($Resource.resources_Master, '/custom/images/scheduler-gird-sprite.png')}) -30px -15px no-repeat;
+    }
+    
+    .courseLi.dark a#sectionTip,
+    .targetSect li.dark a#sectionTip{ /* Re-position sprite for dark icons */
+            background-position:-15px 0;
+    }
+    
+
+    .targetSect li.dark a#changeRoom {
+        background-position:0 0;
+    }
+    
+    .courseLi.dark a#removeLink,
+    .targetSect li.dark a#removeLink{
+        background-position:-30px 0;
+    }
+.headerStyle{
+padding: 0;
+color: white;
+background-color: #1797C0
+}
+.ui-tabs-nav {
+	border-width: 0px 0px 1px 0px;
+	border-radius: 0px;
+	-moz-border-radius: 0px;
+	-webkit-border-radius: 0px;
+}
+.ui-widget-header {
+border: 0px;
+background: white;
+color: #222/*{fcHeader}*/;
+font-weight: bold;
+}
+
+.ui-dialog .ui-dialog-title{
+white-space:nowrap;
+}
+
+.ui-state-active a
+{
+background: -webkit-gradient(linear, left top, left bottom, from(#e6f3f7), to(#cbe9f0));
+background: -moz-linear-gradient(top, #e6f3f7, #cbe9f0);
+}
+.page ul, li {list-style-type: none; border-radius: 10px 10px 10px 10px;-moz-border-radius:10px;}
+
+.customHighlight { height: 1.5em; line-height: 1.2em; background:gold; }
+  .activeTab {background-color: #236FBD; color:white; background-image:none}
+  .inactiveTab { background-color: lightgrey; color:black; background-image:none}
+.page {font-family: Arial, Helvetica, sans-serif;}
+
+.headerCell {-ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e6f3f7', endColorstr='#cbe9f0');
+background: -webkit-gradient(linear, left top, left bottom, from(#e6f3f7), to(#cbe9f0));
+background: -moz-linear-gradient(top, #e6f3f7, #cbe9f0); border-radius: 10px 10px 10px 10px;-moz-border-radius:10px;
+border: 1px solid white; white-space:nowrap;width:10%;}
+
+.cell {cursor:pointer;  background-color:#F0F0F0; border-color:white; border-style:solid;
+border-width:thin;  border-radius: 10px; list-style-type: none; -moz-border-radius:10px;width:11%}
+.targetSect { list-style-type: none; margin: 0; padding: 0;height:20px;vertical-align:top; }
+.draggableCell {width: 100%;}
+
+.innerTab {width:100%; cursor:pointer; border-radius: 10px 10px 10px 10px;-moz-border-radius:10px; border-spacing: 0px;}
+.innerTab th{height:10px; width:100%; align:center; color:white;border-bottom:thin solid;}
+.innerTab tr {border-style:none; border-width:0px;}
+.innerTab td{ width:100%; border-style:none; border-width:0px; padding: 0; color:white;}
+.innerTab p{font-size:8pt; color:white;font-weight:bold;}
+.innerData {font-size:8pt; color:white;font-weight:bold;}
+.configuredCourse { list-style-type: none; margin: 0; padding: 0; }
+.courseLi{ margin: 3px 3px 3px 0; padding: 1px; float: left; width:170px;  cursor:pointer; } 
+.courseLi  {box-shadow: 1px 1px 1px #888;}
+.configuredCourse  {color:white; font-weight:bold} 
+.configuredCourse ul {height:500px; overflow-y:auto;} 
+.cell li {margin: 3px 3px 3px 0; padding: 1px; float: left;  cursor:move; font-weight:bold; box-shadow: 3px 3px 5px #888;} 
+.droppableCell li{ width:100%;}
+.occupiedCell li {width:100%;  }
+.hasError { background-color: #C00; width: 5px;}
+#unpublishedSectionsPanel{ bottom:200px; left:0px; position:absolute;}
+body {overflow-x:hidden}
+
+input.grey_btn {
+cursor: pointer;
+margin-left: 5px;
+font-weight: normal;
+padding: 10px 10px !important;
+border-radius: 5px !important;
+border: none !important;
+text-transform: uppercase !important;
+color: white !important;
+background: #666;
+background: -moz-linear-gradient(top, #999 0%, #666 100%);
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#999), color-stop(100%,#666));
+background: -webkit-linear-gradient(top, #999 0%,#666 100%);
+background: -o-linear-gradient(top, #999 0%,#666 100%);
+background: -ms-linear-gradient(top, #999 0%,#666 100%);
+background: linear-gradient(top, #999 0%,#666 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#999999', endColorstr='#666666',GradientType=0 );
+}
+
+</style>
+</apex:component>

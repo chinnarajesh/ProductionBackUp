@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <buckets>
+        <bucketType>text</bucketType>
+        <developerName>BucketField_29968393</developerName>
+        <masterLabel>Report Management</masterLabel>
+        <nullTreatment>n</nullTreatment>
+        <sourceColumnName>Report$Owner</sourceColumnName>
+        <useOther>false</useOther>
+        <values>
+            <sourceValues>
+                <sourceValue>CY HQ EVAL</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Data Uploads</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Dosage Reports</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Enrollment Reports</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>FY16 Team Reports</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Focus List Creation Templates</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Intervention</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Interventions Reports</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Assessments Reports</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Academic Progress Reports</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Archived Reports</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Report Development Workshop</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Validation Reports</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>cyschoolhouse Dashboard Reports</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>System Administration Reports</sourceValue>
+            </sourceValues>
+            <value>HQ Managed</value>
+        </values>
+    </buckets>
+    <columns>
+        <field>Report$Name</field>
+    </columns>
+    <columns>
+        <field>Report$LastRunDate</field>
+    </columns>
+    <columns>
+        <field>Report$CreatedBy</field>
+    </columns>
+    <columns>
+        <field>Report$ChildEntity</field>
+    </columns>
+    <columns>
+        <field>BucketField_29968393</field>
+    </columns>
+    <columns>
+        <field>Report$Owner</field>
+    </columns>
+    <format>Tabular</format>
+    <name>Reports by Management Pattern</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Reports_with_Users_and_Accounts__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>false</showGrandTotal>
+    <showSubTotals>false</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>Report$LastRunDate</dateColumn>
+        <interval>INTERVAL_CURRENT</interval>
+    </timeFrameFilter>
+</Report>

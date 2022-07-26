@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Indicator_Area__c.Indicator_Area_Student__r$Student__c.Student_ID_Auto_Number__c</field>
+    </columns>
+    <columns>
+        <field>Indicator_Area__c.Indicator_Area_Student__r$Id</field>
+    </columns>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Indicator_Area__c.Indicator_Area_Student__r$Student__c.Location__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Indicator_Area__c.Indicator_Area_Student__r$Student__c.School_Name__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Indicator_Area__c$Name</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>JR -  Student Indicator Area (IA) per</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Indicator_Area_w_Student_IA__c</reportType>
+    <scope>organization</scope>
+    <showDetails>false</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>Indicator_Area__c$CreatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

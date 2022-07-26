@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Section__c$Indicator_Area__c</field>
+    </columns>
+    <columns>
+        <field>Section__c$Intervention_Primary_Staff__c</field>
+    </columns>
+    <columns>
+        <field>Section__c.Student_Section__r$Student__c.Student_ID_Auto_Number__c</field>
+    </columns>
+    <columns>
+        <field>Section__c.Student_Section__r$Student__c</field>
+    </columns>
+    <columns>
+        <field>Section__c.Student_Section__r$Student__c.ELA_Literacy__c</field>
+    </columns>
+    <columns>
+        <field>Section__c.Student_Section__r$Student__c.Math__c</field>
+    </columns>
+    <columns>
+        <field>Section__c.Student_Section__r$Student__c.Attendance__c</field>
+    </columns>
+    <filter>
+        <booleanFilter>((1 OR 2) AND 3) AND 4</booleanFilter>
+        <criteriaItems>
+            <column>Section__c$School__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>Aptitude Community at Goss ES,Rosa Parks K-8 School,Father Keith B. Kenny,Curley K-8,Sarah Greenwood K-8,Mildred Ave K-8 School,Higginson Lewis K-8 School,Orchard Gardens,McKay K-8 School,Hennigan Elementary School,Trotter Elementary School,Condon Elementary School,PS 96M,PS- MS 57M</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Section__c$Location__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>baton rouge,columbus</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Section__c$Indicator_Area__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>Non-specific IA</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Section__c.Student_Section__r$Student__c.Behavior__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>1</value>
+        </criteriaItems>
+    </filter>
+    <format>Matrix</format>
+    <groupingsAcross>
+        <dateGranularity>Day</dateGranularity>
+        <field>Section__c$Program__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsAcross>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Section__c$Location__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Section__c$School__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>EvalLabs QA - Afterschool Program</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Sections_with_Student_Section_with_Intervention_Session_Results__c</reportType>
+    <scope>organization</scope>
+    <showDetails>false</showDetails>
+    <showGrandTotal>false</showGrandTotal>
+    <showSubTotals>false</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>Section__c$CreatedDate</dateColumn>
+        <interval>INTERVAL_CURFY</interval>
+    </timeFrameFilter>
+</Report>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Indicator Area/Student</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Indicator Area/Student</value>
+    </caseValues>
+    <fields>
+        <help><!-- Is the Indicator Area associated to this Student active? If this box is unchecked then the Student no longer requires intervention in this area. --></help>
+        <label><!-- Active --></label>
+        <name>Active__c</name>
+    </fields>
+    <fields>
+        <label><!-- IA Effective Date --></label>
+        <name>IA_Effective_Date__c</name>
+    </fields>
+    <fields>
+        <help><!-- This field joins the Indicator Area/Student record to the correct Indicator Area --></help>
+        <label><!-- Indicator Area --></label>
+        <name>Indicator_Area__c</name>
+        <relationshipLabel><!-- Indicator Area/Student --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- System generated reference number that includes the Student Id and the Indicator ID. This field should not be modified. --></help>
+        <label><!-- Reference ID --></label>
+        <name>Reference_ID__c</name>
+    </fields>
+    <fields>
+        <help><!-- This field joins the Indicator Area/Student record to the correct Student --></help>
+        <label><!-- Student --></label>
+        <name>Student__c</name>
+        <relationshipLabel><!-- Indicator Area/Student --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Unique Indicator Area/Student --></label>
+        <name>Unique_Indicator_Area_Student__c</name>
+    </fields>
+    <layouts>
+        <layout>Indicator Area/Student Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- You do not have access to change the IA Effective Date. Please submit a Service Desk case if you need the IA Effective Date to be changed. --></errorMessage>
+        <name>Valid_IA_Effective_Date</name>
+    </validationRules>
+</CustomObjectTranslation>

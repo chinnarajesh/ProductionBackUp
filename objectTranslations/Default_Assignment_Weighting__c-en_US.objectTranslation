@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Default Assignment Weighting</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Default Assignment Weighting</value>
+    </caseValues>
+    <fields>
+        <label><!-- Course --></label>
+        <name>Course__c</name>
+        <relationshipLabel><!-- Default Assignment Weighting --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Default Weighting --></label>
+        <name>Default_Weighting__c</name>
+    </fields>
+    <fields>
+        <label><!-- External Id --></label>
+        <name>External_Id__c</name>
+    </fields>
+    <fields>
+        <help><!-- The weighted percentage of this assignment type that will be used for the section grade - provided this functionality is selected on the course --></help>
+        <label><!-- Percent Of Section Grade --></label>
+        <name>Percent_Of_Section_Grade__c</name>
+    </fields>
+    <fields>
+        <label><!-- Assignment Type --></label>
+        <name>Picklist_Value__c</name>
+        <relationshipLabel><!-- Default Assignment Weighting --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Section --></label>
+        <name>Section__c</name>
+        <relationshipLabel><!-- Default Assignment Weighting --></relationshipLabel>
+    </fields>
+    <layouts>
+        <layout>Default Assignment Weighting Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

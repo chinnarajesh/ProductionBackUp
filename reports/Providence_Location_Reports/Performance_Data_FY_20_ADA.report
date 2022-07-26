@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Assesment__c$Date_Administered__c</field>
+    </columns>
+    <columns>
+        <field>Assesment__c$Average_Daily_Attendance__c</field>
+    </columns>
+    <columns>
+        <field>Assesment__c$Student__c.Local_Student_ID__c</field>
+    </columns>
+    <columns>
+        <field>Assesment__c$Student__c</field>
+    </columns>
+    <columns>
+        <field>Assesment__c$Student__c.Student_ID_Auto_Number__c</field>
+    </columns>
+    <description>This report will show the cumulative ADA for FY20. Please check the date administered to make sure it equals to the last date of the school year. This report will be empty until the end of year data load from the SDS process.</description>
+    <filter>
+        <criteriaItems>
+            <column>Assesment__c$Type__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Cumulative ADA Tracker - ATTENDANCE</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Assesment__c$Date_Administered__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>notEqual</operator>
+            <value>7/1/2019</value>
+        </criteriaItems>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Assesment__c$School__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Performance Data - FY 20 ADA</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Assessments__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>Assesment__c$Date_Administered__c</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

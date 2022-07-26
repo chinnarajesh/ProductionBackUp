@@ -1,0 +1,168 @@
+<apex:page id="SessionInterventionBulkUpload" sidebar="false" controller="SessionInterventionBulkUploadController" >
+    <c:resourceComponent />
+    <style>
+        #schoolforce-wrapper input[type="text"] {
+            width: auto;
+        }
+        .importSection {
+            margin: auto;
+        }
+        .download_btn {
+            margin: 0;
+            height: 36px;
+            font-size: larger;
+        }
+        .selectAll {
+            margin-right: 3rem;
+            margin-left: auto;
+            display: flex;
+            justify-content: flex-end;
+        }
+        .show {
+            display: block;
+        }
+    </style>
+    <script type="text/javascript">
+        var generated = false;
+        var hasChanges = false;
+        var CITY = CITY || {};
+
+        CITY.errorMarker = function(id){
+            this.id	=	id;
+        }
+        CITY.errorMarker.prototype.toString = function(){return this.id;}
+
+        CITY.errorStudentTable = {};
+
+        function setFocusOnLoad() {}
+
+        function selectAllCheckboxes(obj,receivedInputID){
+            var inputCheckBox = document.getElementsByTagName("input");
+            for(var i=0; i<inputCheckBox.length; i++){
+                if(inputCheckBox[i].id.indexOf(receivedInputID)!=-1){
+                    inputCheckBox[i].checked = obj.checked;
+                }
+            }
+            showConfirmAndHideDownload();
+        }
+
+        function showConfirmAndHideDownload() {
+            var confirmElement = document.getElementById('btnConfirm');
+            confirmElement.style = 'display:block';
+            var downloadElement = document.getElementById('downloadDiv');
+            downloadElement.style = 'display:none';
+        }
+
+    </script>
+    <apex:form >
+        <div id="schoolforce-wrapper" class="wrapper">
+            <h1>Bulk Time Upload</h1>
+            <hr />
+
+            <apex:outputPanel id="messages" styleClass="no-border">
+                <apex:pageMessages />
+            </apex:outputPanel>
+
+            <apex:outputPanel id="fullPanel" rendered="{!(schools.size > 0)}">
+                <div class="content">
+                    <p>
+                    <label>Select School:</label>
+                    <apex:selectList value="{!selectedSchool}" onchange="changeSchoolJS();" multiselect="false" size="1" id="school-selector">
+                        <apex:selectOptions value="{!schools}"/>
+                    </apex:selectList>
+                    </p>
+                    <p>
+                        <label>Session time entered for:</label>
+                        <apex:selectList id="staffSelectBox" value="{!selectedStaff}" onchange="changeStaffJS();" multiselect="false" size="1">
+                            <apex:selectOptions value="{!staff}"/>
+                        </apex:selectList>
+                    </p>
+                    <p>
+                        <label>Select Section:</label>
+                        <apex:selectList id="sectionSelectBox" value="{!selectedSection}" onchange="changeSectionJS();" multiselect="false" size="1">
+                            <apex:selectOptions value="{!sections}"/>
+                        </apex:selectList>
+                    </p>
+                </div>
+                <apex:outputPanel id="mainPanel" rendered="{!showMainPanel}">
+                    <apex:outputPanel id="StudentPanel">
+                        <span class="section-header">{!currentSection.Name}
+                            <span id="minutereminder" style="padding-left: 10px;"><i>(Select students to submit time for them.)</i></span>
+                        </span>
+                        <span class="selectAll">
+                            <apex:inputCheckbox onclick="selectAllCheckboxes(this,'inputId')"/>
+                            <apex:outputText style="font-weight:bold;" value="Select All? " />
+                            <br />
+                        </span>
+                        <div class="content-list">
+                            <div class="content">
+                                <table id="StudentTable">
+                                    <thead>
+                                    <th onclick="toggleDirection();">Student Name</th>
+                                    <th>CY-ID</th>
+                                    <th>Local ID</th>
+                                    <th>Select</th>
+                                    </thead>
+                                    <tbody>
+                                    <apex:repeat value="{!resultsData}" var="student">
+                                        <tr>
+                                            <td><a href="/{!student.studentId}" target="_blank">{!student.studentName}</a></td>
+                                            <td>{!student.studentCYId}</td>
+                                            <td>{!student.studentLocalId}</td>
+                                            <td><apex:inputCheckbox value="{!student.isChecked}" id="inputId" onClick="showConfirmAndHideDownload();"/></td>
+                                        </tr>
+                                    </apex:repeat>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <script>
+                            j$('input[readonly]').live('focus', function(e) {
+                                j$(this).blur();
+                            });
+                        </script>
+                    </apex:outputPanel>
+                    <apex:outputPanel id="buttons">
+                        <div class="content" style="margin-top:10px;">
+                            <div id="confirmDiv">
+                                <input style="{!(IF(!showDownloadTemplate, '', 'display : none;'))}" id="btnConfirm" type="button" class="black_btn" value="Confirm"
+                                       onclick="confirmSelectedJS();"/>
+                            </div>
+                            <div class="download_btn" >
+                                <div id="downloadDiv">
+                                    <apex:commandButton value="Download Template"  styleClass="buttonStyle black_btn"
+                                                        action="{!saveForExport}" rendered="{!showDownloadTemplate}" />
+                                </div>
+                                <input type="button" class="grey_btn" value="Cancel" onclick="resetPage();"/>
+                            </div>
+
+                        </div>
+                    </apex:outputPanel>
+                    </apex:outputPanel>
+                </apex:outputPanel>
+                <apex:outputPanel id="importSection" style="{!(IF(showImportSection, '', 'display : none;'))}">
+                    <div >
+                        <h3>Import Completed Template With Students</h3>
+                        <div class="section_content">
+                            <p style="float:left">Click "Import Students" to upload your completed Students Template.</p>
+                            <div class="download_btn">
+                                <apex:commandButton value="Import Students" action="{!startImport}" styleclass="black_btn"/>
+                            </div>
+                            <div class="clear_fix" style="line-height: 1%">&nbsp;</div>
+                        </div>
+                    </div>
+                </apex:outputPanel>
+        </div>
+
+
+
+        <apex:actionfunction name="toggleDirection" action="{!toggleSortDirection}" rerender="StudentPanel"/>
+        <apex:actionFunction name="resetPage" action="{!resetPage}"/>
+
+        <apex:actionFunction action="{!changeSection}" name="changeSectionJS" rerender="messages,StudentPanel,fullPanel,mainPanel,importSection" oncomplete="hasChanges=false;"/>
+        <apex:actionFunction action="{!changeStaff}" name="changeStaffJS" rerender="sectionSelectBox,messages,StudentPanel" oncomplete="hasChanges=false;"/>
+        <apex:actionFunction action="{!changeSchool}" name="changeSchoolJS" rerender="staffSelectBox,sectionSelectBox,messages,StudentPanel" oncomplete="hasChanges=false;"/>
+        <apex:actionFunction action="{!changeSection}" name="changeSectionJSAfterSubmit" rerender="messages,StudentPanel,fullPanel,mainPanel,importSection" oncomplete="hasChanges=false;"/>
+        <apex:actionFunction action="{!confirmSelectedStudents}" name="confirmSelectedJS" rerender="messages,StudentPanel,buttons" oncomplete="hasChanges=false;"/>
+    </apex:form>
+</apex:page>

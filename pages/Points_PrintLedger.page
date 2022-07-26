@@ -1,0 +1,131 @@
+<apex:page id="thePage" controller="Points_StudentLedger" renderAs="pdf">
+    <!-- renderAs="pdf" -->
+    <html>
+        <head>
+            <apex:stylesheet value="{!$Resource.New_Core_UX}"/>
+            <apex:stylesheet value="{!$Resource.ReportCard_CSS}"/>
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+            <style>
+                
+                
+                th {
+                    background-color:#75BEE9;
+                    border-right:1px solid #99D2F4;
+                    font-size:11px;
+                    font-weight:bold;
+                    padding:10px 0px;
+                    text-align:center;
+                }
+
+                tr.odd {
+                    background-color:#eee;
+                }
+                
+                td{
+                    text-align:left;
+                    color:#666;
+                    padding:10px;
+                    font-size:11px;
+                }
+                td.center {
+                    text-align:center;
+                }
+                
+                td.balance {
+                    border:none;
+                }
+                
+                tbody.mainData:nth-child(odd) td{
+                    background-color:#F1F2F2;
+                }
+                
+                h1 {
+                    fontfamily:font-family: Arial, helvetica, 'sans-serif';
+                    width:530px;
+                    float:left;
+                    font-size:20px;
+                    padding-top:10px;
+                }
+                p {
+                    color:#666;
+                    font-size:12px;
+                    float:right;
+                }
+                
+                .label{
+                    display:block;
+                    color:#333;
+                    font-weight:bold;
+                }
+                
+                .form_fields {
+                    float:right;
+                    padding-top:10px;
+                }
+                
+                .form_fields p {
+                    padding:0 10px;
+                }
+                
+                .curBalance {
+                    padding:10px 0;
+                    clear:both;
+                    text-align:right;
+                    float:none;
+                }
+                
+                .curBalance .label {
+                    display:inline;
+                }
+                
+                .top_section_content {
+                    float:left;
+                }
+                .bottom-section-devider{
+                    overflow:hidden;
+                    border:1px solid #666;
+                }
+                
+            </style>
+        </head>
+        <body>
+        	<h3>Student Points Ledger</h3>
+            <div class="section_content top_section_content" style="margin-bottom:5px;">
+                <h1>{!student.Name}</h1>
+                
+                <div class="form_fields" style="float:right;">
+                
+                        <p><span class="label">End Date:</span>
+                        {!toDateString}
+                        </p>
+                    
+                        <p><span class="label">Start Date:</span>
+                        {!fromDateString}
+                        </p>
+                     <div class="clear-fix">&nbsp;</div>
+                </div>
+   
+            </div>
+            
+            <p class="curBalance"><span class="label" style="display:inline;">Today's Current Balance:</span> {!availableBal}</p>
+            <div class="clear-fix section-divider bottom-section-devider">
+                <apex:datatable value="{!pointsLedger}" var="p" rowClasses="odd,even" style="width:100%;">
+                    <apex:column styleClass="center" headervalue="Date" value="{!p.points.Points_Date__c}" />
+                    <apex:column headervalue="Submitted By">
+                    	<apex:outputField value="{!p.points.Staff__r.Name}"/>
+                    </apex:column>
+                    <apex:column headerValue="Category">
+                    	<apex:variable value="{!p.points.Is_Redeem__c}" var="r" rendered="{!p.points.Is_Redeem__c}">
+                       		<apex:outputText value="Points Redeemed!"/>
+						</apex:variable>	
+						<apex:variable value="{!p.points.Is_Redeem__c}" var="r" rendered="{!!p.points.Is_Redeem__c}">
+							<apex:outputText value="{!p.points.Category__r.Name}"/>
+						</apex:variable> 
+					</apex:column>
+                    <apex:column styleClass="center" headervalue="Amount" value="{!p.points.Points__c}" />
+                    <apex:column styleClass="center balance" headervalue="Balance" value="{!ROUND(p.runningBal,0)} " />
+                </apex:datatable>
+            </div>
+        </body>
+    </html>
+</apex:page>

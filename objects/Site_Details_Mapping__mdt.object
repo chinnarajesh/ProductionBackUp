@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Setting to store values for Site Details field on InterventionSession object based on user&apos;s Location (SIte__c)</description>
+    <fields>
+        <fullName>Location__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Location</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Values__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Values</label>
+        <required>false</required>
+        <type>TextArea</type>
+    </fields>
+    <label>Site Details Mapping</label>
+    <pluralLabel>Site Details Mappings</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>

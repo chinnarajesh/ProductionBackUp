@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <aggregates>
+        <calculatedFormula>Section__c.Target_Dosage_Org_Goal__c:MAX - 	Intervention_Session_Result__c.Amount_of_Time__c:SUM</calculatedFormula>
+        <datatype>number</datatype>
+        <developerName>FORMULA1</developerName>
+        <isActive>true</isActive>
+        <isCrossBlock>false</isCrossBlock>
+        <masterLabel>Target Dosage Minus Dosage to Date</masterLabel>
+        <scale>2</scale>
+    </aggregates>
+    <aggregates>
+        <calculatedFormula>Intervention_Session_Result__c.Amount_of_Time__c:SUM</calculatedFormula>
+        <datatype>number</datatype>
+        <developerName>FORMULA2</developerName>
+        <isActive>true</isActive>
+        <isCrossBlock>false</isCrossBlock>
+        <masterLabel>Total Time in Minutes</masterLabel>
+        <scale>2</scale>
+    </aggregates>
+    <columns>
+        <field>Section__c$Name</field>
+    </columns>
+    <columns>
+        <field>Section__c$Section_Nickname__c</field>
+    </columns>
+    <columns>
+        <field>Section__c.Student_Section__r.Intervention_Session_Results__r$Amount_of_Time__c</field>
+    </columns>
+    <columns>
+        <field>Section__c$Target_Dosage_Org_Goal__c</field>
+    </columns>
+    <description>Service Desk Case #0001159 (Submitted by Tiger)</description>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Section__c.Student_Section__r$Student_Name__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Section__c$Program__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Dosage vs. Remaining Dosage to Target</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Sections_with_Student_Section_with_Intervention_Session_Results__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>false</showGrandTotal>
+    <showSubTotals>false</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>Section__c.Student_Section__r.Intervention_Session_Results__r$Intervention_Session_Date__c</dateColumn>
+        <interval>INTERVAL_CURFY</interval>
+    </timeFrameFilter>
+</Report>

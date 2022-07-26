@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Student__c.Attendance__r$Name</field>
+    </columns>
+    <columns>
+        <field>Student__c.Attendance__r$Session_Date__c</field>
+    </columns>
+    <columns>
+        <field>Student__c.Attendance__r$Picklist_Value__c.Name</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>Student__c.Attendance__r$Instructional_Time_Lost__c</field>
+    </columns>
+    <description>Report on instructional time lost by each student due to tardiness.</description>
+    <filter>
+        <criteriaItems>
+            <column>Student__c.Attendance__r$Picklist_Value__c.Name</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>contains</operator>
+            <value>Tardy</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Student__c$Active__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>1</value>
+        </criteriaItems>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Student__c$Name</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Tardies- Time Lost by Student</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Students_with_Attendance_records__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>false</showGrandTotal>
+    <showSubTotals>false</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>Student__c.Attendance__r$Session_Date__c</dateColumn>
+        <interval>INTERVAL_CURFY</interval>
+    </timeFrameFilter>
+</Report>

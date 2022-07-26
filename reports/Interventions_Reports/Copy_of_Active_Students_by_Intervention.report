@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Account.Sections__r.Student_Section__r$Student__c</field>
+    </columns>
+    <columns>
+        <field>Account.Sections__r.Student_Section__r$Student__c.Grade__c</field>
+    </columns>
+    <columns>
+        <field>Account.Sections__r.Student_Section__r$Dosage_to_Date__c</field>
+    </columns>
+    <columns>
+        <field>Account.Sections__r.Student_Section__r$Intervention_Enrollment_Start_Date__c</field>
+    </columns>
+    <columns>
+        <field>Account.Sections__r.Student_Section__r$Enrollment_End_Date__c</field>
+    </columns>
+    <description>This report allows users to see active students for a specific intervention section and is exportable. Add a filter with the section you want to see.
+
+TIP: Use to check if there are students who need to be exited before completing the end of year process.</description>
+    <filter>
+        <criteriaItems>
+            <column>Account.Sections__r.Student_Section__r$Active__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>1</value>
+        </criteriaItems>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Account$Name</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Account.Sections__r$Auto_Name__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Copy of Active Students by Intervention</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Accounts_with_Sections_with_Student_Section__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>false</showGrandTotal>
+    <showSubTotals>false</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>Account.Sections__r$End_Date__c</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

@@ -1,0 +1,137 @@
+<!-- 
+/******************************************************************************************************************
+*    Copyright ©2011 Acumen Solutions, Inc. This source code is CONFIDENTIAL and PROPRIETARY to Acumen Solutions, Inc. and may not be reproduced, 
+*    published, or disclosed to others without company authorization. All Rights Reserved
+* Description:
+* 
+* 
+*
+* Modification Log:       
+* -----------------------------------------------------------------------------------------------------------------
+* Mod ID        |   Date        | Mod Author    | Brief Mod Description 
+* -----------------------------------------------------------------------------------------------------------------
+* 00001         |               | Peter Nebel   | Initial code creation.
+* -----------------------------------------------------------------------------------------------------------------
+* 
+*
+*******************************************************************************************************************/
+-->
+<apex:component access="global" >
+    <style>
+.selected a {
+    color: white;
+    font-weight: bold;
+    '
+}
+
+.selected a:hover {
+    color: white;
+    font-weight: bold;
+    '
+}
+
+.selected {
+    color: white;
+    font-weight: bold;
+    '
+}
+
+.sidebarDiv {
+    border: 2px solid #333;
+    border-radius: 3px;
+    padding: 6px;
+    position: fixed;
+    top: 230px;
+    right: 10px;
+}
+
+.setupTest {background:#1b6682; padding:3px 0px 3px 0px;}
+
+.sidebar_table {width:200px;}
+
+.sidebar_table td {padding-left:10px; height:17px;}
+.sidebar_table tr {margin-bottom:10px;}
+
+</style>
+    <c:StyleGrid />
+    <apex:attribute access="global" name="mainpage" description="Select schools" type="Boolean" required="true" />
+    <apex:attribute access="global" name="histPanel" description="Summarize Historical Data End Of Year" type="Boolean" required="true" />
+    <apex:attribute access="global" name="processStuSecPanel" description="Inactivate all students and sections" type="Boolean" required="true" />
+    <apex:attribute access="global" name="purgePanel" description="Purge all End of Year Data" type="Boolean" required="true" />  
+    <apex:attribute access="global" name="purgeTwoYearsPanel" description="Purge all Data that is two years old" type="Boolean" required="true" />         
+
+    <div id="sidebarDiv" class="collapsible">
+        <div class="sidebarModule recentItemModule">
+            <div class="calendarHeadering">
+                End Of Year Process Panel
+            </div>
+            <div id="sidebarHolder">
+                <table cellpadding="0" cellspacing="0" class="sidebar_table">
+
+                   <!--  <tr>
+                        <td>
+                        <a  href="/ui/setup/export/DataExportPage/d?setupid=DataManagementExport" target="_blank">Export All Data </a>
+						
+						</td>
+                    </tr> -->
+                    <tr>
+                        <td class="{!IF(mainpage, 'setupTest','')}">
+                        <a class="{!IF(mainpage, 'selected','')}" href="/apex/EOY_SchoolCloseout?mainpage=true" target="_self">Select Schools </a>
+						<apex:variable value="{!mainpage}" var="b"
+                                rendered="{!mainpage}">
+                                <img src="/s.gif" alt="" class="showListButton" id="slb"
+                                    style="cursor: pointer;" title="Selected View" />
+
+                        </apex:variable>
+						</td> 
+                    </tr>
+                    <tr>
+                        <td class="{!IF(histPanel, 'setupTest selected','')}">
+                        	Summarize Historical data
+						<apex:variable value="{!histPanel}" var="b"
+                                rendered="{!histPanel}">
+                                <img src="/s.gif" alt="" class="showListButton" id="slb"
+                                    style="cursor: pointer;" title="Selected View" />
+
+                        </apex:variable>
+						</td>
+                    </tr>
+                   <tr>
+                        <td class="{!IF(processStuSecPanel, 'setupTest selected','')}">Inactivate Students/Sections
+                        <apex:variable value="{!mainpage}" var="b"
+                                rendered="{!processStuSecPanel}">
+                                <img src="/s.gif" alt="" class="showListButton" id="slb"
+                                    style="cursor: pointer;" title="Selected View" />
+
+                        </apex:variable>
+						</td>
+                    </tr>
+                    <tr>
+                        <td class="{!IF(purgePanel, 'setupTest selected','')}">Purge End Of Year Data
+                        <apex:variable value="{!purgePanel}" var="b"
+                                rendered="{!purgePanel}">
+                                <img src="/s.gif" alt="" class="showListButton" id="slb"
+                                    style="cursor: pointer;" title="Selected View" />
+
+                        </apex:variable>
+						</td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="{!IF(purgeTwoYearsPanel, 'setupTest selected','')}">Purge Historic Data
+                        <apex:variable value="{!purgeTwoYearsPanel}" var="b"
+                                rendered="{!purgeTwoYearsPanel}">
+                                <img src="/s.gif" alt="" class="showListButton" id="slb"
+                                    style="cursor: pointer;" title="Selected View" />
+
+                        </apex:variable>
+						</td>
+                    </tr>
+                    
+					
+                </table>
+            </div>
+        </div>
+    </div>
+
+</apex:component>

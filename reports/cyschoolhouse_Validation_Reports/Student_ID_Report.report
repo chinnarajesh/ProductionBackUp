@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Account.Students__r$Contact_Id__c</field>
+    </columns>
+    <columns>
+        <field>Account.Students__r$Id</field>
+    </columns>
+    <columns>
+        <field>Account.Students__r$Local_Student_ID__c</field>
+    </columns>
+    <columns>
+        <field>Account.Students__r$Student_Id__c</field>
+    </columns>
+    <columns>
+        <field>Account.Students__r$Student_First_Name__c</field>
+    </columns>
+    <columns>
+        <field>Account.Students__r$Student_Last_Name__c</field>
+    </columns>
+    <columns>
+        <field>Account.Students__r$Grade__c</field>
+    </columns>
+    <columns>
+        <field>Account.Students__r$Date_of_Birth__c</field>
+    </columns>
+    <columns>
+        <field>Account.Students__r$Gender__c</field>
+    </columns>
+    <description>Use this report to submit local IDs to HQ for upload, and to review prior to creating new students to prevent duplication. Do not use Contact IDs or Student: IDs (Salesforce ID) to identify unique students.</description>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Account$Site__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Account$Name</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Student ID Report</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Accounts_with_Students__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>Account.Students__r$CreatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

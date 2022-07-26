@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableEnhancedLookup>false</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>Additional_Breakfasts_Served__c</fullName>
+        <description>This is the number of additional breakfasts served that day.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This is the number of additional breakfasts served that day.</inlineHelpText>
+        <label>Additional Breakfasts Served</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Additional_Lunches_Served__c</fullName>
+        <description>This is the number of additional lunches served that day.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This is the number of additional lunches served that day.</inlineHelpText>
+        <label>Additional Lunches Served</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>External_Id__c</fullName>
+        <externalId>true</externalId>
+        <label>External Id</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Key__c</fullName>
+        <description>This field is a concatenation of the school ID and the date.</description>
+        <externalId>false</externalId>
+        <label>Key</label>
+        <length>36</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Non_Scan_Reimbursable_Breakfasts__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>Breakfast that is not scanned should be manually totalled and entered here.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Breakfast that is not scanned should be manually totalled and entered here.</inlineHelpText>
+        <label>Non-Scan Reimbursable Breakfasts</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>School__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>School</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Daily Meal Summaries</relationshipLabel>
+        <relationshipName>Daily_Meal_Summaries</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Summary_Date__c</fullName>
+        <description>This is the date the transaction records are being aggregated for .</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This is the date the transaction records are being aggregated for .</inlineHelpText>
+        <label>Summary Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Total_Breakfasts__c</fullName>
+        <description>This is the total number of breakfasts served that day.</description>
+        <externalId>false</externalId>
+        <formula>Additional_Breakfasts_Served__c  +  Total_Free_Breakfasts__c  +  Total_Full_Price_Breakfasts__c  +  Total_Reduced_Breakfasts__c + Non_Scan_Reimbursable_Breakfasts__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>This is the total number of breakfasts served that day.</inlineHelpText>
+        <label>Total Breakfasts</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Total_Federal_Reimbursement__c</fullName>
+        <description>This is the total amount of federal reimbursement for a given day based on the meal prices established in the Meals Setup object.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This is the total amount of federal reimbursement for a given day based on the meal prices established in the Meals Setup object.</inlineHelpText>
+        <label>Total Federal Reimbursement</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Total_Free_Breakfasts__c</fullName>
+        <description>This is the total number of free breakfasts served that day.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This is the total number of free breakfasts served that day.</inlineHelpText>
+        <label>Total Free Breakfasts</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Total_Free_Lunches__c</fullName>
+        <description>This is the total number of free lunches served that day.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This is the total number of free lunches served that day.</inlineHelpText>
+        <label>Total Free Lunches</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Total_Full_Price_Breakfasts__c</fullName>
+        <description>This is the total number of full-priced breakfasts served that day.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This is the total number of full-priced breakfasts served that day.</inlineHelpText>
+        <label>Total Full-Price Breakfasts</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Total_Full_Price_Lunches__c</fullName>
+        <description>This is the total number of full-priced lunches served that day.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This is the total number of full-priced lunches served that day.</inlineHelpText>
+        <label>Total Full-Price Lunches</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Total_Lunches__c</fullName>
+        <description>This is the total number of lunches served that day.</description>
+        <externalId>false</externalId>
+        <formula>Additional_Lunches_Served__c  +  Total_Free_Lunches__c  +  Total_Full_Price_Lunches__c  +  Total_Reduced_Lunches__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>This is the total number of lunches served that day.</inlineHelpText>
+        <label>Total Lunches</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Total_Monies_Received__c</fullName>
+        <description>This is the total amount received from students paying for either full-priced or reduced meals for the day.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This is the total amount received from students paying for either full-priced or reduced meals for the day.</inlineHelpText>
+        <label>Total Monies Received</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Total_Reduced_Breakfasts__c</fullName>
+        <description>This is the total number of reduced breakfasts served that day.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This is the total number of reduced breakfasts served that day.</inlineHelpText>
+        <label>Total Reduced Breakfasts</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Total_Reduced_Lunches__c</fullName>
+        <description>This is the total number of reduced lunches served that day.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This is the total number of reduced lunches served that day.</inlineHelpText>
+        <label>Total Reduced Lunches</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Total_State_Local_Reimbursement__c</fullName>
+        <description>This is the total amount of State/Local reimbursement for a given day based on the meal prices established in the Meals Setup object.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This is the total amount of State/Local reimbursement for a given day based on the meal prices established in the Meals Setup object.</inlineHelpText>
+        <label>Total State/Local Reimbursement</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <label>Daily Meal Summary</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <displayFormat>DMS-{0}</displayFormat>
+        <label>Daily Meal Summary Name</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Daily Meal Summaries</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

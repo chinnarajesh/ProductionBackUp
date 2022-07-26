@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>CUST_NAME</field>
+    </columns>
+    <columns>
+        <field>Staff__c.First_Name_Staff__c</field>
+    </columns>
+    <columns>
+        <field>Staff__c.Staff_Last_Name__c</field>
+    </columns>
+    <columns>
+        <field>Staff__c.Email__c</field>
+    </columns>
+    <columns>
+        <field>Staff__c.Site__c</field>
+    </columns>
+    <columns>
+        <field>Staff__c.Organization__c</field>
+    </columns>
+    <columns>
+        <field>Staff__c.Role__c</field>
+    </columns>
+    <description>Dessa setup report for all but school admins</description>
+    <filter>
+        <criteriaItems>
+            <column>Staff__c.User_ID__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>notEqual</operator>
+            <value></value>
+        </criteriaItems>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>CUST_CREATED_DATE</field>
+        <sortOrder>Desc</sortOrder>
+    </groupingsDown>
+    <name>Aperture-Dessa School User setup report</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CustomEntity$Staff__c</reportType>
+    <scope>organization</scope>
+    <showDetails>false</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <sortColumn>Staff__c.Organization__c</sortColumn>
+    <sortOrder>Asc</sortOrder>
+    <timeFrameFilter>
+        <dateColumn>Staff__c.Birthday__c</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

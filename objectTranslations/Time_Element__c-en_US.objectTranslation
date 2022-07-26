@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Time</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Time</value>
+    </caseValues>
+    <fieldSets>
+        <label><!-- Year --></label>
+        <name>Year</name>
+    </fieldSets>
+    <fields>
+        <label><!-- Allow Periods --></label>
+        <name>Allow_Periods__c</name>
+    </fields>
+    <fields>
+        <label><!-- Current --></label>
+        <name>Current__c</name>
+    </fields>
+    <fields>
+        <label><!-- Start Date --></label>
+        <name>Date_Start_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Days of Week --></label>
+        <name>Days_of_Week__c</name>
+    </fields>
+    <fields>
+        <label><!-- End Time --></label>
+        <name>EndTime__c</name>
+    </fields>
+    <fields>
+        <label><!-- End Date --></label>
+        <name>End_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- End Time --></label>
+        <name>End_Time__c</name>
+    </fields>
+    <fields>
+        <label><!-- External Id --></label>
+        <name>External_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Grade Span --></label>
+        <name>Grade_Span__c</name>
+    </fields>
+    <fields>
+        <label><!-- Name On Report Card --></label>
+        <name>Name_On_Report_Card__c</name>
+    </fields>
+    <fields>
+        <label><!-- Name --></label>
+        <name>Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- New School Year --></label>
+        <name>New_School_Year__c</name>
+    </fields>
+    <fields>
+        <label><!-- Number --></label>
+        <name>Number__c</name>
+        <picklistValues>
+            <masterLabel>0</masterLabel>
+            <translation><!-- 0 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2</masterLabel>
+            <translation><!-- 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3</masterLabel>
+            <translation><!-- 3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4</masterLabel>
+            <translation><!-- 4 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5</masterLabel>
+            <translation><!-- 5 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>6</masterLabel>
+            <translation><!-- 6 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7</masterLabel>
+            <translation><!-- 7 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>8</masterLabel>
+            <translation><!-- 8 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>9</masterLabel>
+            <translation><!-- 9 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Parent Time Element --></label>
+        <name>Parent_Time_Element__c</name>
+        <relationshipLabel><!-- Children Time Elements --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Picklist Value --></label>
+        <name>Picklist_Value__c</name>
+        <relationshipLabel><!-- Time --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Previous Year --></label>
+        <name>Previous_Year__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reference Id --></label>
+        <name>Reference_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reporting Period Value --></label>
+        <name>Reporting_Period_Value__c</name>
+        <relationshipLabel><!-- Time (Reporting Period Value) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Reporting Period? --></label>
+        <name>Reporting_Period__c</name>
+    </fields>
+    <fields>
+        <label><!-- SDS school --></label>
+        <name>SDS_school__c</name>
+    </fields>
+    <fields>
+        <label><!-- School --></label>
+        <name>School__c</name>
+        <relationshipLabel><!-- Time --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Split School --></label>
+        <name>Split_School__c</name>
+    </fields>
+    <fields>
+        <label><!-- Start Time --></label>
+        <name>StartTime__c</name>
+    </fields>
+    <fields>
+        <label><!-- Start Time --></label>
+        <name>Start_Time__c</name>
+    </fields>
+    <fields>
+        <label><!-- Type --></label>
+        <name>Type__c</name>
+        <picklistValues>
+            <masterLabel>Period</masterLabel>
+            <translation><!-- Period --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Quarter</masterLabel>
+            <translation><!-- Quarter --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Semester</masterLabel>
+            <translation><!-- Semester --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Trimester</masterLabel>
+            <translation><!-- Trimester --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Year</masterLabel>
+            <translation><!-- Year --></translation>
+        </picklistValues>
+    </fields>
+    <layouts>
+        <layout>Time Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Year Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

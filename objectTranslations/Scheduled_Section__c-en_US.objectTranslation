@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Scheduled Section</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Scheduled Sections</value>
+    </caseValues>
+    <fieldSets>
+        <label><!-- Scheduled Sections Template --></label>
+        <name>Scheduled_Sections_Template</name>
+    </fieldSets>
+    <fields>
+        <label><!-- Account --></label>
+        <name>Account__c</name>
+        <relationshipLabel><!-- Scheduled Sections --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Color --></label>
+        <name>Color__c</name>
+    </fields>
+    <fields>
+        <label><!-- Course Name --></label>
+        <name>Course_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Course --></label>
+        <name>Course__c</name>
+        <relationshipLabel><!-- Scheduled Sections --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Daily Attendance? --></label>
+        <name>Daily_Attendance__c</name>
+    </fields>
+    <fields>
+        <label><!-- End Time Text --></label>
+        <name>End_Time_Text__c</name>
+    </fields>
+    <fields>
+        <label><!-- End Time --></label>
+        <name>End_Time__c</name>
+    </fields>
+    <fields>
+        <label><!-- External Id --></label>
+        <name>External_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Grade Level --></label>
+        <name>Grade_Level__c</name>
+    </fields>
+    <fields>
+        <label><!-- Grade Levels --></label>
+        <name>Grade_Levels__c</name>
+    </fields>
+    <fields>
+        <label><!-- Needs Publish --></label>
+        <name>Needs_Publish__c</name>
+    </fields>
+    <fields>
+        <label><!-- No Meeting --></label>
+        <name>No_Meeting__c</name>
+    </fields>
+    <fields>
+        <label><!-- Period Key --></label>
+        <name>Period_Key__c</name>
+    </fields>
+    <fields>
+        <label><!-- Record Attendance --></label>
+        <name>Record_Attendance__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reference Id --></label>
+        <name>Reference_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reporting Period --></label>
+        <name>Reporting_Period__c</name>
+        <relationshipLabel><!-- Scheduled Sections --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Room Key --></label>
+        <name>Room_Key__c</name>
+    </fields>
+    <fields>
+        <label><!-- Room --></label>
+        <name>Room__c</name>
+        <relationshipLabel><!-- Scheduled Sections --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Rounded End Time --></label>
+        <name>Rounded_End_Time__c</name>
+    </fields>
+    <fields>
+        <label><!-- Rounded Start Time --></label>
+        <name>Rounded_Start_Time__c</name>
+    </fields>
+    <fields>
+        <label><!-- Schedule Group Name --></label>
+        <name>Schedule_Group_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Schedule Group (Section) --></label>
+        <name>Schedule_Group_Section__c</name>
+        <relationshipLabel><!-- Scheduled Sections (Schedule Group (Section)) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Schedule Group --></label>
+        <name>Schedule_Group__c</name>
+        <relationshipLabel><!-- Scheduled Sections --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Schedule Template --></label>
+        <name>Schedule_Template__c</name>
+        <relationshipLabel><!-- Scheduled Sections --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Section Reference Id --></label>
+        <name>Section_Reference_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Section/ReportingPeriod --></label>
+        <name>Section_ReportingPeriod__c</name>
+        <relationshipLabel><!-- Scheduled Sections --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Section --></label>
+        <name>Section__c</name>
+        <relationshipLabel><!-- Scheduled Sections --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Staff Key --></label>
+        <name>Staff_Key__c</name>
+    </fields>
+    <fields>
+        <label><!-- Staff --></label>
+        <name>Staff__c</name>
+        <relationshipLabel><!-- Scheduled Sections --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Start Time Text --></label>
+        <name>Start_Time_Text__c</name>
+    </fields>
+    <fields>
+        <label><!-- Start Time --></label>
+        <name>Start_Time__c</name>
+    </fields>
+    <fields>
+        <label><!-- Type --></label>
+        <name>Type__c</name>
+    </fields>
+    <layouts>
+        <layout>Non Admin Scheduled Section Layout</layout>
+        <sections>
+            <label><!-- Attendance And Time --></label>
+            <section>Attendance And Time</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Scheduled Section Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

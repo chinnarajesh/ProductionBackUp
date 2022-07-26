@@ -1,0 +1,303 @@
+<apex:page controller="EOYWiz_SchoolSnapshots" tabStyle="EOY_Wizard__tab">
+
+	<apex:includeScript value="{!URLFOR($Resource.jWerty, '/jWerty/jwerty.js')}" />
+  	<c:jQueryInit bLoadingPanel="true" bDataTables="true"/>
+	<apex:stylesheet value="{!$Resource.New_Core_UX}"/>
+	<apex:stylesheet value="{!URLFOR($Resource.schoolforce_demo_page, 'css/style.css')}"/>
+	<c:EOYWiz_StyleModifications />
+
+
+	<script>
+		var j$ = jQuery.noConflict();
+		var oTable;
+		unsavedPop = false;
+		
+		j$(document).ready(function() {
+			resetTables();
+			j$(".tabs").tabs({
+				//select works kind of like onClick, what we really want is onComplete (table is visable)
+  				show: function( event, ui ) {
+  					for(var i=0;i<oTable.size();i++){
+  						j$(oTable[i]).dataTable().fnAdjustColumnSizing();
+  					}
+  				}
+			});
+					
+		});			
+		
+		//outside of the ready function
+		window.onbeforeunload = unloadMessage;		
+		
+		function unloadMessage() {
+			if(unsavedPop) {
+				return "There are unsaved changes!";
+			}
+		}	
+
+		//need destroy in this version, that's why not using admin component
+		function resetTables(){
+			oTable = j$(".tablesorter").dataTable( {
+				"sScrollY": "200px",
+				"sScrollX": "100%",
+		        "bAutoWidth": true,
+		        "bDestroy": true,
+		        //"bRetrieve": true,
+		        "bPaginate": false,
+		        "bJQueryUI": true, 
+		        "iDisplayLength": 1000,
+		        "aaSorting": []
+    		}); 
+    		oTable.fnDraw();		
+    	} 		
+    	
+		function createModal() {
+			j$("#dialog-modal").dialog({
+				autoOpen: false,
+				minHeight: 400,
+				minWidth: 950,
+				modal: true,
+
+				close: function(event, ui) {
+					resetTables();
+				}
+			});	
+		}
+
+		function openModal() {
+			j$("#dialog-modal").dialog("open");
+			document.getElementById(j$('[id$=dataLogPanel]').attr('id')).style.display = 'inline';
+			resetTables();
+		}
+		
+	</script>
+
+	<apex:form id="mainForm">
+		
+		<apex:outputPanel id="outerPanel" layout="block">
+		
+			<div id="schoolforce-wrapper" class="wrapper">
+			
+				<apex:outputPanel id="errorMessages" layout="block" styleClass="pageMessages">
+					<apex:pageMessages />
+				</apex:outputPanel>
+			
+				<h1 id="navPanel" class="centerHeader">
+					<input type="button" class="grey_btn_arrow" onClick="gotoSchoolNextYearStudentsJS();" value="Previous" />
+					<div style="display: inline-block;">{!schoolProgress.School__r.Name} End of Year Wizard School Setup<br></br>Create Snapshots</div>
+					<input id="next" type="button" class="green_btn_arrow" onClick="gotoSchoolProcessDataJS();" value="Next" />
+					<script>if({!!schoolProgress.School_Snapshots_Completed__c}){document.getElementById('next').disabled = 'disabled';}</script>
+				</h1>
+				
+				<apex:outputPanel id="summary" styleClass="adminSummary">
+					<br></br>
+					<p>This step creates snapshots that store key end of year information about the school, each cohort, each section, and each student. </p>
+					<p>To create the snapshots, click on the Create Snapshots button and wait for the batch to complete. The snapshots will appear on the tabs below. Before proceeding to the next step, we strongly recommend that you click on the View Data Logs button to check for errors and review some of the snapshots to ensure they are correct.</p>
+					<p>While you can press the Create Snapshots button multiple times, it will be disabled after you complete the next step, Process EOY Data. SchoolForce will only keep the most recent snapshot batch that you have run.</p>
+					<p>If you need to update data after viewing the snapshots, you may want to complete a new data export before proceeding to the next step.</p>
+					<p>More information about what is included in each snapshot and where to view snapshots can be found in SchoolForce Help.</p>
+					<br></br>
+				</apex:outputPanel>
+				
+				<div class="content-wrapper">
+					<apex:pageBlock id="snapshotBlock">
+					
+						<!-- tabs for the different types of snapshots -->
+						<div class="tabs" style="width:100%; padding: 0px; border:0;">
+							<div id="tabList">
+								<ul style="position:relative; overflow-y:hidden;" >
+									<li style="cursor:pointer; list-style-type:none; float:left;">
+										<a href="#schoolSnapshots" style="cursor:pointer;text-decoration:none;margin:0px;">School</a>
+										<apex:actionSupport event="onclick" rerender="schoolPanel" onComplete="resetTables(); alert('pressed me');" />
+									</li>
+									<li style="cursor:pointer; list-style-type:none; float:left;">
+										<a href="#cohortSnapshots" style="cursor:pointer; text-decoration:none; margin:0px;">Cohort</a>
+									</li>
+									<li style="cursor:pointer; list-style-type:none; float:left;">
+										<a href="#sectionSnapshots" style="cursor:pointer; text-decoration:none; margin: 0px;">Section</a>
+									</li>
+									<li style="cursor:pointer; list-style-type:none; float:left;">
+										<a href="#studentSnapshots" style="cursor:pointer; text-decoration:none; margin:0px;">Student</a>
+									</li>
+								</ul>
+							</div>
+							
+							<!-- Create a div for each tab -->
+							<div id="schoolSnapshots" class="section_content tabPanel" >
+								<apex:outputPanel id="schoolPanel">
+									<p>school summaries</p>
+									<apex:dataTable id="schoolTable" value="{!schoolSummary}" var="school" styleClass="tablesorter">
+										<apex:column headerValue="School Summary ID">
+											<apex:outputLink value="/{!school.ID}" >{!school.Name}</apex:outputLink>
+										</apex:column>
+										<apex:column headerValue="School" >
+											<apex:outputField value="{!school.School__c}" />
+										</apex:column>
+										<apex:column headerValue="Average Class Size" >
+											<apex:outputField value="{!school.Average_Class_Size__c}" />
+										</apex:column>
+										<apex:column headerValue="Student Teacher Ratio" >
+											<apex:outputField value="{!school.Student_Teacher_Ratio__c}" />
+										</apex:column>
+									</apex:dataTable>
+								</apex:outputPanel>
+							</div>
+							
+							<div id="cohortSnapshots" class="section_content tabPanel" >
+								<apex:outputPanel id="cohortPanel">
+									<p>cohort summaries</p>
+									<apex:dataTable id="cohortTable" value="{!cohortSummary}" var="cohort" styleClass="tablesorter">
+										<apex:column headerValue="Cohort Summary ID" >
+											<apex:outputLink value="/{!cohort.ID}" >{!cohort.Name}</apex:outputLink>
+										</apex:column>
+										<apex:column headerValue="Cohort" >
+											<apex:outputField value="{!cohort.Cohort__c}" />
+										</apex:column>
+										<apex:column headerValue="Total Original Students" >
+											<apex:outputField value="{!cohort.Total_Original_Students_In_Cohort__c}" />
+										</apex:column>
+										<apex:column headerValue="Total Count of Students(today)" >
+											<apex:outputField value="{!cohort.Total_Count_of_Students_today__c}" />
+										</apex:column>
+									</apex:dataTable>
+								</apex:outputPanel>
+							</div>				
+							
+							<div id="sectionSnapshots" class="section_content tabPanel" >
+								<apex:outputPanel id="sectionPanel">
+									<p>section summaries</p>
+									<table class="tablesorter">
+									<thead>
+										<tr>
+											<th>Section Summary ID</th>
+											<th>Section</th>
+											<th>Assigned Staff</th>
+										</tr>	
+									</thead>
+									<tbody>
+									<apex:repeat value="{!thousandSectionBlocks}" var="block" id="sectionTable">
+										<apex:repeat value="{!block.children}" var="section">
+											<tr>
+												<td>
+													<apex:outputLink value="/{!section.ID}" >{!section.Name}</apex:outputLink>
+												</td>
+												<td>
+													<apex:outputField value="{!section.Section__c}" />
+												</td>
+												<td>
+													<apex:outputField value="{!section.Assigned_Staff__c}" />
+												</td>
+											</tr>
+										</apex:repeat>
+									</apex:repeat>
+									</tbody>
+									</table>
+								</apex:outputPanel>
+							</div>
+							
+							<div id="studentSnapshots" class="section_content tabPanel" >
+								<apex:outputPanel id="studentPanel">
+									<p>student summaries</p>
+									<table class="tablesorter">
+									<thead>
+										<tr>
+											<th>Student Summary ID</th>
+											<th>Student</th>	
+											<th>Average GPA</th>
+											<th>Daily Attendance</th>
+										</tr>
+									</thead>
+									<tbody>
+									<apex:repeat value="{!thousandStudentBlocks}" var="block" id="studentTable">
+										<apex:repeat value="{!block.summary}" var="student">
+											<tr>
+												<td>
+													<apex:outputLink value="/{!student.ID}" >{!student.Name}</apex:outputLink>
+												</td>
+												<td>
+													<apex:outputField value="{!student.Student__c}" />
+												</td>
+												<td>
+													<apex:outputField value="{!student.Average_GPA__c}" />
+												</td>
+												<td>
+													<apex:outputField value="{!student.Daily_Attendance__c}" />
+												</td>	
+											</tr>
+										</apex:repeat>
+									</apex:repeat>
+									</tbody>
+									</table>
+								</apex:outputPanel>
+							</div>
+							
+						</div>
+
+						<apex:outputPanel id="summaryFooter" style="text-align:center;">
+							<p>Last Modified: {!schoolProgress.School_Snapshots_Last_Modified__c}</p>
+							<br></br>
+							<br></br>
+							<br></br>
+						</apex:outputPanel>
+					
+						<apex:outputPanel id="buttons" >
+							<apex:commandButton styleClass="red_btn" value="Create Snapshots" 
+												onClick="if(confirm('Are you sure you want to create the snapshots now?')) {
+													showProgressBar('Preparing to create snapshots.');
+													deletePreviousSnapshotsJS();
+												}"
+												rerender="summaryFooter" disabled="{!(!batchComplete) || (schoolProgress.School_Snapshots_Completed__c && schoolProgress.School_Process_Data_Completed__c)}"/>
+							
+							<apex:commandButton styleClass="black_btn" value="View Data Logs" action="{!getDataLogs}" onClick="createModal();" onComplete="openModal();" rerender="dataLogPanel" />
+						</apex:outputPanel>
+						
+						<apex:actionPoller id="actionPoller" action="{!getDataLogs}" enabled="{!!batchComplete}" onComplete="getSnapshotLogAndSummaryJS();" rerender="errorMessages, buttons" interval="5" timeout="10000" />
+						
+					</apex:pageBlock>
+				</div>
+				
+			</div>
+		
+		</apex:outputPanel>
+		
+		<apex:actionFunction name="gotoSchoolNextYearStudentsJS" action="{!gotoSchoolNextYearStudents}" />
+		<apex:actionFunction name="gotoSchoolProcessDataJS" action="{!gotoSchoolProcessData}" />
+		<apex:actionFunction name="deletePreviousSnapshotsJS" action="{!deletePreviousSnapshots}" onComplete="setTimeout('hideProgressBar()', 300); runBatchJobJS();" />
+		<apex:actionFunction name="runBatchJobJS" action="{!runBatchJob}" rerender="summaryFooter, buttons, errorMessages, schoolPanel, cohortPanel, sectionPanel, studentPanel, actionPoller" onComplete="resetTables();" />
+		<apex:actionFunction name="getSnapshotLogAndSummaryJS" action="{!getSnapshotLogAndSummary}" onComplete="resetTables(); if({!schoolProgress.School_Snapshots_Completed__c}){document.getElementById('next').disabled = '';}" rerender="schoolPanel, cohortPanel, sectionPanel, studentPanel, actionPoller" />
+		
+		<div id="dialog-modal" title="Data Logs">
+			
+			<apex:outputPanel id="dataLogPanel" style="display: none" >
+				<apex:dataTable id="dataLogTable" styleClass="tablesorter" value="{!dataLogs}" var="d" >
+					<apex:column headerValue="Start Time">
+						<apex:outputField value="{!d.Start_Time_Text__c}" />
+					</apex:column>
+					<apex:column headerValue="End Time">
+						<apex:outputField value="{!d.End_Time_Text__c}" />
+					</apex:column>				
+					<apex:column headerValue="Type">
+						<apex:outputField value="{!d.Type__c}" />
+					</apex:column>
+					<apex:column headerValue="Status">
+						<apex:outputField value="{!d.Status__c}" />
+					</apex:column>
+					<apex:column headerValue="Class Name">
+						<apex:outputField value="{!d.Class_Name__c}" />
+					</apex:column>
+					<apex:column headerValue="Success Records">
+						<apex:outputField value="{!d.Total_Records__c}" />
+					</apex:column>
+					<apex:column headerValue="Failed Records">
+						<apex:outputField value="{!d.Failed_Records__c}" />
+					</apex:column>
+					<apex:column headerValue="Error Messages">
+						<a href="/{!d.ID}" target="_blank">Click to view error messages</a>
+					</apex:column>
+					<apex:column headerValue="Batch ID">
+						<apex:outputField value="{!d.Batch_ID__c}" />
+					</apex:column>					
+				</apex:dataTable>
+			</apex:outputPanel>		
+		</div>
+	</apex:form>
+</apex:page>

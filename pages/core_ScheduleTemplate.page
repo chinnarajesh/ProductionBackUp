@@ -1,0 +1,326 @@
+<apex:page controller="core_ScheduleTemplateConfiguration" tabStyle="SchoolForce_Setup__tab" sidebar="false">
+<c:setupWizardSharedComponents summerSchoolMode="{!cSetup.setup.School__r.ParentId != null}"/>
+<script>
+jwerty.key('enter',false);
+
+var bCPInvoked = false;
+function resetColorPicker(){ 
+    //alert(j$('#colorSelector').parent().html());
+    if (j$('#colorSelector').hasClass('mColorPicker')==false){
+        j$('#colorSelector').mColorPicker();
+        j$('#colorSelector').bind('colorpicked', function () {
+            bCPInvoked=true;
+            var colorVal = j$(this).val();
+            j$(document).find('.tempColor').val(colorVal);
+        });
+    }
+}
+
+function resetTimePicker(){
+    j$('.TimePicker').each(function(index) { 
+        j$(this).timepicker({
+            showPeriod: true, 
+            showLeadingZero: true
+        });
+    });
+} 
+
+j$(document).ready(function() {
+    resetTimePicker();
+    resetTable();
+});
+
+function initPeriodModal(){
+    initModal('#periodModal',cancelPeriodJs);
+}
+
+</script>
+<table style="width:100%">
+    <tr>
+        <td style="vertical-align:top; width:15%">
+            <!-- <c:setup_sidebar setup="{!cSetup}"/> -->
+            <c:setupWizardSidebar setupId="{!cSetup.setup.id}"/>
+        </td>
+        <td style="vertical-align:top; width:85%">
+            <apex:form id="mainForm">
+            <apex:outputPanel id="thePanel">
+                <div id="schoolforce-wrapper" class="wrapper">
+                    <apex:outputPanel id="messagesPanel" styleClass="pageMessages">
+                        <apex:pagemessages />
+                    </apex:outputPanel>
+                    <apex:outputPanel id="resetPanel">
+                        <script>
+                            resetTable();
+                            
+                            function checkPeriods(){
+                                if({!!bPeriod}){
+                                    closeModal('#periodModal');
+                                }
+                                setTimeout('hideProgressBar()',500);
+                            }
+                        </script>
+                    </apex:outputPanel>
+                    <h1 class="centerHeader">
+                        <input type="button" onclick="prevJs();" class="grey_btn_arrow" value="Previous" />
+                        <span style="display:inline-block">{!cSetup.school.Name} Core Setup<br/>Configure Schedule Templates</span>
+                        <input type="button" onclick="nextJs();" class="green_btn_arrow" value="Next" />
+                    </h1>
+                    <apex:outputPanel styleClass="adminSummary">
+                        <br/>
+                        <p></p>
+                        <br/>
+                    </apex:outputPanel>
+                    <div class="content-wrapper no-border">
+                        <apex:outputPanel rendered="{!!bConfigureTemplate}">
+                            <h3>Reporting Periods</h3>
+                            <div class="childSummary">
+                                Schedule templates define the type of calendar days your school will use (e.g., regular days, half days, snow days). 
+                                You only need to create a master schedule for one reporting period to continue to the next step. 
+                                You can create any additional schedule templates your school requires now or at any time during the year.
+                                <br/><br/>
+                                <i><b>Note:</b> If your school uses group-based scheduling, SchoolForce recommends you only create one schedule template for the first reporting period before moving to the next step. 
+                                The clone function on this screen will copy schedule sections from one scheduled template to another schedule template. 
+                                After completing the Schedule Sections step, return to this step to clone the first schedule template to any additional scheduled templates you want to create in the first or subsequent reporting periods.</i>
+                                <br/><br/>
+                                Refer to SchoolForce Help for more information.
+                            </div>
+                            <apex:dataTable styleClass="noFilter" value="{!cSetup.cRPeriodList}" id="theReportingPeriods" var="rp" rendered="{!IF(cSetup.reportingPeriodList.size!=0, true, false)}">
+                                <apex:column headerValue="Name" value="{!rp.rPeriod.Name__c}"/>
+                                <apex:column headerValue="Start Date" value="{!rp.rPeriod.Date_Start_Date__c}"/>
+                                <apex:column headerValue="End Date" value="{!rp.rPeriod.End_Date__c}"/>
+                                <apex:column headerValue="Add Template?">
+                                    <a style="cursor: pointer;" onClick="newTemplateJs('{!rp.rPeriod.id}',null);"><img src='/img/feeds/follow12.png'/></a>
+                                </apex:column>
+                                <apex:column headervalue="Schedule Templates" >
+                                    <table style="{!IF(rp.scheduleTemplateList.size>0,'','display:none;')}">
+                                        <tr>
+                                            <th>Action</th>
+                                            <th>Name</th>
+                                            <th>Color</th>
+                                            <th>Master?</th>
+                                            <th>Has Class?</th>
+                                            <th style="{!IF(!cSetup.setup.Group_Based__c,'','display:none;')}"># of Periods</th>
+                                            <th style="{!IF(cSetup.setup.Group_Based__c,'','display:none;')}">Start Time</th>
+                                            <th style="{!IF(cSetup.setup.Group_Based__c,'','display:none;')}">End Time</th>
+                                        </tr>
+                                        <apex:repeat value="{!rp.scheduleTemplateList}" var="p" rendered="{!IF(rp.scheduleTemplateList.size>0,true, false)}">
+                                            <tr>
+                                                <td>
+                                                    <a class="actionLink"  href="#" onClick="editTemplateJs('{!p.id}',false);">Edit</a>&nbsp;<br/>
+                                                    <a class="actionLink"  href="#" onClick="viewTemplateJs('{!p.id}',true);">View</a>&nbsp;<br/>
+                                                    <a class="actionLink"  href="#" onClick="cloneTemplateJs('{!p.id}','{!rp.rPeriod.Id}',false);">Clone</a>&nbsp;<br/>
+                                                    <a class="actionLink" href="#" onclick="if(confirm('Are you sure you want to delete this schedule template?')){
+                                                                                                deleteTemplateJs('{!p.id}');
+                                                                                                showProgressBar(' Deleting Schedule Template ');
+                                                                                            }">Del</a>
+                                                </td>
+                                                <td>{!p.Name}</td>
+                                                <td style="background-color: {!p.Color__c}" ></td>
+                                                <td><apex:outputField value="{!p.Is_Master__c}" /></td>
+                                                <td><apex:outputField value="{!p.Has_Class__c}" /></td>
+                                                <td style="{!IF(!cSetup.setup.Group_Based__c,'','display:none;')}">{!p.Number_of_Periods__c}</td>
+                                                <td style="{!IF(cSetup.setup.Group_Based__c,'','display:none;')}">{!p.Start_Time_Text__c}</td>
+                                                <td style="{!IF(cSetup.setup.Group_Based__c,'','display:none;')}">{!p.End_Time_Text__c}</td>
+                                            </tr>
+                                        </apex:repeat>
+                                    </table>
+                                </apex:column>
+                            </apex:dataTable>
+                        </apex:outputPanel>
+                        <apex:outputPanel id="templatePanel" rendered="{!bConfigureTemplate}">
+                            <h3>Schedule Template Configuration</h3>
+                            <div style="{!IF(cSetup.setup.Group_Based__c,'display:none','')}" class="childSummary">
+                                Name your schedule template and indicate if this is the master template. The master template is the default template that displays for all of the days in the reporting period on your school calendar. Refer to SchoolForce Help for more information about completing these fields. 
+                            </div>
+                            <div style="{!IF(cSetup.setup.Group_Based__c,'','display:none')}" class="childSummary">
+                                Name your schedule template and indicate if this is the master template. The master template is the default template that displays for all of the days in the reporting period on your school calendar. Refer to SchoolForce Help for more information about completing these fields. 
+                            </div>
+                            <apex:pageBlock >
+                                <apex:pageBlockSection collapsible="false" columns="2">
+                                    <apex:pageBlockSectionItem >
+                                        <apex:outputLabel value="Reporting Period"/>
+                                        <apex:selectList Styleclass="rpList" value="{!schedTemplate.Reporting_Period__c}" multiselect="false" size="1"
+                                         disabled="{!isViewOnly}">
+                                            <apex:selectOptions value="{!reportingPeriodOptionList}" /> 
+                                        </apex:selectList>
+                                    </apex:pageBlockSectionItem>
+
+                                    <apex:inputField required="true" value="{!schedTemplate.Name}" rendered="{!NOT(isViewOnly)}"/>
+                                    <apex:outputField rendered="{!isViewOnly}" value="{!schedTemplate.Name}"/>
+
+                                    <apex:pageBlockSectionItem rendered="{!OR(AND(schedTemplate.Is_Master__c,NOT(ISNULL(schedTemplate.ID))), isViewOnly)}">
+                                        <apex:outputLabel value="Master?"/>
+                                        <img src="/img/checkbox_checked.gif" alt="Checked" width="21" height="16" class="checkImg" title="Checked" style="{!IF(schedTemplate.Is_Master__c,'','display:none;')}"/>
+                                        <img src="/img/checkbox_unchecked.gif" alt="Unchecked" width="21" height="16" class="checkImg" title="Unchecked" style="{!IF(schedTemplate.Is_Master__c,'display:none;','')}"/>
+                                    </apex:pageBlockSectionItem>
+                                    <apex:inputField rendered="{!OR(NOT(schedTemplate.Is_Master__c),ISNULL(schedTemplate.ID)) && NOT(isViewOnly)}" value="{!schedTemplate.Is_Master__c}"/>
+
+                                    <apex:inputField value="{!schedTemplate.Has_Class__c}" rendered="{!NOT(isViewOnly)}"/>
+                                    <apex:outputField value="{!schedTemplate.Has_Class__c}" rendered="{!isViewOnly}"/>
+
+                                    <apex:pageBlockSectionItem rendered="{!cSetup.setup.Group_Based__c && NOT(isViewOnly)}">
+                                        <apex:outputlabel value="Start Time"/>
+                                        <apex:inputText styleClass="TimePicker" value="{!schedTemplate.Start_Time_Text__c}" />
+                                    </apex:pageBlockSectionItem>
+                                    <apex:pageBlockSectionItem rendered="{!isViewOnly}">
+                                        <apex:outputlabel value="Start Time"/>
+                                        <apex:outputText value="{!schedTemplate.Start_Time_Text__c}" />
+                                    </apex:pageBlockSectionItem>
+
+                                    <apex:pageBlockSectionItem rendered="{!cSetup.setup.Group_Based__c && NOT(isViewOnly)}">
+                                        <apex:outputlabel value="End Time"/>
+                                        <apex:inputText styleClass="TimePicker" value="{!schedTemplate.End_Time_Text__c}"/>
+                                    </apex:pageBlockSectionItem>
+                                    <apex:pageBlockSectionItem rendered="{!isViewOnly}">
+                                        <apex:outputlabel value="End Time"/>
+                                        <apex:outputText value="{!schedTemplate.End_Time_Text__c}"/>
+                                    </apex:pageBlockSectionItem>
+                                    
+                                    <apex:pageBlockSectionItem rendered="{!NOT(isViewOnly)}">
+                                        <apex:outputLabel value="Color"/>
+                                        <input   value="{!schedTemplate.Color__c}" id="colorSelector" data-text="hidden" style="height:20px;width:20px;" data-hex="true"/>
+                                    </apex:pageBlockSectionItem>
+
+                                    <apex:pageBlockSectionItem rendered="{!isViewOnly}">
+                                        <apex:outputLabel value="Color"/>
+                                        <div style="height:20px;width:20px;display:inline-block;background-color:{!schedTemplate.Color__c};"></div>
+                                    </apex:pageBlockSectionItem>
+
+                                    <apex:inputText style="height:0px;display:none" styleClass="tempColor" id="tempColor" value="{!schedTemplate.Color__c}" rendered="{!NOT(isViewOnly)}"/>
+                                </apex:pageBlockSection>
+                                <apex:outputPanel id="periodList">
+                                    <script>
+                                        resetTimePicker();
+                                        resetTable();
+                                        resetColorPicker();
+                                    </script>
+                                    <apex:outputPanel rendered="{!IF(!cSetup.setup.Group_Based__c, true, false)}"  >
+                                        <h3>Period Details</h3>
+                                        <div class="childSummary">
+                                            Define the periods of the day this template uses. There are multiple ways you can set up periods to work with your school’s scheduling requirements. Refer to SchoolForce Help for details on how to define the periods.
+                                        </div>
+                                        <div class="section_content">
+                                            <apex:dataTable styleClass="noFilter" value="{!periodList}" var="p" > 
+                                                <apex:column headerValue="Action" rendered="{!NOT(isViewOnly)}">
+                                                    <a href="#" onclick="initPeriodModal(); editRowJs('{!p.id}')">Edit</a>|
+                                                    <a href="#" onclick="if(confirm('Are you sure you want to delete this period?'))deleteRowJs('{!p.id}');"> Delete&nbsp;</a>
+                                                </apex:column>
+                                                <apex:column headerValue="Order" value="{!p.Order__c}"/>
+                                                <apex:column headerValue="Identifier" value="{!p.Key__c}"/>
+                                                <apex:column headerValue="Start Time" value="{!p.Start_Time_Text__c}"/>
+                                                <apex:column headerValue="End Time" value="{!p.End_Time_Text__c}"/>
+                                                <apex:column headerValue="Passing Time" value="{!p.Passing_Time__c}"/>
+                                                <apex:column headerValue="Description" value="{!p.Description__c}"/>
+                                            </apex:dataTable>
+                                            <apex:outputPanel rendered="{!NOT(isViewOnly)}">
+                                                <a style="cursor: pointer;" onClick="initPeriodModal(); addRowJs();">
+                                                    <img src="/img/feeds/follow12.png" />Add New Row</a>
+                                                <div class="clear_fix">&nbsp;</div>
+                                            </apex:outputPanel>
+                                        </div>
+                                    </apex:outputPanel>
+                                </apex:outputPanel>
+                                <apex:outputPanel rendered="{!NOT(isViewOnly)}">
+                                    <input type="button" class="grey_btn" value="Cancel" onClick="if(confirm('Your changes have not been saved. Are you sure you want to cancel?'))cancelSchedTemplateJs();" />
+                                    <input type="button" class="black_btn" value="Save" onClick="saveSchedTemplateJs();" style="{!IF(!cSetup.setup.Group_Based__c,'','display:none;')}" />
+                                    <input type="button" class="black_btn" value="Save & New" onClick="saveAndNewJs();" style="{!IF(!cSetup.setup.Group_Based__c,'','display:none;')}" />
+                                    <input type="button" class="black_btn" value="Save" onClick="saveSchedGrpJs();" style="{!IF(cSetup.setup.Group_Based__c,'','display:none;')}" />
+                                </apex:outputPanel>
+                                <apex:outputPanel rendered="{!isViewOnly}">
+                                    <input type="button" class="grey_btn" value="Close" onClick="cancelSchedTemplateJs();" />
+                                </apex:outputPanel>
+                            </apex:pageBlock>
+                        </apex:outputPanel>
+                    </div>
+                </div>
+            </apex:outputPanel>
+            
+            <!-- SCHEDULE TEMPLATE FUNCTIONS -->
+            <apex:actionFunction name="newTemplateJs" action="{!initTemplate}" rerender="thePanel" >
+                <apex:param name="rpId" assignTo="{!rpId}" value="" />
+                <apex:param name="templateId" assignTo="{!templateId}" value="" />
+            </apex:actionFunction>
+            <apex:actionFunction name="editTemplateJs" action="{!initTemplate}" rerender="thePanel" >
+                <apex:param name="templateId" assignTo="{!templateId}" value="" />
+                <apex:param name="isViewOnly" assignTo="{!isViewOnly}" value="" />
+            </apex:actionFunction>
+            <apex:actionFunction name="viewTemplateJs" action="{!initTemplate}" rerender="thePanel">
+                <apex:param name="templateId" assignTo="{!templateId}" value="" />
+                <apex:param name="isViewOnly" assignTo="{!isViewOnly}" value="" />
+            </apex:actionFunction>
+            <apex:actionFunction name="cloneTemplateJs" action="{!initTemplate}" rerender="thePanel" >
+                <apex:param name="cloneTemplateId" assignTo="{!cloneTemplateId}" value="" />
+                <apex:param name="rpId" assignTo="{!rpId}" value="" />
+                <apex:param name="isViewOnly" assignTo="{!isViewOnly}" value="" />
+            </apex:actionFunction>
+            <apex:actionFunction name="deleteTemplateJs" action="{!deleteTemplate}" oncomplete="setTimeout('hideProgressBar()',500);" rerender="thePanel" >
+                <apex:param name="templateId" assignTo="{!templateId}" value="" />
+            </apex:actionFunction>
+            <apex:actionFunction name="cancelSchedTemplateJs" action="{!cancelSchedTemplate}" rerender="thePanel" />
+            <apex:actionFunction name="saveSchedTemplateJs" action="{!saveSchedTemplate}" rerender="thePanel" />
+            <apex:actionFunction name="saveAndNewJs" action="{!saveAndNew}" rerender="thePanel" />
+            <apex:actionFunction name="saveSchedGrpJs" action="{!saveSchedGrp}" rerender="thePanel" />
+            <!-- PERIOD FUNCTIONS -->
+            <apex:actionFunction name="deleteRowJs" action="{!deleteRow}" rerender="periodList, messagesPanel">
+                <apex:param name="periodId" assignTo="{!periodId}" value="" />
+            </apex:actionFunction>
+            <apex:actionFunction name="editRowJs" action="{!editRow}" onComplete="openModal('#periodModal');" rerender="editPeriod">
+                <apex:param name="periodId" assignTo="{!periodId}" value="" />
+            </apex:actionFunction>
+            <apex:actionFunction name="addRowJs" action="{!addPeriodRow}" onComplete="openModal('#periodModal');" rerender="editPeriod"/>
+            
+            <div id="periodModal" >
+                <apex:outputPanel id="editPeriod">
+                    <apex:outputPanel rendered="{!bPeriod}">
+                        <apex:outputPanel id="periodErrors">
+                            <apex:pageMessages />
+                        </apex:outputPanel>
+                        <script>
+                            resetTimePicker();
+                        </script>
+                        <h3>Add/Edit Period Details</h3>
+                        <apex:pageBlock >
+                            <div class="section_content no-border">
+                                <apex:pageBlockSection >
+                                    <apex:pageBlockSectionItem >
+                                        <apex:outputLabel for="order" value="Order" />
+                                        <apex:outputField id="order" value="{!period.Order__c}"/>
+                                    </apex:pageBlockSectionItem>
+                                    <apex:pageBlockSectionItem >
+                                        <apex:outputLabel for="key" value="Identifier" />
+                                        <apex:inputField id="key" value="{!period.Key__c}"/>
+                                    </apex:pageBlockSectionItem>
+                                    <apex:pageBlockSectionItem >
+                                        <apex:outputLabel for="startTime" value="Start Time" />
+                                        <apex:inputText styleClass="TimePicker" value="{!period.Start_Time_Text__c}"/>
+                                    </apex:pageBlockSectionItem>
+                                    <apex:pageBlockSectionItem >
+                                        <apex:outputLabel for="endTime" value="End Time" />
+                                        <apex:inputText styleClass="TimePicker" value="{!period.End_Time_Text__c}"/>
+                                    </apex:pageBlockSectionItem>
+                                    <apex:inputField value="{!period.Type__c}"/>
+                                    <apex:inputField value="{!period.Passing_Time__c}"/>
+                                    <apex:inputField value="{!period.Description__c}"/>
+                                </apex:pageBlockSection>
+                            </div>
+                        </apex:pageBlock>
+                        <input type="button" class="grey_btn" value="CANCEL" onClick="if(confirm('If you cancel, your changes will not be saved. Are you sure you want to cancel?'))cancelPeriodJs();" />
+                        <input type="button" class="black_btn" value="SAVE" onClick="if(confirm('Are you sure that you would like to save this period?')){
+                                                                                        showProgressBar(' Saving period ');
+                                                                                        savePeriodJs();
+                                                                                    } " />
+                        <div class="clear_fix">&nbsp;</div>
+                    </apex:outputPanel>
+                </apex:outputPanel>
+            </div>
+            <apex:actionFunction name="savePeriodJs" action="{!savePeriod}" onComplete="checkPeriods();" 
+                rerender="periodList, resetPanel, periodErrors"/>
+            <apex:actionFunction name="cancelPeriodJs" onComplete="closeModal('#periodModal');"/>
+            <!-- NAVIGATION FUNCTIONS -->
+            <apex:actionFunction name="nextJs" action="{!next}" />
+            <apex:actionFunction name="prevJs" action="{!prev}" />
+            </apex:form>
+        </td>
+    </tr>
+</table>
+</apex:page>

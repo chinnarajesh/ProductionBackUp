@@ -1,0 +1,600 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableEnhancedLookup>false</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>Calculation_Type__c</fullName>
+        <description>Shows the currently selected calculation type based off the school setup where the student currently attends.</description>
+        <externalId>false</externalId>
+        <formula>TEXT(Student__r.Setup__r.Calculation_Type__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Displays the formal calculation type for standards in this school.</inlineHelpText>
+        <label>Calculation Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Count_of_Graded_1__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>Retired field.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Retired field.</inlineHelpText>
+        <label>Count of Graded 1*Retired*</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Count_of_Graded_2__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>Retired field.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Retired field.</inlineHelpText>
+        <label>Count of Graded 2 *Retired*</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Count_of_Graded_3__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>Retired field.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Retired field.</inlineHelpText>
+        <label>Count of Graded 3 *Retired*</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Count_of_Graded_4__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>Weighted count of how many assignments have been graded as a 4 in CCS Grading - so a Grade of 4 on Weighting of 2 = 2 in this field.  Retired field.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Retired field.</inlineHelpText>
+        <label>Count of Graded 4 *Retired*</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Current_Mode__c</fullName>
+        <description>Retired field.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Retired field.</inlineHelpText>
+        <label>Current Mode *Retired*</label>
+        <length>10</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>External_Id__c</fullName>
+        <description>Used for data migration during the package conversion.  Typically not populated via the application.</description>
+        <externalId>true</externalId>
+        <inlineHelpText>Used for data migration during the package conversion.  Typically not populated via the application.</inlineHelpText>
+        <label>External Id</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Grade_Overridden__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>Has this standard grade been overridden?</inlineHelpText>
+        <label>Grade Overridden</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Grade_Override__c</fullName>
+        <externalId>false</externalId>
+        <label>Grade Override</label>
+        <precision>4</precision>
+        <required>false</required>
+        <scale>1</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Grade__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>Retired field.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Retired field.</inlineHelpText>
+        <label>Grade *Retired*</label>
+        <precision>4</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Highest_Grade__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>The highest standard grade the student ever received on this standard</inlineHelpText>
+        <label>Highest Grade</label>
+        <precision>6</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Key__c</fullName>
+        <externalId>true</externalId>
+        <label>Key</label>
+        <length>60</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Law_of_Decaying_Average_Grade__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>The most recent grade has the highest weight.  Most recent is determined by due date of the assignment.  The School Admin decides what the weight is for the most recent grade (ie most recent grade is 65% weighted)</inlineHelpText>
+        <label>Law of Decaying Average Grade</label>
+        <precision>6</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Mean_Grade__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Straight average of all grades ever received on this standard.</inlineHelpText>
+        <label>Mean Grade</label>
+        <precision>6</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Median_Grade__c</fullName>
+        <description>Currently Retired.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The median standard grade is the middle number of all standards this student has received based on date submitted.</inlineHelpText>
+        <label>Median Grade *Retired*</label>
+        <precision>6</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Mode_Grade__c</fullName>
+        <description>Currently Retired.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The standard grade that has been repeated the most for this standard</inlineHelpText>
+        <label>Mode Grade *Retired*</label>
+        <precision>6</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Most_Recent_Grade__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>If there are less than 3 assignments, the Most Recent Standard Grade is the most recent grade based on due date.  If there are more than 3 assignments, it takes the average of the last 3 assignments.</inlineHelpText>
+        <label>Most Recent Grade</label>
+        <precision>6</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Power_Law_Grade__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>A formula derived grade; please see additional documentation for more information.</inlineHelpText>
+        <label>Power Law Grade</label>
+        <precision>6</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Reporting_Period_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>Reporting_Period__r.Name__c</formula>
+        <label>Reporting Period Name</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Reporting_Period__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Reporting Period</label>
+        <referenceTo>Time_Element__c</referenceTo>
+        <relationshipLabel>Standard Grades</relationshipLabel>
+        <relationshipName>Standard_Grades</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Rolling_Highest_Grade__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>The highest standard grade the student ever received on this standard across reporting periods.</inlineHelpText>
+        <label>Rolling Highest Grade</label>
+        <precision>6</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Rolling_Law_of_Decaying_Average_Grade__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>the most recent grade has the highest weight across reporting periods.  Most recent is deteremined by due date of the assignment.  The School Admin decides what the weight is for the most recent grade (ie most recent grade is 65% weighted)</inlineHelpText>
+        <label>Rolling Law of Decaying Average Grade</label>
+        <precision>6</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Rolling_Mean_Grade__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Straight average of all grades received on this standard up to this reporting period.</inlineHelpText>
+        <label>Rolling Mean Grade</label>
+        <precision>6</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Rolling_Most_Recent_Grade__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>If there are less than 3 assignments, the Rolling Most Recent Grade is the most recent grade based on due date.  If there are more than 3 assignments, it takes the average of the last 3 assignments across reporting periods.</inlineHelpText>
+        <label>Rolling Most Recent Grade</label>
+        <precision>6</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Rolling_Power_Law_Grade__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>A formula derived grade across reporting periods; please see additional documentation for more information.</inlineHelpText>
+        <label>Rolling Power Law Grade</label>
+        <precision>6</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Standard_Grade__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(NOT(ISNULL(Grade_Override__c)), Grade_Override__c,
+
+IF(AND(ISPICKVAL(Student__r.Setup__r.Calculation_Type__c,  &quot;Mean&quot;), Student__r.Setup__r.Rolling_Standard_Grade__c == FALSE), Mean_Grade__c, 
+
+IF(AND(ISPICKVAL(Student__r.Setup__r.Calculation_Type__c, &quot;Highest&quot;), Student__r.Setup__r.Rolling_Standard_Grade__c == FALSE), Highest_Grade__c, 
+
+IF(AND(ISPICKVAL(Student__r.Setup__r.Calculation_Type__c, &quot;Most Recent&quot;), Student__r.Setup__r.Rolling_Standard_Grade__c == FALSE), Most_Recent_Grade__c, 
+ 
+IF(AND(ISPICKVAL(Student__r.Setup__r.Calculation_Type__c, &quot;Power Law&quot;), Student__r.Setup__r.Rolling_Standard_Grade__c == FALSE), Power_Law_Grade__c, 
+
+IF(AND(ISPICKVAL(Student__r.Setup__r.Calculation_Type__c, &quot;Law of Decaying Average&quot;), Student__r.Setup__r.Rolling_Standard_Grade__c == FALSE), Law_of_Decaying_Average_Grade__c, 
+
+IF(AND(ISPICKVAL(Student__r.Setup__r.Calculation_Type__c,  &quot;Mean&quot;), Student__r.Setup__r.Rolling_Standard_Grade__c == TRUE), Rolling_Mean_Grade__c, 
+
+IF(AND(ISPICKVAL(Student__r.Setup__r.Calculation_Type__c, &quot;Highest&quot;), Student__r.Setup__r.Rolling_Standard_Grade__c == TRUE), Rolling_Highest_Grade__c, 
+
+IF(AND(ISPICKVAL(Student__r.Setup__r.Calculation_Type__c, &quot;Most Recent&quot;), Student__r.Setup__r.Rolling_Standard_Grade__c == TRUE), Rolling_Most_Recent_Grade__c, 
+ 
+IF(AND(ISPICKVAL(Student__r.Setup__r.Calculation_Type__c, &quot;Power Law&quot;), Student__r.Setup__r.Rolling_Standard_Grade__c == TRUE), Rolling_Power_Law_Grade__c, 
+
+IF(AND(ISPICKVAL(Student__r.Setup__r.Calculation_Type__c, &quot;Law of Decaying Average&quot;), Student__r.Setup__r.Rolling_Standard_Grade__c == TRUE), Rolling_Law_of_Decaying_Average_Grade__c, 
+
+Weighted_Average_Grade__c
+
+)))))))))))</formula>
+        <inlineHelpText>What is the formal standard grade based on the school&apos;s selected standard calculation type? This is a year to date calculation; it is not based on reporting periods.</inlineHelpText>
+        <label>Grade</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Standard_Rolling__c</fullName>
+        <externalId>false</externalId>
+        <formula>Student__r.Setup__r.Rolling_Standard_Grade__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>If selected, the standard grade includes the assignment grades from the first through the current reporting period (e.g., the Q3 grade is calculated from the Q1-Q3 grades). Otherwise, the standard grade includes only the grades from the reporting period.</inlineHelpText>
+        <label>Standard Rolling?</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Standard__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Standard</label>
+        <referenceTo>Standard__c</referenceTo>
+        <relationshipLabel>Standard Grades</relationshipLabel>
+        <relationshipName>Standard_Grades</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Strand_Id__c</fullName>
+        <externalId>false</externalId>
+        <formula>CASESAFEID(Standard__r.Strand__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Strand Id</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Student__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Student</label>
+        <referenceTo>Student__c</referenceTo>
+        <relationshipLabel>Standard Grades</relationshipLabel>
+        <relationshipName>Standard_Grades</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Weighted_Average_Grade__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>Currently Retired.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This is a weighted average for the standard for the time period</inlineHelpText>
+        <label>Weighted Average Grade *Retired*</label>
+        <precision>6</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <label>Standard Grade</label>
+    <nameField>
+        <displayFormat>STDG-{000}</displayFormat>
+        <label>Standard Grade Name</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Standard Grades</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

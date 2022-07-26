@@ -1,0 +1,60 @@
+<apex:page controller="ProactiveController">
+	<apex:stylesheet value="{!$Resource.New_Core_UX}"/>
+	<c:jQueryInit bDataTables="false" bLoadingPanel="true"/>
+	<script>
+	function importJS(){
+    	showProgressBar('Please wait while data is processed.');
+    	processInputJS();
+    	setTimeout('hideProgressBar()',5000);
+    }
+	</script>
+	<script>
+	function importJS2(){
+    	showProgressBar('Please wait while data is processed.');
+    	processInputJS2();
+    	setTimeout('hideProgressBar()',30000);
+    }
+	</script>
+	
+	<apex:form >
+	<h3>Welcome to the Proactive Data Processor</h3>
+		<apex:pageBlock >
+		<!-- <apex:pageMessage summary="Welcome to the Proactive Data Processor!" severity="info" strength="3" /> -->
+			<apex:pageMessages id="msg"/>
+			
+			<div class="section_content" >
+			<apex:pageBlockSection columns="2" >
+			
+				<apex:selectList label="School Name: " value="{!schoolId}" multiselect="false" size="1" tabindex="1"> 
+					<apex:selectOption itemValue="" itemLabel="Select One" itemDisabled="false" />
+					<apex:selectOptions value="{!items}"></apex:selectOptions>
+				</apex:selectList>
+			
+				<apex:inputField label="Start Date" value="{!pDemo.Entry_Date__c}" />
+				<apex:inputCheckbox label="Demographics" value="{!demographics}" />
+				<apex:inputField label="End Date" value="{!pDemo.Exit_Date__c}" />
+				<apex:inputCheckbox label="Attendance" value="{!attendance}" />
+				
+			</apex:pageBlockSection>
+			</div>	
+			
+				
+			<apex:commandButton value="Process Request" onclick="importJS()" rerender="myPanel,msg" status="status" styleClass="black_btn"/> 
+			<div class="clear_fix" style="line-height: 1%">&nbsp;</div>
+			
+			<div class="section_content">
+			<apex:outputPanel id="myPanel">
+			<apex:pageBlockSection columns="2">
+				<apex:outputText label="Total number of existing demographics records:" value="{!countDemoRec}" />
+				<apex:outputText label="Total Number of existing attendance records:" value="{!countAttRec}" />
+			</apex:pageBlockSection>
+			</apex:outputPanel>
+			</div>
+			<apex:commandButton value="Delete Proactive Data (Batches of 10k)" onclick="importJS2()" rerender="myPanel,msg" status="status" styleClass="black_btn"/> 
+			<div class="clear_fix" style="line-height: 1%">&nbsp;</div>
+			<apex:actionFunction name="processInputJS" action="{!buttonClick}"/>
+			<apex:actionFunction name="processInputJS2" action="{!DeleteProactive}" reRender="myPanel"/>
+			
+		</apex:pageBlock>
+	</apex:form>
+</apex:page>

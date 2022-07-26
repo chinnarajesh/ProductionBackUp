@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Student_Section__c$School__c</field>
+    </columns>
+    <columns>
+        <field>Student_Section__c$Section_Name__c</field>
+    </columns>
+    <columns>
+        <field>Student_Section__c$Student_Id__c</field>
+    </columns>
+    <columns>
+        <field>Student_Section__c$Student_Name__c</field>
+    </columns>
+    <columns>
+        <field>Student_Section__c$Enrollment_Start_Date__c</field>
+    </columns>
+    <columns>
+        <field>Student_Section__c$Enrollment_End_Date__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>Student_Section__c$Dosage_to_Date__c</field>
+    </columns>
+    <filter>
+        <criteriaItems>
+            <column>Student_Section__c$In_School_Extended_Learning_Curriculum__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>In School</value>
+        </criteriaItems>
+    </filter>
+    <format>Tabular</format>
+    <name>Indicator Area Assignment Report</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Student_Section__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>Student_Section__c$CreatedDate</dateColumn>
+        <interval>INTERVAL_CURFY</interval>
+    </timeFrameFilter>
+</Report>

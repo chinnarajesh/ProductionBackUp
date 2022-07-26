@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Points Transaction</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Points Transactions</value>
+    </caseValues>
+    <fields>
+        <label><!-- Category --></label>
+        <name>Category__c</name>
+        <relationshipLabel><!-- Points Transactions --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Comments --></label>
+        <name>Comments__c</name>
+    </fields>
+    <fields>
+        <label><!-- External Id --></label>
+        <name>External_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Is_Redeem --></label>
+        <name>Is_Redeem__c</name>
+    </fields>
+    <fields>
+        <label><!-- Points Date --></label>
+        <name>Points_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Points --></label>
+        <name>Points__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reference Id --></label>
+        <name>Reference_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Staff --></label>
+        <name>Staff__c</name>
+        <relationshipLabel><!-- Points Transactions --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Student/Section --></label>
+        <name>Student_Section__c</name>
+        <relationshipLabel><!-- Points Transactions --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Student --></label>
+        <name>Student__c</name>
+        <relationshipLabel><!-- Points Transactions --></relationshipLabel>
+    </fields>
+    <layouts>
+        <layout>Points Transaction Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

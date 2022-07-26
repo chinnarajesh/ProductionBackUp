@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>HoldingObj</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>HoldingObjs</value>
+    </caseValues>
+    <fieldSets>
+        <label><!-- Staff Holding Object Template --></label>
+        <name>Staff_Holding_Object_Template</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Staff Section Holding Object Template --></label>
+        <name>Staff_Section_Holding_Object_Template</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Student Holding Object Template --></label>
+        <name>Student_Holding_Object_Template</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Student Section Holding Object Template --></label>
+        <name>Student_Section_Holding_Object_Template</name>
+    </fieldSets>
+    <fields>
+        <label><!-- Address --></label>
+        <name>Address__c</name>
+    </fields>
+    <fields>
+        <label><!-- Entry Date --></label>
+        <name>Admission_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Age --></label>
+        <name>Age__c</name>
+    </fields>
+    <fields>
+        <label><!-- City --></label>
+        <name>City__c</name>
+    </fields>
+    <fields>
+        <label><!-- Section Name --></label>
+        <name>Class_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Class Name --></label>
+        <name>Class_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Course Name --></label>
+        <name>Course_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Date of Birth --></label>
+        <name>DOB__c</name>
+    </fields>
+    <fields>
+        <label><!-- Daily Attendance? --></label>
+        <name>Daily_Attendance__c</name>
+    </fields>
+    <fields>
+        <label><!-- Debug Message --></label>
+        <name>Debug_Message__c</name>
+    </fields>
+    <fields>
+        <help><!-- Y/N --></help>
+        <label><!-- Disability Flag --></label>
+        <name>Disability_Flag__c</name>
+    </fields>
+    <fields>
+        <label><!-- ELL --></label>
+        <name>ELL__c</name>
+    </fields>
+    <fields>
+        <label><!-- Email Address --></label>
+        <name>Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- Error Message --></label>
+        <name>Error_Message__c</name>
+    </fields>
+    <fields>
+        <label><!-- Ethnicity --></label>
+        <name>Ethnic_Cde__c</name>
+    </fields>
+    <fields>
+        <label><!-- External Id --></label>
+        <name>External_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- First Name --></label>
+        <name>First_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Grade --></label>
+        <name>Grade_Level__c</name>
+    </fields>
+    <fields>
+        <label><!-- Has Homework --></label>
+        <name>Has_Homework__c</name>
+    </fields>
+    <fields>
+        <label><!-- Last Name --></label>
+        <name>Last_Name__c</name>
+    </fields>
+    <fields>
+        <help><!-- Y/N --></help>
+        <label><!-- Lep Flag --></label>
+        <name>Lep_Flag__c</name>
+    </fields>
+    <fields>
+        <label><!-- Local Student ID --></label>
+        <name>Local_Student_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Network Code --></label>
+        <name>Network_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Network --></label>
+        <name>Network__c</name>
+    </fields>
+    <fields>
+        <label><!-- No Meeting --></label>
+        <name>No_Meeting__c</name>
+    </fields>
+    <fields>
+        <label><!-- Password --></label>
+        <name>Password__c</name>
+    </fields>
+    <fields>
+        <label><!-- Period --></label>
+        <name>Period__c</name>
+    </fields>
+    <fields>
+        <label><!-- Phone --></label>
+        <name>Phone__c</name>
+    </fields>
+    <fields>
+        <label><!-- Propagated --></label>
+        <name>Propagated__c</name>
+    </fields>
+    <fields>
+        <label><!-- Record Attendance --></label>
+        <name>Record_Attendance__c</name>
+    </fields>
+    <fields>
+        <label><!-- Record Type Name --></label>
+        <name>Record_Type_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reference Id --></label>
+        <name>Reference_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reporting Period Id --></label>
+        <name>Reporting_Period_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Room --></label>
+        <name>Room__c</name>
+    </fields>
+    <fields>
+        <label><!-- School Dbn --></label>
+        <name>School_Dbn__c</name>
+    </fields>
+    <fields>
+        <label><!-- School Name --></label>
+        <name>School_Name__c</name>
+    </fields>
+    <fields>
+        <help><!-- Y/N --></help>
+        <label><!-- School Propagated --></label>
+        <name>School_Propagated__c</name>
+    </fields>
+    <fields>
+        <label><!-- School Year --></label>
+        <name>School_Year__c</name>
+    </fields>
+    <fields>
+        <help><!-- Y/N --></help>
+        <label><!-- Section Propagated --></label>
+        <name>Section_Propagated__c</name>
+    </fields>
+    <fields>
+        <label><!-- Gender --></label>
+        <name>Sex__c</name>
+    </fields>
+    <fields>
+        <label><!-- Source System --></label>
+        <name>Source_System__c</name>
+    </fields>
+    <fields>
+        <label><!-- Staff Code --></label>
+        <name>Staff_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Staff ID --></label>
+        <name>Staff_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- State --></label>
+        <name>State__c</name>
+    </fields>
+    <fields>
+        <label><!-- Student Id --></label>
+        <name>Student_Id__c</name>
+    </fields>
+    <fields>
+        <help><!-- Y/N --></help>
+        <label><!-- Student Propagated --></label>
+        <name>Student_Propagated__c</name>
+    </fields>
+    <fields>
+        <label><!-- Subject --></label>
+        <name>Subject__c</name>
+    </fields>
+    <fields>
+        <label><!-- Type --></label>
+        <name>Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Username --></label>
+        <name>Username__c</name>
+    </fields>
+    <fields>
+        <label><!-- Zip --></label>
+        <name>Zip__c</name>
+    </fields>
+    <fields>
+        <label><!-- isActive --></label>
+        <name>isActive__c</name>
+    </fields>
+    <layouts>
+        <layout>Holding Object Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

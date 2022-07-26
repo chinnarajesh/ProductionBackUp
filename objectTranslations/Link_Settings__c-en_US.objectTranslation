@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Custom Link Settings</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Custom Link Settings</value>
+    </caseValues>
+    <fields>
+        <label><!-- Advanced Reports --></label>
+        <name>Advanced_Reports__c</name>
+    </fields>
+    <fields>
+        <label><!-- Assessment Wizard --></label>
+        <name>Assessment_Wizard__c</name>
+    </fields>
+    <fields>
+        <label><!-- Attendance Wizard --></label>
+        <name>Attendance_Wizard__c</name>
+    </fields>
+    <fields>
+        <label><!-- CSV Loader --></label>
+        <name>CSV_Loader__c</name>
+    </fields>
+    <fields>
+        <label><!-- Cohort Wizard --></label>
+        <name>Cohort_Wizard__c</name>
+    </fields>
+    <fields>
+        <help><!-- This value differs between test and prod orgs. --></help>
+        <label><!-- Communities SSO URL --></label>
+        <name>Communities_SSO_URL__c</name>
+    </fields>
+    <fields>
+        <label><!-- Communities Single Sign On --></label>
+        <name>Communities_SSO__c</name>
+    </fields>
+    <fields>
+        <label><!-- Community Service Wizard --></label>
+        <name>Community_Service_Wizard__c</name>
+    </fields>
+    <fields>
+        <label><!-- Complete Sections --></label>
+        <name>Complete_Sections__c</name>
+    </fields>
+    <fields>
+        <label><!-- Overall Comments --></label>
+        <name>Overall_Comments__c</name>
+    </fields>
+    <fields>
+        <label><!-- Points Matrix --></label>
+        <name>Points_Matrix__c</name>
+    </fields>
+    <fields>
+        <label><!-- Print Schedule --></label>
+        <name>Print_Schedule__c</name>
+    </fields>
+    <fields>
+        <label><!-- ProActive Processor --></label>
+        <name>ProActive_Processor__c</name>
+    </fields>
+    <fields>
+        <label><!-- Run Report Cards --></label>
+        <name>Run_Report_Cards__c</name>
+    </fields>
+    <fields>
+        <label><!-- Section Wizard --></label>
+        <name>Section_Wizard__c</name>
+    </fields>
+    <fields>
+        <label><!-- Setup Wizard --></label>
+        <name>Setup_Wizard__c</name>
+    </fields>
+    <fields>
+        <help><!-- Check this field if the associated profile should have the custom tabbed based student layout. --></help>
+        <label><!-- Student Tab Layout --></label>
+        <name>Student_Tab_Layout__c</name>
+    </fields>
+    <fields>
+        <label><!-- Transfer Wizard --></label>
+        <name>Transfer_Wizard__c</name>
+    </fields>
+    <fields>
+        <label><!-- Year Close Wizard --></label>
+        <name>Year_Close_Wizard__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

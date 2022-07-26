@@ -1,0 +1,142 @@
+<apex:page controller="ctlAddTimeFlow" sidebar="true">
+   <c:jQueryInit bDataTables="true" bLoadingPanel="false"/>   
+ <apex:includeScript value="{!URLFOR($Resource.jWerty, '/jWerty/jwerty.js')}" />
+    <apex:stylesheet value="{!$Resource.New_Core_UX}"/>
+    <script type="text/javascript">
+     var generated = false;
+    var tabelwidth = 'firstload';
+    jwerty.key('enter',false);
+     j$ = jQuery.noConflict();
+    j$(document).ready( function () {    
+        
+            var contactTable1 = j$('[id$="sctnList"]').DataTable({
+			 "sScrollY": "500px",
+            "bLengthChange": true,
+            "bFilter": true,
+            "bInfo": false,
+            "aoColumnDefs": [{ "sWidth": "30%", "aTargets": [ 0 ]}],
+            "bAutoWidth": true,
+            "bSort" :true,
+            "bDestroy": true,
+            "bScrollAutoCss": true,
+            "bPaginate": true,
+            "bScrollCollapse": true,
+            "bJQueryUI": true,
+            "bSaveState": true,
+            iDisplayLength : 25,
+            "asStripClasses": [ 'odd', 'even' ]	
+				});
+            var contactTable = j$('[id$="sctnList1"]').DataTable({
+				 "sScrollY": "500px",
+            "bLengthChange": true,
+            "bFilter": true,
+            "bInfo": false,
+            "aoColumnDefs": [{ "sWidth": "30%", "aTargets": [ 0 ]}],
+            "bAutoWidth": true,
+            "bSort" :true,
+            "bDestroy": true,
+            "bScrollAutoCss": true,
+            "bPaginate": true,
+            "bScrollCollapse": true,
+            "bJQueryUI": true,
+            "bSaveState": true,
+            iDisplayLength : 25,
+            "asStripClasses": [ 'odd', 'even' ]	
+				});
+     return false;       
+			});
+   
+     
+    function resetDatatable()
+    {
+    }
+    </script>
+<apex:form ><apex:pageMessages />
+    <apex:pageBlock title="Sessions" >
+       <apex:pageblockButtons >
+             <apex:outputPanel id="myPage">
+              <!--  <apex:commandButton action="{!Beginning}" title="Beginning" value="<<" disabled="{!prev}" reRender="mySection,myPage"/>
+                <apex:commandButton action="{!Previous}" title="Previous" value="<" disabled="{!prev}" reRender="mySection,myPage"/>
+                <apex:commandButton action="{!Next}" title="Next" value=">" disabled="{!nxt}" reRender="mySection,myPage"/>
+                <apex:commandButton action="{!End}" title="End" value=">>" disabled="{!nxt}" reRender="mySection,myPage"/>-->
+                <apex:commandButton action="{!doSessionListCancel}" value="Cancel" style="float: right;"/>
+             
+             </apex:outputPanel>
+        </apex:pageblockButtons>
+         
+       <apex:PageBlockSection > 
+                     <apex:inputField value="{!sect.Intervention_Primary_Staff__c}" label="Corps Member " /> 
+                     <apex:inputField value="{!sect.Start_Date__c}" label="StartDate" />
+                     <apex:inputField value="{!ss.Student__c}" label="StudentName" /> 
+                     <apex:inputField value="{!sect.End_Date__c}" label="EndDate" />
+                     <apex:commandButton value="Search" action="{!searchSession}" style="float: right;"/>
+        </apex:PageBlockSection>
+<div style="width:100%">
+        <apex:pageBlockSection columns="1" >
+      <apex:outputPanel id="mySection1" rendered="{!IF(searchResults!=null, true, false)}" >
+           
+      <apex:pageBlockTable value="{!searchResults}" var="s" id="sctnList1">
+         <apex:column headerValue="Section Name" >
+          <apex:outputField value="{!s.intervSection.Section__r.Name}" />
+         </apex:column>
+          <apex:column headerValue="Intervention Session ID" >
+            <apex:commandLink value="{!s.intervSection.Name}" action="{!doUpdateSession}">
+                <apex:param name="updateSessionID" value="{!s.intervSection.ID}" assignTo="{!updateSessionID}"/>
+            </apex:commandLink>
+         </apex:column>
+           <apex:column headerValue="Corps Member" >
+               <apex:outputField value="{!s.intervSection.Session_Time_Completed_For__r.Name}" />              
+         </apex:column>
+        <apex:column headerValue="Session Date" >
+         <apex:outputText value="{0,date,MM/dd/yyyy}">
+            <apex:param value="{!s.intervSection.Date__c}" /> 
+            </apex:outputText>
+         </apex:column>
+       <apex:column headerValue="Student List" >           
+            {!s.studentList}
+        </apex:column>
+       <!--<apex:facet name="footer">Displaying Page # {!pageNumber} of {!totalPages}</apex:facet>-->
+
+      </apex:pageBlockTable>
+       
+    </apex:outputPanel></apex:pageBlockSection>
+        </div>  
+     
+        
+        
+      <apex:pageBlockSection columns="1" collapsible="false" >
+      <!-- <apex:outputPanel id="mySection" rendered="{!IF(srchop==false, true, false)}">-->
+            <apex:outputPanel id="mySection1" rendered="{!IF(searchResults!=null, false, true)}" ><!--Added by Harsh Singh-->
+
+      <apex:pageBlockTable value="{!sessionList}" var="s" id="sctnList">
+         <apex:column headerValue="Section Name" >
+          <apex:outputField value="{!s.intervSection.Section__r.Name}" />
+         </apex:column>
+          <apex:column headerValue="Intervention Session ID" >
+            <apex:commandLink value="{!s.intervSection.Name}" action="{!doUpdateSession}">
+                <apex:param name="updateSessionID" value="{!s.intervSection.ID}" assignTo="{!updateSessionID}"/>
+            </apex:commandLink>
+         </apex:column>
+           <apex:column headerValue="Corps Member" >
+               <apex:outputField value="{!s.intervSection.Session_Time_Completed_For__r.Name}" />              
+         </apex:column>
+        <apex:column headerValue="Session Date" >
+            <apex:outputText value="{0,date,MM/dd/yyyy}">
+            <apex:param value="{!s.intervSection.Date__c}" /> 
+            </apex:outputText>
+         </apex:column>
+       <apex:column headerValue="Student List" >           
+            {!s.studentList}
+        </apex:column>
+      <!-- <apex:facet name="footer">Displaying Page # {!pageNumber} of {!totalPages}</apex:facet>-->
+
+      </apex:pageBlockTable>
+       
+      </apex:outputPanel>
+     </apex:pageBlockSection>
+
+
+  </apex:pageBlock>
+</apex:form>
+
+</apex:page>

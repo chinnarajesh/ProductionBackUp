@@ -1,0 +1,388 @@
+<apex:page showHeader="true" sidebar="false" controller="SchoolSetup_Behavior" tabStyle="SchoolForce_Setup__tab">
+	<c:setupWizardSharedComponents summerSchoolMode="{!csetup.setup.School__r.ParentId != null}"/>
+	<script type="text/javascript">
+		var editModal;
+		var table1;
+		var table2;
+		var modalOpen =false;
+		
+		j$(document).ready(function(){
+			resetValueTables();
+			j$(".tabs").tabs({
+				//select works kind of like onClick, what we really want is onComplete (table is visable)
+  				show: function( event, ui ) {
+  					for(var i=0;i<table1.size();i++){
+  						j$(table1[i]).dataTable().fnAdjustColumnSizing();
+  					}
+  					for(var i=0;i<table2.size();i++){
+  						j$(table2[i]).dataTable().fnAdjustColumnSizing();
+  					}
+  				}
+			});
+				
+			if('{!selectedValue}' == 'consequences')
+				j$('.tabs').tabs( "select", 1);
+			else
+				j$('.tabs').tabs( "select", 0);
+			
+		});
+
+		function resetValueTables(){
+			table1 = j$(".table1").dataTable( {
+				"sScrollY": "200px",
+				"sScrollX": "100%",
+				"bAutoWidth": true,
+				"bPaginate": false,
+				"bDestroy": true,
+				"aaSorting": [[ 1, "asc" ]],
+				"bJQueryUI": true, 
+				"iDisplayLength": 1000
+			});
+			table2 = j$(".table2").dataTable( {
+				"sScrollY": "200px",
+				"sScrollX": "100%",
+				"bAutoWidth": true,
+				"bPaginate": false,
+				"bDestroy": true,
+				"aaSorting": [[ 1, "asc" ]],
+				"bJQueryUI": true,
+				"aoColumnDefs": [
+						{"bVisible": false, "aTargets": [5]},
+						{"iDataSort": [5], "aTargets": [4]}],
+				"iDisplayLength": 1000
+			});
+		}
+		
+		function openEditModal(){
+			if(modalOpen == false && (typeof j$('#editModal').dialog('isOpen') == 'object' || j$('#editModal').dialog('isOpen') === false)){
+				modalOpen = true;
+				var readOnly = j$('#editModal input').size()==0;
+				editModal = j$('#editModal').dialog({
+					modal: true,
+					width: "auto",
+					height: "auto",
+					zIndex: 5,
+					close: function(event, ui) {
+						cancelJS();
+						j$(this).dialog('destroy');
+						modalOpen = false;
+					},
+					buttons: {
+						"Save": function() {
+							j$(this).parent().appendTo(j$("[id$='mainForm']"));
+	                   		saveJS();
+						},
+						"Cancel": function(){
+							j$(this).dialog('close');
+						}
+		            }
+				});
+				j$('#editModal:not(".ui-dialog-content")').remove();
+
+				if(readOnly){
+					editModal.dialog("option", "buttons", [{ 
+						text: "Close", click: function() {j$(this).dialog( "close" );cancelJS();}
+					}]);
+				}
+				fixCats(editModal);
+				j$('[id$="typeField"]').attr('disabled', 'disabled');
+				editModal.dialog('open');
+			}
+		}
+
+		function fixCats(modal){
+			//console.log(j$('#catDisplay',modal).html().split(";"));
+			if(j$('#catDisplay',modal).size()>0){
+				var selectedCats = j$('#catDisplay',modal).html().split(";");
+				//console.log(j$('#editModal [id$="theField_unselected"] option').size());
+				var options = j$('[id$="theField_unselected"] option',modal);
+				j$('[id$="theField_selected"] optgroup option',modal).remove();
+
+				for(var i=0; i< options.size(); i++){
+					//console.log('Checking:'+options[i].innerHTML);
+					//console.log(j$.inArray(options[i].innerHTML,selectedCats));
+					if(j$.inArray(options[i].innerHTML,selectedCats) >= 0){
+						var cat = options[i].innerHTML;
+						//console.log(j$('#editModal [id$="theField"] [value=cat]'));
+						j$('[id$="theField"] [value="'+cat+'"]',modal).attr('selected','selected');
+						//console.log('Adding '+cat);
+						j$(options[i]).remove();
+						j$('[id$="theField_selected"] optgroup',modal).append(options[i]);
+					}
+				}
+			}
+		}
+
+		/*function openUploadModal(){
+			j$('#uploadModal').dialog({
+				modal: true,
+				minWidth: 800,
+				minheight: 300,
+				zIndex: 5,
+				open: function(event, ui) {
+					j$(this).parent().appendTo(j$("[id$='mainForm']"));
+				},
+				close: function(event, ui) {
+					j$(this).dialog('destroy');
+				},
+				buttons: {
+					"Close": function(){
+						j$(this).dialog('close');
+						hideCSVJS();
+					}
+	            }
+			});
+		}*/
+		
+		function checkforClose(keepOpen){
+			if(keepOpen == 'true'){
+				j$(editModal).html(j$('#editModal').show());
+			} else {
+				j$(editModal).dialog('close');
+			}
+		}
+	</script>
+	<style type="text/css">
+		#editModal table td{
+			vertical-align:top;
+		}
+		#editModal table .dataCol, #editModal table .labelCol{
+			width:auto;
+		}
+		#editModal table .dataCol{
+			padding-right:5%;
+		}
+		
+		.tabs .section_content{
+			margin-bottom: 0px;
+		}
+		
+		.tabPanel{
+			border-radius: 9px!important;
+			border: 1px solid #ccc!important;
+			border-top: 3px solid #666!important;
+			margin-top:0;
+		}
+		.adminSummary h1{
+			font-size: 18px;
+			color: #1797BF;
+			font-weight: bold;
+			text-transform: uppercase;
+			margin-bottom: 15px;
+		}
+		
+		.actionColumn a{
+			color: #0066CC;
+			text-decoration: none;
+		}
+		
+		.actionColumn a:hover{
+			color: #666666;
+			text-decoration: underline;
+		}
+
+		.redBar{
+			border-left: 3px #C00 solid;
+			padding-left: 3px;
+		}
+
+		.tablesorter td div, .tablesorter2 td div{
+			height:auto!important;
+		}
+	</style>
+	<apex:form id="mainForm">
+		<apex:actionRegion id="theRegion">
+			<!-- MAIN CONTENT -->
+			<div style="width:990px; margin: 0 auto;">
+				<apex:outputPanel id="messages">
+					<apex:pageMessages />
+				</apex:outputPanel>
+				<div class="adminSummary">
+					<h1 class="centerHeader" style="display:block;">
+						<input type="button" onclick="prevJs();" class="grey_btn_arrow" value="School Setup Homepage" />
+						<span style="display:inline-block;">{!cSetup.school.name} Module Setup<br/>Behavior</span>
+						<input type="button" class="green_btn_arrow" value="Save and Next" style="visibility:hidden;"/>
+					</h1>
+				</div>
+				<apex:pageBlock >
+					<div style="margin: 0px 0px 10px 0px;">
+						Welcome to the Behavior Setup Wizard! This wizard will take you through each step necessary in setting up Behavior. Please complete all required fields and then click "Finalize Behavior". See SchoolForce Help for more information.
+					</div>
+					<div class="tabs" style="width:100%; padding: 0px; border:0;">
+						<div id="tabList">
+							<ul style="position:relative; overflow-y:hidden;" >
+								<li style="cursor:pointer; list-style-type:none; float:left;">
+									<a href="#behaviorTypes" style="cursor:pointer;text-decoration:none;margin:0px;">Behavior Types</a>
+								</li>
+								<li style="cursor:pointer; list-style-type:none; float:left;">
+									<a href="#consequenceTypes" style="cursor:pointer;text-decoration:none;margin:0px;">Consequence Types</a>
+								</li>
+								<li style="cursor:pointer; list-style-type:none; float:left;">
+									<a href="#behaviorOptions" style="cursor:pointer;text-decoration:none;margin:0px;">Behavior Options</a>
+								</li>
+							</ul>
+						</div>
+						
+						<div id="behaviorTypes" class="section_content tabPanel">
+							<h3 class="redBar">Behavior Types</h3>
+							<div style="margin: 0px 0px 10px 0px;">
+								Behavior Types are used in determining a Behavior Incident’s severity level.<br/>
+								To add one new Behavior Type at a time click the +. To add multiple Behavior Types at once, click Load From CSV.<br/>
+								You must have at least 1 Behavior Type set up to finalize the Behavior setup.
+							</div>
+							<apex:outputPanel id="typePanel">
+								<apex:outputPanel >
+									<a style="cursor:pointer;" onClick="if(!modalOpen)newJS('behavior');"><img src="/img/feeds/follow12.png"/>Add New Behavior Type</a>
+									<input type="button" onclick="openCSVLoader('Behavior Types','{!cSetup.setup.id}',{!isManaged});" class="black_btn" value="Load From CSV" />
+									<div class="clear_fix"/>
+									<apex:dataTable value="{!behaviorTypes}" var="bt" styleClass="tablesorter table2">
+										<apex:column headerValue="Actions" style="padding-right:15px;" styleClass="actionColumn">
+											<a href="#" onClick="editJS('{!bt.id}');">Edit</a>&nbsp;|&nbsp;<a href="#" onClick="if(confirm('Are you sure you want to delete this behavior type?'))deleteJS('{!bt.id}');">Del</a>
+										</apex:column>
+										<apex:column headerValue="Name" value="{!bt.Name}"/>
+										<apex:column headerValue="Behavior Incident Level" value="{!bt.Behavior_Incident_Level__c}"/>
+										<apex:column headerValue="Behavior Category" value="{!bt.Behavior_Category__c}" style="height:auto;"/>
+										<apex:column headerValue="Involves Weapon?" value="{!bt.Incident_Involves_Weapon__c}"/>
+										<apex:column style="display:none;">
+											{!bt.Incident_Involves_Weapon__c}
+										</apex:column>
+									</apex:dataTable>
+								</apex:outputPanel>
+							</apex:outputPanel>
+						</div>
+		
+						<div id="consequenceTypes" class="section_content tabPanel">
+							<h3 class="redBar">Consequence Types</h3>
+							<div style="margin: 0px 0px 10px 0px;">
+								Consequences are used to represent actions taken as the result of a incident.<br/>
+								To add one new Consequence at a time click the +. To add multiple Consequences at once, click Load From CSV.<br/>
+								You must have at least 1 Consequence set up to finalize the Behavior setup.
+							</div>
+							<apex:outputPanel id="consequencePanel">
+								<a style="cursor:pointer;" onClick="if(!modalOpen)newJS('consequences');"><img src="/img/feeds/follow12.png"/>Add New Consequence Type</a>
+								<input type="button" onclick="openCSVLoader('Consequence Types','{!cSetup.setup.id}',{!isManaged});" class="black_btn" value="Load From CSV" />
+								<div class="clear_fix"/>
+								<apex:dataTable value="{!consequences}" var="bt" styleClass="tablesorter table1">
+									<apex:column headerValue="Actions" style="padding-right:15px;" styleClass="actionColumn">
+										<a href="#" onClick="editJS('{!bt.id}');">Edit</a>&nbsp;|&nbsp;<a href="#" onClick="if(confirm('Are you sure you want to delete this consequence type?'))deleteJS('{!bt.id}');">Del</a>
+									</apex:column>
+									<apex:column headerValue="Name" value="{!bt.Name}"/>
+									<apex:column headerValue="Behavior Incident Level" value="{!bt.Behavior_Incident_Level__c}"/>
+									<apex:column headerValue="Time Lost" value="{!bt.Corresponding_Value__c}"/>
+								</apex:dataTable>
+							</apex:outputPanel>
+						</div>
+						<div id="behaviorOptions" class="section_content tabPanel">
+							<p>Select this option if you want to display Referral Details on a Behavior Incident.  Referral details are a set of fields at the bottom of the page when making a new behavior incident. They don't have any impact on the system directly, they're just for record keeping.<br/>
+							The following fields are displayed as part of the referral details:
+								<ul>
+									<li>Verbal Redirection Take-A-Break</li>
+									<li>Buddy Classroom Alternative Seating</li>
+									<li>Practice Desired Behavior Time Out</li>
+									<li>Verbal Or Written Apology Loss Of Privilege</li>
+									<li>Restitution / Community Service Behavior Contract</li>
+									<li>Other Notes</li>
+								</ul>
+							</p>
+							<apex:outputLabel value="Show Referral Details on Behavior?"/>
+							<apex:inputField value="{!cSetup.setup.Behavior_Referal_Details__c}"/>
+							<input type="button" onclick="saveOptionsJS();" class="black_btn" value="Save Preferences" />
+							<div class="clear_fix">&nbsp;</div>
+						</div>
+					</div>
+				</apex:pageBlock>
+				<apex:outputPanel id="finalizePanel">
+					<apex:outputPanel rendered="{!NOT(stateTracker.Behavior_Wizard_Completed__c)}">
+						<input type="button" class="red_btn" onclick="finalizeJS();" value="Finalize Behavior Setup" />
+					</apex:outputPanel>
+				</apex:outputPanel>
+			</div>
+
+			<apex:outputPanel id="actionPanel">
+				<apex:actionFunction action="{!finalize}" name="finalizeJS" rerender="messages,finalizePanel"/>
+				<apex:actionFunction action="{!deleteValue}" name="deleteJS" rerender="typePanel, messages, consequencePanel" onComplete="resetValueTables();">
+					<apex:param value="" name="valueToDelete" assignTo="{!selectedValue}"/>
+				</apex:actionFunction>
+				<apex:actionFunction action="{!editValue}" name="editJS" rerender="editWrapper, messages" onComplete="resetValueTables();openEditModal();">
+					<apex:param value="" name="valueToEdit" assignTo="{!selectedValue}"/>
+				</apex:actionFunction>
+				<apex:actionFunction action="{!newValue}" name="newJS" rerender="editWrapper, messages" onComplete="resetValueTables();openEditModal();">
+					<apex:param value="" name="valueType" assignTo="{!selectedValue}"/>
+				</apex:actionFunction>
+				<apex:actionFunction action="{!saveValue}" name="saveJS" rerender="editWrapper, typePanel, messages, actionPanel,consequencePanel" onComplete="resetValueTables();checkforClose('{!isEdit}');"/>
+				<apex:actionFunction action="{!cancelEdit}" name="cancelJS" rerender="editWrapper, messages" onComplete="resetValueTables();" immediate="true"/>			
+				<apex:actionFunction action="{!prev}" name="prevJs" />
+				<apex:actionFunction action="{!saveOptions}" name="saveOptionsJS" rerender="messages" onComplete="resetValueTables();"/>
+			</apex:outputPanel>
+		
+
+		<div id="modals">
+			<apex:outputPanel id="editWrapper">
+				<div id="editModal" style='display:none;'>
+					<apex:pageBlock >
+						<apex:pageMessages />
+						<!-- Don't Delete! Used to fix multi-select picklist -->
+						<div style="display:none;" id="catDisplay">
+							{!editHolder.Behavior_Category__c}
+						</div>
+						<apex:pageBlockSection rendered="{!editHolder.Setup__c != null}">
+							<apex:inputField value="{!editHolder.Name}" required="{!isEdit}"/>
+							<apex:inputField value="{!editHolder.Behavior_Incident_Level__c}" required="{!isEdit}"/>
+							<apex:inputField value="{!editHolder.Behavior_Category__c}" id="theField" rendered="{!selectedValue=='behavior'}"/>
+							<!-- <apex:pageBlockSectionItem rendered="{!selectedValue=='behavior'}">
+								<apex:outputlabel value="Behavior Category"/>
+								<apex:outputPanel>
+									<apex:selectList value="{!editHolder.Behavior_Category__c}" multiselect="true">
+										<apex:selectOptions value="{!behaviorCats}"/>
+									</apex:selectList>
+								</apex:outputPanel>
+							</apex:pageBlockSectionItem> -->
+							<apex:inputField value="{!editHolder.Incident_Involves_Weapon__c}" rendered="{!selectedValue=='behavior'}"/>
+							<apex:inputField value="{!editHolder.Order__c}" rendered="{!selectedValue=='consequences'}"/>
+							<apex:pageBlockSectionItem rendered="{!selectedValue=='consequences'}">
+								<apex:outputlabel value="Time Lost"/>
+								<apex:inputField value="{!editHolder.Corresponding_Value__c}"/>
+							</apex:pageBlockSectionItem>
+							<apex:inputField value="{!editHolder.Consequence_Weight__c}" rendered="{!selectedValue=='consequences'}"/>
+							<apex:inputField value="{!editHolder.Type__c}" id="typeField" rendered="{!selectedValue=='consequences'}"/>
+							<apex:inputField value="{!editHolder.Category__c}" rendered="{!selectedValue=='consequences'}"/>
+							<apex:inputField value="{!editHolder.Is_Suspension__c}" rendered="{!selectedValue=='consequences'}" />
+							<apex:inputField value="{!editHolder.Notify_Admin__c}" rendered="{!selectedValue=='consequences'}" />
+							<apex:inputField value="{!editHolder.Set_as_Default__c}" rendered="{!selectedValue=='consequences'}" />
+						</apex:pageBlockSection>
+						<apex:pageBlockSection rendered="{!editHolder.Setup__c = null}">
+							<apex:outputField value="{!editHolder.Name}"/>
+							<apex:outputField value="{!editHolder.Behavior_Incident_Level__c}"/>
+							<apex:pageBlockSectionItem rendered="{!selectedValue=='behavior'}">
+								<apex:outputlabel value="Behavior Category"/>
+								<apex:outputField value="{!editHolder.Behavior_Category__c}"/>
+							</apex:pageBlockSectionItem>
+							<apex:outputField value="{!editHolder.Incident_Involves_Weapon__c}" rendered="{!selectedValue=='behavior'}"/>
+							<apex:outputField value="{!editHolder.Order__c}" rendered="{!selectedValue=='consequences'}"/>
+							<apex:pageBlockSectionItem rendered="{!selectedValue=='consequences'}">
+								<apex:outputlabel value="Time Lost"/>
+								<apex:outputField value="{!editHolder.Corresponding_Value__c}"/>
+							</apex:pageBlockSectionItem>
+							<apex:outputField value="{!editHolder.Consequence_Weight__c}" rendered="{!selectedValue=='consequences'}"/>
+							<apex:outputField value="{!editHolder.Type__c}" rendered="{!selectedValue=='consequences'}"/>
+							<apex:outputField value="{!editHolder.Category__c}" rendered="{!selectedValue=='consequences'}"/>
+							<apex:outputField value="{!editHolder.Is_Suspension__c}" rendered="{!selectedValue=='consequences'}" />
+							<apex:outputField value="{!editHolder.Notify_Admin__c}" rendered="{!selectedValue=='consequences'}" />
+							<apex:outputField value="{!editHolder.Set_as_Default__c}" rendered="{!selectedValue=='consequences'}" />
+						</apex:pageBlockSection>
+					</apex:pageBlock>
+			</div>
+			</apex:outputPanel>
+		</div>
+		</apex:actionRegion>
+
+		<!-- <apex:outputPanel id="uploadWrapper">
+			<div id="uploadModal" style="display:none;">
+				<c:csvLoader csvLoaderObject="{!csvLoader}" />
+				<apex:actionRegion>
+					<apex:actionFunction action="{!hideCSV}" name="hideCSVJS" rerender="messages"/>
+				</apex:actionRegion>
+			</div>
+		</apex:outputPanel> -->
+	</apex:form>
+</apex:page>

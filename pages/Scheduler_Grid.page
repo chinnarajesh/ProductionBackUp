@@ -1,0 +1,559 @@
+<apex:page controller="scheduler_Grid" tabStyle="SchoolForce_Setup__tab" sidebar="false">
+<c:scheduler_GridHeader />
+<c:setupWizardSharedComponents summerSchoolMode="{!cSetup.setup.School__r.ParentId != null}"/>
+<apex:stylesheet value="{!URLFOR($Resource.resources_Master, '/custom/css/Gradebook.css')}"/>
+<apex:includeScript value="{!URLFOR($Resource.jWerty, '/jWerty/jwerty.js')}" />
+<div style="width:100%; overflow:auto;">
+<apex:form id="mainForm" style="width:100%"> 
+ <!-- List of Catalogs -->
+	<table >
+		<tr>
+			<td style="vertical-align:top; width:15%">
+				<!-- <c:setup_sidebar setup="{!cSetup}"/> -->
+				<c:setupWizardSidebar setupId="{!cSetup.setup.id}" />
+				<apex:actionFunction name="newSectionJs" action="{!newSection}" rerender="messagesPanel, SectionEditPanel, unpublishedSectionsPanel, resetPanel" oncomplete="checkSectionModal();"/>
+				<apex:actionFunction name="editSectionJs" action="{!editSection}" rerender="messagesPanel, SectionEditPanel, unpublishedSectionsPanel, resetPanel" oncomplete="checkSectionModal();">
+					<apex:param name="sectionId" assignTo="{!sectionId}" value=""/> 
+				</apex:actionFunction>
+				<div style="position: absolute;">
+					<div id="sectionsPanel">
+						<apex:outputPanel id="unpublishedSectionsPanel">
+							<apex:outputPanel rendered="{!bScheduleGrid}">
+								<h3>Sections to Schedule</h3>
+								<br></br>
+								<h4 style="padding-left: 17px;">(Do not data load)</h4>
+								<div class="section_content recentItemModule" style="width:200px;">
+									<table>
+										<tr>
+											<td><a href="#" style="cursor:pointer" onClick="showProgressBar('Initializing New Section'); initSectionModal(); newSectionJs()"><br/><img src="/img/feeds/follow12.png"/>Add Section</a></td>
+										</tr>
+										<tr>
+											<td>
+												<ul class="configuredCourse" style="height:500px; overflow-y:auto;">
+													<apex:repeat value="{!unpublishedSectionList}" var="uPSec">
+														<li style="background-color: {!uPSec.section__r.Color__c}; color: {!uPSec.section__r.text_color__c};" sfdc="{!uPSec.Id}" class="courseLi {!IF(uPSec.section__r.text_color__c=='#000000','dark','light')}">
+															<div id="ssId" style="display:none;"></div>
+															<div id="arrayPos" style="display:none;"></div>
+															<a id="sectionTip"  href="#{!uPSec.Id}"  rel="#{!uPSec.Id}" class="hover" title="" value="javascript: void(0)" >&nbsp;</a>
+															<apex:variable value="{!cSetup.setup.Room_Dependent__c}" var="rd"  rendered="{!cSetup.setup.Room_Dependent__c}">
+																<a id="changeRoom" href="#" title="Change Room" style="cursor:pointer; display:none;" onClick="openRoomModal(j$(this).parent(),j$(this).parent().parent());">&nbsp;</a>
+															</apex:variable>
+															<a id="removeLink" style="cursor:pointer; left: 5px; vertical-align:top; float: right; display:none;" onClick="removeCell(j$(this).parent()); "> &nbsp;</a>
+															<center>
+																<div class="secText"  sfdc="{!uPSec.section__c}">{!uPSec.Section__r.name}
+																	<div id="remainingText">
+																		<small>Remaining: <span id="rpNum">{!uPSec.Number_of_Periods__c}</span></small>
+																	</div>
+																</div>
+															</center>
+															<input type="text" style="display:none" id="sectRpId" value="{!uPSec.Id}"/>
+															<input type="text" style="display:none" id="sectId" value="{!uPSec.Section__c}|{!uPSec.Section__r.Name}"/>
+															<input type="text" style="display:none" id="courseId" value="{!uPSec.Section__r.course__c}|{!uPSec.Section__r.course__r.name}"/>
+															<!-- Start of hidden table for hover -->
+															<div class="noDisplay" id="{!uPSec.Id}" style="display: none;">
+																<a href="#" id="pencil-edit-icon" onClick=" showProgressBar('Fetching Section Details'); initSectionModal(); editSectionJs('{!uPSec.section__c}')">&nbsp;</a>
+																<center>
+																	<table class="innerTab" >
+																	<!-- Start of repeats with field set? -->
+																		<tr style="border-style:none; ">
+																			<td  style="border-style:none; color: white;" align="left">
+																				<apex:outputLabel style="border-style:none; font-weight:bold" value="Name:"/>
+																				<div id="sectionName">{!uPSec.section__r.name}</div>
+																			</td>
+																		</tr>
+																		<tr style="border-style:none; ">
+																			<td  style="border-style:none; color: white;"  align="left">
+																				<apex:outputLabel style="border-style:none; font-weight:bold" value="Course:"/>
+																				<div  id="courseName">{!uPSec.section__r.course__r.name}</div>
+																			</td>
+																		</tr>
+																		<tr style="border-style:none; ">
+																			<td  style="border-style:none; color: white;"  align="left">
+																				<apex:outputLabel style="border-style:none; font-weight:bold" value="Description:"/>
+																				<div  id="sectDescription"><apex:outputField value="{!uPSec.section__r.Description__c}"/></div>
+																			</td>
+																		</tr>
+																		<tr style="border-style:none; ">
+																			<td  style="border-style:none; color: white;"  align="left">
+																				<apex:outputLabel style="border-style:none; font-weight:bold" value="Section Number:"/>
+																				<div  id="sectNum"><apex:outputField value="{!uPSec.section__r.Section_Number__c}"/></div>
+																			</td>
+																		</tr>
+																		<tr style="border-style:none; ">
+																			<td  style="border-style:none; color: white;"  align="left">
+																				<apex:outputLabel style="border-style:none; font-weight:bold" value="Advisory:"/>
+																				<div  id="sectAdvisory"><apex:outputField value="{!uPSec.section__r.Advisory__c}"/></div>
+																			</td>
+																		</tr>
+																		<tr style="border-style:none; ">
+																			<td  style="border-style:none; color: white;"  align="left">
+																				<apex:outputLabel style="border-style:none; font-weight:bold" value="Daily Attendance:"/>
+																				<div id="sectDaily"><apex:outputField value="{!uPSec.section__r.Daily_Attendance__c}"/></div>
+																			</td>
+																		</tr>
+																		<tr style="border-style:none; ">
+																			<td  style="border-style:none; color: white;"  align="left">
+																				<apex:outputLabel style="border-style:none; font-weight:bold" value="Record Attendance:"/>
+																				<div  id="sectRecord"><apex:outputField value="{!uPSec.section__r.Record_Attendance__c}"/></div>
+																			</td>
+																		</tr>
+																		<tr style="border-style:none; display:{!IF(bRoomView, 'none', '')}">
+																			<td  style="border-style:none; color: white;" align="left">
+																				<apex:outputLabel rendered="{!cSetup.setup.Room_Dependent__c}" style="color: white; border-style:none; font-weight:bold" value="Room:"/>
+																				<div id="roomNumber"> </div>
+																			</td>
+																		</tr>
+																	</table>
+																</center>
+															</div>
+															<!-- End of hidden table for hover -->
+														</li>
+													</apex:repeat>
+												</ul>
+											</td>
+										</tr>
+									</table>
+								</div>
+							</apex:outputPanel>
+						</apex:outputPanel>
+					</div>
+				</div>
+			</td>
+			<td style="vertical-align:top; width:85%">
+				<div id="schoolforce-wrapper" class="wrapper" >
+					<div class="page" style="display:block;">
+						<apex:outputPanel id="messagesPanel" styleClass="pageMessages" >
+							<apex:pageMessages />
+						</apex:outputPanel>
+						<apex:outputPanel id="resetPanel">
+							<apex:includeScript value="{!URLFOR($Resource.resources_Master, '/custom/js/scheduler_grid.js')}"/>
+							<script>
+							var bRoomView = {!JSENCODE(IF(bRoomView, 'true', 'false'))}; 
+							var bRoomMatters = {!JSENCODE(IF(cSetup.setup.Room_Dependent__c, 'true', 'false'))};   
+							var bErrorMessages =  {!JSENCODE(IF(bErrors, 'true', 'false'))}; 
+							bErrorMessages = {!JSENCODE(IF(bErrors, 'true', 'false'))}; 
+							checkRefreshScheduleJs();
+							checkRefreshGridAfterSaveSectionJs();
+							function checkSectionEdit(){
+								if({!!bEditSectionConfig}){
+									closeModal('#sectionEditModal');
+								}
+								setTimeout('hideProgressBar()',500);
+							}
+							
+							function checkSectionModal(){
+								if({!bEditSectionConfig}){
+									openModal('#sectionEditModal');
+									resetColorPicker();
+								}
+								setTimeout('hideProgressBar()',500);
+							}
+							</script>
+						</apex:outputPanel>
+						<h1 class="centerHeader">
+							<input type="button" onclick="prevJs();" class="grey_btn_arrow" value="Previous" />
+							<span style="display:inline-block;">{!cSetup.school.Name} Core Setup<br/>Schedule Sections</span>
+							<input type="button" onclick="nextJs();" class="green_btn_arrow" value="Next" />
+						</h1>
+						<apex:outputPanel styleClass="adminSummary">
+							<br/>
+							<p>
+							To schedule the sections for the courses each staff member will teach, select the reporting period for which you want to schedule, and then click <b>See Schedule Grid</b>. 
+							You will add students to the sections in the next step.
+							<br/><br/>
+							Click the <b>Save Schedule</b> button when you are finished setting up your schedule.
+							</p>
+							<br/>
+						</apex:outputPanel>
+						<div class="content-wrapper no-border">
+							<h3>Select Reporting Period</h3>
+							<div class="section_content no-border">
+								<apex:selectList id="rps" value="{!rpId}" size="1">
+									<apex:selectOptions value="{!reportingPeriodOptions}" />
+								</apex:selectList>
+								<input type="button" class="drk_blue_btn" value="See Schedule Grid" onclick="initScheduleGridJs();" />
+								<apex:actionFunction action="{!initScheduleGrid}" name="initScheduleGridJs" rerender="scheduleGrid,unpublishedSectionsPanel,messagesPanel,schedulerModalPanel,resetPanel" />
+							</div>
+							<apex:outputPanel id="scheduleGrid">
+								<apex:outputPanel rendered="{!bScheduleGrid}">
+									<!-- Start of  Table for Section Edit & Main Grid  -->
+									<table style="width:100%;">
+										<tr>
+											<td style="width:100%">
+												<apex:actionFunction action="{!refreshGrid}" name="refreshGridJs" oncomplete="hideProgressBar();" rerender="unpublishedSectionsPanel,tabPanel,gridPanel,schedulerModalPanel,resetPanel" >
+													<apex:param value="" name="selectedTab" />
+													<apex:param value="" name="selectedType" />
+												</apex:actionFunction>
+												<div id="gridPanelDiv">
+												<!-- Start of Options Panel -->	  
+													<h3>Options</h3>
+													<div class="filter_form">
+														<div class="form_fields">   
+													    In this area, you can perform the following two tasks:
+													    <ul style="list-style-type:disc; margin: 7px 0 8px 10px">
+													    <li>- Copy a schedule you created in one reporting period to another reporting period.</li>
+													    <li>- Filter the list of staff members who display in the Configure Master Schedule area. You can select multiple staff members by pressing the Ctrl key plus clicking the staff member’s name.</li>
+													    </ul>
+															<table style="width:50%">
+																<tr>
+																	<td  style="white-space:nowrap; padding-right:30px; text-align:left">
+																		<h4> Copy Grid from Prior Periods</h4>
+																	</td>
+																	<td  style="padding-right:30px; text-align:left">	
+																		<h4>  Filter Staff</h4>
+																	</td>
+																</tr>
+																<tr>
+																	<td style="padding-right:30px; text-align:right">
+																		<apex:selectList id="cascadeCopyOptions"  value="{!selectedCopyRp}" multiselect="false" size="1" >
+																			<apex:selectOptions value="{!reportingPeriodCopyOptions}"/>
+																		 </apex:selectList>
+																	</td>
+																	<td style="padding-right:30px; text-align:right">
+																		<apex:selectList id="selectedStaffFilter"  value="{!selectedStaffFilter}" multiselect="true" size="4" >
+																			<apex:selectOptions value="{!filterStaffOptionList}"/>
+																		</apex:selectList>
+																	</td>
+																</tr>
+																<tr>
+																	<td  style="padding-right:30px; text-align:right">
+																		<input type="button"	 class="drk_blue_btn" value="Copy Grid"  onClick="confirmExecuteCopyGrid();"/>
+																	</td>
+																	<td  style="padding-right:30px; text-align:right">
+																		<input type="button"	 class="drk_blue_btn" value="Filter Staff"  onClick="showProgressBar('Filtering Staff.. Please Wait'); refreshStaffJs()"/>
+																	</td>
+																</tr>
+															</table>	
+														</div>
+														<apex:actionFunction name="refreshStaffJs" rerender="tabsPanel,resetPanel" oncomplete="hideProgressBar();" action="{!filterStaff}" /> 
+														<apex:actionFunction name="copyGridJs" rerender="messagesPanel, tabsPanel, resetPanel" oncomplete="hideProgressBar();" action="{!copyScheduledSectionsForNewRp}" /> 
+														<div class="clear_fix">&nbsp;</div>  
+													</div>  
+													<!-- End of Options Panel -->	
+													<br/>
+													<h3>Configure Master Schedule for School: {!cSetup.setup.school__r.name},  Reporting Period: {!rPeriod.Name__c}</h3>
+													<!-- Start of Main Grid Panel -->
+													<div class="section_content">
+														<apex:outputPanel id="tabsPanel">
+															<script>
+																resetTabs();
+															</script>
+															In the Sections to Schedule area, click <b>Add Section</b> to add a new section. The section displays in the Sections to Schedule area. Click and drag the section to the teacher and period in which you want to schedule it.
+															<br/><br/>
+															<table style="width:100%">
+																<tr>
+																	<td >
+																		<div class="tabs"> 
+																			<div style="float:left; width:auto;">
+																				<strong>Periods:</strong>
+																				<ul>
+																					<apex:repeat value="{!periodTabWrapperList}" var="w"> 
+																						<li>
+																							<a href="#periodtabs-{!w.iId}" style="cursor:hand;text-decoration:none;" onclick="toggleTabConfirmJs('Periods', '{!w.iId}', 'p');"  >{!w.sLabel}</a>
+																							<apex:variable rendered="{!IF(w.bAllDay, false, true)}" value="{!w.sLabel}" var="ws">
+																								<a class="helpButton" href="#" style="cursor:hand;text-decoration:none;text-align:center;"><img src="/s.gif" alt="" class="helpOrb" title="Sections scheduled in this area meet at a specific time every day. Refer to SchoolForce Help for more information."/></a>
+																							</apex:variable>
+																							<apex:variable rendered="{!IF(w.bAllDay, true, false)}" value="{!w.sLabel}" var="ws">
+																								<a class="helpButton" href="#" style="cursor:hand;text-decoration:none;text-align:center;"><img src="/s.gif" alt="" class="helpOrb" title="Sections scheduled in this area do not have a specific meeting time. You might schedule sections here in which you want to take daily attendance, such as a homeroom. Refer to SchoolForce Help for more information."/></a>
+																							</apex:variable>
+																						</li> 
+																					</apex:repeat>
+																				</ul>
+																			</div><!-- end ul enclosed div -->
+																			<p style="float:left; width:250px; margin:0 0 0 15px;">
+																			<apex:selectList id="mainFilterOptionList"  value="{!selectedMainFilterOption}" onchange="changeMainFilter(this);" multiselect="false" size="1" >
+																				<strong>Filter Options:</strong>
+																				<br />
+																				<apex:selectOptions value="{!mainFilterOptionList}"/>
+																			</apex:selectList>
+
+																			<div style="float:right;">
+																				<input type="button" class="black_btn" value="Load From CSV" onClick="openCSVLoader('Scheduled Section','{!setupId}',{!isManaged});" />
+																			</div>
+																			<apex:repeat value="{!periodTabWrapperList}" var="w"> 
+																				<div style="display:none" id="periodtabs-{!w.iId}"></div>
+																			</apex:repeat>
+																			</p>
+																			
+																		</div><!-- /tabs -->
+																	</td>
+																	<td></td>
+																</tr>
+																<tr>
+																	<td>
+																	<!-- Start of Actual Grid -->
+																		<apex:outputPanel id="gridPanel">
+																		<script>
+																			 bRoomView = {!JSENCODE(IF(bRoomView, 'true', 'false'))}; 
+																			 bRoomMatters = {!JSENCODE(IF(cSetup.setup.Room_Dependent__c, 'true', 'false'))};   
+																			 bErrorMessages =  {!JSENCODE(IF(bErrors, 'true', 'false'))}; 
+																			 resetDroppable();
+																			 setClueTips();
+																			 resetDraggable();
+																		</script>
+																		<table style="width:100%; margin-top:35px;" mclass="sched" >
+																			<thead ></thead>
+																			<tbody class="drop">
+																				<apex:repeat value="{!rowList}" var="r" >
+																					<apex:variable rendered="{!r.bHeader}" value="{!r.bHeader}" var="bhead">
+																						<tr>
+																							<th class=" "></th>
+																							<apex:repeat value="{!periodList}" var="p">
+																								<th class="headerCell"><center>{!p.Key__c}</center></th> 
+																							</apex:repeat>
+																							<th></th>
+																						</tr>
+																					</apex:variable>
+																					<tr>
+																						<td class="headerCell" >
+																							<apex:outputtext rendered="{!!bRoomView}" value="{!r.staff.Name}" />
+																							<apex:outputtext rendered="{!bRoomView}" value="{!r.room.Name}" />
+																						</td>
+																						<apex:repeat value="{!r.scheduledSections}" var="sect">
+																							<td class="cell droppableCell" onClick="" >
+																								<div style="display:none;" id="periodKey">{!sect.period.key__c}</div>
+																								<div style="display:none;" id="staffId">{!r.Staff.Id}</div>
+																								<div style="display:none;" id="roomId">{!r.Room.Id}</div>
+																								<div style="display:none;" id="roomName">{!r.Room.Name}</div>
+																								<div style="display:none;" id="staffName">{!r.Staff.Name}</div>
+																								<ul class="targetSect" >
+																									<apex:repeat value="{!sect.ssList}" var="ss">
+																										<li style="background-color: {!ss.section__r.Color__c}; color: {!ss.section__r.text_color__c}; " sfdc="{!ss.Id}" class="{!IF(ss.section__r.text_color__c=='#000000','dark','light')}"> <!-- LOCATion oF EXISing classes -->
+																											<div id="ssId" style="display:none;">{!ss.id}</div>  
+																											<div id="arrayPos" style="display:none;"></div>
+																											<a id="sectionTip"  href="#{!ss.Id}"  rel="#{!ss.Id}" class="hover" title="" value="javascript: void(0)" >&nbsp;</a>
+																											<apex:variable value="{!cSetup.setup.Room_Dependent__c}" var="rd"  rendered="{!cSetup.setup.Room_Dependent__c}">
+																												<a id="changeRoom" href="#" title="Change Room" style="cursor:pointer;" onClick="openRoomModal(j$(this).parent(),j$(this).parent().parent());">&nbsp;</a>
+																											</apex:variable>
+																											<a id="removeLink" style="cursor:pointer; left: 5px; float: right;" onClick="removeCell(j$(this).parent()); ">&nbsp;</a>
+																											<center>
+																												<div class="secText"  sfdc="{!ss.section__c}">{!ss.Section__r.name}<div id="remainingText" style="display:none"></div></div>
+																											</center>
+																											<input type="text" style="display:none" id="sectRpId" value="{!ss.section_reportingPeriod__c}"/>
+																											<input type="text" style="display:none" id="sectId" value="{!ss.Section__c}|{!ss.Section__r.Name}"/>
+																											<input type="text" style="display:none" id="courseId" value="{!ss.Section__r.course__c}|{!ss.Section__r.course__r.name}"/>
+																											<!-- Start of hidden table for hover -->
+																											<div class="noDisplay" id="{!ss.Id}" style="display: none;">   
+																												<a href="#" id="pencil-edit-icon" onClick=" showProgressBar('Fetching Section Details'); initSectionModal(); editSectionJs('{!ss.section__c}')">&nbsp;</a>
+																												<center>
+																													<table class="innerTab" >
+																													<!-- Start of repeats with field set? -->
+																														<tr style="border-style:none; ">
+																															<td  style="border-style:none; color: white;" align="left">
+																																<apex:outputLabel style="border-style:none; font-weight:bold" value="Name:"/>
+																																<div id="sectionName">{!ss.section__r.name}</div>
+																															</td>
+																														</tr>
+																														<tr style="border-style:none; ">
+																															<td  style="border-style:none; color: white;"  align="left">
+																																<apex:outputLabel style="border-style:none; font-weight:bold" value="Course:"/>
+																																<div  id="courseName">{!ss.section__r.course__r.name}</div>
+																															</td>
+																														</tr>
+																														<tr style="border-style:none; ">
+																															<td  style="border-style:none; color: white;"  align="left">
+																																<apex:outputLabel style="border-style:none; font-weight:bold" value="Description:"/>
+																																<div  id="sectDescription"><apex:outputField value="{!ss.section__r.Description__c}"/></div>
+																															</td>
+																														</tr>
+																														<tr style="border-style:none; ">
+																															<td  style="border-style:none; color: white;"  align="left">
+																																<apex:outputLabel style="border-style:none; font-weight:bold" value="Section Number:"/>
+																																<div  id="sectNum"><apex:outputField value="{!ss.section__r.Section_Number__c}"/></div>
+																															</td>
+																														</tr>
+																														<tr style="border-style:none; ">
+																															<td  style="border-style:none; color: white;"  align="left">
+																																<apex:outputLabel style="border-style:none; font-weight:bold" value="Advisory:"/>
+																																<div  id="sectAdvisory"><apex:outputField value="{!ss.section__r.Advisory__c}"/></div>
+																															</td>
+																														</tr>
+																														<tr style="border-style:none; ">
+																															<td  style="border-style:none; color: white;"  align="left">
+																																<apex:outputLabel style="border-style:none; font-weight:bold" value="Daily Attendance:"/>
+																																<div  id="sectDaily"><apex:outputField value="{!ss.section__r.Daily_Attendance__c}"/></div>
+																															</td>
+																														</tr>
+																														<tr style="border-style:none; ">
+																															<td  style="border-style:none; color: white;"  align="left">
+																																<apex:outputLabel style="border-style:none; font-weight:bold" value="Record Attendance:"/>
+																																<div  id="sectRecord"><apex:outputField value="{!ss.section__r.Record_Attendance__c}"/></div>
+																															</td>
+																														</tr>
+																														<tr style="border-style:none; display:{!IF(bRoomView, 'none', '')}">
+																															<td  style="border-style:none; color: white;" align="left">
+																																<apex:outputLabel rendered="{!cSetup.setup.Room_Dependent__c}" style="color: white; border-style:none; font-weight:bold" value="Room:"/>
+																																<div id="roomNumber">{!ss.room__r.name}</div>
+																															</td>
+																														</tr>
+																													</table>
+																												</center>
+																											</div>
+																										<!-- End of hidden table for hover -->
+																										</li>
+																									</apex:repeat>
+																								</ul>
+																							</td>
+																						</apex:repeat>
+																						<td></td>
+																					</tr>
+																				</apex:repeat>
+																			</tbody>
+																		</table>
+																		</apex:outputPanel>
+																	</td>
+																</tr>
+															</table>
+														</apex:outputPanel>
+													</div>
+													<center>
+														<input type="button" class="black_btn" value="SAVE SCHEDULE" onClick="updatelistcheck();" />
+														<apex:actionFunction name="saveSectionsJs" action="{!saveSections}" rerender="messagesPanel" onComplete="checkRefreshScheduleJs();">
+															<apex:param name="cmc" value="" assignTo="{!cmc}" />
+															<apex:param name="deleteList" value="" assignTo="{!deleteList}" />
+														</apex:actionFunction>
+														<apex:actionFunction name="refreshScheduleJs" action="{!refreshSections}" rerender="gridPanel, unpublishedSectionsPanel, resetPanel" oncomplete="hideProgressBar();"/>
+													</center>
+												</div>
+											</td>
+										</tr>
+									</table> 
+								</apex:outputPanel>
+							</apex:outputPanel>
+						</div>
+						<br/>
+					</div>
+				</div>
+			</td>
+		</tr>
+	</table>
+	<div id="schedulerModal" class="schedulerModal" style="display:none">
+		<apex:outputPanel id="schedulerModalPanel">
+		<center>
+			<table>
+				<tr />
+				<apex:variable rendered="{!IF(bRoomView,true,false)}" value="{!staffList}" var="sl" >
+					<tr>
+						<td>
+							Staff:&nbsp;
+							<apex:selectList label="Staff:" styleClass="selectedStaff" id="selectedStaff"  value="{!selectedStaff}" multiselect="false" size="1">
+								<apex:selectOptions value="{!staffOptionList}"/>
+							</apex:selectList>
+						</td>
+					</tr>
+				</apex:variable>
+				<apex:variable rendered="{!IF(bRoomView,false,true)}" value="{!roomList}" var="rl" >
+					<tr>
+						<td>
+							Room:&nbsp;
+							<apex:selectList label="Room:" styleClass="selectedRoom" id="selectedRoom"  value="{!selectedRoom}" multiselect="false" size="1">
+								<apex:selectOptions value="{!roomOptionList}"/>
+							</apex:selectList> 
+						</td>
+					</tr>
+				</apex:variable> 
+				<tr style="height:10px;"/>
+				<tr >
+					<div class="clear_fix">&nbsp;</div>
+					<td style="white-space:nowrap;'">
+						<input type="button" value="SAVE" onclick="saveModal();"  name="saveButton" class="black_btn"/>
+						<input type="button" value="Cancel" onclick="closeModal('#schedulerModal');" name="clearButton" class="grey_btn"/> 
+					</td>
+				</tr>
+			</table>
+		</center>
+		</apex:outputPanel>
+	</div>
+	<div id="sectionEditModal" >
+		<apex:outputPanel id="SectionEditPanel">
+			<apex:outputPanel rendered="{!bEditSectionConfig}" >
+				<apex:pageBlock >
+					<apex:pageMessages />
+					<h3>Create/Edit Individual Section</h3>
+					<div class="section_content">
+						<apex:pageBlockSection columns="2" collapsible="false" >
+							<apex:pageBlockSectionItem rendered="{!IF(section.Id == null,true,false)}" helpText="{!$ObjectType.Section__c.Fields.Course__c.inlineHelpText}">
+								<apex:outputLabel value="Course"/>
+								<apex:selectList styleClass="selectedCourse" id="selectedCourse" value="{!selectedCourse}" multiselect="false" size="1">
+									<apex:selectOptions value="{!courseOptionList}"/>
+								 </apex:selectList> 
+							</apex:pageBlockSectionItem>
+							<apex:pageBlockSectionItem rendered="{!IF(section.Id == null,false,true)}">
+								<apex:outputLabel value="Course"/>
+								<apex:outputText value="{!sectionRp.Section__r.Course__r.Name}-{!sectionRp.Section__r.course__r.Course_Number__c}" />
+							</apex:pageBlockSectionItem>
+							<apex:pageBlockSectionItem helpText="{!$ObjectType.Section__c.Fields.Color__c.inlineHelpText}" >
+								<apex:outputLabel value="Color"/>
+								<input   value="{!section.Color__c}"  class="colorSelector"  id="colorSelector" data-text="hidden" style="height:20px;width:20px;" data-hex="true"/>
+							</apex:pageBlockSectionItem>
+							<apex:repeat value="{!$ObjectType.Section__c.FieldSets.Scheduler_Grid}" var="f"> 
+								<apex:inputField required="{!f.Required}" value="{!section[f]}" />
+							 </apex:repeat>
+						</apex:pageBlockSection>
+						<apex:inputText style="height:0px;display:none" styleClass="tempColor" id="tempColor" value="{!section.Color__c}"/>
+					</div>
+					<input type="button" class="grey_btn" value="Cancel" onClick="showProgressBar(' Canceling '); closeModal('#sectionEditModal');" />
+					<input type="button" class="black_btn" value="SAVE" onClick="showProgressBar(' Saving Section '); bSavingSection=true; saveSectionJs();" />
+					<div class="clear_fix">&nbsp;</div>
+				</apex:pageBlock>
+			</apex:outputPanel>
+		</apex:outputPanel>
+	</div>
+	<apex:actionFunction name="saveSectionJs" action="{!saveSection}" rerender="SectionEditPanel,unpublishedSectionsPanel,resetPanel" oncomplete="checkSectionEdit(); resetColorPicker(); bUnchanged=true;"/>
+	<apex:actionFunction name="cancelSectionJs" immediate="true" action="{!cancelSection}" rerender="SectionEditPanel,unpublishedSectionsPanel,resetPanel" onComplete="checkSectionEdit();"/>
+	<apex:actionFunction name="prevJs" action="{!prev}" />
+	<apex:actionFunction name="nextJs" action="{!next}" />
+<script>
+function confirmExecuteCopyGrid(){
+	var thisReportingPeriodName = "{!JSENCODE(rperiod.Name__c)}";
+	var r=confirm("You are about to copy all Scheduled Sections from the selected reporting period to "+thisReportingPeriodName+".  This may overwrite existing configuration.  Continue?")
+	if (r==true){
+		showProgressBar('Copying Grid.. Please Wait'); 
+		copyGridJs();
+	}
+}
+
+function updatelistcheck(){
+	if(sectionArrayList.length>0||deleteArrayList.length>0){
+		bSaving=true;
+		saveSectionsJs(sectionArrayList.toString(), deleteArrayList.toString());
+		deleteArrayList = [];
+		sectionArrayList = [];
+	}
+	else{
+		setTimeout('hideProgressBar()',1000);
+	}
+}
+
+function initSectionModal(){
+	initModal('#sectionEditModal',cancelSectionJs);
+}
+
+//stolen from http://jqueryfordesigners.com/fixed-floating-elements/
+//6/27/13 for DE3436
+j$(document).ready( function (){
+	var top = j$("#sectionsPanel").offset().top - parseFloat(j$("#sectionsPanel").css('margin-top').replace(/auto/,0));
+	console.log("offset top: "+j$("#sectionsPanel").offset().top);
+	console.log("margin-top: "+parseFloat(j$("#sectionsPanel").css('margin-top').replace(/auto/,0)));
+	console.log("top: "+top);
+	j$(window).scroll(function(){
+		var y = j$(window).scrollTop();
+		console.log("current pos: "+y);
+		if(y >= top){
+			j$("#sectionsPanel").addClass('fixed');
+		}
+		else{
+			j$("#sectionsPanel").removeClass('fixed');
+		}
+	});
+});
+</script>
+<style>
+.fixed{
+	position: fixed;
+	top: 0;
+}
+</style>
+</apex:form>
+</div>
+</apex:page>

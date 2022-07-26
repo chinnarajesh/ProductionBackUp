@@ -1,0 +1,736 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>This object will capture all student attendance.</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableEnhancedLookup>false</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ControlledByParent</externalSharingModel>
+    <fields>
+        <fullName>Arrival_Time_Text__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Displays the time the student arrived to class. This field displays in the Attendance tab and the Attendance Wizard.</inlineHelpText>
+        <label>Arrival Time</label>
+        <length>200</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Arrival_Time__c</fullName>
+        <description>The time the student arrived for the session.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Displays the date and time the student arrived to class. This value is used to calculate the time lost displayed in the Instructional Time Lost field.</inlineHelpText>
+        <label>Arrival Time</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Attendance_Status_Read_Only__c</fullName>
+        <externalId>false</externalId>
+        <formula>Picklist_Value__r.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>This field is an exact copy of the Status field and was created for use in Student record rollups. This field is used for Student/Parent Portal calculations. This field can be used in reports.</inlineHelpText>
+        <label>Attendance Status Read Only</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Comments__c</fullName>
+        <description>This field captures any comments related to the attendance of the student.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Comments regarding attendance entered via the Attendance tab or Attendance Wizard. This field can also be updated on the Attendance record.</inlineHelpText>
+        <label>Comments</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Daily__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>This checkbox denotes whether the attendance record is a daily attendance record or a sectional attendance record.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Indicates the Attendance record is for daily attendance. Otherwise, it is for sectional attendance.</inlineHelpText>
+        <label>Daily</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Date_Time_of_Parental_Notification__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Displays the date and time the system sent an alert to parent/guardian informing them that their child had an unexcused absence/tardy. Parent notification must be setup or this field will always be blank.</inlineHelpText>
+        <label>Date/Time of Parental Notification</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Departure_Time_Text__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Displays the time the student departed from class. This field displays in the Attendance tab and the Attendance Wizard.</inlineHelpText>
+        <label>Departure Time Text</label>
+        <length>200</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Departure_Time__c</fullName>
+        <description>The time the student departs from class if it is an early departure.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Displays the date and time the student departed from class. This value is used to calculate the time lost displayed in the Instructional Time Lost field.</inlineHelpText>
+        <label>Departure Time</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>External_Id__c</fullName>
+        <externalId>true</externalId>
+        <inlineHelpText>This field is for technical use only. It was created to help with the managed package data conversion.</inlineHelpText>
+        <label>External Id</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Instructional_Time_Lost__c</fullName>
+        <description>This formula is the total instructional time lost for a student who arrives late, leaves early, or both.</description>
+        <externalId>false</externalId>
+        <formula>IF(
+OR(
+ TEXT(Picklist_Value__r.Category__c ) = &apos;Absent&apos;,
+ Picklist_Value__r.Is_Suspension__c
+),
+
+(Session__r.End_DateTime__c - Session__r.Start_DateTime__c)*1440,
+
+(IF(ISBLANK(Arrival_Time__c),0,(Arrival_Time__c - Session__r.Start_DateTime__c)) + IF(ISBLANK(Departure_Time__c), 0, ( Session__r.End_DateTime__c - Departure_Time__c)))*1440)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>This field is an exact copy of the Instructional Time Lost field. It is used to calculate the following fields on the Student record: Daily Attendance Time Lost and Sectional Attendance Time Lost.</inlineHelpText>
+        <label>Instructional Time Lost</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Internal_Code__c</fullName>
+        <description>Used in Rollup Calculations</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Do not use this field; it is no longer used by SchoolForce.</inlineHelpText>
+        <label>Internal Code *Retired*</label>
+        <length>40</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Locked__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>If checked, users cannot modify this Attendance record through some SchoolForce screens.</inlineHelpText>
+        <label>Locked</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>NCES_Status__c</fullName>
+        <description>This field is a specific status for NCES standards for reporting.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Do not use this field; it is no longer used by SchoolForce.</inlineHelpText>
+        <label>NCES Status *Retired*</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <controllingField>Status__c</controllingField>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Present- Disciplinary action, receiving instruction</fullName>
+                    <default>false</default>
+                    <label>Present- Disciplinary action, receiving instruction</label>
+                </value>
+                <value>
+                    <fullName>Present- In School, regular instructional program</fullName>
+                    <default>false</default>
+                    <label>Present- In School, regular instructional program</label>
+                </value>
+                <value>
+                    <fullName>Present- Nontraditional school setting, regular instructiona program</fullName>
+                    <default>false</default>
+                    <label>Present- Nontraditional school setting, regular instructiona program</label>
+                </value>
+                <value>
+                    <fullName>Present- Out of school, regular instructional program activity</fullName>
+                    <default>false</default>
+                    <label>Present- Out of school, regular instructional program activity</label>
+                </value>
+                <value>
+                    <fullName>Present- Out of school, school-approved extracurricular or cocurricular activity</fullName>
+                    <default>false</default>
+                    <label>Present- Out of school, school-approved extracurricular or cocurricular activity</label>
+                </value>
+                <value>
+                    <fullName>Absent- Disciplinary action, not receiving instruction</fullName>
+                    <default>false</default>
+                    <label>Absent- Disciplinary action, not receiving instruction</label>
+                </value>
+                <value>
+                    <fullName>Absent- Family activity</fullName>
+                    <default>false</default>
+                    <label>Absent- Family activity</label>
+                </value>
+                <value>
+                    <fullName>Absent- Family emergency or bereavement</fullName>
+                    <default>false</default>
+                    <label>Absent- Family emergency or bereavement</label>
+                </value>
+                <value>
+                    <fullName>Absent- illness, injury, health treatment, or examination</fullName>
+                    <default>false</default>
+                    <label>Absent- illness, injury, health treatment, or examination</label>
+                </value>
+                <value>
+                    <fullName>Absent- Legal or judicial requirement</fullName>
+                    <default>false</default>
+                    <label>Absent- Legal or judicial requirement</label>
+                </value>
+                <value>
+                    <fullName>Absent- Noninstructional activity recognized by state or school</fullName>
+                    <default>false</default>
+                    <label>Absent- Noninstructional activity recognized by state or school</label>
+                </value>
+                <value>
+                    <fullName>Absent- Religious obsesrvation</fullName>
+                    <default>false</default>
+                    <label>Absent- Religious obsesrvation</label>
+                </value>
+                <value>
+                    <fullName>Absent- Situation unknown</fullName>
+                    <default>false</default>
+                    <label>Absent- Situation unknown</label>
+                </value>
+                <value>
+                    <fullName>Absent- Student employment</fullName>
+                    <default>false</default>
+                    <label>Absent- Student employment</label>
+                </value>
+                <value>
+                    <fullName>Absent- Student is skipping school</fullName>
+                    <default>false</default>
+                    <label>Absent- Student is skipping school</label>
+                </value>
+                <value>
+                    <fullName>Absent- Transportation not available</fullName>
+                    <default>false</default>
+                    <label>Absent- Transportation not available</label>
+                </value>
+            </valueSetDefinition>
+            <valueSettings>
+                <controllingFieldValue>Present</controllingFieldValue>
+                <valueName>Present- Disciplinary action, receiving instruction</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Present</controllingFieldValue>
+                <valueName>Present- In School, regular instructional program</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Present</controllingFieldValue>
+                <valueName>Present- Nontraditional school setting, regular instructiona program</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Present</controllingFieldValue>
+                <valueName>Present- Out of school, regular instructional program activity</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Present</controllingFieldValue>
+                <valueName>Present- Out of school, school-approved extracurricular or cocurricular activity</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Unexcused Absence</controllingFieldValue>
+                <controllingFieldValue>Excused Absence</controllingFieldValue>
+                <valueName>Absent- Disciplinary action, not receiving instruction</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Unexcused Absence</controllingFieldValue>
+                <controllingFieldValue>Excused Absence</controllingFieldValue>
+                <valueName>Absent- Family activity</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Unexcused Absence</controllingFieldValue>
+                <controllingFieldValue>Excused Absence</controllingFieldValue>
+                <valueName>Absent- Family emergency or bereavement</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Unexcused Absence</controllingFieldValue>
+                <controllingFieldValue>Excused Absence</controllingFieldValue>
+                <valueName>Absent- illness, injury, health treatment, or examination</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Unexcused Absence</controllingFieldValue>
+                <controllingFieldValue>Excused Absence</controllingFieldValue>
+                <valueName>Absent- Legal or judicial requirement</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Unexcused Absence</controllingFieldValue>
+                <controllingFieldValue>Excused Absence</controllingFieldValue>
+                <valueName>Absent- Noninstructional activity recognized by state or school</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Unexcused Absence</controllingFieldValue>
+                <controllingFieldValue>Excused Absence</controllingFieldValue>
+                <valueName>Absent- Religious obsesrvation</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Unexcused Absence</controllingFieldValue>
+                <controllingFieldValue>Excused Absence</controllingFieldValue>
+                <valueName>Absent- Situation unknown</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Unexcused Absence</controllingFieldValue>
+                <controllingFieldValue>Excused Absence</controllingFieldValue>
+                <valueName>Absent- Student employment</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Unexcused Absence</controllingFieldValue>
+                <controllingFieldValue>Excused Absence</controllingFieldValue>
+                <valueName>Absent- Student is skipping school</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Unexcused Absence</controllingFieldValue>
+                <controllingFieldValue>Excused Absence</controllingFieldValue>
+                <valueName>Absent- Transportation not available</valueName>
+            </valueSettings>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Picklist_Value__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <inlineHelpText>Displays the value that users select to describe the student&apos;s attendance using the Attendance tab or Attendance Wizard. These picklist options are chosen by your school.</inlineHelpText>
+        <label>Status</label>
+        <referenceTo>Picklist_Value__c</referenceTo>
+        <relationshipLabel>Attendance</relationshipLabel>
+        <relationshipName>Attendance</relationshipName>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Session_Date__c</fullName>
+        <externalId>false</externalId>
+        <formula>Session__r.Session_Date__c</formula>
+        <inlineHelpText>Displays the date and time of the Session record. This field should not be modified.</inlineHelpText>
+        <label>Session Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Session_End_Time__c</fullName>
+        <externalId>false</externalId>
+        <formula>Session__r.End_DateTime__c</formula>
+        <inlineHelpText>SchoolForce uses this field and others to calculate the Instructional Time Lost field. This field should not be modified.</inlineHelpText>
+        <label>Session End Time</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Session_Start_Time__c</fullName>
+        <externalId>false</externalId>
+        <formula>Session__r.Start_DateTime__c</formula>
+        <inlineHelpText>SchoolForce uses this field and others to calculate the Instructional Time Lost field. This field should not be modified.</inlineHelpText>
+        <label>Session Start Time</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Session__c</fullName>
+        <description>This is a lookup to the sessions that attendance is being captured for.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Displays the date and time of the Session. Do not update this field.</inlineHelpText>
+        <label>Session</label>
+        <referenceTo>Session__c</referenceTo>
+        <relationshipLabel>Attendance</relationshipLabel>
+        <relationshipName>Attendance</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Status_Category__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(TEXT(Picklist_Value__r.Category__c)=&apos;Absent&apos;,
+	IF(Picklist_Value__r.Is_Unexcused__c,&apos;Unexcused Absence&apos;,&apos;Excused Absence&apos;),
+	IF(TEXT(Picklist_Value__r.Category__c)=&apos;Partial&apos;,
+		IF(AND(Picklist_Value__r.Is_Tardy__c,NOT(Picklist_Value__r.Is_Early_Departure__c)),
+			IF(Picklist_Value__r.Is_Unexcused__c,&apos;Unexcused Tardy&apos;,&apos;Excused Tardy&apos;),
+			IF(AND(Picklist_Value__r.Is_Early_Departure__c,NOT(Picklist_Value__r.Is_Tardy__c)),
+				IF(Picklist_Value__r.Is_Unexcused__c,&apos;Unexcused Early Departure&apos;,&apos;Excused Early Departure&apos;),
+				IF(AND(Picklist_Value__r.Is_Early_Departure__c,Picklist_Value__r.Is_Tardy__c),
+					IF(Picklist_Value__r.Is_Unexcused__c,&apos;Unexcused Tardy and Early Departure&apos;,&apos;Excused Tardy and Early Departure&apos;),
+					TEXT(Picklist_Value__r.Category__c)
+				)
+			)
+		),
+		IF(OR(ISNULL(TEXT(Picklist_Value__r.Category__c)), ISBLANK(TEXT(Picklist_Value__r.Category__c))),
+			&apos;UNKNOWN&apos;,
+			TEXT(Picklist_Value__r.Category__c)
+		)
+	)
+)</formula>
+        <label>Status Category</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <description>This is the status of the attendance for the student for the given session.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Do not use this field; it is no longer used by SchoolForce.</inlineHelpText>
+        <label>Status *Retired*</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Present</fullName>
+                    <default>false</default>
+                    <label>Present</label>
+                </value>
+                <value>
+                    <fullName>Tardy</fullName>
+                    <default>false</default>
+                    <label>Tardy</label>
+                </value>
+                <value>
+                    <fullName>Excused Tardy</fullName>
+                    <default>false</default>
+                    <label>Excused Tardy</label>
+                </value>
+                <value>
+                    <fullName>Unexcused Absence</fullName>
+                    <default>false</default>
+                    <label>Unexcused Absence</label>
+                </value>
+                <value>
+                    <fullName>Excused Absence</fullName>
+                    <default>false</default>
+                    <label>Excused Absence</label>
+                </value>
+                <value>
+                    <fullName>Early Departure</fullName>
+                    <default>false</default>
+                    <label>Early Departure</label>
+                </value>
+                <value>
+                    <fullName>Excused Early Departure</fullName>
+                    <default>false</default>
+                    <label>Excused Early Departure</label>
+                </value>
+                <value>
+                    <fullName>In-school Suspension</fullName>
+                    <default>false</default>
+                    <label>In-school Suspension</label>
+                </value>
+                <value>
+                    <fullName>Out of school Suspension</fullName>
+                    <default>false</default>
+                    <label>Out of school Suspension</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Status_for_Rollup__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>This field is a modified copy of the Status field and was created to allow for numeric rollups on the Student record (e.g., Total # of Unexcused Daily Absences).</inlineHelpText>
+        <label>Status for Rollup</label>
+        <length>100</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Student__c</fullName>
+        <description>This is a lookup to the student record.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This field provides a link to the Student record for the year. Do not update this field.</inlineHelpText>
+        <label>Student</label>
+        <referenceTo>Student__c</referenceTo>
+        <relationshipLabel>Attendance</relationshipLabel>
+        <relationshipName>Attendance</relationshipName>
+        <relationshipOrder>1</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Student_s_Grade__c</fullName>
+        <description>Needs to be available in trigger, so we add to Attendance Object</description>
+        <externalId>false</externalId>
+        <formula>TEXT(Student__r.Grade__c)</formula>
+        <inlineHelpText>This formula field displays the student&apos;s grade level and can be used in reports. This field is pulled from the Student record.</inlineHelpText>
+        <label>Student&apos;s Grade</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Submission_Time__c</fullName>
+        <externalId>false</externalId>
+        <formula>CreatedDate</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Displays the date and time from the Created By field. It can be used in reports.</inlineHelpText>
+        <label>Submission Time</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Time_Lost_Rollup__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>This field will be set using a workflow that can then be rolled up to the student record.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This field is an exact copy of the Instructional Time Lost field and was created to allow for rollups. It is used to calculate the following fields on the Student record: Daily Attendance Time Lost and Sectional Attendance Time Lost.</inlineHelpText>
+        <label>Time Lost For Rollup</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <label>Attendance</label>
+    <listViews>
+        <fullName>UA</fullName>
+        <columns>Student__c</columns>
+        <columns>Session__c</columns>
+        <columns>Daily__c</columns>
+        <columns>Arrival_Time__c</columns>
+        <columns>Departure_Time__c</columns>
+        <columns>Instructional_Time_Lost__c</columns>
+        <columns>Session_Date__c</columns>
+        <columns>Picklist_Value__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Picklist_Value__c</field>
+            <operation>notEqual</operation>
+            <value>Present</value>
+        </filters>
+        <filters>
+            <field>Session_Date__c</field>
+            <operation>equals</operation>
+            <value>TODAY</value>
+        </filters>
+        <label>UA</label>
+    </listViews>
+    <nameField>
+        <displayFormat>A-{0}</displayFormat>
+        <label>Attendance ID</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Attendance</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+    <startsWith>Vowel</startsWith>
+    <visibility>Public</visibility>
+</CustomObject>

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Student__c$School__c.Name</field>
+    </columns>
+    <columns>
+        <field>Student__c$Name</field>
+    </columns>
+    <columns>
+        <field>Student__c$Local_Student_ID__c</field>
+    </columns>
+    <columns>
+        <field>Student__c$Student_Id__c</field>
+    </columns>
+    <columns>
+        <field>Student__c$Grade__c</field>
+    </columns>
+    <description>Will actually output our custom group</description>
+    <filter>
+        <booleanFilter>((1 AND 2) OR (3 AND 4) OR (5 AND 6) OR (7 AND 8) OR (9 AND 10))</booleanFilter>
+        <criteriaItems>
+            <column>Student__c$School__c.Name</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>contains</operator>
+            <value>107th Street Elementary School,109th Street ES,122nd Street Elementary School,99th Street Elementary,Compton Avenue ES,Figueroa,Normandie,Grape</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Student__c$Grade__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>3,4,5</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Student__c$School__c.Name</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>contains</operator>
+            <value>NOW Academy</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Student__c$Grade__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>4,5,6</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Student__c$School__c.Name</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>contains</operator>
+            <value>93rd Street,Clinton,Gompers,John Liechty,Markham,Obama,Sal Castro,Stevenson,Virgil</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Student__c$Grade__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>3,4,5,6,7,8</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Student__c$School__c.Name</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>contains</operator>
+            <value>Carver,Hollenbeck,Alain LeRoy Locke</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Student__c$Grade__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>7,8,9</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Student__c$School__c.Name</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>contains</operator>
+            <value>Jordan,Jefferson,Nava,Roosevelt,Santee,Manual Arts,Mendez,Belmont,Miguel Contreras</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Student__c$Grade__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>9,10</value>
+        </criteriaItems>
+    </filter>
+    <format>Tabular</format>
+    <name>Full Custom Group</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Students__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>Student__c$Actual_graduation_date__c</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

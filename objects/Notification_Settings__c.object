@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>Hierarchy</customSettingsType>
+    <enableEnhancedLookup>false</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>Display_Name__c</fullName>
+        <description>Display name recipient will see when receiving notification from Schoolforce</description>
+        <externalId>false</externalId>
+        <label>Display Name</label>
+        <length>100</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Reply_To__c</fullName>
+        <description>Sets the reply To for notifications from Schoolforce to Parent/Guardians</description>
+        <externalId>false</externalId>
+        <label>Reply To</label>
+        <length>100</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Subject__c</fullName>
+        <description>Subject of the notification</description>
+        <externalId>false</externalId>
+        <label>Subject</label>
+        <length>100</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Notification Settings</label>
+    <visibility>Public</visibility>
+</CustomObject>

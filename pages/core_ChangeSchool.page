@@ -1,0 +1,31 @@
+<apex:page controller="core_ChangeSchoolController" sidebar="false" showheader="false" action="{!change}">
+<apex:includeScript value="{!URLFOR($Resource.jWerty, '/jWerty/jwerty.js')}" />
+<script>
+	jwerty.key('enter',false);
+</script>
+
+<!-- ERROR -->
+<apex:outputPanel id="error">
+	<apex:pageMessages />
+</apex:outputPanel>
+<!-- ERROR -->
+
+<div style="{!IF($User.UIThemeDisplayed=='Theme4d', '', 'background-color:#CFEEF8;')} Height: 50px;">
+	<apex:form >
+		<center>
+			<apex:selectList value="{!selectedSchoolID}" multiselect="false" size="1">
+				<apex:selectOptions value="{!schoolListChoices}"/>
+		    </apex:selectList>
+		    <br/>
+		    <apex:commandbutton value="Change" action="{!change}" oncomplete="redirect();" rerender="error"/>
+	    </center>
+    </apex:form>
+</div>
+
+<script type='text/javascript'>
+	function redirect(){
+		window.top.location="/home/home.jsp";
+	}
+</script>
+
+</apex:page>

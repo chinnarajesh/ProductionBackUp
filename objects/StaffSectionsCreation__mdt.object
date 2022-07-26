@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>End_Date__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>End Date</label>
+        <required>false</required>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>In_After_School__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>In School/ Extended Learning</label>
+        <required>false</required>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>None</fullName>
+                    <default>true</default>
+                    <label>None</label>
+                </value>
+                <value>
+                    <fullName>In School</fullName>
+                    <default>false</default>
+                    <label>In School</label>
+                </value>
+                <value>
+                    <fullName>Extended Learning</fullName>
+                    <default>false</default>
+                    <label>Extended Learning</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Notes__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Notes</label>
+        <required>false</required>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Program_Name__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Program Name</label>
+        <required>true</required>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Tutoring: Math</fullName>
+                    <default>true</default>
+                    <label>Tutoring: Math</label>
+                </value>
+                <value>
+                    <fullName>Tutoring: Literacy</fullName>
+                    <default>false</default>
+                    <label>Tutoring: Literacy</label>
+                </value>
+                <value>
+                    <fullName>DESSA</fullName>
+                    <default>false</default>
+                    <label>DESSA</label>
+                </value>
+                <value>
+                    <fullName>Math Inventory</fullName>
+                    <default>false</default>
+                    <label>Math Inventory</label>
+                </value>
+                <value>
+                    <fullName>Reading Inventory</fullName>
+                    <default>false</default>
+                    <label>Reading Inventory</label>
+                </value>
+                <value>
+                    <fullName>Attendance Check In Check Out</fullName>
+                    <default>false</default>
+                    <label>Attendance Check In Check Out</label>
+                </value>
+                <value>
+                    <fullName>Coaching: Attendance</fullName>
+                    <default>false</default>
+                    <label>Coaching: Attendance</label>
+                </value>
+                <value>
+                    <fullName>50 Acts of Greatness</fullName>
+                    <default>false</default>
+                    <label>50 Acts of Greatness</label>
+                </value>
+                <value>
+                    <fullName>50 Acts of Leadership</fullName>
+                    <default>false</default>
+                    <label>50 Acts of Leadership</label>
+                </value>
+                <value>
+                    <fullName>Coaching: SEL/SED (Local)</fullName>
+                    <default>false</default>
+                    <label>Coaching: SEL/SED (Local)</label>
+                </value>
+                <value>
+                    <fullName>Enrichment</fullName>
+                    <default>false</default>
+                    <label>Enrichment</label>
+                </value>
+                <value>
+                    <fullName>SEL/SED Check In Check Out</fullName>
+                    <default>false</default>
+                    <label>SEL/SED Check In Check Out</label>
+                </value>
+                <value>
+                    <fullName>Homework Assistance</fullName>
+                    <default>false</default>
+                    <label>Homework Assistance</label>
+                </value>
+                <value>
+                    <fullName>Afterschool Heroes</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Afterschool Heroes</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Section_Frequency__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Section Frequency</label>
+        <length>255</length>
+        <required>true</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Start_Date__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Start Date</label>
+        <required>false</required>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Target_Dosage__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Target Dosage</label>
+        <precision>7</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <label>StaffSectionsCreation</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>MasterLabel</columns>
+        <columns>Program_Name__c</columns>
+        <columns>In_After_School__c</columns>
+        <columns>Start_Date__c</columns>
+        <columns>End_Date__c</columns>
+        <columns>Target_Dosage__c</columns>
+        <columns>Section_Frequency__c</columns>
+        <columns>Notes__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <pluralLabel>StaffSectionsCreation</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>

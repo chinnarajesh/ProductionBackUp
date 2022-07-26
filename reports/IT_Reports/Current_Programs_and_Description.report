@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>CUST_ID</field>
+    </columns>
+    <columns>
+        <field>CUST_NAME</field>
+    </columns>
+    <columns>
+        <field>FK_NAME</field>
+    </columns>
+    <columns>
+        <field>Program__c.Required_Program__c</field>
+    </columns>
+    <columns>
+        <field>Program__c.Recommended_Time_per_Session__c</field>
+    </columns>
+    <columns>
+        <field>Program__c.Recommended_Weekly_Frequency__c</field>
+    </columns>
+    <columns>
+        <field>Program__c.Program_Description__c</field>
+    </columns>
+    <description>This is a list of current programs, descriptions and details of programs offered for the Current school year</description>
+    <format>Tabular</format>
+    <name>Current Programs and Description</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CustomEntity$Program__c@Program__c.Indicator_Area__c</reportType>
+    <scope>user</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>CUST_CREATED_DATE</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

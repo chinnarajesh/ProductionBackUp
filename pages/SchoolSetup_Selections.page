@@ -1,0 +1,78 @@
+<apex:page controller="SchoolSetup_Selections" tabStyle="SchoolForce_Setup__tab" sidebar="false" >
+<c:setupWizardSharedComponents summerSchoolMode="{!schoolSetup.School__r.ParentId != null}"/>
+<apex:form id="mainForm">
+	<table style="width:100%">
+		<tr>
+			<td style="vertical-align:top; width:15%">
+				<c:setupWizardSidebar setupId="{!schoolSetup.id}"/>
+			</td>
+			<td style="vertical-align:top; width:85%">
+				<div id="schoolforce-wrapper" class="wrapper">
+					<!-- Error -->
+					<apex:outputPanel id="error" styleClass="pageMessages">
+						<apex:pageMessages />
+					</apex:outputPanel>
+					<h1 class="centerHeader">
+						<input type="button" onclick="prevJs();" class="grey_btn_arrow" value="Previous" />
+						<span style="display:inline-block">{!schoolSetup.School__r.Name} Core Setup<br/>Select Schedule Options</span>
+						<input type="button" onclick="nextJs();" class="green_btn_arrow" value="Next" />
+					</h1>
+					<apex:outputPanel styleClass="adminSummary">
+						<br/>
+						<p></p>
+						<br/>
+					</apex:outputPanel>
+					<div class="content-wrapper" >
+						<h3>Select Schedule Options</h3>
+						<div class="section_content no-border" >
+							Select whether your school uses group-based or period-based scheduling:
+							<ul>
+							<li>In a group-based schedule, students are scheduled into groups in which they take classes together for most of the day.</li>
+							<li>In a period-based schedule, students are scheduled individually in sections.</li>
+							</ul> 
+							If you select period-based, you must select whether or not the school uses chronological periods. 
+							When you use chronological periods, SchoolForce does not allow you to enter a start time for a period that is before the end time of the previous period in the next Core Setup step.
+							Refer to SchoolForce Help for more information.  
+							<apex:selectRadio value="{!schoolSetup.Group_Based__c}" disabled="{!settingsSaved}" onchange="renderPeriodJs();">
+								<apex:selectOption itemValue="true" itemLabel="Group Based"/>
+								<apex:selectOption itemValue="false" itemLabel="Period Based"/>
+							</apex:selectRadio>
+							<apex:outputPanel id="periodBased">
+								<apex:outputPanel rendered="{!!schoolSetup.Group_Based__c}">
+								Schools using chronological periods can have extra validation on period times to ensure that period times do not overlap.
+								Does your school use chronological periods?
+								<apex:selectRadio value="{!schoolSetup.Chronological_Periods__c}" disabled="{!settingsSaved}">
+									<apex:selectOption itemValue="true" itemLabel="Yes" />
+									<apex:selectOption itemValue="false" itemLabel="No" />
+								</apex:selectRadio>
+								</apex:outputPanel>
+							</apex:outputPanel>
+						</div>
+						<h3>Select Room Dependency</h3>
+						<div class="section_content no-border">
+							Select whether or not you want to require that users select a room when adding sections to the schedule in the Schedule Sections step of Core Setup. Refer to SchoolForce Help for more information.
+							<apex:selectRadio value="{!schoolSetup.Room_Dependent__c}" disabled="{!settingsSaved}">
+								<apex:selectOption itemValue="true" itemLabel="Yes"/>
+								<apex:selectOption itemValue="false" itemLabel="No"/>
+							</apex:selectRadio>
+						</div>
+						<div class="section_content no-border">
+						<b>Note:</b> When you click <b>Save Selections</b>, your selections will be final for the duration of the school year and you will not be able to edit this page. 
+						Ensure you have selected the correct options before saving.
+						</div>
+						<input type="button" class="black_btn" value="Save Selections" onclick="if(confirm('These selections are not editable after saving. Click OK to continue or Cancel to change your selections.')){
+																									showProgressBar(' Saving Selections ');
+																									saveSetupJs();
+																								}" />
+					</div>
+				</div>
+			</td>
+		</tr>
+	</table>
+	
+	<apex:actionFunction name="prevJs" action="{!prev}" />
+	<apex:actionFunction name="nextJs" action="{!next}" />
+	<apex:actionFunction name="renderPeriodJs" rerender="periodBased" />
+	<apex:actionFunction name="saveSetupJs" action="{!saveSetup}" onComplete="setTimeout('hideProgressBar()',500);" rerender="mainForm" />
+</apex:form>
+</apex:page>

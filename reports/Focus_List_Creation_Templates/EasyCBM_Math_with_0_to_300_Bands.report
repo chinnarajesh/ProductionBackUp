@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Assesment__c$Assessment_Name__c</field>
+    </columns>
+    <columns>
+        <field>Assesment__c$Date_Administered__c</field>
+    </columns>
+    <columns>
+        <field>Assesment__c$Student_Name__c</field>
+    </columns>
+    <columns>
+        <field>Assesment__c$Student_Grade__c</field>
+    </columns>
+    <columns>
+        <field>Assesment__c$Testing_Grade_Level__c</field>
+    </columns>
+    <description>Customize the &quot;0 to 300&quot; bucket in this template by grade level to create reports supporting FL creation.</description>
+    <filter>
+        <criteriaItems>
+            <column>Assesment__c$Assessment_Name__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>EasyCBM - Math</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Assesment__c$Student_Grade__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>8</value>
+        </criteriaItems>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Assesment__c$School__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Assesment__c$Student_Id__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>EasyCBM - Math with 0 to 300 Bands</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Math_Assessments__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>false</showGrandTotal>
+    <showSubTotals>false</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>Assesment__c$CreatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

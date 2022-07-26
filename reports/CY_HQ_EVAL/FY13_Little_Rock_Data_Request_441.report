@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Account.Sections__r$Auto_Name__c</field>
+    </columns>
+    <columns>
+        <field>Account.Sections__r.Student_Section__r$Name</field>
+    </columns>
+    <columns>
+        <field>Account.Sections__r.Student_Section__r$Location__c</field>
+    </columns>
+    <columns>
+        <field>Account$Name</field>
+    </columns>
+    <columns>
+        <field>Account.Sections__r$Indicator_Area__c</field>
+    </columns>
+    <columns>
+        <field>Account.Sections__r$Program__c</field>
+    </columns>
+    <columns>
+        <field>Account.Sections__r.Student_Section__r$Student__c</field>
+    </columns>
+    <columns>
+        <field>Account.Sections__r.Student_Section__r$Student_Id__c</field>
+    </columns>
+    <columns>
+        <field>Account.Sections__r.Student_Section__r$Student_Grade__c</field>
+    </columns>
+    <columns>
+        <field>Account.Sections__r.Student_Section__r$Intervention_Enrollment_Start_Date__c</field>
+    </columns>
+    <columns>
+        <field>Account.Sections__r.Student_Section__r$Enrollment_End_Date__c</field>
+    </columns>
+    <description>FY13 Little Rock Data Request 441 - for pulling list of FY13 students. Remaining calculations will be done in Excel.</description>
+    <filter>
+        <criteriaItems>
+            <column>Account.Sections__r.Student_Section__r$Location__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>contains</operator>
+            <value>little rock</value>
+        </criteriaItems>
+    </filter>
+    <format>Tabular</format>
+    <name>FY13 Little Rock Data Request 441</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Accounts_with_Sections_with_Student_Section__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>false</showGrandTotal>
+    <showSubTotals>false</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>Account.Sections__r.Student_Section__r$Intervention_Enrollment_Start_Date__c</dateColumn>
+        <interval>INTERVAL_CURFY</interval>
+    </timeFrameFilter>
+</Report>

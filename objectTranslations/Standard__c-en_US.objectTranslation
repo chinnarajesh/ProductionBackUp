@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Standard</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Standards</value>
+    </caseValues>
+    <fields>
+        <help><!-- Customizable option to categorize standards.  Defaults align with Common Core and are visible on the &quot;Create Assignment&quot; page when selecting standards to grade and in the Gradebook Advanced Analytics as a searchable field. --></help>
+        <label><!-- Attribute --></label>
+        <name>Attribute__c</name>
+        <picklistValues>
+            <masterLabel>Additional</masterLabel>
+            <translation><!-- Additional --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Anchor</masterLabel>
+            <translation><!-- Anchor --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Major</masterLabel>
+            <translation><!-- Major --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Minor</masterLabel>
+            <translation><!-- Minor --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Supporting</masterLabel>
+            <translation><!-- Supporting --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- This determines if the standard is part of the &quot;Citywide Instructional Expectations&quot; set of standards --></help>
+        <label><!-- Citywide Instructional Expectation --></label>
+        <name>Citywide_Instructional_Expectation__c</name>
+    </fields>
+    <fields>
+        <help><!-- Not required.  A standard can be associated with 1 course (only 1, not many).  The Course is not visible when searching for standards in the Gradebook. --></help>
+        <label><!-- Course --></label>
+        <name>Course__c</name>
+        <relationshipLabel><!-- Standards --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Optional field that displays on Standard Record. Not available when searching for standards to grade. --></help>
+        <label><!-- Department --></label>
+        <name>Department__c</name>
+        <relationshipLabel><!-- Standards (Department) --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- The strand and standard description in Spanish --></help>
+        <label><!-- Description in Spanish --></label>
+        <name>Description_Spanish__c</name>
+    </fields>
+    <fields>
+        <label><!-- External Id --></label>
+        <name>External_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Grade Level Text --></label>
+        <name>Grade_Level_Text__c</name>
+    </fields>
+    <fields>
+        <label><!-- Grade Level --></label>
+        <name>Grade_Level__c</name>
+        <relationshipLabel><!-- Standards (Grade Level) --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Specific standard or strand Identifier; for example 1.ELA.L.1a.  This is displayed when searching for Standards when creating an Assignment --></help>
+        <label><!-- Identifier --></label>
+        <name>Identifier__c</name>
+    </fields>
+    <fields>
+        <help><!-- This  field displays when searching for standards on an Assignment and can be used in a variety of ways pending school&apos;s approach. --></help>
+        <label><!-- Level --></label>
+        <name>Level__c</name>
+    </fields>
+    <fields>
+        <help><!-- Long text description of the standard that displays in the hover over in the Gradebook and on Portal/PGV. Max of 32,000 characters to describe the Standard. --></help>
+        <label><!-- Long Text --></label>
+        <name>Long_Text__c</name>
+    </fields>
+    <fields>
+        <help><!-- Indicates if a standard hierarchy is present and what the parent standard is --></help>
+        <label><!-- Parent Standard --></label>
+        <name>Parent_Standard__c</name>
+        <relationshipLabel><!-- Standards --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Reference Id --></label>
+        <name>Reference_Id__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is a lookup field for standards that are school-specific --></help>
+        <label><!-- School --></label>
+        <name>School__c</name>
+        <relationshipLabel><!-- Standards --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- This is the “Subject” that all standards and strands look up to.   Standard/Strand grades are presented on Report Cards and Progress Reports under the specific “Subject.”  Subjects can be imported. NOTE: This is a different field that the “Course Subjec --></help>
+        <label><!-- Standard Subject --></label>
+        <name>Standard_Subject__c</name>
+        <relationshipLabel><!-- Standards (Standard Subject) --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Indicates if a standard looks up to a Strand.  Strand grades are only calculated for the Standards-Only Gradebook. --></help>
+        <label><!-- Strand --></label>
+        <name>Strand__c</name>
+        <relationshipLabel><!-- Standards (Strand) --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- retired field --></help>
+        <label><!-- Subject --></label>
+        <name>Subject__c</name>
+    </fields>
+    <layouts>
+        <layout>Standard Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Descriptions --></label>
+            <section>Descriptions</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

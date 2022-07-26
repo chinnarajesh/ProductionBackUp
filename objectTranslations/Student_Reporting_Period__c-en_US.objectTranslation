@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Student Reporting Period</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Student Reporting Periods</value>
+    </caseValues>
+    <fields>
+        <label><!-- Attachment ID --></label>
+        <name>Attachment_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Student Document Link --></label>
+        <name>Attachment_Link__c</name>
+    </fields>
+    <fields>
+        <label><!-- Create Report Card --></label>
+        <name>Create_Report_Card__c</name>
+    </fields>
+    <fields>
+        <label><!-- External Id --></label>
+        <name>External_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- GPA --></label>
+        <name>GPA__c</name>
+    </fields>
+    <fields>
+        <label><!-- Latest Progress Report --></label>
+        <name>Latest_Progress_Report__c</name>
+    </fields>
+    <fields>
+        <label><!-- Marked For Creation --></label>
+        <name>Marked_For_Creation__c</name>
+    </fields>
+    <fields>
+        <label><!-- Most Recent Document Created --></label>
+        <name>Most_Recent_Document_Created__c</name>
+    </fields>
+    <fields>
+        <help><!-- Displays on report cards and progress reports. You can enter a value up to 15 characters long. --></help>
+        <label><!-- Reading Level --></label>
+        <name>Reading_Level__c</name>
+    </fields>
+    <fields>
+        <label><!-- Report Card Created --></label>
+        <name>Report_Card_Created__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reporting Period Name --></label>
+        <name>Reporting_Period_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Show In Portal --></label>
+        <name>Show_In_Portal__c</name>
+    </fields>
+    <fields>
+        <label><!-- Student --></label>
+        <name>Student__c</name>
+        <relationshipLabel><!-- Student Reporting Periods --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Time --></label>
+        <name>Time__c</name>
+        <relationshipLabel><!-- Student Reporting Periods --></relationshipLabel>
+    </fields>
+    <layouts>
+        <layout>Student Reporting Period Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

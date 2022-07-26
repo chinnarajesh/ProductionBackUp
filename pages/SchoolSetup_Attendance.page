@@ -1,0 +1,427 @@
+<apex:page controller="SchoolSetup_Attendance" sidebar="false" tabStyle="SchoolForce_Setup__tab">
+	<c:setupWizardSharedComponents summerSchoolMode="{!cSetup.setup.School__r.ParentId != null}"/>
+	<script>
+		j$(document).ready(function() {
+			resetTable();
+			resetTabs();
+			checkDisabled();
+		});
+		
+		function resetTabs(){
+			j$(".tabs").tabs();
+		}
+		
+		function initAttendanceModal(){
+			initModal('#attendanceModal',null);
+		}
+		
+		function initParentModal(){
+			initModal('#parentNotificationModal',null);
+		}
+		
+		function initNotificationModal(){
+			initModal('#notificationModal',null);
+		}
+		
+		function initThresholdModal(){
+			initModal('#thresholdModal',null);
+		}
+	</script>
+	<apex:form id="mainForm">
+	<apex:outputPanel id="fullPanel">
+		<table>
+			<tr>
+				<td style="vertical-align:top; width:15%;">
+					<!-- <c:setup_sidebar setup="{!cSetup}" /> -->
+					<!-- <c:setupWizardSidebar /> -->
+				</td>
+				<td style="vertical-align:top; width:85%;">
+					<div id="schoolforce-wrapper">
+						<apex:outputPanel id="messages" styleClass="pageMessages">
+							<apex:pageMessages />
+						</apex:outputPanel>
+						<apex:outputPanel id="resetPanel">
+							<script>
+								resetTable();
+								
+								function checkAttendance(){
+									if({!!bShowAttendance}){
+										closeModal('#attendanceModal');
+									}
+									setTimeout('hideProgressBar()',500);
+								}
+								
+								function checkDisabled(){
+									if({!moduleComplete}){
+										j$('.red_btn').attr("disabled","disabled");
+									}
+									setTimeout('hideProgressBar()',500);
+								}
+							</script>
+						</apex:outputPanel>
+						<h1 class="centerHeader">
+							<input type="button" onclick="prevJs();" class="grey_btn_arrow" value="School Setup Homepage" />
+							<span style="display:inline-block;">{!cSetup.school.name} Module Setup<br/>Attendance</span>
+							<!-- <input type="button" onclick="nextJs();" class="green_btn_arrow" value="Save and Next" /> -->
+						</h1>
+						<apex:outputPanel styleClass="adminSummary">
+							<br/>
+							<p>
+								Welcome to the Attendance Setup Wizard!  
+								This wizard will take you through each step necessary in setting up Attendance.  
+								Please complete all required fields and then click “Finalize Attendance.”  
+								See SchoolForce Help for more information.
+							</p>
+							<br/>
+						</apex:outputPanel>
+						<div class="tabs" style="border: 0px;">
+							<div id="tabList">
+								<ul style="position:relative; overflow-y:hidden;">
+									<li style="cursor:pointer; list-style-type:none; float:left;">
+										<a href="#tabs-select" style="cursor:pointer;text-decoration:none;margin:0px;" onclick="" >Configure School-Wide Details</a>
+									</li>
+									<li style="cursor:pointer; list-style-type:none; float:left;">
+										<a href="#tabs-values" style="cursor:pointer;text-decoration:none;margin:0px;" onclick="refreshAttendanceValuesJs();" >Add Attendance Values</a>
+									</li>
+									<li style="cursor:pointer; list-style-type:none; float:left;">
+										<a href="#tabs-parent" style="cursor:pointer;text-decoration:none;margin:0px;" onclick="refreshParentalMessagesJs()" >Set Up Parent Notifications</a>
+									</li>
+									<li style="cursor:pointer; list-style-type:none; float:left;">
+										<a href="#tabs-admin" style="cursor:pointer;text-decoration:none;margin:0px;" onclick="refreshNotificationsJs()" >Set Up Admin Notifications</a>
+									</li>
+								</ul>
+							</div>
+							<div class="content-wrapper no-border" style="margin-top:0px;">
+								<div id="tabs-select">
+									<h3>Configure school-wide details</h3>
+									<div class="section_content">
+										<table>
+											<tr>
+												<td><apex:inputField value="{!cSetup.setup.Cascade_Daily_Attendance__c}" /></td>
+												<td>Would your school prefer that the system propagate attendance records for all classes after daily attendance is taken?</td>
+											</tr>
+											<tr>
+												<td><apex:inputField value="{!cSetup.setup.Use_Sectional_Attendance__c}" /></td>
+												<td>Would your school prefer to use sectional attendance records to calculate time lost?  If left unchecked, the system will use daily attendance to calculate time lost.</td>
+											</tr>
+											<tr>
+												<td><apex:inputField value="{!cSetup.setup.Read_Only_Attendance_Wizard_Records__c}" /></td>
+												<td>Would your school like attendance taken via the Attendance Wizard to be marked as read-only in the Attendance tab? If left unchecked, teachers and other users will be able to modify all attendance values in the Attendance tab. Note: This option only affects attendance records created while this box is checked; attendance taken before you selected this option will remain editable on the Attendance tab. </td>
+											</tr>
+											<tr>
+												<td colspan="2">
+													<input type="button" class="black_btn" onclick="showProgressBar(' Saving Your Selections '); saveConfigurationJs();" value="Save Configuration" />
+												</td>
+											</tr>
+										</table>
+									</div>
+								</div>
+								<div id="tabs-values">
+									<h3>
+										<div class="bPageBlock" >
+										<div class="requiredInput">
+											<div class="requiredBlock"></div>
+											&nbsp; Add Attendance Values
+										</div>
+										</div>
+									</h3>
+									<div class="section_content">
+										<div class="childSummary">
+											Please add new attendance values or edit existing attendance values.  
+											You must have 1 attendance value in order to finalize the Attendance Setup.<br/>  
+											<br/>
+											The attendance value name will appear in the Attendance Module.  
+											The associated “Category” summarizes attendance for local and state reporting under that specific category; for example, a school may want multiple attendance values that all fall under the category “Absent”.  
+											Notifications will be based on whether an attendance value is “Unexcused,” “Tardy,” “Early Departure,” or “Suspension.”  
+											Please see SchoolForce Help for more information.  
+										</div>
+										<h3>Existing Attendance Values</h3>
+										<a style="cursor:pointer;" onClick="initAttendanceModal(); selectAttendanceValueJs('');"><img src="/img/feeds/follow12.png"/>Add Attendance Value</a>
+										<input type="button" onclick="openCSVLoader('Attendance','{!cSetup.setup.id}',{!isManaged});" class="black_btn" value="Load From CSV" />
+										<div class="clear_fix"/>
+										<apex:outputPanel id="attendanceValues">
+											<apex:dataTable styleClass="noFilter" value="{!attendanceValues}" var="att">
+												<apex:column headerValue="Action">
+													<a href="#" onclick="initAttendanceModal(); selectAttendanceValueJs('{!att.id}');">Edit</a>
+													|
+													<a href="#" onclick="var msg='Are you sure you would like to delete this attendance value?';
+																		if('{!att.Setup__c}'==''){
+																			msg='This is an org-wide attendance value and may be used in other schools.  Are you sure you would like to delete this attendance value?';
+																		}
+																		if(confirm(msg)){
+																			showProgressBar(' Deleting Attendance Value ');
+																			deleteAttendanceValueJs('{!att.id}');
+																		}">Del</a>
+												</apex:column>
+												<apex:column headerValue="Name" value="{!att.Name}" />
+												<apex:column headerValue="Category" value="{!att.Category__c}" />
+												<apex:column headerValue="Unexcused?" value="{!att.Is_Unexcused__c}" />
+												<apex:column headerValue="Tardy?" value="{!att.Is_Tardy__c}" />
+												<apex:column headerValue="Early Departure?" value="{!att.Is_Early_Departure__c}" />
+												<apex:column headerValue="Suspension?" value="{!att.Is_Suspension__c}" />
+												<apex:column headerValue="Short Description" value="{!att.Short_Description__c}" />
+												<apex:column headerValue="Long Description" value="{!att.Long_Description__c}" />
+											</apex:dataTable>
+										</apex:outputPanel>
+									</div>
+								</div>
+								<div id="tabs-parent">
+									<h3>Parental Notifications</h3>
+									<div class="section_content">
+										<div class="childSummary">
+											NOTE: Please check with your system administrator to ensure that parental notifications are enabled for your organization.
+											<br/>
+											<br/>
+											In order for a parent to be notified of their student's tardies and absences, the parent's Contact record must be marked to receive notifications.  
+											The parent can be notified by either email or SMS (text).  Here, your school can set up default text to be sent within these messages.
+										</div>
+										<h3>Existing Message Values</h3>
+										<a style="cursor:pointer;" onClick="initParentModal(); selectMessageValueJs('');"><img src="/img/feeds/follow12.png"/>Add Parent Message</a><br/>
+										<apex:outputPanel id="messageValues">
+											<apex:dataTable styleClass="noFilter" value="{!messageValues}" var="msg">
+												<apex:column headerValue="Action">
+													<a href="#" onclick="initParentModal(); selectMessageValueJs('{!msg.id}');">Edit</a>
+													|
+													<a href="#" onclick="if(confirm('Are you sure you would like to delete this parent notification?')){
+																			showProgressBar(' Deleting Parent Notification ');
+																			deleteMessageValueJs('{!msg.id}');
+																		}">Del</a>
+												</apex:column>
+												<apex:column headerValue="Language" value="{!msg.Language__c}" />
+												<apex:column headerValue="Communication Type" value="{!msg.Communication_Type__c}" />
+												<apex:column headerValue="Type of Message" value="{!msg.Type__c}" />
+												<apex:column headerValue="Text" value="{!msg.Text_Alert__c}" />
+											</apex:dataTable>
+										</apex:outputPanel>
+									</div>
+								</div>
+								<div id="tabs-admin">
+									<h3>Administrator Notifications</h3>
+									<div class="section_content">
+										<div class="childSummary">
+											NOTE: Workflow rules are required for admin notifications.  Please check with your system administrator that these workflow rules have been enabled.
+											<br/>
+											<br/>
+											Notifications are created to indicate a period of time that administrators would like to monitor the consecutive and cumulative attendance for their students.  
+											Each notification can also have thresholds added to indicate at what point an administrator should be notified.  
+											Notifications and associated thresholds can be viewed, edited, and deleted here.
+										</div>
+										<apex:outputPanel id="notificationValues" >
+											<h3>Existing Notification Values</h3>
+											<a style="cursor:pointer;" onClick="initNotificationModal(); selectNotificationValueJs('');"><img src="/img/feeds/follow12.png"/>Add Notification</a><br/>
+											<apex:dataTable styleClass="noFilter" value="{!notificationValues}" var="not">
+												<apex:column headerValue="Action">
+													<a href="#" onclick="initNotificationModal(); selectNotificationValueJs('{!not.id}');">Edit</a>
+													|
+													<a href="#" onclick="if(confirm('Are you sure you would like to delete this notification and all of its associated thresholds?')){
+																			showProgressBar(' Deleting Notification ');
+																			deleteNotificationJs('{!not.id}');
+																		}">Del</a>
+												</apex:column>
+												<apex:column headerValue="Status" value="{!not.Picklist_Value__r.Name}" />
+												<apex:column headerValue="Grade(s)" value="{!not.Grade__c}" />
+												<apex:column headerValue="Start Date">
+													<apex:outputText value="{0,date,MM/dd/yyyy}">
+														<apex:param value="{!not.Start_Date__c}" />
+													</apex:outputText>
+												</apex:column>
+												<apex:column headerValue="End Date">
+													<apex:outputText value="{0,date,MM/dd/yyyy}">
+														<apex:param value="{!not.End_Date__c}" />
+													</apex:outputText>
+												</apex:column>
+												<apex:column headerValue="Daily?" value="{!not.Daily_Tracking__c}" />
+												<apex:column headerValue="Add Threshold?">
+													<a style="cursor: pointer;" onClick="initThresholdModal(); selectThresholdJs('','{!not.id}');"><img src='/img/feeds/follow12.png'/></a>
+												</apex:column>
+												<apex:column headerValue="Thresholds">
+													<table style="{!IF(not.Thresholds__r.size>0,'','display:none;')}">
+														<tr>
+															<th>Action</th>
+															<th>Consecutive</th>
+															<th>Cumulative</th>
+															<th>Time Lost</th>
+														</tr>
+														<apex:repeat value="{!not.Thresholds__r}" var="t">
+															<tr>
+																<td>
+																	<a href="#" onclick="initThresholdModal(); selectThresholdJs('{!t.id}','{!not.id}');">Edit</a>
+																	|
+																	<a href="#" onclick="if(confirm('Are you sure you would like to delete this threshold?')){
+																							showProgressBar(' Deleting Threshold ');
+																							deleteThresholdJs('{!t.id}');
+																						}">Del</a>
+																</td>
+																<td>{!t.Consecutive__c}</td>
+																<td>{!t.Cumulative__c}</td>
+																<td>{!t.Time_Lost__c}</td>
+															</tr>
+														</apex:repeat>
+													</table>
+												</apex:column>
+											</apex:dataTable>
+										</apex:outputPanel>
+									</div>
+								</div>
+								<input type="button" class="red_btn" value="Finalize Attendance Setup" onclick="if(confirm('Are you sure you would like to finalize this attendance setup?  You will be able to return throughout the year to make modifications where noted.')){
+																													showProgressBar(' Finalizing Attendance Setup ');
+																													completeSetupJs();
+																												}" />
+							</div>
+						</div>
+					</div>
+				</td>
+			</tr>
+		</table>
+	</apex:outputPanel>
+	<apex:actionFunction name="saveConfigurationJs" action="{!saveConfiguration}" onComplete="setTimeout('hideProgressBar()',500);" rerender="messages" />
+	<apex:actionFunction name="refreshAttendanceValuesJs" action="{!refreshAttendanceValues}" rerender="attendanceValues" onComplete="resetTable();" />
+	<apex:actionFunction name="selectAttendanceValueJs" action="{!setPicklistValue}" rerender="attendancePanel" oncomplete="openModal('#attendanceModal');">
+		<apex:param name="selectedPV" value="" assignTo="{!selectedPV}" />
+	</apex:actionFunction>
+	<apex:actionFunction name="deleteAttendanceValueJs" action="{!deletePicklistValue}" rerender="resetPanel,messages,attendanceValues" onComplete="setTimeout('hideProgressBar()',500);">
+		<apex:param name="selectedPV" value="" assignTo="{!selectedPV}" />
+	</apex:actionFunction>
+	<apex:actionFunction name="refreshParentalMessagesJs" action="{!refreshParentalMessages}" rerender="messageValues" onComplete="resetTable();" />
+	<apex:actionFunction name="selectMessageValueJs" action="{!setMessage}" rerender="parentNotificationPanel" oncomplete="openModal('#parentNotificationModal');">
+		<apex:param name="selectedMV" value="" assignTo="{!selectedMV}" />
+	</apex:actionFunction>
+	<apex:actionFunction name="deleteMessageValueJs" action="{!deleteMessage}" rerender="resetPanel,messages,messageValues" onComplete="setTimeout('hideProgressBar()',500);">
+		<apex:param name="selectedMV" value="" assignTo="{!selectedMV}" />
+	</apex:actionFunction>
+	<apex:actionFunction name="refreshNotificationsJs" action="{!refreshNotifications}" rerender="notificationValues" onComplete="resetTable();" />
+	<apex:actionFunction name="selectNotificationValueJs" action="{!setNotification}" rerender="adminNotificationPanel" oncomplete="openModal('#notificationModal');">
+		<apex:param name="selectedNotification" value="" assignTo="{!selectedNotification}" />
+	</apex:actionFunction>
+	<apex:actionFunction name="deleteNotificationJs" action="{!deleteNotification}" rerender="resetPanel,messages,notificationValues" onComplete="setTimeout('hideProgressBar()',500); resetTable();" >
+		<apex:param name="selectedNotification" value="" assignTo="{!selectedNotification}" />
+	</apex:actionFunction>
+	<apex:actionFunction name="selectThresholdJs" action="{!setThreshold}" rerender="thresholdPanel" oncomplete="openModal('#thresholdModal');">
+		<apex:param name="selectedThreshold" value="{!selectedThreshold}" assignTo="{!selectedThreshold}" />
+		<apex:param name="selectedNotification" value="{!selectedNotification}" assignTo="{!selectedNotification}" />
+	</apex:actionFunction>
+	<apex:actionFunction name="deleteThresholdJs" action="{!deleteThreshold}" rerender="resetPanel,messages,notificationValues" onComplete="setTimeout('hideProgressBar()',500); resetTable();" >
+		<apex:param name="selectedThreshold" value="{!selectedThreshold}" assignTo="{!selectedThreshold}" />
+	</apex:actionFunction>
+	<apex:actionFunction name="completeSetupJs" action="{!completeSetup}" rerender="resetPanel,messages" onComplete="checkDisabled();" />
+	
+	<!-- ATTENDANCE MODAL -->
+	<div id="attendanceModal" >
+		<apex:outputPanel id="attendancePanel">
+			<apex:outputPanel rendered="{!bShowAttendance}">
+				<apex:pageMessages />
+				<h3>Create/Edit Attendance Value</h3>
+				<apex:pageBlock >
+					<div class="section_content">
+						<apex:pageBlockSection collapsible="false" columns="2">
+							<apex:inputField required="true" value="{!modalValue.Name}" />
+							<apex:inputField required="true" value="{!modalValue.Category__c}" />
+							<apex:inputField value="{!modalValue.Is_Unexcused__c}" />
+							<apex:inputField value="{!modalValue.Is_Tardy__c}" />
+							<apex:inputField value="{!modalValue.Is_Early_Departure__c}" />
+							<apex:inputField value="{!modalValue.Is_Suspension__c}" />
+							<apex:inputField value="{!modalValue.Short_Description__c}" />
+							<apex:inputField value="{!modalValue.Long_Description__c}" />
+						</apex:pageBlockSection>
+					</div>
+				</apex:pageBlock>
+				<input type="button" class="black_btn" value="Save Changes" onclick="if(confirm('Are you sure you would like to save this attendance value?')){
+																						showProgressBar(' Saving Attendance Value ');
+																						saveStatusJs();
+																					}" />
+				<input type="button" class="grey_btn" onclick="closeModal('#attendanceModal');" value="Cancel" />
+				<div class="clear_fix"></div>
+			</apex:outputPanel>
+		</apex:outputPanel>
+	</div>
+	<!-- PARENT NOTIFICATION MODAL -->
+	<div id="parentNotificationModal" >
+		<apex:outputPanel id="parentNotificationPanel">
+			<apex:outputPanel rendered="{!bShowMessages}">
+				<apex:pageMessages />
+				<h3>Create/Edit Parent Notification</h3>
+				<apex:pageBlock >
+					Edit messages to parents.  Please keep in mind that text alerts will be preceded by the student's name when notifications are sent to parents.
+					<div class="section_content">
+						<apex:pageBlockSection collapsible="false" columns="2">
+							<apex:inputField value="{!modalMessage.Language__c}" />
+							<apex:inputField value="{!modalMessage.Communication_Type__c}" />
+							<apex:pageBlockSectionItem >
+								<apex:outputLabel for="typeList" value="Alert Type" />
+								<apex:selectList id="typeList" size="1" value="{!modalMessage.Type__c}">
+									<apex:selectOption itemValue="Attendance Alerts" itemLabel="Absent" />
+									<apex:selectOption itemValue="Tardy Alerts" itemLabel="Tardy" />
+								</apex:selectList>
+							</apex:pageBlockSectionItem>
+							<apex:inputField value="{!modalMessage.Text_Alert__c}" />
+						</apex:pageBlockSection>
+					</div>
+				</apex:pageBlock>
+				<input type="button" class="black_btn" value="Save Changes" onclick="if(confirm('Are you sure you would like to save this parent notification?')){
+																						showProgressBar(' Saving Parent Notification ');
+																						saveMessageJs();
+																					}" />
+				<input type="button" class="grey_btn" onclick="closeModal('#parentNotificationModal');" value="Cancel" />
+			</apex:outputPanel>
+		</apex:outputPanel>
+	</div>
+	<!-- ADMIN NOTIFICATION MODAL -->
+	<div id="notificationModal" >
+		<apex:outputPanel id="adminNotificationPanel">
+			<apex:outputPanel rendered="{!bShowNotifications}">
+				<apex:pageBlock >
+					<apex:pageMessages />
+					<h3>Create/Edit Notification</h3>
+					<div class="section_content">
+						<apex:pageBlockSection collapsible="false" columns="2">
+							<apex:pageBlockSectionItem >
+								<apex:outputLabel for="statusList" value="Attendance Value" />
+								<apex:selectList id="statusList" size="1" value="{!modalNotification.Picklist_Value__c}">
+									<apex:selectOptions value="{!attendanceOptions}" />
+								</apex:selectList>
+							</apex:pageBlockSectionItem>
+							<apex:inputField value="{!modalNotification.Grade__c}" />
+							<apex:inputField value="{!modalNotification.Start_Date__c}" />
+							<apex:inputField value="{!modalNotification.End_Date__c}" />
+							<apex:inputField value="{!modalNotification.Daily_Tracking__c}" />
+						</apex:pageBlockSection>
+					</div>
+				</apex:pageBlock>
+				<input type="button" class="black_btn" value="Save Changes" onclick="if(confirm('Are you sure you would like to save this notification?')){
+																						showProgressBar(' Saving Notification ');
+																						saveNotificationJs();
+																					}" />
+				<input type="button" class="grey_btn" onclick="closeModal('#notificationModal');" value="Cancel" />
+			</apex:outputPanel>
+		</apex:outputPanel>
+	</div>
+	<!-- THRESHOLD MODAL -->
+	<div id="thresholdModal" >
+		<apex:outputPanel id="thresholdPanel">
+			<apex:outputPanel rendered="{!bShowThresholds}">
+				<apex:pageMessages />
+				<h3>Create/Edit Threshold</h3>
+				<apex:pageBlock >
+					<apex:pageBlockSection >
+						<apex:inputField value="{!modalThreshold.Consecutive__c}" />
+						<apex:inputField value="{!modalThreshold.Cumulative__c}" />
+						<apex:inputField value="{!modalThreshold.Time_Lost__c}" />
+					</apex:pageBlockSection>
+				</apex:pageBlock>
+				<input type="button" class="black_btn" value="Save Changes" onclick="if(confirm('Are you sure you would like to save this threshold?')){
+																						showProgressBar(' Saving Threshold ');
+																						saveThresholdJs();
+																					}" />
+				<input type="button" class="grey_btn" onclick="closeModal('#thresholdModal');" value="Cancel" />
+			</apex:outputPanel>
+		</apex:outputPanel>
+	</div>
+	
+	<apex:actionFunction action="{!saveStatus}" name="saveStatusJs" reRender="resetPanel,attendancePanel,attendanceValues" oncomplete="checkAttendance();" />
+	<apex:actionFunction action="{!saveMessage}" name="saveMessageJs" reRender="messages,messageValues,parentNotificationPanel" oncomplete="closeModal('#parentNotificationModal'); setTimeout('hideProgressBar()',500); resetTable();" />
+	<apex:actionFunction action="{!saveNotification}" name="saveNotificationJs" reRender="messages,notificationValues,adminNotificationPanel" oncomplete="closeModal('#notificationModal'); setTimeout('hideProgressBar()',500); resetTable();" />
+	<apex:actionFunction action="{!saveThreshold}" name="saveThresholdJs" reRender="messages,notificationValues,thresholdPanel" oncomplete="closeModal('#thresholdModal'); setTimeout('hideProgressBar()',500); resetTable();" />
+	<apex:actionFunction action="{!prev}" name="prevJs" />
+	<!-- <apex:actionFunction action="{!next}" name="nextJs" /> -->
+	</apex:form>
+</apex:page>

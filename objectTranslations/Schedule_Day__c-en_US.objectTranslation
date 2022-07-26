@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Schedule Day</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Schedule Days</value>
+    </caseValues>
+    <fields>
+        <label><!-- Color --></label>
+        <name>Color__c</name>
+    </fields>
+    <fields>
+        <label><!-- Day --></label>
+        <name>Day__c</name>
+    </fields>
+    <fields>
+        <label><!-- Class Days Elapsed --></label>
+        <name>Days_Elapsed__c</name>
+    </fields>
+    <fields>
+        <label><!-- External Id --></label>
+        <name>External_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Published --></label>
+        <name>Published__c</name>
+    </fields>
+    <fields>
+        <label><!-- ReferenceId --></label>
+        <name>ReferenceId__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reporting Period --></label>
+        <name>Reporting_Period__c</name>
+        <relationshipLabel><!-- Schedule Days --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Schedule Template --></label>
+        <name>Schedule_Template__c</name>
+        <relationshipLabel><!-- Schedule Days --></relationshipLabel>
+    </fields>
+    <layouts>
+        <layout>Schedule Day Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

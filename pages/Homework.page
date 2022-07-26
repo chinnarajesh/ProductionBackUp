@@ -1,0 +1,376 @@
+<apex:page controller="Homework_HomeworkController" tabstyle="Homework__tab" sidebar="true">
+    <c:admin />
+    <c:gradebook_style />
+    <c:jQueryInit bClueTip="true" />
+    <apex:stylesheet value="{!$Resource.New_Core_UX}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.Gradebook, '/css/Gradebook.css')}"/>
+    <style>
+		.small_Submit_btn_wrapper{
+            float:left;
+            border-left:1px solid #ccc;
+            padding:0 0 0 35px;
+            vertical-align: middle;
+            margin-top:15px;
+        }
+        #gradebookTable a.apply-score{
+            background: url(/resource/1335480870000/Gradebook/images/GradebookButtons.png) no-repeat -16px -32px;
+            width: 16px;
+            height: 16px;
+            text-indent: -9999px;
+            position: absolute;
+            top: 10px;
+            left: 66px;
+            cursor: pointer;
+        }
+        
+        .fht-table-wrapper .fht-fixed-body {
+            top: 0;
+            left: 0;
+            position: absolute;
+            width:1008px !important;
+            z-index:1;
+        }
+       
+        .fht-table-wrapper .fht-fixed-column{
+            z-index:2;
+            width:323px !important;
+        }
+       
+        .fht-table-wrapper .fht-fixed-column .fht-thead{
+           padding-bottom:0px;
+        }
+        
+        @media screen and (-webkit-min-device-pixel-ratio:0) {
+             .fht-table-wrapper .fht-fixed-column .fht-thead{ padding-bottom:2px; }
+        } 
+        
+        #gradebook-results .gradebook {
+            width:1008px !important;
+            border-radius:7px;
+            overflow:hidden;
+     
+        }
+        
+        #gradebook-results th.cats{
+            width:200px;
+            padding:0 5px;
+            overflow:hidden;
+        }
+        
+        #gradebook-results th.cats p {
+            margin:0;
+            height:30px;
+        }
+        
+        #gradebook-results th.cats a.apply-score,
+        #gradebookTable th a.apply-score {
+           position:static;
+           display:inline-block;
+           float:none;   
+        }
+        
+        
+        #gradebook-results th.cats input {
+            }
+        
+        
+        #gradebook-results th.cats div {
+            width:75px margin:0 auto;
+        }
+        
+        #gradebook-results {
+           border:none;
+           border-radius:7px;
+           overflow:hidden; 
+        }
+        
+        #gradebook-results th:first-child {
+            border-top-left-radius: 5px;
+        }
+        
+        #gradebook-results .gradebook tbody tr td {
+            /*width:210px;*/
+        }
+    
+        .small_Submit_btn_wrapper{
+            float:left;
+            border-left:1px solid #ccc;
+            padding:0 0 0 35px;
+            vertical-align: middle;
+        }
+        #awardsdetail{
+            background-color:#fffcab;
+            height:500px;
+            padding:0px;
+            margin:0px;
+            font-size:14px;
+        }
+        
+        #gradebook-results .apply-score,
+        #gradebookTable .apply-score {
+            float:right;
+            position:static;
+            
+        }
+        
+        #gradebookTable {
+            border:1px solid #CCC;
+            border-radius:5px;
+            width:100%;
+        }
+        
+        #gradebookTable th {
+            background:#E3F3FF;
+            padding:5px 10px 0 10px;
+            text-align:center;
+            border-bottom:1px solid #ccc;
+        }
+        
+       #gradebookTable th:first-child {
+            background:#099BCC;
+            color:#fff;
+            text-align:left;
+        }
+        
+        #gradebookTable th:last-child {
+            border-left:1px solid #ccc;
+        }
+        
+        #gradebookTable th.points input {
+            width:25px;
+        }
+        
+        #gradebookTable tr td{
+            border-bottom:1px solid #ccc !important;
+            border-right:1px solid #ccc !important;
+        }
+        
+        #gradebookTable td{
+            padding:5px;
+        }
+        
+        #gradebookTable tr td:first-child {
+            background-color:#eee;
+            border-right:1px solid #ccc;
+        }
+        
+        #gradebookTable td:last-child {
+            border-left:1px solid #ccc;
+        }
+        
+        #gradebookTable td input{
+            width:25px;
+        }
+        
+        #gradebook-results .gradebook thead tr th:first-child {
+              width:200px !important;
+        }
+        
+        #gradebook-results .fht-tbody td {
+            background:none !important;
+        }
+        
+        #gradebook-results .fht-fixed-column tbody{
+           background:#fff; 
+           border-bottom:1px solid #ccc;
+        }
+        
+        #gradebook-results .fht-fixed-column tbody td{
+            border-bottom:1px solid #ccc;
+        }
+        
+        #gradebook-results .fht-fixed-body .fht-thead th {
+            background:none !important;
+            border-right:1px solid #ccc;
+        }
+        
+		#gradebook-results .fht-fixed-body .fht-thead thead tr {
+			background:#E3F3FF !important;
+		}
+	</style>
+    
+    <apex:includeScript value="{!URLFOR($Resource.Gradebook, '/js/FixedHeaderTable.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.Gradebook, '/js/Mousewheel.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.Gradebook, '/js/GradebookScripts.js')}"/>   
+    <apex:includeScript value="{!URLFOR($Resource.jWerty, '/jWerty/jwerty.js')}" />
+    <apex:includeScript value="{!URLFOR($Resource.Gradebook, '/js/Gradebook.js')}"/>
+    <script>
+    	function fixHeaders(){
+        	j$('#studentHeader').height(j$('#courseHeader').height());
+        	j$('.fht-thead #absentheader > .fht-cell').width(j$('#absentcolumn').width());
+        	j$('.fht-thead #courseHeader > .fht-cell').each(function(index){
+        		j$(this).width(j$('td.'+j$(this).parent().attr('class')+':first').width()+12);
+        	});
+        }
+        function toggleHWComments(){
+        	j$('.commentBubble').toggle();
+        }
+        function commentsJS(loadedRecord){
+            j$('#commentsHolder').empty();
+            j$('.commentsRefID').empty();
+            
+            j$('.commentsRefID').val(loadedRecord);
+            
+            if(j$('.'+loadedRecord).val() != undefined)
+                j$('#commentsHolder').val(j$('.'+loadedRecord).val());
+        	else
+        		alert('Unable to find orginal comments.');
+            j$('#commentsModal').dialog({ autoOpen: true, modal: true, show: 'blind', minWidth: 400});
+            j$('#commentsModal').dialog("open");
+        }
+        function saveCommentJs(){      	
+        	j$('.'+j$('.commentsRefID').val()).val(j$('#commentsHolder').val());
+            j$('#commentsModal').dialog("close");
+            
+            if(j$('#commentsHolder').val() == ''){
+            	j$('.'+j$('.commentsRefID').val()+'nocomment').hide();
+            	j$('.'+j$('.commentsRefID').val()+'comment').show();
+            } else {
+            	j$('.'+j$('.commentsRefID').val()+'nocomment').show();
+            	j$('.'+j$('.commentsRefID').val()+'comment').hide();
+            }
+        }
+    </script>
+    
+    <apex:form >
+    <apex:outputPanel id="fullPagePanel">
+        <apex:outputPanel id="messagePanel">
+		    <apex:pageMessages id="theMessages"/>
+		</apex:outputPanel>
+		
+		<div id="commentsModal" style="display:none;">
+			<div class="commentblock" id="commentblock" title="Add Comment">
+				<textArea id="commentsHolder" rows="10" cols="50"></textArea>
+				<input type="text" class="commentsRefID" style="display:none;"/>
+				<br/><br/>
+                <a href="#" style="text-align:center;" onClick="saveCommentJs();">
+					<input type="button" class="black_btn" value="Save"/>
+				</a>
+			</div>
+		</div>
+		
+        <apex:outputPanel id="filterPanel" rendered="{!!bFatalError}">
+				<h3>Section Selection</h3>
+				<div class="section_content" style="width:993px;padding-right:0px;margin-bottom:15px;">
+					<div style="font-weight:bold;float:left;">
+						Section<br/>
+						<apex:selectList value="{!section}" multiselect="false" size="1">
+							<apex:selectOptions value="{!sectList}" />
+						</apex:selectList>
+					</div>
+					<div style="font-weight:bold;margin:0 20px;float:left;">
+						Date<br/>
+						<apex:inputField id="dueDate" value="{!dueDate.Due_Date__c}" onFocus="if(onload){j$(this).blur();onload=false;}"/>
+					</div>
+					<div class="small_Submit_btn_wrapper">
+						<apex:commandButton value="LOAD SECTION" action="{!gethwdata}" rerender="fullPagePanel, messagePanel" 
+								styleClass="drk_blue_btn" style="float:left !important; margin:0px !important;"
+								onComplete="fixTable();fixHeaders();"/>
+					</div>
+					
+					<div class="clear_fix" style="line-height:1px;">&nbsp;</div>
+				</div>
+				<script>
+					var onload = true;
+				</script>
+			</apex:outputPanel>
+			
+			<!--  Start Main Table -->
+            <apex:outputPanel id="studentdata" rendered="{!!ISNULL(CourseSectionMap) && !bFatalError && !bDataError}">
+            	<script>
+	            	j$(document).ready(function() {                    
+	                    var leftWidth = j$('#gradebook-results').css('width');
+	                    j$('#gradebook-results').css('left',leftWidth);     
+	                    gradebookResultsLoad();
+	                    fixHeaders();
+	                });
+                 
+	               
+	                
+	                j$(".gradebook-assignment").cluetip({
+	                    cluezIndex: 999,
+	                    local: true,
+	                    cursor: 'pointer', 
+	                    clickThrough: true
+	                });
+            	</script>
+				<div id="gradebook-results" style="width:1008px;">
+					<div style="float:right;">
+                		<a id="hideCommentText" style="text-align:right; cursor:pointer;" onclick="toggleHWComments();">Show Comments</a>
+            		</div>       
+        			<div class="clear_fix" style="height:50%">&nbsp;</div>
+                <table cellpadding="0" cellspacing="0" id="gradebookTable">
+                    <thead>
+                        <tr style="min-height:75px;">
+                            <th id="studentHeader" style="min-height:75px;">
+	                            Student
+                            </th>
+							<th style="min-height:75px;width:92px" id="absentheader">
+	                            <span>Absent?</span>
+                            </th>
+							<apex:repeat value="{!cwrap}" var="c" >  
+                                <th id="courseHeader" style="min-height:75px;" class="{!c.courseID}">
+                                    <span style="text-align:center;">
+										{!c.scourse}
+									</span>
+									<br/>
+                                    <apex:repeat value="{!c.sections}" var="s"> 
+                                    	<div>
+                                    		<span style="text-align:center;display:inline;">{!s.name}</span>
+                                    		<apex:inputCheckbox value="{!s.Has_Homework__c}" onChange="newHomeworkJS('{!s.Id}')" style="display:inline;"/>
+                                    	</div>
+                                     </apex:repeat>
+                                     <div class="clear_fix" style="height:1px;">&nbsp;</div> 
+                                </th>
+                            </apex:repeat>
+                        </tr>           
+                    </thead>
+                    
+                    <tbody>
+                        <apex:repeat value="{!swrap}" var="s">
+                            <tr>
+                                <td class="studCol" style="vertical-align:middle;">
+									<apex:outputLink style="text-decoration:underline;" value="/{!s.Stud.Id}"  target="_blank">
+										{!s.Stud.Name} - ({!s.mcount})
+                                    </apex:outputLink>
+                                </td>
+								<td style="vertical-align:middle;text-align:center;padding:0px;" id="absentcolumn">
+									<apex:inputCheckbox value="{!s.bAbsent}">
+										<apex:actionSupport action="{!abshomework}" event="onchange" rerender="studentdata, themsgs">
+											<apex:param name="pagerefstudentId" value="{!s.Stud.Id}" assignTo="{!pagerefstudentId}"/>
+                                            <apex:param name="absencestatus" value="{!s.bAbsent}" assignTo="{!bAbsentStatus}"/>
+                                        </apex:actionSupport>
+                                    </apex:inputCheckbox>
+								</td>
+                                <apex:repeat value="{!s.shw}" var="shw">
+                                    <td align="center" nowrap="nowrap" style="width:auto;" class="{!shw.Student_Section__r.Section__r.Course__c}">
+                                        <apex:inputText styleClass="{!shw.Student_Section__r.Section__r.Course__c}{!s.stud.id}comment" style="width:0px; display:none;" value="{!shw.Comments__c}" />
+                                        <apex:selectList rendered="{!IF(ISBLANK(shw.Picklist_Value__c), FALSE, TRUE)}" size="1" value="{!shw.Picklist_Value__c}">
+                                            <apex:selectOptions rendered="{!IF(ISBLANK(shw.Picklist_Value__c), FALSE, TRUE)}" value="{!StatusList}"/>
+                                            <apex:actionSupport event="onchange" rerender="studentdata, themsgs"/>
+                                        </apex:selectList>
+                                        <a style="display:none" class="commentBubble" href="#"  id="xyz" onclick="commentsJS('{!shw.Student_Section__r.Section__r.Course__c}{!s.stud.id}comment');" tabindex="-1">
+                                            <apex:image style="cursor:pointer;border:0px;{!IF(AND(!ISBLANK(shw.Picklist_Value__c),shw.Comments__c!=null), '','display:none;')}" styleclass="{!shw.Student_Section__r.Section__r.Course__c}{!s.stud.id}commentnocomment" url="{!URLFOR($Resource.Gradebook, '/images/commentbubble.png')}" />               
+                                            <apex:image style="cursor:pointer;border:0px;{!IF(AND(!ISBLANK(shw.Picklist_Value__c),shw.Comments__c==null), '','display:none;')}" styleclass="{!shw.Student_Section__r.Section__r.Course__c}{!s.stud.id}commentcomment" url="{!URLFOR($Resource.Gradebook, '/images/commentbubble_green.png')}" />
+                                        </a>
+                                        <br/>
+                                         <apex:outputText rendered="{!IF(OR((ISBLANK(shw.Picklist_Value__c)),shw.Picklist_Value__c==absentStatusId,shw.Picklist_Value__c==defaultStatusId), FALSE, TRUE)}">
+                                            RC Date:
+                                        </apex:outputText>
+                                        <apex:inputField rendered="{!IF(OR((ISBLANK(shw.Picklist_Value__c)),shw.Picklist_Value__c==absentStatusId,shw.Picklist_Value__c==defaultStatusId), FALSE, TRUE)}" value="{!shw.Responsibility_Center__c}"/>
+                                    </td>
+                                </apex:repeat>
+                            </tr>
+                        </apex:repeat>
+                    </tbody>
+                </table>
+                <apex:commandButton style="clear:both;margin-top:15px;" value="Submit" action="{!saverecords}" styleclass="black_btn" reRender="themsgs"/>
+           		</div>
+            </apex:outputPanel>
+				
+			<apex:actionFunction action="{!newhomework}" name="newHomeworkJS" rerender="studentdata, themsgs">
+	        	<apex:param name="newsectionId" value="" assignTo="{!newsectionid}"/>
+    		</apex:actionFunction>
+           	</apex:outputPanel>
+            </apex:form>        
+        </apex:page>

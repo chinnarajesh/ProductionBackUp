@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Cohort</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Cohorts</value>
+    </caseValues>
+    <fields>
+        <label><!-- Credits Required to Graduate --></label>
+        <name>Credits_Required__c</name>
+    </fields>
+    <fields>
+        <label><!-- Exit Year --></label>
+        <name>Exit_Year__c</name>
+    </fields>
+    <fields>
+        <label><!-- Expired --></label>
+        <name>Expired__c</name>
+    </fields>
+    <fields>
+        <label><!-- External Id --></label>
+        <name>External_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Portfolio Required? --></label>
+        <name>Portfolio_Required__c</name>
+    </fields>
+    <fields>
+        <label><!-- Projected Graduation Date --></label>
+        <name>Projected_Graduation_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Required Community Service Hours --></label>
+        <name>Required_Community_Service_Hours__c</name>
+    </fields>
+    <fields>
+        <label><!-- School --></label>
+        <name>School__c</name>
+        <relationshipLabel><!-- Cohorts --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Year --></label>
+        <name>Year__c</name>
+    </fields>
+    <layouts>
+        <layout>Cohort Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+    <webLinks>
+        <label><!-- Create_Cohort_Snapshot --></label>
+        <name>Create_Cohort_Snapshot</name>
+    </webLinks>
+</CustomObjectTranslation>

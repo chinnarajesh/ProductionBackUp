@@ -1,0 +1,10 @@
+<apex:page id="loginPage" showHeader="false" title="{!$Label.site.site_login}" standardStylesheets="false">
+<apex:stylesheet value="{!URLFOR($Resource.Portal, 'general/css/default.css')}"/>
+
+<center>
+      <div style="position:relative; top:100px; background:url({!URLFOR($Resource.Portal, '/general/images/Login_BG_Big.png')}); background-repeat:no-repeat; width:550px; padding-top:100px;padding-left:50px;padding-bottom:250px;">
+       <div style="position:absolute; top:55px; left:80px;"><span style="color:black;">
+                  <apex:outputText value="{!$Label.site.login}"/></span></div>
+                  <c:SiteLogin id="siteLogin"/>
+                  </div></center>
+</apex:page>

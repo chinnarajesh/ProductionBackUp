@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Student_Section__c$School__c</field>
+    </columns>
+    <columns>
+        <field>Student_Section__c$Student_Id__c</field>
+    </columns>
+    <columns>
+        <field>Student_Section__c$Local_Student_ID__c</field>
+    </columns>
+    <columns>
+        <field>Student_Section__c.Intervention_Session_Results__r$Section_Name__c</field>
+    </columns>
+    <columns>
+        <field>Student_Section__c.Intervention_Session_Results__r$Intervention_Session_Date__c</field>
+    </columns>
+    <columns>
+        <field>Student_Section__c.Intervention_Session_Results__r$Amount_of_Time__c</field>
+    </columns>
+    <format>Tabular</format>
+    <name>Dosage Report</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Student_Section_and_Intervention_Sessions_Results__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <sortColumn>Student_Section__c$Local_Student_ID__c</sortColumn>
+    <sortOrder>Asc</sortOrder>
+    <timeFrameFilter>
+        <dateColumn>Student_Section__c$CreatedDate</dateColumn>
+        <interval>INTERVAL_CURRENT</interval>
+    </timeFrameFilter>
+</Report>

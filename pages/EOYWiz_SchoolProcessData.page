@@ -1,0 +1,140 @@
+<apex:page controller="EOYWiz_SchoolProcessData" tabStyle="EOY_Wizard__tab">
+
+	<apex:includeScript value="{!URLFOR($Resource.jWerty, '/jWerty/jwerty.js')}" />
+  	<c:jQueryInit bLoadingPanel="true" bDataTables="true"/>
+	<apex:stylesheet value="{!$Resource.New_Core_UX}"/>
+	<apex:stylesheet value="{!URLFOR($Resource.schoolforce_demo_page, 'css/style.css')}"/>	
+	<c:EOYWiz_StyleModifications />	
+	
+	<script>
+		var j$ = jQuery.noConflict();
+		var oTable;
+		unsavedPop = false;
+		
+		j$(document).ready(function() {
+			resetTables();
+		});			
+		
+		//outside of the ready function
+		window.onbeforeunload = unloadMessage;		
+		
+		function unloadMessage() {
+			if(unsavedPop) {
+				return "There are unsaved changes!";
+			}
+		}	
+
+		//need destroy in this version, that's why not using admin component
+		function resetTables(){
+			oTable = j$(".tablesorter").dataTable( {
+				"sScrollY": "200px",
+				"sScrollX": "100%",
+		        "bAutoWidth": true,
+		        "bDestroy": true,
+		        //"bRetrieve": true,
+		        "bPaginate": false,
+		        "bJQueryUI": true, 
+		        "iDisplayLength": 1000,
+		        "aaSorting": []
+    		});
+    		oTable.fnAdjustColumnSizing();
+    	} 	
+		
+	</script>
+	 
+	<apex:form id="mainForm">
+	
+		<apex:outputPanel id="outerPanel" layout="block">
+		
+			<div id="schoolforce-wrapper" class="wrapper">
+			
+				<apex:outputPanel id="errorMessages" layout="block" styleClass="pageMessages">
+					<apex:pageMessages />
+				</apex:outputPanel>
+			
+				<h1 id="navPanel" class="centerHeader">
+					<input type="button" class="grey_btn_arrow" onClick="gotoSchoolSnapshotsJS();" value="Previous" />
+					<div style="display:inline-block;">{!schoolProgress.School__r.Name} End of Year Wizard School Setup<br></br>Process Data</div>
+					<input id="next" type="button" class="green_btn_arrow" onClick="gotoSchoolPurgeEOYDataJS();" value="Next" />
+					<script>if({!!schoolProgress.School_Process_Data_Completed__c}){document.getElementById('next').disabled = 'disabled';}</script>
+				</h1>
+			
+				<apex:outputPanel id="summary" styleClass="adminSummary">
+					<br></br>
+					<!-- Yes, yes use css when you only need to style two words, bah it's like telling me not to use local variables. -->
+					<p>This step deactivates data for this school and any associated summer schools. You should not complete this step until you are finished with all reporting for the school year. After you press the <b>Deactivate Data</b> button on this page, you will no longer be able to generate report cards, run final GPAs, or run reports. For a complete list of the objects SchoolForce deactivates in this step, please see SchoolForce Help.</p>
+					<p style="font-style:italic"><b>Important:</b> You will only be able to properly export data/reports prior to completing this Process EOY Data step. If you skipped the optional Export Data and Reports step in Org Wide Settings, SchoolForce recommends returning to it now.</p>
+					<br></br>
+				</apex:outputPanel>
+			
+				<div class="content-wrapper">
+					<apex:pageBlock id="processDataBlock">
+					
+						<!-- moving dialog to onscreen table -->
+						<apex:outputPanel id="processDataPanel" >
+							<apex:dataTable id="dataLogTable" styleClass="tablesorter" value="{!dataLogs}" var="d" >
+								<apex:column headerValue="Start Time">
+									<apex:outputField value="{!d.Start_Time_Text__c}" />
+								</apex:column>
+								<apex:column headerValue="End Time">
+									<apex:outputField value="{!d.End_Time_Text__c}" />
+								</apex:column>				
+								<apex:column headerValue="Type">
+									<apex:outputField value="{!d.Type__c}" />
+								</apex:column>
+								<apex:column headerValue="Status">
+									<apex:outputField value="{!d.Status__c}" />
+								</apex:column>
+								<apex:column headerValue="Class Name">
+									<apex:outputField value="{!d.Class_Name__c}" />
+								</apex:column>
+								<apex:column headerValue="Total Records">
+									<apex:outputField value="{!d.Total_Records__c}" />
+								</apex:column>
+								<apex:column headerValue="Failed Records">
+									<apex:outputField value="{!d.Failed_Records__c}" />
+								</apex:column>
+								<apex:column headerValue="Error Messages">
+									<a href="/{!d.ID}" target="_blank" style="text-decoration:underline;">Click to view error messages</a>
+								</apex:column>
+								<apex:column headerValue="Batch ID">
+									<apex:outputField value="{!d.Batch_ID__c}" />
+								</apex:column>				
+							</apex:dataTable>
+						</apex:outputPanel>				
+					
+						<apex:outputPanel id="summaryFooter" style="text-align:center;">
+							<p>Last Modified: {!schoolProgress.School_Process_Data_Last_Modified__c}</p>
+							<br></br>
+							<br></br>
+							<br></br>
+						</apex:outputPanel>
+					
+						<apex:outputPanel id="buttons">
+							<apex:commandButton styleClass="red_btn" value="Deactivate Data"
+												onClick="if(confirm('Are you sure you want to process this school\'s data? ')) {
+															processDataJS();
+														}"
+												rerender="summaryFooter" disabled="{!(!batchComplete || schoolProgress.School_Process_Data_Completed__c)}" />
+						</apex:outputPanel>
+					
+						<!-- place actionPoller here -->
+						<apex:actionPoller id="actionPoller" action="{!getDataLogs}" enabled="{!!batchComplete}" onComplete="actionPollerJS();" rerender="errorMessages, buttons" interval="5" timeout="10000" />
+									
+					</apex:pageBlock>
+					
+				</div>
+			
+			</div>
+			
+		</apex:outputPanel>
+		
+		<apex:actionFunction name="gotoSchoolSnapshotsJS" action="{!gotoSchoolSnapshots}" />
+		<apex:actionFunction name="gotoSchoolPurgeEOYDataJS" action="{!gotoSchoolPurgeEOYData}" />
+		
+		<apex:actionFunction name="processDataJS" action="{!processData}" rerender="summaryFooter, buttons, errorMessages, actionPoller" />
+		<apex:actionFunction name="actionPollerJS" onComplete="resetTables(); if({!schoolProgress.School_Process_Data_Completed__c}){document.getElementById('next').disabled = '';}" rerender="processDataBlock" />
+		
+	</apex:form>
+
+</apex:page>

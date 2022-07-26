@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Interventions Settings</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Interventions Settings</value>
+    </caseValues>
+    <fields>
+        <help><!-- This box should always be checked if you have the interventions package installed. --></help>
+        <label><!-- Is Packaged --></label>
+        <name>Is_Packaged__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

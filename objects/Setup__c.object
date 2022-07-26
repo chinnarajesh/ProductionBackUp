@@ -1,0 +1,3198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>This object is used to setup Schoolforce and is referenced in multiple pieces of code.  There should be one setup object per school.</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableEnhancedLookup>false</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>false</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>Read</externalSharingModel>
+    <fieldSets>
+        <fullName>Editable_Options</fullName>
+        <description>Setup Wizard</description>
+        <displayedFields>
+            <field>Use_Sectional_Attendance__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Chronological_Periods__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Active__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>New_School_Year__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Group_Based__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Room_Dependent__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Passing_Grade_Threshold__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Display_Reading_Level_On_Report_Card__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Show_Homework_Percentage__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Include_Section_Grades__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Progress_Report_Standard_Display__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Report_Card_Standard_Display__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Standards_Based_Grading__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Standards_ONLY_Gradebook__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Behavior_Referal_Details__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Grade_Span__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Evaluation_Documents__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Standard_Legend_1__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Standard_Legend_1_Spanish__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Standard_Legend_2__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Standard_Legend_2_Spanish__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Standard_Legend_3__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Standard_Legend_3_Spanish__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Standard_Legend_4__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Standard_Legend_4_Spanish__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Show_Attendance_Sections_in_Gradebook__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Show_Attendance_in_Portal__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Show_Awards_in_Portal__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Show_Behavior_in_Portal__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Show_Calendar_in_Portal__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Show_Gradebook_in_Portal__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Show_Meals_in_Portal__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Show_Alerts_in_Portal__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Show_Standards_in_Portal__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Points_Reset_Date__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Schedule_End_Date__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Schedule_Start_Date__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Points_Reset_Value__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Points_Frequency__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Days__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <label>Editable Options</label>
+    </fieldSets>
+    <fields>
+        <fullName>ActivateRelated__c</fullName>
+        <defaultValue>true</defaultValue>
+        <externalId>false</externalId>
+        <label>Activate Related</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Active__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>Is this school setup active for this school year?</inlineHelpText>
+        <label>Active?</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Behavior_Referal_Details__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Indicator that determines if the Referal details section should be displayed in Behavior Module.</description>
+        <externalId>false</externalId>
+        <label>Show Referral Details on Behavior</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>CEEB_Code__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>A CEEB code is a standardized ID number that is assigned to a high school, college, or university.  CEEB codes are issued by the Educational Testing Service (ETS).</inlineHelpText>
+        <label>CEEB Code</label>
+        <length>6</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Calculate_Class_Rank__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>Should the school calculate class rank? If selected, the system will calculate the Class Rank per grade.  Admins will have the option of displaying the Class Rank on the Report Card on the Generate Student Documents page.</inlineHelpText>
+        <label>Calculate Student Class Rank?</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Calculation_Type__c</fullName>
+        <description>Choose a calculation type for standard based grading.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Select a calculation type for standard-based grading. This must be selected if using standards - based grading.</inlineHelpText>
+        <label>Calculation Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Mean</fullName>
+                    <default>false</default>
+                    <label>Mean</label>
+                </value>
+                <value>
+                    <fullName>Power Law</fullName>
+                    <default>false</default>
+                    <label>Power Law</label>
+                </value>
+                <value>
+                    <fullName>Highest</fullName>
+                    <default>false</default>
+                    <label>Highest</label>
+                </value>
+                <value>
+                    <fullName>Most Recent</fullName>
+                    <default>false</default>
+                    <label>Most Recent</label>
+                </value>
+                <value>
+                    <fullName>Law of Decaying Average</fullName>
+                    <default>false</default>
+                    <label>Law of Decaying Average</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Cascade_Daily_Attendance__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>If this field is checked and Sectional Attendance is enabled; entries made from Daily Attendance submission will cascade to sectional attendance records from the same day</inlineHelpText>
+        <label>Cascade Daily Attendance</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Chronological_Periods__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>This field determines if period times should follow chronological order.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Check when school does not allow periods to overlap during a given school day.</inlineHelpText>
+        <label>Chronological Periods</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Configure_Course_Catalog__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( Course_Catalog__c !=&apos;&apos;, HYPERLINK(&apos;/apex/core_CourseCatalogSetup?setupId=&apos;+ Id,  Course_Catalog__r.Name, &quot;_top&quot;)  ,
+HYPERLINK(&apos;/apex/core_CourseCatalogSetup?setupId=&apos;+ Id  ,   IMAGE(&apos;/img/feeds/follow12.png&apos;, &apos;Add&apos;),&quot;_top&quot;))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Configure Course Catalog</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Configure_Grade_Scale_Catalog__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( Grade_Scale_Catalog__c !=&apos;&apos;, HYPERLINK(&apos;/apex/SchoolSetup_Gradebook?setupId=&apos;+ Id+&apos;#gradeScales&apos;  , Grade_Scale_Catalog__r.Name, &quot;_top&quot;) ,
+HYPERLINK(&apos;/apex/SchoolSetup_Gradebook?setupId=&apos;+Id+&apos;#gradeScales&apos;, IMAGE(&apos;/img/feeds/follow12.png&apos;, &apos;Add&apos;),&quot;_top&quot;))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Configure Grade Scale Catalog</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Configure_School_Term__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(  Term__c  !=&apos;&apos;, HYPERLINK(&apos;/apex/core_TermSetup_v2?setupId=&apos;+ Id ,  Term__r.Name__c , &quot;_top&quot;) , 
+HYPERLINK(&apos;/apex/core_TermSetup_v2?setupId=&apos;+ Id , IMAGE(&apos;/img/feeds/follow12.png&apos;, &apos;Add&apos;),&quot;_top&quot;))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Configure School Term</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Counselor__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>The Counselor  will appear on the Transcript. Please enter the name exactly as you want it to appear on the transcript, &quot;Ms. Alice Jones&quot; or &quot;Alice Jones.&quot;</inlineHelpText>
+        <label>Counselor</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Course_Catalog__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Link to selected course catalog to use for the School Year Setup</description>
+        <externalId>false</externalId>
+        <label>Course Catalog</label>
+        <referenceTo>Course_Catalog__c</referenceTo>
+        <relationshipLabel>Setup</relationshipLabel>
+        <relationshipName>Setup</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Data_Activated__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Data Activated</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Days__c</fullName>
+        <externalId>false</externalId>
+        <label>Days</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <valueSet>
+            <controllingField>Points_Frequency__c</controllingField>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Sun</fullName>
+                    <default>false</default>
+                    <label>Sun</label>
+                </value>
+                <value>
+                    <fullName>Mon</fullName>
+                    <default>false</default>
+                    <label>Mon</label>
+                </value>
+                <value>
+                    <fullName>Tue</fullName>
+                    <default>false</default>
+                    <label>Tue</label>
+                </value>
+                <value>
+                    <fullName>Wed</fullName>
+                    <default>false</default>
+                    <label>Wed</label>
+                </value>
+                <value>
+                    <fullName>Thur</fullName>
+                    <default>false</default>
+                    <label>Thur</label>
+                </value>
+                <value>
+                    <fullName>Fri</fullName>
+                    <default>false</default>
+                    <label>Fri</label>
+                </value>
+                <value>
+                    <fullName>Sat</fullName>
+                    <default>false</default>
+                    <label>Sat</label>
+                </value>
+                <value>
+                    <fullName>1</fullName>
+                    <default>false</default>
+                    <label>1</label>
+                </value>
+                <value>
+                    <fullName>2</fullName>
+                    <default>false</default>
+                    <label>2</label>
+                </value>
+                <value>
+                    <fullName>3</fullName>
+                    <default>false</default>
+                    <label>3</label>
+                </value>
+                <value>
+                    <fullName>4</fullName>
+                    <default>false</default>
+                    <label>4</label>
+                </value>
+                <value>
+                    <fullName>5</fullName>
+                    <default>false</default>
+                    <label>5</label>
+                </value>
+                <value>
+                    <fullName>6</fullName>
+                    <default>false</default>
+                    <label>6</label>
+                </value>
+                <value>
+                    <fullName>7</fullName>
+                    <default>false</default>
+                    <label>7</label>
+                </value>
+                <value>
+                    <fullName>8</fullName>
+                    <default>false</default>
+                    <label>8</label>
+                </value>
+                <value>
+                    <fullName>9</fullName>
+                    <default>false</default>
+                    <label>9</label>
+                </value>
+                <value>
+                    <fullName>10</fullName>
+                    <default>false</default>
+                    <label>10</label>
+                </value>
+                <value>
+                    <fullName>11</fullName>
+                    <default>false</default>
+                    <label>11</label>
+                </value>
+                <value>
+                    <fullName>12</fullName>
+                    <default>false</default>
+                    <label>12</label>
+                </value>
+                <value>
+                    <fullName>13</fullName>
+                    <default>false</default>
+                    <label>13</label>
+                </value>
+                <value>
+                    <fullName>14</fullName>
+                    <default>false</default>
+                    <label>14</label>
+                </value>
+                <value>
+                    <fullName>15</fullName>
+                    <default>false</default>
+                    <label>15</label>
+                </value>
+                <value>
+                    <fullName>16</fullName>
+                    <default>false</default>
+                    <label>16</label>
+                </value>
+                <value>
+                    <fullName>17</fullName>
+                    <default>false</default>
+                    <label>17</label>
+                </value>
+                <value>
+                    <fullName>18</fullName>
+                    <default>false</default>
+                    <label>18</label>
+                </value>
+                <value>
+                    <fullName>19</fullName>
+                    <default>false</default>
+                    <label>19</label>
+                </value>
+                <value>
+                    <fullName>20</fullName>
+                    <default>false</default>
+                    <label>20</label>
+                </value>
+                <value>
+                    <fullName>21</fullName>
+                    <default>false</default>
+                    <label>21</label>
+                </value>
+                <value>
+                    <fullName>22</fullName>
+                    <default>false</default>
+                    <label>22</label>
+                </value>
+                <value>
+                    <fullName>23</fullName>
+                    <default>false</default>
+                    <label>23</label>
+                </value>
+                <value>
+                    <fullName>24</fullName>
+                    <default>false</default>
+                    <label>24</label>
+                </value>
+                <value>
+                    <fullName>25</fullName>
+                    <default>false</default>
+                    <label>25</label>
+                </value>
+                <value>
+                    <fullName>26</fullName>
+                    <default>false</default>
+                    <label>26</label>
+                </value>
+                <value>
+                    <fullName>27</fullName>
+                    <default>false</default>
+                    <label>27</label>
+                </value>
+                <value>
+                    <fullName>28</fullName>
+                    <default>false</default>
+                    <label>28</label>
+                </value>
+                <value>
+                    <fullName>Last</fullName>
+                    <default>false</default>
+                    <label>Last</label>
+                </value>
+            </valueSetDefinition>
+            <valueSettings>
+                <controllingFieldValue>Weekly</controllingFieldValue>
+                <valueName>Sun</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Weekly</controllingFieldValue>
+                <valueName>Mon</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Weekly</controllingFieldValue>
+                <valueName>Tue</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Weekly</controllingFieldValue>
+                <valueName>Wed</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Weekly</controllingFieldValue>
+                <valueName>Thur</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Weekly</controllingFieldValue>
+                <valueName>Fri</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Weekly</controllingFieldValue>
+                <valueName>Sat</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Monthly</controllingFieldValue>
+                <valueName>1</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Monthly</controllingFieldValue>
+                <valueName>2</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Monthly</controllingFieldValue>
+                <valueName>3</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Monthly</controllingFieldValue>
+                <valueName>4</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Monthly</controllingFieldValue>
+                <valueName>5</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Monthly</controllingFieldValue>
+                <valueName>6</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Monthly</controllingFieldValue>
+                <valueName>7</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Monthly</controllingFieldValue>
+                <valueName>8</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Monthly</controllingFieldValue>
+                <valueName>9</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Monthly</controllingFieldValue>
+                <valueName>10</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Monthly</controllingFieldValue>
+                <valueName>11</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Monthly</controllingFieldValue>
+                <valueName>12</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Monthly</controllingFieldValue>
+                <valueName>13</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Monthly</controllingFieldValue>
+                <valueName>14</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Monthly</controllingFieldValue>
+                <valueName>15</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Monthly</controllingFieldValue>
+                <valueName>16</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Monthly</controllingFieldValue>
+                <valueName>17</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Monthly</controllingFieldValue>
+                <valueName>18</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Monthly</controllingFieldValue>
+                <valueName>19</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Monthly</controllingFieldValue>
+                <valueName>20</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Monthly</controllingFieldValue>
+                <valueName>21</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Monthly</controllingFieldValue>
+                <valueName>22</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Monthly</controllingFieldValue>
+                <valueName>23</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Monthly</controllingFieldValue>
+                <valueName>24</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Monthly</controllingFieldValue>
+                <valueName>25</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Monthly</controllingFieldValue>
+                <valueName>26</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Monthly</controllingFieldValue>
+                <valueName>27</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Monthly</controllingFieldValue>
+                <valueName>28</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Monthly</controllingFieldValue>
+                <valueName>Last</valueName>
+            </valueSettings>
+        </valueSet>
+        <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Display_Community_Service_Hours__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>Select this option to display the total career to date Community Service Hours for this student.  This total is found on the Student Contact record.</inlineHelpText>
+        <label>Display Community Service Hours?</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Display_Cumulative_Weighted_GPA__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>Select to display the cumulative high school weighted GPA for this student. This field displays the value in the Weighted GPA to Date field on the Student record.</inlineHelpText>
+        <label>Display Cumulative Weighted GPA?</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Display_GPA_on_Report_Cards__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>Select this option to display the GPA on Report Cards, Transcripts, Progress Reports and the Student/Parent Portal.</inlineHelpText>
+        <label>Display Unweighted GPA on Documents</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Display_Incomplete_Assignments__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>Incomplete Assignments are based on the number of Gradebook Assignments that have a value of I, INC, IN, IC.  These do not include grades with &quot;N&quot; or that are excluded from the section grade.</inlineHelpText>
+        <label>Display Incomplete Assignments?</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Display_Legend_on_Report_Cards__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>Select this option to display the legend on the Report Card.  The legend includes: A, if school is using sectional attendance, H if the school is using the HW module, IA, the incomplete assignment account, and labels for each reporting period.</inlineHelpText>
+        <label>Display Legend on Report Cards</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Display_Reading_Level_On_Report_Card__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>Selecting this displays the students&apos; reading levels on their report cards and progress reports.</inlineHelpText>
+        <label>Display Reading Level On Report Card</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Display_Weighted_GPA_on_Documents__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>Select this option to display the weighted GPA on Report Cards and Progress Reports</inlineHelpText>
+        <label>Display Weighted GPA on Documents</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Evaluation_Documents__c</fullName>
+        <description>This controls what is allowed to be selected in the document generation page</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Which documents should this setup be using?</inlineHelpText>
+        <label>Evaluation Documents</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Report Card - High School</fullName>
+                    <default>false</default>
+                    <label>Report Card - High School</label>
+                </value>
+                <value>
+                    <fullName>Report Card - Elementary School</fullName>
+                    <default>false</default>
+                    <label>Report Card - Elementary School</label>
+                </value>
+                <value>
+                    <fullName>Progress Report - High School</fullName>
+                    <default>false</default>
+                    <label>Progress Report - High School</label>
+                </value>
+                <value>
+                    <fullName>Progress Report - Elementary School</fullName>
+                    <default>false</default>
+                    <label>Progress Report - Elementary School</label>
+                </value>
+                <value>
+                    <fullName>Transcript</fullName>
+                    <default>false</default>
+                    <label>Transcript</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>External_Id__c</fullName>
+        <externalId>true</externalId>
+        <label>External Id</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>GPA_By_Reporting_Period_Rolling__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Controls whether calculations in GPA batch carry over from Reporting period to reporting period or are independently calculated.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>If this checkbox is checked grades from previous reporting periods will be factored into student&apos;s GPA for current reporting period.  IE for Q2 GPA, Section Grades from Q1 &amp; Q2 will factor into calculations.</inlineHelpText>
+        <label>Rolling GPA?</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Grade_Scale_Catalog__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Grade Scale Catalog</label>
+        <referenceTo>Grade_Scale_Catalog__c</referenceTo>
+        <relationshipLabel>Setup</relationshipLabel>
+        <relationshipName>Setup</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Grade_Span__c</fullName>
+        <description>Used to identify which grades are taught in a given school/setup. Because it&apos;s tied to the setup record it can change year-to year</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Select the grade level(s) that will be taught at this school in the current school year.</inlineHelpText>
+        <label>Grade Span</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>PS</fullName>
+                    <default>false</default>
+                    <label>PS</label>
+                </value>
+                <value>
+                    <fullName>PK</fullName>
+                    <default>false</default>
+                    <label>PK</label>
+                </value>
+                <value>
+                    <fullName>PK-3</fullName>
+                    <default>false</default>
+                    <label>PK-3</label>
+                </value>
+                <value>
+                    <fullName>PK-4</fullName>
+                    <default>false</default>
+                    <label>PK-4</label>
+                </value>
+                <value>
+                    <fullName>PK Pre-K</fullName>
+                    <default>false</default>
+                    <label>PK Pre-K</label>
+                </value>
+                <value>
+                    <fullName>Kindergarten/Preschool</fullName>
+                    <default>false</default>
+                    <label>Kindergarten/Preschool</label>
+                </value>
+                <value>
+                    <fullName>KG Kindergarten</fullName>
+                    <default>false</default>
+                    <label>KG Kindergarten</label>
+                </value>
+                <value>
+                    <fullName>PG Postgraduate/Adult</fullName>
+                    <default>false</default>
+                    <label>PG Postgraduate/Adult</label>
+                </value>
+                <value>
+                    <fullName>Kindergarten</fullName>
+                    <default>false</default>
+                    <label>Kindergarten</label>
+                </value>
+                <value>
+                    <fullName>K</fullName>
+                    <default>false</default>
+                    <label>K</label>
+                </value>
+                <value>
+                    <fullName>1</fullName>
+                    <default>false</default>
+                    <label>1</label>
+                </value>
+                <value>
+                    <fullName>2</fullName>
+                    <default>false</default>
+                    <label>2</label>
+                </value>
+                <value>
+                    <fullName>3</fullName>
+                    <default>false</default>
+                    <label>3</label>
+                </value>
+                <value>
+                    <fullName>4</fullName>
+                    <default>false</default>
+                    <label>4</label>
+                </value>
+                <value>
+                    <fullName>5</fullName>
+                    <default>false</default>
+                    <label>5</label>
+                </value>
+                <value>
+                    <fullName>6</fullName>
+                    <default>false</default>
+                    <label>6</label>
+                </value>
+                <value>
+                    <fullName>7</fullName>
+                    <default>false</default>
+                    <label>7</label>
+                </value>
+                <value>
+                    <fullName>8</fullName>
+                    <default>false</default>
+                    <label>8</label>
+                </value>
+                <value>
+                    <fullName>9</fullName>
+                    <default>false</default>
+                    <label>9</label>
+                </value>
+                <value>
+                    <fullName>10</fullName>
+                    <default>false</default>
+                    <label>10</label>
+                </value>
+                <value>
+                    <fullName>11</fullName>
+                    <default>false</default>
+                    <label>11</label>
+                </value>
+                <value>
+                    <fullName>12</fullName>
+                    <default>false</default>
+                    <label>12</label>
+                </value>
+                <value>
+                    <fullName>UN Ungraded</fullName>
+                    <default>false</default>
+                    <label>UN Ungraded</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Group_Based__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>If Checked, schedule is based on students moving between classes as a group, enabling Schedule Templates &amp; scheduling in a Group Agenda view;
+If Unchecked, school schedule is based on periods, enabling Period Templates &amp; scheduling in a Grid View</inlineHelpText>
+        <label>Group Based ?</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Include_Section_Grades__c</fullName>
+        <defaultValue>true</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>This toggles the display of section grades on report cards and progress reports</inlineHelpText>
+        <label>Include Section Grades</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Law_of_Decaying_Average_Weight__c</fullName>
+        <description>This field is only used for the standard calculation type: Law of Decaying Average.  A value of 1.00 to 0.00 is desired in determining the weight.</description>
+        <externalId>false</externalId>
+        <label>Law of Decaying Average Weight</label>
+        <precision>6</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>New_School_Year__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>New School Year</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Notes_on_Transcripts__c</fullName>
+        <description>A comment/note for all transcripts provided by the Admin on transcript documents for all student transcripts.</description>
+        <externalId>false</externalId>
+        <label>Notes</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Number_of_Scores__c</fullName>
+        <description>This field is only used for calculating &apos;Average of X Most Recent&apos; calculation type.</description>
+        <externalId>false</externalId>
+        <label>Number of Scores</label>
+        <precision>5</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>On_Track_Threshold__c</fullName>
+        <description>This is a secondary threshold used for a three-tiered grade tracking system</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Select a grade (0-100 scale) that this school defines as &quot;On Track&quot; or &quot;Green.&quot; Any section grades that are above this number will display in the Gradebook UI as Green.  Any number that falls between this  and the Passing Grade threshold will be yellow.</inlineHelpText>
+        <label>On Track Threshold</label>
+        <precision>5</precision>
+        <required>false</required>
+        <scale>1</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Passing_Grade_Threshold__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Select the grade threshold (0-100 scale) that defines passing for this school.  Any section grade that is calculated below this number will display in the Gradebook UI as red.  Any number between this and the &quot;On Track&quot; number will yellow.</inlineHelpText>
+        <label>Passing Grade Threshold</label>
+        <precision>5</precision>
+        <required>false</required>
+        <scale>1</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Points_Frequency__c</fullName>
+        <externalId>false</externalId>
+        <label>Points Frequency</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Weekly</fullName>
+                    <default>false</default>
+                    <label>Weekly</label>
+                </value>
+                <value>
+                    <fullName>Monthly</fullName>
+                    <default>false</default>
+                    <label>Monthly</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Points_Reset_Date__c</fullName>
+        <description>This field will be set  by an apex job . This field will be used to determine today&apos;s Current Balance field on student record.</description>
+        <externalId>false</externalId>
+        <label>Points Reset Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Points_Reset_Value__c</fullName>
+        <externalId>false</externalId>
+        <label>Points Reset Value</label>
+        <precision>6</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Processed_EOY_Data__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Processed EOY Data</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Processed_Historical_Data__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Processed Historical Data</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Processed_Setup_Data__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Processed Setup Data</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Progress_Report_Standard_Display__c</fullName>
+        <description>This determines how &quot;Standards Only&quot; school&apos;s progress reports display standard or strand grades</description>
+        <externalId>false</externalId>
+        <label>Progress Report Standard Display</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Standards</fullName>
+                    <default>true</default>
+                    <label>Standards</label>
+                </value>
+                <value>
+                    <fullName>Strands</fullName>
+                    <default>false</default>
+                    <label>Strands</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Published__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Published</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Purged_EOY_Data__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Purged EOY Data</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Purged_Two_Years_Old_Data__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Purged Two Years Old Data</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Read_Only_Attendance_Wizard_Records__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Read Only Attendance Wizard Records</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Registrar_Phone__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Please enter the phone number for the registrar at your school. This field will appear on transcripts.</inlineHelpText>
+        <label>Registrar Phone</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Phone</type>
+    </fields>
+    <fields>
+        <fullName>Registrar__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>The Registrar will appear on the Transcript. Please enter the name exactly as you want it to appear on the transcript, &quot;Mr. Bob Smith&quot; or &quot;Bob Smith.&quot;</inlineHelpText>
+        <label>Registrar</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Rejection_Reason__c</fullName>
+        <externalId>false</externalId>
+        <label>Rejection Reason</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Report_Card_Standard_Display__c</fullName>
+        <description>This determines how &quot;Standards Only&quot; report cards display standard or strand grades</description>
+        <externalId>false</externalId>
+        <label>Report Card Standard Display</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Standards</fullName>
+                    <default>true</default>
+                    <label>Standards</label>
+                </value>
+                <value>
+                    <fullName>Strands</fullName>
+                    <default>false</default>
+                    <label>Strands</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Rolling_Standard_Grade__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Controls whether standard grade calculations will carry over from reporting period to reporting period or are independently calculated.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Select if you want a standard grade to include the assignment grades from the first through the current reporting period (e.g., a specific standard in Q3 is calculated using the grades from Q1-Q3).</inlineHelpText>
+        <label>Rolling Standard Grade?</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Room_Dependent__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Boolean field to provide dynamic logic to Scheduler Modules</description>
+        <externalId>false</externalId>
+        <inlineHelpText>If the school related to the setup needs to configure rooms to manage scheduling Check field, otherwise set to Unchecked</inlineHelpText>
+        <label>Room Dependent</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Schedule_End_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Schedule End Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Schedule_Start_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Schedule Start Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>School_Calendar__c</fullName>
+        <externalId>false</externalId>
+        <formula>HYPERLINK(&apos;/apex/ReportingPeriodCalendarView?setupid=&apos;+ Id , &apos;Calendar&apos;, &quot;_top&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>School Calendar</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>School_Logo_for_Portal__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Please upload the image to use as the school logo for student portal here.  This image will appear in the top left corner of the student portal.  Maximum size is 175px w x 225px h.</inlineHelpText>
+        <label>School Logo for Portal</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>25</visibleLines>
+    </fields>
+    <fields>
+        <fullName>School_Using_PGV__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Flag to indicate whether the school will be using the PGV.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Flag to indicate whether the school will be using the PGV (Parent Gradebook View).</inlineHelpText>
+        <label>School Using PGV</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>School__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>School</label>
+        <lookupFilter>
+            <active>true</active>
+            <booleanFilter>1 OR 2</booleanFilter>
+            <filterItems>
+                <field>Account.RecordType.Name</field>
+                <operation>equals</operation>
+                <value>School</value>
+            </filterItems>
+            <filterItems>
+                <field>Account.RecordType.Name</field>
+                <operation>equals</operation>
+                <value>Summer School</value>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Setup</relationshipLabel>
+        <relationshipName>Setup</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>School_picture__c</fullName>
+        <description>School Picture</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Please upload the image to use as the school logo for student documents here.  This image will appear in the top left corner of report cards, progress reports, and transcripts.  Maximum size is 190px w x 50px h</inlineHelpText>
+        <label>School Logo for Documents</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>25</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Section_Wizard__c</fullName>
+        <externalId>false</externalId>
+        <formula>HYPERLINK(&apos;/apex/Scheduler_SectionWizard&apos;,&apos;Section Wizard for &apos;+ School__r.Name )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Section Wizard</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Show_Activities_on_Transcripts__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Allow Admins to determine if &apos;Activities&apos; under &apos;Additional Information&apos; will display on transcript documents for all transcript documents.</description>
+        <externalId>false</externalId>
+        <label>Show Activities</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Show_Alerts_in_Portal__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>This will display alerts related to a school, section, or individual student in the Portal.</inlineHelpText>
+        <label>Show Alerts in Portal</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Show_Assessments_on_Transcripts__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>This checkbox aid Admins in displaying Assessment information on all transcript documents.</description>
+        <externalId>false</externalId>
+        <label>Show Assessments</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Show_Attendance_Sections_in_Gradebook__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>Select if your school is taking sectional attendance and wants to display the sectional attendance within the Gradebook UI.</inlineHelpText>
+        <label>Show Attendance Sections In Gradebook</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Show_Attendance_in_Portal__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>This will display a student&apos;s daily and sectional attendance details in the Portal (including absences, tardies, and total time lost).</inlineHelpText>
+        <label>Show Attendance in Portal</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Show_Awards_in_Portal__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>This will display awards given to a student.</inlineHelpText>
+        <label>Show Awards in Portal</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Show_Behavior_in_Portal__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>This will display behavior incidents (Date and Incident Title only).</inlineHelpText>
+        <label>Show Behavior in Portal</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Show_Calendar_in_Portal__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>This will allow schools to display a calendar visible to students and parents.</inlineHelpText>
+        <label>Show Calendar in Portal</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Show_Class_Rank__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Check this field to show Class Rank on Report Card/Progress Reports</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Check this field to show Class Rank on Report Card/Progress Reports</inlineHelpText>
+        <label>Show Class Rank</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Show_Class_Rank_on_Transcripts__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>This field is specific for transcripts.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Show Class Rank on transcripts.</inlineHelpText>
+        <label>Show Class Rank</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Show_Community_Service_In_Portal__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>Show Community Service Hours in Portal?</inlineHelpText>
+        <label>Show Community Service In Portal</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Show_Daily_Attendance_in_Portal__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>This box is checked if Daily Attendance is applicable to the school</description>
+        <externalId>false</externalId>
+        <label>Show Daily Attendance in Portal</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Show_Gradebook_in_Portal__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>This will display sectional grades, assignment grades, and assignments details. This will also allow students to upload assignments directly to teachers.</inlineHelpText>
+        <label>Show Gradebook in Portal</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Show_Homework_In_Portal__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Should homework be displayed in Portal?</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Should data from the Homework Module display in Portal? If checked, the Homework Module must be set up.</inlineHelpText>
+        <label>Show Homework in Portal</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Show_Homework_Percentage__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>This toggles the display of the &quot;Homework&quot; column on report cards/progress reports.</inlineHelpText>
+        <label>Show Homework Percentage</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Show_Honors_on_Transcripts__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Allow Admins to determine if the &apos;Honors&apos; section under &apos;Additonal Information&apos; should display on transcript documents for all student transcripts.</description>
+        <externalId>false</externalId>
+        <label>Show Honors</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Show_Meals_in_Portal__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>Show Meal Balance on Portal?</inlineHelpText>
+        <label>Show Meals in Portal</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Show_Normalizations_on_Report_Cards__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Show Final Grade Normalization legend on Report Cards and Progress Reports?</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Show Final Grade Normalization legend on Report Cards and Progress Reports?</inlineHelpText>
+        <label>Show Grade Scales On Report Cards?</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Show_Notes_on_Transcripts__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Allow Admins to write an additional comment for all transcript documents.</description>
+        <externalId>false</externalId>
+        <label>Show Notes</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Show_Points_Balance_in_Portal__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>This field determines whether or not to display the student&apos;s points balance in the student portal.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This will display the points balance of a student in portal.</inlineHelpText>
+        <label>Show Points Balance in Portal</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Show_Section_Comments__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Check this to display Section comments on Progress Reports/Report Cards</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Check this to display Section comments on Progress Reports/Report Cards</inlineHelpText>
+        <label>Show Section Comments</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Show_Sectional_Attendance_in_Portal__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Show Sectional Attendance in Portal</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Show_Sectional_Attendance_on_Report_Card__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Show Sectional Attendance on Report Card</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Show_Semester_Grades_On_Report_Cards__c</fullName>
+        <defaultValue>true</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>This determines if grades marked as &quot;Semester Grades&quot; show up on progress reports/report cards</inlineHelpText>
+        <label>Show Semester Grades On Report Cards</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Show_Signature_on_Transcripts__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>Determines if the Signature section displays on the transcript.</inlineHelpText>
+        <label>Show Signature</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Show_Standard_Grades__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Check this to display Standard or Strand grades on Progress Reports/Report Cards</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Check this to display Standard or Strand grades on Progress Reports/Report Cards</inlineHelpText>
+        <label>Show Standard Grades</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Show_Standard_Scale_on_Report_Cards__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Show Standard Grade Normalization legend on Report Cards and Progress Reports?</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Show Standard Grade Normalization legend on Report Cards and Progress Reports?</inlineHelpText>
+        <label>Show Standard Scale on Report Cards?</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Show_Standards_in_Portal__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>Select to display Standard Grades in the Portal.</inlineHelpText>
+        <label>Show Standards in Portal</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Split_School__c</fullName>
+        <externalId>false</externalId>
+        <formula>School__r.Split_School__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Split School</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Standard_Grade_Mastery_Threshold__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>What is the definition for mastery of standards for this school? This number will be used to determine standard mastery on reports.</inlineHelpText>
+        <label>Standard Grade Mastery Threshold</label>
+        <precision>5</precision>
+        <required>false</required>
+        <scale>1</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Standard_Legend_1_Spanish__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>What is the title that should display in Spanish for a Standard Level 1? (ie: Area of Concern) This will display on Report Cards and Progress Reports if user selects &quot;Show Standards&quot; on the &quot;Generate Student Documents&quot; page.</inlineHelpText>
+        <label>Standard Title 1 Spanish</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Standard_Legend_1__c</fullName>
+        <description>Title for standard grades = 1</description>
+        <externalId>false</externalId>
+        <inlineHelpText>What is the title that should display for a Standard Level 1? (ie: Area of Concern) This will display on Report Cards and Progress Reports if user selects &quot;Show Standards&quot; on the &quot;Generate Student Documents&quot; page.</inlineHelpText>
+        <label>Standard Title 1</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Standard_Legend_2_Spanish__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>What is the title that should display in Spanish for a Standard Level 2? (ie: Developing) This will display on Report Cards and Progress Reports if user selects &quot;Show Standards&quot; on the &quot;Generate Student Documents&quot; page.</inlineHelpText>
+        <label>Standard Title 2 Spanish</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Standard_Legend_2__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>What is the title that should display for a Standard Level 2? (ie: Developing) This will display on Report Cards and Progress Reports if user selects &quot;Show Standards&quot; on the &quot;Generate Student Documents&quot; page.</inlineHelpText>
+        <label>Standard Title 2</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Standard_Legend_3_Spanish__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>What is the title that should display in Spanish for a Standard Level 3? (ie: Proficient) This will display on Report Cards and Progress Reports if user selects &quot;Show Standards&quot; on the &quot;Generate Student Documents&quot; page.</inlineHelpText>
+        <label>Standard Title 3 Spanish</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Standard_Legend_3__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>What is the title that should display for a Standard Level 3? (ie: Proficient) This will display on Report Cards and Progress Reports if user selects &quot;Show Standards&quot; on the &quot;Generate Student Documents&quot; page.</inlineHelpText>
+        <label>Standard Title 3</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Standard_Legend_4_Spanish__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>What is the title that should display in Spanish for a Standard Level 4? (ie: Advanced) This will display on Report Cards and Progress Reports if user selects &quot;Show Standards&quot; on the &quot;Generate Student Documents&quot; page.</inlineHelpText>
+        <label>Standard Title 4 Spanish</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Standard_Legend_4__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>What is the title that should display for a Standard Level 4? (ie: Advanced) This will display on Report Cards and Progress Reports if user selects &quot;Show Standards&quot; on the &quot;Generate Student Documents&quot; page.</inlineHelpText>
+        <label>Standard Title 4</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Standard_Legend_Description_1_Spanish__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>What is the description in Spanish  for a Standard with a Level 1? This will display on Report Cards and Progress report if &quot;Show Standards&quot; is selected on the &quot;Generate Student Documents&quot; page.</inlineHelpText>
+        <label>Standard Legend Description 1 Spanish</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Standard_Legend_Description_1__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>What is the description for a Standard with a Level 1? This will display on Report Cards and Progress report if &quot;Show Standards&quot; is selected on the &quot;Generate Student Documents&quot; page.</inlineHelpText>
+        <label>Standard Legend Description 1</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Standard_Legend_Description_2_Spanish__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>What is the description in Spanish  for a Standard with a Level 2? This will display on Report Cards and Progress report if &quot;Show Standards&quot; is selected on the &quot;Generate Student Documents&quot; page.</inlineHelpText>
+        <label>Standard Legend Description 2 Spanish</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Standard_Legend_Description_2__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>What is the description for a Standard with a Level 2? This will display on Report Cards and Progress report if &quot;Show Standards&quot; is selected on the &quot;Generate Student Documents&quot; page.</inlineHelpText>
+        <label>Standard Legend Description 2</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Standard_Legend_Description_3_Spanish__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>What is the description in Spanish  for a Standard with a Level 3? This will display on Report Cards and Progress report if &quot;Show Standards&quot; is selected on the &quot;Generate Student Documents&quot; page.</inlineHelpText>
+        <label>Standard Legend Description 3 Spanish</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Standard_Legend_Description_3__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>What is the description for a Standard with a Level 3? This will display on Report Cards and Progress report if &quot;Show Standards&quot; is selected on the &quot;Generate Student Documents&quot; page.</inlineHelpText>
+        <label>Standard Legend Description 3</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Standard_Legend_Description_4_Spanish__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>What is the description in Spanish  for a Standard with a Level 4? This will display on Report Cards and Progress report if &quot;Show Standards&quot; is selected on the &quot;Generate Student Documents&quot; page.</inlineHelpText>
+        <label>Standard Legend Description 4 Spanish</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Standard_Legend_Description_4__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>What is the description for a Standard with a Level 4? This will display on Report Cards and Progress report if &quot;Show Standards&quot; is selected on the &quot;Generate Student Documents&quot; page.</inlineHelpText>
+        <label>Standard Legend Description 4</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Standard_Legend_Text_Spanish__c</fullName>
+        <externalId>false</externalId>
+        <label>Standard Legend Text Spanish</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Standard_Legend_Text__c</fullName>
+        <externalId>false</externalId>
+        <label>Standard Legend Text</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Standards_Based_Grading__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>School-wide setting that will reduce config time if set to false</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Select if school wants to grade standards.  If set to false, users will enter traditional grades without association to standards or standard grades.  If checked, users in the Hybrid or Standard ONLY Gradebook can grade standards.</inlineHelpText>
+        <label>Standards Based Grading</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Standards_ONLY_Gradebook__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>This should be checked if the Standards ONLY gradebook that was designed for ELH should be used.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Is this school using the Standards ONLY Gradebook? This Gradebook allows users to enter only standard grades.  Please see additional documentation for more information.</inlineHelpText>
+        <label>Standards ONLY Gradebook</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Strand_Grade_Mastery_Percentage__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>What does this school define as Strand Mastery? This applies to SO schools only that calculate Strand grades and is used for reporting.</inlineHelpText>
+        <label>Strand Grade Mastery %</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Students_Created_From_Previous_Year__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Students Created From Previous Year</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Students_Created__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Students Created</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Summarized_Data__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Summarized Data</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Term__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Term refers to the Term &apos;Template&apos; that the administrator associates to the School; this contains all Semeser/Quarter/Period logic necessary to create Sessions.</description>
+        <externalId>false</externalId>
+        <label>Term</label>
+        <referenceTo>Time_Element__c</referenceTo>
+        <relationshipLabel>Setup</relationshipLabel>
+        <relationshipName>Setup</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Use_1st_Reporting_Period_Start_Date_RC__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>Use the first reporting period&apos;s start date instead of the current reporting period&apos;s start date.</inlineHelpText>
+        <label>Use 1st Reporting Period Start Date</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Use_Sectional_Attendance__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>If checked, sectional attendance will be used to calculate total time lost.  If not checked, daily attendance will be used to calculate total time lost.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>If checked, sectional attendance will be used to calculate total time lost.  If not checked, daily attendance will be used to calculate total time lost.</inlineHelpText>
+        <label>Calculate Time Lost with Sec. Attendance</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Using_Assessments__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>This checkbox indicates whether this school is using the Assessments module for this school year.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This checkbox indicates whether this school is using the Assessments module for this school year.</inlineHelpText>
+        <label>Using Assessments</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Using_Attendance__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>This checkbox indicates whether this school is using the Attendance module for this school year.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This checkbox indicates whether this school is using the Attendance module for this school year.</inlineHelpText>
+        <label>Using Attendance</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Using_Behavior__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>This checkbox indicates whether this school is using the Behavior module for this school year.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This checkbox indicates whether this school is using the Behavior module for this school year.</inlineHelpText>
+        <label>Using Behavior</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Using_Gradebook__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>This checkbox indicates whether this school is using the Gradebook module for this school year.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This checkbox indicates whether this school is using the Gradebook module for this school year.</inlineHelpText>
+        <label>Using Gradebook</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Using_Homework__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>This checkbox indicates whether this school is using the Homework module for this school year.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This checkbox indicates whether this school is using the Homework module for this school year.</inlineHelpText>
+        <label>Using Homework</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Using_Meals__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>This checkbox indicates whether this school is using the Meals module for this school year.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This checkbox indicates whether this school is using the Meals module for this school year.</inlineHelpText>
+        <label>Using Meals</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Using_Points__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>This checkbox indicates whether this school is using the Points module for this school year.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This checkbox indicates whether this school is using the Points module for this school year.</inlineHelpText>
+        <label>Using Points</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Using_Portal__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>This checkbox indicates whether this school is using the student portal for this school year.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This checkbox indicates whether this school is using the student portal for this school year.</inlineHelpText>
+        <label>Using Portal</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Using_Student_Documents__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>This checkbox indicates whether this school is using the Student Documents module for this school year.  NOTE: Student Documents module requires Gradebook module.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This checkbox indicates whether this school is using the Student Documents module for this school year.</inlineHelpText>
+        <label>Using Student Documents</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Using_Summer_School__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>Will this school offer Summer School at the end of the school year?</inlineHelpText>
+        <label>Using Summer School</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Verification_Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Verification Status</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>New</fullName>
+                    <default>true</default>
+                    <label>New</label>
+                </value>
+                <value>
+                    <fullName>Verification</fullName>
+                    <default>false</default>
+                    <label>Verification</label>
+                </value>
+                <value>
+                    <fullName>Verified</fullName>
+                    <default>false</default>
+                    <label>Verified</label>
+                </value>
+                <value>
+                    <fullName>Rejected</fullName>
+                    <default>false</default>
+                    <label>Rejected</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Year_End__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT(Year__r.End_Date__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Year End</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Year_Start__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT( Year__r.Date_Start_Date__c )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Year Start</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Year__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>School Year associated to the Setup</description>
+        <externalId>false</externalId>
+        <label>Year</label>
+        <referenceTo>Time_Element__c</referenceTo>
+        <relationshipLabel>Setup (Year)</relationshipLabel>
+        <relationshipName>Setup_Year</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>instancelink__c</fullName>
+        <externalId>false</externalId>
+        <formula>LEFT($Api.Partner_Server_URL_360, FIND( &apos;/services&apos;, $Api.Partner_Server_URL_360))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>instancelink</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Setup</label>
+    <listViews>
+        <fullName>Admin_Setup</fullName>
+        <columns>NAME</columns>
+        <columns>School__c</columns>
+        <columns>Active__c</columns>
+        <columns>Published__c</columns>
+        <columns>Year_Start__c</columns>
+        <columns>Year_End__c</columns>
+        <columns>Configure_Course_Catalog__c</columns>
+        <columns>Configure_Grade_Scale_Catalog__c</columns>
+        <columns>Configure_School_Term__c</columns>
+        <columns>Passing_Grade_Threshold__c</columns>
+        <columns>Standards_Based_Grading__c</columns>
+        <columns>Group_Based__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>Admin Setup</label>
+    </listViews>
+    <listViews>
+        <fullName>All1</fullName>
+        <columns>NAME</columns>
+        <columns>School__c</columns>
+        <columns>Active__c</columns>
+        <columns>Year_Start__c</columns>
+        <columns>Year_End__c</columns>
+        <columns>Year__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <listViews>
+        <fullName>JSR</fullName>
+        <columns>NAME</columns>
+        <columns>School__c</columns>
+        <columns>Published__c</columns>
+        <columns>New_School_Year__c</columns>
+        <columns>Active__c</columns>
+        <columns>Configure_Course_Catalog__c</columns>
+        <columns>Configure_Grade_Scale_Catalog__c</columns>
+        <columns>Term__c</columns>
+        <columns>Passing_Grade_Threshold__c</columns>
+        <columns>Standards_Based_Grading__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Active__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <label>Groups Based Demo School</label>
+    </listViews>
+    <listViews>
+        <fullName>Kim_Test</fullName>
+        <columns>NAME</columns>
+        <columns>School__c</columns>
+        <columns>Active__c</columns>
+        <columns>Year_Start__c</columns>
+        <columns>Year_End__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Year__c</field>
+            <operation>equals</operation>
+            <value>T-001555</value>
+        </filters>
+        <label>Kim Test</label>
+    </listViews>
+    <listViews>
+        <fullName>New_School_Year</fullName>
+        <columns>NAME</columns>
+        <columns>Published__c</columns>
+        <columns>New_School_Year__c</columns>
+        <columns>Active__c</columns>
+        <columns>Grade_Span__c</columns>
+        <columns>Processed_EOY_Data__c</columns>
+        <columns>Processed_Historical_Data__c</columns>
+        <columns>Purged_EOY_Data__c</columns>
+        <columns>Purged_Two_Years_Old_Data__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>School__c</field>
+            <operation>equals</operation>
+            <value>JSR</value>
+        </filters>
+        <label>New School Year</label>
+    </listViews>
+    <listViews>
+        <fullName>specific_school_Test</fullName>
+        <columns>NAME</columns>
+        <columns>School__c</columns>
+        <columns>Active__c</columns>
+        <columns>Year_Start__c</columns>
+        <columns>Year_End__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>School__c</field>
+            <operation>equals</operation>
+            <value>Cureton ES</value>
+        </filters>
+        <label>specific school Test</label>
+    </listViews>
+    <nameField>
+        <displayFormat>S-{0}</displayFormat>
+        <label>Setup ID</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Setup</pluralLabel>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
+    <recordTypes>
+        <fullName>Published</fullName>
+        <active>true</active>
+        <description>For Published Setups - Not Editable</description>
+        <label>Published</label>
+        <picklistValues>
+            <picklist>Calculation_Type__c</picklist>
+            <values>
+                <fullName>Highest</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Law of Decaying Average</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mean</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Most Recent</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Power Law</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Days__c</picklist>
+            <values>
+                <fullName>1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>10</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>12</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>13</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>14</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>15</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>16</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>17</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>18</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>19</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>20</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>21</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>22</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>23</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>24</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>25</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>26</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>27</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>28</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>7</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>8</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>9</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fri</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Last</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mon</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sat</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sun</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Thur</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tue</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Wed</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Evaluation_Documents__c</picklist>
+            <values>
+                <fullName>Progress Report - Elementary School</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Progress Report - High School</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Report Card - Elementary School</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Report Card - High School</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Transcript</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Grade_Span__c</picklist>
+            <values>
+                <fullName>1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>10</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>12</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>7</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>8</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>9</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>K</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>KG Kindergarten</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Kindergarten</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Kindergarten%2FPreschool</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PG Postgraduate%2FAdult</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PK Pre-K</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PK-3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PK-4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UN Ungraded</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Points_Frequency__c</picklist>
+            <values>
+                <fullName>Monthly</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Weekly</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Progress_Report_Standard_Display__c</picklist>
+            <values>
+                <fullName>Standards</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Strands</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Report_Card_Standard_Display__c</picklist>
+            <values>
+                <fullName>Standards</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Strands</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Verification_Status__c</picklist>
+            <values>
+                <fullName>New</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Verification</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Verified</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Unpublished</fullName>
+        <active>true</active>
+        <description>Default Setup Record prior to when Setup is published.</description>
+        <label>Unpublished</label>
+        <picklistValues>
+            <picklist>Calculation_Type__c</picklist>
+            <values>
+                <fullName>Highest</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Law of Decaying Average</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mean</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Most Recent</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Power Law</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Days__c</picklist>
+            <values>
+                <fullName>1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>10</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>12</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>13</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>14</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>15</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>16</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>17</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>18</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>19</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>20</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>21</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>22</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>23</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>24</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>25</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>26</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>27</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>28</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>7</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>8</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>9</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fri</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Last</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mon</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sat</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sun</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Thur</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tue</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Wed</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Evaluation_Documents__c</picklist>
+            <values>
+                <fullName>Progress Report - Elementary School</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Progress Report - High School</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Report Card - Elementary School</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Report Card - High School</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Transcript</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Grade_Span__c</picklist>
+            <values>
+                <fullName>1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>10</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>12</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>7</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>8</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>9</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>K</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>KG Kindergarten</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Kindergarten</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Kindergarten%2FPreschool</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PG Postgraduate%2FAdult</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PK Pre-K</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PK-3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PK-4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UN Ungraded</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Points_Frequency__c</picklist>
+            <values>
+                <fullName>Monthly</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Weekly</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Progress_Report_Standard_Display__c</picklist>
+            <values>
+                <fullName>Standards</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Strands</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Report_Card_Standard_Display__c</picklist>
+            <values>
+                <fullName>Standards</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Strands</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Verification_Status__c</picklist>
+            <values>
+                <fullName>New</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Verification</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Verified</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts>
+        <customTabListAdditionalFields>School__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Year_Start__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Year_End__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Active__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Published__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Configure_Course_Catalog__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Configure_Grade_Scale_Catalog__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Passing_Grade_Threshold__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Standards_Based_Grading__c</customTabListAdditionalFields>
+        <searchFilterFields>NAME</searchFilterFields>
+    </searchLayouts>
+    <sharingModel>Read</sharingModel>
+    <visibility>Public</visibility>
+    <webLinks>
+        <fullName>Publish</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>page</linkType>
+        <masterLabel>Publish</masterLabel>
+        <openType>replace</openType>
+        <page>core_PublishSetup</page>
+        <protected>false</protected>
+    </webLinks>
+</CustomObject>

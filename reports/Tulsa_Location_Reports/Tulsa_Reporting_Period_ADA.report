@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Assesment__c$Type__c</field>
+    </columns>
+    <columns>
+        <field>Assesment__c$Id</field>
+    </columns>
+    <columns>
+        <field>Assesment__c$Student_Id__c</field>
+    </columns>
+    <columns>
+        <field>Assesment__c$Student_First_Name__c</field>
+    </columns>
+    <columns>
+        <field>Assesment__c$Student_Last_Name__c</field>
+    </columns>
+    <columns>
+        <field>Assesment__c$Student_Grade__c</field>
+    </columns>
+    <columns>
+        <field>Assesment__c$Date_Administered__c</field>
+    </columns>
+    <columns>
+        <field>Assesment__c$Average_Daily_Attendance__c</field>
+    </columns>
+    <description>Reporting Period ADA and Cumulative ADA. Reporting periods are either Quarter or Semester, Cumulative ADA is PrYr or current EOY</description>
+    <filter>
+        <booleanFilter>1 OR 2</booleanFilter>
+        <criteriaItems>
+            <column>Assesment__c$Type__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>contains</operator>
+            <value>Reporting Period ADA</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Assesment__c$Type__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>contains</operator>
+            <value>Cumulative ADA</value>
+        </criteriaItems>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Assesment__c$Location__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Assesment__c$School__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Tulsa ADA Uploads</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Assessments__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <sortColumn>Assesment__c$Type__c</sortColumn>
+    <sortOrder>Asc</sortOrder>
+    <timeFrameFilter>
+        <dateColumn>Assesment__c$Date_Administered__c</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

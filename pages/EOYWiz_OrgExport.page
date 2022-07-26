@@ -1,0 +1,52 @@
+<apex:page controller="EOYWiz_OrgExport" tabStyle="EOY_Wizard__tab">
+	
+	<apex:includeScript value="{!URLFOR($Resource.jWerty, '/jWerty/jwerty.js')}" />
+  	<c:jQueryInit bLoadingPanel="true" bDataTables="true"/>
+	<apex:stylesheet value="{!$Resource.New_Core_UX}"/>
+	<apex:stylesheet value="{!URLFOR($Resource.schoolforce_demo_page, 'css/style.css')}"/>
+	<c:EOYWiz_StyleModifications />
+	
+	<apex:form id="mainForm">
+		
+		<apex:outputPanel id="outerPanel" layout="block">
+			
+			<div id="schoolforce-wrapper" class="wrapper">
+			
+				<apex:outputPanel id="errorMessages" layout="block" styleClass="pageMessages">
+					<apex:pageMessages />
+				</apex:outputPanel>			
+			
+				<h1 id="navPanel" class="centerHeader">
+					<input type="button" class="grey_btn_arrow" onClick="gotoOrgNextYearJS();" value="Previous" />
+					<div style="display: inline-block;">End of Year Wizard Organizational Setup: Optional<br></br>Export Data and Reports</div>
+					<input type="button" class="green_btn_arrow" onClick="gotoEOYLandingJS();" value="Go Home" />
+				</h1>
+				
+				<apex:outputPanel id="summary" styleClass="adminSummary">
+					<br></br>
+					<p>Click on the two links below to export data and reports. For the EOY Reports, you may need to modify the reports to meet your school’s needs, especially if you have multiple campuses.</p>
+					<p>While this step is optional, we strongly recommend completing an export of your org’s data and key reports at the end of each school year. Because salesforce.com limits the number of data exports, you may reach this step and be unable to perform the data export right away. You have the option to continue to the School Settings without completing this step.</p>
+					<p><b>Important:</b> You will only be able to properly export data/reports if you return to this step prior to completing the Process EOY Data step in School Settings.</p>
+					<br></br>
+				</apex:outputPanel>
+				
+				<div class="content-wrapper" >
+					<apex:pageBlock >
+						It is recommended that you export all data before closing the school year.
+						Click <a href="/ui/setup/export/DataExportPage/d?setupid=DataManagementExport" target="_blank" style="text-decoration:underline;color:blue; margin-left: 0;">here</a> to export.<br/><br/> 
+						It is also recommended to run and export all reports in the EOY Reports folder. 
+						Click <a href="/00O?fcf={!eoyFolder.Id}" target="_blank" style="text-decoration:underline;color:blue; margin-left: 0;">here</a>
+						to access the reports in the EOY Reports folder.<br/><br/>
+					</apex:pageBlock>
+				</div>
+				
+			</div>
+			
+			<apex:actionFunction name="gotoEOYLandingJS" action="{!gotoEOYLanding}" />
+			<apex:actionFunction name="gotoOrgNextYearJS" action="{!gotoOrgNextYear}" />
+			
+		</apex:outputPanel>
+		
+	</apex:form>
+	
+</apex:page>

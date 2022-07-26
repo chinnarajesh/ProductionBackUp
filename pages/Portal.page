@@ -1,0 +1,1884 @@
+<apex:page controller="PortalController" standardstylesheets="false" sidebar="false" showHeader="false">
+	<apex:form id="theform">
+	<c:jQueryInit bTimePicker="true" bDataTables="true" bClueTip="true"/>
+	<apex:stylesheet value="{!$Resource.New_Core_UX}"/>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>Student Portal</title>
+		<style type="text/css" media="all">
+			#awardrecs {
+				background:  no-repeat 0px 0px;
+				border: 0 solid red;
+				height: 90px;
+				margin: 0 0 0 3px;
+				width: 50px;
+			}
+
+			#shellrecords {
+				background:  no-repeat 0px 0px;
+				border: 0 solid red;
+				height: 90px;
+				margin: 0 0 0 3px;
+				width: 50px;
+			}
+
+			#awardsdetail{
+				background-color:#fffcab;
+				height:500px;
+				padding:0px;
+				margin:0px;
+				font-size:14px;
+			}
+			#alertone .from{
+				width:150px;
+			}
+
+			.outerdiv{
+				background:url('{!URLFOR($Resource.Portal, 'slider/scale.png')}') #cccccc;
+				width: 500px; height: 30px; border:2px solid #666666;
+			}
+
+			.redDiv{
+				background:url('{!URLFOR($Resource.Portal, 'slider/scale.png')}')red; width: 0px; height: 30px;
+			}
+
+			.greenDiv{
+				background:url('{!URLFOR($Resource.Portal, 'slider/scale.png')}')green; width: 0px; height: 30px;
+			}
+
+			.assignmentTable {
+				padding-top:5px; padding-bottom:5px;font-family:Arial;font-size:12px;
+			}
+
+			.assignmentTable2 {
+				padding-top:5px; padding-bottom:5px;font-family:Arial;font-size:12px; width:200px;
+			}
+
+			#assignmentHeader th {
+				text-align:left; 
+				padding-bottom:3px; 
+				border-bottom:1px solid #fad03f; 
+				color:#093d62; 
+				font-size:12px;
+			}
+			
+			#alertsDetail th {
+				text-align:left; 
+				padding-bottom:3px; 
+				border-bottom:1px solid #fad03f; 
+				color:#093d62; 
+				font-size:12px; 
+				font-weight:normal;
+			}
+			#alertone th {
+				text-align:left; 
+				padding-bottom:3px; 
+				border-bottom:1px solid #fad03f; 
+				color:#093d62; 
+				font-size:12px;
+			}
+
+			#assignmentHeader tr:nth-child(odd){
+				background-color:#fffba5;
+			}
+			#assignmentHeader tr:nth-child(even){
+				background-color:#ffe553;
+			}
+			#assignmentHeader td {
+				font-size:16px; 
+				font-family:arial;
+			}
+
+			#alertone tr:nth-child(odd){
+				background-color:#fffba5;
+			}
+			#alertone tr:nth-child(even){
+				background-color:#ffe553;
+			}
+			#alertone td {
+				font-size:14px;
+				padding:3px 0px;
+				font-family:arial;
+				width:200px;
+			}
+
+			#awardsdetail th {
+				text-align:left;
+				padding-bottom:3px;
+				border-bottom:1px solid #fad03f;
+				color:#093d62;
+				font-size:12px;
+			}
+			#awardsdetail td {
+				border-bottom:1px solid #fad03f; 
+				font-size:14px;
+			}
+
+			#alertsDetail tr:nth-child(odd){
+				background-color:#fffba5;
+			}
+			#alertsDetail tr:nth-child(even){
+				background-color:#ffe553;
+			}
+			#alertsDetail td {
+				font-size:14px;
+				font-family:arial;
+				width:200px;
+			}
+
+			#scoreTable td {
+				font-size:12px;
+				color:#000000;
+				width:auto;
+				font-family:Arial;
+				font-weight:bold;
+				border-right:1px solid #fad03f;
+				text-align:center;
+				width:150px;
+			}
+			
+			#scoreTable span.data {
+				font-family:Arial;
+				color:#FF0000;
+			}
+			
+			#scoreTable tr:nth-child(odd){
+				background-color:transparent;
+			}
+			
+			#scoreTable tr:nth-child(even){
+				background-color:transparent;
+			}
+			
+			#scoreTable .right {
+				font-size:24px;
+				color:#000;
+				padding-left:15px;
+			}
+			
+			#scoreTable {
+				margin-left:50px;
+			}
+
+			#mainnav {
+				background-position-x:-50px;
+			}
+			
+			.mainnav ul {
+				display: table;
+				list-style: none;
+			}
+			.mainnav ul li {
+				text-align: center;
+				display: table-cell;
+				min-width:0;
+			}
+			
+			.mainnav ul li a {
+				display: block;
+				text-align: center;
+			}
+			
+			#mainnav ul li.corp {
+				height:88px;
+			}
+
+			.behaviorAlert {
+				display: block;
+				float: right;
+				margin-top: -18px;
+			}
+
+			#assignDetail a {
+				text-decoration:underline;
+				color:#71a3c8;
+			}
+
+			.attendanceDiv div {
+				font-size:12px;
+				color:#000000;
+				font-family:Arial;
+				font-weight:bold;
+				text-align:left;
+			}
+
+			.collapseHeader {
+				cursor: pointer;
+				color:white
+			}
+			
+			.mainNavLink{
+				color:white;
+			}
+			
+			.tableSorter {
+				overflow:visible;
+			}
+
+			table.list {
+				margin-top:45px;
+				border-top-left-radius:7px;
+				border-top-right-radius:7px;
+				width:750px;
+			}
+			
+			table.list th.headerRow {
+				background:#B5E3F2 !important;
+				color:#000 !important;
+				font-weight:normal;
+			}
+			
+			table.list td {
+				color:#666 !important;
+				padding:11px;
+			}
+			
+			body .pbBody table.list tr th, body .pbBody table.list tr td {
+				border:1px solid #999;
+			}
+			
+			label {
+				margin:0 15px 5px 0;
+			}
+
+			.detailList table.list {
+				margin:0 0 45px 0;
+			}
+
+			.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+				background:#fffca5 !important;
+				border:0px !important;
+				border-bottom:1px solid #f6cf20 !important;
+				text-align:left !important;
+				padding-right:3px !important;
+				font-family:Arial;
+			}
+			
+			.ui-widget-header {
+				background:#71a3c8 !important;
+				border:0px!important!;
+			}
+
+			#mainnav ul li.standards a {
+				background: url('{!URLFOR($Resource.Portal, '/general/images/nav_bg.png')}') no-repeat -909px 0px;
+				display: block; width: 180px;
+			}
+			
+			#mainnav ul li.standards a:hover {
+				background-position: -909px -140px;
+			}
+			
+			#mainnav ul li.standards a:selected {
+				background-position: -909px -140px;
+			}
+
+			#rightbar2 {
+				width: 342px;
+				float: left;
+				clear: right;
+				display: block;
+				margin: 0px 10px 0px 0px;
+				padding-left: 0px;
+				padding-top: 0px;
+			}
+			
+			#mainnav ul li.corp {
+				background: url('{!URLFOR($Resource.Portal, '/general/images/nav_bg.png')}') no-repeat -1100px 0px;
+				border:0px red solid;
+				width: 108px;
+				text-indent: none;
+				padding-top: 30px;
+			}
+
+			#mainnav ul li.corp div {
+				display: block;
+				text-indent: none;
+				border: 0px solid red;
+				margin: 0px;
+				padding: 4px 0 0 0;
+				text-align:center;
+				vertical-align:top;
+			}
+
+			#mainnav ul li.corp div span {
+				color: #e1ecf4;
+				font-weight: normal;
+				font-size: 14px;
+				margin: 0px 5px 0px 7px;
+			}
+
+			#mainnav ul li.corp div a {
+				display: inline;
+				text-indent: none;
+				color: #e1ecf4;
+				font-weight: normal;
+				font-size:12px;
+			}
+
+			#rightbar2 {
+				width: 342px;
+				float: left;
+				clear: right;
+				display: block;
+				margin: 0px 10px 0px 0px; 
+				padding-left: 0px; 
+				padding-top: 0px;
+			}
+
+			#rightbar2 h2 {
+				margin-top: 0px;
+				text-transform: uppercase;
+				color: #fff;
+			}
+
+			#rightbar2 h2.today {
+				background: url('{!URLFOR($Resource.Portal, '/general/images/bulletin_header.png')}') no-repeat 0px 0px;
+				margin: 0px;
+				height: 50px;
+				padding-top: 15px;
+				padding-left: 10px;
+				margin-top: -8px;
+				margin-bottom: 0px;
+			}
+
+			#rightbar2 h2.today span {
+				color: #000;
+				font-size: 18px;
+				float: right;
+				padding-right: 20px;
+				padding-top: 5px;
+			}
+
+			#rightbar2 h3 {
+				margin: 0px 0px 5px 0px;
+				color: #353535;
+				color: #900;
+				background: #faf583;
+				font-size:16px; 
+				margin:0 5px 5px 4px;
+				padding-left:5px;
+			}
+
+			#rightbar2 .homework {
+				border-bottom: 0px solid #ccc;
+				padding:  5px; background: #fff;
+				margin: 0px;
+				background: url('{!URLFOR($Resource.Portal, '/general/images/bulletin_bg.png')}') repeat-y 0px 0px;
+			}
+
+			#rightbar2 .homework ul, #rightbar .homework table.assignmentList {
+				margin: 0px;
+				padding: 0px; 
+				margin-left: 10px; 
+				margin-bottom: 15px;
+			}
+			
+			#rightbar2 .homework table.assignmentList td.assignment {
+				width: 300px;
+			}
+			
+			#rightbar2 .homework table.assignmentList td.due_date {
+				width: 100px;
+			}
+
+			#rightbar2 .homework ul li ul {
+				margin-bottom: 5px;
+			}
+
+			#rightbar2 .homework ul li a, #rightbar .homework table.assignmentList tr td, #rightbar .homework table.assignmentList tr td a  {
+				font-weight: bold;
+				color: #333; 
+				font-size: 13px; 
+				font-family: trebuchet;
+			}
+
+			#rightbar2 .homework ul li a span.over {
+				color: red;
+			}
+			
+			#rightbar2 .homework ul li ul li a {
+				font-weight: normal;
+				font-size: 12px;
+			}
+
+			#todaysbottom2 {
+				background: url('{!URLFOR($Resource.Portal, '/general/images/bulletin_footer.png')}') no-repeat 0px 0px;
+				margin: 0px;
+				padding: 0px; 
+				display: block; 
+				height: 16px; 
+				width: 342px;
+			}
+			
+			#assignmentsnav {
+				font-size:12px;
+				overflow-x:auto; 
+				width:1170px; 
+				overflow-y:hidden; 
+			}
+			
+			#assignmentsnav ul{
+				width:2000px; 
+				overflow:hidden;
+				margin-left:0px;
+			}
+
+			#cluetip-inner {
+				background:#fffba5;
+				width:95%;
+			}
+		
+			.cluetip-jtip h3#cluetip-title {
+				background:#70a3c8;
+				color:#000000;
+				margin:2px;
+				border-radius:2px;
+			}
+			
+			.gpafield{
+				min-width:100px; 
+				height:40px; 
+				text-align:center; 
+				padding:5px; 
+				padding-top:5px;
+				margin-right:10px;
+				font-size:11px;
+				font-weight:normal;
+				background-image:-webkit-linear-gradient(top, rgb(233, 70, 70) 0%, rgb(163, 0, 0) 100%);
+				background-attachment: scroll;
+				background-clip: border-box;
+				background-color: transparent;
+				background-repeat:no-repeat;
+				background-origin: padding-box;
+				background-size: auto;
+				border-bottom-color: #A30000;
+				border-bottom-left-radius: 5px;
+				border-bottom-right-radius: 5px;
+				border-bottom-style: solid;
+				border-bottom-width: 1px;
+				border-left-color: #A30000;
+				border-left-style: solid;
+				border-left-width: 1px;
+				border-right-color: #A30000;
+				border-right-style: solid;
+				border-right-width: 1px;
+				border-top-color: #A30000;
+				border-top-left-radius: 5px;
+				border-top-right-radius: 5px;
+				border-top-style: solid;
+				border-top-width: 1px;
+			}
+			
+			.droppedGrade {
+				background: url('{!URLFOR($Resource.Portal, '/general/images/alert-red.png')}') no-repeat;
+				height: 21px;
+				width: 21px; 
+			}
+			
+			.schoolImage {
+				overflow:hidden;
+				width:175px;
+				height:225px;
+			}
+			
+			.displayTable th{
+				color: #093d62;
+				border-bottom: 1px solid #fad03f;
+			}
+			
+		</style>
+		
+		<apex:includeScript value="{!URLFOR($Resource.jWerty, '/jWerty/jwerty.js')}" />
+		<apex:stylesheet value="{!URLFOR($Resource.Portal, '/general/css/default.css')}"/>
+		<apex:stylesheet value="{!URLFOR($Resource.Portal, '/jQueryUI/css/smoothness/jquery-ui-1.8.11.custom.css')}"/>
+		<apex:includeScript value="{!URLFOR($Resource.Portal, '/general/js/movingjs.js')}"/>
+
+		<script>
+			var j$ = jQuery.noConflict();
+			
+		jQuery.fn.dataTableExt.oSort['uk_date-asc']  = function(a,b) {  
+			//use text()
+			var ukDatea = j$(a).text().split('/');
+			var ukDateb = j$(b).text().split('/');
+			
+			//Date empty
+			if (ukDatea[0] == "" || ukDateb[0] == "") return 1;
+
+			//need to change Date (d/MM/YYYY) into Date (dd/MM/YYYY) 
+			if(ukDatea[0]<10) ukDatea[0] = "0" + ukDatea[0]; 
+			if(ukDateb[0]<10) ukDateb[0] = "0" + ukDateb[0];
+			
+			   //need to change Date (dd/M/YYYY) into Date (dd/MM/YYYY) 
+			if(ukDatea[1]<10) ukDatea[1] = "0" + ukDatea[1]; 
+			if(ukDateb[1]<10) ukDateb[1] = "0" + ukDateb[1];
+			
+		
+			var x = (ukDatea[2] + ukDatea[0] + ukDatea[1]) * 1;
+			var y = (ukDateb[2] + ukDateb[0] + ukDateb[1]) * 1;
+
+			return ((x < y) ? -1 : ((x > y) ?  1 : 0));
+		};
+
+		jQuery.fn.dataTableExt.oSort['uk_date-desc'] = function(a,b) {
+			//use text()
+			var ukDatea = j$(a).text().split('/');
+			var ukDateb = j$(b).text().split('/');
+			
+			//Date empty
+			if (ukDatea[0] == "" || ukDateb[0] == "") return 1;
+
+			//need to change Date (d/MM/YYYY) into Date (dd/MM/YYYY) 
+			if(ukDatea[0]<10) ukDatea[0] = "0" + ukDatea[0]; 
+			if(ukDateb[0]<10) ukDateb[0] = "0" + ukDateb[0];
+			
+			   //need to change Date (dd/M/YYYY) into Date (dd/MM/YYYY) 
+			if(ukDatea[1]<10) ukDatea[1] = "0" + ukDatea[1]; 
+			if(ukDateb[1]<10) ukDateb[1] = "0" + ukDateb[1];
+		
+			var x = (ukDatea[2] + ukDatea[0] + ukDatea[1]) * 1;
+			var y = (ukDateb[2] + ukDateb[0] + ukDateb[1]) * 1;
+			hasBeenDateSorted = false;
+			return ((x < y) ? 1 : ((x > y) ?  -1 : 0));
+		};
+			
+
+			j$(document).ready(function(){
+				setClueTips();
+				resetDataTables();
+				var picString = '{!JSENCODE(port.currstudent.Student_Picture__c)}';
+				j$(".studentPhoto").html(picString);
+				j$(".studentPhoto").find("img").css("height","147px");
+				j$('#showTrophyDetail').click(function(){
+					j$('#terms').dialog({ autoOpen: true, modal: true, show: 'blind', width: 500});
+					j$('#terms').dialog("open");
+				});
+				var height = j$("#languageLinks").parent().height();
+				j$("#languageLinks").height(height);
+				j$("#languageLinks a").css('line-height',height+'px');
+			});
+
+			function setClueTips(){
+				j$('a.sectionTip').cluetip( {activation: 'click', delayedClose:5000, local: true, cursor: 'pointer', sticky: true,  closePosition: 'title', cluetipClass: 'jtip'});
+			}
+
+			function resetDataTables(){
+				var cols = j$('[id$="progressTable"]');
+				if(j$(cols).find('tr').length > 0){
+					cols=cols.find('tr')[0].cells.length;
+				}
+				console.log(cols);
+				
+				var table = j$(".tablesorter").dataTable( {				  
+					"bLengthChange": false,
+					"bFilter": true,
+					"bInfo": false,
+					"aoColumnDefs": [
+						{"sWidth": "200px", "aTargets": [ 0 ]},
+						{"bVisible": false, "aTargets": [ cols-1 ]},
+						{"iDataSort": [ cols-1 ], "aTargets": [ cols-7 ]},
+						{"bSortable": false, "aTargets": [ cols-2 ]}],
+					"bAutoWidth": false,
+					"bSort" :true,
+					"bPaginate": false,
+					"bScrollCollapse": true,
+					"bJQueryUI": true,
+					   iDisplayLength : 25,
+					"asStripClasses": [ 'odd', 'even' ],
+					"bDestroy": true
+				});
+			}
+
+			function showAssignmentPopup(name,course,section,details,due,media,url,attachId,attachname){
+				j$('.assignmentDetail').dialog("destroy");
+				j$("#name").find('.name').html('');
+				j$("#course").find('.course').html('');
+				j$("#section").find('.section').html('');
+				j$("#details").find(".details").html('');
+				j$("#due").find(".due").html('');
+				j$("#medianame").text('');
+				j$("#mediaurl").find(".mediaurl").val('');
+				j$("#attachurl").text('');
+				j$("#attachurl").attr('href','');
+
+				j$("#name").find('.name').html(name);
+				j$("#course").find('.course').html(course);
+				j$("#section").find('.section').html(section);
+				j$("#details").find(".details").html(details);
+				j$("#due").find(".due").html(due);
+				j$("#medianame").text(media);
+				j$("#mediaurl").find(".mediaurl").val(url);
+				j$("#attachurl").text(attachname);
+				j$("#attachurl").attr('href','/servlet/servlet.FileDownload?file='+attachId);
+
+				j$('#assignmentDetail').dialog({ autoOpen: true, modal: true, show: 'blind', width: 500,position:'center'});
+				j$('#assignmentDetail').dialog("open");
+			}
+
+			function gotoAssignments(){
+				var course = j$("#course").find('.course').html();
+				var medianame = j$("#medianame").text();
+				var mediaurl = j$("#mediaurl").find(".mediaurl").val();
+
+				j$('.assignmentDetail').dialog("close");
+				goToAssignement(false,true,false,false,false,medianame,mediaurl,course);
+			}
+
+			function showAllalerts(){
+				j$('#allAlertsDetail').dialog({ autoOpen: true, modal: true, show: 'blind', width: 800});
+				j$('#allAlertsDetail').dialog("open");
+			}
+
+			function showAllincidents(){
+				j$('#allIncidentsDetail').dialog({ autoOpen: true, modal: true, show: 'blind', width: 800});
+				j$('#allIncidentsDetail').dialog("open");
+			}
+
+			function reloadMovie(source,name){
+				document.getElementById("movieFrame").src = source;
+				document.getElementById("currentVideo").innerHTML = 'Now Playing:' + name;
+			}
+			
+			function addCalendarJS(){
+				j$('#addEvent').dialog("destroy");
+				j$('#addEvent').dialog({show: 'slide', hide: 'slide'});
+			}
+			
+			function signInJS(){
+				j$('#signIn').dialog("destroy");
+				j$('#signIn').dialog({show: 'slide', hide: 'slide', height: 530, width: 700 });
+			}
+
+			function destroyDialog(){
+				j$('#assignmentDetail').dialog("close");
+				j$('#assignmentDetail').dialog("destroy");
+			}
+			
+			jwerty.key('enter',false);
+		</script>
+		<link rel="stylesheet" href="{!URLFOR($Resource.Portal, '/general/css/thickbox.css')}" type="text/css" media="screen" />
+	</head>
+
+	<apex:actionFunction id="assignmentfunction" action="{!refreshMyAssignmentCourses}" 
+			name="goToAssignement" rerender="maindashboard"
+			oncomplete="reloadMovie('{!JSENCODE(mediaSourceLink)}','{!JSENCODE(mediaSourceName)}');resetDataTables();" >
+		<apex:param name="home" value="false" assignTo="{!displayHome}"/>
+		<apex:param name="asig" value="true" assignTo="{!displayMyAssignments}"/>
+		<apex:param name="prog" value="false" assignTo="{!displayMyProgress}"/>
+		<apex:param name="calen" value="false" assignTo="{!displayMyCalendar}"/>
+		<apex:param name="pfolio" value="false" assignTo="{!displayMyPortfolio}"/>
+		<apex:param name="mname" value="" assignTo="{!mediaSourceName}"/>
+		<apex:param name="mlink" value="" assignTo="{!mediaSourceLink}"/>
+		<apex:param name="tabName" value="" />
+	</apex:actionFunction>
+	<apex:actionFunction name="updateLanguage" action="{!updateLanguage}" rerender="theform" onComplete="resetDataTables();">
+		<apex:param name="selected" value="" assignTo="{!port.selectedLanguage}" />
+	</apex:actionFunction>
+
+	<apex:outputpanel id="refreshJquery">
+		<script>
+			setClueTips();
+			resetDataTables();
+		</script>
+	</apex:outputpanel>
+
+	<div style="display:none;">
+		<div id="addEvent" title="Add Event">
+			<table>
+				<apex:repeat value="{!port.progsList}" var="cals">
+					<tr>
+						<td>
+							<apex:outputLabel value="{!cals.Name}:" style="font-size: 10pt;"/>
+						</td>
+						<td>
+							<a href="http://www.google.com/calendar/render?cid={!cals.Calendar_Id__c}" target="_blank">
+								<img src="http://www.google.com/calendar/images/ext/gc_button6.gif"/>
+							</a>
+						</td>
+					</tr>
+				</apex:repeat>
+			</table>
+		</div>
+		<div id="signIn" title="Google">
+			<apex:iframe src="https://www.google.com/accounts/Login"/>
+		</div>
+	</div>
+	<body>
+	<div id="wrapper">
+		<div style="text-align:right; width:100%; padding-top:5px;">
+			<div style="float:left; padding-right:30px;">
+				<img src="{!URLFOR($Resource.Portal, '/general/images/School_Logo.png')}" />
+			</div>
+			<span id="languageLinks" style="margin-right:15px; display:inline-block; vertical-align:top;">
+				<a onClick="updateLanguage('English');" style="cursor:pointer;">English</a>
+				<apex:repeat value="{!port.translationOptions}" var="translationOption">
+					<a onClick="updateLanguage('{!translationOption}');" style="cursor:pointer;">
+						{!translationOption}
+					</a>
+				</apex:repeat>
+			</span>
+			<a href="/secur/logout.jsp" class="logoutPortal">
+				<span class="logoutPortalArrow"></span><span style="float:left;">{!port.translationStrings['Logout']}</span>
+			</a>
+			<div id="clear">&nbsp;</div>
+		</div>
+		
+		<div id="header" style="min-height:110px; padding-bottom:0px;" >
+			<div class="studentPhoto" style="display: block;float: right;margin: 0 0px 0 0; border:0px red solid;padding-top:10px;"></div>
+				<div id="headerinfo">
+					<div class="topleft" style="width:820px;">
+						<div style="display: block;float: left; width:160px;margin: 0 0px 0 0; border:0px #666 solid;">
+							<div class="schoolImage">
+								<apex:outputText escape="false" value="{!port.pic.School_Logo_for_Portal__c}"/>
+							</div>
+							<a href="{!port.schoolWebsite}" target="_blank">{!port.schoolWebsite}</a>
+							<div id="clear">&nbsp;</div>
+						</div>
+						<div class="awards" style="{!IF(port.pic.Show_Awards_in_Portal__c,'margin-top:20px;','display:none;')}" >
+							<ul>
+								<li id="first" style="height:55px;">
+									{!port.translationStrings['My Awards']}:
+								</li>
+								<apex:repeat value="{!port.awardsList}" var="aw">
+									<li id="awardrecs">
+										<img src="{!URLFOR($Resource.Portal, '/awards/images/'+aw.Award_File__c) }" title="{!aw.Description__c}"/>
+									</li>
+								</apex:repeat>
+								<apex:repeat value="{!port.emptyAwardsList}" var="eaw" rendered="{!port.showemptyawards}">
+									<li id="shellrecords" />
+								</apex:repeat>
+								<li id="last">
+									<a id="showTrophyDetail" class="showTrophyCase" href="">
+										<span class="trophyDoubleArrow"></span>{!port.translationStrings['Trophy Case']}
+									</a>
+									<div id="terms" title="{!port.translationStrings['My Awards']}" style="display:none; background:#fffcab;">
+										<div id="awardsdetail">
+											<table cellpadding="0" cellspacing="0">
+												<th>{!port.translationStrings['Award']}</th>
+												<th>{!port.translationStrings['Award detail']}</th>
+												<apex:repeat value="{!port.awardsListFull}" var="aw">
+													<tr>
+														<td width="150">
+															<img src="{!URLFOR($Resource.Portal, '/awards/images/'+aw.Award_File__c) }" title="{!aw.Description__c}"/>
+														</td>
+														<td align="left">
+															<apex:outputField style="font-family:calibri;font-style:italic;" value="{!aw.Description__c}"/>
+														</td>
+													</tr>
+												</apex:repeat>
+											</table>
+										</div>
+										<br/>
+									</div>
+								</li>
+							</ul>
+						</div>
+					</div>
+
+					<div class="topright" style="padding-top:20px; width:200px; text-align:right;">
+						<h2 class="name">{!port.currstudent.Name}</h2>
+						<table cellpadding="0" style="font-size:13px; text-align:right;" align="right">
+						<tr>
+							<td style="font-weight:bold;">
+								{!port.translationStrings['School']}:
+							</td>
+							<td style="font-weight:bold;">
+								{!port.currstudent.School_Name__c}
+							</td>
+						</tr>
+						<tr>
+							<td style="font-weight:bold;">
+								{!port.translationStrings['Grade']}:
+							</td>
+							<td style="font-weight:bold;">
+								{!port.currstudent.Grade__c}
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<span title="{!port.translationStrings['percentDailyHelpText']}" style="font-weight:bold;">
+									{!port.translationStrings['Attendance']}:
+								</span>
+							</td>
+							<td style="font-weight:bold;">
+								{!port.currstudent.Attendance_Percentage__c}
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<span title="{!port.translationStrings['behaviorHeaderHelpText']}" style="font-weight:bold;">
+									{!port.translationStrings['Number of incidents']}:
+								</span>
+							</td>
+							<td style="font-weight:bold;">
+								{!port.behIncdCountYTD}
+							</td>
+						</tr>
+						<tr style="{!IF(port.pic.Show_Points_Balance_in_Portal__c,'','display:none;')}">
+							<td>
+								<span title="{!port.translationStrings['PointsHelpText']}" style="font-weight:bold;">{!port.translationStrings['Points Balance']}:</span>
+							</td>
+							<td>
+								<span style="font-weight:bold;">{!port.studentPointsBal}</span>
+							</td>
+						</tr>
+						<tr style="{!IF(port.pic.Show_Meals_in_Portal__c, '','display:none;')}">
+							<td>
+								<span title="{!port.translationStrings['mealsBalanceHelpText']}" style="font-weight:bold;">
+									{!port.translationStrings['Meals Balance']}:
+								</span>
+							</td>
+							<td style="font-weight:bold;">
+								&nbsp; ${!port.currstudent.Current_Meals_Balance__c}
+							</td>
+						</tr>
+						<tr style="{!IF(port.pic.Show_Community_Service_In_Portal__c, '','display:none;')}">
+							<td>
+								<span title="{!port.translationStrings['CSHelpText']}" style="font-weight:bold;">
+									{!port.translationStrings['Community Service Hours']}:
+								</span>
+							</td>
+							<td style="font-weight:bold;">
+								&nbsp; {!port.studentCS}
+							</td>
+						</tr>
+					</table>
+				</div>
+				<div id="clear">&nbsp;</div>
+			</div>
+			<div id="clear">&nbsp;</div>
+		</div>
+		<div id="clear">&nbsp;</div>
+		<apex:outputpanel id="assignpopup">
+			<div id="assignmentDetail" class="assignmentDetail" title="Assignment Details" style="display:none;background:#fffcab;">
+				<div id="assignDetail">
+					<table cellpadding="0" cellspacing="0" >
+						<tr>
+							<td>&nbsp;</td>
+						</tr>
+						<tr>
+							<th id="nameheader">{!port.translationStrings['Name']}:</th>
+							<td id ="name">
+								<apex:outputText styleclass="name"/>
+							</td>
+						</tr>
+						<tr>
+							<td>&nbsp;</td>
+						</tr>
+						<tr>
+							<th id="courseheader">{!port.translationStrings['Course']}:</th>
+							<td id ="course">
+								<apex:outputText styleclass="course"/>
+							</td>
+						</tr>
+						<tr>
+							<td>&nbsp;</td>
+						</tr>
+						<tr>
+							<th id="sectionheader">{!port.translationStrings['Section']}:</th>
+							<td id ="section">
+								<apex:outputText styleClass="section" />
+							</td>
+						</tr>
+						<tr>
+							<td>&nbsp;</td>
+						</tr>
+						<tr>
+							<th id="detailsheader">{!port.translationStrings['Details']}:</th>
+							<td id ="details">
+								<apex:outputText styleClass="details" />
+							</td>
+						</tr>
+						<tr>
+							<td>&nbsp;</td>
+						</tr>
+						<tr>
+							<th id="dueheader">{!port.translationStrings['Due']}:</th>
+							<td id ="due">
+								<apex:outputText styleClass="due" />
+							</td>
+						</tr>
+						<tr>
+							<td>&nbsp;</td>
+						</tr>
+						<tr>
+							<th id="mediaheader">{!port.translationStrings['Media']}:</th>
+							<td id ="media">
+								<a href="#" id="medianame" onclick="gotoAssignments();"></a>
+							</td>
+						</tr>
+						<tr>
+							<td id ="mediaurl"><apex:outputText styleclass="mediaurl" value="{!mediasource}"/> </td>
+						</tr>
+						<tr>
+							<td>&nbsp;</td>
+						</tr>
+						<tr>
+							<th id="atthacheader">{!port.translationStrings['Attachment']}:</th>
+							<td id="attach">
+								<a href="#" id="attachurl" target="_blank"></a>
+							</td>
+						</tr>
+						<tr>
+							<td>&nbsp;</td>
+						</tr>
+					</table>
+				</div>
+				<br/>
+			</div>
+		</apex:outputpanel>
+		
+		<apex:actionFunction action="{!dummyRefresh}" name="changePage" rerender="maindashboard,refreshJquery" oncomplete="destroyDialog();">
+			<apex:param name="home" value="" assignTo="{!displayHome}"/>
+			<apex:param name="asig" value="" assignTo="{!displayMyAssignments}"/>
+			<apex:param name="prog" value="" assignTo="{!displayMyProgress}"/>
+			<apex:param name="calen" value="" assignTo="{!displayMyCalendar}"/>
+			<apex:param name="pfolio" value="" assignTo="{!displayMyPortfolio}"/>
+			<apex:param name="strand" value="" assignTo="{!displayMyStrands}"/>
+			<apex:param name="mytonomy" value="" assignTo="{!displayMytonomy}"/>
+		</apex:actionFunction>
+		<div id="clear">&nbsp;</div>
+		<apex:outputpanel id="maindashboard" style="clear:both;">
+			<table class="mainNav" style="width:100%;margin: 16px 0;" cellspacing="0">
+			<tr class="mainNav">
+				<td class="home mainNavItem">
+					<a class="{!IF(displayHome,'selected','')} mainNavLink" onclick="changePage(true, false, false, false, false, false, false);">
+						<span class="mainNavHomeIcon"></span>{!port.translationStrings['Home']}
+					</a>
+				</td>
+				<td class="assignments mainNavItem">
+					<a class="{!IF(displayMyAssignments,'selected','')} mainNavLink" onclick="changePage(false, true, false, false, false, false, false);">
+							<span class="mainNavAssignmentsIcon"></span>{!port.translationStrings['My Assignments']}
+						</a>
+				</td>
+				<td class="progress mainNavItem">
+					<a class="{!IF(displayMyProgress,'selected','')} mainNavLink" onclick="changePage(false, false, true, false, false, false, false);">
+							<span class="mainNavProgressIcon"></span>{!port.translationStrings['My Progress']}
+						</a>
+				</td>
+				<td class="calendar mainNavItem">
+					<a class="{!IF(displayMyCalendar,'selected','')} mainNavLink" onclick="changePage(false, false, false, true, false, false, false);">
+							<span class="mainNavCalendarIcon"></span>{!port.translationStrings['My Calendar']}
+						</a>
+				</td>
+				<td class="projects mainNavItem">
+					<a class="{!IF(displayMyPortfolio,'selected','')} mainNavLink" onclick="changePage(false, false, false, false, true, false, false);">
+							<span class="mainNavPortfolioIcon"></span>{!port.translationStrings['My Portfolio']}
+						</a>
+				</td>
+				<td class="standards mainNavItem">
+					<a class="{!IF(displayMyStrands,'selected','')} mainNavLink" onclick="changePage(false, false, false, false, false, true, false);">
+							<span class="mainNavStandardsIcon"></span>{!port.translationStrings['My Standards']}
+						</a>
+				</td>
+				<td class="mytonomy mainNavItem" style="{!IF(showMytonomyTab,'','display:none;')}">
+					<a class="{!IF(displayMytonomy,'selected','')} mainNavLink" onclick="changePage(false, false, false, false, false, false, true);">
+						<span class="mainNavMytonomyIcon" style="display: block;height: 60px;margin: -12px 0 0 0;background-color:transparent;"></span>Mytonomy
+					</a>
+				</td>
+			</tr>
+			</table>
+			
+		<apex:outputpanel id="home" rendered="{!displayHome}">
+			<div id="maindash">
+				<h2 title="{!port.translationStrings['alertHelpText']}">{!port.translationStrings['My Alerts']}
+					<span title="{!port.translationStrings['alertButtonHelpText']}">
+						<apex:variable value="{!port.pic.Show_Alerts_in_Portal__c}" var="a" rendered="{!port.pic.Show_Alerts_in_Portal__c}">
+							<a href="" id="showAllAlerts" class="showAllAlerts" onclick="showAllalerts();"><span class="showAllAlertsStar"></span><span style="float:left; margin:0 5px 0 0 !important;">{!port.translationStrings['View All Alerts']}</span></a>
+						</apex:variable>
+						<div id="allAlertsDetail" title="{!port.translationStrings['My Alerts']}" style="display:none; background:#fffcab;">
+							<div id="alertsDetail">
+								<table cellpadding="0" cellspacing="0">
+									<apex:variable value="{!port.alertsList}" var="al" rendered="{!IF(port.alertsList.size > 0,true,false)}">
+										<th>{!port.translationStrings['Created By']}</th>
+										<th>{!port.translationStrings['Related To']}</th>
+										<th>{!port.translationStrings['Message']}</th>
+										<apex:repeat value="{!port.alertsList}" var="aal">
+											<tr>
+												<td width="200">
+													{!aal.Createdby.Name}
+												</td>
+												<td width="160">
+													<apex:outputText value="{!IF(aal.Student__c!=null,aal.Student__r.Name,IF(aal.Section__c!=null,aal.Section__r.Name,port.currstudent.School_Name__c))}"/>
+												</td>
+												<td>
+													{!aal.Message__c}
+												</td>
+											</tr>
+										</apex:repeat>
+									</apex:variable>
+								</table>
+							</div>
+							<br/>
+						</div>
+					</span>
+				</h2>
+				<div id="alerts">
+					<div id="alertone" style="padding:20px 15px">
+						<table width="100%" cellpadding="0" cellspacing="0">
+							<apex:variable value="{!port.pic.Show_Alerts_in_Portal__c}" var="a" rendered="{!!port.pic.Show_Alerts_in_Portal__c}">
+								<p>{!port.translationStrings['moduleDisabled']}</p>
+							</apex:variable>
+							<apex:variable value="{!port.smallalertsList}" var="al" rendered="{!IF((port.alertsList.size > 0) && (port.pic.Show_Alerts_in_Portal__c),true,false)}">
+								<th>{!port.translationStrings['Created By']}</th>
+								<th>{!port.translationStrings['Related To']}</th>
+								<th>{!port.translationStrings['Message']}</th>
+								<th>&nbsp;</th>
+								<apex:repeat value="{!port.smallalertsList}" var="al">
+									<tr>
+										<td>{!al.Createdby.Name}</td>
+										<td>
+											<apex:outputText value="{!IF(al.Student__c!=null,al.Student__r.Name,IF(al.Section__c!=null,al.Section__r.Name,port.currstudent.School_Name__c))}"/>:
+										</td>
+										<td>
+											<div id="alertDetail">
+												{!al.Message__c}
+											</div>
+										</td>
+										<td width="800">
+											&nbsp;
+										</td>
+									</tr>
+								</apex:repeat>
+							</apex:variable>
+						</table>
+					</div>
+				</div>
+
+				<h2>{!port.translationStrings['My scorecard']}
+					<span>
+						<img src="{!URLFOR($Resource.Portal, '/general/images/h-ico-score.png')}" />
+					</span>
+					<span class="gpafield" title="{!port.translationStrings['currentGPAHelpText']}" style="{!IF((port.currentGPA == null) ||(port.currentGPA == 0.0) || !port.pic.Display_GPA_on_Report_Cards__c, 'display:none;', '')}">
+						{!port.translationStrings['Current GPA']}:<br/>
+						<div style="font:18px bold trebuchet, trebuchet MS;">
+							{!port.currentGPA}
+						</div>
+					</span>
+				</h2>
+				<div id="alerts">
+					<div id="alertone">
+					<div style="padding-left:5px; padding-bottom:10px; border-bottom:3px solid #69a3c6;">
+						<div style="float:right; padding-right:20px;"/>
+						<h3 style="margin-top:0px; padding-top:5px; color:#093d62;">{!port.translationStrings['Academic progress']}</h3>
+						<div style="{!IF(port.pic.Show_Gradebook_in_Portal__c, 'display:none;', '')}">
+							<p>{!port.translationStrings['moduleDisabled']}</p>
+						</div>
+						<div style="{!IF(port.pic.Show_Gradebook_in_Portal__c, '', 'display:none;')}">
+							<table style="color:#093d62;margin-left:50px;vertical-align:bottom;width:786px;" cellspacing="0">
+								<thead>
+									<tr style="color:black;">
+										<th style="width:200px;margin-left:50px;font-size:12px;font-weight:bold;">
+											<span title="{!port.translationStrings['courseNameHelpText']}">
+												{!port.translationStrings['Class']}
+											</span>
+										</th>
+										<apex:repeat value="{!port.reportingPeriodList}" var="rp">
+											<th style="font-size:12px;width:50px;font-weight:bold;margin:0 15px;">
+												<span title="{!port.translationStrings['gradeReportingPeriodHelpText']}">
+													{!rp.Name__c}
+												</span>
+											</th>
+										</apex:repeat>
+										<th style="font-size:12px;font-weight:bold;padding-right:40px;padding-left:25px;">
+											<span>{!port.translationStrings['Final']}</span>
+										</th>
+									</tr>
+								</thead>
+								<tbody>
+									<apex:repeat value="{!port.sectionGradeWrapperList}" var="sgw">
+										<tr style="border-top:1px solid #fad03f;color:black;">
+											<td style="width:200px; padding-top:10px;font-size:14px;font-family:Arial;">
+												<apex:outputText style="font-weight:bold" value="{!sgw.course}"/>
+											</td>
+											<apex:repeat value="{!sgw.rpGrades}" var="g">
+												<td style="padding-top:6px; width:50px; margin-left:25px; font-size:14px; font-weight:bold;padding-right:20px;">
+													{!g}
+												</td>
+											</apex:repeat>
+											<td style="width:100px;padding-top:10px;font-size:14px;font-family:Arial;padding-right:25px;padding-left:25px;">
+												<apex:outputText style="font-weight:bold" value="{!sgw.finalGrade}"/>
+											</td>
+										</tr>
+									</apex:repeat>
+								</tbody>
+							</table>
+							<div id="clear">&nbsp;</div>
+						</div>
+						<div id="clear">&nbsp;</div>
+					</div>
+					<div id="clear">&nbsp;</div>
+				<div style="padding-left:5px; border-bottom:3px solid #69a3c6;">
+					<h3 style="padding-bottom:00px;color:#093d62;">{!port.translationStrings['Attendance2']}</h3>
+						<apex:variable value="{!port.pic.Show_Attendance_in_Portal__c}" var="a" rendered="{!!port.pic.Show_Attendance_in_Portal__c}">
+							<p>{!port.translationStrings['moduleDisabled']}</p>
+						</apex:variable>
+						<apex:variable value="{!port.pic.Show_Attendance_in_Portal__c}" var="a" rendered="{!port.pic.Show_Attendance_in_Portal__c}">
+							<table id="scoreTable" style="width:800px;">
+								<tr>
+									<td valign="bottom">
+										<span title="{!port.translationStrings['excusedAbsentHelpText']}">
+											{!port.translationStrings['Daily excused absence']} (YTD)
+										</span>
+										&nbsp;
+										<br/>
+										<span class="data">
+											{!port.dailyExcsAbsences}
+										</span>
+									</td>
+									<td valign="bottom">
+										<span title="{!port.translationStrings['unexcusedAbsentHelpText']}">
+											{!port.translationStrings['Daily unexcused absence']} (YTD)
+										</span>
+										<br/>
+										<span class="data">
+											{!port.dailyUnExcsAbsences}
+										</span>
+									</td>
+									<td valign="bottom">
+										<span title="{!port.translationStrings['tardyHelpText']}">
+											{!port.translationStrings['Daily tardies']} (YTD)
+										</span>
+										<br/>
+										<span class="data">
+											{!port.dailyTardies}
+										</span>
+									</td>
+									<td valign="bottom">
+										<span title="{!port.translationStrings['departHelpText']}">
+											{!port.translationStrings['Daily departures']} (YTD)
+										</span>
+										<br/>
+										<span class="data">
+											{!port.dailyDepartures}
+										</span>
+									</td>
+									<td valign="bottom">
+										<span title="{!port.translationStrings['dailyHelpText']}">
+											{!port.translationStrings['Average daily attendance']}%
+										</span>
+										<br/>
+										<span class="data">
+											{!port.currstudent.Attendance_Percentage__c}
+										</span>
+									</td>
+									<td valign="bottom" title="{!port.translationStrings['timeLostHelpText']}">
+									   {!port.translationStrings['Attendance Time Lost (hours)']}
+										<br/>
+										<span class="data">
+											{!port.AttendanceTimeLost}
+										</span>
+									</td>
+								</tr>
+							</table>
+							<br/>
+							<br/>
+							<apex:variable value="{!port.sectionalAtt}" var="sa" rendered="{!IF(port.sectionalAtt.size > 0,true,false)}">
+								<table cellspacing="0" style="margin-left:50px;">
+									<thead style="vertical-align:bottom;">
+										<th style="width:250px;font-size:12px; color:#093d62;font-weight:bold;padding-right:10px;">
+										{!port.translationStrings['Section Name']}
+										</th>
+										<th style="width:120px;font-size:12px; color:#093d62;font-weight:bold;padding-right:10px;">
+											{!port.translationStrings['Unexcused Absences']}
+										</th>
+										<th style="width:120px;font-size:12px; color:#093d62;font-weight:bold;padding-right:10px;">
+											{!port.translationStrings['Excused Absences']}
+										</th>
+										<th style="width:120px;font-size:12px; color:#093d62;font-weight:bold;padding-right:10px;">
+											{!port.translationStrings['Unexcused Tardies']}
+										</th>
+										<th style="width:120px;font-size:12px; color:#093d62;font-weight:bold;padding-right:10px;">
+											{!port.translationStrings['Tardies']}
+										</th>
+									</thead>
+									<tbody style=" border-top:1px solid #fad03f;margin-left:0px;font-weight:bold;">
+									<apex:repeat: value="{!port.sectionalAtt}" var="secatt">	
+										<tr class="attendanceDiv" style="border-top:1px solid #fad03f;">
+											<td style="width:250px;height:18px; padding-top:3px; padding-right:10px; padding-left:2px;">
+												{!secatt.sectionName}
+											</td>
+											<td style="width:120px; height:18px; padding-top:3px; padding-right:10px;">
+												{!secatt.unexcusedAbsences}
+											</td>
+											<td style="width:120px; height:18px; padding-top:3px; padding-right:10px;">
+												{!secatt.excusedAbsences}
+											</td>
+											<td style="width:120px; height:18px; padding-top:3px; padding-right:10px;">
+												{!secatt.unexcusedTardys}
+											</td>
+											<td style="width:120px; height:18px; padding-top:3px; padding-right:10px;">
+												{!secatt.tardys}
+											</td>
+										   </tr>
+									</apex:repeat:>
+									</tbody>
+								</table>
+									
+								<div style="margin-left:50px;margin-top:15px;margin-bottom:15px;">
+									
+								</div>
+							</apex:variable>
+						</apex:variable>
+						<div id="clear">&nbsp;</div>
+					</div>
+					<div style="padding-left:5px; border-bottom:3px solid #69a3c6;">
+						<h3 id="behaviorBar" style="padding-bottom:0px; padding-top:10px; color:#093d62;">
+							{!port.translationStrings['Behavior']}
+						</h3>
+						<apex:variable value="{!port.pic.Show_Alerts_in_Portal__c}" var="a" rendered="{!!port.pic.Show_Behavior_in_Portal__c}">
+							<p>{!port.translationStrings['moduleDisabled']}</p>
+						</apex:variable>
+						<div id="allIncidentsDetail" title="" style="display:none; background:#fffcab;">
+							<div id="incidentsDetail">
+								<table id="scoreTable" cellpadding="0" cellspacing="0">
+									<tr>
+										<td width="250">
+											{!port.translationStrings['Date(of Behavior Incident)']}
+										</td>
+										<td width="250">
+											{!port.translationStrings['Behavior Title']}
+										</td>
+									</tr>
+								</table>
+								<apex:variable value="{!port.allBehincidents}" var="b" rendered="{!IF(port.allBehincidents.size > 0,true,false)}">
+									<div style="margin-left:50px;margin-top:15px;margin-bottom:15px;">
+										<apex:repeat value="{!port.allBehincidents}" var="bi">
+											<div class="attendanceDiv" style=" border-top:1px solid #fad03f;margin-left:0px;">
+												<div style="width:200px;float:left; height:18px; padding-top:5px; padding-right:10px;">
+													<apex:outputText value="{0,date,MM-dd-yyyy}">
+														<apex:param value="{!bi.Behavior_Incident__r.Incident_Date__c}" />
+													</apex:outputText>
+												</div>
+												<div style="width:250px;float:left; height:18px; padding-top:3px; padding-right:10px;">
+													{!bi.Behavior_Incident__r.Incident_Title__c}
+												</div>
+											</div>
+											<div id="clear">&nbsp;</div>
+										</apex:repeat>
+									</div>
+								</apex:variable>
+						</div>
+					</div>
+					<apex:variable value="{!port.pic.Show_Behavior_in_Portal__c}" var="a" rendered="{!port.pic.Show_Behavior_in_Portal__c}">
+						<div class="behaviorAlert" style="margin-right:10px;" title="{!port.translationStrings['behaviorButtonHelpText']}">
+							<a href="" id="showAllIncidents" class="showAllIncidents" onclick="showAllincidents();">
+								{!port.translationStrings['View All Incidents']}
+							</a>
+							
+						</div>
+						<table id="scoreTable">
+							<tr>
+								<td valign="bottom" title="{!port.translationStrings['behaviorTotalHelpText']}">
+									{!port.translationStrings['Year to date Number of Behavior Incidents']}
+									<br/>
+									<span class="data">
+										{!port.behIncdCountYTD}
+									</span>
+								</td>
+								<td valign="bottom" title="{!port.translationStrings['behaviorHelpText']}">
+									{!port.translationStrings['Behavior Time Lost']}
+									<br/>
+									<span class="data">
+										{!port.BehaviorTimeLost}
+									</span>
+								</td>
+							</tr>
+						</table>
+						<br/>
+						<apex:variable value="{!port.latestBehincidents}" var="b" rendered="{!IF(port.latestBehincidents.size > 0,true,false)}">
+							<div style="margin-left:50px;width:150px;float:left; height:15px;font-size:12px; color:#093d62;font-weight:bold;padding-right:10px;">
+								{!port.translationStrings['Date(of Behavior Incident)']}
+							</div>
+							<div style="width:150px;float:left; height:15px;font-size:12px; color:#093d62;font-weight:bold;padding-right:10px;">
+							   {!port.translationStrings['Behavior Title']}
+							</div>
+							<br/>
+							<apex:repeat value="{!port.latestBehincidents}" var="lb">
+								<div class="attendanceDiv" style=" border-top:1px solid #fad03f;margin-left:50px;">
+									<div style="width:150px;float:left; height:18px; padding-top:3px;padding-right:10px;">
+										<apex:outputText value="{0,date,MM-dd-yyyy}">
+											<apex:param value="{!lb.Behavior_Incident__r.Incident_Date__c}" />
+										</apex:outputText>
+									</div>
+									<div style="width:300px;float:left; height:18px; padding-top:3px;padding-right:10px;">
+										{!lb.Behavior_Incident__r.Incident_Title__c}
+									</div>
+									<div id="clear">&nbsp;</div>
+								</div>
+							</apex:repeat>
+						</apex:variable>
+					</apex:variable>
+				</div>
+				<div id="clear">&nbsp;</div>
+				<div id="HomeworkPanel" style="padding-left:5px; padding-bottom:15px; background:#fffcab;">
+					<h3 id="HomeworkBar" style="padding-bottom:0px; padding-top:10px; color:#093d62;">
+						Homework
+					</h3>
+					<div style="{!IF(port.pic.Show_Homework_in_Portal__c,'display:none','')}">
+						<p>{!port.translationStrings['moduleDisabled']}</p>
+					</div>
+					<div style="{!IF(port.pic.Show_Homework_in_Portal__c,'','display:none')}">
+						<div style="width:200px; margin-left:50px; font-size:12px; color:#093d62;font-weight:bold;float:left;">
+							<span>
+								{!port.translationStrings['Class']}
+							</span>
+						</div>
+						<div style="float:left; font-size:12px;width:100px;color:#093d62;font-weight:bold;padding-right:25px;padding-left:25px;">
+							<span title="{!port.translationStrings['homeworklate']}">
+								{!port.translationStrings['Late Homework']} %
+							</span>
+						</div>
+						<div style="float:left; font-size:12px;width:100px;color:#093d62;font-weight:bold;padding-right:25px;padding-left:25px;">
+							<span title="{!port.translationStrings['homeworkmissing']}">
+								{!port.translationStrings['Missing Homework']} %
+							</span>
+						</div>
+						<div id="clear">&nbsp;</div>
+						<apex:repeat value="{!port.homeworkInfo}" var="hw">
+							<div style=" border-top:1px solid #fad03f;margin-left:50px;">
+								<div style="float:left;width:200px; padding-top:10px;font-size:14px;font-family:Arial;">
+									<apex:outputText style="font-weight:bold" value="{!hw.courseName}"/>
+								</div>
+								<div style="float:left;padding-top:6px; width:100px; margin-left:25px; font-size:14px; font-weight:bold;padding-right:20px;">
+									<apex:outputText style="font-weight:bold" value="{!hw.percentLate}"/>
+								</div>
+								<div style="float:left;padding-top:6px; width:100px; margin-left:25px; font-size:14px; font-weight:bold;padding-right:20px;">
+									<apex:outputText style="font-weight:bold" value="{!hw.percentMissing}"/>
+								</div>
+								<div id="clear">&nbsp;</div>
+							</div>
+						</apex:repeat>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="rightbar">
+		<h2 class="today">{!port.translationStrings['Todays list']}<span> {!Month(TODAY())}-{!Day(TODAY())} </span></h2>
+				<div class="homework">
+					 <apex:variable value="{!port.pic.Show_Gradebook_in_Portal__c}" var="a" rendered="{!!port.pic.Show_Gradebook_in_Portal__c}">
+							<p>{!port.translationStrings['moduleDisabled']}</p>
+					 </apex:variable>
+					 <apex:variable value="{!port.pic.Show_Gradebook_in_Portal__c}" var="a" rendered="{!port.pic.Show_Gradebook_in_Portal__c}">
+						<h3 title="{!port.translationStrings['overdueHelpText']}">
+							{!port.translationStrings['Overdue assignments']}
+						</h3>
+						<table cellpadding="0" cellspacing="0" border="0" class="assignmentList">
+							<apex:repeat value="{!port.overdueAssignmentList}" var="ov">
+								<tr>
+									<td class="assignment">
+										<a onClick="showAssignmentPopup('{!JSENCODE(ov.assignment.Name)}','{!JSENCODE(ov.assignment.Section__r.Course__r.Name)}','{!JSENCODE(ov.assignment.Section__r.Name)}','{!JSENCODE(ov.assignment.Description__c)}','{!JSENCODE(TEXT(ov.assignment.Due_Date__c))}','{!JSENCODE(ov.assignment.Media_Name__c)}','{!JSENCODE(ov.assignment.Media_Source__c)}','{!JSENCODE(ov.atchmnt.Id)}','{!JSENCODE(ov.atchmnt.Name)}');" href='#'>
+										{!ov.assignment.NAME}
+									</a>
+									</td>
+									<td class="due_date">
+										<apex:outputField value="{!ov.assignment.Due_Date__c}"/>
+									</td>
+								</tr>
+							</apex:repeat>
+						</table>
+
+						<h3 title="{!port.translationStrings['currentHelpText']}">
+							{!port.translationStrings['Current assignments']}
+						</h3>
+						<table cellpadding="0" cellspacing="0" border="0" class="assignmentList">
+							<apex:repeat value="{!port.currentAssignmentList}" var="cu">
+							<tr>
+								<td class="assignment">
+									<a onClick="showAssignmentPopup('{!JSENCODE(cu.assignment.Name)}','{!JSENCODE(cu.assignment.Section__r.Course__r.Name)}','{!JSENCODE(cu.assignment.Section__r.Name)}','{!JSENCODE(cu.assignment.Description__c)}','{!JSENCODE(TEXT(cu.assignment.Due_Date__c))}','{!JSENCODE(cu.assignment.Media_Name__c)}','{!JSENCODE(cu.assignment.Media_Source__c)}','{!JSENCODE(cu.atchmnt.Id)}','{!JSENCODE(cu.atchmnt.Name)}');" href='#'>
+										{!cu.assignment.NAME}
+									</a>
+								</td>
+							<td class="due_date">
+								<apex:outputField value="{!cu.assignment.Due_Date__c}"/>
+							</td>
+							</tr>
+							</apex:repeat>
+						</table>
+						</apex:variable>
+				</div>
+
+
+			<div id="todaysbottom">&nbsp;</div>
+		</div>
+		</apex:outputpanel>
+
+
+		<apex:outputpanel id="myAssignments" rendered="{!displayMyAssignments}">
+		<apex:variable value="{!port.pic.Show_Gradebook_in_Portal__c}" var="a" rendered="{!port.pic.Show_Gradebook_in_Portal__c}">
+			<div id="assignmentsnav" style="padding-left:0px;">
+				<ul>
+					<apex:repeat value="{!port.courses}" var="c">
+						<li>
+							<apex:outputPanel rendered="{!c.courseName=='All'}">
+									<apex:commandLink styleclass="{!IF(c.selected,'selected','')}" action="{!refreshMyAssignmentCourses}" value="{!c.courseName}" rerender="myAssignments" target="_parent" oncomplete="reloadMovie('{!JSENCODE(mediaSourceLink)}','{!JSENCODE(mediaSourceName)}');j$('#assignmentDetail').dialog('destroy');"><span>|</span>
+										<apex:param name="tabName" value="{!c.courseName}"/>
+									</apex:commandLink>
+							 </apex:outputPanel>
+							<apex:outputPanel rendered="{!c.courseName!='All'}">
+								<span class="hover">
+									<apex:commandLink title="{!port.translationStrings['Course Description']}|{!c.courseDescription}" styleclass="{!IF(c.selected,'selected','')}" action="{!refreshMyAssignmentCourses}" value="{!c.courseName}" rerender="myAssignments" target="_parent" oncomplete="reloadMovie('{!JSENCODE(mediaSourceLink)}','{!JSENCODE(mediaSourceName)}'); j$('#assignmentDetail').dialog('destroy');"><span>|</span>
+										<apex:param name="tabName" value="{!c.courseName}"/>
+									</apex:commandLink>
+								</span>
+							 </apex:outputPanel>
+						</li>
+					</apex:repeat>
+				</ul>
+			</div>
+			</apex:variable>
+			<div id="maindashalt_wider">
+				<a class="collapseHeader" title="{!port.translationStrings['assignedAssignmentsHelpText']}">
+					<h2 id="insert1" class="assignments collapse" onClick="toggleSlide('div5',this.id,'assignments_img',2);">
+						<span class="arrow_big open" id="assignments_img"> &nbsp;</span>
+							{!port.translationStrings['Current assignments']}
+						<span><img src="{!URLFOR($Resource.Portal, '/general/images/h-ico-assign-curr.png')}" /></span>
+					</h2>
+				</a>
+				<div id="assignments">
+					<div id="div5" style="display:block; overflow: auto; height: 720px;" class="assignclass">
+						<apex:variable value="{!port.pic.Show_Gradebook_in_Portal__c}" var="a" rendered="{!!port.pic.Show_Gradebook_in_Portal__c}">
+							  <p>{!port.translationStrings['moduleDisabled']}</p>
+						</apex:variable>
+						<apex:outputPanel id="currentAssignments" rendered="{!port.pic.Show_Gradebook_in_Portal__c}">
+							<apex:repeat value="{!port.currAssignsPerSection}" var="myassign">
+							  <h3>{!myassign.assignment.NAME}<apex:outputText rendered="{!IF(myassign.assignment.Due_Date__c < TODAY(),true,false)}" styleclass="overdue" style="font-weight:normal; font-size:14px; color:#990000" value="(overdue)"/></h3>
+								<apex:variable value="{!myassign.assignment}" var="a" rendered="{!IF(myassign.assignment.Time__c == port.currReportingPeriod[0].Id,true,false)}">
+									<div class="uploadAttachment" style="{!IF(isManagedPackage,'display:none;','')}"><apex:image value="{!URLFOR($Resource.Portal, '/general/images/btn-addclass.png')}" alt="{!port.translationStrings['Upload an Attachment']}" onclick="window.open('/apex/Portal_AddAttachments?aid={!myassign.grade}&aName={!myassign.assignment.Name}&stud={!port.currstudent.Id}&section={!myassign.assignment.Section__c}&page={!portalPage}','','width=500,height=300,left=300,top=500,resizable=0');"/><p>{!port.translationStrings['Upload an Attachment']}</p></div>
+									<div class="uploadAttachment" style="{!IF(isManagedPackage,'','display:none;')}"><apex:image value="{!URLFOR($Resource.Portal, '/general/images/btn-addclass.png')}" alt="{!port.translationStrings['Upload an Attachment']}" onclick="window.open('/apex/SchoolForce__Portal_AddAttachments?aid={!myassign.grade}&aName={!myassign.assignment.Name}&stud={!port.currstudent.Id}&section={!myassign.assignment.Section__c}&page={!portalPage}','','width=500,height=300,left=300,top=500,resizable=0');"/><p>{!port.translationStrings['Upload an Attachment']}</p></div>
+								</apex:variable>
+							<apex:outputPanel rendered="{!IF(myassign.assignment.Due_Date__c<TODAY(), true, false)}">
+								<div style="float:right;width:100px;height:100px;margin-top:-15px; margin-right:150px;">&nbsp;</div>
+							  </apex:outputPanel>
+						<div class="assignmentDataWrapper">
+									<p><span>{!port.translationStrings['Course']}:  </span>{!myassign.assignment.Section__r.Course__r.Name}</p>
+									<p><span>{!port.translationStrings['Teacher']}:   </span>{!myassign.staffNames}</p>
+									<p><span>Section:   </span>{!myassign.assignment.Section__r.Name}<br/></p>
+									<p><span>Details:   </span>{!myassign.assignment.Description__c}<br/></p>
+									<p><span>Due:</span><apex:outputField value="{!myassign.assignment.Due_Date__c}"/><br/></p>
+									<p style="{!IF(myassign.atchmnt.Id == null,'display:none;','display:block;')}">
+										<span>Attachment:</span>
+										<apex:commandLink styleclass="paper thhickbox" title="{!myassign.atchmnt.Name}" onclick="window.open('/servlet/servlet.FileDownload?file={!myassign.atchmnt.Id}');" value="Paper"/> {!myassign.atchmnt.Name}<br/>
+									</p>
+									<p style="{!IF(myassign.assignment.Media_Source__c == null,'display:none;','display:block;')}">
+										<span>Media:</span>
+										<apex:commandLink onclick="reloadMovie('{!JSENCODE(myassign.assignment.Media_Source__c)}','{!JSENCODE(myassign.assignment.Media_Name__c)}');" value="{!myassign.assignment.Media_Name__c}"  rerender="mediacenter" />
+										<br/>
+									</p>
+								</div>
+								<hr class="assignmentDivider"/>
+							</apex:repeat>
+						</apex:outputPanel>
+					</div>
+					<div class="assignclassalt"><a style="cursor: pointer;"><p class="collapse" onClick="toggleSlide('div1',this.id,'assignments_img',2);"></p></a></div>
+					<div id="clear">&nbsp;</div>
+				</div>
+				<a class="collapseHeader" title="{!port.translationStrings['completeAssignmentHelpText']}">
+				<h2 id="insert2" class="assignments collapse" onClick="toggleSlide('div2',this.id,'past_assignments',2);">
+					<span class="arrow_big closed" id="past_assignments">&nbsp;</span>
+					{!port.translationStrings['Past assignments2']}
+					<span>
+						<img src="{!URLFOR($Resource.Portal, '/general/images/h-ico-assign-past.png')}" />
+					</span>
+				</h2>
+				</a>
+				<div id="assignments">
+					<div id="div2" style="display:none; overflow: auto; height: 200px;" class="assignclass">
+					<apex:variable value="{!port.pic.Show_Gradebook_in_Portal__c}" var="a" rendered="{!!port.pic.Show_Gradebook_in_Portal__c}">
+							  <p>{!port.translationStrings['moduleDisabled']}</p>
+						</apex:variable>
+						<apex:outputPanel id="pastAssignments" rendered="{!port.pic.Show_Gradebook_in_Portal__c}">
+							<apex:repeat value="{!port.pastAssignsPerSectionList}" var="myassign">
+								<h3>{!myassign.assignment.Name}</h3>
+								<p><span>{!port.translationStrings['Course']}:  </span>{!myassign.assignment.Section__r.Course__r.Name}</p>
+								<p><span>Details:   </span>{!myassign.assignment.Description__c}<br/></p>
+								<p style="{!IF(myassign.atchmnt.Id == null,'display:none;','display:block;')}"><span>Attachment:</span><apex:commandLink styleclass="paper thhickbox" title="{!myassign.atchmnt.Name}" onclick="window.open('/servlet/servlet.FileDownload?file={!myassign.atchmnt.Id}');" value="Paper"/> {!myassign.atchmnt.Name}<br/></p>
+								<p><span>Due:</span><apex:outputField value="{!myassign.assignment.Due_Date__c}"/><br/></p>
+								<hr class="assignmentDivider"/>
+							</apex:repeat>
+						</apex:outputPanel>
+					</div>
+					<div class="assignclassalt"><a style="cursor: pointer;"><p class="collapse" onClick="toggleSlide('div2',this.id,'past_assignments',2);"></p></a></div>
+					<div id="clear">&nbsp;</div>
+				</div>
+			</div>
+			<apex:variable value="{!port.pic.Show_Gradebook_in_Portal__c}" var="a" rendered="{!port.pic.Show_Gradebook_in_Portal__c}">
+			<div id="mediacenter">
+				<h2 class="media">{!port.translationStrings['Media Center']}<span><img src="{!URLFOR($Resource.Portal, '/general/images/h-ico-movies.png')}" /></span></h2>
+				<div id="video">
+					<iframe id="movieFrame"  type="text/html" width="334" height="275" src="" frameborder="0">
+					</iframe><br /><br />
+
+					<h3 id ="currentVideo">{!port.translationStrings['Now playing']}: </h3>
+					<ul  class="playlistItems">
+						<apex:repeat value="{!port.mediaList}" var="s">
+							<li><a href="" style="cursor:pointer;" onmouseover="this.style.textDecoration = 'underline'" onmouseout="this.style.textDecoration = 'none'" onclick="reloadMovie('{!JSENCODE(s.Resource__c)}','{!JSENCODE(s.Name)}');">{!s.Name}</a></li>
+						</apex:repeat>
+					</ul>
+				</div>
+				<div id="videobottom">&nbsp;</div>
+				<div id="clear">&nbsp;</div>
+			</div>
+			</apex:variable>
+			<script>
+				j$('.hover').find('a').cluetip({ splitTitle: '|'});
+			</script>
+
+		</apex:outputpanel>
+		<apex:outputPanel id="myProgress" rendered="{!displayMyProgress}">
+			<apex:variable value="{!port.pic.Show_Gradebook_in_Portal__c}" var="a" rendered="{!port.pic.Show_Gradebook_in_Portal__c}">
+				<div id="assignmentsnav">
+						<ul>
+							<apex:repeat value="{!port.courses}" var="c">
+								<li>
+									<apex:outputPanel rendered="{!c.courseName=='All'}">
+											<apex:commandLink title="{!port.translationStrings['Course Description']}|{!c.courseDescription}" styleclass="{!IF(c.selected,'selected','')}" action="{!refreshMyProgressCourses}" value="{!c.courseName}" rerender="myProgress,refreshJquery" target="_parent"><span>|</span>
+										<apex:param name="progressCourseName" value="{!c.courseName}"/>
+									</apex:commandLink>
+									 </apex:outputPanel>
+									<apex:outputPanel rendered="{!c.courseName!='All'}">
+										<span class="hover">
+											<apex:commandLink title="{!port.translationStrings['Course Description']}|{!c.courseDescription}" styleclass="{!IF(c.selected,'selected','')}" action="{!refreshMyProgressCourses}" value="{!c.courseName}" rerender="myProgress,refreshJquery" target="_parent"><span>|</span>
+										<apex:param name="progressCourseName" value="{!c.courseName}"/>
+											</apex:commandLink>
+										</span>
+									 </apex:outputPanel>
+								</li>
+							</apex:repeat>
+						</ul>
+				</div>
+			</apex:variable>
+			<div id="maindash_full" style="margin-top:15px;">
+					<h2>{!port.translationStrings['My Progress']}
+					<apex:variable value="{!port.pic.Show_Gradebook_in_Portal__c}" var="a" rendered="{!port.pic.Show_Gradebook_in_Portal__c}">
+					<apex:variable value="{!progressCourseName}" var="p" rendered="{!IF(progressCourseName!='All', true, false)}">
+					<span title="{!port.translationStrings['sectionGradeHelpText']}" class="gpafield">
+						{!port.translationStrings['Section Grade']}:<br/>
+						<div style="font:18px bold trebuchet, trebuchet MS;">
+							{!port.selectedSectionGrade}
+						</div>
+					</span>
+					</apex:variable>
+					<span class="gpafield" title="{!port.translationStrings['currentGPAHelpText']}" style="{!IF((port.currentGPA == null) ||(port.currentGPA == 0.0) || (ProgressCourseName!='All') || !port.pic.Display_GPA_on_Report_Cards__c, 'display:none;', '')}">
+						{!port.translationStrings['Current GPA']}:<br/>
+						<div style="font:18px bold trebuchet, trebuchet MS;">
+							{!port.currentGPA}
+						</div>
+					</span>
+					</apex:variable>
+					</h2>
+					<div id="progress" style="padding-left:15px;padding-right:15px; min-height:200px;">
+					 <apex:variable value="{!port.pic.Show_Gradebook_in_Portal__c}" var="a" rendered="{!!port.pic.Show_Gradebook_in_Portal__c}">
+								<p>{!port.translationStrings['moduleDisabled']}</p>
+					</apex:variable>
+					<apex:variable value="{!port.pic.Show_Gradebook_in_Portal__c}" var="a" rendered="{!port.pic.Show_Gradebook_in_Portal__c}">
+						<apex:datatable id="progressTable" styleClass="tablesorter" value="{!port.progressGradeList}" var="g">
+						  <apex:column title="{!port.translationStrings['assignmentCourseHelpText']}" styleClass="assignmentTable" headerValue="{!port.translationStrings['Course']}" rendered="{!IF(progressCourseName=='All',true,false)}">
+								<apex:outputText value="{!g.grade.Assignment__r.Section__r.Course__r.Name}"/>
+						 </apex:column>
+						 <apex:column title="This is the assignment name." styleClass="assignmentTable" style="width:200px;" headerValue="{!port.translationStrings['Name']}">
+							<a onClick="showAssignmentPopup('{!JSENCODE(g.grade.Assignment__r.Name)}','{!JSENCODE(g.grade.Assignment__r.Section__r.Course__r.Name)}','{!JSENCODE(g.grade.Assignment__r.Section__r.Name)}','{!JSENCODE(g.grade.Assignment__r.Description__c)}','{!JSENCODE(TEXT(g.grade.Assignment__r.Due_Date__c))}','{!JSENCODE(g.grade.Assignment__r.Media_Name__c)}','{!JSENCODE(g.grade.Assignment__r.Media_Source__c)}','','');" href='#'>
+												{!g.grade.Assignment__r.NAME}
+											</a>
+						 </apex:column>
+						 <apex:column title="{!port.translationStrings['assignmentTypeHelpText']}" styleClass="assignmentTable" style="width:200px;" headerValue="{!port.translationStrings['Standard']}">
+							<apex:outputText value="{!g.grade.Standard__r.Name}"/>
+						 </apex:column>
+						 <apex:column title="{!port.translationStrings['assignmentTypeHelpText']}" styleClass="assignmentTable" style="width:180px;" headerValue="{!port.translationStrings['Type']}">
+							<apex:outputText value="{!g.grade.Assignment__r.Assignment_Library__r.Picklist_value__r.Name}"/>
+						 </apex:column>
+						 <apex:column title="{!port.translationStrings['dueDateHelpText']}" styleClass="assignmentTable datesorter" style="width:120px;" headerValue="{!port.translationStrings['Due Date']}">
+							 {!g.dueDate}
+						 </apex:column>
+						 <apex:column title="{!port.translationStrings['scoreHelpText']}" styleClass="assignmentTable" style="font-weight:bold; color:#9c3303;width:100px;" headerValue="{!port.translationStrings['Grade']}">
+							<apex:outputText value="{!g.grade.Entered_Grade__c}"/>
+						 </apex:column>
+						 <apex:column title="{!port.translationStrings['pointsPossibleHelpText']}" styleClass="assignmentTable" style="width:150px;" headerValue="{!port.translationStrings['Possible Points']}">
+							<apex:outputText value="{!g.grade.Assignment__r.Possible_Points__c}"/>
+						 </apex:column>
+						 <apex:column title="{!port.translationStrings['assignmentWeightingHelpText']}" styleClass="assignmentTable" style="width:80px;" headerValue="{!port.translationStrings['Weight']}">
+							<apex:outputText value="{!g.grade.Assignment__r.Weighting_Value__c}"/>
+							</apex:column>
+						 <apex:column title="{!port.translationStrings['commentHelpText']}" styleClass="assignmentTable" style="width:300px;" headerValue="{!port.translationStrings['Comment']}">
+							<apex:outputText value="{!g.grade.Comment__c}" rendered="{!g.grade.Publish_Comment__c}"/>
+						 </apex:column>
+						 <apex:column >
+								<span class="droppedGrade" style="{!IF(g.grade.exclude_From_Section_Grade__c,'display:block','display:none')}" title="This grade has been dropped and will not be considered in section grade calculations."></span>
+						 </apex:column>
+						 <apex:column >
+							 <apex:outputText value="{!g.sortDueDate}"/>
+						 </apex:column>
+					</apex:datatable>
+					</apex:variable>
+				</div>
+			</div>
+			<script>
+				j$('.hover').find('a').cluetip({ splitTitle: '|'});
+			</script>
+		</apex:outputPanel>
+		<apex:outputpanel id="myCalender" rendered="{!displayMyCalendar}">
+			<div id="maindash_full">
+				<h2 title="{!port.translationStrings['calenderHelpText']}">{!port.translationStrings['My Calendar']}</h2>
+				<div id="progress" style="padding-left:10px;">
+				<apex:variable value="{!port.pic.Show_Calendar_in_Portal__c}" var="a" rendered="{!!port.pic.Show_Calendar_in_Portal__c}">
+							<p>{!port.translationStrings['moduleDisabled']}</p>
+						</apex:variable>
+				<apex:variable value="{!port.pic.Show_Calendar_in_Portal__c}" var="a" rendered="{!port.pic.Show_Calendar_in_Portal__c}">
+					<iframe src="{!port.calandarUrl}"  style=" border-width:0 " width="1100" height="650" frameborder="0" scrolling="no"></iframe>
+					</apex:variable>
+				<br/>
+				</div>
+			</div>
+		</apex:outputpanel>
+
+		<apex:outputpanel id="myPortfolio" rendered="{!displayMyPortfolio}">
+			<div id="maindash_full">
+				<a class="collapseHeader">
+					<h2 id="insert1" class="collapse" onClick="toggleSlide('div4',this.id,'2010_projects',2);" style="margin-top: 30px;">
+						<span class="arrow_big open" id="2010_projects">&nbsp;</span>{!port.translationStrings['Report Cards']}<span><img src="{!URLFOR($Resource.Portal, '/general/images/h-ico-projects-past.png')}" />
+						</span>
+					</h2>
+				</a>
+				<div id="progress" style="padding-left:15px; padding-right:15px;">
+				<div id="div4" style="display:block; overflow: auto; height: 200px;" class="projects">
+					<table id="assignmentHeader" cellpadding="0" cellspacing="0" border="0">
+						<apex:variable value="{!port.pic.Show_Gradebook_in_Portal__c}" var="a" rendered="{!!port.pic.Show_Gradebook_in_Portal__c}">
+							<p>{!port.translationStrings['moduleDisabled']}</p>
+						</apex:variable>
+						<tbody>
+						<apex:variable value="{!port.pic.Show_Gradebook_in_Portal__c}" var="a" rendered="{!port.pic.Show_Gradebook_in_Portal__c}">
+							<tr>
+								<th>{!port.translationStrings['Report Card']}</th>
+								<th>{!port.translationStrings['Date Issued']}</th>
+								<th>&nbsp;</th>
+								<th>&nbsp;</th>
+								<th>&nbsp;</th>
+							</tr>
+							<apex:repeat value="{!port.reportCardsList}" var="rc">
+							<tr>
+								<td class="assignmentTable" style="padding-left:10px;">
+									<a href="#" onclick="window.open('/servlet/servlet.FileDownload?file={!rc.studRP.Attachment_ID__c}');">{!rc.studRP.Time__r.Name__c}_{!rc.year}</a>
+								</td>
+								<td class="assignmentTable" style="padding-left:10px;">
+									{!rc.issueDate}
+								</td>
+								<td class="assignmentTable2" style="padding-left:10px;">&nbsp;</td>
+								<td class="assignmentTable2" style="padding-left:10px;">&nbsp;</td>
+								<td class="assignmentTable2" style="padding-left:10px;">&nbsp;</td>
+							</tr>
+							</apex:repeat>
+						</apex:variable>
+						</tbody>
+					</table>
+					<div id="clear">&nbsp;</div>
+				</div>
+				</div>
+			</div>
+			<div id="maindash_full">
+			<apex:repeat value="{!port.portFolioAssignsList}" var="y">
+				<a class="collapseHeader">
+				<h2 id="header{!y.id}" class="collapse" onClick="toggleSlide('divPortfolio'+'{!y.id}',this.id,'portfolioArrow'+'{!y.id}',2);" style="margin-top: 30px;">
+					<span class="arrow_big open" id="portfolioArrow{!y.id}">&nbsp;</span>
+					{!port.translationStrings['Past assignments']} {!IF(port.pic.Show_Gradebook_in_Portal__c,'-'+TEXT(y.year),'')}
+					<span>
+						<img src="{!URLFOR($Resource.Portal, '/general/images/h-ico-projects-past.png')}" />
+					</span>
+				</h2>
+				</a>
+				<div id="progress" style="padding-left:15px; padding-right:15px;">
+				<div id="divPortfolio{!y.id}" style="display:block; overflow: auto; height: 200px;" class="projects">
+					<table id="assignmentHeader" cellpadding="0" cellspacing="0" border="0">
+					 <apex:variable value="{!port.pic.Show_Gradebook_in_Portal__c}" var="a" rendered="{!!port.pic.Show_Gradebook_in_Portal__c}">
+								<p>{!port.translationStrings['moduleDisabled']}</p>
+							 </apex:variable>
+					<tbody>
+							  <apex:variable value="{!port.pic.Show_Gradebook_in_Portal__c}" var="a" rendered="{!port.pic.Show_Gradebook_in_Portal__c}">
+								<tr>
+									<th>{!port.translationStrings['Course']}</th>
+									<th>{!port.translationStrings['Assignment Title']}</th>
+									<th>{!port.translationStrings['Teacher Name']}</th>
+									<th>{!port.translationStrings['Date Due']}</th>
+									<th>{!port.translationStrings['Grade Recieved']}</th>
+									<th>{!port.translationStrings['Uploaded Assignments']}</th>
+								</tr>
+								<apex:repeat value="{!y.gradesList}" var="asigns">
+									<tr><td class="assignmentTable2" style="padding-left:10px;">{!asigns.grade.Assignment__r.Section__r.Course__r.Name}</td>
+										<td class="assignmentTable2" style="padding-left:10px;">{!asigns.grade.Assignment__r.NAME}</td>
+										<td class="assignmentTable2">{!asigns.staff}</td>
+										<td class="assignmentTable2"><apex:outputField value="{!asigns.grade.Assignment__r.Due_Date__c}"/></td>
+										<td class="assignmentTable2" style="font-weight:bold; color:#9c3303;">{!asigns.grade.Entered_Grade__c}</td>
+										<td width="400"><a class="sectionTip" href="#" rel="#{!asigns.grade.Id}" title="">View {!asigns.grade.Assignment__r.NAME}</a>
+
+												<div id="{!asigns.grade.Id}">
+												<table>
+														<tr>
+															<th>{!port.translationStrings['Download Assignment']}</th>
+														</tr>
+														<apex:repeat value="{!asigns.uploadedAttachments}" var="at">
+															<tr>
+																<td>
+																	<a href="#" onclick="window.open('/servlet/servlet.FileDownload?file={!at.Id}');">{!at.Name}</a>
+																</td>
+															</tr>
+														</apex:repeat>
+												</table>
+										 </div>
+										</td>
+										 </tr>
+								</apex:repeat>
+							 </apex:variable>
+					</tbody>
+				</table>
+				<div id="clear">&nbsp;</div>
+				</div>
+				</div>
+				</apex:repeat>
+			</div>
+		</apex:outputpanel>
+
+
+		 <apex:outputpanel id="myStrands" rendered="{!displayMyStrands}">
+			  <apex:variable value="{!port.pic.Show_Gradebook_in_Portal__c}" var="a" rendered="{!port.pic.Show_Gradebook_in_Portal__c}">
+				<div id="assignmentsnav" style="overflow-x:visible; font-size:12px;">
+					<ul>
+						<apex:repeat value="{!port.myStandardCourses}" var="c">
+							<li>
+								<apex:outputPanel >
+									<span class="hover">
+										<apex:commandLink title="{!port.translationStrings['Course Description']}|{!c.courseDescription}" styleclass="{!IF(c.selected,'selected','')}" action="{!refreshMyStandards}" value="{!c.courseName}" rerender="myStrands" target="_parent" oncomplete="j$('#assignmentDetail').dialog('destroy');"><span>|</span>
+											<apex:param name="strandCourseName" value="{!c.courseName}"/>
+										</apex:commandLink>
+									</span>
+								 </apex:outputPanel>
+							</li>
+						</apex:repeat>
+					</ul>
+				</div>
+				</apex:variable>
+
+				<div id="maindashalt_wider">
+					<h2 id="insert1" class="assignments collapse"  title="This is an inclusive list of all standards associated with this class for the current school year.">
+						{!port.translationStrings['My Standards']}:
+						<span><img src="{!URLFOR($Resource.Portal, '/general/images/h-ico-assign-curr.png')}" /></span>
+					</h2>
+					<div id="assignments" style="margin-left:10px;padding:0px;">
+						<div style="margin-top:5px; display:block; overflow: auto; height: 720px; padding:10px;" >
+							<ul style="padding:0px; margin:0px;">
+								<apex:variable value="{!port.pic.Show_Standards_in_Portal__c}" var="a" rendered="{!!port.pic.Show_Standards_in_Portal__c}">
+								<p>{!port.translationStrings['moduleDisabled']}</p>
+								</apex:variable>
+								<apex:variable value="{!port.pic.Show_Standards_in_Portal__c}" var="st" rendered="{!port.pic.Show_Standards_in_Portal__c}">
+									<apex:repeat value="{!port.strandsByCourseList}" var="strand">
+										<li style="padding:0px; margin:0px;border-bottom: 3px solid #FC0">
+											<div style="float:left;padding-right:10px;"><span title = "A strand is a collection of associated standards.">Strand</span><br/>
+												<span class="arrow_big open" id="assignments_img"> &nbsp;</span>
+											</div>
+											<div style="float:left; width:450px; height:45px;padding-top:25px;padding-right:30px;color:black;font-size:14px;">{!strand.strandName}
+											</div>
+											<apex:variable value="{!port.pic.Standards_ONLY_Gradebook__c}" rendered="{!!port.pic.Standards_ONLY_Gradebook__c}" var="a">
+												<div style="float:left; width:120px; height:45px;padding-top:10px;">
+														<img src="{!IF(strand.masteredStrandPerc >= port.pic.Strand_Grade_Mastery_Percentage__c,URLFOR($Resource.Portal, '/general/images/gaugeGreen.png'),URLFOR($Resource.Portal, '/general/images/gaugeRed.png'))}" title="{!port.translationStrings['gaugeHelpText']}"/>
+												</div>
+												<div style="float:left; width:55px; height:45px;padding-top:25px;"><span title="{!port.translationStrings['percentMasteredHelpText']}">{!strand.masteredStrandPerc} %</span></div><br/>
+											</apex:variable>
+											<div id="clear">&nbsp;</div>
+											<table width="100%" class="displayTable">
+												<thead>
+													<tr>
+														<th style="width:375px;margin-left:60px; vertical-align:center; font-size:16px;">
+															<span title="{!port.translationStrings['standardHelpText']}">
+																{!port.translationStrings['Standards']}
+															</span>
+														</th>
+														<th>
+														</th>
+														<apex:repeat value="{!port.reportingPeriodList}" var="rp">
+															<th>
+																{!rp.Name__c}
+															</th>
+														</apex:repeat>
+													</tr>
+												</thead>
+												<tbody>
+													<apex:repeat value="{!strand.standardsList}" var="standardWrapper">
+														<tr>
+															<td>
+																{!standardWrapper.longText}
+															</td>
+															<td style="width:50px; height:30px; text-align:center;">
+																<img src="{!IF(standardWrapper.lastGrade >= port.pic.Standard_Grade_Mastery_Threshold__c,
+																		URLFOR($Resource.Portal, '/general/images/green_progress.png'),
+																		URLFOR($Resource.Portal, '/general/images/red_progress.png'))}" 
+																	height="24px" width="24px" 
+																	title="{!IF(standardWrapper.lastGrade >= port.pic.Standard_Grade_Mastery_Threshold__c,
+																		port.translationStrings['masteredHelpText'],port.translationStrings['failingHelpText'])}"/>
+															</td>
+															<apex:repeat value="{!standardWrapper.standards}" var="standard">
+																<td>
+																{!standard.Standard_Grade__c}
+																</td>
+															</apex:repeat>
+														</tr>
+													</apex:repeat>
+												</tbody>
+											</table>
+										</li>
+									</apex:repeat>
+								  </apex:variable>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<apex:variable value="{!port.pic.Show_Standards_in_Portal__c}" var="a" >
+					<div id="mediacenter">
+						<h2 class="media">{!port.translationStrings['Media Center']}<span><img src="{!URLFOR($Resource.Portal, '/general/images/h-ico-movies.png')}" /></span></h2>
+						<div id="video">
+							<iframe id="movieFrame"  type="text/html" width="334" height="275" src="" frameborder="0">
+							</iframe><br /><br />
+
+							<h3 id ="currentVideo">{!port.translationStrings['Now playing']}: </h3>
+							<ul  class="playlistItems">
+								<apex:repeat value="{!port.standsResList}" var="s">
+									<li><a href="" style="cursor:pointer;" onmouseover="this.style.textDecoration = 'underline'" onmouseout="this.style.textDecoration = 'none'" onclick="reloadMovie('{!JSENCODE(s.Resource__c)}','{!JSENCODE(s.Name)}');">{!s.Name}</a></li>
+								</apex:repeat>
+							</ul>
+						</div>
+						<div id="videobottom">&nbsp;</div>
+						<div id="clear">&nbsp;</div>
+					</div>
+				</apex:variable>
+				<script>
+					j$('.hover').find('a').cluetip({ splitTitle: '|'});
+				</script>
+				<div id="rightbar2" style="float:right; margin-top:10px;margin-right:40px;">
+					<h2 class="today">{!port.translationStrings['Bulletin Board']}</h2>
+						<div class="homework">
+
+							<apex:variable value="{!port.pic.Show_Gradebook_in_Portal__c}" var="a" rendered="{!port.pic.Show_Gradebook_in_Portal__c}">
+								<h3 title="{!port.translationStrings['mediaHelpText']}">{!port.translationStrings['Resources and Links']}</h3>
+								<table cellpadding="0" cellspacing="0" border="0" class="assignmentList">
+									<apex:repeat value="{!port.standsbulletinList}" var="bu">
+									<tr>
+										<td class="assignment">
+											<a href="#" onclick="window.open('{!bu.Resource__c}')" > {!bu.Name}  </a>
+										</td>
+									</tr>
+										</apex:repeat>
+								</table>
+							</apex:variable>
+							<apex:variable value="{!port.pic.Show_Gradebook_in_Portal__c}" var="a" rendered="{!!port.pic.Show_Standards_in_Portal__c}">
+								<p>{!port.translationStrings['moduleDisabled']}</p>
+							</apex:variable>
+						</div>
+					<div id="todaysbottom2">&nbsp;</div>
+			</div>
+		</apex:outputpanel>
+		
+		<apex:outputpanel id="Mytonomy" rendered="{!displayMytonomy}">
+			 <apex:iframe src="http://mytonomy.com" scrolling="true" id="theIframe" height="800px"/>
+		</apex:outputpanel>
+		</apex:outputpanel>
+	</div>
+</body>
+</apex:form>
+</apex:page>

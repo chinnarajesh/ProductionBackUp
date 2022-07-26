@@ -1,0 +1,345 @@
+<apex:page controller="SchoolProgramController">
+<apex:form >
+<c:resourceComponent />
+<style>
+   #add-schools-to-programs > div {
+	   width:45%;
+   } 
+   .bPageBlock .labelCol {
+   		text-align: left;
+   }
+   .helpText{
+   	z-index: 100000;
+   }
+</style>
+<script type="text/javascript">
+		var SchoolRow;
+
+		window.onbeforeunload = function(){
+			var d = document.getElementById("testTable").rows[0].cells[0].innerHTML;
+			if(d=="true" && !isSaving)
+				return 'You have unsaved work on this page. If you proceed, this work will be lost.';
+		}
+		
+		function filterAreas(selectBox){
+			filterTable(selectBox,"reqTable",0);
+			filterTable(selectBox,"optTable",0);
+		}
+
+		function selectRow(row,id) {
+			highlightRow(row);
+			if(SchoolRow==row){
+				SchoolRow=null;
+			}
+			else{
+				if(SchoolRow!=null){
+					highlightRow(SchoolRow);
+				
+				}
+				SchoolRow = row;
+			}
+			setSchool(id);
+		}
+		
+		function Update(valid){
+			if(valid){
+				updateSchoolSteps();
+			}
+			else{
+				isSaving = false;
+			}
+		}
+		function popUp(numItems) {
+			if(numItems>0){
+				j$('#test').css({'overflow-y': 'auto', 'max-height': '600px'});
+				j$('#jumpLink').click();
+			}else if(SchoolRow!=null){
+				updateSchoolSteps();
+			}
+		 }
+		 
+		function updateSchoolSteps(){
+			//showProgressBar('Updating school.  Please wait.');
+			isSaving=true;
+			updateSchool();
+		}
+		 
+		function onModalCancel() {
+			close_modal("#test");
+			var programID = document.getElementById("{!$Component.programID}");
+			if(modalMethod == "chngPrg") {programID.rows[progIndex].cells[0].children[0].checked=true;}		   
+		}
+		function onModalProceed() {
+			close_modal("#test");
+			var programID = document.getElementById("{!$Component.programID}");
+			if(modalMethod == "chngPrg") {
+				changeProg();
+				for(var i = 0; i < programID.rows.length; i++) {
+					if(programID.rows[i].cells[0].children[0].checked==true) {progIndex = i;}
+				}
+			}
+		}
+		</script>
+		
+<div id="schoolforce-wrapper" class="wrapper">
+<br/>
+<h1>Create and Add Programs to Schools</h1>
+
+<hr/>
+<apex:outputPanel id="messages" styleClass="no-border">
+	<apex:pageMessages />
+</apex:outputPanel>
+<apex:outputPanel id="resetPanel">
+	<script>
+	function checkClose(modalId){
+		isSaving = false;
+		if({!!bProgram}){
+			close_modal(modalId);
+		}
+	}
+	</script>
+</apex:outputPanel>
+<apex:outputpanel id="ChangesMadePanel">
+<table id="testTable" style="display:none;">
+<tr>
+<td>
+{!hasUnsavedChanges}
+</td>
+</tr>
+
+</table>
+</apex:outputpanel>
+
+
+<div class="content-wrapper">
+	
+	<div class="content" id="add-schools-to-programs">
+	
+	<div class="half-column-wide">
+			<apex:outputpanel id="SchoolsArea">
+				<span class="section-header">Available Schools</span>
+				
+				<div class="field" style="{!IF(sites.size > 1, '','display:none;')}">
+					<select Id="SiteSelect" onchange="filterTable(this, 'SchoolTable', 1)">
+						<option value="All" selected="selected">All Locations</option>
+						<apex:repeat value="{!sites}" var="s">
+							<option value="{!s}">{!s}</option>
+						</apex:repeat>
+					</select>
+				</div>
+						
+				<!--/4column--> 
+				
+				<table id="SchoolTable">
+					<thead>
+						<tr>
+							<th>School Name</th>
+							<th>Location</th>
+							<th>Programs Enrolled</th>
+						</tr>
+					</thead>
+					<tbody>
+						<apex:repeat value="{!SchoolsDisplay}" var="s">
+							<tr onclick="selectRow(this,'{!s.id}')">
+								<td>{!s.name}</td>
+								<td>{!s.site}</td>
+								<td>{!s.programsEnrolled}</td>
+							</tr>
+						</apex:repeat>
+					</tbody>
+				</table>
+			</apex:outputpanel>		
+			</div>
+	
+
+
+			<div class="half-column-right">
+				
+			<apex:outputpanel id="ProgramCheckBoxes">
+				<span class="section-header">Available Programs</span>
+				
+				<div class="field">
+				<select Id="AreaSelect" onchange="filterAreas(this)">
+					<option value="All" selected="selected">All Indicator Areas</option>
+					<apex:repeat value="{!areas}" var="a">
+						<option value="{!a.name}">{!a.name}</option>>
+					</apex:repeat>
+				</select>
+				<input type="button" class="drk_blue_btn" value="Create New Program" onclick="createProgramJS();" style="margin: 0px 5px 0px 0px !important; float:right;"/>
+				<div class="clear_fix" />
+				</div>
+						
+				<div class="content-list">
+					<h4>Required</h4>
+					<table Id="reqTable" border="0">
+						<apex:repeat value="{!requiredProgramsDisplay}" var="p">
+						<tr>
+							<td style="display:none;">
+							{!p.indicatorArea}
+							</td>
+							<td>
+							<apex:inputCheckbox value="{!p.checked}" onclick="checkIfRemovableJS('{!p.id}'); return true;"/>{!p.name}<br/>
+							</td>
+						</tr>
+						</apex:repeat>
+					</table> 
+			  
+					<h4>Optional</h4>
+					<table Id="optTable" border="0">
+						<apex:repeat value="{!optionalProgramsDisplay}" var="p">
+						<tr>
+							<td style="display:none;">
+							{!p.indicatorArea}
+							</td>
+							<td>
+							<apex:inputCheckbox value="{!p.checked}" onclick="checkIfRemovableJS('{!p.id}')"/>{!p.name}<br />
+							</td>
+						</tr>
+						</apex:repeat>
+					</table>
+				</div>
+			</apex:outputpanel>
+			<p>&nbsp;</p>
+			<a href="#test" id="jumpLink" rel="leanModal"></a>
+			<a href="#programModal" id="programLink" rel="leanModal"></a>
+			<input type="button" class="black_btn" value="Update School" onclick="if(!isSaving){ isSaving=true; readyExclusionReasons(); } else { alert('Update school in progress.  Please wait.'); } "/>
+		</div>
+	</div>
+</div>
+<!-- / content -->
+<br />
+<div class="content">
+	<input type="button" class="black_btn" value="Save" onclick="if(!isSaving){ isSaving=true; saveChanges(); } else { alert('Save already in progress.  Please wait as the system saves your changes.'); }"/>
+	<input type="button" class="grey_btn" value="Cancel" onclick="resetPage()"/>
+</div>
+<!-- / content --> 
+	<div id="test" class="modal_window" >
+		<div class = "modal-top" style="cursor:move;" >
+			<a class="modal_close" href="#"></a>
+			<p>&nbsp;</p>
+		</div>
+		<apex:outputpanel id="ReasonsPanel">
+			<center>
+			<p>
+			<strong>You have not added the following required Programs.<br />
+			Please state the reason.
+			</strong>
+			</p>
+			</center><p>&nbsp;</p>
+			<hr />
+			<apex:outputPanel id="modalMessages" styleClass="no-border">
+				<apex:pageMessages />
+			</apex:outputPanel>
+			<apex:repeat value="{!needsReasons}" var="r">	
+				<h4>{!r.name}</h4>
+				<apex:inputTextarea value="{!r.exclusionReason}" />
+			</apex:repeat>
+			<p>&nbsp;</p>
+			<div id="options">
+				<input type="button" class="black_btn" value="Proceed" onclick="if(!isSaving){ isSaving=true; ValidUpdate(); } else { alert('Please wait as the system validates your data.'); }"/>
+				<input type="button" class="grey_btn" value="Cancel" onclick="close_modal('#test');" />
+			</div>
+			<p>&nbsp;</p>
+	 	</apex:outputpanel>
+	</div>
+	
+	<div id="programModal" class="modal_window">
+		<div class = "modal-top" style="cursor:move;" >
+			<a class="modal_close" href="javascript:cancelProgramJS();"></a>
+			<p>&nbsp;</p>
+		</div>
+		<apex:outputPanel id="programPanel" styleClass="no-border">
+			<apex:outputPanel rendered="{!bProgram}">
+			<p>
+				<strong>Create New Program</strong>
+			</p>
+			<apex:pageMessages />
+			<hr/>
+			<apex:pageBlock >
+				<apex:pageBlockSection >
+					<apex:inputField required="true" value="{!newProgram.Name}" />
+					<apex:inputField required="true" value="{!newProgram.Program_Description__c}" />
+					<apex:pageBlockSectionItem >
+						<apex:outputLabel for="iaList" value="Indicator Area" />
+						<apex:outputPanel >
+							<div class="requiredInput">
+								<div class="requiredBlock"></div>
+								<apex:selectList id="iaList" value="{!newProgram.Indicator_Area__c}" size="1">
+									<apex:selectOptions value="{!areaOptions}" />
+								</apex:selectList>
+							</div>
+						</apex:outputPanel>
+					</apex:pageBlockSectionItem>
+					<apex:inputField required="true" value="{!newProgram.Recommended_Weekly_Frequency__c}" />
+					<apex:inputField required="true" value="{!newProgram.Recommended_Time_per_Session__c}" />
+					<apex:inputField value="{!newProgram.Overall_Target_Dosage__c}" />
+					<apex:inputField value="{!newProgram.Required_Program__c}" />
+				</apex:pageBlockSection>
+			</apex:pageBlock>
+			<input type="button" class="black_btn" value="Save" onclick="if(!isSaving){ isSaving=true; saveProgramJS(); } else { alert('Please wait while the program saves.'); }"/>
+			<input type="button" class="grey_btn" value="Cancel" onclick="cancelProgramJS();" />
+			</apex:outputPanel>
+		</apex:outputPanel>
+	</div>
+			
+  
+  <!--/#content-wrapper--> 
+</div>
+<!-- /#schoolforce-wrapper -->
+<apex:actionFunction name="setSchool" action="{!selectSchool}" rerender="messages,ProgramCheckBoxes">
+	<apex:param name="a" value="" assignTo="{!selectedSchool}"/>
+</apex:actionFunction> 
+
+<apex:actionFunction name="createProgramJS" action="{!createProgram}" rerender="programPanel" oncomplete="j$('#programLink').click();" />
+<apex:actionFunction name="saveProgramJS" action="{!saveProgram}" rerender="programPanel,ProgramCheckBoxes,resetPanel,SchoolsArea" oncomplete="checkClose('#programModal');" />
+<apex:actionFunction name="cancelProgramJS" action="{!cancelProgram}" rerender="programPanel,resetPanel" oncomplete="checkClose('#programModal');" immediate="true" />
+
+<apex:actionFunction name="updateSchool" action="{!updateSchool}" rerender="SchoolsArea,ChangesMadePanel" oncomplete="isSaving=false; close_modal('#test');" >
+</apex:actionFunction> 
+
+<apex:actionFunction name="ValidUpdate" action="{!validateReasons}" rerender="modalMessages" oncomplete="Update({!valid})">
+</apex:actionFunction> 
+
+<apex:actionFunction name="readyExclusionReasons" action="{!readyExclusionReasons}" rerender="messages, ReasonsPanel" oncomplete="isSaving=false; popUp({!needsReasons.size}); ">
+</apex:actionFunction> 
+
+<apex:actionFunction name="saveChanges" action="{!saveChanges}" rerender="messages,SchoolsArea,ProgramCheckBoxes,ChangesMadePanel" oncomplete="isSaving=false;">
+</apex:actionFunction> 
+
+<apex:actionFunction name="resetPage" action="{!resetPage}">
+</apex:actionFunction> 
+
+<apex:actionFunction name="checkIfRemovableJS" action="{!checkIfRemovable}" rerender="messages,ProgramCheckBoxes">
+	<apex:param name="b" value="" assignTo="{!checkProgramId}" />
+</apex:actionFunction><!--
+
+<apex:actionstatus id="loadingUI">
+<apex:facet name="start">
+<script>
+j$(function(){
+	var window_center = j$(window).width()*0.5; 
+	j$('#loadingPane').css({"z-index":12000,"left":window_center+"px","margin-left":-(335/2)+"px","margin-top":"-350px"});
+});
+</script>
+<div id="loadingPane" style="background-color: #fbfbfb;height: 100%;opacity:0.65;width:100%;">
+        <div class="sideBuffer" style="width: 55px; height: 45px;"></div>
+            <div class="middleSpace" style="width: 335; height: 10"></div>
+                <div>
+                    <center>
+                       <img src="{!URLFOR($Resource.resources_Master, '/custom/images/schoolforceLogo.png')}" alt="" />
+                    </center>
+                </div>
+               <div>
+                   <center>
+                       <div>
+                           <img src="{!URLFOR($Resource.resources_Master, '/custom/images/AjaxLoader.gif')}" style='width: 100; height: 100; vertical-align: middle' alt="" />
+                           <p id="messageText1"
+                              style="horizontal-align: center; font-weight: bold; vertical-align: middle; width: 400px; text-align: center; color: black" >LOADING!!!!</p>
+                       </div>
+                   </center>
+               </div>
+        </div>
+</apex:facet>
+</apex:actionstatus>
+--></apex:form>
+</apex:page>

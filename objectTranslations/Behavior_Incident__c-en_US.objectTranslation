@@ -1,0 +1,954 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Behavior</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Behavior</value>
+    </caseValues>
+    <fields>
+        <help><!-- Additional information that Adult on Duty or any other Adult involved will enter related to an incident --></help>
+        <label><!-- Additional Comments --></label>
+        <name>Additional_Comments__c</name>
+    </fields>
+    <fields>
+        <label><!-- Additional Instructional Time Lost --></label>
+        <name>Addl_Educational_Time_Lost__c</name>
+    </fields>
+    <fields>
+        <label><!-- Adult On Duty Email --></label>
+        <name>Adult_On_Duty_Email__c</name>
+    </fields>
+    <fields>
+        <help><!-- The adult interacting with the student at the time or immediately after the incident. If no adult was interacting, then the adult primarily responsible for the student at the time of the incident. --></help>
+        <label><!-- Adult on Duty --></label>
+        <name>Adult_on_Duty__c</name>
+        <relationshipLabel><!-- Behavior --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Alternative Seating --></label>
+        <name>Alternative_Seating__c</name>
+    </fields>
+    <fields>
+        <label><!-- Behavior Category For Reporting --></label>
+        <name>Behavior_Category_For_Reporting__c</name>
+        <picklistValues>
+            <masterLabel>Respecting Community</masterLabel>
+            <translation><!-- Respecting Community --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Respecting Others</masterLabel>
+            <translation><!-- Respecting Others --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Respecting Self</masterLabel>
+            <translation><!-- Respecting Self --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Behavior Category --></label>
+        <name>Behavior_Category_Input__c</name>
+        <picklistValues>
+            <masterLabel>Bullying / Threatening / Planning Harm</masterLabel>
+            <translation><!-- Bullying / Threatening / Planning Harm --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Disruptive / Disrespectful</masterLabel>
+            <translation><!-- Disruptive / Disrespectful --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Drugs / Alcohol</masterLabel>
+            <translation><!-- Drugs / Alcohol --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fighting</masterLabel>
+            <translation><!-- Fighting --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Having / Using Potential or Real Weapon</masterLabel>
+            <translation><!-- Having / Using Potential or Real Weapon --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Inappropriate Physical Contact / Unsafe Behavior</masterLabel>
+            <translation><!-- Inappropriate Physical Contact / Unsafe Behavior --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Lying / Cheating / Stealing</masterLabel>
+            <translation><!-- Lying / Cheating / Stealing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Medical</masterLabel>
+            <translation><!-- Medical --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Misusing Materials / Damaging Property</masterLabel>
+            <translation><!-- Misusing Materials / Damaging Property --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Non-compliant / Not Participating / Not Prepared</masterLabel>
+            <translation><!-- Non-compliant / Not Participating / Not Prepared --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Not In Class or With Group / Truancy</masterLabel>
+            <translation><!-- Not In Class or With Group / Truancy --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Positive Behaviors</masterLabel>
+            <translation><!-- Positive Behaviors --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Behavior Contract --></label>
+        <name>Behavior_Contract__c</name>
+    </fields>
+    <fields>
+        <label><!-- Behavior External ID --></label>
+        <name>Behavior_External_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Behavior Incident Type Read Only --></label>
+        <name>Behavior_Incident_Type_Read_Only__c</name>
+    </fields>
+    <fields>
+        <label><!-- Behavior Tier --></label>
+        <name>Behavior_Tier__c</name>
+        <picklistValues>
+            <masterLabel>Tier 1</masterLabel>
+            <translation><!-- Tier 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Tier 2</masterLabel>
+            <translation><!-- Tier 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Tier 3</masterLabel>
+            <translation><!-- Tier 3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Tier 4</masterLabel>
+            <translation><!-- Tier 4 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Tier 5</masterLabel>
+            <translation><!-- Tier 5 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Behavior Type --></label>
+        <name>Behavior_Type__c</name>
+        <picklistValues>
+            <masterLabel>T1 - Any (Tier 1) behavior or other conduct not specifically enumerated in any other tier that is disrespectful or causes minor disruptions to the academic environment</masterLabel>
+            <translation><!-- T1 - Any (Tier 1) behavior or other conduct not specifically enumerated in any other tier that is disrespectful or causes minor disruptions to the academic environment --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>T1 - Any behavior not specifically enumerated in any other tier that is disrespectful or causes minor disruption to the academic environment but does not involved damage to school property or harm to self or others</masterLabel>
+            <translation><!-- T1 - Any behavior not specifically enumerated in any other tier that is disrespectful or causes minor disruption to the academic environment but does not involved damage to school property or harm to self or others --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>T1 - Attending class without required class materials or assigned work</masterLabel>
+            <translation><!-- T1 - Attending class without required class materials or assigned work --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>T1 - Behaviors that disrupt or interfere with classroom teaching and learning</masterLabel>
+            <translation><!-- T1 - Behaviors that disrupt or interfere with classroom teaching and learning --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>T1 - Communication or tone and language that is not respectful (including teasing, rolling eyes, swearing, etc.)</masterLabel>
+            <translation><!-- T1 - Communication or tone and language that is not respectful (including teasing, rolling eyes, swearing, etc.) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>T1 - Excessive noise in the classroom, hall, or building</masterLabel>
+            <translation><!-- T1 - Excessive noise in the classroom, hall, or building --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>T1 - Inappropriate displays of affection</masterLabel>
+            <translation><!-- T1 - Inappropriate displays of affection --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>T1 - Noncompliance with an approved dress code</masterLabel>
+            <translation><!-- T1 - Noncompliance with an approved dress code --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>T1 - Off-task behaviors that demonstrate disengagement from classroom learning</masterLabel>
+            <translation><!-- T1 - Off-task behaviors that demonstrate disengagement from classroom learning --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>T1 - Refusal to comply w/ instr. / class / school rules w/o arguing, talking back, or walking away</masterLabel>
+            <translation><!-- T1 - Refusal to comply w/ instr. / class / school rules w/o arguing, talking back, or walking away --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>T1 - Running in the classroom, hall, or building</masterLabel>
+            <translation><!-- T1 - Running in the classroom, hall, or building --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>T1 - Unexcused tardiness for class or school</masterLabel>
+            <translation><!-- T1 - Unexcused tardiness for class or school --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>T2 - Any behavior not specifically enumerated in any other tier that causes disruption to the academic environment, involves damage to school property, or may cause minor harm to self or others</masterLabel>
+            <translation><!-- T2 - Any behavior not specifically enumerated in any other tier that causes disruption to the academic environment, involves damage to school property, or may cause minor harm to self or others --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>T2 - Directing profanity or offensive gestures toward others</masterLabel>
+            <translation><!-- T2 - Directing profanity or offensive gestures toward others --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>T2 - Documented pattern of persistent Tier 1 behavior</masterLabel>
+            <translation><!-- T2 - Documented pattern of persistent Tier 1 behavior --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>T2 - Inappropriate physical contact between students that may not be physically harmful (tickling, bothering, etc.)</masterLabel>
+            <translation><!-- T2 - Inappropriate physical contact between students that may not be physically harmful (tickling, bothering, etc.) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>T2 - Intentional misuse of school equipment/supplies/facilities</masterLabel>
+            <translation><!-- T2 - Intentional misuse of school equipment/supplies/facilities --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>T2 - Leaving classroom or group without permission</masterLabel>
+            <translation><!-- T2 - Leaving classroom or group without permission --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>T2 - Lying with intent to mislead</masterLabel>
+            <translation><!-- T2 - Lying with intent to mislead --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>T2 - Refusal to comply w/ instr. or rules &amp; arguing, talking back, or walking away</masterLabel>
+            <translation><!-- T2 - Refusal to comply w/ instr. or rules &amp; arguing, talking back, or walking away --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>T2 - Unauthorized presence in hallway during class time</masterLabel>
+            <translation><!-- T2 - Unauthorized presence in hallway during class time --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>T2 - Unauthorized use of portable electronic devices during school hours</masterLabel>
+            <translation><!-- T2 - Unauthorized use of portable electronic devices during school hours --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>T2 - Unexcused absence from class</masterLabel>
+            <translation><!-- T2 - Unexcused absence from class --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>T2 - Unexcused absence from school</masterLabel>
+            <translation><!-- T2 - Unexcused absence from school --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>T2 - Using computer/office equipment without permission</masterLabel>
+            <translation><!-- T2 - Using computer/office equipment without permission --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>T3 - Academic Dishonesty</masterLabel>
+            <translation><!-- T3 - Academic Dishonesty --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>T3 - Any behavior not specifically enumerated in any other tier that causes significant disruption to the academic environment or causes harm to self or others</masterLabel>
+            <translation><!-- T3 - Any behavior not specifically enumerated in any other tier that causes significant disruption to the academic environment or causes harm to self or others --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>T3 - Documented pattern of persistent Tier 2 behavior</masterLabel>
+            <translation><!-- T3 - Documented pattern of persistent Tier 2 behavior --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>T3 - Engaging in behavior that demonstrates gang/neighborhood crew affiliation (displaying clothing or gestures associated with gangs)</masterLabel>
+            <translation><!-- T3 - Engaging in behavior that demonstrates gang/neighborhood crew affiliation (displaying clothing or gestures associated with gangs) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>T3 - Engaging in behavior that may cause harm to self or others (rough-housing, running in street, etc.)</masterLabel>
+            <translation><!-- T3 - Engaging in behavior that may cause harm to self or others (rough-housing, running in street, etc.) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>T3 - Forgery</masterLabel>
+            <translation><!-- T3 - Forgery --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>T3 - Gambling</masterLabel>
+            <translation><!-- T3 - Gambling --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>T3 - Hazing</masterLabel>
+            <translation><!-- T3 - Hazing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>T3 - Impulsive theft that does not involve going into personal belongings (taking food, community property, etc.)</masterLabel>
+            <translation><!-- T3 - Impulsive theft that does not involve going into personal belongings (taking food, community property, etc.) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>T3 - Posting or distributing material or lit that is disrespectful, demeaning, humiliating, or damaging to students and/or staff</masterLabel>
+            <translation><!-- T3 - Posting or distributing material or lit that is disrespectful, demeaning, humiliating, or damaging to students and/or staff --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>T3 - Throwing objects that may cause injury or damage property</masterLabel>
+            <translation><!-- T3 - Throwing objects that may cause injury or damage property --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>T3 - Unauthorized possession, use, or distribution of over-the-counter medication</masterLabel>
+            <translation><!-- T3 - Unauthorized possession, use, or distribution of over-the-counter medication --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>T3 - Verbal, written, or physical threat to person or property (including intimidating gestures/postures)</masterLabel>
+            <translation><!-- T3 - Verbal, written, or physical threat to person or property (including intimidating gestures/postures) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>T4 - Any behavior not specifically enumerated in any other tier that causes disruption to the school operation, destroys school property, or causes significant harm to self or others</masterLabel>
+            <translation><!-- T4 - Any behavior not specifically enumerated in any other tier that causes disruption to the school operation, destroys school property, or causes significant harm to self or others --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>T4 - Causing serious disruption/damage to school&apos;s computer system, electronic files, or network</masterLabel>
+            <translation><!-- T4 - Causing serious disruption/damage to school&apos;s computer system, electronic files, or network --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>T4 - Documented pattern of persistent Tier 3 behavior</masterLabel>
+            <translation><!-- T4 - Documented pattern of persistent Tier 3 behavior --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>T4 - Intentional vandalism or destruction of property over $500</masterLabel>
+            <translation><!-- T4 - Intentional vandalism or destruction of property over $500 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>T4 - Intentional vandalism or destruction of property under $500</masterLabel>
+            <translation><!-- T4 - Intentional vandalism or destruction of property under $500 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>T4 - Interfering with school authorities or participating in a major disruption of the school&apos;s operations (outbursts / loss of control)</masterLabel>
+            <translation><!-- T4 - Interfering with school authorities or participating in a major disruption of the school&apos;s operations (outbursts / loss of control) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>T4 - Planned theft that involves going into personal belonging or space</masterLabel>
+            <translation><!-- T4 - Planned theft that involves going into personal belonging or space --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>T4 - Possession of tools or instruments which school administrators deem could be used as weapons</masterLabel>
+            <translation><!-- T4 - Possession of tools or instruments which school administrators deem could be used as weapons --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>T4 - Pushing, hitting, or fighting where there is no physical harm or weapon used</masterLabel>
+            <translation><!-- T4 - Pushing, hitting, or fighting where there is no physical harm or weapon used --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>T4 - Retaliation for reporting harassment and sexual harassment</masterLabel>
+            <translation><!-- T4 - Retaliation for reporting harassment and sexual harassment --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>T4 - Sexual harassment</masterLabel>
+            <translation><!-- T4 - Sexual harassment --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>T4 - Tampering with or altering an official school record or document</masterLabel>
+            <translation><!-- T4 - Tampering with or altering an official school record or document --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>T4 - Using obscene, seriously offensive, or abusive language or gestures</masterLabel>
+            <translation><!-- T4 - Using obscene, seriously offensive, or abusive language or gestures --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>T5 - Arson, Bio-hazard, Bomb threat</masterLabel>
+            <translation><!-- T5 - Arson, Bio-hazard, Bomb threat --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>T5 - Commission or attempted commission of any act of sexual assault or sexual aggression</masterLabel>
+            <translation><!-- T5 - Commission or attempted commission of any act of sexual assault or sexual aggression --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>T5 - Documented pattern of persistent Tier 4 behavior</masterLabel>
+            <translation><!-- T5 - Documented pattern of persistent Tier 4 behavior --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>T5 - Participating in group fight which has been planned, causes major disruption to school day or results in substantial bodily injury</masterLabel>
+            <translation><!-- T5 - Participating in group fight which has been planned, causes major disruption to school day or results in substantial bodily injury --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>T5 - Planned assault/physical attack on student or staff where there is or has the potential for substantial harm</masterLabel>
+            <translation><!-- T5 - Planned assault/physical attack on student or staff where there is or has the potential for substantial harm --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>T5 - Possession of a weapon</masterLabel>
+            <translation><!-- T5 - Possession of a weapon --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>T5 - Possession of drug paraphernalia or controlled substance</masterLabel>
+            <translation><!-- T5 - Possession of drug paraphernalia or controlled substance --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>T5 - Possession of fireworks or explosives</masterLabel>
+            <translation><!-- T5 - Possession of fireworks or explosives --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>T5 - Possession or distribution of alcohol</masterLabel>
+            <translation><!-- T5 - Possession or distribution of alcohol --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>T5 - Pushing, hitting, or fighting which results in a serious physical injury</masterLabel>
+            <translation><!-- T5 - Pushing, hitting, or fighting which results in a serious physical injury --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>T5 - Selling or distribution of marijuana, prescription drugs, controlled dangerous substances, imitation controlled substances, inhalants, other intoxicants, controlled or drug paraphernalia</masterLabel>
+            <translation><!-- T5 - Selling or distribution of marijuana, prescription drugs, controlled dangerous substances, imitation controlled substances, inhalants, other intoxicants, controlled or drug paraphernalia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>T5 - Theft or attempted theft using force, coercion, intimidation, or threat of violence</masterLabel>
+            <translation><!-- T5 - Theft or attempted theft using force, coercion, intimidation, or threat of violence --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>T5 - Use, possession, or bringing to school a loaded or unloaded firearm</masterLabel>
+            <translation><!-- T5 - Use, possession, or bringing to school a loaded or unloaded firearm --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>T5 - Use, threatened use, or transfer of any weapon</masterLabel>
+            <translation><!-- T5 - Use, threatened use, or transfer of any weapon --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>T5 - Using an article that is not normally considered a weapon to injure another individual</masterLabel>
+            <translation><!-- T5 - Using an article that is not normally considered a weapon to injure another individual --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>T5 - Using an article that is not normally considered a weapon to intimidate or threaten another individual</masterLabel>
+            <translation><!-- T5 - Using an article that is not normally considered a weapon to intimidate or threaten another individual --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Buddy Classroom --></label>
+        <name>Buddy_Classroom__c</name>
+    </fields>
+    <fields>
+        <label><!-- Context Location --></label>
+        <name>Context_Location__c</name>
+        <picklistValues>
+            <masterLabel>Bathroom</masterLabel>
+            <translation><!-- Bathroom --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cafeteria</masterLabel>
+            <translation><!-- Cafeteria --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Classroom</masterLabel>
+            <translation><!-- Classroom --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fieldwork</masterLabel>
+            <translation><!-- Fieldwork --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Gym</masterLabel>
+            <translation><!-- Gym --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hallway</masterLabel>
+            <translation><!-- Hallway --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Lobby</masterLabel>
+            <translation><!-- Lobby --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Office</masterLabel>
+            <translation><!-- Office --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Park</masterLabel>
+            <translation><!-- Park --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Playground</masterLabel>
+            <translation><!-- Playground --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sidewalk/Street</masterLabel>
+            <translation><!-- Sidewalk/Street --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Specialist Room</masterLabel>
+            <translation><!-- Specialist Room --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Stairwell</masterLabel>
+            <translation><!-- Stairwell --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Time at which the incident occurred. --></help>
+        <label><!-- Context-Time --></label>
+        <name>Context_Time__c</name>
+        <picklistValues>
+            <masterLabel>After Hours Event</masterLabel>
+            <translation><!-- After Hours Event --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>After School</masterLabel>
+            <translation><!-- After School --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Arrival</masterLabel>
+            <translation><!-- Arrival --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Before School</masterLabel>
+            <translation><!-- Before School --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Class-Indep/Group Work</masterLabel>
+            <translation><!-- Class-Indep/Group Work --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Class-Lesson/Meeting</masterLabel>
+            <translation><!-- Class-Lesson/Meeting --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Class-Other</masterLabel>
+            <translation><!-- Class-Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Class-Transition</masterLabel>
+            <translation><!-- Class-Transition --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Community Circle/All School Meeting</masterLabel>
+            <translation><!-- Community Circle/All School Meeting --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dismissal</masterLabel>
+            <translation><!-- Dismissal --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Evening Event</masterLabel>
+            <translation><!-- Evening Event --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fieldwork</masterLabel>
+            <translation><!-- Fieldwork --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Lunch</masterLabel>
+            <translation><!-- Lunch --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pull Out</masterLabel>
+            <translation><!-- Pull Out --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Recess</masterLabel>
+            <translation><!-- Recess --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Room/Hall Transition</masterLabel>
+            <translation><!-- Room/Hall Transition --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Special Block</masterLabel>
+            <translation><!-- Special Block --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Special Class</masterLabel>
+            <translation><!-- Special Class --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Transition In Hall/Stairs</masterLabel>
+            <translation><!-- Transition In Hall/Stairs --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Transition In Room</masterLabel>
+            <translation><!-- Transition In Room --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Transition In/Out Building</masterLabel>
+            <translation><!-- Transition In/Out Building --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Did this incident occur during EDP? --></label>
+        <name>Did_this_incident_occur_during_EDP__c</name>
+    </fields>
+    <fields>
+        <label><!-- External Id --></label>
+        <name>External_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Date --></label>
+        <name>Incident_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Incident Description --></label>
+        <name>Incident_Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Incident Identifier --></label>
+        <name>Incident_Identifier__c</name>
+    </fields>
+    <fields>
+        <label><!-- Incident Points --></label>
+        <name>Incident_Points__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>Incident_Status__c</name>
+        <picklistValues>
+            <masterLabel>Awaiting Add&apos;l Info</masterLabel>
+            <translation><!-- Awaiting Add&apos;l Info --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Awaiting Admin Decision</masterLabel>
+            <translation><!-- Awaiting Admin Decision --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Closed</masterLabel>
+            <translation><!-- Closed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Draft</masterLabel>
+            <translation><!-- Draft --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Open</masterLabel>
+            <translation><!-- Open --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Time --></label>
+        <name>Incident_Time__c</name>
+        <picklistValues>
+            <masterLabel>10:00 AM</masterLabel>
+            <translation><!-- 10:00 AM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>10:30 AM</masterLabel>
+            <translation><!-- 10:30 AM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>11:00 AM</masterLabel>
+            <translation><!-- 11:00 AM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>11:30 AM</masterLabel>
+            <translation><!-- 11:30 AM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>12:00 PM</masterLabel>
+            <translation><!-- 12:00 PM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>12:30 PM</masterLabel>
+            <translation><!-- 12:30 PM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1:00 PM</masterLabel>
+            <translation><!-- 1:00 PM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1:30 PM</masterLabel>
+            <translation><!-- 1:30 PM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2:00 PM</masterLabel>
+            <translation><!-- 2:00 PM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2:30 PM</masterLabel>
+            <translation><!-- 2:30 PM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3:00 PM</masterLabel>
+            <translation><!-- 3:00 PM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3:30 PM</masterLabel>
+            <translation><!-- 3:30 PM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4:00 PM</masterLabel>
+            <translation><!-- 4:00 PM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4:30 PM</masterLabel>
+            <translation><!-- 4:30 PM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5:00 PM</masterLabel>
+            <translation><!-- 5:00 PM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5:30 PM</masterLabel>
+            <translation><!-- 5:30 PM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>6:00 PM</masterLabel>
+            <translation><!-- 6:00 PM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>6:30 PM</masterLabel>
+            <translation><!-- 6:30 PM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7:00 AM</masterLabel>
+            <translation><!-- 7:00 AM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7:30 AM</masterLabel>
+            <translation><!-- 7:30 AM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>8:00 AM</masterLabel>
+            <translation><!-- 8:00 AM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>8:30 AM</masterLabel>
+            <translation><!-- 8:30 AM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>9:00 AM</masterLabel>
+            <translation><!-- 9:00 AM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>9:30 AM</masterLabel>
+            <translation><!-- 9:30 AM --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Enter the subject of the incident. (Example: Student running in hallway) --></help>
+        <label><!-- Title --></label>
+        <name>Incident_Title__c</name>
+    </fields>
+    <fields>
+        <label><!-- Type --></label>
+        <name>Incident_Type__c</name>
+        <picklistValues>
+            <masterLabel>Negative</masterLabel>
+            <translation><!-- Negative --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Neutral</masterLabel>
+            <translation><!-- Neutral --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Positive</masterLabel>
+            <translation><!-- Positive --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Quick Hit</masterLabel>
+            <translation><!-- Quick Hit --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Incident Weighting --></label>
+        <name>Incident_Weighting__c</name>
+    </fields>
+    <fields>
+        <label><!-- Loss Of Privilege --></label>
+        <name>Loss_Of_Privilege__c</name>
+    </fields>
+    <fields>
+        <label><!-- Marked For Deletion --></label>
+        <name>Marked_For_Deletion__c</name>
+    </fields>
+    <fields>
+        <label><!-- Notify Incident Owner --></label>
+        <name>Notify_Incident_Owner__c</name>
+    </fields>
+    <fields>
+        <label><!-- Other Adult Involved 1 Email --></label>
+        <name>Other_Adult_Involved_1_Email__c</name>
+    </fields>
+    <fields>
+        <help><!-- An adult who saw the incident, interacted with the student after the incident, or knows something about the incident. --></help>
+        <label><!-- Other Adult Involved1 --></label>
+        <name>Other_Adult_Involved_1__c</name>
+        <relationshipLabel><!-- Behavior (Other Adult Involved1) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Other Adult Involved 2 Email --></label>
+        <name>Other_Adult_Involved_2_Email__c</name>
+    </fields>
+    <fields>
+        <help><!-- An adult who saw the incident, interacted with the student after the incident, or knows something about the incident. --></help>
+        <label><!-- Other Adult Involved2 --></label>
+        <name>Other_Adult_Involved_2__c</name>
+        <relationshipLabel><!-- Behavior (Other Adult Involved2) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Other Notes --></label>
+        <name>Other_Notes__c</name>
+    </fields>
+    <fields>
+        <label><!-- Other --></label>
+        <name>Other__c</name>
+    </fields>
+    <fields>
+        <label><!-- Practice Desired Behavior --></label>
+        <name>Practice_desired_behavior__c</name>
+    </fields>
+    <fields>
+        <help><!-- If selected, this behavior incident will be permanently stored for the students involved in this incident. --></help>
+        <label><!-- Keep Permanently? --></label>
+        <name>Preserve__c</name>
+    </fields>
+    <fields>
+        <label><!-- Request Info From Adult Involved2 --></label>
+        <name>Request_Info_3rdParty__c</name>
+    </fields>
+    <fields>
+        <label><!-- Request Info From Adult Involved1 --></label>
+        <name>Request_Info_Adult1__c</name>
+    </fields>
+    <fields>
+        <label><!-- Request Info From Adult Involved2 --></label>
+        <name>Request_Info_Adult2__c</name>
+    </fields>
+    <fields>
+        <label><!-- Request Info From Adult On Duty --></label>
+        <name>Request_Info_AoD__c</name>
+    </fields>
+    <fields>
+        <label><!-- Request Info From Adult Involved1 --></label>
+        <name>Request_Info_KW__c</name>
+    </fields>
+    <fields>
+        <label><!-- Restitution / Community Service --></label>
+        <name>Restitution_Community_Service__c</name>
+    </fields>
+    <fields>
+        <label><!-- Selected Behavior Category --></label>
+        <name>Selected_Behavior_Category__c</name>
+    </fields>
+    <fields>
+        <label><!-- Selected Behavior Incident Type --></label>
+        <name>Selected_Behavior_Incident_Type_Formula__c</name>
+    </fields>
+    <fields>
+        <label><!-- Selected Behavior Incident Type --></label>
+        <name>Selected_Behavior_Incident_Type__c</name>
+        <relationshipLabel><!-- Behavior --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- If selected, the Behavior Title and Date will appear in the student and parent portal. --></help>
+        <label><!-- Show In Portal? --></label>
+        <name>Show_In_Portal__c</name>
+    </fields>
+    <fields>
+        <label><!-- Student Involved Full Name --></label>
+        <name>Student_Involved_Full_Name__c</name>
+    </fields>
+    <fields>
+        <help><!-- A student who witnessed the incident. --></help>
+        <label><!-- Student Witness --></label>
+        <name>Student_Witness__c</name>
+        <relationshipLabel><!-- Behavior --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Take-A-Break --></label>
+        <name>Take_A_Break__c</name>
+    </fields>
+    <fields>
+        <label><!-- Time Out --></label>
+        <name>Time_Out__c</name>
+    </fields>
+    <fields>
+        <label><!-- Verbal Redirection --></label>
+        <name>Verbal_Redirection__c</name>
+    </fields>
+    <fields>
+        <label><!-- Verbal Or Written Apology --></label>
+        <name>Verbal_or_written_apology__c</name>
+    </fields>
+    <fields>
+        <label><!-- Weapon Type --></label>
+        <name>Weapon_Type__c</name>
+        <picklistValues>
+            <masterLabel>Airguns (BB or Pellet)</masterLabel>
+            <translation><!-- Airguns (BB or Pellet) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Biological Agent</masterLabel>
+            <translation><!-- Biological Agent --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Bomb</masterLabel>
+            <translation><!-- Bomb --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Chemical Agent</masterLabel>
+            <translation><!-- Chemical Agent --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Handguns (Include Zip Guns And Pistols)</masterLabel>
+            <translation><!-- Handguns (Include Zip Guns And Pistols) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Knife (Blade Longer Than 2 Inches)</masterLabel>
+            <translation><!-- Knife (Blade Longer Than 2 Inches) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other Firearms (Not Handguns, Rifles or Shotgun)</masterLabel>
+            <translation><!-- Other Firearms (Not Handguns, Rifles or Shotgun) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other Weapon</masterLabel>
+            <translation><!-- Other Weapon --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rifle Or Shotgun</masterLabel>
+            <translation><!-- Rifle Or Shotgun --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Unknown Weapon</masterLabel>
+            <translation><!-- Unknown Weapon --></translation>
+        </picklistValues>
+    </fields>
+    <layouts>
+        <layout>Behavior Layout</layout>
+        <sections>
+            <label><!-- Context --></label>
+            <section>Context</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Incident Description --></label>
+            <section>Incident Description</section>
+        </sections>
+        <sections>
+            <label><!-- Incident Information --></label>
+            <section>Incident Information</section>
+        </sections>
+        <sections>
+            <label><!-- Witness Information --></label>
+            <section>Witness Information</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <label><!-- Negative --></label>
+        <name>Negative</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Neutral --></label>
+        <name>Neutral</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Positive --></label>
+        <name>Positive</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Quick Hit --></label>
+        <name>Quick_Hit</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+    <workflowTasks>
+        <description><!-- The consequence for a behavior incident is awaiting admin decision. --></description>
+        <name>Consequence_Awaiting_Admin_Decision2</name>
+        <subject><!-- Consequence Awaiting Admin Decision --></subject>
+    </workflowTasks>
+</CustomObjectTranslation>

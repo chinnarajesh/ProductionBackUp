@@ -1,0 +1,105 @@
+<apex:page standardController="Setup__c" extensions="core_SetupHome" sidebar="false" showHeader="true" tabStyle="Schoolforce_Setup__tab">
+<c:setupWizardSharedComponents />
+<script>
+j$('.content').css('display','none');
+j$('.links').css('display','none');
+</script>
+ 
+<table style="width:100%">
+<tr><td style="vertical-align:top; width:13%">
+<!-- <c:setup_sidebar setup="{!cSetup}"/> -->
+<c:setupWizardSidebar setupId="{!cSetup.setup.id}"/>
+
+</td>
+<td style="vertical-align:top;">	
+<!-- Error -->
+        <apex:outputPanel id="error">
+            <apex:pageMessages />
+        </apex:outputPanel>
+<!-- Error -->
+<apex:detail relatedList="false"/>
+<apex:outputPanel id="thePanel">
+    <apex:form >
+		<apex:pageBlock title="Calculate Reenrollment Rate" >
+		    <apex:pageBlockButtons location="bottom">
+			    <apex:commandButton value="Calculate" action="{!setReenrollmentRate}" />
+			</apex:pageBlockButtons>
+		</apex:pageBlock>   
+
+        <!-- <apex:pageBlock title="Reporting Periods" rendered="{!IF(cSetup.reportingPeriodList.size!=0, true, false)}">
+             <apex:pageblockTable value="{!cSetup.cRPeriodList}" id="theReportingPeriods" var="rp" >
+                <apex:column style="width:100px" rendered="{!!cSetup.setup.Group_Based__c}" headerValue="Edit Master Schedule?">    
+                            <a id="viewLink"  style="color:blue;" href="{!rp.schedLink}"><image src='{!rp.schedIcon}'/></a>
+                </apex:column>  
+                <apex:column value="{!rp.rPeriod.Name__c}"/>
+                <apex:column value="{!rp.rPeriod.Date_Start_Date__c}"/>
+                <apex:column value="{!rp.rPeriod.End_Date__c}"/>
+                <apex:column value="{!rp.rPeriod.Picklist_Value__c}"/>
+                <apex:column headerValue="Add Template?">
+                    <a id="viewLink"  style="color:blue;" href="/apex/core_ScheduleTemplate?setupid={!cSetup.setup.id}&new=1&rpId={!rp.rPeriod.id}"><image src='/img/feeds/follow12.png'/></a>
+                </apex:column>
+                <apex:column headervalue="Schedule Templates" >
+                    <apex:pageBlockTable value="{!rp.scheduleTemplateList}" var="p" rendered="{!IF(rp.scheduleTemplateList.size>0,true, false)}">
+                        <apex:column headerValue="Action" styleClass="actionColumn">
+                                <a class="actionLink"  href="/apex/core_ScheduleTemplate?id={!p.id}">Edit</a>&nbsp;|
+                                <a class="actionLink"  href="/apex/core_scheduleTemplate?cloneId={!p.id}&setupId={!cSetup.setup.id}&rpId={!rp.rPeriod.Id}">Clone</a>&nbsp;|
+                                <a class="actionLink" href="#" onclick="deleteTemplateJs('{!p.id}');">Del</a>
+                                <apex:variable value="{!cSetup.setup.id}" var="setupid" rendered="{!IF(cSetup.setup.Group_Based__c&&p.Has_Class__c, true, false)}">                     
+                                    <a class="actionLink"  href="/apex/GroupAgendaView?repPd={!rp.rperiod.id}&schedTempId={!p.id}&setUpId={!cSetup.setup.id}">|&nbsp;Update Agenda Schedule</a>    
+                                </apex:variable>                
+                        </apex:column> 
+                        <apex:column value="{!p.Name}"/>
+                        <apex:column headerValue="Color" style="width:100px; background-color: {!p.Color__c}"/>
+                        <apex:column value="{!p.Is_Master__c}"/>
+                        <apex:column value="{!p.Has_Class__c}"/>
+                        <apex:column rendered="{!!cSetup.setup.Group_Based__c}" value="{!p.Number_of_Periods__c}"/>
+                        <apex:column rendered="{!cSetup.setup.Group_Based__c}" value="{!p.Start_Time_Text__c}"/>
+                        <apex:column rendered="{!cSetup.setup.Group_Based__c}" value="{!p.End_Time_Text__c}"/> 
+                    </apex:pageBlockTable>
+                </apex:column>
+            </apex:pageblockTable>
+        </apex:pageBlock>
+        <apex:actionFunction action="{!deleteTemplate}" name="deleteTemplateJs"  rerender="thePanel, error">
+            <apex:param name="tempDeleteId" assignTo="{!tempDeleteId}" 
+                        value="" />
+        </apex:actionFunction> -->
+    </apex:form>
+
+    <apex:relatedList list="Picklist_Values__r" title="Picklist Values" />
+    <apex:relatedList list="Values__r" title="Values" />                   
+    <apex:variable value="{!!csetup.setup.Group_Based__c}" var="b" rendered="{!csetup.setup.Group_Based__c}">
+    <apex:form >
+    <apex:pageBlock title="Schedule Groups">
+    <apex:pageBlockButtons location="top">
+    	<apex:commandButton value="New" action="{!addScheduleGroup}"/> 
+    </apex:pageBlockButtons>
+      <apex:pageBlockTable value="{!cSetup.scheduleGroupList}" var="group">
+						
+						<apex:column headerValue="Action" width="200px">
+						
+						<a href="#" onclick="addStudentsToGroupJs('{!group.id}')" >Add/Remove Students</a>
+						<apex:variable value="{!cSetup.setup.Published__c}" var="b" rendered="{!!cSetup.setup.Published__c}">
+							<a href="#" onclick="editGroupJs('{!group.id}')" >| Edit Group</a>
+							</apex:variable>
+						</apex:column>				
+						<apex:column value="{!group.name}" />
+						<apex:column headerValue="Grade Level" value="{!group.All_Grades__c}" />
+						<apex:column value="{!group.Description__c}" />
+					</apex:pageBlockTable>
+      </apex:pageBlock>
+      <apex:actionFunction action="{!addStudentsToGroup}" name="addStudentsToGroupJs" rerender="thePanel">
+      		<apex:param name="selectedGroupId" assignTo="{!selectedGroupId}"
+						value="" />
+      </apex:actionFunction>
+      <apex:actionFunction name="editGroupJs" action="{!editGroup}" rerender="thePanel">
+      		<apex:param name="selectedGroupId" assignTo="{!selectedGroupId}" 
+						value="" />
+      </apex:actionFunction>
+      </apex:form>
+      
+    </apex:variable>
+    <apex:relatedList list="Notifications__r" title="Notifications"/>
+    <apex:relatedList list="Meals_Setup__r" title="Meals Setup" />
+    <apex:relatedList list="Schedules__r" title="Points Reset Schedules" />
+</apex:outputPanel></td></tr></table>
+</apex:page>

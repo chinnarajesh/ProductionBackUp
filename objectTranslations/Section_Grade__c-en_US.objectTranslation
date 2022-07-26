@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Section Grade</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Section Grades</value>
+    </caseValues>
+    <fields>
+        <label><!-- Alternate Lang Comments --></label>
+        <name>Alternate_Lang_Comments__c</name>
+    </fields>
+    <fields>
+        <label><!-- Calculated Standard Grade --></label>
+        <name>Calculated_Standard_Grade__c</name>
+    </fields>
+    <fields>
+        <label><!-- Comments &amp; Next Steps --></label>
+        <name>Comments_Next_Steps__c</name>
+    </fields>
+    <fields>
+        <label><!-- Course Id --></label>
+        <name>Course_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Course Weighting --></label>
+        <name>Course_Weighting__c</name>
+        <relationshipLabel><!-- Section Grades --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Credit Hours --></label>
+        <name>Credit_Hours__c</name>
+    </fields>
+    <fields>
+        <label><!-- Credit/No Credit Section Grade --></label>
+        <name>Credit_No_Credit_Section_Grade__c</name>
+    </fields>
+    <fields>
+        <label><!-- Grade --></label>
+        <name>Display_Grade_Formula__c</name>
+    </fields>
+    <fields>
+        <label><!-- Do Not Show in PGV --></label>
+        <name>Do_Not_Show_in_PGV__c</name>
+    </fields>
+    <fields>
+        <label><!-- External Id --></label>
+        <name>External_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- GPA Added Value Points --></label>
+        <name>GPA_Added_Value_Points__c</name>
+    </fields>
+    <fields>
+        <label><!-- Grade Overridden --></label>
+        <name>Grade_Overridden__c</name>
+    </fields>
+    <fields>
+        <help><!-- Acceptable overrides include but are not limited to, 0-100 for Points, C/NC for Credit, 0-4 for Standards, or another letter value (i.e. I, W, N, etc.) as determined by your System Administrator. --></help>
+        <label><!-- Grade Override --></label>
+        <name>Grade_Override__c</name>
+    </fields>
+    <fields>
+        <label><!-- Grade Scale Category --></label>
+        <name>Grade_Scale_Category__c</name>
+    </fields>
+    <fields>
+        <label><!-- Grade Scale Id --></label>
+        <name>Grade_Scale_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Grade Scale Name --></label>
+        <name>Grade_Scale_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Grade Scale RT --></label>
+        <name>Grade_Scale_RT__c</name>
+    </fields>
+    <fields>
+        <label><!-- Grade Scale --></label>
+        <name>Grade_Scale__c</name>
+    </fields>
+    <fields>
+        <label><!-- Grade --></label>
+        <name>Grade__c</name>
+    </fields>
+    <fields>
+        <label><!-- Holding Source --></label>
+        <name>Holding_Source__c</name>
+        <relationshipLabel><!-- Section Grades --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Key --></label>
+        <name>Key__c</name>
+    </fields>
+    <fields>
+        <label><!-- Letter Grade --></label>
+        <name>Letter_Grade__c</name>
+    </fields>
+    <fields>
+        <label><!-- Multiply GPA Added Value Points --></label>
+        <name>Multiply_GPA_Added_Value_Points__c</name>
+    </fields>
+    <fields>
+        <label><!-- Passing/Failing --></label>
+        <name>Pass_Fail__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reference Id --></label>
+        <name>Reference_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reporting Period Name --></label>
+        <name>Reporting_Period_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Section GPA --></label>
+        <name>Section_GPA__c</name>
+    </fields>
+    <fields>
+        <label><!-- Section Id --></label>
+        <name>Section_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Section RT --></label>
+        <name>Section_RT__c</name>
+    </fields>
+    <fields>
+        <label><!-- Section Weighted GPA --></label>
+        <name>Section_Weighted_GPA__c</name>
+    </fields>
+    <fields>
+        <label><!-- Section --></label>
+        <name>Section__c</name>
+        <relationshipLabel><!-- Section Grades --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Standard Section Grade --></label>
+        <name>Standard_Section_Grade__c</name>
+    </fields>
+    <fields>
+        <label><!-- Standard Section Grade --></label>
+        <name>Standard_Section_Grade_v2__c</name>
+    </fields>
+    <fields>
+        <label><!-- Student Id --></label>
+        <name>Student_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Student Name --></label>
+        <name>Student_Name_SG__c</name>
+    </fields>
+    <fields>
+        <label><!-- Student/Section --></label>
+        <name>Student_Section__c</name>
+        <relationshipLabel><!-- Section Grades --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Teachers --></label>
+        <name>Teachers__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reporting Period --></label>
+        <name>Time__c</name>
+        <relationshipLabel><!-- Section Grades --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Use Assignment Type Percentages --></label>
+        <name>Use_Assignment_Type_Percentages__c</name>
+    </fields>
+    <fields>
+        <label><!-- Weighted Final Grade --></label>
+        <name>Weighted_Final_Grade__c</name>
+    </fields>
+    <fields>
+        <label><!-- Final? --></label>
+        <name>isFinal__c</name>
+    </fields>
+    <layouts>
+        <layout>Section Grade Layout</layout>
+        <sections>
+            <label><!-- Comments for Report Card --></label>
+            <section>Comments for Report Card</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Section Grade Layout3</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Section Grade Layout_admin</layout>
+        <sections>
+            <label><!-- Comments --></label>
+            <section>Comments</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <description><!-- Differentiate between quarter-based and semester-based sectional grades. --></description>
+        <label><!-- Quarter --></label>
+        <name>Quarter</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Semester --></label>
+        <name>Semester</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

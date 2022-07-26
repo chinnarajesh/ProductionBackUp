@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Contact$Id</field>
+    </columns>
+    <columns>
+        <field>Contact.Staff__r$Id</field>
+    </columns>
+    <columns>
+        <field>Contact.Staff__r$Organization__c</field>
+    </columns>
+    <columns>
+        <field>Contact$Email</field>
+    </columns>
+    <description>This report can be used to identify duplicate contact records with and without staff records</description>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Contact$Name</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Contact with and without staff records</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Contact_with_and_without_Staff__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>Contact$Birthdate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

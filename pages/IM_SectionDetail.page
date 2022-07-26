@@ -1,0 +1,801 @@
+<apex:page controller="sectionDetailExtension" docType="html-5.0" sidebar="false" showHeader="false">
+    <c:resourceComponent bLoadingPanel="true"/>
+    <style>
+        .datePicker {
+            position: fixed;
+            z-index: 11001;
+        }
+
+        .requiredBlock {
+            background-color: #c00;
+            position: absolute;
+            left: -4px;
+            width: 3px;
+            top: 1px;
+            bottom: 1px;
+        }
+
+        .requiredInput {
+            position: relative;
+            height: 100%;
+        }
+
+        #schoolforce-wrapper input[type="text"] {
+            padding: 5px;
+        }
+
+        .messageTable {
+            border: 0 !important; /*Thanks lookthink, just hard code borders on every table. That's legit*/
+        }
+
+        .modalCloseButton {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            display: block;
+            width: 16px;
+            height: 16px;
+            background: url("{!URLFOR($Resource.Style_Bundle, '/images/btn_close.png')}");
+            z-index: 2;
+            cursor: pointer;
+        }
+
+        .leftList {
+            overflow: auto;
+        }
+
+        .rightList {
+            overflow: auto;
+        }
+
+        .modal_window {
+            width: 900px;
+            height: auto;
+            overflow-y: scroll;
+            top: 0;
+            max-height: 90%;
+            top: 1rem !important;
+        }
+
+        .box-left {
+            margin-left: 10px;
+        }
+
+        .border {
+            border-color: red;
+            border-width: 1px;
+            border-style: solid;
+        }
+
+        #add-session-time {
+            top: 0px !important;
+        }
+
+        .sessionId {
+            position: absolute;
+            top: 165px;
+            left: 941px;
+            margin-left: 5px;
+        }
+
+        #fancybox-overlay, #fancybox-wrap {
+            z-index: 20000 !important;
+        }
+
+        #studentsInSection th {
+            word-wrap: break-word;
+            text-overflow: ellipsis;
+            max-width: 57px;
+            overflow: hidden;
+            white-space: normal;
+        }
+
+        #lean_overlay {
+            pointer-events: none;
+        }
+    </style>
+    <script>
+        var CITY = CITY || {};  // global variable as root namespace
+        var addedValues = [];
+        var newvalue;
+        j$(document).ready(function () {
+            checkDisabled();
+            // get the section start and end dates
+            CITY.sectionStartDate = new Date("{!JSENCODE(TEXT(section.Start_Date__c))}");
+            CITY.sectionEndDate = new Date("{!JSENCODE(TEXT(section.End_Date__c))}");
+
+            // determine if section is active
+            if ("{!JSENCODE(IF(section.Active__c,'true','false'))}" == "true") {
+                j$('#addButton').show();
+                j$('#exitButton').show();
+                j$('#timeButton').show();
+                j$('#edittimeButton').show();
+                j$('#addIAButton').show();
+                j$('#addСurriculaButton').hide();
+                if ({!isCurriculum}) {
+                    j$('#addСurriculaButton').show();
+                    j$('#timeButton').hide();
+                    j$('#edittimeButton').hide();
+                }
+                if ({!isCM}) {
+                    j$('#exitButton').hide();
+                    j$('#addButton').hide();
+                }
+            } else {
+                j$('#addButton').hide();
+                j$('#exitButton').hide();
+                j$('#timeButton').hide();
+                j$('#addСurriculaButton').hide();
+                j$('#addIAButton').hide();
+            }
+
+            //KC: Adjust window height on load
+            resetWindowSize();
+        });
+
+        function openStackedModal(openLinkID, modalID) {
+            var openingModalIndex = j$(modalID).css('z-index');
+            j$('#lean_overlay').css("z-index", openingModalIndex - 1000);
+            j$(openLinkID).click();
+            j$(modalID).css("z-index", openingModalIndex);
+        }
+
+        function openModal(openLinkID) {
+            j$('#lean_overlay').css("z-index", 100);
+            j$(openLinkID).click();
+        }
+
+        function setupTableClicking() {
+            j$('tr', '#add-student').click(function () {
+                var checkbox = j$(this).children(':last').children('input');
+                if (checkbox.checked) {
+                    j$(checkbox).prop('checked', '');
+                } else {
+                    j$(checkbox).prop('checked', 'checked');
+                }
+            });
+        }
+
+        function openWithdrawModal() {
+            if (j$('.errorM3').size() == 0) {
+                openModal("#exit_modal");
+                resetWindowSize();
+            }
+        }
+
+        function resetWindowSize() {
+            var newSize;
+            if (j$('.modal_window').filter(":visible").size() > 0) {
+                //100 for the top offset + 20 for the bottom offset
+                newSize = j$('.modal_window').filter(":visible").outerHeight() + 120;
+            } else {
+                newSize = j$('body').outerHeight() + 20;
+            }
+            //Commented to allow popup modal to open in full size
+            //500 is a requirement, minHeight
+            //if(newSize>=500)
+            //  window.resizeBy((j$(window).width()<1000)?1000-j$(window).width():0, newSize-j$(window).height());
+            //else
+            //  window.resizeBy((j$(window).width()<1000)?1000-j$(window).width():0, 500-j$(window).height());
+        }
+
+        function recalculateModalSize() {
+            console.log('setting modal size');
+            var winHeight = j$(window).height();
+            j$('#edit-session-time').height(0.8 * winHeight);
+            j$('[id*="editSessionsList"]', '#edit-session-time').height((0.8 * winHeight) - 150);
+        }
+
+        function setFocusOnLoad() {
+        }
+
+        function grabSelected(elementName) {
+            var table = document.getElementById(elementName);
+            var ids = "";
+            var rows = table.getElementsByTagName("tr");
+            for (i = 1; i < rows.length; i++) {
+                var row = table.rows[i];
+                var cell = row.getElementsByTagName("td")[0];
+                var cell2 = row.getElementsByTagName("td")[1];
+                var id = cell.innerHTML;
+                var checkBox = cell2.children[0];
+                if (checkBox.checked == true) {
+                    ids += id + ';';
+                }
+            }
+            return ids;
+        }
+
+        function ensureHighlightedAreChecked(elementId) {
+            var table = document.getElementById(elementId);
+            var ids = "";
+            var highlight = '#acacac';
+            var rows = table.getElementsByTagName("tr");
+            for (i = 0; i < rows.length; i++) {
+                var currentRow = table.rows[i];
+                if (currentRow.bgColor == highlight) {
+                    j$(currentRow).find('.selectedBox').prop('checked', 'checked');
+                } else {
+                    j$(currentRow).find('.selectedBox').prop('checked', '');
+                }
+            }
+        }
+
+        function checkDisabled() {
+            var table = document.getElementById('studentsInSection');
+
+            for (i = 1; i < table.rows.length; i++) {
+                var row = table.rows[i];
+                var isChecked = row.cells[11].children[0].children[0].alt;
+                row.cells[1].children[0].disabled = (isChecked == 'Not Checked') ? true : false;
+            }
+        }
+
+        function exitStudents() {
+            var ids = grabSelected("studentsInSection")
+            if (ids.length <= 1) {
+                openModal("#err_modal");
+                return;
+            }
+
+            doAddStudentsToExit(ids);
+            openModal("#exit_modal");
+        }
+
+        function clearModal() {
+            close_modal('#add-student');
+        }
+
+        function saveEnrollDate() {
+            if (!isSaving) {
+                isSaving = true;
+                checkEnrollDate();
+            } else {
+               
+                alert('Please wait as the system validates your request.');
+            }
+        }
+
+        function checkEnrollDate() {
+            var enrollTable = document.getElementById("selectedStudent");
+            var enteredDate = j$("input[id$='enrollDate']").val();
+
+            CITY.enrollDate = new Date(enteredDate);
+            CITY.sectEndDate = new Date("{!JSENCODE(TEXT(section.End_Date__c))}");
+            CITY.sectionStartDate = new Date("{!JSENCODE(TEXT(section.Start_Date__c))}");
+            var isError = false;
+            var isErrorDate = false;
+            var isErrorStudents = false;
+            if (enrollTable.rows.length <= 1) {
+                isError = true;
+                isErrorStudents = true;
+                j$("#EnrollStudentErrorSpan").text('Enrollment Student cannot be empty');
+            }
+            if (enteredDate == null || enteredDate == "") {
+                isError = true;
+                isErrorDate = true;
+                j$("#EnrollDateErrorSpan").text('Enrollment Date cannot be empty');
+            } else if (new Date(enteredDate) == "Invalid Date") {
+                isError = true;
+                isErrorDate = true;
+                j$("#EnrollDateErrorSpan").text('Enrollment Date cannot be invalid');
+            } else if (CITY.enrollDate > CITY.sectEndDate || CITY.enrollDate === CITY.sectEndDate) {
+                isError = true;
+                isErrorDate = true;
+                j$("#EnrollDateErrorSpan").text('Enrollment Date cannot be on or after the section ending date.');
+            } else if (new Date(enteredDate) < CITY.sectionStartDate) {
+                isError = true;
+                isErrorDate = true;
+                j$("#EnrollDateErrorSpan").text('Enrollment Date cannot be before the section start date.');
+            } else {
+                for (i = 1; i < enrollTable.rows.length; i++) {
+                    var cell = enrollTable.rows[i].cells[4];
+                    var stuDate = new Date(j$(cell).text());
+                    if (stuDate != "Invalid Date" && new Date(enteredDate) <= stuDate) {
+                        j$("#EnrollDateErrorSpan").text('Enrollment date cannot be before enrollment end date.');
+                        isError = true;
+                        isErrorDate = true;
+                    }
+                }
+            }
+            if (isError) {
+
+                if (isErrorStudents) {
+                    j$("#EnrollStudentErrorSpan").show();
+                    isSaving = false;
+                }
+                if (isErrorDate) {
+                    j$("#EnrollDateErrorSpan").show();
+                    isSaving = false;
+                }
+                isSaving = false;
+            } else {
+                j$("#EnrollDateErrorSpan").hide();
+                j$("#EnrollStudentErrorSpan").hide();
+                showProgressBar('Please wait.');
+                enrollStudentsJS();
+                close_modal('#add-student');
+            }
+        }
+
+        function reloadPage() {
+            setTimeout(window.location.reload(), 3000);
+        }
+
+        function reloadPageAfterSaveTime() {
+            var delay = 3000;
+            setTimeout(function(){window.location.reload();},delay);
+        }
+
+        function checkExitDate() {
+            var exitTable = document.getElementById("exitTable");
+            var enteredDate = j$("[id$='exitDateID']").val();
+            var isError = false;
+            if (enteredDate == null || enteredDate == "") {
+                isError = true;
+                j$("#ExitdateErrorSpan").text('Exit Date cannot be empty');
+            } else if (new Date(enteredDate) == "Invalid Date") {
+                isError = true;
+                j$("#ExitdateErrorSpan").text('Exit Date cannot be invalid');
+            } else if (new Date(enteredDate) > new Date()) {
+                isError = true;
+                j$("#ExitdateErrorSpan").text('Exit Date cannot be in future');
+            } else {
+                for (i = 1; i < exitTable.rows.length; i++) {
+                    var cell = exitTable.rows[i].cells[1];
+                    var stuDate = new Date(j$(cell).text());
+                    /*if (new Date(enteredDate) <= stuDate) {
+                        j$("#ExitdateErrorSpan").text('Exit date cannot be before enrollment start date.');
+                        isError = true;
+                    }*/
+                }
+            }
+            return isError;
+        }
+
+        function checkEnrollExitDates() {
+            var exitTable = document.getElementById("exitTable");
+            var exitDate = new Date(j$("[id$='exitDateID']").val());
+            var isError = false;
+            for (i = 1; i < exitTable.rows.length; i++) {
+                var cell = exitTable.rows[i].cells[1];
+                var stuDate = new Date(j$(cell).text());
+                var studentID = exitTable.rows[i].cells[2];
+                if (exitDate < stuDate) {
+                    j$('#ExitDate' + j$(studentID).text()).show();
+                    isError = true;
+                } else {
+                    j$('#ExitDate' + j$(studentID).text()).hide();
+                }
+            }
+            return isError;
+        }
+
+        function checkExitReason() {
+            var isError = false;
+            var exitReason = j$("[id$='exitReasonID']").val();
+            if (exitReason == null || exitReason == "") {
+                isError = true;
+                j$("#ExitReasonErrorSpan").text('Please enter an exit reason');
+            }
+            return isError;
+        }
+
+        function checkErrorsExit() {
+            var isError = false;
+            if (checkExitDate()) {
+                isError = true;
+                j$("#ExitdateErrorSpan").show();
+            } else {
+                j$("#ExitdateErrorSpan").hide();
+            }
+            // isError = checkEnrollExitDates() || isError;
+            if (checkExitReason()) {
+                isError = true;
+                j$("#ExitReasonErrorSpan").show();
+            } else {
+                j$("#ExitReasonErrorSpan").hide();
+            }
+
+            if (!isError) {
+                showProgressBar('Please wait.');
+                withdrawStudentsJS();
+            } else {
+                isSaving = false;
+            }
+        }
+
+        function ValidateTime(value) {
+            var x = parseInt(value, 0);
+            //BGR 03252015 Ensure time is 1-500
+            if (value.length > 0 && (isNaN(x) || x < 1 || x >= 500)) {
+                alert('Time value should be numeric between 1-500');
+                return false;
+            }
+        }
+
+        function validate() {
+            var valid = true;
+            j$('input.notBlank').each(function () {
+                if (j$(this).val() < 1 || j$(this).val() >= 500) {
+                    //j$(this).addClass('border');
+                    valid = false;
+                }
+            });
+            return valid;
+        }
+        function validatebelowtime(value){
+         var enteredtime=value;
+         let cnfText='Are you sure?';
+          for(var i = 0; i < enteredtime.length; i++) { 
+           var x = parseInt(enteredtime[i].value, 0);
+           console.log('xxx>>>'+x);
+           if(x<5){
+            cnfText="Session Time:"+x+" That's a very short session. Are you sure?"; 
+            break;
+            }  
+            else if(x>300){
+              cnfText="Session Time:"+x+" That's a very long session. Are you sure?";
+             break;
+            }
+         }
+           if(cnfText!='' && confirm(cnfText)==true){
+               return true;
+               }else{
+               return false;
+               }
+        }
+       
+        function checkAddTime() {
+            var enteredtime = document.getElementsByClassName("notBlank");
+           var flag= false;
+           
+           var haslesstime =true;
+           
+            console.log('enteredtime!!'+enteredtime[0].value);
+            
+               if(validatebelowtime(enteredtime) == false){
+                 
+                  return false;
+                  
+                 }
+           
+               
+           
+           if(flag==false){
+           
+           }
+             var isError = false;
+             
+            if (checkDate(j$("input[id$='dosageDateID']").attr('id'), "#dateErrorSpan")) {
+                j$("#dateErrorSpan").show();
+                isError = true;
+            } else {
+                j$("#dateErrorSpan").hide()
+            }
+            
+            if (!validate()) {
+                j$("#dosageErrorSpan").show();
+                isError = true;
+            } else {
+                j$("#dosageErrorSpan").hide();
+            }
+             
+            var allAvenues = j$("select[id$='allAvenuesID'] option:selected").text();
+            if (allAvenues == 'None') {
+                j$("#serviceErrorSpan").show();
+                isError = true;
+            } else {
+                j$("#serviceErrorSpan").hide();
+            }
+
+           
+           //var primaryOptions = j$('.primaryOptions');
+           // if (allAvenues != 'Virtual Service' && (primaryOptions.length == 0 || primaryOptions[0].selectedIndex == 0)) {
+           //    j$("#skillsErrorSpan").show();
+              //  isError = true;
+           // } else {
+            //    j$("#skillsErrorSpan").hide();
+           // }
+            
+
+            var selectedLength = j$.map(j$('.rightList option'), function (o) {
+                return o.text;
+            }).join(', ').length;
+            if (selectedLength > 2000) {
+                j$("#skillsLengthErrorSpan").show();
+                isError = true;
+            } else {
+                j$("#skillsLengthErrorSpan").hide()
+            }
+                        
+            if (!isError) {
+                //close_modal("#add-session-time");
+                //close_modal("#edit-session-time");
+                showProgressBar('Please wait.');
+                saveTimeJS();
+            } else {
+                isSaving = false;
+            }
+          
+        }
+
+        function addStudents() {
+            openModal('#enroll_students');
+        }
+
+        function clearFilterDate() {
+            j$('[id*="filterDate"]').val('');
+        }
+
+        function checkForModalClose(modalID) {
+            if (j$('.errorM3', '.primaryErrorPanel').size() == 0) {
+                close_modal('#' + modalID);
+            }
+        }
+
+        function changeDosage(inputBox){
+            var val = inputBox.value;
+            console.log('newtime='+val);
+            console.log('Time='+inputBox.styleClass);
+            addedValues.push(val);
+            newvalue=inputBox.value;
+            if(ValidateTime(val) != false) {
+               //j$("input[id$='timeEntry']").val(val);
+            }
+           
+            //if(validatebelowtime(val) !=false){
+             //j$("input[id$='timeEntry']").val(val);
+            // }
+        }
+      function newtime(){
+       //var uniqueValues = [];
+       //for(i=0; i < addedValues.length; i++){
+       //   if(uniqueValues.indexOf(addedValues[i]) === -1) {
+       //    uniqueValues.push(addedValues[i]);
+       //    }
+       //  }
+       //  for(i=0; i < uniqueValues.length; i++){
+          
+          j$("input[id$='timeEntry']").val(newvalue);
+           
+        //}
+       }
+        function changeExitTicket(inputBox){
+            var val = inputBox.value;
+            j$("input[id$='exitTicketEntry']").val(val);
+        }
+        
+    </script>
+
+    <apex:form >
+        <apex:outputPanel id="messages" styleClass="primaryErrorPanel">
+            <apex:pageMessages />
+            <script>
+                setTimeout('hideProgressBar()', 500);
+            </script>
+        </apex:outputPanel>
+        <apex:outputPanel rendered="{!NOT(ISNULL(section.ID))}">
+            <div id="schoolforce-wrapper" class="wrapper">
+                <div class="content">
+                    <span class="section-header">Enroll/Withdraw/Add Time for {!section.Name}</span>
+                    <div class="field" style="text-align: center;">
+                        Back to Section:
+                        <apex:commandLink target="_blank"
+                                          value="{!section.Name}"
+                                          action="{!getSectionRecordPage}">
+                            <apex:param name="sectionID" value="{!section.ID}"
+                                        assignTo="{!sectionID}"/>
+                        </apex:commandLink>
+                    </div>
+                    <div class="field" align="center">
+                        <div id="leanModalLinks" style="display:none;">
+                            <a href="#err_select" id="err_modal" rel="leanModal"></a>
+                            <a href="#exit-student" id="exit_modal" rel="leanModal"></a>
+                            <a href="#add-session-time" id="time_modal" rel="leanModal"></a>
+                            <a href="#edit-session-time" id="edit_time_modal" rel="leanModal"></a>
+                            <a href="#add-student" id="enroll_students" rel="leanModal"></a>
+                            <a href="#add-students-to-session" id="addToSession" rel="leanModal"></a>
+                            <a href="#add-curricula" id="curricula_modal" rel="leanModal"></a>
+                            <a href="#add-ia-students" id="ia_modal" rel="leanModal"></a>
+                        </div>
+
+                        <input id="addButton" type="button" class="drk_blue_btn"
+                               onClick="showProgressBar('Please wait.'); startEnrollStudentsJS();"
+                               value="Enroll Student(s)"/>
+                        <input id="exitButton" type="button" class="drk_blue_btn"
+                               onclick="showProgressBar('Please wait.');startWithdrawStudentsJS();"
+                               value="Withdraw Student(s)"/>
+                        <input id="timeButton" type="button" class="drk_blue_btn"
+                               onclick="showProgressBar('Please wait.'); startAddTimeJS();" value="Add Time"/>
+                        <input id="addСurriculaButton" type="button" class="drk_blue_btn"
+                               onclick="showProgressBar('Please wait.');startAddСurriculaJS();" value="Add Сurricula"/>
+                        <input id="edittimeButton" type="button" class="drk_blue_btn"
+                               onclick="showProgressBar('Please wait.'); startEditTimeJS();" value="Session History"/>
+                        <input id="addIAButton" type="button" class="drk_blue_btn"
+                               onclick="showProgressBar('Please wait.');startAddIAToStudentsJS();"
+                               value="Add To Indicator Area"/>
+                    </div>
+                    <apex:outputPanel id="studentTable">
+                        <script>
+                            j$(function () {
+                                j$('#studentsInSection').tsort();
+                            });
+                        </script>
+                        <table id="studentsInSection">
+                            <thead style="cursor:pointer">
+                            <th style="display:none;">StudentID</th>
+                            <th><input type="checkbox" onChange="toggleAllChecks(this,'studentsInSection')"/></th>
+                            <th class="type-string">Student</th>
+                            <th class="type-string">CY-ID</th>
+                            <th class="type-string">Local ID</th>
+                            <!--{!$ObjectType.Student__c.fields.Local_Student_ID__c.Label}-->
+                            <th class="type-int">Grade</th>
+                            <th class="type-float" style="{!IF(isCurriculum,'display: none;', '')}">Dosage to Date</th>
+                            <th class="type-date">Enrollment Date</th>
+                            <th>Exit Date</th>
+                            <th class="type-string">Indicator Area</th>
+                            <th class="type-string">Assigned Programs</th>
+                            <th class="checkImg">Active</th>
+                            </thead>
+                            <tbody>
+                            <apex:repeat value="{!studentSections}" var="s">
+                                <tr>
+                                    <td style="display:none;">{!s.studentSection.Student__c}</td>
+                                    <td>
+                                        <apex:inputCheckbox value="{!s.selected}"/>
+                                    </td>
+                                    <td><a href="/{!s.studentSection.ID}"
+                                           target="_blank">{!s.studentSection.Student_Name__c}</a></td>
+                                    <td><a href="/{!s.studentSection.ID}"
+                                           target="_blank">{!s.student.Student_ID_Auto_Number__c}</a></td>
+                                    <td><a href="/{!s.studentSection.ID}"
+                                           target="_blank">{!s.student.Local_Student_ID__c}</a></td>
+                                    <td>{!s.studentSection.Student_Grade__c}</td>
+                                    <td style="{!IF(isCurriculum,'display: none;', '')}">{!s.studentSection.Dosage_to_Date__c}</td>
+                                    <td>
+                                        <apex:outputField value="{!s.studentSection.Enrollment_Start_Date__c}"/>
+                                    </td>
+                                    <td>
+                                        <apex:outputField value="{!s.studentSection.Enrollment_End_Date__c}"/>
+                                    </td>
+                                    <td>
+                                        <apex:outputLabel value="{!s.indicatorAreaDisplay}"/>
+                                    </td>
+                                    <td>
+                                        <apex:outputLabel value="{!s.programsIADisplay}"/>
+                                    </td>
+                                    <td>
+                                        <apex:outputField value="{!s.studentSection.Active__c}"/>
+                                    </td>
+                                </tr>
+                            </apex:repeat>
+                            </tbody>
+                        </table>
+                    </apex:outputPanel>
+                </div>
+
+                <!-- Add Student Modal -->
+                <c:ModalEnrollStudent recSection="{!section}" lstStudentSections="{!studentSections}"/>
+                <!--                <c:ModalEnrollStudent />-->
+                <c:ModalWithdrawStudent StudentSectionHolder="{!StudentSectionHolder}"
+                                        StudentsToWithdraw="{!StudentsToWithdraw}"/>
+
+                <!-- Edit Session Modal -->
+                <div id="edit-session-time" class="modal_window" style="z-index:11000;position: relative;">
+                    <div class="modal-top" style="cursor:move;">
+                        <a class="modal_close" href="#"></a>
+                        <p>&nbsp;</p>
+                    </div>
+                    <apex:outputPanel id="editModalMessages">
+                        <apex:pageMessages />
+                    </apex:outputPanel>
+                    <span class="section-header">Select Session for {!section.Name}</span>
+                    <apex:outputPanel style="background-color:#dcdcdc;padding:5px;" layout="block"
+                                      id="edit-session-filter">
+                        <label style="margin-left:10px;">Staff:</label>
+                        <apex:selectList value="{!sessionFilter.Session_Time_Completed_For__c}" multiselect="false"
+                                         size="1" onChange="filterSessionsJS();">
+                            <apex:selectOption itemValue="" itemLabel="Select Staff"/>
+                            <apex:selectOptions value="{!availableStaff}"/>
+                        </apex:selectList>
+                        <label style="margin-left:10px;">Date:</label>
+                        <apex:inputField id="filterDate" value="{!sessionFilter.Date__c}" style="margin-left:10px;"
+                                         onChange="filterSessionsJS();"/>
+                    </apex:outputPanel>
+
+                    <apex:outputPanel id="editSessionsList" style="overflow-y:scroll;border: 1px solid #ccc;"
+                                      layout="block">
+                        <table class="fullWidthTable" style="margin-bottom:0;border:0;">
+                            <thead>
+                            <th></th>
+                            <th>Corps Member</th>
+                            <th>Session ID</th>
+                            <th id="date-header">Date</th>
+                            <th>Primary Skill</th>
+                            <th>Last Modified Date</th>
+                            </thead>
+                            <tbody>
+                            <apex:repeat value="{!sessions}" var="sessionWrapper">
+                                <tr class="table-row">
+                                    <td>
+                                        <a href="#"
+                                           onClick="showProgressBar('Please wait.'); loadSessionJS('{!sessionWrapper.session.ID}');">Edit</a>
+                                    </td>
+                                    <td>
+                                        <apex:outputField value="{!sessionWrapper.session.Session_Time_Completed_For__r.Name}"/>
+                                    </td>
+                                    <td>
+                                        <apex:commandLink target="_blank"
+                                                          value="{!sessionWrapper.session.Name}"
+                                                          action="{!getRecordPage}">
+                                            <apex:param name="sessionID" value="{!sessionWrapper.session.Id}"
+                                                        assignTo="{!sessionID}"/>
+                                        </apex:commandLink>
+                                    </td>
+                                    <td>
+                                        <apex:outputField value="{!sessionWrapper.session.Date__c}"/>
+                                    </td>
+                                    <td style="max-width: 400px;"> <!-- Yay for hard coding!!! -->
+                                        <apex:outputField value="{!sessionWrapper.session.Skill_Primary__r.Name}"/>
+                                    </td>
+                                    <td>
+                                        <apex:outputField value="{!sessionWrapper.session.LastModifiedDate}"/>
+                                    </td>
+                                </tr>
+                            </apex:repeat>
+                            </tbody>
+                        </table>
+                    </apex:outputPanel>
+                </div>
+
+                <!-- Add Session Modal -->
+                <c:ModalAddSession recSection="{!section}" lstStudentSections="{!studentSections}"/>
+
+                <!-- Add Curricula Modal -->
+                <c:ModalAddCurricula recSection="{!section}" lstStudentSections="{!studentSections}"/>
+
+                <!-- Add IA Students Modal -->
+                <c:ModalAddIaStudents recSection="{!section}" lstStudentSections="{!studentSections}"/>
+
+                <!-- Error Modal -->
+                <div id="err_select" class="modal_window" style="width:300px;height:125px">
+                    <div class="modal-top" style="cursor:move;">
+                        <p>&nbsp;</p>
+                    </div>
+                    <center><p><strong>Please select the appropriate students</strong></p></center>
+                    <hr/>
+                    <div id="options" align="center">
+                        <input type="button" class="grey_btn" onclick="close_modal('#err_select')" value="Ok"/>
+                    </div>
+                    <p>&nbsp;</p>
+                </div>
+            </div>
+        </apex:outputPanel>
+        <!--        <apex:actionFunction name="startEnrollStudentsJS" action="{!startEnrollStudents}"-->
+        <!--                             oncomplete="addStudents();resetWindowSize();"-->
+        <!--                             rerender="messages, bothTables, enrollDatePanel"/>-->
+        <!--        <apex:actionFunction name="addToSelectedJS" action="{!addToSelected}" rerender="bothTables, messages"/>-->
+        <!--        <apex:actionFunction name="removeFromSelectedJS" action="{!removeFromSelected}"-->
+        <!--                             rerender="bothTables, messages"/>-->
+
+        <apex:actionFunction name="startWithdrawStudentsJS" action="{!startWithdrawStudents}" status="loadExit"
+                             oncomplete="openWithdrawModal();" rerender="exitTable,exitDatePanel,messages"/>
+        <apex:actionFunction name="withdrawStudentsJS" action="{!withdrawStudents}"
+                             onComplete="close_modal('#exit-student'); isSaving=false; checkDisabled();"
+                             rerender="studentTable,availStudents,messages"/>
+        <apex:actionFunction name="startEditTimeJS" action="{!startEditTime}"
+                             onComplete="if(j$('.errorM3','.primaryErrorPanel').size() == 0){clearFilterDate();openModal('#edit_time_modal');recalculateModalSize();}"
+                             status="loadTime"
+                             rerender="messages, editSessionsList,editModalMessages,edit-session-filter"/>
+        <apex:actionFunction name="filterSessionsJS" action="{!filterSessions}"
+                             reRender="editSessionsList, editModalMessages"/>
+
+        <!--        <apex:actionFunction name="loadAvailableStudentsJS" action="{!loadAvailableStudents}"-->
+        <!--                             rerender="availStudents, messages" status="loadingStatus"/>-->
+
+        <!--        <apex:actionFunction name="displayStudentJS" action="{!displayStudent}" rerender="messages,bothTables" status="loadingStatus"/>-->
+
+
+    </apex:Form>
+</apex:page>

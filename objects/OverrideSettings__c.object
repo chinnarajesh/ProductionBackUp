@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>Hierarchy</customSettingsType>
+    <description>Custom setting that breaks down override permissions by profile</description>
+    <enableEnhancedLookup>false</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>Allowable_Grades__c</fullName>
+        <description>these are the letters that can be used as override grades for sections</description>
+        <externalId>false</externalId>
+        <inlineHelpText>these can be used as override grades for sections, separated by commas</inlineHelpText>
+        <label>Allowable Grades</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Grade_Override__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Whether this profile has the permissions to override a section grade</description>
+        <externalId>false</externalId>
+        <inlineHelpText>does this profile/user have permissions to override a section grade with one of the allowable grades?</inlineHelpText>
+        <label>Grade Override</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Withdraw_Override__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Whether this profile can override a section grade with &quot;W&quot;</description>
+        <externalId>false</externalId>
+        <inlineHelpText>does this profile/user have permissions to override a section grade with &quot;W&quot;?</inlineHelpText>
+        <label>Withdraw Override</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <label>Grade Overrides</label>
+    <visibility>Public</visibility>
+</CustomObject>

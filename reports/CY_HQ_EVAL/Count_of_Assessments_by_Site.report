@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <buckets>
+        <bucketType>text</bucketType>
+        <developerName>BucketField_53695755</developerName>
+        <masterLabel>Indicator Area</masterLabel>
+        <nullTreatment>n</nullTreatment>
+        <otherBucketLabel>Other</otherBucketLabel>
+        <sourceColumnName>Assesment__c$Assessment_Name__c</sourceColumnName>
+        <useOther>true</useOther>
+        <values>
+            <sourceValues>
+                <sourceValue>iStation Indicators of Progress - ELA</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>iReady - ELA</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Teachers College Reading Assessment - ELA</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>TRC - ELA</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>STAR Reading - ELA</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>AIMSweb - ELA</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Achieve 3000 - ELA</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>DIBELS - ELA</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>DRA - ELA</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Degrees of Reading Power - ELA</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>District Benchmark Assessments - ELA</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>EADMS - ELA</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Florida Assessments for Instruction in Reading - ELA</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Fountas and Pinnell Benchmark Assessment System - ELA</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>IRLA - ELA</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>NWEA - ELA</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>RI: Reading Inventory - ELA</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Orlando Common Numeric Assessment - ELA</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>iStation Indicators of Progress (Spanish) - ELA</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>STEP - ELA</sourceValue>
+            </sourceValues>
+            <value>ELA/Literacy</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>STAR Math - MATH</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>iReady - MATH</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>NWEA - MATH</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>EADMS - MATH</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Do the Math - MATH</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>DC District Unit Test - MATH</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Compass Learning -  Math</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>AIMSweb - MATH</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>ACT Aspire - MATH</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Manchester School District Computation Assessment - MATH</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>MI: Math Inventory - MATH</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Orlando Common Numeric Assessment - Math</sourceValue>
+            </sourceValues>
+            <value>Math</value>
+        </values>
+    </buckets>
+    <columns>
+        <field>Assesment__c$Student_Name__c</field>
+    </columns>
+    <columns>
+        <field>Assesment__c$Student_Id__c</field>
+    </columns>
+    <columns>
+        <field>Assesment__c$Student_Grade__c</field>
+    </columns>
+    <columns>
+        <field>Assesment__c$Id</field>
+    </columns>
+    <filter>
+        <criteriaItems>
+            <column>Assesment__c$Date_Administered__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>notEqual</operator>
+            <value></value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Assesment__c$Assessment_Name__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>notContain</operator>
+            <value>behavior tracker,ada tracker,attendance,dessa 40</value>
+        </criteriaItems>
+    </filter>
+    <format>Matrix</format>
+    <groupingsAcross>
+        <dateGranularity>Day</dateGranularity>
+        <field>Assesment__c$Location__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsAcross>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Assesment__c$Assessment_Name__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Count of Assessments by Site</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Assessments__c</reportType>
+    <scope>organization</scope>
+    <showDetails>false</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>Assesment__c$Date_Administered__c</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

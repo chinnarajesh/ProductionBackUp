@@ -1,0 +1,471 @@
+<apex:page id="thepage" standardController="Setup__c" extensions="core_CourseCatalogController" tabStyle="SchoolForce_Setup__tab" sidebar="false" showHeader="true">
+
+<c:setupWizardSharedComponents summerSchoolMode="{!cSetup.setup.School__r.ParentId != null}"/>
+<script>
+j$(document).ready(function(){
+	resetTable();
+});
+
+function initCatalogModal(){
+	initModal('#catalogModal',cancelEditCourseJs);
+}
+
+function initCourseModal(){
+	initModal('#availableCoursesModal',cancelAddCoursesJs);
+}
+
+function createTree(){
+	j$('.weightings').treeview({
+		persist: 'location',
+		collapsed: true,
+		unique: true,
+		animated: 'normal'
+	});
+}
+</script>
+<style>
+	.breakword span{
+		word-break:break-word;
+	}
+</style>
+
+<!-- List of Catalogs -->
+<table style="width:100%">
+	<tr>
+		<td style="vertical-align:top; width:15%">
+			<!-- <c:setup_sidebar setup="{!cSetup}"/> -->
+			<c:setupWizardSidebar setupId="{!cSetup.setup.id}" />
+		</td>
+		<td style="vertical-align:top; width:85%">
+			<apex:form id="mainForm">
+			<div id="schoolforce-wrapper" class="wrapper">
+				
+				<!-- Error -->
+				<apex:outputPanel id="error" styleClass="pageMessages">
+					<apex:pageMessages />
+				</apex:outputPanel>
+				<!-- Error -->
+				
+				<!-- Reset panel -->
+				<apex:outputPanel id="resetPanel">
+					<script>
+					resetTable();
+					
+					function checkCatalog(){
+						checkModalClose({!!bConfigureCatalog},'#catalogModal');
+					}
+					
+					function checkAvailableCourses(){
+						checkModalClose({!!bAddCourse},'#availableCoursesModal');
+					}
+					
+					function openWeightings(){
+						if({!bConfigureWeightings}){
+							initModal('#weightingsModal',cancelWeightingsJs);
+							openModal('#weightingsModal');
+							setTimeout('createTree()',500);
+						}
+					}
+					
+					function checkWeightings(){
+						checkModalClose({!!bConfigureWeightings},'#weightingsModal');
+					}
+					
+					function openAssignmentWeightings(){
+						if({!bAssWeightings}){
+							initModal('#assignmentTypeModal',cancelWeightingsJs);
+							openModal('#assignmentTypeModal');
+							resetTable();
+						}
+					}
+					
+					function checkAssignmentTypes(){
+						checkModalClose({!!bAssWeightings},'#assignmentTypeModal');
+					}
+					</script>
+				</apex:outputPanel>
+				<!-- reset Panel -->
+				
+				<h1 class="centerHeader">
+					<input type="button" onclick="prevJs();" class="grey_btn_arrow" value="Previous" />
+					<span style="display:inline-block;">{!cSetup.school.name} Core Setup<br/>Set Up Courses</span>
+					<input type="button" onclick="nextJs();" class="green_btn_arrow" value="Next" />
+				</h1>
+				<apex:outputPanel styleClass="adminSummary">
+					<br/>
+					<p></p>
+					<br/>
+				</apex:outputPanel>
+				<div class="content-wrapper no-border">
+					<!-- HOME PANEL -->
+					<apex:outputPanel id="homePanel">
+						<apex:outputPanel rendered="{!!bShowCatalogDetails}">
+							<h3>Available Course Catalogs</h3>
+							<div class="childSummary">
+							Select the course catalog your school will use, and then click <b>Save Associated Catalog</b>. 
+							If none of the existing course catalogs apply to your school, you can click <b>Add Catalog</b> to create a new catalog. 
+							You can also edit an existing catalog and view the courses in an existing catalog. 
+							To add or update the courses in the catalog, click <b>View</b> next to the catalog you have selected.
+							<br/><br/>
+							<i><b>Note:</b> If you change a course that is available in more than one catalog, that course will be updated in all of the catalogs.</i>
+							<br/><br/>
+							Refer to SchoolForce Help for more information.
+							</div>
+							<a style="cursor:pointer;" onClick="initCatalogModal(); removeHighlight(); configureNewCatalogJs();"><img src="/img/feeds/follow12.png"/>Add Catalog</a><br/>
+							<div class="section_content">
+								<apex:datatable styleClass="noFilter" value="{!availableCatalogs}" var="citem" >
+									<apex:column headerValue="Select">
+										<input sfdcid="{!citem.id}"  type="radio" class="radio" onClick="toggleRadio(j$(this)); addHighlight(j$(this).parent(), '2'); setCatalogJs('{!citem.id}');" >
+											<script>
+												var thisCatId  = '{!JSENCODE(citem.id)}';
+												var selectedCatalogId = '{!JSENCODE(selectedCatalogId)}';
+												if(thisCatId.indexOf(selectedCatalogId, 0)!=-1&&selectedCatalogId!=''){
+													j$('input:radio[sfdcid={!citem.id}]').click();
+												}
+											</script>
+										</input>
+									</apex:column>
+									<apex:column headerValue="Actions">
+										<a href="#" onclick="addHighlight(j$(this).parent()); getCatalogDetailsJs('{!citem.id}');">View</a>
+										&nbsp;&nbsp;&nbsp;&nbsp;
+										<a href="#" onclick="initCatalogModal(); addHighlight(j$(this).parent()); editCatalogDetailsJs('{!citem.id}');">Edit</a>
+										&nbsp;&nbsp;&nbsp;&nbsp;
+										<a href="#" onclick="if(confirm('Are you sure you want to delete this course catalog?')){
+																showProgressBar(' Deleting Course Catalog ');
+																addHighlight(j$(this).parent());
+																removeCatalogDetailsJs('{!citem.id}');
+															 }">Remove</a>
+									</apex:column>
+									<apex:repeat value="{!$ObjectType.Course_Catalog__c.FieldSets.CourseCatalog}" var="f">
+										<apex:column headerValue="{!f.Label}" style="max-width:100px;" styleClass="breakword">
+											<apex:outputField value="{!citem[f]}"/>
+										</apex:column> 
+									</apex:repeat>
+									<apex:column headerValue="Created">
+										<apex:outputField value="{!citem.CreatedDate}"/>
+									</apex:column>
+									<apex:column headerValue="Last Modified">
+										<apex:outputField value="{!citem.LastModifiedDate}"/>
+									</apex:column>
+								</apex:datatable>
+								<input type="button" class="black_btn" onclick="saveSetupJs();"  title="Associate course catalog to selected setup record." alt="Associate course catalog to selected setup record." value="SAVE ASSOCIATED CATALOG" />
+								<div class="clear_fix">&nbsp;</div>
+							</div>
+						</apex:outputPanel>
+						<apex:actionFunction action="{!setCatalog}" name="setCatalogJs"  reRender="catalogDetails, error" immediate="true">
+							<apex:param name="selectedCatalogId" assignTo="{!selectedCatalogId}" value="" />
+						</apex:actionFunction>
+						<apex:actionFunction action="{!returnCatalogDetails}" name="getCatalogDetailsJs" reRender="homePanel,catalogDetails,error,resetPanel" immediate="true">
+							<apex:param name="selectedCatalogId" assignTo="{!selectedCatalogId}" value="" />
+						</apex:actionFunction>
+						<apex:actionFunction action="{!configureNewCatalog}" name="configureNewCatalogJs" reRender="catalogEntry" oncomplete="openModal('#catalogModal');" immediate="true" />
+						<apex:actionFunction action="{!editCatalogDetails}" name="editCatalogDetailsJs" reRender="catalogEntry" oncomplete="openModal('#catalogModal');" immediate="true" >
+							<apex:param name="selectedCatalogId" assignTo="{!selectedCatalogId}" value="" />
+						</apex:actionFunction>
+						<apex:actionFunction action="{!removeCatalogDetails}" name="removeCatalogDetailsJs" reRender="homePanel,resetPanel,error" onComplete="setTimeout('hideProgressBar()',500);" immediate="true">
+							<apex:param name="selectedCatalogId" assignTo="{!selectedCatalogId}" value="" />
+						</apex:actionFunction>
+						<apex:actionFunction action="{!saveSetup}" name="saveSetupJs" immediate="true" />
+					</apex:outputPanel>
+					<!-- COURSE CATALOG DETAILS -->
+					<!--  Configure the Number of Periods and Times for each period , select what time element you are configuring the period setup for-->
+					<!-- View Configuration for Selected Term/  Start End Dates for the Time Elements -->
+					<apex:outputPanel id="catalogDetails">
+						<apex:outputPanel rendered="{!bShowCatalogDetails}">
+							<h3>Current Courses in Catalog: {!selectedCatalogWrapper.catalog.name}</h3>
+							<div class="childSummary">
+							On this screen, you can add courses to the course catalog in the following three ways:
+							<ul>
+							<li>Click <b>Add New Course</b> to manually enter the new course.</li>
+							<li>Load multiple courses using the CSV loader. You will need to create a CSV file. Click the <b>Load From CSV</b> button to access the CSV loader and the CSV course template.</li>
+							<li>Click <b>See Available Courses</b> to select course(s) that already exist in SchoolForce but do not exist in your course catalog.</li>
+							</ul>
+							You can assign a grade scale, reporting period weightings, assignment weightings, or make any other modifications to the course information by clicking <b>Edit Course</b> in the row of the course you want to update. 
+							If you have not yet set up a grade scale, you will need to create one in the Gradebook Module Wizard before you can create any courses.
+							Refer to SchoolForce Help for more information.
+							</div>
+							<a style="cursor:pointer;" onClick="addNewCourseJs();"><img src="/img/feeds/follow12.png"/>Add New Course</a>
+							<input type="button" onclick="openCSVLoader('Courses','{!cSetup.setup.id}',{!isManaged});" class="black_btn" value="Load From CSV" />
+							<div class="clear_fix"/>
+							<div class="section_content">
+								<apex:dataTable value="{!selectedCatalogWrapper.catalogElementList}" var="c" styleClass="catalogsTable tablesorter">
+									<apex:column style="width:50px;" headerValue="Remove?" >
+										<apex:inputCheckBox styleclass="courseCb1" value="{!c.useRecord}"/>
+									</apex:column>
+									<apex:column style="width:50px;">
+										<a href="#" onclick="showProgressBar(' Pulling Course Details '); editCourseJs('{!c.course.id}'); ">Edit Course</a>
+									</apex:column>
+									<apex:repeat value="{!$ObjectType.Course__c.FieldSets.CourseCatSummary}" var="f">
+										<apex:column style="width:50px;" headerValue="{!f.Label}">
+											<apex:outputField value="{!c.course[f]}"/>
+										</apex:column>
+									</apex:repeat>
+								</apex:dataTable>
+								<input type="button" class="drk_blue_btn" value="Remove Selected Course(s)" onclick="if(confirm('Are you sure you would like to remove the selected courses from the catalog?')){
+																														showProgressBar(' Removing Selected Courses from Catalog ');
+																														removeCoursesJs();
+																													}" />
+								<input type="button" class="drk_blue_btn" value="See Available Courses" onclick="initCourseModal(); addCoursesJs();" />
+								<div class="clear_fix">&nbsp;</div>
+							</div>
+							<apex:actionFunction action="{!removeCourses}" name="removeCoursesJs" reRender="courseDetails, catalogDetails, error, resetPanel" onComplete="setTimeout('hideProgressBar()',500);"/>
+							<apex:actionFunction action="{!goBack}" name="goBackJs" reRender="homePanel, courseDetails, catalogDetails, error, resetPanel"/>
+							<apex:actionFunction action="{!addCourse}" name="addCoursesJs" reRender="availableCourses" onComplete="openModal('#availableCoursesModal'); resetTable();"/>
+							<apex:actionFunction action="{!addNewCourse}" name="addNewCourseJs" reRender="addNewCourse, newCourseConfigPanel, catalogDetails, error, resetPanel" />
+							<apex:actionFunction action="{!editCourseDetails}" name="editCourseJs" reRender="addNewCourse, newCourseConfigPanel, catalogDetails" onComplete="setTimeout('hideProgressBar()',500);">
+								<apex:param name="selectedCourseId" assignTo="{!selectedCourseId}" value="" />
+							</apex:actionFunction>	
+							<div class="clear_fix">&nbsp;</div>
+							<input type="button" class="black_btn" onclick="goBackJs()" value="Change Catalogs" />
+						</apex:outputPanel>
+					</apex:outputPanel>
+					<!-- ADD NEW COURSE -->
+					<apex:outputPanel id="addNewCourse">	
+						<apex:outputPanel rendered="{!IF(bConfigureCourse==true, true, false)}">
+							<apex:pageBlock id="theblock" title="{!selectedCourse.course.name}">
+									<h3>{!courseSectionString}</h3>
+									<div class="section_content">	  
+										<apex:pageBlockSection columns="2">
+											<apex:inputField value="{!selectedCourse.course.Name}" required="true"/>
+											<apex:pageBlockSectionItem helpText="{!$ObjectType.Course__c.Fields.Subject_Area_Lookup__c.inlineHelpText}" >
+												<apex:outputlabel value="Subject Area"/>
+												<apex:selectList id="subjectSelect" value="{!selectedCourse.course.Subject_Area_Lookup__c}" multiselect="false" size="1">
+													<apex:selectOptions value="{!subjectAreas}" />
+												</apex:selectList> 
+											</apex:pageBlockSectionItem>
+											<!-- Grading reporting period -->
+											<apex:pageblocksectionitem helpText="{!$ObjectType.Course__c.Fields.Number_of_Reporting_Periods__c.inlineHelpText}" >
+												<apex:outputlabel value="Default Number of Reporting Periods"/>
+												<apex:selectList value="{!selectedCourse.selectedRpNum}" multiselect="false" size="1" required="true" disabled="{!selectedCourse.isDisabled}">
+													<apex:selectOptions value="{!selectedCourse.rpNumOptions}"/>
+												</apex:selectList>
+											</apex:pageblocksectionitem>
+											<apex:pageblocksectionitem helpText="{!$ObjectType.Course__c.Fields.Grade_Scale_Lookup__c.inlineHelpText}" >
+												<apex:outputlabel value="Grade Scale"/>
+												<apex:outputPanel >
+													<div class="requiredInput">
+														<div class="requiredBlock"></div>
+														<apex:selectList value="{!selectedCourse.selectedGradeScale}" multiselect="false" size="1" required="true" >
+															<apex:selectOptions value="{!gradeScaleOptionList}"/>
+														</apex:selectList>
+													</div>
+												</apex:outputPanel>
+											</apex:pageblocksectionitem>
+											<apex:pageblocksectionitem helpText="{!$ObjectType.Course__c.Fields.Grade_Scale__c.inlineHelpText}" >
+												<apex:outputlabel value="Legacy Grade Scale"/>
+												<apex:inputField value="{!selectedCourse.course.Grade_Scale__c}"/>
+											</apex:pageblocksectionitem>
+											<apex:pageblocksectionitem rendered="{!!selectedCourse.isDisabled}" helpText="{!$ObjectType.Course__c.Fields.Has_Final_Grade__c.inlineHelpText}">
+												<apex:outputlabel value="Default Has Final Grade"/>
+												<apex:inputField value="{!selectedCourse.course.Has_Final_Grade__c}" />
+											</apex:pageblocksectionitem>
+											<apex:pageblocksectionitem rendered="{!selectedCourse.isDisabled}">
+												<apex:outputlabel value="Default Has Final Grade" for="finalflag"/>
+												<apex:outputField value="{!selectedCourse.course.Has_Final_Grade__c}"/>
+											</apex:pageblocksectionitem>
+											<!-- End Grading reporting period -->
+											<apex:repeat value="{!$ObjectType.Course__c.FieldSets.courseCatalog}" var="f">
+												<apex:inputField required="{!f.required}" value="{!selectedCourse.course[f]}"/>
+											</apex:repeat>
+										</apex:pageBlockSection>
+									</div>
+									<!-- END SECTION CONTENT -->
+									<center>
+										<input type="button" class="drk_blue_btn" onclick="addWeightingsJs();" value="EDIT GRADE WEIGHTINGS" />
+										<input type="button" class="drk_blue_btn" onclick="addAssWeightingsJs();" value="EDIT ASSIGNMENT WEIGHTINGS" />
+									</center>
+									<input type="button" class="black_btn" onclick="if(confirm('Are you sure you would like to save this course?')){
+																						showProgressBar(' Saving Course ');
+																						saveNewCourseJs();
+																					}" value="SAVE" />
+									<input type="button" class="grey_btn" onclick="cancelAddNewCourseJs();" value="CANCEL" />
+									<div class="clear_fix">&nbsp;</div>
+								<apex:actionFunction action="{!cancelCourse}" name="cancelAddNewCourseJs" immediate="true" reRender="addNewCourse,catalogDetails, error, resetPanel" />
+								<apex:actionFunction action="{!saveNewCourse}" name="saveNewCourseJs" reRender="catalogDetails,addNewCourse,error,resetPanel" onComplete="setTimeout('hideProgressBar()',500);" />
+								<apex:actionFunction action="{!addWeightings}" name="addWeightingsJs" reRender="error,resetPanel,weightingsPanel" onComplete="openWeightings();" />
+								<apex:actionFunction action="{!addAssWeightings}" name="addAssWeightingsJs" reRender="error,resetPanel,assignmentTypePanel" onComplete="openAssignmentWeightings();" />
+							</apex:pageBlock>
+						</apex:outputPanel>
+					</apex:outputPanel>
+				</div>
+			</div>
+			<apex:actionFunction name="nextJs" action="{!next}" />
+			<apex:actionFunction name="prevJs" action="{!prev}" />
+			
+			<!-- MODALS -->
+			<div id="catalogModal" >
+				<apex:outputPanel id="catalogEntry">
+					<apex:outputPanel rendered="{!bConfigureCatalog}">
+						<apex:pageMessages />
+						<h3>Create/Edit Catalog</h3>
+						<div class="section_content no-border">
+							<apex:pageBlock >
+							<table>
+								<apex:repeat value="{!$ObjectType.Course_Catalog__c.FieldSets.CourseCatalog}" var="f">
+									<tr>
+										<td><apex:outputLabel value="{!f.Label}" /></td>
+										<td><apex:inputField required="{!OR(f.required,f.dbrequired)}" value="{!selectedCatalogWrapper.catalog[f]}" /></td>
+									</tr>
+								</apex:repeat>
+							</table>
+							</apex:pageBlock>
+						</div>
+						<input type="button" class="black_btn"  value="Save Changes" onclick="var msg = '';
+																							if('{!selectedCatalogWrapper.catalog.id}'==''){
+																								msg = 'Are you sure you would like to save this catalog?';
+																							}
+																							else{
+																								msg = 'The changes you are about to save will impact all schools that are using this Course Catalog.  Are you sure you want to save?';
+																							}
+																							if(confirm(msg)){
+																								showProgressBar(' Saving Course Catalog ');
+																								removeHighlight();
+																								saveCatalogConfigJs();
+																							}" />
+						<input type="button" class="grey_btn" onclick="cancelEditCourseJs();" value="Cancel" />
+						<div class="clear_fix">&nbsp;</div>
+					</apex:outputPanel>
+				</apex:outputPanel>
+			</div>
+			<div id="availableCoursesModal" >
+				<apex:outputPanel id="availableCourses">
+					<apex:outputPanel rendered="{!bAddCourse}">
+						<apex:pageMessages />
+						<h3>Available Courses</h3>
+						<div class="section_content">
+							<div class="clear_fix">&nbsp;</div>
+							<input type="checkbox" style="float:left; margin:0 5px 0 0;" onclick="selectAll(this,'courseCb')" />
+							<apex:outputText style="font-weight:bold; float:left;" value="Select All?" />
+							<div class="clear_fix">&nbsp;</div>
+							<apex:dataTable styleClass="tablesorter" title="Course Choices" value="{!wrappedCourses}" var="c">
+								<apex:column style="width:50px;" headerValue="Add?" >
+									<apex:inputCheckBox styleclass="courseCb" value="{!c.useRecord}"/>
+								</apex:column>
+								<apex:repeat value="{!$ObjectType.Course__c.FieldSets.CourseCatSummary}" var="f">						
+									<apex:column style="width:50px;" headerValue="{!f.Label}">
+										<apex:outputField value="{!c.course[f]}"/>
+									</apex:column>
+								</apex:repeat>
+							</apex:dataTable>
+							<input type="button" class="black_btn" value="Add Selected Course(s)" onclick= "if(confirm('Are you sure you would like to add this course to {!selectedCatalogWrapper.catalog.name}?')){
+																												showProgressBar(' Adding Selected Courses to Catalog ');
+																												addExistingCoursesJs();
+																											}" />
+							<input type="button" class="grey_btn" value="Cancel" onclick="closeModal('#availableCoursesModal');" />
+						</div>
+					</apex:outputPanel>
+				</apex:outputPanel>
+			</div>
+			<div id="weightingsModal" >
+				<apex:outputPanel id="weightingsPanel">
+					<apex:outputPanel rendered="{!bConfigureWeightings}" >
+						<apex:outputPanel id="weightingsErrors" >
+							<apex:pageMessages />
+						</apex:outputPanel>
+						<h3>Configure Course Reporting Period Weightings</h3>
+						<div class="section_content">
+							<table style="padding:2px;">
+								<tr>
+									<th> In Use?</th>
+									<th>Number of Reporting Periods Course Meets For</th>
+								</tr>
+								<apex:repeat rendered="{!IF(selectedCourse.cwWrapper.size > 0 , true, false)}" value="{!selectedCourse.cwWrapper}" var="cw">
+									<tr>
+										<td><apex:inputCheckbox value="{!cw.bInUse}"/></td>
+										<td>
+											<ul class="weightings">
+												<li>{!CEILING(cw.rpPlValue.Corresponding_Value__c)} 
+													<ul>
+														<li>
+															<table style="noFilter">
+																<tr>
+																	<th>Reporting Period #</th>
+																	<th>Weighting %</th>
+																	<th>Has Final?</th>
+																	<th>Final %</th>
+																</tr>
+																<apex:repeat rendered="{!IF(cw.weightingsList.size > 0 , true, false)}" value="{!cw.weightingsList}" var="w">
+																	<tr>
+																		<td>{!w.iNum}</td>
+																		<td><apex:inputText value="{!w.iWeighting}"/></td>
+																		<td><apex:inputCheckbox styleClass="hasFinalCb" value="{!w.bHasFinal}"/></td>
+																		<td><apex:inputText value="{!w.iFinalWeighting}"/></td>
+																	</tr>
+																</apex:repeat>
+															</table>
+														</li>
+													</ul>
+												</li>
+											</ul>
+										</td>
+									</tr>
+								</apex:repeat>
+							</table>
+						</div>
+						<input type="button" class="grey_btn" value="CANCEL" onclick="cancelWeightingsJs();" />
+						<input type="button" class="black_btn" value="SAVE WEIGHTINGS" onclick="if(confirm('Are you sure you would like to save these weightings?')){
+																									showProgressBar(' Saving Course Weightings ');
+																									saveWeightingsJs();
+																								}" />
+						<div class="clear_fix">&nbsp;</div>
+					</apex:outputPanel>
+				</apex:outputPanel>
+			</div>
+			<div id="assignmentTypeModal" >
+				<apex:outputPanel id="assignmentTypePanel">
+					<apex:outputPanel rendered="{!bAssWeightings}">
+						<apex:outputPanel id="assignmentErrors">
+							<apex:pageMessages />
+						</apex:outputPanel>
+						<h3>Configure Default Assignment Weightings</h3>
+						<div class="section_content">
+							<input type="checkbox" style="float:left; margin:0 5px 0 0;" onclick="selectAll(this,'assWght')" />
+							<apex:outputText style="font-weight:bold; float:left;" value="Select All?" />
+							<div class="clear_fix">&nbsp;</div>
+							<apex:dataTable styleclass="noFilter" value="{!plList}" var="pl">
+								<apex:column style="width:100px;">
+									<apex:facet name="header">Used</apex:facet>
+									<apex:inputCheckbox styleClass="assWght" value="{!pl.useRecord}"/>
+								</apex:column>
+								<apex:column style="width:200px;">
+									<apex:facet name="header">Type</apex:facet>
+									<apex:outputText value="{!pl.typeName}"/>
+								</apex:column>
+								<apex:column style="width:150px;">
+									<apex:facet name="header">Weighting</apex:facet>
+									<apex:selectList value="{!pl.weight}" size="1" multiselect="false" disabled="{!bPointBasedCourse}">
+										<apex:SelectOptions value="{!pl.weightList}"/>
+									</apex:selectList>
+								</apex:column>   
+								<apex:column style="width:100px;" rendered="{!bPercentWeightings}">
+									<apex:facet name="header">Percentage Of Section Grade</apex:facet>
+									<apex:inputText styleClass="percentInput" value="{!pl.percentWeight}"/>
+								</apex:column>	 
+							</apex:dataTable>
+						</div><!-- END SECTION_CONENT -->
+						<input type="button" class="grey_btn" onclick="cancelWeightingsJs();" value="CANCEL" />
+						<input type="button" class="black_btn" onclick="
+								if({!cSetup.setup.Published__c}){
+									alert('You may change the assignment weightings and/or percentages; however, teachers must edit, or add an assignment grade for each student before section grades will be updated.  Please refer to SchoolForce Help for more information.');
+								}
+								if(confirm('Are you sure you would like to save these assignment weightings?')){
+									showProgressBar(' Saving Assignment Weightings ');
+									saveAssWeightingsJs();
+								}
+								" value="SAVE WEIGHTINGS" />
+					</apex:outputPanel>
+				</apex:outputPanel>
+			</div>
+			<apex:actionFunction action="{!goBack}" name="cancelEditCourseJs" onComplete="closeModal('#catalogModal');" reRender="catalogEntry, homePanel, error, resetPanel" immediate="true" />
+			<apex:actionFunction action="{!saveCatalogConfig}" name="saveCatalogConfigJs" onComplete="checkCatalog();" reRender="catalogEntry, homePanel, resetPanel" />
+			<apex:actionFunction action="{!addExistingCourses}" name="addExistingCoursesJs" onComplete="checkAvailableCourses();" reRender="catalogDetails, resetPanel" />
+			<apex:actionFunction action="{!cancelAddCourses}" name="cancelAddCoursesJs" reRender="availableCourses" />
+			<apex:actionFunction action="{!cancelWeightings}" name="cancelWeightingsJs" reRender="error, resetPanel" onComplete="closeModal('#weightingsModal'); closeModal('#assignmentTypeModal');" immediate="true"/>
+			<apex:actionFunction action="{!saveWeightings}" name="saveWeightingsJs" rerender="resetPanel,weightingsErrors" onComplete="checkWeightings();" />
+			<apex:actionFunction action="{!saveDefaultAssignmentWeightings}" name="saveAssWeightingsJs" reRender="resetPanel,assignmentErrors" onComplete="checkAssignmentTypes();"/>
+			</apex:form>
+		</td>
+	</tr>
+</table>
+
+</apex:page>

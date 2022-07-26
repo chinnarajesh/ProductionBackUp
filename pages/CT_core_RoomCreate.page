@@ -1,0 +1,164 @@
+<apex:page tabStyle="SchoolForce_Setup__tab" controller="CT_core_RoomCreate" sidebar="false" showHeader="true">
+<c:CT_setupWizardSharedComponents summerSchoolMode="{!cSetup.setup.School__r.ParentId != null}"/>
+<script>
+j$(document).ready(function(){
+	resetTable();
+});
+
+function initRangeModal(){
+	initModal('#newRangeModal',cancelRangeJs);
+}
+
+function initRoomModal(){
+	initModal('#roomEditModal',cancelRoomJs);
+}
+</script>
+<apex:form id="mainForm" >
+<!-- List of Catalogs -->
+	<table style="width:100%">
+		<tr>
+			<td style="vertical-align:top; width:15%">
+				<!-- <c:CT_setup_sidebar setup="{!cSetup}"/> -->
+				<c:CT_setupWizardSidebar setupId="{!cSetup.setup.id}"/>
+			</td>
+			<td style="vertical-align:top; width:85%">
+				<apex:pageBlock >
+					<div id="schoolforce-wrapper" class="wrapper">
+						<apex:outputPanel id="error" styleClass="pageMessages">
+							<apex:pagemessages />
+						</apex:outputPanel>
+						<apex:outputPanel id="resetPanel">
+							<script>
+								resetTable();
+								
+								function checkRange(){
+									if({!!bRange}){
+										closeModal('#newRangeModal');
+									}
+									setTimeout('hideProgressBar()',500);
+								}
+								
+								function checkRoom(){
+									if({!!bEdit}){
+										closeModal('#roomEditModal');
+									}
+									setTimeout('hideProgressBar()',500);
+								}
+							</script>
+						</apex:outputPanel>
+						<h1 class="centerHeader">
+							<input type="button" onclick="prevJs();" class="grey_btn_arrow" value="Previous" />
+							<span style="display:inline-block;">{!cSetup.school.Name} Core Setup<br/>Configure Rooms</span>
+							<input type="button" onclick="nextJs();" class="green_btn_arrow" value="Next" />
+						</h1>
+						<apex:outputPanel styleClass="adminSummary">
+							<br/>
+							<p>
+							Create the rooms in which classes at your school will be scheduled. Click <b>Add New Room</b> to create a single room or click the <b>Create Range</b> button to create a range of rooms. In a later step, you will schedule rooms using the values in the <b>Room Name</b> column.
+							</p>
+							<br/>
+						</apex:outputPanel>
+						<apex:outputPanel id="existingRoomPanel">
+							<div class="clear_fix">&nbsp;</div>
+							<div class="content-wrapper no-border">
+								<h3>Available Rooms for: {!cSetup.school.name}</h3>
+								<a style="cursor:pointer;" onclick="initRoomModal(); newRoomJs()"><img src="/img/feeds/follow12.png"/>Add New Room</a>
+								<br/>
+								<apex:dataTable styleClass="noFilter" value="{!currentRooms}" var="cr">
+									<apex:column >
+										<a href="#" onclick="initRoomModal();  editRoomJs('{!cr.id}');">Edit</a>
+									</apex:column>
+									<apex:repeat value="{!$ObjectType.Room__c.FieldSets.Room_Wizard}" var="f">
+										<apex:column style="width:200px;" headerValue="{!f.Label}" value="{!cr[f]}"/>
+									</apex:repeat>
+								</apex:dataTable>
+								<input type="button"  value="Create Range" onclick="initRangeModal(); showRangeJs();" class="black_btn"/>
+							</div>
+						</apex:outputPanel>
+					</div>
+				</apex:pageBlock>
+			</td>
+		</tr>
+	</table>
+	<apex:actionFunction action="{!showErrorMessages}" name="showErrorMessages" reRender="error" />
+	<apex:actionFunction action="{!createRooms}" name="createRoomsJs" reRender="existingRoomPanel,rangePanel,resetPanel" onComplete="checkRange();" />
+	<apex:actionFunction action="{!newRoom}" name="newRoomJs" onComplete="openModal('#roomEditModal');"   reRender="roomEditPanel" />
+	<apex:actionFunction action="{!editRoom}" name="editRoomJs" onComplete="openModal('#roomEditModal');" reRender="roomEditPanel"  >
+		<apex:param name="selectedRoomId" assignTo="{!selectedRoomId}" value="" />
+	</apex:actionFunction>
+	<apex:actionFunction action="{!cancelRoom}" name="cancelRoomJs" reRender="roomEditPanel" />
+	<apex:actionFunction action="{!saveRoom}" name="saveRoomJs" reRender="existingRoomPanel,roomEditPanel,resetPanel" onComplete="checkRoom();" />
+	<apex:actionFunction action="{!showRange}" name="showRangeJs" onComplete="openModal('#newRangeModal');" reRender="rangePanel, error" />
+	<apex:actionFunction action="{!cancelRange}" name="cancelRangeJs" reRender="rangePanel" />
+	<apex:actionFunction name="nextJs" action="{!next}" />
+	<apex:actionFunction name="prevJs" action="{!prev}" />
+	
+	<div id="newRangeModal" >
+		<apex:outputPanel id="rangePanel">
+			<apex:outputPanel rendered="{!bRange}">
+				<apex:pageMessages />
+				<h3>School: {!cSetup.school.name} - Create New Range of Rooms</h3>
+				<div class="section_content">
+					<apex:pageBlock >
+						<apex:pageBlockSection >
+							<apex:pageBlockSectionItem helpText="This information will display at the beginning of the room names for the school.">
+								<apex:outputLabel value="Prefix"/>
+								<apex:inputText value="{!initRoom.Prefix}"/>
+							</apex:pageBlockSectionItem>
+							<apex:pageBlockSectionItem helpText="This information will display at the end of the room names for the school.">
+								<apex:outputLabel value="Suffix"/>
+								<apex:inputText value="{!initRoom.Suffix}"/>
+							</apex:pageBlockSectionItem>
+							<apex:pageBlockSectionItem helpText="The value that Room Numbers should start with.">
+								<apex:outputLabel value="Start Number"/>
+								<apex:inputText value="{!initRoom.StartNumber}"/>
+							</apex:pageBlockSectionItem>
+							<apex:pageBlockSectionItem helpText="The value that Room Numbers should end with.">
+								<apex:outputLabel value="End Number"/>
+								<apex:inputText value="{!initRoom.EndNumber}"/>
+							</apex:pageBlockSectionItem>
+							<apex:pageBlockSectionItem helpText="Room numbers will automatically increase by this value.">
+								<apex:outputLabel value="Increment"/>
+								<apex:inputText value="{!initRoom.Increment}"/>
+							</apex:pageBlockSectionItem>
+							<apex:pageBlockSectionItem />
+							<apex:inputField value="{!initRoom.room.Size__c}"/>
+							<apex:inputField value="{!initRoom.room.Schedulable__c}"/>
+						</apex:pageBlockSection>
+					</apex:pageBlock>
+				</div><!-- END SECTION CONTENT -->
+				<input type="button" class="grey_btn" value="Cancel" onclick="closeModal('#newRangeModal');" />	
+				<input type="button" class="black_btn" value="Create" onclick="if(confirm('Are you sure you would like to create this range of rooms?')){
+																					showProgressBar(' Creating Rooms in Range ');
+																					createRoomsJs();
+																				}" />
+				<div class="clear_fix">&nbsp;</div>
+			</apex:outputPanel>
+		</apex:outputPanel>
+	</div>
+	<div id="roomEditModal" >
+		<apex:outputPanel id="roomEditPanel">
+			<apex:outputPanel rendered="{!bEdit}">
+				<apex:pageMessages />
+				<h3>Create/Edit Room</h3>
+				<div class="section_content">
+					<apex:pageBlock >
+						<apex:pageBlockSection >
+							<apex:repeat value="{!$ObjectType.Room__c.FieldSets.Room_Wizard}" var="f">
+								<apex:inputField value="{!initRoom.room[f]}"/>
+							</apex:repeat>
+						</apex:pageBlockSection>
+					</apex:pageBlock>
+				</div>
+				<input type="button" class="grey_btn" value="Cancel" onclick="closeModal('#roomEditModal');" />
+				<input type="button" class="black_btn" value="Save" onclick="if(confirm('Are you sure you would like to save this room?')){
+																				showProgressBar(' Saving Room ');
+																				saveRoomJs();
+																			}" />
+				<div class="clear_fix">&nbsp;</div>
+			</apex:outputPanel>
+		</apex:outputPanel>
+	</div>
+	
+	</apex:form>
+</apex:page>

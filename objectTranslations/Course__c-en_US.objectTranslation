@@ -1,0 +1,955 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Course</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Courses</value>
+    </caseValues>
+    <fieldSets>
+        <label><!-- Course Catalog Summary --></label>
+        <name>CourseCatSummary</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Courses Template --></label>
+        <name>Courses_Template</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Recovery Course --></label>
+        <name>Recovery_Course</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- courseCatalog --></label>
+        <name>courseCatalog</name>
+    </fieldSets>
+    <fields>
+        <label><!-- School --></label>
+        <name>Account__c</name>
+        <relationshipLabel><!-- Courses --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Course Id --></label>
+        <name>Course_Id__c</name>
+    </fields>
+    <fields>
+        <help><!-- An indication of the general nature and difficulty of instruction provided throughout a course. --></help>
+        <label><!-- Course Level Characteristic --></label>
+        <name>Course_Level_Characteristic__c</name>
+        <picklistValues>
+            <masterLabel>Accepted as a High School Equivalent</masterLabel>
+            <translation><!-- Accepted as a High School Equivalent --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Advanced Placement Course</masterLabel>
+            <translation><!-- Advanced Placement Course --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Basic Course</masterLabel>
+            <translation><!-- Basic Course --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>College-Level Course</masterLabel>
+            <translation><!-- College-Level Course --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>English Language Learner (ELL) Course</masterLabel>
+            <translation><!-- English Language Learner (ELL) Course --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>General Course</masterLabel>
+            <translation><!-- General Course --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Gifted and Talented Course</masterLabel>
+            <translation><!-- Gifted and Talented Course --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Honors Level Course</masterLabel>
+            <translation><!-- Honors Level Course --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>International Baccalaureate Course</masterLabel>
+            <translation><!-- International Baccalaureate Course --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Remedial Course</masterLabel>
+            <translation><!-- Remedial Course --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Students with Disabilities Course</masterLabel>
+            <translation><!-- Students with Disabilities Course --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Untracked Course</masterLabel>
+            <translation><!-- Untracked Course --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Enter a description of the course. You can use this field for reporting purposes. --></help>
+        <label><!-- Course Description --></label>
+        <name>Course_Notes__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enter the unique course number. SchoolForce uses this value to identify the course. --></help>
+        <label><!-- Course Number --></label>
+        <name>Course_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Course Weighting Records --></label>
+        <name>Course_Weighting_Records__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enter the number of credit hours students earn upon completion of this course. SchoolForce uses the credit hours to calculate weighted and unweighted GPAs. --></help>
+        <label><!-- Credit Hours --></label>
+        <name>Credit_Hours__c</name>
+    </fields>
+    <fields>
+        <help><!-- The type of credits or units of value awarded for the completion of a course. --></help>
+        <label><!-- Credit Type Earned --></label>
+        <name>Credit_Type_Earned__c</name>
+        <picklistValues>
+            <masterLabel>Carnegie Unit</masterLabel>
+            <translation><!-- Carnegie Unit --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Intersession Hour Credit</masterLabel>
+            <translation><!-- Intersession Hour Credit --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Long Session Hour Credit</masterLabel>
+            <translation><!-- Long Session Hour Credit --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mini-Term Hour Credit</masterLabel>
+            <translation><!-- Mini-Term Hour Credit --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Quarter Hour Credit</masterLabel>
+            <translation><!-- Quarter Hour Credit --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Quinmester Hour Credit</masterLabel>
+            <translation><!-- Quinmester Hour Credit --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Semester Hour Credit</masterLabel>
+            <translation><!-- Semester Hour Credit --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Summer Term Hour Credit</masterLabel>
+            <translation><!-- Summer Term Hour Credit --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Trimester Hour Credit</masterLabel>
+            <translation><!-- Trimester Hour Credit --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Number of Credits for this course, for final grade calculation --></help>
+        <label><!-- Credits --></label>
+        <name>Credits__c</name>
+    </fields>
+    <fields>
+        <help><!-- An indication of the standard curriculum used for this course. --></help>
+        <label><!-- Curriculum Framework --></label>
+        <name>Curriculum_Framework__c</name>
+        <picklistValues>
+            <masterLabel>LEA Curriculum Framework</masterLabel>
+            <translation><!-- LEA Curriculum Framework --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>National Curriculum Standard</masterLabel>
+            <translation><!-- National Curriculum Standard --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Private, Religious Curriculum</masterLabel>
+            <translation><!-- Private, Religious Curriculum --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>School Curriculum Framework</masterLabel>
+            <translation><!-- School Curriculum Framework --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>State Curriculum Framework</masterLabel>
+            <translation><!-- State Curriculum Framework --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Daily Attendance --></label>
+        <name>Daily_Attendance__c</name>
+    </fields>
+    <fields>
+        <label><!-- Default Maximum Enrollment --></label>
+        <name>Default_Maximum_Enrollment__c</name>
+    </fields>
+    <fields>
+        <help><!-- Select the department that teaches the course. You can use this field for reporting purposes. --></help>
+        <label><!-- Department --></label>
+        <name>Department__c</name>
+        <picklistValues>
+            <masterLabel>Art</masterLabel>
+            <translation><!-- Art --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>English</masterLabel>
+            <translation><!-- English --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Extracurricular</masterLabel>
+            <translation><!-- Extracurricular --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Language</masterLabel>
+            <translation><!-- Language --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mathematics</masterLabel>
+            <translation><!-- Mathematics --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Music</masterLabel>
+            <translation><!-- Music --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Physical Education</masterLabel>
+            <translation><!-- Physical Education --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Science</masterLabel>
+            <translation><!-- Science --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Social Studies</masterLabel>
+            <translation><!-- Social Studies --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- What topics are covered in this course? How would you describe the coursework you&apos;re going to cover? --></help>
+        <label><!-- Description --></label>
+        <name>Description__c</name>
+    </fields>
+    <fields>
+        <help><!-- Select if you want the numerical value for a grade to display on report cards (e.g., 98 instead of A+). --></help>
+        <label><!-- Display Numerical Values On Report Card --></label>
+        <name>Display_Numerical_Values_On_Report_Card__c</name>
+    </fields>
+    <fields>
+        <help><!-- On Homework Tracker, Course will be displayed according to the order in this field (1 = Furthest Left). Any records with the default of 9999 will be displayed in A-Z order after the ordered records --></help>
+        <label><!-- Display Order --></label>
+        <name>Display_Order__c</name>
+    </fields>
+    <fields>
+        <help><!-- If this check box is selected, this course displays on student and staff schedules. By default, this check box is selected. --></help>
+        <label><!-- Display on Student/Staff Schedule? --></label>
+        <name>Display_on_Student_Staff_Schedule__c</name>
+    </fields>
+    <fields>
+        <label><!-- Exclude from Class Rank --></label>
+        <name>Exclude_from_Class_Rank__c</name>
+    </fields>
+    <fields>
+        <label><!-- Exclude from GPA --></label>
+        <name>Exclude_from_GPA__c</name>
+    </fields>
+    <fields>
+        <label><!-- Exclude from Honor Roll --></label>
+        <name>Exclude_from_Honor_Roll__c</name>
+    </fields>
+    <fields>
+        <help><!-- Select if you want this course excluded from displaying on report cards and transcripts. --></help>
+        <label><!-- Exclude on RC/Transcripts --></label>
+        <name>Exclude_on_RC_Transcripts__c</name>
+    </fields>
+    <fields>
+        <label><!-- External Id --></label>
+        <name>External_Id__c</name>
+    </fields>
+    <fields>
+        <help><!-- If this course uses value-added points for weighted GPA grading, enter the number of points you want SchoolForce to add or multiply to calculate the weighted GPA. --></help>
+        <label><!-- GPA Added Value Points --></label>
+        <name>GPA_Added_Value_Points__c</name>
+    </fields>
+    <fields>
+        <label><!-- Grade Scale Category --></label>
+        <name>Grade_Scale_Category__c</name>
+    </fields>
+    <fields>
+        <label><!-- Grade Scale Id --></label>
+        <name>Grade_Scale_Id__c</name>
+    </fields>
+    <fields>
+        <help><!-- Select the grade scale this course will use to calculate grades. --></help>
+        <label><!-- Grade Scale --></label>
+        <lookupFilter>
+            <errorMessage><!-- Grade Scale field must be of Record Type Grade Scale --></errorMessage>
+        </lookupFilter>
+        <name>Grade_Scale_Lookup__c</name>
+        <relationshipLabel><!-- Courses --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Grade Scale Name --></label>
+        <name>Grade_Scale_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Grade Scale RT --></label>
+        <name>Grade_Scale_RT__c</name>
+    </fields>
+    <fields>
+        <help><!-- SchoolForce no longer uses this field. Do not select a value. --></help>
+        <label><!-- Legacy Grade Scale *Do Not Use* --></label>
+        <name>Grade_Scale__c</name>
+        <picklistValues>
+            <masterLabel>0-100</masterLabel>
+            <translation><!-- 0-100 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4ELH 1-2-3-4 Rubric TENTHS</masterLabel>
+            <translation><!-- 4ELH 1-2-3-4 Rubric TENTHS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Credit/No Credit</masterLabel>
+            <translation><!-- Credit/No Credit --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Default</masterLabel>
+            <translation><!-- Default --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ELH 1-2-3-4 Rubric</masterLabel>
+            <translation><!-- ELH 1-2-3-4 Rubric --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ELH Traditional</masterLabel>
+            <translation><!-- ELH Traditional --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Percentage</masterLabel>
+            <translation><!-- Percentage --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Points</masterLabel>
+            <translation><!-- Points --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Standard</masterLabel>
+            <translation><!-- Standard --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Standards</masterLabel>
+            <translation><!-- Standards --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Grading/reporting period length --></label>
+        <name>Grading_reporting_period_length__c</name>
+        <picklistValues>
+            <masterLabel>Full year</masterLabel>
+            <translation><!-- Full year --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Select if the course has a final exam grade for each reporting period. If selected, SchoolForce automatically adds a default weighting for the final reporting periods on the Configure Course Reporting Period Weightings screen when you save the course. --></help>
+        <label><!-- Has Final Grade --></label>
+        <name>Has_Final_Grade__c</name>
+    </fields>
+    <fields>
+        <help><!-- Select if the course has a corresponding lab (e.g., a science of language class). You can use this field for reporting purposes. --></help>
+        <label><!-- Has a lab? --></label>
+        <name>Has_a_lab__c</name>
+    </fields>
+    <fields>
+        <help><!-- Select if you want the sections created from this course to display in the Homework module. --></help>
+        <label><!-- Homework Based --></label>
+        <name>Homework_Based__c</name>
+    </fields>
+    <fields>
+        <help><!-- Students successfully completing this course will receive honor&apos;s credit. --></help>
+        <label><!-- Honors Course --></label>
+        <name>Honors_Course__c</name>
+    </fields>
+    <fields>
+        <help><!-- Select if you want SchoolForce to include the information for this course in the Section snapshots that are created in the End of Year Wizard --></help>
+        <label><!-- Include in section snapshot --></label>
+        <name>Include_in_section_snapshot__c</name>
+    </fields>
+    <fields>
+        <label><!-- Legacy ID --></label>
+        <name>Legacy_ID__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enter the maximum number of students that can be enrolled in this course. You can use this field for reporting purposes. --></help>
+        <label><!-- Max # of enrollment --></label>
+        <name>Max_of_enrollment__c</name>
+    </fields>
+    <fields>
+        <help><!-- Select if this course meets every day. You can use this field for reporting purposes. --></help>
+        <label><!-- Meets every day? --></label>
+        <name>Meets_every_day__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enter the minimum number of students that should be enrolled in this course. You can use this field for reporting purposes. --></help>
+        <label><!-- Min # of enrollment --></label>
+        <name>Min_of_enrollment__c</name>
+    </fields>
+    <fields>
+        <help><!-- Select if this is a course that uses value-added points for weighted GPA grading and you want SchoolForce to multiply the value added points to calculate the weighted GPA. If you do not select this check box, SchoolForce adds the value added points. --></help>
+        <label><!-- Multiply GPA Added Value Points --></label>
+        <name>Multiply_GPA_Added_Value_Points__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enter the Spanish translation of the course name. This value will display on translated report cards, progress reports, transcripts, and the Student/Parent Portal. --></help>
+        <label><!-- Name in Spanish --></label>
+        <name>Name_Spanish__c</name>
+    </fields>
+    <fields>
+        <help><!-- Select the default number of reporting periods over which the sections in this course will meet. If the number of reporting periods for this course is variable, you can define additional reporting period durations by clicking Edit Grade Weightings. --></help>
+        <label><!-- Number of Reporting Periods --></label>
+        <name>Number_of_Reporting_Periods__c</name>
+    </fields>
+    <fields>
+        <help><!-- Search for and select the course that is required before a student can enroll in this course. You can use this field for reporting purposes. --></help>
+        <label><!-- Pre-requisites --></label>
+        <name>Pre_requisites__c</name>
+        <relationshipLabel><!-- Courses --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Reference Id --></label>
+        <name>Reference_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reporting Course Name --></label>
+        <name>Reporting_Course_Name__c</name>
+    </fields>
+    <fields>
+        <help><!-- Select If students are required to take this course in order to graduate. You can use this field for reporting purposes as well as for cohort requirements. --></help>
+        <label><!-- Required for graduation --></label>
+        <name>Required_for_graduation__c</name>
+    </fields>
+    <fields>
+        <help><!-- Select the type of room in which this course should be scheduled. You can use this field for reporting purposes. --></help>
+        <label><!-- Room Type --></label>
+        <name>Room_Type__c</name>
+        <picklistValues>
+            <masterLabel>Art Room</masterLabel>
+            <translation><!-- Art Room --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Auditorium</masterLabel>
+            <translation><!-- Auditorium --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Band/Orchestra Room</masterLabel>
+            <translation><!-- Band/Orchestra Room --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Classroom</masterLabel>
+            <translation><!-- Classroom --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Clinic</masterLabel>
+            <translation><!-- Clinic --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Computer Lab</masterLabel>
+            <translation><!-- Computer Lab --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Gymnasium</masterLabel>
+            <translation><!-- Gymnasium --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Home Economics Classroom</masterLabel>
+            <translation><!-- Home Economics Classroom --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Library</masterLabel>
+            <translation><!-- Library --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Lunchroom</masterLabel>
+            <translation><!-- Lunchroom --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Music Room</masterLabel>
+            <translation><!-- Music Room --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Nurse&apos;s Office</masterLabel>
+            <translation><!-- Nurse&apos;s Office --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Playground</masterLabel>
+            <translation><!-- Playground --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Science Lab</masterLabel>
+            <translation><!-- Science Lab --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Teacher&apos;s Lounge</masterLabel>
+            <translation><!-- Teacher&apos;s Lounge --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Workshop</masterLabel>
+            <translation><!-- Workshop --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- The five-digit SCED code and name of the course. The first two-digits of the code represent the Secondary Course Subject Area. --></help>
+        <label><!-- Secondary Course Identifier --></label>
+        <name>Secondary_Course_Identifier__c</name>
+    </fields>
+    <fields>
+        <help><!-- An indication of the general nature and difficulty of instruction provided throughout a course. --></help>
+        <label><!-- Secondary Course Level --></label>
+        <name>Secondary_Course_Level__c</name>
+        <picklistValues>
+            <masterLabel>B - Basic or Remedial</masterLabel>
+            <translation><!-- B - Basic or Remedial --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>E - Enriched or Advanced</masterLabel>
+            <translation><!-- E - Enriched or Advanced --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>G - General or Regular</masterLabel>
+            <translation><!-- G - General or Regular --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>H - Honors</masterLabel>
+            <translation><!-- H - Honors --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- The intended major subject area of the secondary education course. --></help>
+        <label><!-- Secondary Course Subject Area --></label>
+        <name>Secondary_Course_Subject_Area__c</name>
+        <picklistValues>
+            <masterLabel>01 - English Language and Literature</masterLabel>
+            <translation><!-- 01 - English Language and Literature --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>02 - Mathematics</masterLabel>
+            <translation><!-- 02 - Mathematics --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>03 - Life and Physical Sciences</masterLabel>
+            <translation><!-- 03 - Life and Physical Sciences --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>04 - Social Sciences and History</masterLabel>
+            <translation><!-- 04 - Social Sciences and History --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>05 - Fine and Performing Arts</masterLabel>
+            <translation><!-- 05 - Fine and Performing Arts --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>06 - Foreign Language and Literature</masterLabel>
+            <translation><!-- 06 - Foreign Language and Literature --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>07 - Religious Education and Theology</masterLabel>
+            <translation><!-- 07 - Religious Education and Theology --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>08 - Physical, Health, and Safety Education</masterLabel>
+            <translation><!-- 08 - Physical, Health, and Safety Education --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>09 - Military Science</masterLabel>
+            <translation><!-- 09 - Military Science --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>10 - Computer and Information Sciences</masterLabel>
+            <translation><!-- 10 - Computer and Information Sciences --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>11 - Communications and Audio/Visual Technology</masterLabel>
+            <translation><!-- 11 - Communications and Audio/Visual Technology --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>12 - Business and Marketing</masterLabel>
+            <translation><!-- 12 - Business and Marketing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>13 - Manufacturing</masterLabel>
+            <translation><!-- 13 - Manufacturing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>14 - Health Care Sciences</masterLabel>
+            <translation><!-- 14 - Health Care Sciences --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>15 - Public, Protective, and Government Service</masterLabel>
+            <translation><!-- 15 - Public, Protective, and Government Service --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>16 - Hospitality and Tourism</masterLabel>
+            <translation><!-- 16 - Hospitality and Tourism --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>17 - Architecture and Construction</masterLabel>
+            <translation><!-- 17 - Architecture and Construction --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>18 - Agriculture, Food, and Natural Resources</masterLabel>
+            <translation><!-- 18 - Agriculture, Food, and Natural Resources --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>19 - Human Services</masterLabel>
+            <translation><!-- 19 - Human Services --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>20 - Transportation, Distribution and Logistics</masterLabel>
+            <translation><!-- 20 - Transportation, Distribution and Logistics --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>21 - Engineering and Technology</masterLabel>
+            <translation><!-- 21 - Engineering and Technology --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>22 - Miscellaneous</masterLabel>
+            <translation><!-- 22 - Miscellaneous --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Special Subject --></label>
+        <name>Special_Subject__c</name>
+    </fields>
+    <fields>
+        <help><!-- Select the applicable subject area for this course. You can use the subject area for reporting purposes as well as for cohort requirements. --></help>
+        <label><!-- Subject Area Lookup --></label>
+        <name>Subject_Area_Lookup__c</name>
+        <relationshipLabel><!-- Courses (Subject Area Lookup) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Subject Area --></label>
+        <name>Subject_Area__c</name>
+        <picklistValues>
+            <masterLabel>Citizenship</masterLabel>
+            <translation><!-- Citizenship --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cognitive Development</masterLabel>
+            <translation><!-- Cognitive Development --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Computer Science Programming</masterLabel>
+            <translation><!-- Computer Science Programming --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Computer Skills/Literacy</masterLabel>
+            <translation><!-- Computer Skills/Literacy --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Elective Activities</masterLabel>
+            <translation><!-- Elective Activities --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>English as a Second Language</masterLabel>
+            <translation><!-- English as a Second Language --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fine Arts - Art</masterLabel>
+            <translation><!-- Fine Arts - Art --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fine Arts - Dance</masterLabel>
+            <translation><!-- Fine Arts - Dance --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fine Arts - Drama/Theater</masterLabel>
+            <translation><!-- Fine Arts - Drama/Theater --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fine Arts - Music</masterLabel>
+            <translation><!-- Fine Arts - Music --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fitness</masterLabel>
+            <translation><!-- Fitness --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Foreign Language and Literature</masterLabel>
+            <translation><!-- Foreign Language and Literature --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Geography</masterLabel>
+            <translation><!-- Geography --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Handwriting/Penmanship</masterLabel>
+            <translation><!-- Handwriting/Penmanship --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Health</masterLabel>
+            <translation><!-- Health --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>History</masterLabel>
+            <translation><!-- History --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Home Economics</masterLabel>
+            <translation><!-- Home Economics --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Homework</masterLabel>
+            <translation><!-- Homework --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Industrial Arts</masterLabel>
+            <translation><!-- Industrial Arts --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Keyboarding/typing</masterLabel>
+            <translation><!-- Keyboarding/typing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Language Arts</masterLabel>
+            <translation><!-- Language Arts --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Library Skills</masterLabel>
+            <translation><!-- Library Skills --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Listening &amp; Speaking</masterLabel>
+            <translation><!-- Listening &amp; Speaking --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Literacy</masterLabel>
+            <translation><!-- Literacy --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Math</masterLabel>
+            <translation><!-- Math --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mathematics/Arithmetic</masterLabel>
+            <translation><!-- Mathematics/Arithmetic --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Military Science</masterLabel>
+            <translation><!-- Military Science --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Multi/Interdisciplinary Studies</masterLabel>
+            <translation><!-- Multi/Interdisciplinary Studies --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Physical Development</masterLabel>
+            <translation><!-- Physical Development --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Physical Education</masterLabel>
+            <translation><!-- Physical Education --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Reading</masterLabel>
+            <translation><!-- Reading --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Religious Education and Theology</masterLabel>
+            <translation><!-- Religious Education and Theology --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Science</masterLabel>
+            <translation><!-- Science --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Science &amp; Social Studies</masterLabel>
+            <translation><!-- Science &amp; Social Studies --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Social &amp; Emotional Development</masterLabel>
+            <translation><!-- Social &amp; Emotional Development --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Social Studies</masterLabel>
+            <translation><!-- Social Studies --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Spanish</masterLabel>
+            <translation><!-- Spanish --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Spelling</masterLabel>
+            <translation><!-- Spelling --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Study Skills</masterLabel>
+            <translation><!-- Study Skills --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Test Preparation</masterLabel>
+            <translation><!-- Test Preparation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Writing</masterLabel>
+            <translation><!-- Writing --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Transfer School --></label>
+        <name>Transfer_School__c</name>
+    </fields>
+    <fields>
+        <help><!-- Select the type of course. For example, the type of course may include options such as honors, AP, international baccalaureate. You can use this field for reporting purposes as well as for cohort requirements. --></help>
+        <label><!-- Type --></label>
+        <name>Type__c</name>
+        <picklistValues>
+            <masterLabel>AP</masterLabel>
+            <translation><!-- AP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Credit/No Credit</masterLabel>
+            <translation><!-- Credit/No Credit --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Honors</masterLabel>
+            <translation><!-- Honors --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IB</masterLabel>
+            <translation><!-- IB --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Points</masterLabel>
+            <translation><!-- Points --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Remedial</masterLabel>
+            <translation><!-- Remedial --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Standard</masterLabel>
+            <translation><!-- Standard --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Select if you want SchoolForce to weigh the assignment types using a percentage. For example, you can designate Homework as worth 30% of a student&apos;s section grade. --></help>
+        <label><!-- Use Assignment Type Percentages --></label>
+        <name>Use_Assignment_Type_Percentages__c</name>
+    </fields>
+    <fields>
+        <label><!-- Weighting % Check --></label>
+        <name>Weighting_Check__c</name>
+    </fields>
+    <fields>
+        <label><!-- Weightings --></label>
+        <name>Weightings__c</name>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>10</masterLabel>
+            <translation><!-- 10 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2</masterLabel>
+            <translation><!-- 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3</masterLabel>
+            <translation><!-- 3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4</masterLabel>
+            <translation><!-- 4 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5</masterLabel>
+            <translation><!-- 5 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>6</masterLabel>
+            <translation><!-- 6 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7</masterLabel>
+            <translation><!-- 7 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>8</masterLabel>
+            <translation><!-- 8 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>9</masterLabel>
+            <translation><!-- 9 --></translation>
+        </picklistValues>
+    </fields>
+    <layouts>
+        <layout>Course Layout</layout>
+        <sections>
+            <label><!-- Course Description --></label>
+            <section>Course Description</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Grading Information --></label>
+            <section>Grading Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Non Admin Layout</layout>
+        <sections>
+            <label><!-- Course Description --></label>
+            <section>Course Description</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Grading Information --></label>
+            <section>Grading Information</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <label><!-- Course --></label>
+        <name>Course</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Courses taught for students to earn recovery credits --></description>
+        <label><!-- Recovery --></label>
+        <name>Recovery</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Subject Area --></label>
+        <name>Subject_Area</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Course used to represent a course from an external school system. --></description>
+        <label><!-- Transfer --></label>
+        <name>Transfer</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- Subject Area cannot be blank. --></errorMessage>
+        <name>Course_Is_SubjectArea_Blank</name>
+    </validationRules>
+</CustomObjectTranslation>

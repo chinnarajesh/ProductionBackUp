@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Account.Students__r.Student_Programs__r$Id</field>
+    </columns>
+    <columns>
+        <field>Account$Name</field>
+    </columns>
+    <columns>
+        <field>Account.Students__r$Student_Id__c</field>
+    </columns>
+    <columns>
+        <field>Account.Students__r.Student_Programs__r$Name</field>
+    </columns>
+    <columns>
+        <field>Account.Students__r.Student_Programs__r$CreatedDate</field>
+    </columns>
+    <columns>
+        <field>Account.Students__r.Student_Programs__r$LastModifiedDate</field>
+    </columns>
+    <columns>
+        <field>Account.Students__r.Student_Programs__r$Amount_of_Time__c</field>
+    </columns>
+    <columns>
+        <field>Account.Students__r$Attendance__c</field>
+    </columns>
+    <columns>
+        <field>Account.Students__r$Behavior__c</field>
+    </columns>
+    <columns>
+        <field>Account.Students__r$ELA_Literacy__c</field>
+    </columns>
+    <columns>
+        <field>Account.Students__r$Math__c</field>
+    </columns>
+    <description>This report reflects if a section is assigned to a student/program</description>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Account.Students__r.Student_Programs__r.Student_Section__r$Section__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Student program vs assigned section</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Accounts_with_Students_with_Student_Programs__c</reportType>
+    <scope>organization</scope>
+    <showDetails>false</showDetails>
+    <showGrandTotal>false</showGrandTotal>
+    <showSubTotals>false</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>Account.Students__r.Student_Programs__r$CreatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

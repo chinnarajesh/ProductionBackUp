@@ -1,0 +1,85 @@
+<apex:page standardController="Contact" extensions="YOY_SectionGradesAndFinalGrades" tabStyle="Contact" >
+	<c:admin /> 
+	<!-- KCC:7/1/13: No idea why we needed this table. Not going to mess with it -->
+   <table style="width:100%">
+	<tr>
+		<td>
+		<apex:outputPanel id="messages">
+			<script>
+				resetTable();
+				
+				
+				function resetTable(){
+					j$(".tablesorter").dataTable( {
+						"sScrollY": "275px",
+						"sScrollX": "100%",
+				        "bAutoWidth": true,
+						"aoColumnDefs": [
+							{ "sWidth": "200px", 
+							"aTargets": [ 0 ]}
+						],
+				        "bPaginate": true,
+				        "bLengthChange": false,
+				        "bJQueryUI": true, 
+				        "iDisplayLength": 5
+    			} );
+    			}
+			
+			</script>
+			<apex:pageMessages />
+		</apex:outputPanel>
+		<apex:outputPanel id="scripts">
+			<script>
+				j$(document).ready(function() {
+					resetTable();;});
+			</script>
+			</apex:outputPanel>
+		<apex:form >
+	
+    <apex:outputpanel id="yearOuterpanel">
+    	<apex:outputpanel id="yearInnerpanel">
+    		<h3> SELECT YEAR</h3>
+	    	<apex:selectList style="margin-left:5px; margin-right:25px;" value="{!selectedYear}" multiselect="false" size="1" rendered="true" >
+		         <apex:selectOptions value="{!yearOptions}"/>
+		    </apex:selectList>
+	    <apex:commandbutton styleclass="drk_blue_btn" value="RETRIEVE GRADES" action="{!retrieveGrades}" rerender="messages,GradesOuterpanel" />
+		<div class="clear_fix">&nbsp;</div>
+	  </apex:outputpanel>				               
+    </apex:outputpanel>
+    
+     <apex:outputpanel id="GradesOuterpanel">
+    	<apex:outputpanel id="GradesInnerpanel">
+			<div class="section_content">
+				<apex:dataTable styleClass="tablesorter"  title="" value="{!studentWrapperList}" var="s" >
+					<apex:column headerValue="Course Name">
+						<apex:outputText value="{!s.course}"/>
+					</apex:column>
+					<apex:column headerValue="Reporting Period">
+						<table>
+							<tr>
+								<apex:repeat value="{!reportingPeriodList}" var="rp">
+					            	<th>
+										{!rp.Name__c}
+					                </th>
+					            </apex:repeat>
+					        </tr>
+					        <tr>
+						        <apex:repeat value="{!s.rpGrades}" var="g">
+						            <td>
+							            <apex:outputText value="{!g}"/>
+						            </td>
+						        </apex:repeat>
+					        </tr>		
+					    </table>
+					</apex:column>
+					<apex:column headerValue="Final Grade">
+						<apex:outputText value="{!s.finalGrade}"/>
+					</apex:column>
+				</apex:dataTable>
+			</div>    	
+		</apex:outputpanel>				               
+    </apex:outputpanel>
+	</apex:form>
+
+    </td></tr></table>
+</apex:page>

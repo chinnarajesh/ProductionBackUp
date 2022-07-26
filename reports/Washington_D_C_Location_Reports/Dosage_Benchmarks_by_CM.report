@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <buckets>
+        <bucketType>number</bucketType>
+        <developerName>BucketField_6733754</developerName>
+        <masterLabel>Greatest Monthly Goal Met</masterLabel>
+        <nullTreatment>n</nullTreatment>
+        <sourceColumnName>Account.Sections__r.Student_Section__r$Dosage_to_Date_hrs__c</sourceColumnName>
+        <useOther>false</useOther>
+        <values>
+            <sourceValues>
+                <to>3.99</to>
+            </sourceValues>
+            <value>Less than January Dosage</value>
+        </values>
+        <values>
+            <sourceValues>
+                <from>3.99</from>
+                <to>6.49</to>
+            </sourceValues>
+            <value>Met January Dosage</value>
+        </values>
+        <values>
+            <sourceValues>
+                <from>6.49</from>
+                <to>10.99</to>
+            </sourceValues>
+            <value>Met February Dosage</value>
+        </values>
+        <values>
+            <sourceValues>
+                <from>10.99</from>
+                <to>14.99</to>
+            </sourceValues>
+            <value>Met March Dosage</value>
+        </values>
+        <values>
+            <sourceValues>
+                <from>14.99</from>
+            </sourceValues>
+            <value>Met 15 Hours</value>
+        </values>
+    </buckets>
+    <chart>
+        <backgroundColor1>#FFFFFF</backgroundColor1>
+        <backgroundColor2>#FFFFFF</backgroundColor2>
+        <backgroundFadeDir>Diagonal</backgroundFadeDir>
+        <chartSummaries>
+            <axisBinding>y</axisBinding>
+            <column>RowCount</column>
+        </chartSummaries>
+        <chartType>HorizontalBarStacked</chartType>
+        <enableHoverLabels>false</enableHoverLabels>
+        <expandOthers>true</expandOthers>
+        <groupingColumn>Account.Sections__r$Indicator_Area__c</groupingColumn>
+        <legendPosition>Right</legendPosition>
+        <location>CHART_TOP</location>
+        <secondaryGroupingColumn>BucketField_6733754</secondaryGroupingColumn>
+        <showAxisLabels>true</showAxisLabels>
+        <showPercentage>false</showPercentage>
+        <showTotal>false</showTotal>
+        <showValues>false</showValues>
+        <size>Medium</size>
+        <summaryAxisRange>Auto</summaryAxisRange>
+        <textColor>#000000</textColor>
+        <textSize>12</textSize>
+        <title>Number of Students Meeting Dosage Goals</title>
+        <titleColor>#000000</titleColor>
+        <titleSize>18</titleSize>
+    </chart>
+    <columns>
+        <field>Account.Sections__r.Student_Section__r$Dosage_to_Date_hrs__c</field>
+    </columns>
+    <columns>
+        <field>Account.Sections__r.Student_Section__r$Student_Id__c</field>
+    </columns>
+    <columns>
+        <field>Account.Sections__r.Student_Section__r$Student__c</field>
+    </columns>
+    <columns>
+        <field>Account$Name</field>
+    </columns>
+    <columns>
+        <field>Account.Sections__r$Auto_Name__c</field>
+    </columns>
+    <description>Shows number of students that have met monthly benchmarks by CM in ELA and Math.  Details include individual student IDs.  Note: Report includes all students who have dosage, not just official FL</description>
+    <filter>
+        <booleanFilter>(1 OR 2)</booleanFilter>
+        <criteriaItems>
+            <column>Account.Sections__r$Indicator_Area__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>contains</operator>
+            <value>ELA</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account.Sections__r$Indicator_Area__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>contains</operator>
+            <value>Math</value>
+        </criteriaItems>
+    </filter>
+    <format>Matrix</format>
+    <groupingsAcross>
+        <dateGranularity>Day</dateGranularity>
+        <field>BucketField_6733754</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsAcross>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Account.Sections__r$Intervention_Primary_Staff__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Account.Sections__r$Indicator_Area__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>ELA and Math Dosage Benchmarks by CM</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Accounts_with_Sections_with_Student_Section__c</reportType>
+    <scope>organization</scope>
+    <showDetails>false</showDetails>
+    <showGrandTotal>false</showGrandTotal>
+    <showSubTotals>false</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>Account.Sections__r$End_Date__c</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

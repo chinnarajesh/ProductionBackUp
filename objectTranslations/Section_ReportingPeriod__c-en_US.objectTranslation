@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Section/ReportingPeriod</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Section/ReportingPeriod</value>
+    </caseValues>
+    <fields>
+        <label><!-- Completed? --></label>
+        <name>Completed__c</name>
+    </fields>
+    <fields>
+        <label><!-- Course Weighting --></label>
+        <name>Course_Weighting__c</name>
+        <relationshipLabel><!-- Section/ReportingPeriod --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- External Id --></label>
+        <name>External_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Is Time Parent Term --></label>
+        <name>Is_Time_Parent_Term__c</name>
+    </fields>
+    <fields>
+        <label><!-- Number of periods --></label>
+        <name>Number_of_periods__c</name>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2</masterLabel>
+            <translation><!-- 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3</masterLabel>
+            <translation><!-- 3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4</masterLabel>
+            <translation><!-- 4 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Period --></label>
+        <name>Period__c</name>
+    </fields>
+    <fields>
+        <label><!-- ReferenceId --></label>
+        <name>ReferenceId__c</name>
+    </fields>
+    <fields>
+        <label><!-- Scheduler ReferenceId --></label>
+        <name>Scheduler_ReferenceId__c</name>
+    </fields>
+    <fields>
+        <label><!-- Section Number Of Periods --></label>
+        <name>Section_Number_Of_Periods__c</name>
+    </fields>
+    <fields>
+        <label><!-- Section Reporting Period --></label>
+        <name>Section_Reporting_Period__c</name>
+    </fields>
+    <fields>
+        <label><!-- Section --></label>
+        <name>Section__c</name>
+        <relationshipLabel><!-- Section/ReportingPeriod --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Time Parent Picklist Name --></label>
+        <name>Time_Parent_Picklist_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Time --></label>
+        <name>Time__c</name>
+        <relationshipLabel><!-- Section/ReportingPeriod --></relationshipLabel>
+    </fields>
+    <layouts>
+        <layout>Section/ReportingPeriod Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <label><!-- Published --></label>
+        <name>Published</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Unpublished --></label>
+        <name>UnPublished</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

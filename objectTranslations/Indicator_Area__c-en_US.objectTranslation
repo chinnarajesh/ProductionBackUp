@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Indicator Area</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Indicator Areas</value>
+    </caseValues>
+    <fields>
+        <help><!-- Indicates whether or not this indicator area is available to assign to students on the Add Students to Indicator Areas screen. If you uncheck this field, SchoolForce deactivates any associated Program, Staff/Section, and Student/Section records. --></help>
+        <label><!-- Active --></label>
+        <name>Active__c</name>
+    </fields>
+    <fields>
+        <label><!-- External ID --></label>
+        <name>External_ID__c</name>
+    </fields>
+    <fields>
+        <help><!-- Description of the Indicator Area --></help>
+        <label><!-- Indicator Area Description --></label>
+        <name>IA_Description__c</name>
+    </fields>
+    <fields>
+        <help><!-- This field categorizes Indicator Areas for reporting purposes.  These are the highest level of Intervention Categories, similar to Subjects.  Admins may modify the values in Setup. --></help>
+        <label><!-- Indicator Area Type --></label>
+        <name>Indicator_Area_Type__c</name>
+        <picklistValues>
+            <masterLabel>Attendance</masterLabel>
+            <translation><!-- Attendance --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ELA/Literacy</masterLabel>
+            <translation><!-- ELA/Literacy --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Math</masterLabel>
+            <translation><!-- Math --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SEL/SED</masterLabel>
+            <translation><!-- SEL/SED --></translation>
+        </picklistValues>
+    </fields>
+    <layouts>
+        <layout>Indicator Area Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Indicator Area Description --></label>
+            <section>Indicator Area Description</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

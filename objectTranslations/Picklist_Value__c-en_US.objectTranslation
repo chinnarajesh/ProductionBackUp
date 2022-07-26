@@ -1,0 +1,762 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Picklist Value</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Picklist Values</value>
+    </caseValues>
+    <fieldSets>
+        <label><!-- Assignment Types Picklist Value Template --></label>
+        <name>Assignment_Types_Picklist_Value_Template</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Attendance Picklist Value Template --></label>
+        <name>Attendance_Picklist_Value_Template</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Behavior Types Picklist Value Template --></label>
+        <name>Behavior_Types_Picklist_Value_Template</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Consequence Types Picklist Value Template --></label>
+        <name>Consequence_Types_Picklist_Template</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Grade Scales Picklist Value Template --></label>
+        <name>Grade_Scales_Picklist_Value_Template</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Homework Picklist Value Template --></label>
+        <name>Homework_Picklist_Value_Template</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Time Picklist Value Template --></label>
+        <name>Time_Picklist_Value_Template</name>
+    </fieldSets>
+    <fields>
+        <label><!-- Behavior Category --></label>
+        <name>Behavior_Category__c</name>
+        <picklistValues>
+            <masterLabel>Bullying / Threatening / Planning Harm</masterLabel>
+            <translation><!-- Bullying / Threatening / Planning Harm --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Disruptive / Disrespectful</masterLabel>
+            <translation><!-- Disruptive / Disrespectful --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Drugs / Alcohol</masterLabel>
+            <translation><!-- Drugs / Alcohol --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fighting</masterLabel>
+            <translation><!-- Fighting --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Having / Using Potential or Real Weapon</masterLabel>
+            <translation><!-- Having / Using Potential or Real Weapon --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Inappropriate Contact / Unsafe Behavior</masterLabel>
+            <translation><!-- Inappropriate Contact / Unsafe Behavior --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Lying / Cheating / Stealing</masterLabel>
+            <translation><!-- Lying / Cheating / Stealing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Medical</masterLabel>
+            <translation><!-- Medical --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Misusing Materials / Damaging Property</masterLabel>
+            <translation><!-- Misusing Materials / Damaging Property --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Neutral #1</masterLabel>
+            <translation><!-- Neutral #1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Neutral #2</masterLabel>
+            <translation><!-- Neutral #2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Non-compliant / Not Prepared</masterLabel>
+            <translation><!-- Non-compliant / Not Prepared --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Not In Class or With Group / Truancy</masterLabel>
+            <translation><!-- Not In Class or With Group / Truancy --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Positive #1</masterLabel>
+            <translation><!-- Positive #1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Positive #2</masterLabel>
+            <translation><!-- Positive #2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Positive Behaviors</masterLabel>
+            <translation><!-- Positive Behaviors --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Behavior Incident Level --></label>
+        <name>Behavior_Incident_Level__c</name>
+        <picklistValues>
+            <masterLabel>Negative</masterLabel>
+            <translation><!-- Negative --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Neutral</masterLabel>
+            <translation><!-- Neutral --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Positive</masterLabel>
+            <translation><!-- Positive --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Category --></label>
+        <name>Category__c</name>
+        <picklistValues>
+            <masterLabel>0-100</masterLabel>
+            <translation><!-- 0-100 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Absent</masterLabel>
+            <translation><!-- Absent --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Complete</masterLabel>
+            <translation><!-- Complete --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Credit/No Credit</masterLabel>
+            <translation><!-- Credit/No Credit --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Custom Period</masterLabel>
+            <translation><!-- Custom Period --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Default</masterLabel>
+            <translation><!-- Default --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Excused Absence</masterLabel>
+            <translation><!-- Excused Absence --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Excused Tardy</masterLabel>
+            <translation><!-- Excused Tardy --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Exempt</masterLabel>
+            <translation><!-- Exempt --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>In School Suspension</masterLabel>
+            <translation><!-- In School Suspension --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Incomplete</masterLabel>
+            <translation><!-- Incomplete --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Late</masterLabel>
+            <translation><!-- Late --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Missing</masterLabel>
+            <translation><!-- Missing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Out of School Suspension</masterLabel>
+            <translation><!-- Out of School Suspension --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Partial</masterLabel>
+            <translation><!-- Partial --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Points</masterLabel>
+            <translation><!-- Points --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Present</masterLabel>
+            <translation><!-- Present --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Reporting Period</masterLabel>
+            <translation><!-- Reporting Period --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Standards</masterLabel>
+            <translation><!-- Standards --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Tardy</masterLabel>
+            <translation><!-- Tardy --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Unexcused Absence</masterLabel>
+            <translation><!-- Unexcused Absence --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Unexcused Tardy</masterLabel>
+            <translation><!-- Unexcused Tardy --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Consequence Weight --></label>
+        <name>Consequence_Weight__c</name>
+    </fields>
+    <fields>
+        <label><!-- Corresponding Value --></label>
+        <name>Corresponding_Value__c</name>
+    </fields>
+    <fields>
+        <label><!-- Default Points --></label>
+        <name>Default_Points__c</name>
+    </fields>
+    <fields>
+        <label><!-- Display Code --></label>
+        <name>Display_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- External Id --></label>
+        <name>External_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Field Set --></label>
+        <name>Fieldset__c</name>
+    </fields>
+    <fields>
+        <label><!-- Grade --></label>
+        <name>Grade__c</name>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>10</masterLabel>
+            <translation><!-- 10 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>11</masterLabel>
+            <translation><!-- 11 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>12</masterLabel>
+            <translation><!-- 12 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2</masterLabel>
+            <translation><!-- 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3</masterLabel>
+            <translation><!-- 3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4</masterLabel>
+            <translation><!-- 4 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5</masterLabel>
+            <translation><!-- 5 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>6</masterLabel>
+            <translation><!-- 6 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7</masterLabel>
+            <translation><!-- 7 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>8</masterLabel>
+            <translation><!-- 8 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>9</masterLabel>
+            <translation><!-- 9 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>K</masterLabel>
+            <translation><!-- K --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>KG Kindergarten</masterLabel>
+            <translation><!-- KG Kindergarten --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Kindergarten</masterLabel>
+            <translation><!-- Kindergarten --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Kindergarten/Preschool</masterLabel>
+            <translation><!-- Kindergarten/Preschool --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PG Postgraduate/Adult</masterLabel>
+            <translation><!-- PG Postgraduate/Adult --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PK</masterLabel>
+            <translation><!-- PK --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PK Pre-K</masterLabel>
+            <translation><!-- PK Pre-K --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PK-3</masterLabel>
+            <translation><!-- PK-3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PK-4</masterLabel>
+            <translation><!-- PK-4 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PS</masterLabel>
+            <translation><!-- PS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UN Ungraded</masterLabel>
+            <translation><!-- UN Ungraded --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Incident Involves Weapon? --></label>
+        <name>Incident_Involves_Weapon__c</name>
+    </fields>
+    <fields>
+        <label><!-- Indicator Area --></label>
+        <name>Indicator_Area__c</name>
+    </fields>
+    <fields>
+        <label><!-- Internal Code --></label>
+        <name>Internal_Code__c</name>
+        <picklistValues>
+            <masterLabel>sf_absent</masterLabel>
+            <translation><!-- sf_absent --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>sf_absentwdue</masterLabel>
+            <translation><!-- sf_absentwdue --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>sf_complete</masterLabel>
+            <translation><!-- sf_complete --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>sf_departed</masterLabel>
+            <translation><!-- sf_departed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>sf_exempt</masterLabel>
+            <translation><!-- sf_exempt --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>sf_incomplete</masterLabel>
+            <translation><!-- sf_incomplete --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>sf_late</masterLabel>
+            <translation><!-- sf_late --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>sf_missing</masterLabel>
+            <translation><!-- sf_missing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>sf_present</masterLabel>
+            <translation><!-- sf_present --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>sf_suspended</masterLabel>
+            <translation><!-- sf_suspended --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>sf_suspension</masterLabel>
+            <translation><!-- sf_suspension --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>sf_tardy</masterLabel>
+            <translation><!-- sf_tardy --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>sf_tardydeparted</masterLabel>
+            <translation><!-- sf_tardydeparted --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- does this picklist value represent an Early Departure attendance status? --></help>
+        <label><!-- Is Early Departure --></label>
+        <name>Is_Early_Departure__c</name>
+    </fields>
+    <fields>
+        <help><!-- Is the consequence a suspension? --></help>
+        <label><!-- Is Suspension --></label>
+        <name>Is_Suspension__c</name>
+    </fields>
+    <fields>
+        <help><!-- does this picklist value represent a Tardy attendance status? --></help>
+        <label><!-- Is Tardy --></label>
+        <name>Is_Tardy__c</name>
+    </fields>
+    <fields>
+        <label><!-- Is Unexcused --></label>
+        <name>Is_Unexcused__c</name>
+    </fields>
+    <fields>
+        <label><!-- Level --></label>
+        <name>Level__c</name>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2</masterLabel>
+            <translation><!-- 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3</masterLabel>
+            <translation><!-- 3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4</masterLabel>
+            <translation><!-- 4 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5</masterLabel>
+            <translation><!-- 5 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>6</masterLabel>
+            <translation><!-- 6 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- To explain when this values is used... --></help>
+        <label><!-- Long Description --></label>
+        <name>Long_Description__c</name>
+    </fields>
+    <fields>
+        <help><!-- Should an admin be notified? --></help>
+        <label><!-- Notify Admin --></label>
+        <name>Notify_Admin__c</name>
+    </fields>
+    <fields>
+        <label><!-- Number --></label>
+        <name>Number__c</name>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2</masterLabel>
+            <translation><!-- 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3</masterLabel>
+            <translation><!-- 3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4</masterLabel>
+            <translation><!-- 4 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5</masterLabel>
+            <translation><!-- 5 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>6</masterLabel>
+            <translation><!-- 6 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7</masterLabel>
+            <translation><!-- 7 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>8</masterLabel>
+            <translation><!-- 8 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>9</masterLabel>
+            <translation><!-- 9 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Order --></label>
+        <name>Order__c</name>
+    </fields>
+    <fields>
+        <help><!-- Set this check box for the default value for Attendance (usually Present) --></help>
+        <label><!-- Set as Default --></label>
+        <name>Set_as_Default__c</name>
+    </fields>
+    <fields>
+        <label><!-- Setup --></label>
+        <name>Setup__c</name>
+        <relationshipLabel><!-- Picklist Values --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Short Description --></label>
+        <name>Short_Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Show On Report Card --></label>
+        <name>Show_On_Report_Card__c</name>
+    </fields>
+    <fields>
+        <label><!-- Show On Transcript --></label>
+        <name>Show_On_Transcript__c</name>
+    </fields>
+    <fields>
+        <label><!-- Standard Scale --></label>
+        <name>Standard_Scale__c</name>
+    </fields>
+    <fields>
+        <label><!-- Type --></label>
+        <name>Type__c</name>
+        <picklistValues>
+            <masterLabel>Assignment</masterLabel>
+            <translation><!-- Assignment --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Attendance</masterLabel>
+            <translation><!-- Attendance --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Behavior Consequence</masterLabel>
+            <translation><!-- Behavior Consequence --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Behavior Type</masterLabel>
+            <translation><!-- Behavior Type --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Grade Scale</masterLabel>
+            <translation><!-- Grade Scale --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Homework</masterLabel>
+            <translation><!-- Homework --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Time</masterLabel>
+            <translation><!-- Time --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- 18 character salesforce ID --></label>
+        <name>X18_character_salesforce_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Year over year? --></label>
+        <name>Year_over_year__c</name>
+    </fields>
+    <layouts>
+        <layout>Assessment Type Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Assignment Type Picklist Value Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Attendance Picklist Value Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Behavior Consequence Picklist Value Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Behavior Type Picklist Value Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Grade Scale Picklist Value Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Non Admin Assignment Type Picklist Value Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Non Admin Attendance Picklist Value Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Non Admin Behavior Consequence Picklist Value Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Non Admin Behavior Type Picklist Value Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Non Admin Grade Scale Picklist Value Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Non Admin Points Category Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Non Admin Time Picklist Value Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Picklist Value Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Points Category Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>SPED Picklist Value Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Time Picklist Value Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <description><!-- Assessments given by the school. --></description>
+        <label><!-- Assessment Type --></label>
+        <name>Assessment_Type</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- assessments that dont have templates --></description>
+        <label><!-- Assessment wo Template --></label>
+        <name>Assessment_wo_Template</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- This is a record type for assignments to be labeled as an assessment --></description>
+        <label><!-- Assignment Assessment Type --></label>
+        <name>Assignment_Assessment_Type</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Assignment Type --></label>
+        <name>Assignment_Type</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Attendance --></label>
+        <name>Attendance</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Behavior Consequence --></label>
+        <name>Behavior_Consequence</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Behavior Type --></label>
+        <name>Behavior_Type</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Grade Scale --></label>
+        <name>Grade_Scale</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Record Type for Homework Status Values --></description>
+        <label><!-- Homework --></label>
+        <name>Homework</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Homework Tracking --></label>
+        <name>Homework_Tracking</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Points Category --></label>
+        <name>Points_Category</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- SPED --></label>
+        <name>SPED</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Time --></label>
+        <name>Time</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

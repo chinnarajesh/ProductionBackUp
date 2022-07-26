@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Snapshot Child</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Snapshot Children</value>
+    </caseValues>
+    <fields>
+        <label><!-- Assigned Staff --></label>
+        <name>Assigned_Staff__c</name>
+    </fields>
+    <fields>
+        <label><!-- Attendance Percent --></label>
+        <name>Attendance_Percent__c</name>
+    </fields>
+    <fields>
+        <label><!-- Average Attendance --></label>
+        <name>Average_Attendance__c</name>
+    </fields>
+    <fields>
+        <label><!-- Average GPA --></label>
+        <name>Average_GPA__c</name>
+    </fields>
+    <fields>
+        <label><!-- Entry Date --></label>
+        <name>Entry_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- External Id --></label>
+        <name>External_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Grade --></label>
+        <name>Grade__c</name>
+    </fields>
+    <fields>
+        <label><!-- Original Member Of Cohort --></label>
+        <name>Original_Member_Of_Cohort__c</name>
+    </fields>
+    <fields>
+        <label><!-- Excused Absence --></label>
+        <name>Percent_Excused_Absence__c</name>
+    </fields>
+    <fields>
+        <label><!-- Excused Tardies --></label>
+        <name>Percent_Excused_Tardies__c</name>
+    </fields>
+    <fields>
+        <label><!-- Unexcused Absence --></label>
+        <name>Percent_Unexcused_Absence__c</name>
+    </fields>
+    <fields>
+        <label><!-- Unexcused Tardies --></label>
+        <name>Percent_Unexcused_Tardies__c</name>
+    </fields>
+    <fields>
+        <label><!-- Section --></label>
+        <name>Section__c</name>
+        <relationshipLabel><!-- Snapshot Children --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Snapshot Summary --></label>
+        <name>Snapshot_Summary__c</name>
+        <relationshipLabel><!-- Snapshot Children --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Standard --></label>
+        <name>Standard__c</name>
+        <relationshipLabel><!-- Snapshot Children --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Student Exit Reason --></label>
+        <name>Student_Exit_Reason__c</name>
+    </fields>
+    <fields>
+        <label><!-- Student Exit Type --></label>
+        <name>Student_Exit_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Student Name --></label>
+        <name>Student_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Student OSSE Exit Code --></label>
+        <name>Student_OSSE_Exit_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Withdraw Date --></label>
+        <name>Withdraw_Date__c</name>
+    </fields>
+    <layouts>
+        <layout>Snapshot Child Cohort</layout>
+        <sections>
+            <label><!-- Created by Modified by Information --></label>
+            <section>Created by Modified by Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Student Exit Information --></label>
+            <section>Student Exit Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Snapshot Child Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- School --></label>
+            <section>School</section>
+        </sections>
+        <sections>
+            <label><!-- Student --></label>
+            <section>Student</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Snapshot Child Section</layout>
+        <sections>
+            <label><!-- Created by Modified by Information --></label>
+            <section>Created by Modified by Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Section Snapshot --></label>
+            <section>Section Snapshot</section>
+        </sections>
+        <sections>
+            <label><!-- Student Snapshot --></label>
+            <section>Student Snapshot</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Snapshot Layout Standard</layout>
+        <sections>
+            <label><!-- Created by and Modified by Information --></label>
+            <section>Created by and Modified by Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Standard Snapshot --></label>
+            <section>Standard Snapshot</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <label><!-- Cohort --></label>
+        <name>Cohort</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Section --></label>
+        <name>Section</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Standard --></label>
+        <name>Standard</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

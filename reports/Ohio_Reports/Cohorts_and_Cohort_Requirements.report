@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Cohort__c$Credits_Required__c</field>
+    </columns>
+    <columns>
+        <field>Cohort__c$Exit_Year__c</field>
+    </columns>
+    <columns>
+        <field>Cohort__c$Expired__c</field>
+    </columns>
+    <columns>
+        <field>Cohort__c$Portfolio_Required__c</field>
+    </columns>
+    <columns>
+        <field>Cohort__c$Required_Community_Service_Hours__c</field>
+    </columns>
+    <columns>
+        <field>Cohort__c$School__c</field>
+    </columns>
+    <columns>
+        <field>Cohort__c$Year__c</field>
+    </columns>
+    <columns>
+        <field>Cohort__c.Grad_Requirements__r$Course__c</field>
+    </columns>
+    <columns>
+        <field>Cohort__c.Grad_Requirements__r$Credits__c</field>
+    </columns>
+    <description>What are the required credits, community service hours, and courses to graduate?</description>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Cohort__c$Name</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Cohort__c.Grad_Requirements__r$Subject_Area__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Cohorts and Cohort Requirements</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Cohorts_Report_Type__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>false</showGrandTotal>
+    <showSubTotals>false</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>Cohort__c$CreatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

@@ -1,0 +1,315 @@
+<apex:page controller="IndicatorAreasController" docType="html-5.0">
+    <style>
+        .select-all-checkbox{
+            position: absolute;
+            margin-top: -1.5rem;
+        }
+    </style>
+    <apex:form >
+
+        <apex:outputPanel id="resources">
+            <c:resourceComponent />
+        </apex:outputPanel>
+
+        <script type="text/javascript">
+            var checkedIds = "";
+            window.onbeforeunload = function () {
+                var d = document.getElementById("testTable").rows[0].cells[0].innerHTML;
+                if (d == "true" && !isSaving) {
+                    return 'You have unsaved work on this page, if you proceed, this work will be lost.';
+                }
+            }
+
+            j$(document).ready(function () {
+                j$('#dtHolder').val(new Date().toISOString().slice(0, 10));
+            });
+
+            function filter(tableID, textID, gradeID) {
+                var query = document.getElementById(textID);
+                var val = query.value.toLowerCase();
+                var table = document.getElementById(tableID);
+                var gradeSelect = document.getElementById(gradeID);
+                var gradeFilter = gradeSelect.options[gradeSelect.selectedIndex].value;
+                for (i = 1; i < table.rows.length; i++) {
+                    var cell = table.rows[i].cells[0];
+                    var cell2 = table.rows[i].cells[1];
+                    var name = cell.innerHTML;
+                    var grade = cell2.innerHTML;
+                    if ((val == "" || name.toLowerCase().indexOf(val) > -1) && (gradeFilter == "all" || gradeFilter == grade)) {
+                        table.rows[i].style.display = '';
+                    } else table.rows[i].style.display = 'none';
+                }
+            }
+
+            function sendAvailable() {
+                selectStudents(checkedIds);
+            }
+
+            function highlightSelected(selected) {
+                var table = document.getElementById("StudentsTable");
+                for (let i = 1; i < table.rows.length; i++) {
+                    if (selected.indexOf(table.rows[i].id) > -1) {
+                        var studId = table.rows[i].id+ ';';
+                        if (checkedIds.includes(studId)) {
+                            checkedIds = checkedIds.replace(studId, '');
+                        } else {
+                            checkedIds+= studId;
+                        }
+                        highlightRow(table.rows[i]);
+                    }
+                }
+            }
+
+            function addAllToCheckedIds() {
+                if (checkedIds && checkedIds.length > 0) {
+                    checkedIds = '';
+                } else {
+                    let table = document.getElementById("StudentsTable");
+                    for (let i = 1; i < table.rows.length; i++) {
+                        checkedIds+= table.rows[i].id+ ';';
+                    }
+                }
+            }
+
+            function changeDate(elem) {
+               j$('#StudentsTable tr').filter(':has(:checkbox:checked)').each(function(element) {
+                    j$tr = j$(this);
+                    let rowId = this.id;
+                    j$("#StudentsTable tr[id=" + rowId +"] td#dtIA>div input").val(elem.val());
+                });
+            }
+        </script>
+
+        <div id="schoolforce-wrapper" class="wrapper">
+            <br/>
+            <h1>Add Students to Indicator Areas</h1>
+
+            <hr/>
+
+            <apex:outputPanel id="messages" styleClass="no-border">
+                <apex:pageMessages escape="false"/>
+            </apex:outputPanel>
+
+            <apex:outputpanel id="ChangesMadePanel">
+                <table id="testTable" style="display:none;">
+                    <tr>
+                        <td>{!hasUnsavedChanges}</td>
+                    </tr>
+                </table>
+            </apex:outputpanel>
+
+            <div class="content">
+
+                <apex:outputPanel id="schools" styleClass="no-border">
+                    <table>
+                        <tr style="{!IF(sites.size > 1,'','display:none;')}">
+                            <td><label>Select Location</label></td>
+                            <td>
+                                <apex:selectList id="siteSelect" size="1" value="{!selectedSite}"
+                                                 onchange="changeSiteJS();">
+                                    <apex:selectOptions value="{!sites}"/>
+                                </apex:selectList>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label>Select School</label></td>
+                            <td>
+                                <apex:selectList Id="SchoolSelect" size="1" value="{!schoolFilterParam}"
+                                                 onchange="changeSchoolJS();">
+                                    <apex:selectOption itemValue="--None--" itemLabel="--None--"/>
+                                    <apex:selectOptions value="{!schools}"/>
+                                </apex:selectList>
+                            </td>
+                        </tr>
+                    </table>
+                </apex:outputPanel>
+            </div>
+            <!--/content-->
+
+            <span class="section-header">All Students</span>
+            <div class="content-list">
+                <div class="content">
+                    <apex:outputPanel id="grades">
+                        <apex:selectList id="gradeList" size="1" value="{!selectedGrade}" onchange="filterGrades()">
+                            <apex:selectOptions value="{!gradeLevels}"/>
+                        </apex:selectList>
+                    </apex:outputPanel>
+
+                    <input type="button" class="drk_blue_btn right" value="Add to Indicator Area"
+                           onclick="sendAvailable(); return true;"/>
+                    <div class="clear_fix"></div>
+                    <hr/>
+                    <!--<div class="content">
+                        <input name="filterBox" id="nameFilter" placeholder="Filter by name" onkeyup="filter('StudentsTable','nameFilter','gradeList')" type="text" size="70"/>
+                    </div>  -->
+
+                    <div class="content">
+
+                        <div style="position: relative;">
+                            <div style="margin-right: 1.5rem; text-align:right;">
+                                <input id="dtHolder" type="date" onchange="changeDate(j$(this));" title="Populate Date"
+                                       style=""/>
+                                <img src="{!URLFOR($Resource.Style_Bundle, 'images/arrow-down.png')}"
+                                     onclick="changeDate(j$('#dtHolder'));" title="Add date to column"/>
+                            </div>
+                        </div>
+                        <apex:outputpanel id="StudentPanel">
+                            <script type="text/javascript">
+                                j$(function () {
+                                    j$('#StudentsTable').tsort();
+                                    j$('.iatable').dataTable({
+                                        "sPaginationType": "full_numbers",
+                                        "iDisplayLength": 50,
+                                        "bInfo": true,
+                                        "bLengthChange": true,
+                                        "asStripeClasses": ['table_row1'],
+                                        "sDom": '<"top"lfip>rt<"bottom"ip<"clear">'
+                                    });
+                                     
+                                });
+                            </script>
+                            <apex:pageBlock >
+                                <div  class="select-all-checkbox">
+                                    <input type="checkbox" id="selAll"
+                                           onchange="selectAllCheckboxes(this, 'InputID'); highlightAllRows('StudentsTable', this); addAllToCheckedIds();"/>
+                                    Select All
+                                </div>
+                                <table id="StudentsTable" class="iatable" style="cursor:pointer;">
+                                    <thead>
+                                    <th></th>
+                                    <th class="type-string">Student</th>
+                                    <th class="type-string">Student Id</th>
+                                    <th class="type-string">Local Id</th>
+                                    <th class="type-gradeLevel">Grade Level</th>
+                                    <th class="type-string">Indicator Area</th>
+                                    <th class="type-string">Assigned Programs</th>
+                                    <th class="type-date">Date</th>
+                                    </thead>
+                                    <tbody>
+                                    <apex:repeat value="{!StudentsFiltered}" var="s">
+                                        <tr id="{!s.student.id}">
+                                            <td id="selectIA">
+                                                <apex:inputCheckbox value="{!s.selected}" id="InputID"
+                                                                    onChange="highlightSelected('{!s.student.Id}');"/>
+                                            </td>
+                                            <td>{!s.name}</td>
+                                            <td style="min-width: 75px;">
+                                                <apex:outputLink value="/{!s.student.Id}" target="_blank">{!s.student.Student_Id__c}</apex:outputLink>
+                                            </td>
+                                            <td>
+                                                <apex:outputLink value="/{!s.student.Id}" target="_blank">{!s.student.Local_Student_ID__c}</apex:outputLink>
+                                            </td>
+                                            <td>{!s.student.Grade__c}</td>
+                                            <td>{!s.indicatorAreaDisplay}</td>
+                                            <td>{!s.programsIADisplay}</td>
+                                            <td id="dtIA">
+                                                <div class="requiredInput">
+                                                    <div class="requiredBlock"></div>
+                                                    <apex:input type="date" value="{!s.dtIA}" style="width: 125px;"
+                                                                onClick="focus();"
+                                                                onMouseDown="event.stopPropagation(); return false;"/>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </apex:repeat>
+                                    </tbody>
+                                </table>
+                            </apex:pageBlock>
+                        </apex:outputpanel>
+                    </div>
+
+                </div>
+                <!-- / content -->
+
+                <br/>
+
+
+                <div class="content">
+                    <input type="button" class="black_btn" value="Save"
+                           onclick="if(!isSaving){ isSaving=true; saveChanges(); } else { alert('Save already in progress.  Please wait.'); }"/>
+                    <input type="button" class="grey_btn" value="Cancel" onclick="resetPage()"/>
+                </div>
+                <!-- / content -->
+
+                <div id="studentModal" class="modal_window">
+                    <div class="modal-top" style="cursor:move;">
+                        <a class="modal_close" href="#"></a>
+
+                        <center><h1>Add Students to Indicator Areas</h1></center>
+                    </div>
+                    <apex:outputpanel id="addModal">
+                        <hr/>
+                        <div class="content-column">
+                            <span class="section-header">Selected Students</span>
+                            <div style="max-height: 300px;overflow-y: auto;overflow-x: hidden;">
+                                <table style="width:300px; margin:0px;">
+                                    <tbody>
+                                    <thead>
+                                    <th>Student</th>
+                                    </thead>
+                                    <!--<apex:repeat value="{!addTo}" var="s">-->
+                                    <apex:repeat value="{!orderedStudentIdsInAddTo}" var="studentId">
+                                             <tr>
+                                                 <td>{!orderedStudentsAddToMap[studentId].student.Student_Last_Name__c}
+                                                     , {!orderedStudentsAddToMap[studentId].student.Student_First_Name__c}
+                                                 </td>
+                                             </tr>
+                                       <!-- <tr>
+                                            <td>{!addTo[s].student.Student_Last_Name__c}
+                                                , {!addTo[s].student.Student_First_Name__c}</td>
+                                        </tr>-->
+                                    </apex:repeat>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="content-column">
+                            <h4>Choose Indicator Area</h4>
+                            <apex:selectCheckboxes value="{!activeIAId}" layout="pageDirection">
+                                <apex:selectOptions value="{!IAList}"/>
+                           </apex:selectCheckboxes>
+                        </div>
+
+                        <div class="clear_fix">&nbsp;</div>
+                        <hr/>
+                        <div id="content">
+                            <center>
+                                <input type="button" class="black_btn" value="Add"
+                                       onclick="if(!isSaving){ isSaving=true; updateStudents(); } else { alert('Students are being added to Indicator Areas.  Please wait.'); }"/>
+                                <input type="button" class="grey_btn" value="Cancel"
+                                       onclick="close_modal('#studentModal')"/>
+                            </center>
+                            <br/>
+                        </div>
+                    </apex:outputpanel>
+                </div>
+                <a href="#studentModal" id="jumpLink" rel="leanModal"></a>
+            </div>
+            <!--/#content-wrapper-->
+        </div>
+        <!-- /#schoolforce-wrapper -->
+
+
+        <apex:actionFunction name="selectStudents" action="{!selectStudent}" rerender="messages,addModal"
+                             oncomplete="highlightSelected('{!selected}'); if('{!selected}'.length>2){ j$('#jumpLink').click(); }">
+            <apex:param name="a" value="" assignTo="{!selectStudentParam}"/>
+        </apex:actionFunction>
+        <apex:actionFunction name="resetPage" action="{!resetPage}">
+        </apex:actionFunction>
+
+        <apex:actionFunction name="updateStudents" action="{!updateStudents}" rerender="StudentPanel,ChangesMadePanel"
+                             oncomplete="isSaving=false; close_modal('#studentModal');">
+        </apex:actionFunction>
+   
+        <apex:actionFunction name="saveChanges" action="{!saveChanges}" rerender="messages,StudentPanel,ChangesMadePanel"
+                             oncomplete="isSaving=false;window.scrollTo(0,0);">
+        </apex:actionFunction>
+
+        <apex:actionFunction name="changeSchoolJS" action="{!changeSchool}" rerender="messages,grades,StudentPanel"/>
+        <apex:actionFunction name="changeSiteJS" action="{!changeSite}" rerender="messages,schools"/>
+        <apex:actionFunction name="filterGrades" action="{!filterGrades}" rerender="messages,StudentPanel"/>
+
+    </apex:form>
+</apex:page>

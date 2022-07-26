@@ -1,0 +1,225 @@
+<apex:component access="global" >
+<style>
+.fht-table,
+.fht-table thead,
+.fht-table tfoot,
+.fht-table tbody,
+.fht-table tr,
+.fht-table th,
+.fht-table td {
+    margin: 0;
+    padding: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: top;
+}
+.fht-table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+.fht-table-wrapper,
+.fht-table-wrapper .fht-thead,
+.fht-table-wrapper .fht-tfoot,
+.fht-table-wrapper .fht-fixed-column .fht-tbody,
+.fht-table-wrapper .fht-fixed-body .fht-tbody,
+.fht-table-wrapper .fht-tbody {
+    overflow: hidden;
+    position: relative;
+}
+.fht-table-wrapper .fht-fixed-body .fht-tbody,
+.fht-table-wrapper .fht-tbody {
+  overflow: auto;
+}
+.fht-table-wrapper .fht-table .fht-cell {
+    overflow: hidden;
+}
+.fht-table-wrapper .fht-fixed-column,
+.fht-table-wrapper .fht-fixed-body {
+    top: 0;
+    left: 0;
+    position: absolute;
+}  
+.fht-table-wrapper .fht-fixed-column {
+  z-index: 1;
+}
+
+#gradebook-results {
+    clear:both;
+    border: 1px solid #CCC;
+}
+
+
+#gradebook-results .gradebook {
+    font-family:Verdana, Geneva, sans-serif;
+    font-size:12px;
+    width:750px;
+    border:1px solid #CCC;
+}
+#gradebook-results .gradebook td,
+#gradebook-results .gradebook th {
+        width:85px;
+    height:34px;
+    border:solid #CCC;
+    border-width:0 0 0 1px;
+}
+#gradebook-results .gradebook input{
+    width:35px;
+    height:18px;
+    text-align:center;
+}
+#gradebook-results .gradebook input:focus{
+    outline:2px solid #099BCC;
+}
+
+#gradebook-results .gradebook thead{
+    border-bottom:2px solid #CCC;
+}
+#gradebook-results .gradebook thead tr{
+    border-bottom:1px solid #CCC;
+}
+#gradebook-results .gradebook thead tr th{
+    background:#FFF;
+    position:relative;
+    line-height:34px;
+    text-align:center;
+}
+#gradebook-results .gradebook thead tr:first-child th{
+    background:#E3F3FF;
+    font-weight:bold;
+}
+/* Added for second row on thead - either standards or assignments */
+#gradebook-results .gradebook thead tr .secondChild{
+	background:#E3F3FF;
+    font-weight:bold;
+}
+#gradebook-results .gradebook thead tr th:first-child{
+    background:#099BCC;
+    width:300px;
+    display:block;
+    text-align:left;
+    font-weight:bold;
+    font-style:italic;
+    color:#FFF;
+padding:0 0px 0 21px;
+}
+#gradebook-results .gradebook thead tr th input{
+    margin-top:5px;
+}
+#gradebook-results .gradebook thead tr th .gradebook-assignment{
+    text-decoration:none;
+    display:block;
+    width:85px;
+}
+
+#gradebook-results .gradebook tbody tr td {
+    background:#F3F3F3;
+    position:relative;
+    line-height:34px;
+    vertical-align:middle;
+    width:85px;
+}
+#gradebook-results .gradebook tbody tr.odd td {
+    background:#FFF;
+}
+#gradebook-results .gradebook tbody tr td:first-child{
+    font-weight:bold;
+    color:#333;
+    border-right:1px solid #CCC;
+    padding:0 21px;
+}
+#gradebook-results .gradebook tbody tr td:first-child a:hover{
+    text-decoration:none;
+}
+#gradebook-results .gradebook tbody tr td .student-grade{
+    /*float:right;*/
+    display:inline-block;
+    font-weight:bold;
+    text-decoration:none;
+    cursor:pointer;
+    background-color:transparent;
+    padding-left:20px;
+}
+#gradebook-results .gradebook tbody tr td div.failing span.numGrade,
+#gradebook-results .gradebook tbody tr td div.failing span.letGrade{
+    color:#FF0000; /* RED */
+}
+
+/*
+#gradebook-results .gradebook tbody tr td div.passing span.numGrade,
+#gradebook-results .gradebook tbody tr td div.passing span.letGrade{
+        color:#33CC00; / GREEN /
+}
+*/
+
+#gradebook-results .gradebook tbody tr td div.ontrack span.numGrade,
+#gradebook-results .gradebook tbody tr td div.ontrack span.letGrade{
+    color:#33CC00; /* GREEN */
+}
+
+#gradebook-results .gradebook tbody tr td div.passing span.numGrade,
+#gradebook-results .gradebook tbody tr td div.passing span.letGrade{
+    color:#F5F500; /* YELLOW */
+}
+
+
+#gradebook-results a.apply-score{
+    display:block;
+    background:url({!URLFOR($Resource.Gradebook, '/images/GradebookButtons.png')}) no-repeat -16px -32px;
+    width:16px;
+    height:16px;
+    text-indent:-9999px;
+    position:absolute;
+    top:10px;
+    left:66px;
+    cursor:pointer;
+}
+#gradebook-results a.apply-score:hover{
+    background-position:0 -48px;
+}
+#gradebook-results a.comment-icon{
+    display:block;
+    background:url({!URLFOR($Resource.Gradebook, '/images/GradebookButtons.png')}) no-repeat -49px 0;
+    width:16px;
+    height:16px;
+    text-indent:-9999px;
+    position:absolute;
+    top:11px;
+    left:66px;
+    cursor:pointer;
+}
+/* US 1335 - Added for Section Grade Comments */
+#gradebook-results a.sgcomment-icon{
+    left:225px;
+}
+#gradebook-results a.comment-icon:hover,
+.comment-present{
+    background-position:-33px -16px;
+}
+#gradebook-results a.comment-icon-hidden{
+    display:none;
+}
+
+.comment-legend{
+    display:none;
+    width:1050px;
+    text-align:center;
+    margin-top:10px;
+}
+.comment-legend span{
+    margin-left:15px;
+}
+.comment-legend span.comment-legend-no-comments{
+    background:url({!URLFOR($Resource.Gradebook, '/images/GradebookButtons.png')}) no-repeat -49px 0;
+    padding-left:22px;
+}
+.comment-legend span.comment-legend-comments{
+    background:url({!URLFOR($Resource.Gradebook, '/images/GradebookButtons.png')}) no-repeat -33px -16px;
+    padding-left:22px;
+}
+
+.row-highlight td{
+    background:#E3F3FF !important;
+}
+
+</style>
+</apex:component>

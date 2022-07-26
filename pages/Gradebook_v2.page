@@ -1,0 +1,2712 @@
+<apex:page controller="Gradebook_Controller_v2" tabStyle="Gradebook__tab" sidebar="false">
+	<c:jQueryInit bDataTables="true" bClueTip="true" bLoadingPanel="true" bJQuery8="true"/>
+	<apex:includeScript value="{!URLFOR($Resource.resources_Master, '/plugin/flexMenu/js/flexmenu.min.js')}"/>
+	<c:Gradebook_v2 />
+
+	<!-- this style is for the main frame of gradebook.  The gradebook table style will be in another file -->
+	<style>
+		.clearer {
+			clear: both;
+			display: block;
+			font-size: 0;
+			height: 0;
+			line-height: 0;
+		}
+		
+		#mainBody {
+			width: 100% !important;
+			min-width: 800px;
+		}
+		#content,#sidebar {
+			border: 1px solid;
+		}
+		#sidebar {
+			background-color: #DEF;
+			border-color: #BCD;
+			visibility: hidden;
+			width: 0%;
+		}
+		#content {
+			background-color: white;
+			border-color: #CDC;
+			overflow:hidden;
+		}
+
+		.use-sidebar #sidebar {
+			display: block;
+			min-width: 140px;
+			width: fit-content;/*15%; */
+			position: relative;
+		}
+
+		.use-sidebar.sidebar-at-right #sidebar, .sidebar-at-right #separator {float: right;}
+		.use-sidebar.sidebar-at-left #sidebar, .sidebar-at-left #separator {float: left;}
+
+		#separator {
+			background-color: #EEE;
+			border: 1px solid #CCC;
+			display: inline;
+			outline: none;
+			min-width:17px;
+			margin-left:10px;
+			margin-right:10px;
+		}
+		.use-sidebar #separator {
+			background: #EEE;
+			border-color: #FFF;
+		}
+		#separator:hover {
+			border-color: #ABC;
+			background: #DEF;
+		}
+		
+		.filter_fields {
+			float: left;	
+		}
+	</style>
+
+	<apex:outputPanel id="topErrorMessages">
+		<apex:pageMessages />
+	</apex:outputPanel>
+
+	<apex:form id="form">
+		<!-- hack! browsers auto focus on first input which pops up the calendar unnecessarily-->
+		<input style="height:0px; top:-1000px; position:absolute" type="text" value=""/>
+		<apex:outputPanel id="dummyRender"/>
+		<apex:outputPanel id="mainPanel">
+			<apex:outputPanel id="topHeader">
+				<apex:outputPanel id="topFilter" style="float: left;">				
+					<apex:outputPanel id="assignmentType">
+						<apex:selectList id="assignmentTypeField" value="{!loadedSchoolSection.assignmentTypes}" multiSelect="false" size="1" onchange="assignmentTypeFilter();">
+							<apex:selectOption itemValue="" itemLabel="Assignment Type..."/>
+							<apex:selectOptions id="assignmentTypeList" value="{!loadedSchoolSection.assignmentTypeOptions[loadedSchoolSection.reportingPeriod]}" rendered="{!loadedSchoolSection.reportingPeriod != null && loadedSchoolSection.hasAssignment}"/>
+						</apex:selectList>
+					</apex:outputPanel>
+
+					<apex:outputPanel id="assignment">
+						<apex:selectList id="assignmentField" value="{!loadedSchoolSection.assignments}" multiSelect="false" size="1" onchange="assignmentFilter();">
+							<apex:selectOption itemValue="" itemLabel="Assignment..."/>
+							<apex:selectOptions id="assignmentList" value="{!loadedSchoolSection.assignmentOptions[loadedSchoolSection.reportingPeriod]}" rendered="{!loadedSchoolSection.reportingPeriod != null && loadedSchoolSection.hasAssignment}"/>
+						</apex:selectList>
+					</apex:outputPanel>
+				</apex:outputPanel><!-- end of topFilter -->
+				
+				<!-- button layout; restore functionality -->
+				<apex:outputPanel id="topButtons" style="float: right;">
+					<apex:commandButton action="{!newAssignmentPage}" value="Add Assignments" styleClass="darkBlueButton" disabled="{!activeYearID != currentYearID || loadedSchoolSection.staffSection.View_Gradebook_as_Read_Only__c}"/>
+					<apex:commandButton value="Create Groups" onclick="window.open('/apex/gradebook_createGroups')" title="Create a group of students within one of your sections to provide them specific assignments and grades" rerender="topErrorMessages" styleClass="darkBlueButton" disabled="{!activeYearID != currentYearID || loadedSchoolSection.staffSection.View_Gradebook_as_Read_Only__c}"/>
+					<apex:commandButton value="View Standards Statistics" onclick="closepop=false; window.open('/apex/advanced_reports', '_self')" rerender="topErrorMessages" styleClass="darkBlueButton" style="background:#0180AB!important;" disabled="true" title="This feature is currently unavailable." rendered="{!loadedSchoolSection.standardBased == true}"/><!-- disabled="{!activeYearID != currentYearID}" -->
+					<apex:commandButton value="Section Order Options" onclick="modal('#dialog-modal', 'auto', 'auto'); var h = j$('#sidebar').height(); j$('#dialog-modal').css('max-height', h+'px');" action="{!buildOrderWrapper}" rerender="sectionOrderPanel" styleClass="darkBlueButton" disabled="{!activeYearID != currentYearID}" onComplete="j$('#dialog-modal').dialog('open');"/>
+				
+				</apex:outputPanel><!-- end of topButtons -->			
+			</apex:outputPanel><!-- end of topHeader -->
+			
+			<div class="clearer">&nbsp;</div>
+
+			<div id="mainBody" class="use-sidebar sidebar-at-left">
+				<div id="sidebar">
+					<apex:panelGrid id="panelGrid" columns="1" styleClass="sidebarPanel">
+						<h3>Filters</h3>
+						<apex:outputPanel id="school" styleClass="filter_fields">
+							<apex:selectList value="{!currentSchoolID}" styleClass="confirmField" multiSelect="false" size="1" onchange="if(leavingGrades()) {entryGradeMap = {}; showProgressBar('Loading School'); renderHide(); schoolJS(); saveReminderStart = false;} else {this.value = j$(this).data('prev'); return false;}">
+								<apex:selectOptions value="{!schoolOptions}"/>
+							</apex:selectList>
+						</apex:outputPanel>
+						<apex:actionFunction name="schoolJS" action="{!getSchoolandYear}" rerender="topFilter, panelGrid, gradebookPanel, sectionOrderPanel, topErrorMessages, topButtons, jsPanel" 
+							onComplete="populateTimeElement('{!loadedSchoolSection.timeMapKeys}', '{!loadedSchoolSection.timeMapValues}'); newTimeJS(document.getElementById('{!$Component.form.rpField}').value); datefix(); tabs(null);
+							disableInputs();
+						"/>
+						<apex:outputPanel id="year" styleClass="filter_fields">
+							<apex:selectList value="{!currentYearID}" styleClass="confirmField" multiSelect="false" size="1" onchange="if(leavingGrades()) {entryGradeMap = {}; showProgressBar('Loading Year'); renderHide(); yearJS(); saveReminderStart = false;} else {this.value = j$(this).data('prev'); return false;}">
+								<apex:selectOptions value="{!yearOptions}"/>
+							</apex:selectList>
+						</apex:outputPanel>
+						<apex:actionFunction name="yearJS" action="{!getSchoolandYear}" rerender="topFilter, panelGrid, gradebookPanel, sectionOrderPanel, topErrorMessages, topButtons, jsPanel"
+							onComplete="populateTimeElement('{!loadedSchoolSection.timeMapKeys}', '{!loadedSchoolSection.timeMapValues}'); newTimeJS(document.getElementById('{!$Component.form.rpField}').value); datefix(); tabs(null);
+							disableInputs();
+						"/>
+						<apex:outputPanel id="reportingPeriod" styleClass="filter_fields">
+							<apex:selectList id="rpField" styleClass="confirmField" value="{!loadedSchoolSection.reportingPeriod}" multiSelect="false" size="1" onchange="if(leavingGrades()) {entryGradeMap = {}; showProgressBar('Loading Reporting Period'); renderHide(); rpJS(); saveReminderStart = false;} else {this.value = j$(this).data('prev'); return false;}">
+								<apex:selectOption itemValue="" itemLabel="Reporting Periods..." rendered="{!loadedSchoolSection.reportingPeriod == null}"/>
+								<apex:selectOptions value="{!loadedSchoolSection.reportingPeriodOptions}" rendered="{!loadedSchoolSection.reportingPeriod != null}"/>
+							</apex:selectList>
+						</apex:outputPanel>
+						<apex:actionFunction name="rpJS" action="{!loadedSchoolSection.changeReportingPeriod}" reRender="topFilter, panelGrid, gradebookPanel, sectionOrderPanel, topErrorMessages, jsPanel" 
+							onComplete="newTimeJS(this.value); datefix(); tabs(null); 
+							disableInputs();														
+							"/>				
+						<apex:outputPanel id="startDate" styleClass="filter_fields">
+							<h3>Start Date</h3>
+							<apex:inputText id="sDate" value="{!loadedSchoolSection.startDate}" styleClass="datepicker" onfocus="onFocusSDate();" onChange="dateFilter();"/>
+						</apex:outputPanel>
+						<apex:outputPanel id="endDate" styleClass="filter_fields">
+							<h3>End Date</h3>
+							<apex:inputText id="eDate" value="{!loadedSchoolSection.endDate}" styleClass="datepicker" onfocus="onFocusEDate();" onChange="dateFilter();"/>
+						</apex:outputPanel>
+						<apex:outputPanel id="student" styleClass="filter_fields">
+							<apex:selectList id="studentField" value="{!loadedSchoolSection.students}" multiSelect="false" size="1" onChange="studentFilter();">
+								<apex:selectOption itemValue="" itemLabel="Student..."/>
+								<apex:selectOptions value="{!loadedSchoolSection.studentOptions[loadedSchoolSection.reportingPeriod]}" rendered="{!loadedSchoolSection.reportingPeriod != null && loadedSchoolSection.hasAssignment}"/>
+							</apex:selectList>
+						</apex:outputPanel>
+						<!-- if standardBased == false, then it's traditional, hybrid is standardBased == true && standardOnly == false and SO is standardBased == true and standardOnly == true -->
+						<apex:outputPanel id="orderBy" styleClass="filter_fields" rendered="{!loadedSchoolSection.standardBased == true}">
+							<apex:selectList id="oBy" value="{!loadedSchoolSection.orderBy}" styleClass="confirmField" multiSelect="false" size="1" onChange="if(leavingGrades()) {entryGradeMap = {}; showProgressBar('Changing Order'); renderHide(); orderByJS(); saveReminderStart = false;} else {this.value = j$(this).data('prev'); return false;}">
+								<apex:selectOption itemValue="assignment" itemLabel="Order By Assignments"/>
+								<apex:selectOption itemValue="standard" itemLabel="Order By Standards"/>
+							</apex:selectList>
+						</apex:outputPanel>
+						<apex:actionFunction name="orderByJS" action="{!loadedSchoolSection.loadAssignments}" reRender="topFilter, student, orderBy, tabContentsPanel, sectionOrderPanel, topErrorMessages, jsPanel" onComplete="datefix(); j$(window).resize();"/>
+					</apex:panelGrid>
+					<div class="clearer">&nbsp;</div>
+					<div id="legend">
+						<h3>Legend</h3>
+						<div class="clearer">&nbsp;</div>
+						<div class="legendEntry">
+							<div class="legendColorBox" id="onTrackLegendBox"></div>
+							greater than {!currentSchool.dPassingGrade} &nbsp;
+						</div>
+						<div class="clearer">&nbsp;</div>
+						<div class="legendEntry">
+							<div class="legendColorBox" id="passingLegendBox"></div> {!currentSchool.dFailingGrade} - {!currentSchool.dPassingGrade} &nbsp;
+						</div>
+						<div class="clearer">&nbsp;</div>
+						<div class="legendEntry">
+							<div class="legendColorBox" id="failingLegendBox"></div> less than {!currentSchool.dFailingGrade} &nbsp;
+						</div>
+						
+						<div class="comment-legend">
+							<div style="margin-top: 2.5px; margin-bottom: 2.5px;">
+								<span class="comment-legend-no-comments">No Comments</span>
+							</div>
+							<div class="clearer">&nbsp;</div>
+							<div style="margin-top: 2.5px; margin-bottom: 2.5px;">
+								<span class="comment-legend-comments">Comments</span>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<a href="#" id="separator" style="display: none;">
+					<span class="sidebar-action-bar collapseIndicator" id="pinIndicator"></span>
+					<span class="sidebar-action-bar collapseIndicator" id="pinIndicator2"></span>
+				</a>
+				
+				<div id="content" style="visibility: hidden;">				
+					<apex:outputPanel id="gradebookPanel">
+						<div id="tabs" style="padding: 0;">
+							<div id="tabList">
+								<script type="text/javascript">
+									function moveElementUp(elem){
+										var curElem = jQuery(elem).parent();
+										if(curElem.parent().hasClass('flexMenu-popup')){
+											jQuery('.flex.menu').prepend(curElem);
+										}
+									}
+								</script>							
+								<ul class="flex menu">
+									<apex:repeat value="{!orderedSchoolSections}" var="ss">
+										<li style="cursor:pointer; list-style-type: none; display: inline-block;">
+											<a href="#tabContents" onclick="leave = leavingGrades(); if(leave){ showProgressBar('loading'); renderHide(); getSectionJS('{!JSENCODE(ss.Section__c)}'); saveReminderStart = false;} moveElementUp(this);" style="cursor:pointer; text-decoration:none; margin: 0px;">{!ss.Section__r.Name}</a>
+										</li>
+									</apex:repeat>										
+								</ul>								
+							</div>		
+							
+							<div id="tabContents">							
+								<apex:outputPanel id="tabContentsPanel" >				
+									<apex:outputPanel style="float: left; margin-bottom: 5px;" rendered="{!loadedSchoolSection.swSize != 0 && activeYearID == currentYearID}">
+										<a style="cursor: pointer;" title="Click to add an assignment quickly." onClick="if(leavingGrades()) {showProgressBar('Initializing Quick Create Assignment'); var h = j$('#contentWrapper').height(); h = h*.95; modal('#quickCreateAssignment-modal', '920px', h); openQCAJS(); saveReminderStart = false;} else {return false;}" disabled="{!IF(!loadedSchoolSection.staffSection.View_Gradebook_as_Read_Only__c, 'disabled', '')}"><img src="/img/feeds/follow12.png"/>Quick Create Assignment</a>
+									</apex:outputPanel>
+									<apex:outputPanel id="section-links" style="float: right; margin-bottom: 5px;" rendered="{!loadedSchoolSection.swSize != 0}">
+										<apex:outputPanel rendered="{!!loadedSchoolSection.standardOnly}">
+											<a id="toggleG" onclick="toggleGrade();" style="cursor: pointer;">Change Grading Scale</a>|
+										</apex:outputPanel>
+										<a id="sgComments" onclick="showProgressBar('Retrieving all section grade comments.'); modal('#sgAllComment-modal', 'auto', 'auto'); getAllSGCommentJS(); return false;">Section Grade Comments</a>|
+										<a id="gradeComments" onclick="toggleComments(false);" style="cursor: pointer;">Show Comments/Drop Grades</a>|
+										<!-- <a style="cursor: pointer;" onclick=" -->
+										<apex:commandLink rerender="topFilter, panelGrid, topErrorMessages" onComplete="getExportJS();">
+										Export</apex:commandLink>
+													<!-- ">Export</a> -->
+										
+									</apex:outputPanel>
+									<div class="clearer">&nbsp;</div>
+							
+									<div id="gradebook-results">
+										<apex:outputPanel rendered="{!loadedSchoolSection.swSize != 0}">
+										<table id="gradebookTable" style="width: 100%;">
+											<thead>
+												<apex:variable value="{!loadedSchoolSection.assignmentHeader}" var="noHeader" rendered="{!loadedSchoolSection.swSize == 0}">
+													<tr></tr>
+												</apex:variable>
+												<!-- order by assignment -->
+												<apex:variable value="{!loadedSchoolSection.assignmentHeader}" var="ah" rendered="{!loadedSchoolSection.orderBy == 'assignment'}">
+													<tr>
+														<th class="blue-header bold-header first-column"><span>Assignments</span></th>
+														<apex:repeat value="{!ah}" var="assignment" id="assignmentRepeat">
+															<th id="{!assignment.stringFilter}" colspan="{!assignment.gradeList.size}" class="bold-header {!assignment.assignment.Color__c}">
+																	<a class="gradebook-assignment" href="/{!assignment.assignment.ID}" target="_blank" rel="#{!assignment.assignment.ID}" title="{!assignment.assignment.Name}">{!assignment.assignment.Name_in_Gradebook__c}</a>
+						                                            <div id="{!assignment.assignment.ID}" style="display:none;">
+						                                                Weight: {!ROUND(assignment.assignment.Weighting_Value__c,0)}
+						                                                <br/>
+						                                                <apex:variable value="{!loadedSchoolSection.assignmentHeader}" var="h2" rendered="{!IF(assignment.assignment.Possible_Points__c != null && assignment.assignment.Possible_Points__c > 0,true, false)}">
+						                                                    Points Possible: {!ROUND(assignment.assignment.Possible_Points__c,0)}
+						                                                    <br/>
+						                                                </apex:variable>
+						                                                <apex:outputtext value="Grading Scale: {!assignment.assignment.Picklist_Value__r.Name}" rendered="{!!standardOnly}"/>
+						                                                <br/>
+						                                                <apex:outputtext value="Grading Scale(standards): {!assignment.assignment.Standard_Scale__r.Name}" rendered="{!assignment.assignment.Standard_Scale__c != null}"/>
+						                                                <br/> <br/>
+						                                                {!assignment.assignment.Description__c}
+						                                            </div>
+															</th>
+														</apex:repeat>
+													</tr>
+													<tr style="{!IF(standardBased == true, '', 'display: none;')}">
+														<th class="blue-header bold-header first-column"><span>Standards</span></th>
+														<apex:repeat value="{!ah}" var="standard" id="standardRepeat">
+															<apex:repeat value="{!standard.gradeList}" var="colGrade" id="gradeRepeat">
+																<th id="{!colGrade.stringFilter}" class="light-blue-header bold-header">
+																	<apex:outputPanel rendered="{!colGrade.mainGrade.Standard__c != null}">
+																		<a class="gradebook-assignment" href="/{!colGrade.mainGrade.Standard__c}" rel="#{!colGrade.mainGrade.Standard__c}" target="_blank" title="{!colGrade.mainGrade.Standard__r.Name}">{!colGrade.mainGrade.Standard__r.Name}</a>
+																	
+																		<div id="{!colGrade.mainGrade.Standard__c}" style="display: none;">
+																			Strand: {!colGrade.mainGrade.Standard__r.Strand__r.Name}
+																			<br/>
+																			Description: {!colGrade.mainGrade.Standard__r.Long_Text__c}
+																		</div>
+																	</apex:outputPanel>
+																</th>
+															</apex:repeat>
+														</apex:repeat>
+													</tr>
+													<tr>
+														<th class="blue-header bold-header first-column"><span>Due Date</span></th>
+														<apex:repeat value="{!ah}" var="dueDate" id="dueDateRepeat">
+															<apex:repeat value="{!dueDate.gradeList}" var="colDate" id="colDateRepeat">
+																<th id="{!colDate.stringFilter}" class="white centered">
+																		<apex:outputText value="{0,date,MM/dd}">
+																			<apex:param value="{!colDate.mainGrade.Assignment__r.Due_Date__c}"/>
+																		</apex:outputText>
+																</th>
+															</apex:repeat>
+														</apex:repeat>
+													</tr>
+													<tr>
+														<th class="blue-header bold-header first-column"><span>Apply Grade</span></th>
+														<apex:repeat value="{!ah}" var="applyAll" id="applyAllRepeat">
+															<apex:repeat value="{!applyAll.gradeList}" var="colApply" id="colApplyRepeat">
+																<th id="{!colApply.stringFilter}" class="white centered">
+																	<apex:outputPanel rendered="{!activeYearID == currentYearID || loadedSchoolSection.staffSection.View_Gradebook_as_Read_Only__c}">
+																		<div style="position:relative;">
+																			<input type="text" size="2"/>
+																			<a class="apply-score" onclick="copydown('{!colApply.stringFilter}');"></a>
+																		</div>
+																	</apex:outputPanel>
+																</th>
+															</apex:repeat>
+														</apex:repeat>
+													</tr>
+												</apex:variable>
+
+												<!-- order by standard -->
+												<apex:variable value="{!loadedSchoolSection.standardHeader}" var="sh" rendered="{!loadedSchoolSection.orderBy == 'standard'}">
+													<tr>
+														<th class="blue-header bold-header first-column"><span>Standards</span></th>
+														<apex:repeat value="{!sh}" var="standard" id="standardRepeat2">
+															<th id="{!standard.stringFilter}" colspan="{!standard.gradeList.size}" class="bold-header light-blue-header">
+																<apex:outputPanel rendered="{!standard.standardID != null}">
+																<a class="gradebook-assignment" href="/{!standard.standardID}" rel="#{!standard.standardID}" title="{!standard.standardName}" target="_blank">{!standard.standardName}</a>
+																<div id="{!standard.standardID}" style="display: none;">
+																	Strand: {!standard.strandName}
+																	<br/>
+																	Description: {!standard.LongText}
+																</div>
+																</apex:outputPanel>										
+															</th>
+														</apex:repeat>
+													</tr>
+													<tr>
+														<th class="blue-header bold-header first-column"><span>Assignments</span></th>
+														<apex:repeat value="{!sh}" var="assignment" id="assignmentRepeat2">
+															<apex:repeat value="{!assignment.gradeList}" var="colGrade" id="gradeRepeat2">
+															<th id="{!colGrade.stringFilter}" class="{!colGrade.mainGrade.Assignment__r.Color__c} bold-header">
+																<a class="gradebook-assignment" href="/{!colGrade.mainGrade.Assignment__c}" rel="#{!colGrade.mainGrade.Assignment__c}" title="{!colGrade.mainGrade.Assignment__r.Name}" target="_blank">{!colGrade.mainGrade.Assignment__r.Name_in_Gradebook__c}</a>
+															
+					                                            <div id="{!colGrade.mainGrade.Assignment__c}" style="display:none;">
+					                                                Weight: {!ROUND(colGrade.mainGrade.Assignment__r.Weighting_Value__c,0)}
+					                                                <br/>
+					                                                <apex:variable value="{!loadedSchoolSection.standardHeader}" var="h2" rendered="{!IF(colGrade.mainGrade.Assignment__r.Possible_Points__c != null && colGrade.mainGrade.Assignment__r.Possible_Points__c > 0,true, false)}">
+					                                                    Points Possible: {!ROUND(colGrade.mainGrade.Assignment__r.Possible_Points__c,0)}
+					                                                    <br/>
+					                                                </apex:variable>
+					                                                <apex:outputtext value="Grading Scale: {!colGrade.mainGrade.Assignment__r.Picklist_Value__r.Name}" rendered="{!colGrade.mainGrade.Assignment__r.Picklist_Value__c != null}"/>
+					                                                <br/>
+					                                                <apex:outputtext value="Grading Scale(standards): {!colGrade.mainGrade.Assignment__r.Standard_Scale__r.Name}" rendered="{!colGrade.mainGrade.Assignment__r.Standard_Scale__c != null}"/>
+					                                                <br/> <br/>
+					                                                {!colGrade.mainGrade.Assignment__r.Description__c}
+					                                            </div>
+															</th>
+															</apex:repeat>
+														</apex:repeat>			
+													</tr>									
+													<tr>
+														<th class="blue-header bold-header first-column"><span>Due Date</span></th>
+														<apex:repeat value="{!sh}" var="dueDate" id="dueDateRepeat2">
+															<apex:repeat value="{!dueDate.gradeList}" var="colDate" id="colDateRepeat2">
+																<th id="{!colDate.stringFilter}" class="white centered">
+																	<apex:outputText value="{0,date,MM/dd}">
+																		<apex:param value="{!colDate.mainGrade.Assignment__r.Due_Date__c}"/>
+																	</apex:outputText>
+																</th>
+															</apex:repeat>
+														</apex:repeat>
+													</tr>
+													<tr>
+														<th class="blue-header bold-header first-column"><span>Apply Grade</span></th>
+														<apex:repeat value="{!sh}" var="applyAll" id="applyAllRepeat2" >
+															<apex:repeat value="{!applyAll.gradeList}" var="colApply" id="colApplyRepeat2">
+																<th id="{!colApply.stringFilter}" class="white centered">
+																	<apex:outputPanel rendered="{!activeYearID == currentYearID || loadedSchoolSection.staffSection.View_Gradebook_as_Read_Only__c}">
+																	<div style="position:relative;">
+																		<input type="text" size="2"/>
+																		<a class="apply-score" onclick="copydown('{!colApply.stringFilter}');"></a>
+																	</div>
+																	</apex:outputPanel>
+																</th>
+															</apex:repeat>
+														</apex:repeat>
+													</tr>											
+												</apex:variable>
+											</thead><!-- end of gradebook headers -->
+											
+											<tbody><!-- gradebook body -->
+												<apex:variable value="{!1}" var="rowNum" />
+												<apex:repeat value="{!loadedSchoolSection.displaystudentWrapperKeys}" var="key" id="studentRepeat">
+													<tr id="{!loadedSchoolSection.studentGradeWrapperMap[key].stringFilter}">
+														<td id="{!loadedSchoolSection.studentGradeWrapperMap[key].stringFilter}" class="bolded first-column">
+															<div style="width: 150px;" class="studentInfoPanel">
+																<a href="/{!loadedSchoolSection.studentGradeWrapperMap[key].studentID}" target="_blank"> 
+																	{!loadedSchoolSection.studentGradeWrapperMap[key].studentName}
+																</a>
+															</div>
+															
+															<div class="studentInfoPanel" style="float:right;">
+																<a style="display: none; background-position:{!IF(loadedSchoolSection.studentGradeWrapperMap[key].sectionGrade.Comments_Next_Steps__c==null && loadedSchoolSection.studentGradeWrapperMap[key].sectionGrade.Alternate_Lang_Comments__c==null,'-49px 0px','-33px -16px')};" class="comment-icon" onclick="modal('#sgComment-modal', 'auto', 'auto'); getSGCommentJS('{!loadedSchoolSection.studentGradeWrapperMap[key].stringFilter}'); return false;"/>
+															</div>
+
+															<div class="studentInfoPanel" title="Current Section Grade" style="float:right; width: 50px; min-height: 1px;">
+																<a id="ssGrade" href="/{!loadedSchoolSection.studentGradeWrapperMap[key].sectionGrade.ID}" target="_blank" class="{!IF(ISNULL(loadedSchoolSection.studentGradeWrapperMap[key].sectionGrade.Grade__c),'',IF(loadedSchoolSection.studentGradeWrapperMap[key].sectionGrade.Grade__c>currentSchool.dPassingGrade,'onTrackColor',IF(loadedSchoolSection.studentGradeWrapperMap[key].sectionGrade.Grade__c<currentSchool.dFailingGrade,'failingColor','passingColor')))}" style="float:left; margin: 0 5px;">
+																	
+																	<script>
+																		if('{!loadedSchoolSection.standardOnly}'){
+																			if(j$('.letterGrade').css('display')=='none'){
+																		    	j$('.letterGrade').show();
+																		        j$('.numberGrade').hide();
+																		    }
+																		}						
+																	</script>
+																
+																	<apex:outputText styleClass="letterGrade" style="display: none;" value="{!loadedSchoolSection.studentGradeWrapperMap[key].sectionGrade.Display_Grade_Formula__c}" />
+																	<apex:outputText styleClass="numberGrade" value="{!IF(loadedSchoolSection.studentGradeWrapperMap[key].sectionGrade.Grade__c >= 100, 100, ROUND(loadedSchoolSection.studentGradeWrapperMap[key].sectionGrade.Grade__c,1))}" rendered="{!loadedSchoolSection.studentGradeWrapperMap[key].sectionGrade.Grade__c != null}"/>				
+																	<apex:image style="cursor:pointer;border:0px;" url="{!URLFOR($Resource.Gradebook, '/images/alert.png')}" rendered="{!loadedSchoolSection.studentGradeWrapperMap[key].sectionGrade.Grade_Overridden__c}"/>
+																</a>
+															</div>
+															<div class="studentInfoPanel" style="float:right;">
+																<!-- attendance -->
+																<apex:outputText title="Attendance (T/A)" value="({!loadedSchoolSection.studentGradeWrapperMap[key].tardySessions}/{!loadedSchoolSection.studentGradeWrapperMap[key].absentSessions})" rendered="{!loadedSchoolSection.studentGradeWrapperMap[key].totalSessions != null && loadedSchoolSection.studentGradeWrapperMap[key].totalSessions > 0}"/>
+															</div>																
+														</td>
+
+														<!-- by Assignments -->
+														<apex:variable value="{!loadedSchoolSection.assignmentHeader}" var="ah" rendered="{!loadedSchoolSection.orderBy == 'assignment' && loadedSchoolSection.swSize != 0}">													
+															<apex:repeat value="{!loadedSchoolSection.studentGradeWrapperMap[key].assignmentDisplayWrapperList}" var="assignmentOrder" id="assignmentOrderRepeat">
+																<apex:repeat value="{!assignmentOrder.gradeList}" var="assignmentOrderGrade" id="assignmentOrderGradeRepeat">
+																	<script>if({!assignmentOrderGrade.mainGrade.Locked_For_Final__c == true}) {var sf = '{!assignmentOrderGrade.stringFilter}'; j$('td[id="'+sf+'"] input').attr('disabled', 'disabled');}</script>
+																	<td id="{!assignmentOrderGrade.stringFilter}" class="centered">
+																		<span style="{!IF(assignmentOrderGrade.mainGrade.Locked_for_Final__c == false, '', 'display: none;')}">
+																			<input type="text" title="{!IF(assignmentOrderGrade.mainGrade.Exclude_From_Section_Grade__c,'This grade has been dropped from the section/standard grade','')}" style="{!IF(assignmentOrderGrade.mainGrade.Exclude_From_Section_Grade__c,'background-color:red;','')}" value="{!assignmentOrderGrade.mainGrade.Entered_Grade__c}" size="2" onchange="enterGrade('{!assignmentOrderGrade.stringFilter}', j$(this).val());" />
+																		</span>
+																		<span style="{!IF(assignmentOrderGrade.mainGrade.Locked_for_Final__c == true, '', 'display: none;')}">
+																			{!assignmentOrderGrade.mainGrade.Entered_Grade__c}
+																		</span>
+																		<a style="display: none; background-position:{!IF(assignmentOrderGrade.mainGrade.Comment__c==null,'-49px 0px','-33px -16px')};" class="comment-icon" onclick=" modal('#comment-modal', 'auto', 'auto'); getCommentJS('{!assignmentOrderGrade.stringFilter}'); return false;"/>
+																	</td>
+																	
+																</apex:repeat>
+															</apex:repeat>
+														</apex:variable>
+
+														<!-- by Standards -->
+														<apex:variable value="{!loadedSchoolSection.standardHeader}" var="sh" rendered="{!loadedSchoolSection.orderBy == 'standard' && loadedSchoolSection.swSize != 0}">
+															<apex:repeat value="{!loadedSchoolSection.studentGradeWrapperMap[key].standardDisplayWrapperList}" var="standardOrder" id="standardOrderRepeat">
+																<apex:repeat value="{!standardOrder.gradeList}" var="standardOrderGrade" id="standardOrderGradeRepeat">
+																	<script>if({!standardOrderGrade.mainGrade.Locked_For_Final__c == true}) {var sf = '{!standardOrderGrade.stringFilter}'; j$('td[id="'+sf+'"] input').attr('disabled', 'disabled');}</script>
+																	<td id="{!standardOrderGrade.stringFilter}" class="centered">
+																		<span style="{!IF(standardOrderGrade.mainGrade.Locked_for_Final__c == false, '', 'display: none;')}">
+																			<input type="text" title="{!IF(standardOrderGrade.mainGrade.Exclude_From_Section_Grade__c,'This grade has been dropped from the section/standard grade','')}" style="{!IF(standardOrderGrade.mainGrade.Exclude_From_Section_Grade__c,'background-color:red;','')}" value="{!standardOrderGrade.mainGrade.Entered_Grade__c}" size="2" onchange="enterGrade('{!standardOrderGrade.stringFilter}', j$(this).val());" />
+																		</span>
+																		<span style="{!IF(standardOrderGrade.mainGrade.Locked_for_Final__c == true, '', 'display: none;')}">
+																			{!standardOrderGrade.mainGrade.Entered_Grade__c}
+																		</span>
+																		<a style="display: none; background-position:{!IF(standardOrderGrade.mainGrade.Comment__c==null,'-49px 0px','-33px -16px')};" class="comment-icon" onclick=" modal('#comment-modal', 'auto', 'auto'); getCommentJS('{!standardOrderGrade.stringFilter}'); return false;"/>
+																	</td>
+																	
+																</apex:repeat>
+															</apex:repeat>
+														</apex:variable>
+													</tr>
+												</apex:repeat>
+											</tbody>
+											
+										</table>
+										
+										</apex:outputPanel>
+									</div><!-- gradebook-result -->
+									<div class="clearer">&nbsp;</div>
+										<!-- rendered="{!loadedSchoolSection.swSize != 0}" -->
+										<apex:commandButton value="Submit Grades" style="float: right; margin-top: 7px;" onclick="if(Object.size(entryGradeMap) > 0) {showProgressBar('Saving'); validateEntryGrades(); } else {setTimeout('hideProgressBar()', 250); alert('Gradebook is up to date.  There are no changes to save.');}" rerender="topErrorMessages, jsPanel" rendered="{!!(activeYearID != currentYearID || loadedSchoolSection.staffSection.View_Gradebook_as_Read_Only__c)}" disabled="{!activeYearID != currentYearID || loadedSchoolSection.staffSection.View_Gradebook_as_Read_Only__c}" styleClass="blackButton"/>
+									
+									<div class="clearer">&nbsp;</div>
+									
+									
+
+								
+								</apex:outputPanel><!-- end of tabContentsPanel -->
+							</div><!-- end of tabsContent -->
+							<apex:actionFunction name="resetSaveOrder" action="{!resetSaveOrder}" rerender="orderMessages"/>
+							<div id="dialog-modal" title="Section Load Order" style="display: none;">
+								<apex:outputPanel id="sectionOrderPanel">
+									<apex:outputPanel id="sectionOrderContents">
+									<apex:outputPanel id="orderMessages">
+										<apex:pageMessages />
+									</apex:outputPanel>	
+									<p>Please enter integer values in the Order field</p>
+									<div style="overflow: auto;">
+										<apex:pageBlock >
+											<apex:pageBlockTable value="{!ssOrder}" var="oss" columns="2">
+												<apex:column value="{!oss.staffSection.Section__r.Name}"/>
+												<apex:column headerValue="Order">
+													<apex:inputText value="{!oss.order}" style="width: 25px;"/>
+												</apex:column>
+											</apex:pageBlockTable>
+										</apex:pageBlock>
+									</div>
+									</apex:outputPanel>
+									<apex:commandButton style="float: right;" value="Save" onClick="" action="{!saveSectionOrder}" rerender="sectionOrderContents" 
+										onComplete="if({!bSaveOrder}) { 
+												j$('#dialog-modal').dialog('close');
+											}" />	
+								</apex:outputPanel>
+							</div>
+
+							<div id="comment-modal" title="Add Comment" style="display: none;">
+								<apex:outputPanel id="gradeCommentPanel">
+									<apex:inputField value="{!commentGrade.Comment__c}" style="width: 100%; height: 60px;" rendered="{!!loadedSchoolSection.staffSection.View_Gradebook_as_Read_Only__c}"/>
+									<apex:outputField value="{!commentGrade.Comment__c}" style="width: 100%; height: 60px;" rendered="{!loadedSchoolSection.staffSection.View_Gradebook_as_Read_Only__c}"/>
+									<div class="clearer">&nbsp;</div>
+									<br></br>
+									<apex:inputField id="pComment" value="{!commentGrade.Publish_Comment__c}" />
+									<script>if({!activeYearID != currentYearID || loadedSchoolSection.staffSection.View_Gradebook_as_Read_Only__c}) {document.getElementById('{!$Component.pComment}').disabled = true;}</script>
+									<apex:outputLabel value="Display on Student/Parent Portal?"/>
+									<div class="clearer">&nbsp;</div>
+									<apex:inputField id="eSectionGrade" value="{!commentGrade.exclude_From_Section_Grade__c}"/>
+									<script>if({!activeYearID != currentYearID || loadedSchoolSection.staffSection.View_Gradebook_as_Read_Only__c}) {document.getElementById('{!$Component.eSectionGrade}').disabled = true;}</script>
+									<apex:outputLabel value="Exclude From Section Grade"/>
+									<div class="clearer">&nbsp;</div>
+									<apex:outputPanel rendered="{!commentGrade.Standard__c != null}">
+										<apex:inputField id="iStandardGrade" value="{!commentGrade.Include_In_Standard_Grade__c}"/>
+										<script>if({!activeYearID != currentYearID || loadedSchoolSection.staffSection.View_Gradebook_as_Read_Only__c}) {document.getElementById('{!$Component.iStandardGrade}').disabled = true;}</script>
+										<apex:outputLabel value="Include In Standard Grade"/>
+									</apex:outputPanel>
+									<div class="clearer">&nbsp;</div>
+									<apex:commandButton style="float: right;" value="Save" action="{!submitGradeComment}" rerender="gradeCommentPanel, jsPanel" 
+									onComplete="
+										highlightGradeComment();
+										j$('#comment-modal').dialog('close');" 
+									disabled="{!loadedSchoolSection.staffSection.View_Gradebook_as_Read_Only__c}"
+									/>
+								</apex:outputPanel>
+							</div>
+
+							<div id="sgComment-modal" title="Section Grade Comment" style="display: none;">
+								<apex:outputPanel id="sgCommentPanel">
+									<div class="clearer">&nbsp;</div>
+									<apex:pageBlock >
+										<apex:pageBlockTable value="{!sgCommentGrades}" var="sg">
+											<apex:column headerValue="Student" value="{!sg.Student_Name_SG__c}" />
+											<apex:column headerValue="Alt Language" value="{!sg.Student_Section__r.Student__r.Home_Language__c}"/>
+											<apex:column headerValue="Grade">
+													<apex:outputText rendered="{!sg.Student_Section__r.Section__r.Course__r.Grade_Scale_Lookup__r.Category__c != 'Standard' && sg.Student_Section__r.Section__r.Course__r.Grade_Scale_Lookup__r.Category__c != 'Credit/No Credit'}" >
+														{!ROUND(sg.Grade__c, 0)}%
+													</apex:outputText>
+													<apex:outputText rendered="{!sg.Student_Section__r.Section__r.Course__r.Grade_Scale_Lookup__r.Category__c == 'Credit/No Credit'}">
+														{!sg.Credit_No_Credit_Section_Grade__c}
+													</apex:outputText>														
+													<apex:outputText rendered="{!sg.Student_Section__r.Section__r.Course__r.Grade_Scale_Lookup__r.Category__c == 'Standard'}">
+														{!sg.Standard_Section_Grade_v2__c}
+													</apex:outputText>
+											</apex:column>
+											<apex:column headerValue="Comments">
+												<apex:inputField value="{!sg.Comments_Next_Steps__c}" rendered="{!!loadedSchoolSection.staffSection.View_Gradebook_as_Read_Only__c}"/>
+												<apex:outputField value="{!sg.Comments_Next_Steps__c}" rendered="{!loadedSchoolSection.staffSection.View_Gradebook_as_Read_Only__c}"/>
+											</apex:column>
+											<apex:column headerValue="Alt Lang Comments">
+												<apex:inputField value="{!sg.Alternate_Lang_Comments__c}" rendered="{!!loadedSchoolSection.staffSection.View_Gradebook_as_Read_Only__c}"/>
+												<apex:outputField value="{!sg.Alternate_Lang_Comments__c}" rendered="{!loadedSchoolSection.staffSection.View_Gradebook_as_Read_Only__c}"/>
+											</apex:column>
+										</apex:pageBlockTable>
+									</apex:pageBlock>
+									<div class="clearer">&nbsp;</div>
+									<apex:commandButton style="float: right;" value="Save" action="{!submitSGComment}" reRender="sgCommentPanel, jsPanel" onComplete="highlightSGGradeComment(); j$('#sgComment-modal').dialog('close');" disabled="{!loadedSchoolSection.staffSection.View_Gradebook_as_Read_Only__c}"/>
+								</apex:outputPanel>
+							</div>
+							<div id="sgAllComment-modal" title="Section Grade Comments" style="display: none;">
+								<apex:outputPanel id="sgAllCommentPanel">
+									<div class="clearer">&nbsp;</div>
+									<apex:pageBlock >
+										<apex:outputPanel layout="block" style="height: 500px; overflow: auto;">
+											<apex:pageBlockTable value="{!allSGCommentGrades}" var="sg">
+												<apex:column headerValue="Student" value="{!sg.Student_Name_SG__c}" />
+												<apex:column headerValue="Alt Language" value="{!sg.Student_Section__r.Student__r.Home_Language__c}"/>
+												<apex:column headerValue="Grade">
+														<apex:outputText rendered="{!sg.Student_Section__r.Section__r.Course__r.Grade_Scale_Lookup__r.Category__c != 'Standard' && sg.Student_Section__r.Section__r.Course__r.Grade_Scale_Lookup__r.Category__c != 'Credit/No Credit'}" >
+															{!ROUND(sg.Grade__c, 0)}%
+														</apex:outputText>
+														<apex:outputText rendered="{!sg.Student_Section__r.Section__r.Course__r.Grade_Scale_Lookup__r.Category__c == 'Credit/No Credit'}">
+															{!sg.Credit_No_Credit_Section_Grade__c}
+														</apex:outputText>														
+														<apex:outputText rendered="{!sg.Student_Section__r.Section__r.Course__r.Grade_Scale_Lookup__r.Category__c == 'Standard'}">
+															{!sg.Standard_Section_Grade_v2__c}
+														</apex:outputText>
+												</apex:column>
+												<apex:column headerValue="Comments">
+													<apex:inputField value="{!sg.Comments_Next_Steps__c}" onblur="allSGCommentsMap['{!sg.ID}'] = this.value;" rendered="{!!loadedSchoolSection.staffSection.View_Gradebook_as_Read_Only__c}"/>
+													<apex:outputField value="{!sg.Comments_Next_Steps__c}" rendered="{!loadedSchoolSection.staffSection.View_Gradebook_as_Read_Only__c}"/>
+												</apex:column>
+												<apex:column headerValue="Alt Lang Comments">
+													<apex:inputField value="{!sg.Alternate_Lang_Comments__c}" onblur="allSGAltCommentsMap['{!sg.ID}'] = this.value;" rendered="{!!loadedSchoolSection.staffSection.View_Gradebook_as_Read_Only__c}"/>
+													<apex:outputField value="{!sg.Alternate_Lang_Comments__c}" rendered="{!loadedSchoolSection.staffSection.View_Gradebook_as_Read_Only__c}"/>
+												</apex:column>
+											</apex:pageBlockTable>
+										</apex:outputPanel>
+									</apex:pageBlock>
+									<div class="clearer">&nbsp;</div>
+									<apex:commandButton style="float: right;" value="Save" onclick="submitAllSGComment(); j$('#sgAllComment-modal').dialog('close');" reRender="sgAllCommentPanel" disabled="{!loadedSchoolSection.staffSection.View_Gradebook_as_Read_Only__c}"/>
+								</apex:outputPanel>
+							</div>
+								
+								<div id="quickCreateAssignment-modal" title="Quick Create Assignment" style="display: none;">
+									<apex:outputPanel id="quickCreateAssignmentPanel">
+										<script>
+											j$('[id$=advanceOptions]').hide();
+										</script>
+										<apex:outputPanel id="quickMessages">
+											<apex:pageMessages />
+										</apex:outputPanel>
+										<h2>Basic Details</h2>
+											<apex:outputPanel id="quickBasic" >
+												<apex:pageBlock >	
+													<apex:pageBlockSection columns="2">
+														<apex:pageBlockSectionItem >
+															<apex:outputLabel value="Course" style="font-weight:bold"/>
+															<apex:outputText value="{!gQCA.assignmentWrapper.courseName}"/>
+														</apex:pageBlockSectionItem>
+														<apex:pageBlockSectionItem >
+															<apex:outputLabel value="Section" style="font-weight:bold"/>
+															<apex:outputText value="{!gQCA.currentSection.Name}"/>
+														</apex:pageBlockSectionItem>
+														<apex:pageBlockSectionItem >
+															<apex:outputLabel value="Assignment Name" style="font-weight:bold;" >
+																<span class="helpButton" title="Enter the name for the assignment." style="z-index: 1000;">
+																	<img src="/s.gif" class="helpOrb" />
+																</span>
+															</apex:outputLabel>
+															<apex:outputPanel layout="block" styleClass="requiredInput">
+																<apex:outputPanel layout="block" styleClass="requiredBlock"/>
+																<apex:inputText value="{!gQCA.assignmentWrapper.assignmentName}">
+																	<apex:actionSupport event="onchange" action="{!gQCA.populateGradebookName}" rerender="gradebookName"/>
+																</apex:inputText>
+															</apex:outputPanel>
+														</apex:pageBlockSectionItem>
+														<apex:pageBlockSectionItem helpText="{!$ObjectType.Assignment__c.fields.Name_in_Gradebook__c.inlineHelpText}">
+															<apex:outputLabel value="Name in Gradebook" style="font-weight:bold" >
+																<span class="helpButton" title="Enter the 5-character name for the assignment as you want it to display in the gradebook assignments grid.">
+																	<img src="/s.gif" class="helpOrb" />
+																</span>															
+															</apex:outputLabel>
+															<apex:outputPanel id="gradebookName">
+																<apex:outputPanel layout="block" styleClass="requiredInput">
+																	<apex:outputPanel layout="block" styleClass="requiredBlock"/>
+																	<apex:inputText value="{!gQCA.assignmentWrapper.gradebookName}"/>
+																</apex:outputPanel>
+															</apex:outputPanel>	
+														</apex:pageBlockSectionItem>
+														<apex:pageBlockSectionItem >
+															<apex:outputLabel value="Assignment Type" style="font-weight:bold" >
+																<span class="helpButton" title="Select the type of assignment (e.g., Classwork, Homework, Test).">
+																	<img src="/s.gif" class="helpOrb"/>
+																</span>
+															</apex:outputLabel>
+															<apex:outputPanel layout="block" styleClass="requiredInput">
+																<apex:outputPanel layout="block" styleClass="requiredBlock"/>								
+																<apex:selectList value="{!gQCA.assignmentWrapper.assignmentType}" multiSelect="false" size="1">
+																	<apex:selectOptions value="{!gQCA.assignmentTypeOptions}" />
+																	<apex:actionSupport event="onchange" action="{!gQCA.setDefaultAssignmentWeighting}" rerender="quickMessages, defaultWeighting"/>
+																</apex:selectList>
+															</apex:outputPanel>
+														</apex:pageBlockSectionItem>
+														<apex:pageBlockSectionItem rendered="{!gQCA.rIntegers}">
+															<apex:outputLabel value="Weighting Value" style="font-weight:bold">
+																<apex:outputPanel rendered="{!IF(gQCA.courseCategory != 'Points', true, false)}">
+																	<span class="helpButton" title="If you want to override the weighting defined for this assignment type, select the weighting you want to apply to this assignment. SchoolForce uses the weighting to calculate the grade.">
+																		<img src="/s.gif" class="helpOrb"/>
+																	</span>
+																</apex:outputPanel>
+																<apex:outputPanel rendered="{!IF(gQCA.courseCategory == 'Points', true, false)}">
+																	<span class="helpButton" title="A points grade scale is assigned to this course. You cannot edit the assignment weighting for points-based courses. If the weighting value is not correct, please contact your system administrator.">
+																		<img src="/s.gif" class="helpOrb" />
+																	</span>
+																</apex:outputPanel>
+															</apex:outputLabel>
+															<apex:outputPanel layout="block" styleClass="requiredInput">	
+																<apex:outputPanel layout="block" styleClass="requiredBlock"/>
+																<apex:selectList id="defaultWeighting" value="{!gQCA.assignmentWrapper.assignmentWeighting}" multiSelect="false" size="1" disabled="{!gQCA.courseCategory == 'Points' || gQCA.rPoints}">
+																	<apex:selectOptions value="{!gQCA.integerAssignmentWeightingOptions}" />
+																</apex:selectList>
+															</apex:outputPanel>
+														</apex:pageBlockSectionItem>
+														<apex:pageBlockSectionItem >
+															<apex:outputLabel value="Reporting Period" style="font-weight:bold"/>
+															<apex:outputText value="{!gQCA.currentReportingPeriodName}"/>
+														</apex:pageBlockSectionItem>
+														<apex:pageBlockSectionItem >
+															<apex:outputLabel value="Due Date" style="font-weight:bold"/>
+															<apex:outputPanel layout="block" styleClass="requiredInput">
+																<apex:outputPanel layout="block" styleClass="requiredBlock"/>								
+																<apex:inputText id="dueDate" value="{!gQCA.dueDate}" styleClass="datepicker"/>
+															</apex:outputPanel>
+														</apex:pageBlockSectionItem>
+														<apex:pageBlockSectionItem rendered="{!!gQCA.assignmentWrapper.standardOnly}">
+															<apex:outputLabel value="Grade Scale" style="font-weight:bold">
+																<apex:outputPanel rendered="{!gQCA.courseCategory != 'Points'}">
+																	<span class="helpButton" title="If you want to override the grade scale defined for the course, select the grade scale you want to use for this assignment. This field only displays if your school uses hybrid or traditional grading.">
+																		<img src="/s.gif" class="helpOrb" />
+																	</span>
+																</apex:outputPanel>
+																<apex:outputPanel rendered="{!gQCA.courseCategory == 'Points'}">
+																	<span class="helpButton" title="A points grade scale is assigned to this course. You cannot edit this field because you can only use a points grade scale on assignments in a points-based course.">
+																		<img src="/s.gif" class="helpOrb" />
+																	</span>
+																</apex:outputPanel>
+															</apex:outputLabel>								
+															<apex:outputPanel layout="block" styleClass="requiredInput">
+																<apex:outputPanel layout="block" styleClass="requiredBlock" rendered="{!!gQCA.assignmentWrapper.standardOnly}"/>								
+																<apex:selectList value="{!gQCA.assignmentWrapper.gradeScale}" multiSelect="false" size="1" rendered="{!!gQCA.assignmentWrapper.standardOnly}" onChange="showProgressBar('Please Wait...'); renderPointsFieldJS();" disabled="{!gQCA.courseCategory == 'Points'}">
+																	<apex:selectOption itemValue="" itemLabel="-Select One-"/>
+																	<apex:selectOptions value="{!gQCA.gradeScaleOptions}"/>
+																</apex:selectList>
+															</apex:outputPanel>
+														</apex:pageBlockSectionItem>
+														<apex:pageBlockSectionItem rendered="{!gQCA.assignmentWrapper.standardOnly}">
+															<apex:outputLabel value="Standards Grading Scale" style="font-weight:bold">
+																<apex:outputPanel rendered="{!gQCA.assignmentWrapper.standardOnly}">
+																	<span class="helpButton" title="Displays the grade scale this assignment will use. The grade scale for this assignment is determined by the grade scale assigned to the course.">
+																		<img src="/s.gif" class="helpOrb" />
+																	</span>
+																</apex:outputPanel>
+															</apex:outputLabel>
+															<apex:outputPanel layout="block" styleClass="requiredInput">
+																<apex:outputPanel layout="block" styleClass="requiredBlock" rendered="{!gQCA.assignmentWrapper.standardOnly}"/>
+																<apex:selectList value="{!gQCA.assignmentWrapper.standardGradeScale}" multiSelect="false" size="1" disabled="{!gQCA.assignmentWrapper.standardOnly}">
+																	<apex:selectOption itemValue="" itemLabel="-Select One-"/>
+																	<apex:selectOptions value="{!gQCA.standardScaleOptions}" />
+																</apex:selectList>
+															</apex:outputPanel>				
+														</apex:pageBlockSectionItem>
+														<apex:pageBlockSectionItem id="pointsField" rendered="{!gQCA.rPoints}">
+															<apex:outputLabel value="Points" style="font-weight:bold" rendered="{!gQCA.rPoints}"/>
+															<apex:outputPanel layout="block" styleClass="requiredInput" rendered="{!gQCA.rPoints}">
+																<apex:outputPanel layout="block" styleClass="requiredBlock" rendered="{!gQCA.rPoints}"/>									
+																<apex:inputText value="{!gQCA.assignmentWrapper.assignmentPossiblePoints}" rendered="{!gQCA.rPoints}"/>
+															</apex:outputPanel>
+														</apex:pageBlockSectionItem>
+														<apex:pageBlockSectionItem rendered="{!!gQCA.rPoints && !gQCA.assignmentWrapper.standardOnly}"/>
+														<apex:pageBlockSectionItem rendered="{!!gQCA.assignmentWrapper.standardOnly && gQCA.assignmentWrapper.standardBased}">
+															<apex:outputLabel value="Standards Grading Scale" style="font-weight:bold" >
+																<span class="helpButton" title="Select the standards grade scale you want to use for this assignment. This field only displays if your school uses a hybrid or standards-only gradebook.">
+																	<img src="/s.gif" class="helpOrb"/>
+																</span>
+															</apex:outputLabel>
+															<apex:selectList value="{!gQCA.assignmentWrapper.standardGradeScale}" multiSelect="false" size="1">
+																<apex:selectOption itemValue="" itemLabel="-Select One-"/>
+																<apex:selectOptions value="{!gQCA.standardScaleOptions}"/>
+															</apex:selectList>
+														</apex:pageBlockSectionItem>
+														<apex:pageBlockSectionItem helpText="{!$ObjectType.Assignment__c.fields.Color__c.inlineHelpText}" >
+															<apex:outputLabel value="Color" style="font-weight:bold" >
+																<span class="helpButton" title="Select the color in which you want the assignment information to display in the gradebook assignments grid.">
+																	<img src="/s.gif" class="helpOrb"/>
+																</span>
+															</apex:outputLabel>
+															<apex:selectList value="{!gQCA.assignmentWrapper.color}" multiSelect="false" size="1">
+																<apex:selectOptions value="{!gQCA.colorOptions}"/>
+															</apex:selectList>
+														</apex:pageBlockSectionItem>
+													</apex:pageBlockSection>		
+												</apex:pageBlock>
+											</apex:outputPanel>
+											<apex:outputPanel id="quickStandards">
+												<apex:outputPanel rendered="{!gQCA.rStandards}">
+													<h2>Standards</h2>
+													<apex:pageBlock rendered="{!gQCA.rStandards}">
+														<apex:inputText value="{!gQCA.searchFeature.SOSLsearch}" style="margin:0 2px 0 0;"/>
+														<apex:actionStatus id="searchStatus">
+															<apex:facet name="stop">
+																<apex:commandButton value="Search" style="margin:2px 2px 2px 0;" status="searchStatus" action="{!gQCA.searchFeature.SOSLsearchMethod}" rerender="quickMessages, searchStandardResultsPanel" onComplete="basicTable('.tablesorter');"/>
+															</apex:facet>
+															<apex:facet name="start">
+																<apex:commandButton value="Searching" style="margin:2px 2px 2px 0;" status="searchStatus" disabled="true" rerender="quickMessages, searchStatus" rendered="true"/>
+															</apex:facet>
+														</apex:actionStatus>
+														<apex:outputPanel id="searchStandardResultsPanel">
+															<table id="searchStandardResultsTable" class="tablesorter" width="100%">
+																<thead>
+																	<tr>
+																		<td>Select</td>
+																		<td style="width: 95px;">Include in <br/>Standard Grade</td>
+																		<td>Standard Name</td>
+																		<td>Strand</td>
+																		<td>Standard Description</td>
+																		<td>Subject</td>
+																		<td>Attribute</td>
+																		<td>Level</td>
+																	</tr>
+																</thead>
+																<tbody>
+																	<apex:repeat value="{!gQCA.searchFeature.searchStandardResults}" var="ss">
+																		<tr>
+																			<td>
+																				<apex:inputCheckBox styleClass="standardCb" value="{!ss.selected}" />
+																			</td>
+																			<td>
+																				<apex:inputCheckBox value="{!ss.includeStandardGrade}" />
+																			</td>
+																			<td>
+																				<apex:outputLink value="/{!ss.standard.ID}">{!ss.standard.Name}</apex:outputLink>
+																			</td>
+																			<td>
+																				<apex:outputLink value="/{!ss.standard.Strand__c}">{!ss.standard.Strand__r.Name}</apex:outputLink>
+																			</td>
+																			<td>
+																				{!ss.standard.Long_Text__c}
+																			</td>
+																			<td>
+																				<apex:outputText value="{!ss.standard.Subject__c}" rendered="{!ss.standard.Subject__c != null}" />
+																				<apex:outputText value="{!ss.standard.Standard_Subject__r.Name}" rendered="{!ss.standard.Subject__c == null}" />
+																			</td>
+																			<td>
+																				{!ss.standard.Attribute__c}
+																			</td>
+																			<td>
+																				{!ss.standard.Level__c}
+																			</td>
+																		</tr>
+																	</apex:repeat>
+																</tbody>
+															</table>
+														</apex:outputPanel>
+													</apex:pageBlock>
+												</apex:outputPanel>
+											</apex:outputPanel>
+											<a onclick="j$('[id$=advanceOptions]').toggle();"><h2><u>Advanced Details</u></h2></a>
+											<apex:outputPanel id="advanceOptions">				
+												<apex:pageBlock >
+															<div style="font-weight:bold; margin-bottom:4px; margin-top:4px; font-size:91%;" >Short Description
+																<span class="helpButton"  id="shortDesc-_help" title="This description is limited to 255 characters.  This information will display in the Portal (if applicable) , PGV (if applicable), and in Gradebook as hover text over the assignment.">
+																	<img src="/s.gif" class="helpOrb" />
+																</span>
+															</div>
+															<apex:inputTextArea value="{!gQCA.assignmentWrapper.assignmentShortDescription}" id="assignmentDescription" onkeyup="
+																																						var value = j$(this).val();
+																	
+																																						if(value.length>=255){
+																																							alert('Sorry, but the system is currently limited to 255 characters for the short description field.');
+																																							j$(this).val(value.substring(0,254));
+																																						}
+																																						"
+																																						onblur="
+																																						var value = j$(this).val();
+																	
+																																						if(value.length>=255){
+																																							alert('Sorry, but the system is currently limited to 255 characters for the short description field.');
+																																							j$(this).val(value.substring(0,254));
+																																						}"
+																																						style="height:50px; width:840px;"/>
+													<br></br>
+													<div style="font-weight:bold; margin-bottom:4px; margin-top:4px; font-size:91%;" >Long Description
+														<span class="helpButton"  id="identifier-_help" title="This description is limited to 32000 characters. This information will display in the Assignment Library and on the Assignment Details page.">
+															<img src="/s.gif" class="helpOrb" />
+														</span>
+													</div>
+													<apex:inputTextArea value="{!gQCA.assignmentWrapper.assignmentLongDescription}" id="courseLongDesc" style="height:50px; width:840px;"/>
+													<br></br>	
+													<apex:pageBlockSection columns="2">
+														<apex:pageBlockSectionItem >
+															<apex:outputLabel value="Media Name" style="font-weight:bold" >
+																<span class="helpButton" title="{!$ObjectType.Assignment__c.fields.Media_Name__c.inlineHelpText}">
+																	<img src="/s.gif" class="helpOrb" />
+																</span>
+															</apex:outputLabel>
+															<apex:inputText value="{!gQCA.assignmentWrapper.mediaName}" />
+														</apex:pageBlockSectionItem>
+														<apex:pageBlockSectionItem >
+															<apex:outputLabel value="Media Source" style="font-weight:bold" >
+																<span class="helpButton" title="{!$ObjectType.Assignment__c.fields.Media_Source__c.inlineHelpText}" >
+																	<img src="/s.gif" class="helpOrb" />
+																</span>
+															</apex:outputLabel>
+															<apex:inputText value="{!gQCA.assignmentWrapper.mediaSource}" />
+														</apex:pageBlockSectionItem>
+														<apex:pageBlockSectionItem >
+															<apex:outputLabel value="Show in Portal" style="font-weight:bold" >
+																<span class="helpButton" title="{!$ObjectType.Assignment__c.fields.Show_in_portal__c.inlineHelpText}" >
+																	<img src="/s.gif" class="helpOrb" />
+																</span>
+															</apex:outputLabel>
+															<apex:inputCheckbox value="{!gQCA.assignmentWrapper.showInPortal}" />
+														</apex:pageBlockSectionItem>							
+														<apex:pageBlockSectionItem />
+														<apex:pageBlockSectionItem >
+															<apex:outputLabel value="Include in final grade?" style="font-weight:bold" >
+																<span class="helpButton" title="{!$ObjectType.Assignment__c.fields.Include_in_Final_Grade__c.inlineHelpText}" >
+																	<img src="/s.gif" class="helpOrb" />
+																</span>
+															</apex:outputLabel>
+															<apex:inputCheckBox value="{!gQCA.assignmentWrapper.includeInFinalGrade}" /> 
+														</apex:pageBlockSectionItem>
+														<apex:pageBlockSectionItem >
+															<apex:outputLabel value="Attach Assignment?" style="font-weight:bold" >
+																<span class="helpButton" title="Select whether or not you want to include an attachment to this assignment.">
+																	<img src="/s.gif" class="helpOrb" />
+																</span>
+															</apex:outputLabel>
+															<apex:inputCheckBox value="{!gQCA.assignmentWrapper.attachAssignment}" />
+														</apex:pageBlockSectionItem>
+													</apex:pageBlockSection>
+												</apex:pageBlock>
+											</apex:outputPanel>
+											<apex:outputPanel id="submitButtons" style="float: right;">
+												<apex:outputPanel >
+													<br></br>
+													<apex:commandButton styleClass="black_btn" value="Submit" action="{!submitAssignment}" onClick="showProgressBar('Submitting...')" 
+													onComplete="if({!gQCA.closeQuickCreate}) {
+																	renderHide();
+																	getSectionJS('{!sectionID}');
+																	if({!gQCA.assignmentWrapper.attachAssignment}) {
+																		if(window.location.href.indexOf('schoolforce')!=-1) {
+																			window.open('https://{!JSENCODE(gQCA.domain)}/apex/SchoolForce__Gradebook_AttachAssignment?id={!JSENCODE(gQCA.assignmentWrapper.assignmentLibrary.ID)}&aName={!JSENCODE(gQCA.assignmentWrapper.assignmentName)}&createNew=false&fromGradebook={!JSENCODE(gQCA.fromGradebook)}&fromQuick=true','targetWindow','scrollbars=yes,resizable=yes,width=600,height=800');
+																		}
+																		else {
+																			window.open('https://{!JSENCODE(gQCA.domain)}/apex/Gradebook_AttachAssignment?id={!JSENCODE(gQCA.assignmentWrapper.assignmentLibrary.ID)}&aName={!JSENCODE(gQCA.assignmentWrapper.assignmentName)}&createNew=false&fromGradebook={!JSENCODE(gQCA.fromGradebook)}&fromQuick=true','targetWindow','scrollbars=yes,resizable=yes,width=600,height=800');
+																		}
+																	}
+																	j$('#quickCreateAssignment-modal').dialog('close');
+																} 
+																else{
+																	setTimeout('hideProgressBar()', 500);
+																}" rerender="quickMessages, submitButtons"/>
+													<apex:commandButton styleClass="black_btn" value="Submit and New" action="{!gQCA.submitAndNew}" onClick="showProgressBar('Submitting...')" 
+													onComplete="if({!gQCA.quickCreateNew}) {
+																	rerenderNewQuickAssignmentJS();
+																	var bFocus = document.getElementById(j$('[id$=quickCreateAssignmentPanel]').attr('id'));
+																	bFocus.focus();
+																	bFocus.scrollIntoView();
+																	if({!gQCA.assignmentWrapper.attachAssignment}) { 
+																		if(window.location.href.indexOf('schoolforce')!=-1) {
+																			window.open('https://{!JSENCODE(gQCA.domain)}/apex/SchoolForce__Gradebook_AttachAssignment?id={!JSENCODE(gQCA.assignmentWrapper.assignmentLibrary.ID)}&aName={!JSENCODE(gQCA.assignmentWrapper.assignmentName)}&createNew=false&fromGradebook={!JSENCODE(gQCA.fromGradebook)}&fromQuick=true','targetWindow','scrollbars=yes,resizable=yes,width=600,height=800');
+																		}
+																		else {
+																			window.open('https://{!JSENCODE(gQCA.domain)}/apex/Gradebook_AttachAssignment?id={!JSENCODE(gQCA.assignmentWrapper.assignmentLibrary.ID)}&aName={!JSENCODE(gQCA.assignmentWrapper.assignmentName)}&createNew=false&fromGradebook={!JSENCODE(gQCA.fromGradebook)}&fromQuick=true','targetWindow','scrollbars=yes,resizable=yes,width=600,height=800');
+																		}
+																	}
+																} 
+																else{
+																	setTimeout('hideProgressBar()', 500);
+																}" rerender="quickMessages, submitButtons" />
+												</apex:outputPanel>
+											</apex:outputPanel>	
+									</apex:outputPanel>
+								</div><!-- end of quick create assignment -->
+						</div><!-- end of tabs -->
+					</apex:outputPanel><!-- end of gradebookPanel -->
+				</div>
+				<div class="clearer">&nbsp;</div>
+			</div>
+		</apex:outputPanel><!-- end of mainPanel -->
+		<apex:actionFunction name="renderPointsFieldJS" action="{!gQCA.renderPointsField}" rerender="quickMessages, quickBasic" onComplete="setTimeout('hideProgressBar()', 500); datefix();"/>
+		<apex:actionFunction name="rerenderNewQuickAssignmentJS" action="{!gQCA.initializeQuickCreateAssignment}" onComplete="datefix(); basicTable('.tablesorter'); j$('[id$=advanceOptions]').hide(); setTimeout('hideProgressBar()',500); " rerender="quickBasic, quickStandards, advanceOptions, submitButtons" />
+		<apex:actionFunction name="openQCAJS" action="{!openQCA}" rerender="quickCreateAssignmentPanel" onComplete="j$('#quickCreateAssignment-modal').dialog('open'); datefix(); basicTable('.tablesorter'); setTimeout('hideProgressBar()', 250);"/>
+		<apex:actionFunction name="getSectionJS" action="{!getSection}" reRender="topFilter, panelGrid, tabContentsPanel, sectionOrderPanel, topErrorMessages, jsPanel"				   
+			onComplete="
+						entryGradeMap = {};
+						populateTimeElement('{!loadedSchoolSection.timeMapKeys}', '{!loadedSchoolSection.timeMapValues}');
+						newTimeJS(document.getElementById('{!$Component.form.rpField}').value);
+						datefix();		
+						j$(window).resize();
+						disableInputs();
+						">
+			<apex:Param name="sectionID" value="" assignTo="{!sectionID}"/>
+		</apex:actionFunction>	
+		<apex:actionFunction name="getCommentJS" action="{!getGradeComment}" immediate="true" reRender="gradeCommentPanel" onComplete="j$('#comment-modal').dialog('open');">
+			<apex:Param name="commentGradeKey" value="" assignTo="{!commentGradeKey}"/>
+		</apex:actionFunction>
+		<apex:actionFunction name="getSGCommentJS" action="{!getSGComment}" immediate="true" reRender="sgCommentPanel" onComplete="j$('#sgComment-modal').dialog('open');">
+			<apex:Param name="sgCommentGradeKey" value="" assignTo="{!sgCommentGradeKey}"/>
+		</apex:actionFunction>
+		<apex:actionFunction name="getAllSGCommentJS" action="{!getAllSGComment}" immediate="true" reRender="sgAllCommentPanel" onComplete="j$('#sgAllComment-modal').dialog('open'); setTimeout('hideProgressBar()', 250);"/>
+		<apex:actionFunction name="getExportJS" action="{!xls}" immediate="true"/>
+	    <apex:actionFunction action="{!errorProcess}"  oncomplete="setTimeout('hideProgressBar()', 300);" name="errorJS" rerender="topErrorMessages">
+	        <apex:param name="firstParam" assignTo="{!errorMsg}" value="" />
+	    </apex:actionFunction>
+	</apex:form>
+	<apex:outputPanel >
+		<script>
+			j$ = jQuery.noConflict();
+			jwerty.key('enter',false, ':not(#gradebookTable input)');
+			jwerty.key('enter',function(cell){goToNextRow(cell);}, this, '#gradebookTable input');
+
+			function resetEnterKey(){
+				jwerty.key('enter',function(cell){goToNextRow(cell);}, this, '#gradebookTable input');
+			}
+	
+			var entryGradeMap = {};
+			Object.size = function(Obj) {
+				var size = 0, key;
+				for(key in Obj) {
+					if(Obj.hasOwnProperty(key)) size++;
+				}
+				return size;
+			}
+
+		    var timeMap = {};
+		    var timeMapKeys;
+		    var timeMapValues;
+			var oTable;
+
+			var currentSDate;
+			var currentEDate;
+
+			//Gradebook specific variables
+			var bShowComments = false;
+
+			//saveReminder
+			var saveReminderStart = false;
+
+			j$(window).resize(function() {
+				try {
+					renderShow();
+				}
+				catch(exception) {
+					
+				}
+			}); 
+
+			window.onbeforeunload = function(){
+				if(Object.size(entryGradeMap) > 0){
+					return "Please save your work!";
+				}				
+			}
+
+			var leave;
+			
+			function leavingGrades() {
+				if(Object.size(entryGradeMap) > 0){
+					return confirm("Please save your work!  \nAre you sure you want to leave this section?");
+				}
+				return true;				
+			}
+
+			// Show sidebar
+		    function showSidebar(objMain){
+		        j$(objMain).addClass('use-sidebar');
+		        document.getElementById('{!$Component.form.panelGrid}').style.display = '';
+		        resizeFilters();
+				j$("#sidebar").css("visibility", "visible");
+				j$("#sidebar").show();
+				j$("#separator").css('margin-left','10px');
+				j$('.sidebar-action-bar').removeClass('expandIndicator');
+		        j$('.sidebar-action-bar').addClass('collapseIndicator');
+		    }
+		    // Hide sidebar
+		    function hideSidebar(objMain){
+		        j$(objMain).removeClass('use-sidebar');
+		        document.getElementById('{!$Component.form.panelGrid}').style.display = 'none';
+		        j$("#sidebar").css("visibility", "hidden");
+		        j$("#sidebar").hide();
+		        j$("#separator").css('margin-left','0');
+		        j$('.sidebar-action-bar').removeClass('collapseIndicator');
+		        j$('.sidebar-action-bar').addClass('expandIndicator');
+		    }
+
+			j$(document).ready(function() {
+				console.log('start ready');
+				j$('.helpButton').tooltip();			
+			
+				var objMain = j$('#mainBody');
+				showSidebar(objMain);   
+			    renderHide();
+
+			    j$("#separator").click(function(e){
+			        e.preventDefault();
+			        if ( objMain.hasClass('use-sidebar') ){
+			            hideSidebar(j$('#mainBody'));
+			        }
+			        else {
+			            showSidebar(j$('#mainBody'));
+			        }
+			    });
+				
+	         	populateTimeElement('{!loadedSchoolSection.timeMapKeys}', '{!loadedSchoolSection.timeMapValues}');
+	         	newTimeJS('{!loadedSchoolSection.reportingPeriod}');
+	         	datefix();  //restrict the range on dates like assignment?
+
+				try{
+					tabs({!sectionPosition});
+				} 
+				catch(exception){
+					console.log(exception);
+				}
+				
+				if({!loadedSchoolSection.standardOnly}) {
+					j$('.letterGrade').show();
+					j$('.numberGrade').hide();
+				}
+				else {
+					toggleGrade();
+					toggleGrade();
+				}
+				
+				allFiltering();
+				disableInputs();
+				setSideBarHeight();
+			});
+
+			function clueTips() {
+                j$(".gradebook-assignment").cluetip({
+                    cluezIndex: 999,
+                    local: true,
+                    cursor: 'pointer', 
+                    clickThrough: true
+                }); 			
+			}
+
+			function goToNextRow(event){
+				var cell = event.target;
+				//add one because index counts from 0, but nth-child counts from 1.
+				
+				/*console.log(j$(cell).parent());
+				console.log(j$(cell).parent().parent());
+				console.log(j$(cell).parent().parent().parent());*/
+				
+				var index = j$(cell).parent().parent().index()+1;
+
+				if(j$(cell).parent().parent().parent().next().size() > 0){
+					j$(cell).parent().parent().parent().next().children(':nth-child('+index+')').children(':first-child()').children(':first-child()').focus();
+				} else {
+					if(j$(cell).parent().parent().parent().children().size() > index){
+						//go back to the top of the next column.
+						index++;
+						j$(cell).parent().parent().parent().parent().children(':first-child()').children(':nth-child('+index+')').children(':first-child()').children(':first-child()').focus();
+					} else {
+						//go back to the first input cell.
+						//j$(cell).parent().parent().parent().parent().children(':first-child()').children(':nth-child(2)').children(':first-child()').children(':first-child()').focus();
+					}
+				}
+			}
+			
+			function onFocusSDate() {
+				currentSDate = new Date(document.getElementById('{!$Component.form.sDate}').value);
+			}
+			
+			function onFocusEDate() {
+				currentEDate = new Date(document.getElementById('{!$Component.form.eDate}').value);
+			}
+			
+			//US2346
+			function timeElement() {
+				var startDate = "";
+				var endDate = "";
+				this.setStartDate = setStartDate;
+				this.setEndDate = setEndDate;
+				this.getStartDate = getStartDate;
+				this.getEndDate = getEndDate;
+			
+				function setStartDate(sd) {
+					this.startDate = sd;
+				}
+				
+				function setEndDate(ed) {
+					this.endDate = ed;
+				}
+				
+				function getStartDate() {
+					return this.startDate;
+				}
+				
+				function getEndDate() {
+					return this.endDate;
+				}
+			}
+			
+			//US2346
+			function populateTimeElement( timeKey, timeValues ) {    
+				timeMapKeys = timeKey;
+				timeMapKeys = timeMapKeys.slice(1, timeMapKeys.length-1);
+				timeMapKeys = timeMapKeys.split(", ");    
+			
+				timeMapValues = timeValues;
+				timeMapValues = timeMapValues.slice(1, timeMapValues.length-1);
+				timeMapValues = timeMapValues.split(", ");      
+			
+				for(var i = 0; i < timeMapKeys.length; i++) {
+					var j = 2*i ;
+					t = new timeElement();
+					t.setStartDate(timeMapValues[j]);
+					t.setEndDate(timeMapValues[j+1]);
+					timeMap[timeMapKeys[i]] = t;
+				}
+			}
+			
+			//US2346
+			function newTimeJS(tID) {
+				if(tID != null && tID != '') {
+					document.getElementById("{!$Component.form.sDate}").value = timeMap[tID].getStartDate();
+					document.getElementById("{!$Component.form.eDate}").value = timeMap[tID].getEndDate();
+				}
+				else {
+					document.getElementById("{!$Component.form.sDate}").value = null;
+					document.getElementById("{!$Component.form.eDate}").value = null;	        
+				}
+			}
+			
+			function datefix() {
+				var rpID = document.getElementById("{!$Component.form.rpField}").value;
+				try {
+					j$(".datepicker").datepicker("destroy");
+				}
+				catch(exception) {
+				
+				}
+				try {
+					j$(".datepicker").datepicker({
+						changeMonth: true,
+						changeYear: true,
+						minDate: new Date(timeMap[rpID].getStartDate()),
+						maxDate: new Date(timeMap[rpID].getEndDate())
+					});
+				}
+				catch(exception) {
+				
+				}
+			}	  
+			
+			var fc;
+	        function gradebookTable() {
+
+	            	oTable = j$("#gradebook-results #gradebookTable").dataTable({
+	                "sScrollY": calcDataTableHeight(),
+	                "sScrollX": "100%",
+	                "bInfo": false,
+	                "bDestroy": true,
+	                "bAutoWidth": false,
+	                "bSort": false,
+	                "bPaginate": false,
+	                "bFilter": false,
+	                "scrollCollapse": true,
+	                "bJQueryUI" : true,
+ 					"columnDefs": [ {"targets": 0, "width": "200px" } ]
+	            });
+	       		fc = new j$.fn.dataTable.FixedColumns(oTable, {"iLeftColumns" : 1});
+			}
+	        
+	        function basicTable(table) {
+	            	oTable = j$(table).dataTable({
+	                "sScrollY": "200px",
+	                "sScrollX": "100%",
+	                "bDestroy": true,
+	                "bAutoWidth": true,
+	                "bPaginate": false,
+	                "bJQueryUI" : true,
+	                "iDisplayLength" : 1000,
+	            });        
+	        }
+			
+			function resizeMainBody() {
+				var w = j$("#contentWrapper").innerWidth() - 20;
+				j$("#mainBody").innerWidth(w);
+			}	
+			
+			var calcDataTableHeight = function(){
+				//First how tall is the screen
+				var windowHeight = j$(window).height();
+				//how tall is the "page"
+				var pageHeight = j$('body').height();
+				//how big is the table now?
+				//var GBTableHeight = j$('#gradebookTable tbody').height();
+				var GBTableHeight = j$('#dataTables_scrollBody').height();
+				if(GBTableHeight == null) {
+					GBTableHeight = j$('#gradebookTable tbody').height();
+				}
+				//how much do we need to shrink the page by?
+				var shrinkSize = pageHeight - windowHeight;
+
+				//minus 5 takes care of fractional rounding values and some strangeness in datatables sizing math
+				var returnValue = GBTableHeight - shrinkSize - 5;
+				if(returnValue < 100){
+					returnValue = 100;
+				}
+				if(returnValue > GBTableHeight){
+					return "auto";
+				}
+				return returnValue;
+			}
+			
+			function resizeFilters() {
+				var w = j$("#sidebar").width() - 10;
+				j$(".filter_fields").each(function(i){
+					jQuery(this).find("select").width(w);
+					jQuery(this).find("input").width((w-10)/2);
+				});
+			}
+			
+			function renderShow() {
+				resizeMainBody();
+				resizeFilters();
+				j$("#tabs").css('height', '');
+				try {
+					gradebookTable();
+				}
+				catch(exception) {
+					console.log(exception);
+				}
+				if(j$("#mainBody").hasClass("use-sidebar")) {
+					document.getElementById('{!$Component.form.panelGrid}').style.display = '';
+					j$("#sidebar").css("visibility", "visible");
+					j$("#sidebar").show();
+				}
+
+				if(j$('li','#tabs').size())
+					j$("#content").css("visibility", "visible");
+				else
+					console.log('Not showing main table because tabs did not setup.');
+				j$("#separator").show();
+				j$("#separator").css("visibility", "visible");
+
+				try {
+					clueTips();	
+				}
+				catch(exception) {
+					console.log(exception);
+				}
+				try {
+					j$('ul.flexMenu-popup').hide();
+				}
+				catch(exception) {
+					console.log(exception);
+				}
+				
+				j$(".confirmField").focus(function(){
+					j$(this).data("prev",this.value);
+	  			});
+			
+				resetEnterKey();
+				adjustFlexMenu();
+				try {
+					oTable.fnDraw();
+				}
+				catch(exception) {
+					console.log(exception);
+				}
+				allFiltering();			
+				setSideBarHeight();							
+				setTimeout('hideProgressBar()', 1000);			
+			}
+			
+			function fixTableScrollHeight() {
+				//DTFC liner and wrapper height is messed up with not enough data
+				var h1 = j$(".DTFC_LeftBodyWrapper").height(); 
+				var h2 = j$(".DTFC_LeftBodyLiner").height();
+				if(j$(".dataTables_scrollBody").width() > j$("#gradebookTable tBody").width()) {
+					if(j$(".dataTables_scrollBody").height() > h1) {
+						h1 += 17;
+						j$(".DTFC_LeftBodyWrapper").height(h1);
+						h2 += 17;
+						j$(".DTFC_LeftBodyLiner").height(h2);
+					}
+				}
+				else {
+					if(j$(".dataTables_scrollBody").height() == h1) {
+						h1 -= 17;
+						j$(".DTFC_LeftBodyWrapper").height(h1);
+						h2 -= 17;
+						j$(".DTFC_LeftBodyLiner").height(h2);					
+					}
+				}			
+			}
+			
+			function renderHide() {
+				document.getElementById('{!$Component.form.panelGrid}').style.display = 'none';
+				j$("#sidebar").css("visibility", "hidden");
+				j$("#sidebar").hide();
+				j$("#content").css("visibility", "hidden");
+				j$("#separator").hide();
+				j$("#separator").css("visibility", "hidden");
+			}
+
+			function setSideBarHeight(){
+				var contentHeight = j$("#content").height();
+				j$("#sidebar").height('auto');
+				j$("#legend").css('position','static');
+				var sidebarHeight = j$("#sidebar").height();
+
+				if(contentHeight>sidebarHeight){
+					j$("#sidebar").height(contentHeight);
+					j$("#separator").height(contentHeight);
+					j$("#legend").css('position','absolute');
+				} 
+				else {
+					j$("#separator").height(sidebarHeight);
+					j$("#tabs").height(sidebarHeight);
+				}
+
+				setTimeout(function(){
+					j$("li.flexMenu-viewMore").on("click", function(){
+						var h = j$("#sidebar").height() - 30;
+						j$('.flexMenu-popup').css('max-height', h + 'px');
+					});	
+				}, 250);
+			
+			}			
+			
+			function modal(element, w, h) {
+				j$(element).dialog({
+					autoOpen : false,
+					minHeight : 200,
+					minWidth: 200,
+					modal : true,
+					resizable : false,
+					width : w,
+					height: h,
+					open : function(event, ui) {
+						j$(this).parent().appendTo(j$("[id$='form']"));
+						j$(this).parent().position({my: "center", at: "center", of: "#contentWrapper", within: window});
+					},
+					close : function(event, ui) {
+						j$(this).parent().dialog('destroy');
+					}
+				});
+			}
+			
+			function hasClass(element, cls) {
+				return (' ' + element.className + ' ').indexOf(' ' + cls + ' ') > -1;
+			}
+			
+			function enterGrade(key, value) {
+				entryGradeMap[key] = value;
+				if(saveReminderStart == false) {
+					saveReminderStart = true;
+					setTimeout('checkSaveState()', 360000);
+				}
+			}
+			
+			function checkSaveState() {
+				if(saveReminderStart) {
+					alert('It has been 6 minutes since you last saved your work.  Please save your work by clicking on Submit Grades.');
+					setTimeout('checkSaveState()', 360000);
+				}
+			}
+			
+			function assignmentFilter() {
+				document.getElementById('{!$Component.form.assignmentTypeField}').value = '';
+				var assignmentFilter = document.getElementById('{!$Component.form.assignmentField}').value;
+				var studentFilter = document.getElementById('{!$Component.form.studentField}').value;
+				var sD = new Date(document.getElementById('{!$Component.form.sDate}').value);
+				var eD = new Date(document.getElementById('{!$Component.form.eDate}').value);					
+				var order;
+				try {
+					order = document.getElementById('{!$Component.form.oBy}').value;
+				}
+				catch(exception) {
+					order = '{!loadedSchoolSection.orderBy}';
+				}
+				var assignmentStandardMap = {};
+				
+				if(assignmentFilter) {	
+					//always perform this filter, it is always correct
+					j$("#gradebook-results #gradebookTable td").each(function() {
+						var stringID = this.id;
+						var key = stringID.split("_");
+						var rD = new Date(key[key.length - 1]);						
+						if(!(!stringID || 0 === stringID.length) && !((stringID.indexOf(assignmentFilter) >=0) && (stringID.indexOf(studentFilter) >= 0)) && !hasClass(this, 'first-column') ) {
+							this.style.display = "none";
+						}
+						else {
+							this.style.display = "";
+						}
+					});
+					
+					if(order == 'assignment') {
+						j$("#gradebook-results #gradebookTable th").each(function() {
+							var stringID = this.id;
+							var key = stringID.split("_");
+							var rD = new Date(key[key.length - 1]);						
+							if(!(!stringID || 0 === stringID.length) && !(stringID.indexOf(assignmentFilter) >=0) && !hasClass(this, 'first-column') ) {
+								this.style.display = "none";
+							}	
+							else {
+								this.style.display = "";
+							}
+						});
+						
+						j$(".dataTables_wrapper .DTFC_ScrollWrapper .dataTables_scroll .dataTable th").each(function() {
+							var stringID = this.id;
+							var key = stringID.split("_");
+							var rD = new Date(key[key.length - 1]);
+							if(!(!stringID || 0 === stringID.length) && !(stringID.indexOf(assignmentFilter) >=0) && !hasClass(this, 'first-column') ) {				
+								this.style.display = "none";
+							}	
+							else {
+								this.style.display = "";
+							}
+						});
+					}
+					else {
+						//just count! determining colspan
+						j$("#gradebook-results #gradebookTable tr:nth-child(2) th").each(function() {
+							var stringID = this.id;
+							var key = stringID.split("_");
+							var rD = new Date(key[key.length - 1]);
+							if(!(!stringID || 0 === stringID.length) && !(stringID.indexOf(assignmentFilter) >=0) && !hasClass(this, 'first-column') ) {
+
+							}	
+							else {
+								var s = key[3];
+								if(assignmentStandardMap[s] == null) {
+									assignmentStandardMap[s] = 1;	
+								}
+								else {
+									assignmentStandardMap[s] ++;
+								}
+							}
+						});
+						
+						//actually modify the first row only
+						j$("#gradebook-results #gradebookTable tr:first-child th").each(function() {
+							var stringID = this.id;
+							var key = stringID.split("_");
+							var rD = new Date(key[key.length - 1]);
+					
+							if(!(!stringID || 0 === stringID.length) && (assignmentStandardMap[key[3]] == null) && !hasClass(this, 'first-column') ) {
+								this.style.display = "none";
+							}	
+							else {
+								this.style.display = "";
+								this.setAttribute("colspan", assignmentStandardMap[key[3]]);
+							}
+						});
+						
+						j$(".dataTables_wrapper .DTFC_ScrollWrapper .dataTables_scroll .dataTable tr:first-child th").each(function() {
+							var stringID = this.id;
+							var key = stringID.split("_");
+							var rD = new Date(key[key.length - 1]);
+							if(!(!stringID || 0 === stringID.length) && (assignmentStandardMap[key[3]] == null) && !hasClass(this, 'first-column') ) {				
+								this.style.display = "none";
+							}	
+							else {
+								this.style.display = "";
+								this.setAttribute("colspan", assignmentStandardMap[key[3]]);
+							}
+						});	
+						
+						//keep normally for rows 2,3,4			
+						j$("#gradebook-results #gradebookTable tr:not(:first-child) th").each(function() {
+							var stringID = this.id;
+							var key = stringID.split("_");
+							var rD = new Date(key[key.length - 1]);						
+							if(!(!stringID || 0 === stringID.length) && !(stringID.indexOf(assignmentFilter) >=0) && !hasClass(this, 'first-column') ) {
+								this.style.display = "none";
+							}	
+							else {
+								this.style.display = "";
+							}
+						});
+						
+						
+						j$(".dataTables_wrapper .DTFC_ScrollWrapper .dataTables_scroll .dataTable tr:not(:first-child) th").each(function() {
+							var stringID = this.id;
+							var key = stringID.split("_");
+							var rD = new Date(key[key.length - 1]);
+							if(!(!stringID || 0 === stringID.length) && !(stringID.indexOf(assignmentFilter) >=0) && !hasClass(this, 'first-column') ) {				
+								this.style.display = "none";
+							}	
+							else {
+								this.style.display = "";
+							}
+						});						
+					}		
+					
+					j$("#gradebook-results #gradebookTable").width("auto");			
+					var w = j$("#gradebook-results #gradebookTable").width();
+					j$(".dataTables_wrapper .DTFC_ScrollWrapper .dataTables_scroll .dataTable").width(w);
+					j$(".dataTables_wrapper .DTFC_ScrollWrapper .dataTables_scroll .dataTable th:first-child").width("");	
+				}
+				else {	
+				
+					j$("#gradebook-results #gradebookTable td").each(function() {
+						var stringID = this.id;
+						var key = stringID.split("_");
+						var rD = new Date(key[key.length - 1]);
+						if(!hasClass(this, 'first-column')) {
+							if((rD >= sD && rD <= eD)) {				
+								this.style.display = "";
+							}
+							else {
+								this.style.display = "none";
+							}
+						}
+					});
+										
+					if(order == 'assignment') {
+										
+						j$("#gradebook-results #gradebookTable th").each(function() {
+							var stringID = this.id;
+							var key = stringID.split("_");
+							var rD = new Date(key[key.length - 1]);
+							if(!hasClass(this, 'first-column')) {
+								if((rD >= sD && rD <= eD)) {
+									this.style.display = "";
+								}
+								else {
+									this.style.display = "none";
+								}
+							}
+						});
+						
+						j$(".dataTables_wrapper .DTFC_ScrollWrapper .dataTables_scroll .dataTable th").each(function() {
+							var stringID = this.id;
+							var key = stringID.split("_");
+							var rD = new Date(key[key.length - 1]);	
+							if(!hasClass(this, 'first-column')) {
+								if((rD >= sD && rD <= eD)) {					
+									this.style.display = "";
+								}
+								else {
+									this.style.display = "none";
+								}
+							}
+						});
+					}
+					else {
+						//just count
+						j$("#gradebook-results #gradebookTable tr:nth-child(2) th").each(function() {
+							var stringID = this.id;
+							var key = stringID.split("_");
+							var rD = new Date(key[key.length - 1]);	
+							if((rD >= sD && rD <= eD) && !hasClass(this, 'first-column')) {
+								var s = key[3];
+								if(assignmentStandardMap[s] == null) {
+									assignmentStandardMap[s] = 1;	
+								}
+								else if(!hasClass(this, 'first-column')) {
+									assignmentStandardMap[s] ++;
+								}								
+							}
+						});	
+						
+						j$("#gradebook-results #gradebookTable tr:first-child th").each(function() {
+							var stringID = this.id;
+							var key = stringID.split("_");
+							var rD = new Date(key[key.length - 1]);	
+							if((assignmentStandardMap[key[3]] != null) && !hasClass(this, 'first-column')) {
+								this.style.display = "";
+								this.setAttribute("colspan", assignmentStandardMap[key[3]]);
+							}
+						});
+						
+						j$(".dataTables_wrapper .DTFC_ScrollWrapper .dataTables_scroll .dataTable tr:first-child th").each(function() {
+							var stringID = this.id;
+							var key = stringID.split("_");
+							var rD = new Date(key[key.length - 1]);	
+							if((assignmentStandardMap[key[3]] != null) && !hasClass(this, 'first-column')) {					
+								this.style.display = "";
+								this.setAttribute("colspan", assignmentStandardMap[key[3]]);
+							}
+						});						
+						
+						//perform this normally for 2,3,4
+						j$("#gradebook-results #gradebookTable tr:not(:first-child) th").each(function() {
+							var stringID = this.id;
+							var key = stringID.split("_");
+							var rD = new Date(key[key.length - 1]);
+							if(!hasClass(this, 'first-column')) {
+								if((rD >= sD && rD <= eD)) {
+									this.style.display = "";
+								}
+								else {
+									this.style.display = "none";
+								}
+							}
+						});
+						
+						j$(".dataTables_wrapper .DTFC_ScrollWrapper .dataTables_scroll .dataTable tr:not(:first-child) th").each(function() {
+							var stringID = this.id;
+							var key = stringID.split("_");
+							var rD = new Date(key[key.length - 1]);
+							if(!hasClass(this, 'first-column')) {
+								if((rD >= sD && rD <= eD)) {					
+									this.style.display = "";
+								}
+								else {
+									this.style.display = "none";
+								}
+							}
+						});								
+					}
+				}
+				fixTableScrollHeight();
+			}
+			
+			function assignmentTypeFilter() {
+				
+				document.getElementById('{!$Component.form.assignmentField}').value = '';
+				var assignmentTypeFilter = document.getElementById('{!$Component.form.assignmentTypeField}').value;
+				var studentFilter = document.getElementById('{!$Component.form.studentField}').value;
+				var sD = new Date(document.getElementById('{!$Component.form.sDate}').value);
+				var eD = new Date(document.getElementById('{!$Component.form.eDate}').value);					
+				var order;
+				try {
+					order = document.getElementById('{!$Component.form.oBy}').value;
+				}
+				catch(exception) {
+					order = '{!loadedSchoolSection.orderBy}';
+				}
+				var assignmentStandardMap = {};
+				
+				if(assignmentTypeFilter) {						
+					j$("#gradebook-results #gradebookTable td").each(function() {
+						var stringID = this.id;
+						var key = stringID.split("_");
+						var rD = new Date(key[key.length - 1]);							
+						if(!(!stringID || 0 === stringID.length) && !((stringID.indexOf(assignmentTypeFilter) >=0 && (rD >= sD && rD <= eD)) && (stringID.indexOf(studentFilter) >= 0)) && !hasClass(this, 'first-column') ) {
+							this.style.display = "none";
+						}
+						else {
+							this.style.display = "";
+						}
+					});
+					
+					if(order == 'assignment') {
+						j$("#gradebook-results #gradebookTable th").each(function() {
+							var stringID = this.id;
+							var key = stringID.split("_");
+							var rD = new Date(key[key.length - 1]);							
+							if(!(!stringID || 0 === stringID.length) && !(stringID.indexOf(assignmentTypeFilter) >=0 && (rD >= sD && rD <= eD)) && !hasClass(this, 'first-column')) {
+								this.style.display = "none";
+							}	
+							else {
+								this.style.display = "";
+							}
+						});
+						
+						j$(".dataTables_wrapper .DTFC_ScrollWrapper .dataTables_scroll .dataTable th").each(function() {
+							var stringID = this.id;
+							var key = stringID.split("_");
+							var rD = new Date(key[key.length - 1]);							
+							if(!(!stringID || 0 === stringID.length) && !(stringID.indexOf(assignmentTypeFilter) >=0 && (rD >= sD && rD <= eD)) && !hasClass(this, 'first-column')) {
+								this.style.display = "none";
+							}	
+							else {
+								this.style.display = "";
+							}
+						});				
+					}
+					else {
+						//just count
+						j$("#gradebook-results #gradebookTable tr:nth-child(2) th").each(function() {
+							var stringID = this.id;
+							var key = stringID.split("_");
+							var rD = new Date(key[key.length - 1]);
+							if(!hasClass(this, 'first-column')) {			
+								if(!(!stringID || 0 === stringID.length) && !(stringID.indexOf(assignmentTypeFilter) >=0 && (rD >= sD && rD <= eD))) {
+									//this.style.display = "none";
+								}	
+								else {
+									var s = key[3];
+									if(assignmentStandardMap[s] == null) {
+										assignmentStandardMap[s] = 1;	
+									}
+									else {
+										assignmentStandardMap[s] ++;
+									}
+								}
+							}
+						});
+						
+						//first row only
+						j$("#gradebook-results #gradebookTable tr:first-child th").each(function() {
+							var stringID = this.id;
+							var key = stringID.split("_");
+							var rD = new Date(key[key.length - 1]);	
+							if(!hasClass(this, 'first-column')) {						
+								if(!(!stringID || 0 === stringID.length) && assignmentStandardMap[key[3]] == null) {
+									this.style.display = "none";
+								}	
+								else {
+									this.style.display = "";
+									this.setAttribute("colspan", assignmentStandardMap[key[3]]);
+								}
+							}
+						});						
+						
+						j$(".dataTables_wrapper .DTFC_ScrollWrapper .dataTables_scroll .dataTable tr:first-child th").each(function() {
+							var stringID = this.id;
+							var key = stringID.split("_");
+							var rD = new Date(key[key.length - 1]);
+							if(!hasClass(this, 'first-column')) {
+								if(!(!stringID || 0 === stringID.length) && assignmentStandardMap[key[3]] == null) {
+									this.style.display = "none";
+								}
+								else {
+									this.style.display = "";
+									this.setAttribute("colspan", assignmentStandardMap[key[3]]);
+								}
+							}
+						});
+						
+						//rows 2,3,4
+						j$("#gradebook-results #gradebookTable tr:not(:first-child) th").each(function() {
+							var stringID = this.id;
+							var key = stringID.split("_");
+							var rD = new Date(key[key.length - 1]);	
+							if(!hasClass(this, 'first-column')) {						
+								if(!(!stringID || 0 === stringID.length) && !(stringID.indexOf(assignmentTypeFilter) >=0 && (rD >= sD && rD <= eD))) {
+									this.style.display = "none";
+								}	
+								else {
+									this.style.display = "";
+								}
+							}
+						});						
+						
+						j$(".dataTables_wrapper .DTFC_ScrollWrapper .dataTables_scroll .dataTable tr:not(:first-child) th").each(function() {
+							var stringID = this.id;
+							var key = stringID.split("_");
+							var rD = new Date(key[key.length - 1]);
+							if(!hasClass(this, 'first-column')) {
+								if(!(!stringID || 0 === stringID.length) && !(stringID.indexOf(assignmentTypeFilter) >=0 && (rD >= sD && rD <= eD))) {
+									this.style.display = "none";
+								}
+								else {
+									this.style.display = "";
+								}
+							}
+						});						
+					}
+					
+					j$("#gradebook-results #gradebookTable").width("auto");
+					var w = j$("#gradebook-results #gradebookTable").width();
+					j$(".dataTables_wrapper .DTFC_ScrollWrapper .dataTables_scroll .dataTable").width(w);						
+					j$(".dataTables_wrapper .DTFC_ScrollWrapper .dataTables_scroll .dataTable th:first-child").width("");
+				}
+				else {
+				
+					j$("#gradebook-results #gradebookTable td").each(function() {
+						var stringID = this.id;
+						var key = stringID.split("_");
+						var rD = new Date(key[key.length - 1]);	
+						if(!hasClass(this, 'first-column')) {
+							if((rD >= sD && rD <= eD)) {				
+								this.style.display = "";
+							}
+							else {
+								this.style.display = "none";
+							}
+						}
+					});
+							
+					if(order == 'assignment') {		
+						j$("#gradebook-results #gradebookTable th").each(function() {
+							var stringID = this.id;
+							var key = stringID.split("_");
+							var rD = new Date(key[key.length - 1]);	
+							if(!hasClass(this, 'first-column')) {
+								if((rD >= sD && rD <= eD)) {				
+									this.style.display = "";
+								}
+								else {
+									this.style.display = "none";
+								}
+							}
+						});
+						
+						j$(".dataTables_wrapper .DTFC_ScrollWrapper .dataTables_scroll .dataTable th").each(function() {
+							var stringID = this.id;
+							var key = stringID.split("_");
+							var rD = new Date(key[key.length - 1]);
+							if(!hasClass(this, 'first-column')) {
+								if((rD >= sD && rD <= eD)) {				
+									this.style.display = "";
+								}
+								else {
+									this.style.display = "none";
+								}
+							}
+						});
+					}
+					else {
+						//first count
+						j$("#gradebook-results #gradebookTable tr:nth-child(2) th").each(function() {
+							var stringID = this.id;
+							var key = stringID.split("_");
+							var rD = new Date(key[key.length - 1]);	
+							if((rD >= sD && rD <= eD) && !hasClass(this, 'first-column')) {				
+								//this.style.display = "";
+								var s = key[3];
+								if(assignmentStandardMap[s] == null) {
+									assignmentStandardMap[s] = 1;	
+								}
+								else {
+									assignmentStandardMap[s] ++;
+								}								
+							}
+						});
+												
+						//first row only
+						j$("#gradebook-results #gradebookTable tr:first-child th").each(function() {
+							var stringID = this.id;
+							var key = stringID.split("_");
+							var rD = new Date(key[key.length - 1]);
+							if((assignmentStandardMap[key[3]] != null) && !hasClass(this, 'first-column')) {				
+								this.style.display = "";
+								this.setAttribute("colspan", assignmentStandardMap[key[3]]);								
+							}
+						});
+						
+						j$(".dataTables_wrapper .DTFC_ScrollWrapper .dataTables_scroll .dataTable tr:first-child th").each(function() {
+							var stringID = this.id;
+							var key = stringID.split("_");
+							var rD = new Date(key[key.length - 1]);	
+							if((assignmentStandardMap[key[3]] != null) && !hasClass(this, 'first-column')) {				
+								this.style.display = "";
+								this.setAttribute("colspan", assignmentStandardMap[key[3]]);
+							}
+						});							
+						
+						//2,3,4 rows
+						j$("#gradebook-results #gradebookTable tr:not(:first-child) th").each(function() {
+							var stringID = this.id;
+							var key = stringID.split("_");
+							var rD = new Date(key[key.length - 1]);
+							if(!hasClass(this, 'first-column')) {
+								if((rD >= sD && rD <= eD)) {				
+									this.style.display = "";
+								}
+								else {
+									this.style.display = "none";
+								}
+							}
+						});
+						
+						j$(".dataTables_wrapper .DTFC_ScrollWrapper .dataTables_scroll .dataTable tr:not(:first-child) th").each(function() {
+							var stringID = this.id;
+							var key = stringID.split("_");
+							var rD = new Date(key[key.length - 1]);
+							if(!hasClass(this, 'first-column')) {
+								if((rD >= sD && rD <= eD)) {				
+									this.style.display = "";
+								}
+								else {
+									this.style.display = "none";
+								}
+							}
+						});						
+					}
+				}
+				fixTableScrollHeight();	
+			}
+			
+			function studentFilter() {
+				var studentFilter = document.getElementById('{!$Component.form.studentField}').value;
+				var assignmentFilter = document.getElementById('{!$Component.form.assignmentField}').value;
+				var assignmentTypeFilter = document.getElementById('{!$Component.form.assignmentTypeField}').value;	
+				var sD = new Date(document.getElementById('{!$Component.form.sDate}').value);
+				var eD = new Date(document.getElementById('{!$Component.form.eDate}').value);			
+				var order;
+				try {
+					order = document.getElementById('{!$Component.form.oBy}').value;
+				}
+				catch(exception) {
+					order = '{!loadedSchoolSection.orderBy}';
+				}
+				var assignmentStandardMap = {};
+				
+				if(studentFilter) {
+					j$("#gradebook-results #gradebookTable tr").each(function() {
+						var stringID = this.id;
+						if(!(!stringID || 0 === stringID.length) && !(stringID.indexOf(studentFilter) >=0) ) {
+							this.style.display = "none";
+						}	
+						else {
+							this.style.display = "";
+						}
+					});
+					
+					j$(".dataTables_wrapper .DTFC_ScrollWrapper .DTFC_LeftWrapper .dataTable td").each(function() {
+						var stringID = this.id;
+						var key = stringID.split("_");
+						var rD = new Date(key[key.length - 1]);
+				
+							//if(!(stringID.indexOf(studentFilter) >=0 && (stringID.indexOf(assignmentFilter) >=0 || (stringID.indexOf(assignmentTypeFilter) >=0 && (rD >= sD && rD <= eD)) || (rD >= sD && rD <= eD) || hasClass(this, 'first-column')) ) ) {
+							if(!(!stringID || 0 === stringID.length) && stringID.indexOf(studentFilter) >=0 && 
+									(hasClass(this, 'first-column') || 
+										( (rD >= sD && rD <= eD) ||
+										(stringID.indexOf(assignmentTypeFilter) >=0 && (rD >= sD && rD <= eD)) ||
+										(stringID.indexOf(assignmentFilter) >=0) ) ) ) { 						
+
+								this.style.display = "";
+								j$(this).parent().css("display", "");								
+
+							}	
+							else {
+								this.style.display = "none";
+								j$(this).parent().css("display", "none");
+							}
+						
+						});														
+					
+					j$("#gradebook-results #gradebookTable td").each(function() {
+						var stringID = this.id;
+						var key = stringID.split("_");
+						var rD = new Date(key[key.length - 1]);
+						
+						//if(!(stringID.indexOf(studentFilter) >=0 && (stringID.indexOf(assignmentFilter) >=0 || (stringID.indexOf(assignmentTypeFilter) >=0 && (rD >= sD && rD <= eD)) || (rD >= sD && rD <= eD) || hasClass(this, 'first-column')) ) ) {											
+							if(!(!stringID || 0 === stringID.length) && stringID.indexOf(studentFilter) >=0) {
+						
+								if(hasClass(this, 'first-column')) {
+									this.style.display = "";
+								}
+								else if(assignmentFilter) {
+									if(stringID.indexOf(assignmentFilter) >=0) {		
+										this.style.display = "";
+									}
+									else {
+										this.style.display = "none";
+									}
+								}
+								else if(assignmentTypeFilter) {
+									if(stringID.indexOf(assignmentTypeFilter) >=0 && (rD >= sD && rD <= eD)) {
+										this.style.display = "";
+									}
+									else {
+										this.style.display = "none";
+									}
+								}
+								else if(rD >= sD && rD <= eD) {
+									this.style.display = "";
+								}	
+								else {
+									this.style.display = "none";
+								}
+							}
+							else {
+								this.style.display = "none";
+							}			
+						});
+					
+					j$("#gradebook-results #gradebookTable").width("auto");
+					var w = j$("#gradebook-results #gradebookTable").width();
+					j$(".dataTables_wrapper .DTFC_ScrollWrapper .dataTables_scroll .dataTable").width(w);						
+					j$(".dataTables_wrapper .DTFC_ScrollWrapper .dataTables_scroll .dataTable th:first-child").width("");
+				}
+				else {
+					j$("#gradebook-results #gradebookTable tr").each(function() {
+						this.style.display = "";
+					});
+					
+					j$(".dataTables_wrapper .DTFC_ScrollWrapper .DTFC_LeftWrapper .dataTable tr").each(function() {
+						this.style.display = "";
+					});
+					
+
+					j$("#gradebook-results #gradebookTable td").each(function() {
+						if(assignmentFilter) {
+							var stringID = this.id;
+							var key = stringID.split("_");
+							var rD = new Date(key[key.length - 1]);		
+							if(!(!stringID || 0 === stringID.length) && !(stringID.indexOf(assignmentFilter) >=0) && !hasClass(this, 'first-column') ) {
+								this.style.display = "none";
+							}
+							else {
+								this.style.display = "";
+							}
+						}
+						else if(assignmentTypeFilter) {
+							var stringID = this.id;
+							var key = stringID.split("_");
+							var rD = new Date(key[key.length - 1]);		
+							if(!(!stringID || 0 === stringID.length) && !(stringID.indexOf(assignmentTypeFilter) >=0 && (rD >= sD && rD <= eD)) && !hasClass(this, 'first-column') ) {
+								this.style.display = "none";
+							}
+							else {
+								this.style.display = "";
+							}							
+						}
+						else {
+							var stringID = this.id;
+							var key = stringID.split("_");
+							var rD = new Date(key[key.length - 1]);
+							if(rD < sD || rD > eD) {							
+								this.style.display = "none";
+							}
+							else {
+								this.style.display = "";
+							}
+						}
+					});			
+					
+					j$(".dataTables_wrapper .DTFC_ScrollWrapper .DTFC_LeftWrapper .dataTable td").each(function() {
+						if(assignmentFilter) {
+							var stringID = this.id;
+							var key = stringID.split("_");
+							var rD = new Date(key[key.length - 1]);
+							if(!(!stringID || 0 === stringID.length) && !(stringID.indexOf(assignmentFilter) >=0 && (rD >= sD && rD <= eD)) && !hasClass(this, 'first-column') ) {
+								this.style.display = "none";
+							}
+							else {
+								this.style.display = "";
+							}						
+						}
+						else if(assignmentTypeFilter) {
+							var stringID = this.id;
+							var key = stringID.split("_");
+							var rD = new Date(key[key.length - 1]);
+							if(!(!stringID || 0 === stringID.length) && !(stringID.indexOf(assignmentTypeFilter) >=0 && (rD >= sD && rD <= eD)) && !hasClass(this, 'first-column') ) {
+								this.style.display = "none";
+							}
+							else {
+								this.style.display = "";
+							}						
+						}
+						else {
+							var stringID = this.id;
+							var key = stringID.split("_");
+							var rD = new Date(key[key.length - 1]);
+							if(rD < sD || rD > eD) {							
+								this.style.display = "none";
+							}
+							else {
+								this.style.display = "";
+							}
+						}
+					});	
+				}
+				fixTableScrollHeight();		
+			}
+			
+			function dateFilter() {
+				document.getElementById('{!$Component.form.assignmentField}').value = '';
+				var assignmentTypeFilter = document.getElementById('{!$Component.form.assignmentTypeField}').value;	
+				var	sD = new Date(document.getElementById('{!$Component.form.sDate}').value);
+				var	eD = new Date(document.getElementById('{!$Component.form.eDate}').value);
+
+				var rpID = document.getElementById("{!$Component.form.rpField}").value;
+				var rpStartDate = new Date(timeMap[rpID].getStartDate());
+				var rpEndDate = new Date(timeMap[rpID].getEndDate());
+				
+				if((sD < rpStartDate || sD > rpEndDate) || (eD < rpStartDate || eD > rpEndDate)) {
+					alert('The date you have entered is outside of the date range for the selected reporting period. Please enter a new date or select a new reporting period.');
+				}
+				else if(sD > eD) {
+					alert('The Start Date cannot be after the End Date.  Please enter the dates in the correct order.');
+				}
+				else if(eD < sD) {
+					alert('The End Date cannot be before the Start Date.  Please enter the dates in the correct order.');
+				}
+				else {
+					var order;
+					try {
+						order = document.getElementById('{!$Component.form.oBy}').value;
+					}
+					catch(exception) {
+						order = '{!loadedSchoolSection.orderBy}';
+					}
+					var assignmentStandardMap = {};
+					
+					if(sD || eD) {
+					
+						j$("#gradebook-results #gradebookTable td").each(function() {
+							var stringID = this.id;
+							if(!(!stringID || 0 === stringID.length) && !hasClass(this, 'first-column')) {
+								var key = stringID.split("_");
+								var rD = new Date(key[key.length - 1]);
+								if(!(rD < sD || rD > eD)) {
+									if(assignmentTypeFilter) {
+										if(stringID.indexOf(assignmentTypeFilter) >=0) {
+											this.style.display = "";	
+										}
+										else {
+											this.style.display = "none";
+										}
+									}
+									else {
+										this.style.display = "";
+									}
+								}
+								else {
+									this.style.display = "none";
+								}
+							}
+						});				
+					
+						if(order == 'assignment') {
+							j$("#gradebook-results #gradebookTable th").each(function() {
+								var stringID = this.id;
+								if(!(!stringID || 0 === stringID.length) && !hasClass(this, 'first-column')) {
+									var key = stringID.split("_");
+									var rD = new Date(key[key.length - 1]);
+									if(!(rD < sD || rD > eD)) {
+										if(assignmentTypeFilter) {
+											if(stringID.indexOf(assignmentTypeFilter) >=0) {
+												this.style.display = "";	
+											}
+											else {
+												this.style.display = "none";
+											}
+										}
+										else {
+											this.style.display = "";
+										}
+									}
+									else {
+										this.style.display = "none";
+									}
+								}						
+							});
+							
+							j$(".dataTables_wrapper .DTFC_ScrollWrapper .dataTables_scroll .dataTable th").each(function() {
+								var stringID = this.id;
+								if(!(!stringID || 0 === stringID.length) && !hasClass(this, 'first-column')) {
+									var key = stringID.split("_");
+									var rD = new Date(key[key.length - 1]);
+									if(!(rD < sD || rD > eD)) {
+										if(assignmentTypeFilter) {
+											if(stringID.indexOf(assignmentTypeFilter) >=0) {
+												this.style.display = "";	
+											}
+											else {
+												this.style.display = "none";
+											}
+										}
+										else {
+											this.style.display = "";
+										}
+									}
+									else {
+										this.style.display = "none";
+									}
+								}
+							});
+						}
+						else {
+						
+							//count
+							j$("#gradebook-results #gradebookTable tr:nth-child(2) th").each(function() {
+								var stringID = this.id;
+								if(!(!stringID || 0 === stringID.length) && !hasClass(this, 'first-column')) {
+									var key = stringID.split("_");
+									var rD = new Date(key[key.length - 1]);
+									if(!(rD < sD || rD > eD)) {
+										if(assignmentTypeFilter) {
+											if(stringID.indexOf(assignmentTypeFilter) >=0) {
+												//this.style.display = "";
+												var s = key[3];
+												if(assignmentStandardMap[s] == null) {
+													assignmentStandardMap[s] = 1;	
+												}
+												else {
+													assignmentStandardMap[s] ++;
+												}											
+											}
+											else {
+												//this.style.display = "none";
+											}
+										}
+										else {
+											//this.style.display = "";
+											var s = key[3];
+											if(assignmentStandardMap[s] == null) {
+												assignmentStandardMap[s] = 1;	
+											}
+											else {
+												assignmentStandardMap[s] ++;
+											}										
+										}
+									}
+									else {
+										//this.style.display = "none";
+									}
+								}						
+							});
+							
+							//first row
+							j$("#gradebook-results #gradebookTable tr:first-child th").each(function() {
+								var stringID = this.id;
+								if(!(!stringID || 0 === stringID.length) && !hasClass(this, 'first-column')) {
+									var key = stringID.split("_");
+									var rD = new Date(key[key.length - 1]);
+									if(assignmentStandardMap[key[3]] != null) {
+										if(assignmentTypeFilter) {
+											if(stringID.indexOf(assignmentTypeFilter) >=0) {
+												this.style.display = "";
+												this.setAttribute("colspan", assignmentStandardMap[key[3]]);
+											}
+											else {
+												this.style.display = "none";
+											}
+										}
+										else {
+											this.style.display = "";
+											this.setAttribute("colspan", assignmentStandardMap[key[3]]);
+										}
+									}
+									else {
+										this.style.display = "none";
+									}
+								}						
+							});
+							
+							j$(".dataTables_wrapper .DTFC_ScrollWrapper .dataTables_scroll .dataTable tr:first-child th").each(function() {
+								var stringID = this.id;
+								if(!(!stringID || 0 === stringID.length) && !hasClass(this, 'first-column')) {
+									var key = stringID.split("_");
+									var rD = new Date(key[key.length - 1]);
+									if(assignmentStandardMap[key[3]] != null) {
+										if(assignmentTypeFilter) {
+											if(stringID.indexOf(assignmentTypeFilter) >=0) {
+												this.style.display = "";
+												this.setAttribute("colspan", assignmentStandardMap[key[3]]);
+											}
+											else {
+												this.style.display = "none";
+											}
+										}
+										else {
+											this.style.display = "";
+											this.setAttribute("colspan", assignmentStandardMap[key[3]]);
+										}
+									}
+									else {
+										this.style.display = "none";
+									}
+								}
+							});						
+						
+							//rows 2, 3, 4
+							j$("#gradebook-results #gradebookTable tr:not(:first-child) th").each(function() {
+								var stringID = this.id;
+								if(!(!stringID || 0 === stringID.length) && !hasClass(this, 'first-column')) {
+									var key = stringID.split("_");
+									var rD = new Date(key[key.length - 1]);
+									if(!(rD < sD || rD > eD)) {
+										if(assignmentTypeFilter) {
+											if(stringID.indexOf(assignmentTypeFilter) >=0) {
+												this.style.display = "";	
+											}
+											else {
+												this.style.display = "none";
+											}
+										}
+										else {
+											this.style.display = "";
+										}
+									}
+									else {
+										this.style.display = "none";
+									}
+								}						
+							});
+							
+							j$(".dataTables_wrapper .DTFC_ScrollWrapper .dataTables_scroll .dataTable tr:not(:first-child) th").each(function() {
+								var stringID = this.id;
+								if(!(!stringID || 0 === stringID.length) && !hasClass(this, 'first-column')) {
+									var key = stringID.split("_");
+									var rD = new Date(key[key.length - 1]);
+									if(!(rD < sD || rD > eD)) {
+										if(assignmentTypeFilter) {
+											if(stringID.indexOf(assignmentTypeFilter) >=0) {
+												this.style.display = "";	
+											}
+											else {
+												this.style.display = "none";
+											}
+										}
+										else {
+											this.style.display = "";
+										}
+									}
+									else {
+										this.style.display = "none";
+									}
+								}
+							});					
+						}
+						
+						j$("#gradebook-results #gradebookTable").width("auto");
+						var w = j$("#gradebook-results #gradebookTable").width();
+						j$(".dataTables_wrapper .DTFC_ScrollWrapper .dataTables_scroll .dataTable").width(w);	
+						j$(".dataTables_wrapper .DTFC_ScrollWrapper .dataTables_scroll .dataTable th:first-child").width("");
+					}
+					else {
+					
+						j$("#gradebook-results #gradebookTable td").each(function() {
+							this.style.display = "";	
+						});	
+						if(order == 'assignment') {
+							j$("#gradebook-results #gradebookTable th").each(function() {
+								this.style.display = "";
+							});
+							
+							j$(".dataTables_wrapper .DTFC_ScrollWrapper .dataTables_scroll .dataTable th").each(function() {
+								this.style.display = "";
+							});				
+						}
+						else {
+							//count first
+							j$("#gradebook-results #gradebookTable tr:nth-child(2) th").each(function() {
+								//this.style.display = "";
+								var s = key[3];
+								if(assignmentStandardMap[s] == null) {
+									assignmentStandardMap[s] = 1;	
+								}
+								else {
+									assignmentStandardMap[s] ++;
+								}							
+							});
+							
+							//modify first
+							j$("#gradebook-results #gradebookTable tr:first-child th").each(function() {
+								this.style.display = "";
+								this.setAttribute("colspan", assignmentStandardMap[key[3]]);
+							});
+							
+							j$(".dataTables_wrapper .DTFC_ScrollWrapper .dataTables_scroll .dataTable tr:first-child th").each(function() {
+								this.style.display = "";
+								this.setAttribute("colspan", assignmentStandardMap[key[3]]);
+							});
+							
+							//modify 2,3,4
+							j$("#gradebook-results #gradebookTable tr:not(:first-child) th").each(function() {
+								this.style.display = "";
+							});
+							
+							j$(".dataTables_wrapper .DTFC_ScrollWrapper .dataTables_scroll .dataTable tr:not(:first-child) th").each(function() {
+								this.style.display = "";
+							});						
+						}
+		
+						//have to get the inner scroll width
+						var w = j$(".dataTables_wrapper .DTFC_ScrollWrapper .dataTables_scroll .dataTables_scrollHeadInner").width();
+						j$("#gradebook-results #gradebookTable").width(w);
+						j$(".dataTables_wrapper .DTFC_ScrollWrapper .dataTables_scroll .dataTable").width(w);					
+						j$(".dataTables_wrapper .DTFC_ScrollWrapper .dataTables_scroll .dataTable th:first-child").width("");
+					}
+					fixTableScrollHeight();
+				}
+			}			
+			
+			function toggleGrade() {
+				if(j$('.numberGrade').css('display')=='none'){
+			    	j$('.numberGrade').show();
+			        j$('.letterGrade').hide();
+			    }
+			    else{
+			    	j$('.numberGrade').hide();
+			        j$('.letterGrade').show();
+			    }
+			}
+			
+			function toggleComments(cBool) {
+			//mostly kept from old gradebook, variable names changed
+				if(cBool) {
+					bShowComments = true;
+				}
+				else {
+					bShowComments = !bShowComments;
+				}
+				
+				if(j$('.comment-icon').css('display') == 'none') {
+					j$('.comment-icon').css('display', '-webkit-inline-box');
+					j$('.comment-legend').css('display', 'block');
+				}
+				else {
+					j$('.comment-icon').css('display', 'none');
+					j$('.comment-legend').css('display', 'none');
+				}
+				
+				if(bShowComments) {
+					j$('#gradeComments').html('Hide Comments');
+					j$('#gradebookTable td input').css('margin-left','22px');
+				}
+				else {
+					j$('#gradeComments').html('Show Comments/Drop Grades');
+					j$('#gradebookTable td input').css('margin-left','');
+				}
+			}			
+			
+			//javascript remoting methods
+			function validateEntryGrades() {
+				Visualforce.remoting.Manager.invokeAction(
+					'{!$RemoteAction.Gradebook_Controller_v2.validate}',
+					entryGradeMap,
+					'{!standardBased}',
+					'{!standardOnly}',
+					commitEntryGrades
+				);
+			}
+			
+			function commitEntryGrades(result, event) {
+				if(event.status) {
+					var nextStep = true;
+
+					for(var s in result) {
+						if(s != '' && s != ' ') {
+							var tGrades = result[s];
+							var borderList = [];
+							for(var k in tGrades) {
+								if(tGrades[k] == 'true') {
+									borderList[borderList.length] = k;
+								}
+							}
+							for(var e in borderList) {
+								j$('td[id="'+borderList[e]+'"] input').css({'border-style':'solid','border-color':'red'});
+							}
+							
+							nextStep = confirm("You entered grades on the following assignment(s) that are outside the Possible Points range: "
+							+ s +
+							".  Click Ok to submit anyway.  Click Cancel to go back and fix your grades.");
+							
+							for(var e in borderList) {
+								j$('td[id="'+borderList[e]+'"] input').css({'border-style':'ridge', 'border-color':'#EEEEEE', '-webkit-appearance': 'textfield'});
+							}
+						}
+					}
+					
+					if(nextStep) {
+						var passMap = result[' '];
+						Visualforce.remoting.Manager.invokeAction(
+							'{!$RemoteAction.Gradebook_Controller_v2.commitDML}',
+							passMap,
+							'{!standardBased}',
+							'{!standardOnly}',
+							cleanUp
+						);
+					}
+					else {
+						setTimeout('hideProgressBar()', 250);
+						
+					}
+				}
+				else {
+					errorJS(event.message);
+				}
+			}
+			
+			var allSGCommentsMap = {};
+			var allSGAltCommentsMap = {};
+			
+			function submitAllSGComment() {
+				Visualforce.remoting.Manager.invokeAction(
+					'{!$RemoteAction.Gradebook_Controller_v2.submitAllSGComment}',
+					allSGCommentsMap,
+					allSGAltCommentsMap,
+					function(result, event) {
+						for(var key in result) {
+							if(result[key]) {
+								j$('td[id="'+key+'"] a').css('background-position', '-33px -16px'); 
+							}
+							else {
+								j$('td[id="'+key+'"] a').css('background-position', '-49px 0px');
+							}
+						}
+						allSGCommentsMap = {};
+						allSGAltCommentsMap = {};
+					}
+				);
+			}
+
+			function copydown(cellID){
+				cellID = cellID.replace('/','\/');
+				var keyIds = cellID.split('_');
+				var searchKey = keyIds[2]+'_'+keyIds[3];
+				var value = j$('th[id="'+cellID+'"] input').val();
+				//j$('td[id*="'+searchKey+'"]').children('input').val(j$('th[id="'+cellID+'"] input').val());
+				j$('td[id*="'+searchKey+'"]','#gradebookTable').children('span:visible').children('input').each(function() {
+					//set the value
+					j$(this).val(value);
+					//pass to the enterGrade function
+					enterGrade(j$(this).parent().parent().attr('id'), value);
+				});
+			}
+		</script>
+	</apex:outputPanel>
+		
+	<apex:outputPanel id="jsPanel">	
+		<script>	
+			
+			function cleanUp(result, event) {
+				if(event.type === 'exception') {
+					errorJS(event.message);
+				}
+				else if(result != null) {
+					var error = "";
+					var borderList = [];
+					var clearList = [];
+					for(var key in result) {
+						if(result[key] != '') {
+							error = error + result[key] + '\n';
+							borderList[borderList.length] = key;
+						}
+						else {
+							clearList[clearList.length] = key;
+						}
+					}
+					if(borderList.length > 0) {
+						errorJS(error);
+						for(var e in borderList) {
+							j$('td[id="'+borderList[e]+'"] input').css({'border-style':'solid','border-color':'red', 'border-width':'3px'});
+							j$('td[id="'+borderList[e]+'"] input').attr('title','Invalid grade for this scale'); 
+						}
+						for(var c in clearList) {
+							j$('td[id="'+clearList[c]+'"] input').css({'border-style':'ridge', 'border-color':'#EEEEEE', '-webkit-appearance': 'textfield'});
+							j$('td[id="'+clearList[c]+'"] input').attr('title',''); 							
+						}
+					}
+					else {
+						setTimeout('hideProgressBar()', 250);
+					}
+				}
+				else {
+					orderByJS();
+					saveReminderStart = false;
+					entryGradeMap = {};
+				}
+			}
+			
+			function highlightGradeComment() {
+				var cgKey = '{!commentGradeKey}';
+				cgKey = cgKey.replace('/','\/');				
+				if('{!commentGrade.Comment__c}' != '') {
+					j$('td[id="'+cgKey+'"] a').css('background-position', '-33px -16px'); 
+				}
+				else {
+					j$('td[id="'+cgKey+'"] a').css('background-position', '-49px 0px');
+				}
+				
+				if({!commentGrade.Exclude_From_Section_Grade__c}) {
+					j$('td[id="'+cgKey+'"] input').css('background-color', 'red');
+					j$('td[id="'+cgKey+'"] input').attr('title', 'This grade has been dropped from the section/standard grade');
+				}
+				else {
+					j$('td[id="'+cgKey+'"] input').css('background-color', '');
+					j$('td[id="'+cgKey+'"] input').attr('title', '');
+				}
+			}
+			
+			function highlightSGGradeComment() {
+				var sgKey = '{!sgCommentGradeKey}';
+				sgKey = sgKey.replace('/','\/');
+				if('{!sgCommentGrades.Comments_Next_Steps__c}' == '' && '{!sgCommentGrades.Alternate_Lang_Comments__c}' == '') {
+					j$('td[id="'+sgKey+'"] a').css('background-position', '-49px 0px');
+				}
+				else {
+					j$('td[id="'+sgKey+'"] a').css('background-position', '-33px -16px');
+				}
+			}		
+			
+			var fMenu;
+			function tabs(position) {
+				try {
+					j$("#tabs").tabs("destroy");
+				}
+				catch(exception) {
+					
+				}
+				
+				var passedPosition = {!sectionPosition};
+				if(position != null) {
+					passedPosition = position;
+				}
+
+				j$("#tabs").tabs({
+					//select works kind of like onClick, what we really want is onComplete (table is visable)
+	  				select: function( event, ui ) {
+			  			if(!leave){
+							return false;
+						}
+	  				},
+	  				active: passedPosition
+				});
+				try{
+					fMenu = j$("ul.menu.flex").flexMenu({
+						"showOnHover" : false,
+						"cutoff" : 0,
+						"threshold" : 0,
+					});
+				}
+				catch(exception){
+					console.log('Flex menu failed to load properly.');
+				}
+				
+				j$(window).resize();
+			}
+			
+			function adjustFlexMenu() {
+				try {
+					fMenu.each(function() { 
+						j$(this).flexMenu({'undo' : true}).flexMenu(this.options); 
+					});				
+				}
+				catch(exception) {
+					
+				}		
+			}
+			
+			function allFiltering() {
+				//refiltering upon rendering
+				if('{!loadedSchoolSection.assignments}' != '') {
+					assignmentFilter();
+				}
+				else {
+					if('{!loadedSchoolSection.startDate}' != '' || '{!loadedSchoolSection.endDate}' != '') {
+						dateFilter();
+					}				
+				}
+				
+				if('{!loadedSchoolSection.assignmentTypes}' != '') {
+					assignmentTypeFilter();
+				}				
+				if('{!loadedSchoolSection.students}' != '') {
+					studentFilter();
+				}			
+			}
+			
+			function disableInputs() {
+				if({!(activeYearID != currentYearID || loadedSchoolSection.staffSection.View_Gradebook_as_Read_Only__c)}) {
+					j$('#gradebookTable td input').attr('disabled', 'disabled');
+				}			
+			}
+		</script>
+	</apex:outputPanel>
+	
+</apex:page>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <aggregateTypes>Average</aggregateTypes>
+        <aggregateTypes>Maximum</aggregateTypes>
+        <aggregateTypes>Minimum</aggregateTypes>
+        <field>Section__c.Intervention_Sessions__r.Intervention_Session_Results__r$Amount_of_Time__c</field>
+    </columns>
+    <columns>
+        <field>Section__c.Intervention_Sessions__r$Date__c</field>
+    </columns>
+    <columns>
+        <field>Section__c$Name</field>
+    </columns>
+    <columns>
+        <field>Section__c.Intervention_Sessions__r$Skills_Covered_for_the_Session__c</field>
+    </columns>
+    <columns>
+        <field>Section__c.Intervention_Sessions__r$Comments__c</field>
+    </columns>
+    <columns>
+        <field>Section__c.Intervention_Sessions__r.Intervention_Session_Results__r$Id</field>
+    </columns>
+    <description>Use in dashboard to show trend of time logged per week or # of sessions per month.</description>
+    <format>Matrix</format>
+    <groupingsAcross>
+        <dateGranularity>Month</dateGranularity>
+        <field>Section__c.Intervention_Sessions__r.Intervention_Session_Results__r$Intervention_Session_Date__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsAcross>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Section__c$School__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Section__c$Program__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Time Logged by Month</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Sections_with_Intervention_Sessions_with_Intervent__c</reportType>
+    <scope>organization</scope>
+    <showDetails>false</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>Section__c$CreatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

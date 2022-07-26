@@ -1,0 +1,598 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableEnhancedLookup>false</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>false</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
+    <fieldSets>
+        <fullName>Scheduled_Sections_Template</fullName>
+        <description>CSV Loader v2</description>
+        <displayedFields>
+            <field>Period_Key__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>true</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Staff__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>true</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Section__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>true</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Room__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Account__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>true</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Reporting_Period__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>true</isRequired>
+        </displayedFields>
+        <label>Scheduled Sections Template</label>
+    </fieldSets>
+    <fields>
+        <fullName>Account__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>School associated to the scheduled section</description>
+        <externalId>false</externalId>
+        <label>Account</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Scheduled Sections</relationshipLabel>
+        <relationshipName>Scheduled_Sections</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Color__c</fullName>
+        <externalId>false</externalId>
+        <label>Color</label>
+        <length>20</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Course_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>Course__r.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Course Name</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Course__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Course</label>
+        <referenceTo>Course__c</referenceTo>
+        <relationshipName>Schedule_Templates</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Daily_Attendance__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Daily Attendance?</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>End_Time_Text__c</fullName>
+        <externalId>false</externalId>
+        <label>End Time Text</label>
+        <length>100</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>End_Time__c</fullName>
+        <externalId>false</externalId>
+        <label>End Time</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>External_Id__c</fullName>
+        <externalId>false</externalId>
+        <label>External Id</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Grade_Level__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT(Schedule_Group__r.Grade_Level__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Grade Level</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Grade_Levels__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(INCLUDES( Schedule_Group__r.All_Grades__c , &quot;K&quot;), &quot;K;&quot;, NULL) &amp;
+IF(INCLUDES( Schedule_Group__r.All_Grades__c , &quot;1&quot;), &quot;1;&quot;, NULL) &amp;
+IF(INCLUDES( Schedule_Group__r.All_Grades__c , &quot;2&quot;), &quot;2;&quot;, NULL) &amp;
+IF(INCLUDES( Schedule_Group__r.All_Grades__c , &quot;3&quot;), &quot;3;&quot;, NULL) &amp;
+IF(INCLUDES( Schedule_Group__r.All_Grades__c , &quot;4&quot;), &quot;4;&quot;, NULL) &amp;
+IF(INCLUDES( Schedule_Group__r.All_Grades__c , &quot;5&quot;), &quot;5;&quot;, NULL) &amp;
+IF(INCLUDES( Schedule_Group__r.All_Grades__c , &quot;6&quot;), &quot;6;&quot;, NULL) &amp;
+IF(INCLUDES( Schedule_Group__r.All_Grades__c , &quot;7&quot;), &quot;7;&quot;, NULL) &amp;
+IF(INCLUDES( Schedule_Group__r.All_Grades__c , &quot;8&quot;), &quot;8;&quot;, NULL) &amp;
+IF(INCLUDES( Schedule_Group__r.All_Grades__c , &quot;9&quot;), &quot;9;&quot;, NULL) &amp;
+IF(INCLUDES( Schedule_Group__r.All_Grades__c , &quot;10&quot;), &quot;10;&quot;, NULL) &amp;
+IF(INCLUDES( Schedule_Group__r.All_Grades__c , &quot;11&quot;), &quot;11;&quot;, NULL) &amp;
+IF(INCLUDES( Schedule_Group__r.All_Grades__c , &quot;12&quot;), &quot;12;&quot;, NULL) &amp;
+IF(INCLUDES( Schedule_Group__r.All_Grades__c , &quot;PS&quot;), &quot;PS;&quot;, NULL) &amp;
+IF(INCLUDES( Schedule_Group__r.All_Grades__c , &quot;PK&quot;), &quot;PK&quot;, NULL)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Grade Levels</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Needs_Publish__c</fullName>
+        <defaultValue>true</defaultValue>
+        <description>Indicator of whether this scheduled section has been published since its creation (or, if a scheduled section has been edited, whether it has been re-published)</description>
+        <externalId>false</externalId>
+        <label>Needs Publish</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>No_Meeting__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>No Meeting</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Period_Key__c</fullName>
+        <description>Key that links the scheduled section to a Period if Setup is period based.</description>
+        <externalId>false</externalId>
+        <label>Period Key</label>
+        <length>100</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Record_Attendance__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Record Attendance</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Reference_Id__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <description>Key for Section Scheduled: Setup-Reporting Period-Teacher-Group/Period</description>
+        <externalId>true</externalId>
+        <label>Reference Id</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>Reporting_Period__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Reporting Period</label>
+        <referenceTo>Time_Element__c</referenceTo>
+        <relationshipLabel>Scheduled Sections</relationshipLabel>
+        <relationshipName>Scheduled_Sections</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Room_Key__c</fullName>
+        <description>Unique Key for Reporting Period - Period - Room combination</description>
+        <externalId>true</externalId>
+        <label>Room Key</label>
+        <length>250</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Room__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Room</label>
+        <referenceTo>Room__c</referenceTo>
+        <relationshipName>Schedule_Templates</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Rounded_End_Time__c</fullName>
+        <externalId>false</externalId>
+        <label>Rounded End Time</label>
+        <length>10</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Rounded_Start_Time__c</fullName>
+        <externalId>false</externalId>
+        <label>Rounded Start Time</label>
+        <length>10</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Schedule_Group_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>Schedule_Group_Section__r.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Schedule Group Name</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Schedule_Group_Section__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Lookup field to Section object populated with the related Schedule Group</description>
+        <externalId>false</externalId>
+        <label>Schedule Group (Section)</label>
+        <referenceTo>Section__c</referenceTo>
+        <relationshipLabel>Scheduled Sections (Schedule Group (Section))</relationshipLabel>
+        <relationshipName>Scheduled_Sections1</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Schedule_Group__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Schedule Group</label>
+        <referenceTo>Schedule_Group__c</referenceTo>
+        <relationshipLabel>Scheduled Sections</relationshipLabel>
+        <relationshipName>Scheduled_Sections</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Schedule_Template__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Schedule Template</label>
+        <referenceTo>Schedule_Template__c</referenceTo>
+        <relationshipLabel>Scheduled Sections</relationshipLabel>
+        <relationshipName>Scheduled_Sections</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Section_Reference_Id__c</fullName>
+        <externalId>true</externalId>
+        <label>Section Reference Id</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Section_ReportingPeriod__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Section/ReportingPeriod</label>
+        <referenceTo>Section_ReportingPeriod__c</referenceTo>
+        <relationshipLabel>Scheduled Sections</relationshipLabel>
+        <relationshipName>Scheduled_Sections</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Section__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Section</label>
+        <referenceTo>Section__c</referenceTo>
+        <relationshipLabel>Scheduled Sections</relationshipLabel>
+        <relationshipName>Scheduled_Sections</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Staff_Key__c</fullName>
+        <externalId>false</externalId>
+        <label>Staff Key</label>
+        <length>200</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Staff__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Staff</label>
+        <referenceTo>Staff__c</referenceTo>
+        <relationshipName>Schedule_Templates</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Start_Time_Text__c</fullName>
+        <externalId>false</externalId>
+        <label>Start Time Text</label>
+        <length>100</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Start_Time__c</fullName>
+        <externalId>false</externalId>
+        <label>Start Time</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Type</label>
+        <length>100</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Scheduled Section</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>Schedule_Template__c</columns>
+        <columns>Schedule_Group__c</columns>
+        <columns>Course_Name__c</columns>
+        <columns>Section_Reference_Id__c</columns>
+        <columns>Reference_Id__c</columns>
+        <columns>Reporting_Period__c</columns>
+        <columns>Account__c</columns>
+        <columns>Rounded_Start_Time__c</columns>
+        <columns>Rounded_End_Time__c</columns>
+        <columns>OBJECT_ID</columns>
+        <columns>NAME</columns>
+        <columns>LAST_UPDATE</columns>
+        <columns>No_Meeting__c</columns>
+        <columns>Schedule_Group_Name__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <listViews>
+        <fullName>All1</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <listViews>
+        <fullName>Hill</fullName>
+        <columns>Schedule_Template__c</columns>
+        <columns>Schedule_Group__c</columns>
+        <columns>Course_Name__c</columns>
+        <columns>Section_Reference_Id__c</columns>
+        <columns>Reference_Id__c</columns>
+        <columns>Reporting_Period__c</columns>
+        <columns>Account__c</columns>
+        <columns>Rounded_Start_Time__c</columns>
+        <columns>Rounded_End_Time__c</columns>
+        <columns>OBJECT_ID</columns>
+        <columns>NAME</columns>
+        <columns>LAST_UPDATE</columns>
+        <columns>No_Meeting__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Account__c</field>
+            <operation>equals</operation>
+            <value>Hill</value>
+        </filters>
+        <label>Hill</label>
+    </listViews>
+    <nameField>
+        <label>Scheduled Section Name</label>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Scheduled Sections</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

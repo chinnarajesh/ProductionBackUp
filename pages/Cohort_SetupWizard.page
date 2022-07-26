@@ -1,0 +1,441 @@
+<apex:page StandardController="Cohort__c"
+	extensions="Cohort_SetupWizard" tabstyle="Setup__c" id="thePage">
+	<c:jQueryInit bDataTables="true" bLoadingPanel="false" />
+	<apex:stylesheet value="{!$Resource.New_Core_UX}" />
+	<apex:includeScript value="{!URLFOR($Resource.jWerty, '/jWerty/jwerty.js')}" />
+	<c:admin />
+	<script type="text/javascript">
+		var courseArray = new Array(); 
+		var tabelwidth = 'firstload';
+	j$(document).ready(function(){
+        resetTable();
+       
+	});
+		
+		function confirmSchoolChange(){
+			return confim("WARNING: Changing the school will remove all students from the cohort. Are you sure you want to continue?");
+		}
+		
+		function changedSubject(value){
+			var i;
+			var selectedOptions = j$('.selectedCourseOption').val();
+			j$('.courseSelect').find('option').remove();
+			for(i = 0; i < courseArray.length; i++){
+					if (value==courseArray[i].subjectArea){
+						var option =new Option(courseArray[i].name, courseArray[i].id);
+	               		if (selectedOptions.indexOf( courseArray[i].id)!=-1){
+	               			j$(option).attr('selected', 'selected');
+	               		}
+	               		j$(document).find('.courseSelect').append(option);
+					}
+			
+			}
+			
+			
+		j$('.customModal').center(true);
+		}
+	</script>
+
+
+	<apex:form id="myform">
+
+		<apex:outputPanel id="messagePanel">
+			<apex:pageMessages />
+		</apex:outputPanel>
+		<!-- .....................START COHORT PANEL..................... -->
+
+		<apex:outputPanel id="cohortSearchPnl">
+			<apex:pageBlock rendered="{!bHome}">
+				<h3>Current Cohorts</h3> &nbsp;<a style="cursor: pointer;"
+					onClick="addCohortJs();"> <img src="/img/feeds/follow12.png" />Add
+					Cohort</a>
+				<div class="section_content">
+					<apex:pageBlockSection columns="1" id="studentResultsSection">
+						<apex:dataTable styleclass="tablesorter" id="searchCoh"
+							value="{!searchedCohorts}" var="coh">
+							<apex:column headerValue="Actions" style="width:350px;">
+								<a href="#" onclick="editCohortJs('{!coh.coh.id}');">Edit</a>
+									&nbsp;&nbsp;|&nbsp;&nbsp;
+									<a href="#" onclick="editStudentsJs('{!coh.coh.id}');">Add/Remove
+									Students</a>
+									&nbsp;&nbsp;|&nbsp;&nbsp;
+									<apex:commandLink action="{!coh.viewReqs}"
+									rerender="requirementsDetails, cohortSearchPnl"
+									value="Edit/View Requirements" oncomplete="resetTable();" />
+							</apex:column>
+
+							<apex:column >
+								<apex:facet name="header">Name</apex:facet>
+								<apex:outputLink value="/{!coh.coh.Id}">{!coh.coh.Name}</apex:outputLink>
+							</apex:column>
+							<apex:column >
+								<apex:facet name="header">School</apex:facet>
+								<apex:outputLink value="/{!coh.coh.School__c}">{!coh.coh.School__r.Name}</apex:outputLink>
+							</apex:column>
+							<apex:column >
+								<apex:facet name="header">Entry Year</apex:facet>
+								<apex:outputField value="{!coh.coh.Year__c}" />
+							</apex:column>
+							<apex:column >
+								<apex:facet name="header">Exit Year</apex:facet>
+								<apex:outputField value="{!coh.coh.Exit_Year__c}" />
+							</apex:column>
+						</apex:dataTable>
+
+					</apex:pageBlockSection>
+				</div>
+
+				<apex:actionFunction action="{!createCohort}" reRender="cohortPanel"
+					name="addCohortJs" onComplete="centerModal();" />
+				<apex:actionFunction action="{!editCohort}" reRender="cohortPanel"
+					name="editCohortJs" onComplete="centerModal();">
+					<apex:param name="selectedCohortId" assignTo="{!selectedCohortId}"
+						value="" />
+				</apex:actionFunction>
+
+				<apex:actionFunction action="{!editStudents}"
+					reRender="studentPanel, cohortSearchPnl" name="editStudentsJs"
+					onComplete="resetTable();">
+					<apex:param name="selectedCohortId" assignTo="{!selectedCohortId}"
+						value="" />
+				</apex:actionFunction>
+			</apex:pageBlock>
+
+		</apex:outputPanel>
+		<apex:outputPanel id="cohortPanel">
+			<apex:outputPanel styleClass="modalBackground" layout="block"
+				rendered="{!cohortPage}" />
+			<apex:outputPanel styleClass="customModal" layout="block"
+				rendered="{!cohortPage}">
+				<apex:variable value="{!cohort.Name}" var="cohName" />
+				<apex:PageBlock id="CohortBlock" rendered="{!cohortPage}"
+					title="{!IF(cohort.id != null, cohort.Name, 'New Cohort')}">
+					<!-- DE1323 -->
+					<apex:pageMessages />
+					<h3>Cohort Information</h3>
+					<div class="section_content">
+						<apex:pageBlockSection >
+
+							<apex:pageBlockSectionItem >
+								<apex:outputLabel for="cohName" value="Cohort Name" />
+							
+									<apex:inputField id="cohName" required="true"
+										value="{!cohort.Name}" />
+								
+							</apex:pageBlockSectionItem>
+
+							<apex:pageBlockSectionItem >
+								<apex:outputLabel for="schoolSelect" value="School" />
+								<apex:outputPanel layout="block" styleClass="requiredInput">
+									<apex:outputPanel layout="block" styleClass="requiredBlock" />
+									<apex:selectList label="School" id="schoolSelect"
+										value="{!cohort.School__c}" multiselect="false" size="1"
+										onChange="if({!cohort.id != null}){return confirmSchoolChange();}else{return true;}">
+										<apex:selectOptions value="{!schools}" />
+									</apex:selectList>
+								</apex:outputPanel>
+							</apex:pageBlockSectionItem>
+							<apex:inputField value="{!cohort.Projected_Graduation_Date__c}"/>
+							
+							
+							<apex:pageBlockSectionItem >
+								<apex:outputLabel for="yearFld" value="Year" />
+							
+									<apex:inputField id="yearFld" value="{!cohort.Year__c}"
+										required="true" />
+								
+							</apex:pageBlockSectionItem>
+							<apex:inputField value="{!cohort.Exit_Year__c}" />
+							<apex:inputField value="{!cohort.Required_Community_Service_Hours__c}" />
+							<apex:inputField value="{!cohort.Credits_Required__c}" />
+							<apex:inputField value="{!cohort.Portfolio_Required__c}" />
+ 
+						</apex:pageBlockSection>
+					</div>
+					<apex:commandButton styleclass="grey_btn" value="Cancel" immediate="true"
+						action="{!cancelCohort}" rerender="cohortPanel" />
+					<apex:commandButton styleclass="black_btn" value="SAVE"
+						action="{!saveCohort}" rerender="cohortPanel, cohortSearchPnl"
+						oncomplete="resetTable(); centerModal();" />
+					<div class="clear_fix">&nbsp;</div>
+				</apex:PageBlock> 
+			</apex:outputPanel>
+		</apex:outputPanel>
+		<!-- .....................END COHORT PANEL..................... -->
+		<apex:outputPanel id="reqPanel">
+			<apex:outputPanel styleClass="modalBackground" layout="block"
+				rendered="{!isCreatingReq}" />
+			<apex:outputPanel styleClass="customModal" layout="block"
+				rendered="{!isCreatingReq}">
+
+
+
+				<script type="text/javascript">
+		//alert(j$(document).find('.subjectSelect').val());
+
+		
+		
+	</script>
+
+				<apex:PageBlock id="reqBlock" rendered="{!isCreatingReq}"
+					title="{!IF(cohReq.subjectId != null, cohReq.subjectName, 'New Requirement')}">
+					<h3>Graduation Requirement</h3>
+					<script>courseArray = new Array(); </script>
+					<apex:repeat value="{!subjectCourseList}" var="course" id="courseRepeat">
+		<script>
+			var tempCourse = new Object();
+			tempCourse.name='{!course.name}';
+			tempCourse.id = '{!course.id}';
+			tempCourse.subjectArea='{!course.subject_area_lookup__c}';
+
+						courseArray.push(tempCourse);
+		</script></apex:repeat>
+					<script>
+					j$(document).ready(function(){
+						var tempVar = j$('.subjectSelect').val();
+						changedSubject(tempVar);
+					});
+					
+					</script>
+					<div class="section_content">
+						<apex:pageBlockSection >
+							<apex:pageBlockSectionItem >
+								<apex:outputLabel for="subjectSelect" value="Subject Area" />
+								<apex:outputPanel layout="block" styleClass="requiredInput">
+									<apex:outputPanel layout="block" styleClass="requiredBlock" />
+									<apex:selectList label="Subject Area" id="subjectSelect"
+										styleclass="subjectSelect" value="{!cohReq.subjectId}"
+										onchange="changedSubject(this.value);" multiselect="false"
+										size="1">
+										<apex:selectOptions value="{!subjectAreas}" />
+									</apex:selectList>
+								</apex:outputPanel>
+							</apex:pageBlockSectionItem>
+
+							<apex:pageBlockSectionItem >
+								<apex:outputLabel for="courseSelect" value="Course" />
+
+								<select class="courseSelect" multiple="multiple"	>
+								</select>
+
+							</apex:pageBlockSectionItem>
+
+							<apex:pageBlockSectionItem >
+								<apex:outputLabel for="credits" value="Subject Area Credits" />
+								<apex:outputPanel layout="block" styleClass="requiredInput">
+									<apex:outputPanel layout="block" styleclass="requiredBlock" />
+									<apex:inputText required="false" id="credits"
+										styleclass="requiredInput" value="{!cohReq.dCredits}" />
+								</apex:outputPanel>
+							</apex:pageBlockSectionItem>
+						</apex:pageBlockSection>
+					</div>
+					<apex:inputText style="display:none;" styleClass="selectedCourseOption" value="{!selectedCourseOption}" />
+					<apex:commandButton styleclass="grey_btn" value="Cancel"
+						action="{!cancelRequirement}" rerender="reqPanel" />
+					<input type="btn" class="black_btn" value="SAVE" onClick="var selVal=j$('.courseSelect').val();  j$('.selectedCourseOption').val(selVal);saveRequirementJs();"			/>		
+						<apex:actionFunction action="{!saveRequirement}"
+									rerender="reqPanel, reqPnl, cohortPanel, cohortSearchPnl, myform" name="saveRequirementJs"
+			onComplete="resetTable();">
+			
+		</apex:actionFunction>
+						
+						
+					<div class="clear_fix">&nbsp;</div>
+				</apex:PageBlock>
+			</apex:outputPanel>
+		</apex:outputPanel>
+		<!-- .....................START STUDENT PANEL..................... -->
+		<apex:outputPanel id="studentPanel">
+			<apex:PageBlock title="Search for Students to Add to Cohort: {!cohort.Name}"
+				id="StudentBlock" rendered="{!studentPage}">
+				<apex:commandButton style="float:right" styleClass="blue_btn"
+					value="View Cohorts" action="{!changeCohort}"
+					rerender="studentPanel ,cohortSearchPnl" onComplete="resetTable();" />
+				<apex:pageBlockSection >
+					<apex:inputField required="false"
+						value="{!student.Student_First_Name__c}" />
+					<apex:inputField value="{!student.Student_Last_Name__c}" />
+					<apex:inputField value="{!student.Grade__c}" />
+					<apex:inputField value="{!student.Gender__c}" />
+					<apex:inputField value="{!student.Student_Id__c}" />
+					<apex:inputCheckBox value="{!student.IEP__c}" />
+					<apex:inputCheckBox value="{!student.ELL__c}" />
+					<apex:pageBlockSectionItem >
+						<apex:outputLabel for="searchCalendar" value="Date of Birth" />
+						<apex:inputField id="searchCalendar"
+							value="{!student.Date_of_Birth__c}" />
+					</apex:pageBlockSectionItem>
+				</apex:pageBlockSection>
+				<apex:commandButton styleclass="black_btn" value="Search"
+					action="{!searchStuds}" rerender="studPnl"
+					oncomplete="centerModal(); 	resetTable();" />
+				<div class="clear_fix" style="line-height: 1%">&nbsp;</div>
+				<br />
+				<apex:outputPanel id="studPnl">
+					<apex:outputPanel rendered="{!studentPage}" id="studentResults">
+						<h3>Students in Cohort</h3>
+						<div class="section_content">
+							<input type="checkbox" style="margin: 0 5px 0 0;"
+								onclick="selectAll(this,'addedStudents');" />
+							<apex:outputText style="font-weight:bold;" value="Select All? " />
+							<apex:pageBlockSection columns="1" id="studentResultsSection">
+								<apex:dataTable styleclass="tablesorter" id="cohortTbl"
+									value="{!currentCohorts}" var="wrap">
+									<apex:column >
+										<apex:facet name="header">Remove</apex:facet>
+										<apex:inputCheckbox styleclass="addedStudents"
+											value="{!wrap.isSelected}" />
+									</apex:column>
+									<apex:column >
+										<apex:facet name="header">Original Member?</apex:facet>
+										<apex:outputField value="{!wrap.Student.Individual__r.Original_Member_of_Cohort__c}" />
+									</apex:column>
+									<apex:column >
+										<apex:facet name="header">Student First Name</apex:facet>
+										<apex:outputField value="{!wrap.student.Student_First_Name__c}" />
+									</apex:column>
+									<apex:column >
+										<apex:facet name="header">Student Last Name</apex:facet>
+										<apex:outputField value="{!wrap.student.Student_Last_Name__c}" />
+									</apex:column>
+									<apex:column >
+										<apex:facet name="header">School</apex:facet>
+										<apex:outputField value="{!wrap.student.School__c}" />
+									</apex:column>
+									<apex:column >
+										<apex:facet name="header">Student Id</apex:facet>
+										<apex:outputField value="{!wrap.student.Student_Id__c}" />
+									</apex:column>
+									<apex:column >
+										<apex:facet name="header">Grade</apex:facet>
+										<apex:outputField value="{!wrap.student.Grade__c}" />
+									</apex:column>
+								</apex:dataTable>
+							</apex:pageBlockSection>
+							<apex:commandButton styleclass="black_btn"
+								value="Remove from Cohort" action="{!removeCohorts}"
+								rerender="studPnl" oncomplete="resetTable();" />
+							<div class="clear_fix" style="line-height: 1%">&nbsp;</div>
+						</div>
+					</apex:outputPanel>
+
+					<apex:outputPanel styleClass="modalBackground" layout="block"
+						rendered="{!searchStudents && studentPage}" />
+					<apex:outputPanel styleClass="customModal" layout="block"
+						rendered="{!searchStudents && studentPage}">
+						<h3>Student Search Results</h3>
+						<div class="section_content">
+							<input type="checkbox" style="margin: 0 5px 0 0;"
+								onclick="selectAll(this,'addedStudents');" />
+							<apex:outputText style="font-weight:bold;" value="Select All? " />
+							<apex:pageBlockSection columns="1">
+								<apex:dataTable styleclass="tablesorter" id="studTbl"
+									value="{!wrapper}" var="wrap" rendered="{!searchStudents}">
+									<apex:column >
+										<apex:facet name="header">Add</apex:facet>
+										<apex:inputCheckbox styleclass="addedStudents"
+											value="{!wrap.isSelected}" />
+									</apex:column>
+									<apex:column >
+										<apex:facet name="header">Original Member?</apex:facet>
+										<apex:inputCheckbox styleclass="addedStudents"
+											value="{!wrap.student.Original_Member_Of_Cohort__c}" />
+									</apex:column>
+									<apex:column >
+										<apex:facet name="header">ell</apex:facet>
+										<apex:outputField value="{!wrap.student.ELL__c}" />
+									</apex:column>
+									<apex:column >
+										<apex:facet name="header">Student First Name</apex:facet>
+										<apex:outputField value="{!wrap.student.Student_First_Name__c}" />
+									</apex:column>
+									<apex:column >
+										<apex:facet name="header">Student Last Name</apex:facet>
+										<apex:outputField value="{!wrap.student.Student_Last_Name__c}" />
+									</apex:column>
+									<apex:column >
+										<apex:facet name="header">School</apex:facet>
+										<apex:outputField value="{!wrap.student.School__c}" />
+									</apex:column>
+									<apex:column >
+										<apex:facet name="header">Student Id</apex:facet>
+										<apex:outputField value="{!wrap.student.Student_Id__c}" />
+									</apex:column>
+									<apex:column >
+										<apex:facet name="header">Grade</apex:facet>
+										<apex:outputField value="{!wrap.student.Grade__c}" />
+									</apex:column>
+								</apex:dataTable>
+							</apex:pageBlockSection>
+							<apex:commandButton styleclass="grey_btn" value="Cancel"
+								action="{!cancelAddToCohort}" rerender="studPnl" />
+							<apex:commandButton styleclass="black_btn" value="Add to Cohort"
+								action="{!addCohorts}" rerender="studPnl"
+								oncomplete="resetTable();" />
+							<div class="clear_fix" style="line-height: 1%">&nbsp;</div>
+						</div>
+					</apex:outputPanel>
+				</apex:outputPanel>
+				<apex:commandButton styleclass="black_btn" value="Continue"
+					rendered="{!cohortPage}" action="{!changeStudents}"
+					rerender="myform" />
+				<div class="clear_fix" style="line-height: 1%">&nbsp;</div>
+			</apex:PageBlock>
+		</apex:outputPanel>
+
+		<apex:outputPanel id="requirementsDetails">
+
+			<apex:pageBlock rendered="{!reqPage}" title="{!cohort.Name}">
+				<apex:commandButton style="float:right" styleClass="blue_btn"
+					value="View Cohorts" action="{!changeCohort}"
+					rerender="cohortSearchPnl, requirementsDetails"
+					onComplete="resetTable();" />
+				<br />
+ 
+				<h3>Graduation Requirements</h3> &nbsp; 
+				<a style="cursor: pointer;" onClick="addRequirementJS();"> <img
+					src="/img/feeds/follow12.png" />Add Requirement</a>
+				<div class="section_content">
+					<apex:pageBlockSection columns="1">
+						<apex:dataTable styleclass="tablesorter" id="searchCoh"
+							value="{!gradRequirements}" var="req">
+							<apex:column headerValue="Actions" style="width:300px;">
+								<a href="#" onclick="editRequirementJs('{!req.SubjectId}');">Edit</a>
+									&nbsp;&nbsp;|&nbsp;&nbsp;
+									<a href="#" onclick="deleteRequirementJs('{!req.subjectId}');">Delete</a>
+							</apex:column>
+							<apex:column >
+								<apex:facet name="header">Subject Area</apex:facet>
+								<apex:outputText value="{!req.SubjectName}" />
+							</apex:column>
+							<apex:column >
+								<apex:facet name="header">Course(s)</apex:facet>
+								<apex:outputText escape="false" value="{!req.courseString}" />
+							</apex:column>
+							<apex:column >
+								<apex:facet name="header">Subject Area Credits</apex:facet>
+								<apex:outputText value="{!req.dCredits}" />
+							</apex:column>
+						</apex:dataTable>
+					</apex:pageBlockSection>
+				</div>
+			</apex:pageBlock>
+		</apex:outputPanel>
+		<apex:outputPanel id="blankPnl" />
+		<apex:actionFunction action="{!createRequirement}" rerender="reqPanel"
+			name="addRequirementJS" onComplete="centerModal();" />
+		<apex:actionFunction action="{!editRequirement}" reRender="reqPanel"
+			name="editRequirementJs" onComplete="centerModal(); 	changedSubject('{!selectedSubjectId}');">
+			<apex:param name="selectedSubjectId"
+				assignTo="{!selectedSubjectId}" value="" />
+		</apex:actionFunction>
+		<apex:actionFunction action="{!deleteRequirement}"
+			reRender="requirementsDetails" name="deleteRequirementJs"
+			onComplete="resetTable();">
+			<apex:param name="selectedSubjectId"
+				assignTo="{!selectedSubjectId}" value="" />
+		</apex:actionFunction>
+
+	</apex:form>
+</apex:page>

@@ -1,0 +1,217 @@
+<apex:page controller="Gradebook_CreateGroups" tabStyle="gradebook__tab"
+    title="Create Groups" showHeader="true"
+    sidebar="true">
+   <c:jQueryInit bDataTables="true" bLoadingPanel="true"/>
+
+   <c:loadingPanel />
+	<apex:includeScript value="{!URLFOR($Resource.jWerty, '/jWerty/jwerty.js')}" />
+    <script>
+    j$ = jQuery.noConflict();
+        function addHighlight(element, version) {
+            removeHighlight(version);
+            if (version == '1') {
+                j$(element).parent().addClass('datahighlight');
+            } else if (version == '2') {
+                j$(element).parent().addClass('datahighlight2');
+            } else if (version == '3') {
+                j$(element).parent().addClass('datahighlight3');
+            }
+        }
+        function selectAllAvail(cb) {
+            var b = j$(cb).is(':checked'); 
+            j$('.availStudCb').each(function() {
+                j$(this).attr('checked', b);
+            });
+        }
+
+        function selectAllCurrent(cb) {
+            var b = $(cb).is(':checked'); 
+            j$('.currentStudCb').each(function() {
+                j$(this).attr('checked', b);
+            });
+        }
+
+        function removeHighlight(version) {
+            if (version == '1')
+                j$(document).find('.datahighlight').removeClass('datahighlight');
+            if (version == '2')
+                j$(document).find('.datahighlight2').removeClass(
+                        'datahighlight2');
+            if (version == '3')
+                j$(document).find('.datahighlight3').removeClass(
+                        'datahighlight3');
+        }
+        function resetTable() {
+
+            j$(".tablesorter").dataTable({
+                "sScrollY" : "200px",
+                "bAutoWidth" : true,
+                "bPaginate" : false,
+                "bJQueryUI" : true,
+                "asStripClasses" : [ 'odd', 'even' ]
+            });
+
+        }
+        
+        jwerty.key('enter',false);
+    
+    </script>
+    <style>
+.datahighlight {
+    background-color: gold !important;
+}
+
+.datahighlight2 {
+    background-color: cyan !important;
+}
+
+.datahighlight3 {
+    background-color: orange !important;
+}
+.odd {
+    background-color: #F0F0F6
+}
+
+.even {
+    background-color: white
+}
+</style>
+    <script>
+    
+        j$ = jQuery.noConflict();
+        function showSetup(){
+            j$("#setup").show(); 
+        }   
+         
+
+    
+    
+    </script>
+    <apex:form >
+        <apex:outputPanel id="thePanel">
+            <apex:messages />
+                    <apex:pageBlock title="Available Sections (Click the row to select)">
+                        <apex:pageBlockTable value="{!staffSections}" var="ss">
+                            <apex:actionSupport event="onRowClick" onsubmit="addHighlight(j$(this), '2');" oncomplete="addHighlight(j$(this), '2'); showSetup();" rerender="studentsTable" action="{!showStudents}">
+                                <apex:param name="sectionID" value="{!ss.id}"/>
+                                <apex:param value="{!ss.Name}" name="selectedSection"/>
+                                <apex:param value="{!ss.Course__c}" name="sectionCourse"/>
+                            </apex:actionSupport>
+                            <apex:column title="Name">
+                                <apex:facet name="header">Section Name</apex:facet>
+                                <apex:outputText value="{!ss.Name}" />
+                            </apex:column>
+                            <apex:column title="Name">
+                                <apex:facet name="header">Course</apex:facet>
+                                <apex:outputText value="{!ss.Course__r.Name}" />
+                            </apex:column>
+                            <apex:column title="Name">
+                                <apex:facet name="header">Number of Students</apex:facet>
+                                <apex:outputText value="{!ss.of_Students__c}" />
+                            </apex:column>
+                        </apex:pageBlockTable>
+                    </apex:pageBlock>
+                    <apex:pageBlock title="Existing Groups">
+                        <apex:pageBlockTable value="{!existingGroups}" var="ss">
+                        <apex:actionSupport event="onRowClick" oncomplete="addHighlight(j$(this), '2'); showSetup();" rerender="studentsTable, groupSetup" action="{!editExisting}">
+                            <apex:param name="sectionID" value="{!ss.Section__c}"/>
+                            <apex:param name="groupID" value="{!ss.id}"/>
+                            <apex:param value="{!ss.Name}" name="selectedSection"/>
+                            <apex:param value="{!ss.Course__c}" name="sectionCourse"/>
+                            <apex:param value="{!ss.Description__c}" name="selectedDescription"/>
+                        </apex:actionSupport>
+                            <apex:column title="Name">
+                                <apex:facet name="header">Section Name</apex:facet>
+                                <apex:outputText value="{!ss.Name}" />
+                            </apex:column>
+                            <apex:column title="Name">
+                                <apex:facet name="header">Course</apex:facet>
+                                <apex:outputText value="{!ss.Course__r.Name}" />
+                            </apex:column>
+                            <apex:column title="Name">
+                                <apex:facet name="header">Number of Students</apex:facet>
+                                <apex:outputText value="{!ss.of_Students__c}" />
+                            </apex:column>
+                        </apex:pageBlockTable>
+                    </apex:pageBlock>
+                    <div id="setup" style="display:none">
+                    <apex:outputPanel id="groupSetup">
+                    <apex:pageBlock title="Set Up Group">
+                        <center>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <apex:outputLabel style="font-weight:bold" value="Group Name"/>
+                                    </td>
+                                    <td>
+                                        <apex:inputText value="{!groupName}"/>
+                                    </td>
+                                    <td>
+                                        <apex:outputLabel style="font-weight:bold" value="Description"/>
+                                    </td>
+                                    <td>
+                                        <apex:inputTextArea value="{!groupDescription}" style="height:70px; width:200px;"/>
+                                    </td>
+                                </tr>
+                            </table>
+                            <apex:commandButton value="Save" action="{!save}"/>
+                        </center>
+                    </apex:pageBlock>
+                    </apex:outputPanel>
+                </div>
+                    <apex:outputPanel id="studentsTable">
+                    <script>
+                    resetTable();
+                    </script>
+                    <apex:outputPanel rendered="{!sectionSelected}">
+                    <apex:pageBlock >
+                    <h2 class="mainTitle">Students in {!selectedSection} (Uncheck boxes and save to remove student)</h2>
+                        <br/>
+                        <apex:outputText style="font-weight:bold" value="Select All?" />
+                        <input type="checkbox" onclick="selectAllAvail(this)" />
+                        <apex:dataTable value="{!wStudents}" var="ws" styleClass="tablesorter">
+                            <apex:column width="5px" title="use record">
+                                <apex:facet name="header">Include In Group?</apex:facet>
+                                <apex:inputCheckbox styleClass="availStudCb" value="{!ws.useRecord}" />
+                            </apex:column>
+                            <apex:column title="student Name">
+                                <apex:facet name="header">Student Name</apex:facet>
+                                <apex:outputText value="{!ws.studentSection.Student__r.Student_First_Name__c} {!ws.studentSection.Student__r.Student_Last_Name__c}" />
+                            </apex:column>
+                            <apex:column >
+                                <apex:facet name="header">ELL</apex:facet>
+                                <apex:outputPanel rendered="{!ws.studentSection.Student__r.ELL__c}">
+                                    <apex:outputText value="Yes" />
+                                </apex:outputPanel>
+                                <apex:outputPanel rendered="{!!ws.studentSection.Student__r.ELL__c}">
+                                    <apex:outputText value="No" />
+                                </apex:outputPanel>
+                            </apex:column>
+                            <apex:column >
+                                <apex:facet name="header">Gifted</apex:facet>
+                                <apex:outputPanel rendered="{!ws.studentSection.Student__r.Gifted__c}">
+                                    <apex:outputText value="Yes" />
+                                </apex:outputPanel>
+                                <apex:outputPanel rendered="{!!ws.studentSection.Student__r.Gifted__c}">
+                                    <apex:outputText value="No" />
+                                </apex:outputPanel>
+                            </apex:column>
+                            <apex:column >
+                                <apex:facet name="header">Special Ed?</apex:facet>
+                                <apex:outputPanel rendered="{!ws.studentSection.Student__r.Currently_evaluated_for_special_ed__c}">
+                                    <apex:outputText value="Yes" />
+                                </apex:outputPanel>
+                                <apex:outputPanel rendered="{!!ws.studentSection.Student__r.Currently_evaluated_for_special_ed__c}">
+                                    <apex:outputText value="No" />
+                                </apex:outputPanel>
+                            </apex:column>
+                        </apex:dataTable>
+                        <br/>
+                    </apex:pageBlock>
+                    </apex:outputPanel>
+                    </apex:outputPanel>
+                    <apex:outputPanel id="nothing"/>
+                
+        </apex:outputPanel>
+    </apex:form>
+</apex:page>

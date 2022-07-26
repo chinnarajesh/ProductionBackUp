@@ -1,0 +1,42 @@
+<!-- 
+/******************************************************************************************************************
+*   Copyright ©2011 Acumen Solutions, Inc. All Rights Reserved.  This software and source code is proprietary to Acumen Solutions, Inc. ("Acumen") and is protected by copyright and other intellectual property laws.  
+*   This source code may only be used by an authorized licensee of Acumen and may only be used by such licensee in accordance with the terms and conditions of an executed license agreement between such licensee
+*   and Acumen (the "License Agreement").  This source code may not be reproduced, published, or disclosed to others except as provided in the License Agreement.  
+*
+* Description:
+* 
+* 
+*
+* Modification Log:
+* -----------------------------------------------------------------------------------------------------------------
+* Mod ID        |   Date        | Mod Author   		 | Brief Mod Description 
+* -----------------------------------------------------------------------------------------------------------------
+* 00001         |    			| Peter Nebel    	 | Initial code creation.
+* -----------------------------------------------------------------------------------------------------------------
+* 
+*
+*******************************************************************************************************************/
+-->
+
+<apex:component access="global" controller="SiteLoginController" id="loginComponent">
+  <apex:form id="loginForm" forceSSL="true">
+    <apex:outputPanel layout="block" styleClass="loginTable">
+      <apex:pageMessages id="error"/>
+      <apex:panelGrid columns="2" style="margin-top:1em; color:white;">
+        <apex:outputLabel value="{!$Label.site.username}" for="username"/>
+        <apex:inputText id="username" value="{!username}"/>
+        <apex:outputLabel value="{!$Label.site.password}" for="password"/>
+        <apex:inputSecret id="password" value="{!password}"/>
+        <apex:outputText value=""/>
+        <apex:commandButton action="{!login}" value="{!$Label.site.login_button}" id="loginButton"/>
+        <apex:outputText value=""/>
+        <apex:outputText value=""/>
+        <apex:outputText value=""/>
+        <apex:panelGroup id="theLinks">
+          <apex:outputLink value="{!$Page.ForgotPassword}"> {!$Label.site.forgot_your_password_q}</apex:outputLink>
+        </apex:panelGroup>
+      </apex:panelGrid> 
+    </apex:outputPanel>
+  </apex:form>
+</apex:component>

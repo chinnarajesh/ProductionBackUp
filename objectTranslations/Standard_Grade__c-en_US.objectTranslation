@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Standard Grade</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Standard Grades</value>
+    </caseValues>
+    <fields>
+        <help><!-- Displays the formal calculation type for standards in this school. --></help>
+        <label><!-- Calculation Type --></label>
+        <name>Calculation_Type__c</name>
+    </fields>
+    <fields>
+        <help><!-- Retired field. --></help>
+        <label><!-- Count of Graded 1*Retired* --></label>
+        <name>Count_of_Graded_1__c</name>
+    </fields>
+    <fields>
+        <help><!-- Retired field. --></help>
+        <label><!-- Count of Graded 2 *Retired* --></label>
+        <name>Count_of_Graded_2__c</name>
+    </fields>
+    <fields>
+        <help><!-- Retired field. --></help>
+        <label><!-- Count of Graded 3 *Retired* --></label>
+        <name>Count_of_Graded_3__c</name>
+    </fields>
+    <fields>
+        <help><!-- Retired field. --></help>
+        <label><!-- Count of Graded 4 *Retired* --></label>
+        <name>Count_of_Graded_4__c</name>
+    </fields>
+    <fields>
+        <help><!-- Retired field. --></help>
+        <label><!-- Current Mode *Retired* --></label>
+        <name>Current_Mode__c</name>
+    </fields>
+    <fields>
+        <help><!-- Used for data migration during the package conversion.  Typically not populated via the application. --></help>
+        <label><!-- External Id --></label>
+        <name>External_Id__c</name>
+    </fields>
+    <fields>
+        <help><!-- Has this standard grade been overridden? --></help>
+        <label><!-- Grade Overridden --></label>
+        <name>Grade_Overridden__c</name>
+    </fields>
+    <fields>
+        <label><!-- Grade Override --></label>
+        <name>Grade_Override__c</name>
+    </fields>
+    <fields>
+        <help><!-- Retired field. --></help>
+        <label><!-- Grade *Retired* --></label>
+        <name>Grade__c</name>
+    </fields>
+    <fields>
+        <help><!-- The highest standard grade the student ever received on this standard --></help>
+        <label><!-- Highest Grade --></label>
+        <name>Highest_Grade__c</name>
+    </fields>
+    <fields>
+        <label><!-- Key --></label>
+        <name>Key__c</name>
+    </fields>
+    <fields>
+        <help><!-- The most recent grade has the highest weight.  Most recent is determined by due date of the assignment.  The School Admin decides what the weight is for the most recent grade (ie most recent grade is 65% weighted) --></help>
+        <label><!-- Law of Decaying Average Grade --></label>
+        <name>Law_of_Decaying_Average_Grade__c</name>
+    </fields>
+    <fields>
+        <help><!-- Straight average of all grades ever received on this standard. --></help>
+        <label><!-- Mean Grade --></label>
+        <name>Mean_Grade__c</name>
+    </fields>
+    <fields>
+        <help><!-- The median standard grade is the middle number of all standards this student has received based on date submitted. --></help>
+        <label><!-- Median Grade *Retired* --></label>
+        <name>Median_Grade__c</name>
+    </fields>
+    <fields>
+        <help><!-- The standard grade that has been repeated the most for this standard --></help>
+        <label><!-- Mode Grade *Retired* --></label>
+        <name>Mode_Grade__c</name>
+    </fields>
+    <fields>
+        <help><!-- If there are less than 3 assignments, the Most Recent Standard Grade is the most recent grade based on due date.  If there are more than 3 assignments, it takes the average of the last 3 assignments. --></help>
+        <label><!-- Most Recent Grade --></label>
+        <name>Most_Recent_Grade__c</name>
+    </fields>
+    <fields>
+        <help><!-- A formula derived grade; please see additional documentation for more information. --></help>
+        <label><!-- Power Law Grade --></label>
+        <name>Power_Law_Grade__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reporting Period Name --></label>
+        <name>Reporting_Period_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reporting Period --></label>
+        <name>Reporting_Period__c</name>
+        <relationshipLabel><!-- Standard Grades --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- The highest standard grade the student ever received on this standard across reporting periods. --></help>
+        <label><!-- Rolling Highest Grade --></label>
+        <name>Rolling_Highest_Grade__c</name>
+    </fields>
+    <fields>
+        <help><!-- the most recent grade has the highest weight across reporting periods.  Most recent is deteremined by due date of the assignment.  The School Admin decides what the weight is for the most recent grade (ie most recent grade is 65% weighted) --></help>
+        <label><!-- Rolling Law of Decaying Average Grade --></label>
+        <name>Rolling_Law_of_Decaying_Average_Grade__c</name>
+    </fields>
+    <fields>
+        <help><!-- Straight average of all grades received on this standard up to this reporting period. --></help>
+        <label><!-- Rolling Mean Grade --></label>
+        <name>Rolling_Mean_Grade__c</name>
+    </fields>
+    <fields>
+        <help><!-- If there are less than 3 assignments, the Rolling Most Recent Grade is the most recent grade based on due date.  If there are more than 3 assignments, it takes the average of the last 3 assignments across reporting periods. --></help>
+        <label><!-- Rolling Most Recent Grade --></label>
+        <name>Rolling_Most_Recent_Grade__c</name>
+    </fields>
+    <fields>
+        <help><!-- A formula derived grade across reporting periods; please see additional documentation for more information. --></help>
+        <label><!-- Rolling Power Law Grade --></label>
+        <name>Rolling_Power_Law_Grade__c</name>
+    </fields>
+    <fields>
+        <help><!-- What is the formal standard grade based on the school&apos;s selected standard calculation type? This is a year to date calculation; it is not based on reporting periods. --></help>
+        <label><!-- Grade --></label>
+        <name>Standard_Grade__c</name>
+    </fields>
+    <fields>
+        <help><!-- If selected, the standard grade includes the assignment grades from the first through the current reporting period (e.g., the Q3 grade is calculated from the Q1-Q3 grades). Otherwise, the standard grade includes only the grades from the reporting period. --></help>
+        <label><!-- Standard Rolling? --></label>
+        <name>Standard_Rolling__c</name>
+    </fields>
+    <fields>
+        <label><!-- Standard --></label>
+        <name>Standard__c</name>
+        <relationshipLabel><!-- Standard Grades --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Strand Id --></label>
+        <name>Strand_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Student --></label>
+        <name>Student__c</name>
+        <relationshipLabel><!-- Standard Grades --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- This is a weighted average for the standard for the time period --></help>
+        <label><!-- Weighted Average Grade *Retired* --></label>
+        <name>Weighted_Average_Grade__c</name>
+    </fields>
+    <layouts>
+        <layout>Standard Grade Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Other Grade Calculations --></label>
+            <section>Other Grade Calculations</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

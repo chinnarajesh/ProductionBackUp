@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Staff_Section__c$Name</field>
+    </columns>
+    <columns>
+        <field>Staff_Section__c$Staff__c</field>
+    </columns>
+    <columns>
+        <field>Staff_Section__c$Section__c</field>
+    </columns>
+    <columns>
+        <field>Staff_Section__c$Intervention_Primary_Staff__c</field>
+    </columns>
+    <columns>
+        <field>Staff_Section__c$Is_Active__c</field>
+    </columns>
+    <columns>
+        <field>Staff_Section__c$School__c</field>
+    </columns>
+    <format>Tabular</format>
+    <name>Staff/Section Report</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Staff_Section__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>false</showGrandTotal>
+    <showSubTotals>false</showSubTotals>
+    <sortColumn>Staff_Section__c$School__c</sortColumn>
+    <sortOrder>Asc</sortOrder>
+    <timeFrameFilter>
+        <dateColumn>Staff_Section__c$CreatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Student/PG</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Student/PG</value>
+    </caseValues>
+    <fields>
+        <label><!-- External Id --></label>
+        <name>External_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- P/G Cell Phone --></label>
+        <name>PGCellPhone__c</name>
+    </fields>
+    <fields>
+        <label><!-- P/G First Name --></label>
+        <name>PG_First_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- P/G Last Name --></label>
+        <name>PG_Last_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- P/G Middle Name --></label>
+        <name>PG_Middle_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- P/G Relationship --></label>
+        <name>PG_Relationship__c</name>
+    </fields>
+    <fields>
+        <label><!-- P/G Personal Phone --></label>
+        <name>P_G_Personal_Phone__c</name>
+    </fields>
+    <fields>
+        <label><!-- P/G Phone --></label>
+        <name>P_G_Phone__c</name>
+    </fields>
+    <fields>
+        <label><!-- Parent/Guardian (c) --></label>
+        <name>Parent_Guardian_c__c</name>
+        <relationshipLabel><!-- Students --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Please check this box if this Parent/Guardian is the main point of contact for this student. --></help>
+        <label><!-- Primary Contact? --></label>
+        <name>Primary_Contact__c</name>
+    </fields>
+    <fields>
+        <label><!-- Student --></label>
+        <name>Student__c</name>
+        <relationshipLabel><!-- Parents/Guardians --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Student (c) --></label>
+        <name>Student_c__c</name>
+        <relationshipLabel><!-- Parents/Guardians --></relationshipLabel>
+    </fields>
+    <layouts>
+        <layout>Student/PG Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

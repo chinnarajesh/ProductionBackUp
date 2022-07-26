@@ -1,0 +1,998 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Setup</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Setup</value>
+    </caseValues>
+    <fieldSets>
+        <label><!-- Editable Options --></label>
+        <name>Editable_Options</name>
+    </fieldSets>
+    <fields>
+        <label><!-- Activate Related --></label>
+        <name>ActivateRelated__c</name>
+    </fields>
+    <fields>
+        <help><!-- Is this school setup active for this school year? --></help>
+        <label><!-- Active? --></label>
+        <name>Active__c</name>
+    </fields>
+    <fields>
+        <label><!-- Show Referral Details on Behavior --></label>
+        <name>Behavior_Referal_Details__c</name>
+    </fields>
+    <fields>
+        <help><!-- A CEEB code is a standardized ID number that is assigned to a high school, college, or university.  CEEB codes are issued by the Educational Testing Service (ETS). --></help>
+        <label><!-- CEEB Code --></label>
+        <name>CEEB_Code__c</name>
+    </fields>
+    <fields>
+        <help><!-- Should the school calculate class rank? If selected, the system will calculate the Class Rank per grade.  Admins will have the option of displaying the Class Rank on the Report Card on the Generate Student Documents page. --></help>
+        <label><!-- Calculate Student Class Rank? --></label>
+        <name>Calculate_Class_Rank__c</name>
+    </fields>
+    <fields>
+        <help><!-- Select a calculation type for standard-based grading. This must be selected if using standards - based grading. --></help>
+        <label><!-- Calculation Type --></label>
+        <name>Calculation_Type__c</name>
+        <picklistValues>
+            <masterLabel>Highest</masterLabel>
+            <translation><!-- Highest --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Law of Decaying Average</masterLabel>
+            <translation><!-- Law of Decaying Average --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mean</masterLabel>
+            <translation><!-- Mean --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Most Recent</masterLabel>
+            <translation><!-- Most Recent --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Power Law</masterLabel>
+            <translation><!-- Power Law --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- If this field is checked and Sectional Attendance is enabled; entries made from Daily Attendance submission will cascade to sectional attendance records from the same day --></help>
+        <label><!-- Cascade Daily Attendance --></label>
+        <name>Cascade_Daily_Attendance__c</name>
+    </fields>
+    <fields>
+        <help><!-- Check when school does not allow periods to overlap during a given school day. --></help>
+        <label><!-- Chronological Periods --></label>
+        <name>Chronological_Periods__c</name>
+    </fields>
+    <fields>
+        <label><!-- Configure Course Catalog --></label>
+        <name>Configure_Course_Catalog__c</name>
+    </fields>
+    <fields>
+        <label><!-- Configure Grade Scale Catalog --></label>
+        <name>Configure_Grade_Scale_Catalog__c</name>
+    </fields>
+    <fields>
+        <label><!-- Configure School Term --></label>
+        <name>Configure_School_Term__c</name>
+    </fields>
+    <fields>
+        <help><!-- The Counselor  will appear on the Transcript. Please enter the name exactly as you want it to appear on the transcript, &quot;Ms. Alice Jones&quot; or &quot;Alice Jones.&quot; --></help>
+        <label><!-- Counselor --></label>
+        <name>Counselor__c</name>
+    </fields>
+    <fields>
+        <label><!-- Course Catalog --></label>
+        <name>Course_Catalog__c</name>
+        <relationshipLabel><!-- Setup --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Data Activated --></label>
+        <name>Data_Activated__c</name>
+    </fields>
+    <fields>
+        <label><!-- Days --></label>
+        <name>Days__c</name>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>10</masterLabel>
+            <translation><!-- 10 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>11</masterLabel>
+            <translation><!-- 11 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>12</masterLabel>
+            <translation><!-- 12 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>13</masterLabel>
+            <translation><!-- 13 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>14</masterLabel>
+            <translation><!-- 14 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>15</masterLabel>
+            <translation><!-- 15 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>16</masterLabel>
+            <translation><!-- 16 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>17</masterLabel>
+            <translation><!-- 17 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>18</masterLabel>
+            <translation><!-- 18 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>19</masterLabel>
+            <translation><!-- 19 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2</masterLabel>
+            <translation><!-- 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>20</masterLabel>
+            <translation><!-- 20 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>21</masterLabel>
+            <translation><!-- 21 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>22</masterLabel>
+            <translation><!-- 22 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>23</masterLabel>
+            <translation><!-- 23 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>24</masterLabel>
+            <translation><!-- 24 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>25</masterLabel>
+            <translation><!-- 25 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>26</masterLabel>
+            <translation><!-- 26 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>27</masterLabel>
+            <translation><!-- 27 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>28</masterLabel>
+            <translation><!-- 28 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3</masterLabel>
+            <translation><!-- 3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4</masterLabel>
+            <translation><!-- 4 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5</masterLabel>
+            <translation><!-- 5 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>6</masterLabel>
+            <translation><!-- 6 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7</masterLabel>
+            <translation><!-- 7 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>8</masterLabel>
+            <translation><!-- 8 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>9</masterLabel>
+            <translation><!-- 9 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fri</masterLabel>
+            <translation><!-- Fri --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Last</masterLabel>
+            <translation><!-- Last --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mon</masterLabel>
+            <translation><!-- Mon --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sat</masterLabel>
+            <translation><!-- Sat --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sun</masterLabel>
+            <translation><!-- Sun --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Thur</masterLabel>
+            <translation><!-- Thur --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Tue</masterLabel>
+            <translation><!-- Tue --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Wed</masterLabel>
+            <translation><!-- Wed --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Select this option to display the total career to date Community Service Hours for this student.  This total is found on the Student Contact record. --></help>
+        <label><!-- Display Community Service Hours? --></label>
+        <name>Display_Community_Service_Hours__c</name>
+    </fields>
+    <fields>
+        <help><!-- Select to display the cumulative high school weighted GPA for this student. This field displays the value in the Weighted GPA to Date field on the Student record. --></help>
+        <label><!-- Display Cumulative Weighted GPA? --></label>
+        <name>Display_Cumulative_Weighted_GPA__c</name>
+    </fields>
+    <fields>
+        <help><!-- Select this option to display the GPA on Report Cards, Transcripts, Progress Reports and the Student/Parent Portal. --></help>
+        <label><!-- Display Unweighted GPA on Documents --></label>
+        <name>Display_GPA_on_Report_Cards__c</name>
+    </fields>
+    <fields>
+        <help><!-- Incomplete Assignments are based on the number of Gradebook Assignments that have a value of I, INC, IN, IC.  These do not include grades with &quot;N&quot; or that are excluded from the section grade. --></help>
+        <label><!-- Display Incomplete Assignments? --></label>
+        <name>Display_Incomplete_Assignments__c</name>
+    </fields>
+    <fields>
+        <help><!-- Select this option to display the legend on the Report Card.  The legend includes: A, if school is using sectional attendance, H if the school is using the HW module, IA, the incomplete assignment account, and labels for each reporting period. --></help>
+        <label><!-- Display Legend on Report Cards --></label>
+        <name>Display_Legend_on_Report_Cards__c</name>
+    </fields>
+    <fields>
+        <help><!-- Selecting this displays the students&apos; reading levels on their report cards and progress reports. --></help>
+        <label><!-- Display Reading Level On Report Card --></label>
+        <name>Display_Reading_Level_On_Report_Card__c</name>
+    </fields>
+    <fields>
+        <help><!-- Select this option to display the weighted GPA on Report Cards and Progress Reports --></help>
+        <label><!-- Display Weighted GPA on Documents --></label>
+        <name>Display_Weighted_GPA_on_Documents__c</name>
+    </fields>
+    <fields>
+        <help><!-- Which documents should this setup be using? --></help>
+        <label><!-- Evaluation Documents --></label>
+        <name>Evaluation_Documents__c</name>
+        <picklistValues>
+            <masterLabel>Progress Report - Elementary School</masterLabel>
+            <translation><!-- Progress Report - Elementary School --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Progress Report - High School</masterLabel>
+            <translation><!-- Progress Report - High School --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Report Card - Elementary School</masterLabel>
+            <translation><!-- Report Card - Elementary School --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Report Card - High School</masterLabel>
+            <translation><!-- Report Card - High School --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Transcript</masterLabel>
+            <translation><!-- Transcript --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- External Id --></label>
+        <name>External_Id__c</name>
+    </fields>
+    <fields>
+        <help><!-- If this checkbox is checked grades from previous reporting periods will be factored into student&apos;s GPA for current reporting period.  IE for Q2 GPA, Section Grades from Q1 &amp; Q2 will factor into calculations. --></help>
+        <label><!-- Rolling GPA? --></label>
+        <name>GPA_By_Reporting_Period_Rolling__c</name>
+    </fields>
+    <fields>
+        <label><!-- Grade Scale Catalog --></label>
+        <name>Grade_Scale_Catalog__c</name>
+        <relationshipLabel><!-- Setup --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Select the grade level(s) that will be taught at this school in the current school year. --></help>
+        <label><!-- Grade Span --></label>
+        <name>Grade_Span__c</name>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>10</masterLabel>
+            <translation><!-- 10 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>11</masterLabel>
+            <translation><!-- 11 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>12</masterLabel>
+            <translation><!-- 12 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2</masterLabel>
+            <translation><!-- 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3</masterLabel>
+            <translation><!-- 3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4</masterLabel>
+            <translation><!-- 4 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5</masterLabel>
+            <translation><!-- 5 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>6</masterLabel>
+            <translation><!-- 6 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7</masterLabel>
+            <translation><!-- 7 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>8</masterLabel>
+            <translation><!-- 8 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>9</masterLabel>
+            <translation><!-- 9 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>K</masterLabel>
+            <translation><!-- K --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>KG Kindergarten</masterLabel>
+            <translation><!-- KG Kindergarten --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Kindergarten</masterLabel>
+            <translation><!-- Kindergarten --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Kindergarten/Preschool</masterLabel>
+            <translation><!-- Kindergarten/Preschool --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PG Postgraduate/Adult</masterLabel>
+            <translation><!-- PG Postgraduate/Adult --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PK</masterLabel>
+            <translation><!-- PK --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PK Pre-K</masterLabel>
+            <translation><!-- PK Pre-K --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PK-3</masterLabel>
+            <translation><!-- PK-3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PK-4</masterLabel>
+            <translation><!-- PK-4 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PS</masterLabel>
+            <translation><!-- PS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UN Ungraded</masterLabel>
+            <translation><!-- UN Ungraded --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- If Checked, schedule is based on students moving between classes as a group, enabling Schedule Templates &amp; scheduling in a Group Agenda view;
+If Unchecked, school schedule is based on periods, enabling Period Templates &amp; scheduling in a Grid View --></help>
+        <label><!-- Group Based ? --></label>
+        <name>Group_Based__c</name>
+    </fields>
+    <fields>
+        <help><!-- This toggles the display of section grades on report cards and progress reports --></help>
+        <label><!-- Include Section Grades --></label>
+        <name>Include_Section_Grades__c</name>
+    </fields>
+    <fields>
+        <label><!-- Law of Decaying Average Weight --></label>
+        <name>Law_of_Decaying_Average_Weight__c</name>
+    </fields>
+    <fields>
+        <label><!-- New School Year --></label>
+        <name>New_School_Year__c</name>
+    </fields>
+    <fields>
+        <label><!-- Notes --></label>
+        <name>Notes_on_Transcripts__c</name>
+    </fields>
+    <fields>
+        <label><!-- Number of Scores --></label>
+        <name>Number_of_Scores__c</name>
+    </fields>
+    <fields>
+        <help><!-- Select a grade (0-100 scale) that this school defines as &quot;On Track&quot; or &quot;Green.&quot; Any section grades that are above this number will display in the Gradebook UI as Green.  Any number that falls between this  and the Passing Grade threshold will be yellow. --></help>
+        <label><!-- On Track Threshold --></label>
+        <name>On_Track_Threshold__c</name>
+    </fields>
+    <fields>
+        <help><!-- Select the grade threshold (0-100 scale) that defines passing for this school.  Any section grade that is calculated below this number will display in the Gradebook UI as red.  Any number between this and the &quot;On Track&quot; number will yellow. --></help>
+        <label><!-- Passing Grade Threshold --></label>
+        <name>Passing_Grade_Threshold__c</name>
+    </fields>
+    <fields>
+        <label><!-- Points Frequency --></label>
+        <name>Points_Frequency__c</name>
+        <picklistValues>
+            <masterLabel>Monthly</masterLabel>
+            <translation><!-- Monthly --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Weekly</masterLabel>
+            <translation><!-- Weekly --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Points Reset Date --></label>
+        <name>Points_Reset_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Points Reset Value --></label>
+        <name>Points_Reset_Value__c</name>
+    </fields>
+    <fields>
+        <label><!-- Processed EOY Data --></label>
+        <name>Processed_EOY_Data__c</name>
+    </fields>
+    <fields>
+        <label><!-- Processed Historical Data --></label>
+        <name>Processed_Historical_Data__c</name>
+    </fields>
+    <fields>
+        <label><!-- Processed Setup Data --></label>
+        <name>Processed_Setup_Data__c</name>
+    </fields>
+    <fields>
+        <label><!-- Progress Report Standard Display --></label>
+        <name>Progress_Report_Standard_Display__c</name>
+        <picklistValues>
+            <masterLabel>Standards</masterLabel>
+            <translation><!-- Standards --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Strands</masterLabel>
+            <translation><!-- Strands --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Published --></label>
+        <name>Published__c</name>
+    </fields>
+    <fields>
+        <label><!-- Purged EOY Data --></label>
+        <name>Purged_EOY_Data__c</name>
+    </fields>
+    <fields>
+        <label><!-- Purged Two Years Old Data --></label>
+        <name>Purged_Two_Years_Old_Data__c</name>
+    </fields>
+    <fields>
+        <label><!-- Read Only Attendance Wizard Records --></label>
+        <name>Read_Only_Attendance_Wizard_Records__c</name>
+    </fields>
+    <fields>
+        <help><!-- Please enter the phone number for the registrar at your school. This field will appear on transcripts. --></help>
+        <label><!-- Registrar Phone --></label>
+        <name>Registrar_Phone__c</name>
+    </fields>
+    <fields>
+        <help><!-- The Registrar will appear on the Transcript. Please enter the name exactly as you want it to appear on the transcript, &quot;Mr. Bob Smith&quot; or &quot;Bob Smith.&quot; --></help>
+        <label><!-- Registrar --></label>
+        <name>Registrar__c</name>
+    </fields>
+    <fields>
+        <label><!-- Rejection Reason --></label>
+        <name>Rejection_Reason__c</name>
+    </fields>
+    <fields>
+        <label><!-- Report Card Standard Display --></label>
+        <name>Report_Card_Standard_Display__c</name>
+        <picklistValues>
+            <masterLabel>Standards</masterLabel>
+            <translation><!-- Standards --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Strands</masterLabel>
+            <translation><!-- Strands --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Select if you want a standard grade to include the assignment grades from the first through the current reporting period (e.g., a specific standard in Q3 is calculated using the grades from Q1-Q3). --></help>
+        <label><!-- Rolling Standard Grade? --></label>
+        <name>Rolling_Standard_Grade__c</name>
+    </fields>
+    <fields>
+        <help><!-- If the school related to the setup needs to configure rooms to manage scheduling Check field, otherwise set to Unchecked --></help>
+        <label><!-- Room Dependent --></label>
+        <name>Room_Dependent__c</name>
+    </fields>
+    <fields>
+        <label><!-- Schedule End Date --></label>
+        <name>Schedule_End_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Schedule Start Date --></label>
+        <name>Schedule_Start_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- School Calendar --></label>
+        <name>School_Calendar__c</name>
+    </fields>
+    <fields>
+        <help><!-- Please upload the image to use as the school logo for student portal here.  This image will appear in the top left corner of the student portal.  Maximum size is 175px w x 225px h. --></help>
+        <label><!-- School Logo for Portal --></label>
+        <name>School_Logo_for_Portal__c</name>
+    </fields>
+    <fields>
+        <help><!-- Flag to indicate whether the school will be using the PGV (Parent Gradebook View). --></help>
+        <label><!-- School Using PGV --></label>
+        <name>School_Using_PGV__c</name>
+    </fields>
+    <fields>
+        <label><!-- School --></label>
+        <name>School__c</name>
+        <relationshipLabel><!-- Setup --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Please upload the image to use as the school logo for student documents here.  This image will appear in the top left corner of report cards, progress reports, and transcripts.  Maximum size is 190px w x 50px h --></help>
+        <label><!-- School Logo for Documents --></label>
+        <name>School_picture__c</name>
+    </fields>
+    <fields>
+        <label><!-- Section Wizard --></label>
+        <name>Section_Wizard__c</name>
+    </fields>
+    <fields>
+        <label><!-- Show Activities --></label>
+        <name>Show_Activities_on_Transcripts__c</name>
+    </fields>
+    <fields>
+        <help><!-- This will display alerts related to a school, section, or individual student in the Portal. --></help>
+        <label><!-- Show Alerts in Portal --></label>
+        <name>Show_Alerts_in_Portal__c</name>
+    </fields>
+    <fields>
+        <label><!-- Show Assessments --></label>
+        <name>Show_Assessments_on_Transcripts__c</name>
+    </fields>
+    <fields>
+        <help><!-- Select if your school is taking sectional attendance and wants to display the sectional attendance within the Gradebook UI. --></help>
+        <label><!-- Show Attendance Sections In Gradebook --></label>
+        <name>Show_Attendance_Sections_in_Gradebook__c</name>
+    </fields>
+    <fields>
+        <help><!-- This will display a student&apos;s daily and sectional attendance details in the Portal (including absences, tardies, and total time lost). --></help>
+        <label><!-- Show Attendance in Portal --></label>
+        <name>Show_Attendance_in_Portal__c</name>
+    </fields>
+    <fields>
+        <help><!-- This will display awards given to a student. --></help>
+        <label><!-- Show Awards in Portal --></label>
+        <name>Show_Awards_in_Portal__c</name>
+    </fields>
+    <fields>
+        <help><!-- This will display behavior incidents (Date and Incident Title only). --></help>
+        <label><!-- Show Behavior in Portal --></label>
+        <name>Show_Behavior_in_Portal__c</name>
+    </fields>
+    <fields>
+        <help><!-- This will allow schools to display a calendar visible to students and parents. --></help>
+        <label><!-- Show Calendar in Portal --></label>
+        <name>Show_Calendar_in_Portal__c</name>
+    </fields>
+    <fields>
+        <help><!-- Check this field to show Class Rank on Report Card/Progress Reports --></help>
+        <label><!-- Show Class Rank --></label>
+        <name>Show_Class_Rank__c</name>
+    </fields>
+    <fields>
+        <help><!-- Show Class Rank on transcripts. --></help>
+        <label><!-- Show Class Rank --></label>
+        <name>Show_Class_Rank_on_Transcripts__c</name>
+    </fields>
+    <fields>
+        <help><!-- Show Community Service Hours in Portal? --></help>
+        <label><!-- Show Community Service In Portal --></label>
+        <name>Show_Community_Service_In_Portal__c</name>
+    </fields>
+    <fields>
+        <label><!-- Show Daily Attendance in Portal --></label>
+        <name>Show_Daily_Attendance_in_Portal__c</name>
+    </fields>
+    <fields>
+        <help><!-- This will display sectional grades, assignment grades, and assignments details. This will also allow students to upload assignments directly to teachers. --></help>
+        <label><!-- Show Gradebook in Portal --></label>
+        <name>Show_Gradebook_in_Portal__c</name>
+    </fields>
+    <fields>
+        <help><!-- Should data from the Homework Module display in Portal? If checked, the Homework Module must be set up. --></help>
+        <label><!-- Show Homework in Portal --></label>
+        <name>Show_Homework_In_Portal__c</name>
+    </fields>
+    <fields>
+        <help><!-- This toggles the display of the &quot;Homework&quot; column on report cards/progress reports. --></help>
+        <label><!-- Show Homework Percentage --></label>
+        <name>Show_Homework_Percentage__c</name>
+    </fields>
+    <fields>
+        <label><!-- Show Honors --></label>
+        <name>Show_Honors_on_Transcripts__c</name>
+    </fields>
+    <fields>
+        <help><!-- Show Meal Balance on Portal? --></help>
+        <label><!-- Show Meals in Portal --></label>
+        <name>Show_Meals_in_Portal__c</name>
+    </fields>
+    <fields>
+        <help><!-- Show Final Grade Normalization legend on Report Cards and Progress Reports? --></help>
+        <label><!-- Show Grade Scales On Report Cards? --></label>
+        <name>Show_Normalizations_on_Report_Cards__c</name>
+    </fields>
+    <fields>
+        <label><!-- Show Notes --></label>
+        <name>Show_Notes_on_Transcripts__c</name>
+    </fields>
+    <fields>
+        <help><!-- This will display the points balance of a student in portal. --></help>
+        <label><!-- Show Points Balance in Portal --></label>
+        <name>Show_Points_Balance_in_Portal__c</name>
+    </fields>
+    <fields>
+        <help><!-- Check this to display Section comments on Progress Reports/Report Cards --></help>
+        <label><!-- Show Section Comments --></label>
+        <name>Show_Section_Comments__c</name>
+    </fields>
+    <fields>
+        <label><!-- Show Sectional Attendance in Portal --></label>
+        <name>Show_Sectional_Attendance_in_Portal__c</name>
+    </fields>
+    <fields>
+        <label><!-- Show Sectional Attendance on Report Card --></label>
+        <name>Show_Sectional_Attendance_on_Report_Card__c</name>
+    </fields>
+    <fields>
+        <help><!-- This determines if grades marked as &quot;Semester Grades&quot; show up on progress reports/report cards --></help>
+        <label><!-- Show Semester Grades On Report Cards --></label>
+        <name>Show_Semester_Grades_On_Report_Cards__c</name>
+    </fields>
+    <fields>
+        <help><!-- Determines if the Signature section displays on the transcript. --></help>
+        <label><!-- Show Signature --></label>
+        <name>Show_Signature_on_Transcripts__c</name>
+    </fields>
+    <fields>
+        <help><!-- Check this to display Standard or Strand grades on Progress Reports/Report Cards --></help>
+        <label><!-- Show Standard Grades --></label>
+        <name>Show_Standard_Grades__c</name>
+    </fields>
+    <fields>
+        <help><!-- Show Standard Grade Normalization legend on Report Cards and Progress Reports? --></help>
+        <label><!-- Show Standard Scale on Report Cards? --></label>
+        <name>Show_Standard_Scale_on_Report_Cards__c</name>
+    </fields>
+    <fields>
+        <help><!-- Select to display Standard Grades in the Portal. --></help>
+        <label><!-- Show Standards in Portal --></label>
+        <name>Show_Standards_in_Portal__c</name>
+    </fields>
+    <fields>
+        <label><!-- Split School --></label>
+        <name>Split_School__c</name>
+    </fields>
+    <fields>
+        <help><!-- What is the definition for mastery of standards for this school? This number will be used to determine standard mastery on reports. --></help>
+        <label><!-- Standard Grade Mastery Threshold --></label>
+        <name>Standard_Grade_Mastery_Threshold__c</name>
+    </fields>
+    <fields>
+        <help><!-- What is the title that should display in Spanish for a Standard Level 1? (ie: Area of Concern) This will display on Report Cards and Progress Reports if user selects &quot;Show Standards&quot; on the &quot;Generate Student Documents&quot; page. --></help>
+        <label><!-- Standard Title 1 Spanish --></label>
+        <name>Standard_Legend_1_Spanish__c</name>
+    </fields>
+    <fields>
+        <help><!-- What is the title that should display for a Standard Level 1? (ie: Area of Concern) This will display on Report Cards and Progress Reports if user selects &quot;Show Standards&quot; on the &quot;Generate Student Documents&quot; page. --></help>
+        <label><!-- Standard Title 1 --></label>
+        <name>Standard_Legend_1__c</name>
+    </fields>
+    <fields>
+        <help><!-- What is the title that should display in Spanish for a Standard Level 2? (ie: Developing) This will display on Report Cards and Progress Reports if user selects &quot;Show Standards&quot; on the &quot;Generate Student Documents&quot; page. --></help>
+        <label><!-- Standard Title 2 Spanish --></label>
+        <name>Standard_Legend_2_Spanish__c</name>
+    </fields>
+    <fields>
+        <help><!-- What is the title that should display for a Standard Level 2? (ie: Developing) This will display on Report Cards and Progress Reports if user selects &quot;Show Standards&quot; on the &quot;Generate Student Documents&quot; page. --></help>
+        <label><!-- Standard Title 2 --></label>
+        <name>Standard_Legend_2__c</name>
+    </fields>
+    <fields>
+        <help><!-- What is the title that should display in Spanish for a Standard Level 3? (ie: Proficient) This will display on Report Cards and Progress Reports if user selects &quot;Show Standards&quot; on the &quot;Generate Student Documents&quot; page. --></help>
+        <label><!-- Standard Title 3 Spanish --></label>
+        <name>Standard_Legend_3_Spanish__c</name>
+    </fields>
+    <fields>
+        <help><!-- What is the title that should display for a Standard Level 3? (ie: Proficient) This will display on Report Cards and Progress Reports if user selects &quot;Show Standards&quot; on the &quot;Generate Student Documents&quot; page. --></help>
+        <label><!-- Standard Title 3 --></label>
+        <name>Standard_Legend_3__c</name>
+    </fields>
+    <fields>
+        <help><!-- What is the title that should display in Spanish for a Standard Level 4? (ie: Advanced) This will display on Report Cards and Progress Reports if user selects &quot;Show Standards&quot; on the &quot;Generate Student Documents&quot; page. --></help>
+        <label><!-- Standard Title 4 Spanish --></label>
+        <name>Standard_Legend_4_Spanish__c</name>
+    </fields>
+    <fields>
+        <help><!-- What is the title that should display for a Standard Level 4? (ie: Advanced) This will display on Report Cards and Progress Reports if user selects &quot;Show Standards&quot; on the &quot;Generate Student Documents&quot; page. --></help>
+        <label><!-- Standard Title 4 --></label>
+        <name>Standard_Legend_4__c</name>
+    </fields>
+    <fields>
+        <help><!-- What is the description in Spanish  for a Standard with a Level 1? This will display on Report Cards and Progress report if &quot;Show Standards&quot; is selected on the &quot;Generate Student Documents&quot; page. --></help>
+        <label><!-- Standard Legend Description 1 Spanish --></label>
+        <name>Standard_Legend_Description_1_Spanish__c</name>
+    </fields>
+    <fields>
+        <help><!-- What is the description for a Standard with a Level 1? This will display on Report Cards and Progress report if &quot;Show Standards&quot; is selected on the &quot;Generate Student Documents&quot; page. --></help>
+        <label><!-- Standard Legend Description 1 --></label>
+        <name>Standard_Legend_Description_1__c</name>
+    </fields>
+    <fields>
+        <help><!-- What is the description in Spanish  for a Standard with a Level 2? This will display on Report Cards and Progress report if &quot;Show Standards&quot; is selected on the &quot;Generate Student Documents&quot; page. --></help>
+        <label><!-- Standard Legend Description 2 Spanish --></label>
+        <name>Standard_Legend_Description_2_Spanish__c</name>
+    </fields>
+    <fields>
+        <help><!-- What is the description for a Standard with a Level 2? This will display on Report Cards and Progress report if &quot;Show Standards&quot; is selected on the &quot;Generate Student Documents&quot; page. --></help>
+        <label><!-- Standard Legend Description 2 --></label>
+        <name>Standard_Legend_Description_2__c</name>
+    </fields>
+    <fields>
+        <help><!-- What is the description in Spanish  for a Standard with a Level 3? This will display on Report Cards and Progress report if &quot;Show Standards&quot; is selected on the &quot;Generate Student Documents&quot; page. --></help>
+        <label><!-- Standard Legend Description 3 Spanish --></label>
+        <name>Standard_Legend_Description_3_Spanish__c</name>
+    </fields>
+    <fields>
+        <help><!-- What is the description for a Standard with a Level 3? This will display on Report Cards and Progress report if &quot;Show Standards&quot; is selected on the &quot;Generate Student Documents&quot; page. --></help>
+        <label><!-- Standard Legend Description 3 --></label>
+        <name>Standard_Legend_Description_3__c</name>
+    </fields>
+    <fields>
+        <help><!-- What is the description in Spanish  for a Standard with a Level 4? This will display on Report Cards and Progress report if &quot;Show Standards&quot; is selected on the &quot;Generate Student Documents&quot; page. --></help>
+        <label><!-- Standard Legend Description 4 Spanish --></label>
+        <name>Standard_Legend_Description_4_Spanish__c</name>
+    </fields>
+    <fields>
+        <help><!-- What is the description for a Standard with a Level 4? This will display on Report Cards and Progress report if &quot;Show Standards&quot; is selected on the &quot;Generate Student Documents&quot; page. --></help>
+        <label><!-- Standard Legend Description 4 --></label>
+        <name>Standard_Legend_Description_4__c</name>
+    </fields>
+    <fields>
+        <label><!-- Standard Legend Text Spanish --></label>
+        <name>Standard_Legend_Text_Spanish__c</name>
+    </fields>
+    <fields>
+        <label><!-- Standard Legend Text --></label>
+        <name>Standard_Legend_Text__c</name>
+    </fields>
+    <fields>
+        <help><!-- Select if school wants to grade standards.  If set to false, users will enter traditional grades without association to standards or standard grades.  If checked, users in the Hybrid or Standard ONLY Gradebook can grade standards. --></help>
+        <label><!-- Standards Based Grading --></label>
+        <name>Standards_Based_Grading__c</name>
+    </fields>
+    <fields>
+        <help><!-- Is this school using the Standards ONLY Gradebook? This Gradebook allows users to enter only standard grades.  Please see additional documentation for more information. --></help>
+        <label><!-- Standards ONLY Gradebook --></label>
+        <name>Standards_ONLY_Gradebook__c</name>
+    </fields>
+    <fields>
+        <help><!-- What does this school define as Strand Mastery? This applies to SO schools only that calculate Strand grades and is used for reporting. --></help>
+        <label><!-- Strand Grade Mastery % --></label>
+        <name>Strand_Grade_Mastery_Percentage__c</name>
+    </fields>
+    <fields>
+        <label><!-- Students Created From Previous Year --></label>
+        <name>Students_Created_From_Previous_Year__c</name>
+    </fields>
+    <fields>
+        <label><!-- Students Created --></label>
+        <name>Students_Created__c</name>
+    </fields>
+    <fields>
+        <label><!-- Summarized Data --></label>
+        <name>Summarized_Data__c</name>
+    </fields>
+    <fields>
+        <label><!-- Term --></label>
+        <name>Term__c</name>
+        <relationshipLabel><!-- Setup --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Use the first reporting period&apos;s start date instead of the current reporting period&apos;s start date. --></help>
+        <label><!-- Use 1st Reporting Period Start Date --></label>
+        <name>Use_1st_Reporting_Period_Start_Date_RC__c</name>
+    </fields>
+    <fields>
+        <help><!-- If checked, sectional attendance will be used to calculate total time lost.  If not checked, daily attendance will be used to calculate total time lost. --></help>
+        <label><!-- Calculate Time Lost with Sec. Attendance --></label>
+        <name>Use_Sectional_Attendance__c</name>
+    </fields>
+    <fields>
+        <help><!-- This checkbox indicates whether this school is using the Assessments module for this school year. --></help>
+        <label><!-- Using Assessments --></label>
+        <name>Using_Assessments__c</name>
+    </fields>
+    <fields>
+        <help><!-- This checkbox indicates whether this school is using the Attendance module for this school year. --></help>
+        <label><!-- Using Attendance --></label>
+        <name>Using_Attendance__c</name>
+    </fields>
+    <fields>
+        <help><!-- This checkbox indicates whether this school is using the Behavior module for this school year. --></help>
+        <label><!-- Using Behavior --></label>
+        <name>Using_Behavior__c</name>
+    </fields>
+    <fields>
+        <help><!-- This checkbox indicates whether this school is using the Gradebook module for this school year. --></help>
+        <label><!-- Using Gradebook --></label>
+        <name>Using_Gradebook__c</name>
+    </fields>
+    <fields>
+        <help><!-- This checkbox indicates whether this school is using the Homework module for this school year. --></help>
+        <label><!-- Using Homework --></label>
+        <name>Using_Homework__c</name>
+    </fields>
+    <fields>
+        <help><!-- This checkbox indicates whether this school is using the Meals module for this school year. --></help>
+        <label><!-- Using Meals --></label>
+        <name>Using_Meals__c</name>
+    </fields>
+    <fields>
+        <help><!-- This checkbox indicates whether this school is using the Points module for this school year. --></help>
+        <label><!-- Using Points --></label>
+        <name>Using_Points__c</name>
+    </fields>
+    <fields>
+        <help><!-- This checkbox indicates whether this school is using the student portal for this school year. --></help>
+        <label><!-- Using Portal --></label>
+        <name>Using_Portal__c</name>
+    </fields>
+    <fields>
+        <help><!-- This checkbox indicates whether this school is using the Student Documents module for this school year. --></help>
+        <label><!-- Using Student Documents --></label>
+        <name>Using_Student_Documents__c</name>
+    </fields>
+    <fields>
+        <help><!-- Will this school offer Summer School at the end of the school year? --></help>
+        <label><!-- Using Summer School --></label>
+        <name>Using_Summer_School__c</name>
+    </fields>
+    <fields>
+        <label><!-- Verification Status --></label>
+        <name>Verification_Status__c</name>
+        <picklistValues>
+            <masterLabel>New</masterLabel>
+            <translation><!-- New --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rejected</masterLabel>
+            <translation><!-- Rejected --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Verification</masterLabel>
+            <translation><!-- Verification --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Verified</masterLabel>
+            <translation><!-- Verified --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Year End --></label>
+        <name>Year_End__c</name>
+    </fields>
+    <fields>
+        <label><!-- Year Start --></label>
+        <name>Year_Start__c</name>
+    </fields>
+    <fields>
+        <label><!-- Year --></label>
+        <name>Year__c</name>
+        <relationshipLabel><!-- Setup (Year) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- instancelink --></label>
+        <name>instancelink__c</name>
+    </fields>
+    <layouts>
+        <layout>Non Admin Page Layout</layout>
+        <sections>
+            <label><!-- Configurable Values --></label>
+            <section>Configurable Values</section>
+        </sections>
+        <sections>
+            <label><!-- Configuration Links --></label>
+            <section>Configuration Links</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Setup Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>System Admin Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Gradebook Configuration --></label>
+            <section>Gradebook Configuration</section>
+        </sections>
+        <sections>
+            <label><!-- Scheduler Configuration --></label>
+            <section>Scheduler Configuration</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <description><!-- For Published Setups - Not Editable --></description>
+        <label><!-- Published --></label>
+        <name>Published</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Default Setup Record prior to when Setup is published. --></description>
+        <label><!-- Unpublished --></label>
+        <name>Unpublished</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+    <webLinks>
+        <label><!-- Publish --></label>
+        <name>Publish</name>
+    </webLinks>
+</CustomObjectTranslation>

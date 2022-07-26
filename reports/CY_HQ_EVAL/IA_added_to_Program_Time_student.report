@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Section__c.Student_Section__r$Student__c</field>
+    </columns>
+    <columns>
+        <field>Section__c.Student_Section__r$Student__c.Local_Student_ID__c</field>
+    </columns>
+    <columns>
+        <field>Section__c.Student_Section__r$Student__c.Attendance__c</field>
+    </columns>
+    <columns>
+        <field>Section__c.Student_Section__r$Student__c.Behavior__c</field>
+    </columns>
+    <columns>
+        <field>Section__c.Student_Section__r$Student__c.ELA_Literacy__c</field>
+    </columns>
+    <columns>
+        <field>Section__c.Student_Section__r$Student__c.Math__c</field>
+    </columns>
+    <columns>
+        <field>Section__c.Student_Section__r$Student__c.Number_of_Indicator_Areas__c</field>
+    </columns>
+    <description>added the requested columns only</description>
+    <format>Tabular</format>
+    <name>IA added to Program Time (student)</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>IA_Sect_with_Student_Sect_with_Intervention_Se__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>false</showGrandTotal>
+    <showSubTotals>false</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>Section__c$CreatedDate</dateColumn>
+        <interval>INTERVAL_CURRENT</interval>
+    </timeFrameFilter>
+</Report>

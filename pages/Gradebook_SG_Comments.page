@@ -1,0 +1,246 @@
+<apex:page id="sgCommentsPage" controller="GradebookController" extensions="Gradebook_SG_CommentsController" tabstyle="Gradebook__tab" sidebar="false">
+    <c:jQueryInit bClueTip="true"  bLoadingPanel="true"/>
+    <c:loadingPanel />
+    <apex:includeScript value="{!URLFOR($Resource.jWerty, '/jWerty/jwerty.js')}" />
+    <apex:includeScript value="{!URLFOR($Resource.Gradebook, '/js/Gradebook.js')}"/> 
+    <script>
+     function scrollVertical(){
+            var j$ = jQuery.noConflict();
+            var docHeight = j$(document).height();
+            var winHeight = j$(window).height();
+            j$('html,body').animate({scrollTop: 0}, 700);
+        } 
+        
+        function setFocusOnLoad() {}
+        jwerty.key('enter',false);//keep unexpected page submssions from pressing enter
+        window.onbeforeunload = function(){if(closepop==true){return "Please submit your comments!";}} 
+    </script>
+    
+    <apex:stylesheet value="{!URLFOR($Resource.Gradebook_SG_Comments, '/resources/css/styles.css')}"/>
+    
+    <apex:outputpanel id="themsgs">
+            <apex:pageMessage id="errorMsg" summary="Unexpected Error. Please try again later." Severity="error" Strength="1"/>
+        <script>scrollVertical();</script>
+    </apex:outputpanel>
+
+    <script>        
+        document.getElementById('sgCommentsPage:errorMsg').style.display = 'none';
+        
+        var sgComments = {};
+        var sgAltComments = {};
+        var sgDoNotShow = {};
+        
+        function setSGComments(sgID,comments)
+        {
+            sgComments[sgID] = comments;
+        }
+        
+        function setSGAltComments(sgID,comments)
+        {
+            sgAltComments[sgID] = comments;
+        }
+        
+        function setSGDoNotShow(sgID,check)
+        {
+        	sgDoNotShow[sgID] = check;
+        }
+
+        function updateComments()
+        {
+        	Visualforce.remoting.Manager.invokeAction(
+																'{!$RemoteAction.Gradebook_SG_CommentsController.updateComments_SG}', 
+																sgComments, 
+																sgAltComments,
+																handleUpdateComments);
+        
+           
+        }
+        
+        function updateComments2()
+        {
+        	Visualforce.remoting.Manager.invokeAction(
+																'{!$RemoteAction.Gradebook_SG_CommentsController.updateComments_SG2}', 
+																sgComments, 
+																sgAltComments,
+																sgDoNotShow, 
+																handleUpdateComments);
+        
+           
+        }        
+        
+        function handleUpdateComments(result, event) {
+        	//return to Gradebook page or Gradebook_SO page
+        	var returnUrl = '';
+        	if(window.location.href.indexOf('schoolforce')!=-1)
+        	{
+	        	if(window.location.href.indexOf('Gradebook_SO')!=-1)
+	        	{
+	        		returnUrl = 'SchoolForce__gradebook_so';
+        	}
+	        	else 
+        	{
+	        		returnUrl = 'SchoolForce__gradebook';
+        	}
+	        }
+	        else {
+	        	if(window.location.href.indexOf('Gradebook_SO')!=-1)
+        	{
+	        		returnUrl = 'gradebook_so'; 
+        	}
+	        	else 
+        	{
+	        		returnUrl = 'gradebook';
+	        	}
+        	}
+            if(result == 'success') {
+                document.getElementById('sgCommentsPage:errorMsg').style.display = 'none';
+                closepop=false;
+                window.location.href = '/apex/'+returnUrl+'?fromAssignment=1&showComments=1&section={!JSENCODE(section)}&timeid={!JSENCODE(baseObj.selectedTimeId)}&studentID={!JSENCODE(studentFilterId)}&assignmentID={!JSENCODE(selectedAssignmentID)}';
+            } 
+            else
+            {
+                goJS();
+                document.getElementById('sgCommentsPage:errorMsg').style.display = 'block';
+                scrollVertical();
+            }
+        }       
+    </script>
+    
+
+<style>
+	
+	.wrapper {
+	width:1070px;
+	margin:0 auto;
+	}
+	
+	.commentForm {
+	width:1050px;
+	padding:0;
+	}
+	
+	.commentForm table .comments textarea {
+	border:0px;
+	padding:0 0 0 5px;
+	font-size:10px;
+	height:35px;
+	width:360px;
+	display:block;
+	background:none;
+	resize:none;
+	overflow:hidden;
+	}
+	
+    .altLang textarea{
+        border-left:1px solid #ccc !important;
+    }
+    
+    .commentForm table th.grades {
+	color:#fff;
+	}
+    
+    .commentForm table td.grades{
+	background:#B5E3F2;
+	border-bottom:2px solid #fff;
+	border-top:2px solid #fff;
+	text-align:left;
+	width:100px;
+	font-size:13px;
+	font-weight:bold;
+	}
+
+    .commentForm table td.grade{
+	background:#B5E3F2;
+	border-bottom:2px solid #fff;
+	border-right:2px solid #fff;
+	border-top:2px solid #fff;
+	text-align:left;
+	width:50px;
+	font-size:13px;
+	font-weight:bold;
+	}
+    </style>
+    <apex:form id="sgCommentsForm">
+    <div class="wrapper">
+        
+        <div class="content-section commentForm">
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th class="studentName">Students</th>
+                        <!-- NYC DE1839/1989 Do Not Show in Portal -->
+                        <th id="doNotShow" class="studentName" style="display:none;"> Do Not Show in PGV </th>
+                        <script>
+					        //hiding the doNotShow column using javascript
+					        if({!baseObj.activeSetup.School_Using_PGV__c}) {
+					        	//document.getElementById('sgCommentsPage:doNotShow').style.display = 'block';
+					        	j$('[id$=doNotShow]').css('display', 'block');
+					        }                        
+                        </script>
+                        <!-- DE 866 - Switched the Alt Language and Grade columns -->
+                        <th class="grades" style="padding-right: 2px; padding-left: 2px;"> Alt Language </th>
+                        <th class="grade" style="padding-right: 2px; padding-left: 2px;"> Grade </th>
+                        <th class="comments" style="text-align:center;">Comments</th>
+                        <th class="comments" style="text-align:center;">Alt Lang Comments</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <apex:repeat value="{!gradebookObj.studentWrapperList}" var="stud" id="studentnamerepeat">
+                    <tr class="{!stud.rowStyle}">
+                        <td class="studentName">{!stud.student.Name}</td>
+                        <!-- NYC DE1839/1989 Do Not Show in Portal -->
+                        <apex:variable value="{!selectedCourseGradeScale}" var="v" rendered="{!baseObj.activeSetup.School_Using_PGV__c}">
+                        	<!-- <td class="grade {!stud.sectGradeStyle}">{!stud.sectionGrade.Do_Not_Show_in_PGV__c}</td> -->
+                        	<td class="studentName">
+                        		<apex:inputCheckBox id="icheckbox" value="{!stud.sectionGrade.Do_Not_Show_in_PGV__c}" onChange="setSGDoNotShow('{!stud.sectionGrade.Id}',this.checked);"/>
+                        		<apex:actionSupport event="onchange" rerender="icheckbox"/>
+                        	</td>
+                        </apex:variable>
+                        <!-- DE 866 - Switched the Alt Language and Grade columns -->
+                        <td class="grades">{!stud.sectionGrade.Student_Section__r.Student__r.Home_Language__c}</td>
+                        <apex:variable value="{!selectedCourseGradeScale}"  var="v" rendered="{!selectedCourseGradeScale!='Standard' && selectedCourseGradeScale!='Credit/No Credit'}">
+							<td class="grade {!stud.sectGradeStyle}">{!ROUND(stud.sectionGrade.Grade__c,0)}%</td>
+                        </apex:variable>
+                        <apex:variable value="{!selectedCourseGradeScale}"  var="v" rendered="{!selectedCourseGradeScale=='Credit/No Credit'}">
+							<td class="grade {!stud.sectGradeStyle}">{!stud.sectionGrade.Credit_No_Credit_Section_Grade__c}</td>
+                        </apex:variable>
+                        <apex:variable value="{!selectedCourseGradeScale}"  var="v" rendered="{!selectedCourseGradeScale=='Standard'}">
+							<td class="grade {!stud.sectGradeStyle}">{!stud.sectionGrade.Standard_Section_Grade_v2__c}</td>
+                        </apex:variable>
+                        
+                        <!-- defect 1070 -->
+                        <td class="comments"><textarea tabindex="1" onchange="closepop = true;" onblur="setSGComments('{!stud.sectionGrade.Id}',this.value);">{!stud.sectionGrade.Comments_Next_Steps__c}</textarea></td>
+                        <td class="comments altLang"><textarea tabindex="2" onchange="closepop = true;" onblur="setSGAltComments('{!stud.sectionGrade.Id}',this.value);">{!stud.sectionGrade.Alternate_Lang_Comments__c}</textarea></td>
+                    </tr>
+                    </apex:repeat>
+                </tbody>
+            </table>
+        
+          
+            
+            </div>
+    </div><!-- /WRAPPER -->
+    <script src="{!URLFOR($Resource.Gradebook_SG_Comments, '/resources/js/jquery.min.js')}"></script>
+	<script type="text/javascript">
+		$("textarea").focus(function(){
+			$(this).css("height", "50px");
+			$(this).addClass("focus");
+			$(this).css("margin-top", "-20px");
+		});
+		$("textarea").blur(function(){
+			$(this).removeClass("focus");
+			$(this).css("width","360px");
+			$(this).css("height", "35px");
+			$(this).css("margin-top", "0px");
+		});
+		
+	</script>
+    <div class="wrapper">
+    	<!-- DE 863 - Consistency in Button -->
+    	<!-- DE1839/US1989 Do Not Show in PGV: using the updateComments2  -->
+      <button class="blackBtn" style="float:right;margin:25px 20px 0 0;" type="button" onclick="updateComments2();">Submit<span class="arrow">&nbsp;</span></button>
+     </div><!-- END WRAPPER -->
+            <apex:actionFunction action="{!retrieveStudentGrades}" name="goJS" rerender="sgCommentsForm,themsgs" />
+    </apex:form>
+</apex:page>

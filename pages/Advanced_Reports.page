@@ -1,0 +1,2046 @@
+<apex:page controller="Charts" action="{!loadFilters}">
+<c:jQueryInit bDataTables="true" bLoadingPanel="true"/>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<apex:includeScript value="{!$Resource.multiSelect}" />
+<apex:includeScript value="{!URLFOR($Resource.inputtkn, 'inputtkn/inputtkn.js')}"/>
+<apex:stylesheet value="{!URLFOR($Resource.inputtkn, 'inputtkn/inputtknfb.css')}"/>  
+<apex:stylesheet value="{!URLFOR($Resource.inputtkn, 'inputtkn/inputtkn.css')}"/>
+<style>
+
+/*===== Layout ======*/
+
+body {
+  min-width: 960px;  
+}
+
+/* `Container
+----------------------------------------------------------------------------------------------------*/
+
+.container_12 {
+  margin-left: auto;
+  margin-right: auto;
+  width: 960px;
+
+}
+
+.border_wrapper {
+  border: 1px solid #CCCCCC;
+  border-radius: 4px 4px 4px 4px;
+  padding: 20px;
+}
+
+/* `Grid >> Global
+----------------------------------------------------------------------------------------------------*/
+
+.grid_1,
+.grid_2,
+.grid_3,
+.grid_4,
+.grid_5,
+.grid_6,
+.grid_7,
+.grid_8,
+.grid_9,
+.grid_10,
+.grid_11,
+.grid_12 {
+  display: inline;
+  float: left;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.push_1, .pull_1,
+.push_2, .pull_2,
+.push_3, .pull_3,
+.push_4, .pull_4,
+.push_5, .pull_5,
+.push_6, .pull_6,
+.push_7, .pull_7,
+.push_8, .pull_8,
+.push_9, .pull_9,
+.push_10, .pull_10,
+.push_11, .pull_11 {
+  position: relative;
+}
+
+/* `Grid >> Children (Alpha ~ First, Omega ~ Last)
+----------------------------------------------------------------------------------------------------*/
+
+.alpha {
+  margin-left: 0;
+}
+
+.omega {
+  margin-right: 0;
+}
+
+/* `Grid >> 12 Columns
+----------------------------------------------------------------------------------------------------*/
+
+.container_12 .grid_half {
+  width: 30px;
+}
+.container_12 .grid_1 {
+  width: 60px;
+}
+
+.container_12 .grid_2 {
+  width: 140px;
+}
+
+.container_12 .grid_3 {
+  width: 220px;
+}
+
+.container_12 .grid_4 {
+  width: 300px;
+}
+
+.container_12 .grid_5 {
+  width: 380px;
+}
+
+.container_12 .grid_6 {
+  width: 460px;
+}
+
+.container_12 .grid_7 {
+  width: 540px;
+}
+
+.container_12 .grid_8 {
+  width: 620px;
+}
+
+.container_12 .grid_9 {
+  width: 700px;
+}
+
+.container_12 .grid_10 {
+  width: 780px;
+}
+
+.container_12 .grid_11 {
+  width: 860px;
+}
+
+.container_12 .grid_12 {
+  width: 940px;
+}
+
+/* `Push Space >> 12 Columns
+----------------------------------------------------------------------------------------------------*/
+
+.container_12 .push_half {
+  left: 40px;
+}
+
+.container_12 .push_1 {
+  left: 80px;
+}
+
+.container_12 .push_2 {
+  left: 160px;
+}
+
+.container_12 .push_3 {
+  left: 240px;
+}
+
+.container_12 .push_4 {
+  left: 320px;
+}
+
+.container_12 .push_5 {
+  left: 400px;
+}
+
+.container_12 .push_6 {
+  left: 480px;
+}
+
+.container_12 .push_7 {
+  left: 560px;
+}
+
+.container_12 .push_8 {
+  left: 640px;
+}
+
+.container_12 .push_9 {
+  left: 720px;
+}
+
+.container_12 .push_10 {
+  left: 800px;
+}
+
+.container_12 .push_11 {
+  left: 880px;
+}
+
+/* `Clear Floated Elements
+----------------------------------------------------------------------------------------------------*/
+.clear {
+  clear: both;
+  display: block;
+  overflow: hidden;
+  visibility: hidden;
+  width: 0;
+  height: 0;
+}
+
+
+.clearfix:before,
+.clearfix:after,
+.container_12:before,
+.container_12:after {
+  content: '.';
+  display: block;
+  overflow: hidden;
+  visibility: hidden;
+  font-size: 0;
+  line-height: 0;
+  width: 0;
+  height: 0;
+}
+
+.clearfix:after,
+.container_12:after {
+  clear: both;
+}
+
+/*======== FONT STUFF ==========*/
+.container_12 h1 {
+	font-family: 'Segoe UI',Helvetica,Arial,sans-serif;
+	color: #333;
+}
+.container_12 h2, h3 {
+	font-family: 'Segoe UI',Helvetica,Arial,sans-serif;
+	color: #2567A7;
+}
+
+.container_12 h1 {
+	font-size: 22px;
+	letter-spacing: 0px;
+	line-height: 45px;
+	margin-bottom: 14px;
+	font-weight: 400;
+}
+.container_12 h2 {
+	font-size: 16px;
+	letter-spacing: 0px;
+	line-height: 40px;
+	margin-bottom: 10px;
+	font-weight: 100;
+	text-decoration: underline;
+}
+.container_12 h3 {
+	font-size: 14px;
+	line-height: 25px;
+	margin-bottom: 8px;
+	font-weight: 100;
+}
+
+
+/*=========== Multi-Select =============*/
+.ui-multiselect { padding:2px 0 2px 4px; text-align:left; width:225px !important }
+.ui-multiselect span.ui-icon { float:right }
+.ui-multiselect-single .ui-multiselect-checkboxes input { position:absolute !important; top: auto !important; left:-9999px; }
+.ui-multiselect-single .ui-multiselect-checkboxes label { padding:5px !important }
+
+.ui-multiselect-header { margin-bottom:3px; padding:3px 0 3px 4px; background:none !important; }
+.ui-multiselect-header ul { font-size:0.9em }
+.ui-multiselect-header ul li { float:left; padding:0 10px 0 0 }
+.ui-multiselect-header a { text-decoration:none }
+.ui-multiselect-header a:hover { text-decoration:underline }
+.ui-multiselect-header span.ui-icon { float:left }
+.ui-multiselect-header li.ui-multiselect-close { float:right; text-align:right; padding-right:0 }
+
+.ui-multiselect-menu { display:none; padding:3px; position:absolute; z-index:10000 }
+.ui-multiselect-checkboxes { position:relative /* fixes bug in IE6/7 */; overflow-y:scroll }
+.ui-multiselect-checkboxes label { cursor:default; display:block; border:1px solid transparent; padding:3px 1px }
+.ui-multiselect-checkboxes label input { position:relative; top:1px }
+.ui-multiselect-checkboxes li { clear:both; font-size:0.9em; padding-right:3px }
+.ui-multiselect-checkboxes li.ui-multiselect-optgroup-label { text-align:center; font-weight:bold; border-bottom:1px solid }
+.ui-multiselect-checkboxes li.ui-multiselect-optgroup-label a { display:block; padding:3px; margin:1px 0; text-decoration:none }
+
+.ui-widget { font-size: 0.9em !important }
+/* remove label borders in IE6 because IE6 does not support transparency */
+* html .ui-multiselect-checkboxes label { border:none }
+
+/**************************************************
+				SchoolForce $buttons
+*************************************************/ 
+input.black_btn {
+	cursor:pointer; 
+	margin-left:5px; 
+	font-weight:normal; 
+	padding:10px 10px !important; 
+	border-radius:5px !important; 
+	border:none !important;  
+	text-transform:uppercase !important;
+	color:#fff !important; 
+	background: #4c4c4c !important; /* Old browsers */
+	background: -moz-linear-gradient(top,  #4c4c4c 0%, #474747 29%, #2c2c2c 52%, #000000 64%, #1c1c1c 93%, #131313 100%) !important; /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#4c4c4c), color-stop(29%,#474747), color-stop(52%,#2c2c2c), color-stop(64%,#000000), color-stop(93%,#1c1c1c), color-stop(100%,#131313)) !importnat; /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #4c4c4c 0%,#474747 29%,#2c2c2c 52%,#000000 64%,#1c1c1c 93%,#131313 100%) !important; /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #4c4c4c 0%,#474747 29%,#2c2c2c 52%,#000000 64%,#1c1c1c 93%,#131313 100%) !important; /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #4c4c4c 0%,#474747 29%,#2c2c2c 52%,#000000 64%,#1c1c1c 93%,#131313 100%) !important; /* IE10+ */
+	background: linear-gradient(top,  #4c4c4c 0%,#474747 29%,#2c2c2c 52%,#000000 64%,#1c1c1c 93%,#131313 100%) !important; /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4c4c4c', endColorstr='#131313',GradientType=0 ) !important; /* IE6-9 */
+}
+
+
+
+input.black_btn:hover { 
+	background:#000 !important; 
+	}
+
+input.grey_btn {
+	cursor:pointer; 
+	margin-left:10px; 
+	font-weight:normal; 
+	padding:7px 10px !important; 
+	border-radius:5px !important; 
+	border:none !important;  
+	text-transform:uppercase !important;
+	color:#fff !important; 
+	background: #666666; /* Old browsers */
+	background: -moz-linear-gradient(top,  #999999 0%, #666666 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#999999), color-stop(100%,#666666)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #999999 0%,#666666 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #999999 0%,#666666 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #999999 0%,#666666 100%); /* IE10+ */
+	background: linear-gradient(top,  #999999 0%,#666666 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#999999', endColorstr='#666666',GradientType=0 ); /* IE6-8 */
+	}
+
+input.grey_btn:hover { 
+	background:#666 !important; 
+	}
+		
+input.drk_blue_btn {
+	cursor:pointer; 
+	margin-left:5px; 
+	font-weight:normal; 
+	padding:10px 10px !important; 
+	border-radius:5px !important; 
+	border:none !important;  
+	text-transform:uppercase !important;
+	color:#fff !important; 
+	background: #59afcc !important; /* Old browsers */
+	background: -moz-linear-gradient(top,  #59afcc 21%, #0180ab 85%) !important; /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(21%,#59afcc), color-stop(85%,#0180ab)) !important; /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #59afcc 21%,#0180ab 85%) !important; /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #59afcc 21%,#0180ab 85%) !important; /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #59afcc 21%,#0180ab 85%) !important; /* IE10+ */
+	background: linear-gradient(top,  #59afcc 21%,#0180ab 85%) !important; /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#59afcc', endColorstr='#0180ab',GradientType=0 ) !important; /* IE6-9 */
+}
+
+input.drk_blue_btn:hover { 
+	background:#0180AB !important; 
+	}
+	
+	input.grey_btn_arrow {
+	cursor:pointer; 
+	margin-left:5px; 
+	font-weight:normal; 
+	padding:10px 10px 10px 30px !important; 
+	border-radius:5px !important; 
+	border:none !important;  
+	text-transform:uppercase !important;
+	color:#fff !important; 
+	background: #666666; /* Old browsers */
+	background: url(../images/arrow-b.png) top left no-repeat, -moz-linear-gradient(top,  #999999 0%, #666666 100%); /* FF3.6+ */
+	background: url(../images/arrow-b.png) top left no-repeat, -webkit-gradient(linear, left top, left bottom, color-stop(0%,#999999), color-stop(100%,#666666)); /* Chrome,Safari4+ */
+	background: url(../images/arrow-b.png) top left no-repeat, -webkit-linear-gradient(top,  #999999 0%,#666666 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #999999 0%,#666666 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #999999 0%,#666666 100%); /* IE10+ */
+	background: linear-gradient(top,  #999999 0%,#666666 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#999999', endColorstr='#666666',GradientType=0 ); /* IE6-8 */
+	}
+
+input.grey_btn_arrow:hover { 
+	background:#666 !important; 
+	}
+		
+/*============= jQueryUI ===========*/
+.ui-dialog .ui-dialog-titlebar { background:none; border:none !important}
+.ui-dialog .ui-dialog-buttonpane { border-top: 1px dotted #999999; }
+
+/*=========== GoogleCharts ===========*/
+.google-visualization-controls-label { margin-bottom:7px }
+
+/*========== DataTables ==========*/
+#selectStudentsModal { display:none; overflow-y:scroll; }
+
+/*============= Nav ===========*/
+.navHeader { position:relative; left:-50px;}
+.report_nav li { 
+	list-style:none; cursor:pointer; padding: 0 10px; float:left; position: relative; margin-bottom: 25px; 
+	display:block; width:200px; height:30px; line-height:30px; background-color: #CECECE;
+	border-radius: 4px 4px 0px 0px; text-align:center
+}
+.report_nav li:hover { color:#fff; }
+.selected { color:#fff; background-color: #1EA6D3 !important; width:180px; height:30px }
+
+/*======== Toggles =========*/
+.toggleAdv, 
+.toggleAdvAdmin,
+.toggleStu { cursor:pointer }
+.downArrow { background: url("{!$Resource.downArrow}") no-repeat; top:10px; }
+.rightArrow { background: url("{!$Resource.rightArrow}") no-repeat; top:10px; }
+.toggleAdvIcon, .toggleAdvAdminIcon, .toggleBasicIcon { float:left; position:relative; width:30px; height:30px; cursor:pointer }
+
+/*======== Charts and Positions =========*/
+.reports_wrapper {width:100%}
+.reports_wrapper h1 {
+	font-size: 28px;
+	font-family: 'Segoe UI',Helvetica,Arial,sans-serif;
+	font-weight: 100; position: relative; left: 35px; top: 25px
+}
+.reports_wrapper .zdex { z-index:999; position: relative; margin-left:10px }
+#placeChart { position:relative; left:-18px }
+
+/*========== Misc =============*/
+
+.withMargin { margin-top: 10px; margin-bottom: 10px; }
+.botMargin { margin-bottom: 20px; }
+.withBigMargin { margin-top: 30px; margin-bottom: 10px; }
+.hideIt { display:none }
+.instruct { border:1px solid #e9ebec; border-radius:4px; color:#666; padding:10px; position: relative; z-index:999 }
+.instructFilters { border:1px solid #AFB0B1; border-radius:4px; padding:10px; }
+.dTable {  max-height: 300px !important; overflow-y: auto; border:1px solid #e9ebec; } 
+#stanFilter { margin-bottom: 20px }
+#report3StandardColumnFilterControls { margin-top: 20px;}
+#report3StudentColumnFilterControls { margin-top: 20px;}
+.divider { position:relative; left:-70px }
+.printBtn { position:relative; float:left; margin-bottom: 25px }
+.printStyle { cursor:pointer; }
+.tokenRemoveLink { margin:0 0 5px 5px }
+.tokenRemoveLink a { color: #333; cursor:pointer;}
+.tokenRemoveLink a:hover { color:#A60008; }
+.titleBar {width:100%; border-bottom:1px dotted #6B9EF1; text-align:center; padding-bottom:7px;}
+.titleBar h2 { font-weight:100; font-size: 14px; color: #2567A7; }				  
+
+#control2 input.grey_btn { margin-left: 0px; }
+
+#chartsHere3 .chartContainer {
+	border: 1px solid #AFB0B1;
+	border-radius: 4px;
+	display: inline-block;
+	padding: 10px;
+	margin-top:20px;
+	margin-bottom:20px;
+	width:1850px;
+	min-height:800px;	
+}
+
+
+#report3StandardNoData {
+	display: inline-block;
+	margin: 10px 0px;
+}
+
+#report3Standard {
+	float: left;
+}
+
+#report3StandardStandardFilterControls,
+#report3StudentStudentFilterControls {
+	float:left;
+	margin-right:20px;
+}
+
+#report3StandardColumnFilterControls,
+#report3StudentColumnFilterControls {
+	width: 850px;
+}
+
+#chartsHere3 .report-title {
+	font-size:16px;
+	width:800px;
+}
+
+#chartsHere3 .report-subtitle {
+	font-size:12px;
+	width:800px;
+}
+
+#report3Student {
+	float: right;
+}
+
+
+
+/*========== ERRORS =============*/
+.error-empty{
+	margin-left:10px;
+	border:2px solid #FF0000;
+	padding:5px;
+	color:#FF0000;
+	text-transform:uppercase;
+	display:none;
+	font-size:10px;
+	font-weight:bold;
+}
+
+
+#subheadThree {
+	position:absolute;
+	top:119px;
+	z-index:50;
+	right:190px;
+}
+
+/*========== 3rd graph help text =============*/	
+.instructThirdReport{
+	border:1px solid #e9ebec; 
+	border-radius:4px; 
+	color:#666; 
+	padding:10px;
+	z-index:999;
+	position:relative;
+	min-width: 960px;
+}
+
+</style>
+
+<script type="text/javascript">
+	//On Ready	
+	var j$ = jQuery.noConflict();
+	var deleteInProgress = false;
+	j$(document).ready(function() {
+		setNavDefault();
+		setMultis();
+		setToggles();	
+	});
+	
+	//window.onload = function() {modifyThirdReportHelpText()};	
+	
+	j$(window).resize(function() {
+		modifyThirdReportHelpText();
+	});
+
+	function modifyThirdReportHelpText() {
+		j$('.instructThirdReport').css('width', (j$(window).width() - 270) +"px");	
+		//j$('#thirdReportHelpText').css('width', (j$(window).width() - 270) +"px");	
+	}	
+	
+	//Set-Toggles
+	function setToggles(){
+	
+		j$('.toggleBasicIcon').click(function(){
+			j$(this).toggleClass('downArrow').toggleClass('rightArrow');
+			j$('.basicFilt').toggle();			  
+		});	 
+			
+		j$('.toggleAdvIcon').click(function(){
+			j$(this).toggleClass('rightArrow').toggleClass('downArrow');
+			j$('.advFilt').toggle();				
+		});
+									
+		j$('.toggleAdvAdminIcon').click(function(){
+			j$(this).toggleClass('rightArrow').toggleClass('downArrow');
+			j$('.advAdminFilt').toggle();
+		});
+		j$('#wizard').show();
+		j$('.stuFilt').hide();		  
+		j$('.advFilt').hide();
+		j$('.advAdminFilt').hide();
+		j$('.addedSelectStdsPanel').hide();		 
+		j$('.addedSelectStudentsPanel').hide();
+				
+		j$('.regenButton').hide();
+		j$('.printBtn').hide();				 
+	}
+	
+	function setNavDefault(){						   
+		j$('.wizard_main').hide();
+		j$('.report_1').hide();
+		j$('.report_2').hide();
+		j$('.report_3').hide();										 
+	}
+	
+	//Multi-Select  
+	function setMultis(){
+		j$(".multi").multiselect({
+			selectedList: 10,			   
+			noneSelectedText: 'Select Options'
+		});
+		j$(".multiOne").multiselect({
+			selectedList: 2,
+			noneSelectedText: 'Select Option',
+			multiple: false
+		});	 
+	}
+		
+		
+	
+	function tokenizeSelectedStudents()
+	{
+		var ppdata = j$.parseJSON(j$('#selectedStudentsJsonString').html());
+		  j$("#selectedStudentTokens").tokenInput("", {
+			  prePopulate: ppdata, theme: "facebook", animateDropdown: false, onDelete: function (item) { if(!deleteInProgress) { lockPage(); removeTokenStudents(item.id); unlockPage(); } }
+		  });	   
+	}
+	
+	function tokenizeSelectedStandards()
+	{
+		var ppdata = j$.parseJSON(j$('#selectedStandardsJsonString').html());
+		
+		for (var i = 0; i < ppdata.length; i++) {
+		  if (ppdata[i].name.length > 130) {
+			ppdata[i].name = ppdata[i].name.substr(0, 130) + "...";
+		  }
+		}
+		
+		  j$("#selectedStandardTokens").tokenInput("", {
+			  prePopulate: ppdata, theme: "facebook", animateDropdown: false, onDelete: function (item) { if(!deleteInProgress) { lockPage(); removeTokenStandards(item.id); unlockPage(); } }
+		  });	   
+	}   
+	function showReport(divId, className){		  
+		j$("nav ul li").removeClass('selected');
+		j$(".hideIt").hide();   
+		j$("#"+divId).show();
+		j$("."+className).addClass('selected');
+			if(j$('.wizard_main').hasClass('selected')){
+				j$('.printBtn').hide();
+			} else {
+				j$('.printBtn').show();
+			}					   
+		};  
+	//remove SFDC onFocus
+	function setFocusOnLoad(){
+	}	   
+	
+	//Global Vars   
+	
+	var currentData;
+	var bigAssData;
+	var bigAssDataArrays;
+	var temp1;																								  
+	var assignmentNames;
+	var temp2;
+	var allGrades;
+	var temp3;
+	var studentNames;
+	var currentChartType;
+	var currentChartData;
+	var currentChartTitle;
+	var currentChartOptions;
+	var bigStanArrays;
+	var r1JSON;
+	var r2JSON;
+	var standardPickRow;
+	var standardPickCol;
+	var standardPickName;
+	var r1StandardNames;
+	var bigStudentData;
+	var r2SelectedStudents = new Array();
+	var masterySelected = new Array();		  
+	var selectedStudentName;
+	var standardState;
+	var redrawStan = new Array();   
+	var reportData1;
+	var reportData2;
+	var reportData3;
+	
+			
+	function sendJSON(){
+		reportData1 = j$('#dataForReport1').html();
+		reportData2 = j$('#dataForReport2').html();
+		reportData3 = j$('#dataForReport3').html();
+		//reportData1 = jQuery.parseJSON(j$("#dataForReport1").html());	 
+		//reportData1 = eval('(' + j$('#dataForReport1').html() + ')');
+		//alert(reportData1);	   
+		drawVisualization1(reportData1);
+		j$('#wizard').hide();
+		j$('.wizard_main').show();
+		j$('.report_1').show();
+		
+		// ie8 sometimes loses event handlers with rerenders
+		if (j$.browser.msie && j$.browser.version == "8.0") {
+			j$('.reports_wrapper .dateInput input').focus(function(e) { DatePicker.pickDate(true, j$(this).attr('id'), false); });
+
+			var regenbtn = j$('[id$=report3StandardRegen]');
+			var regenoc = regenbtn.attr('onclick');
+			var fn = "(function(){" + regenoc + "})()";
+			j$('.reports_wrapper').delegate('[id$=report3StandardRegen]', 'click', function(e) {
+				eval(fn);
+			});		 
+
+			regenbtn = j$('[id$=report3StudentRegen]');
+			regenoc = regenbtn.attr('onclick');
+			fn = "(function(){" + regenoc + "})()";
+			j$('.reports_wrapper').delegate('[id$=report3StudentRegen]', 'click', function(e) {
+				eval(fn);
+			});		 
+
+		}	   
+	}
+									
+	google.load("visualization", "1.1", {packages:["controls"]});					   
+										
+//-----------------Draw Chart 1----------------------------------
+		
+	function drawVisualization1(jsonParam) {
+		// Create and populate the data table.
+		//var JSONObject = jsonParam;
+		//alert(jsonParam);
+		var data = new google.visualization.DataTable(jsonParam);
+		//alert(data);
+															  
+		var categoryPicker = new google.visualization.ControlWrapper({
+		  controlType: 'CategoryFilter',
+		  containerId: 'control',
+		  options: {
+			filterColumnLabel: 'Standard',
+			ui: {
+			  labelSeparator:' :::',
+			  caption : 'All Selected', 
+			  allowTyping: false,
+			  allowMultiple: true,
+			  selectedValuesLayout: 'belowStacked'
+			}
+		  },
+		  state: {selectedValues: []}
+		});
+				
+		var columnChart = new google.visualization.ChartWrapper({
+			chartType: 'ColumnChart',
+			containerId: 'placeChart',
+			options: {
+				width: 940,
+				height: 600,
+				vAxis: {gridlines:{color: '#999', count: 11}, 
+						title:'Percentage of Students Exhibiting Mastery', 
+						titleTextStyle:{color: '#999', fontSize: 15}
+						},
+				hAxis: {title:'Standard', 
+						titleTextStyle:{color: '#999', fontSize: 15}
+						},
+				colors: ['#49E97F','#FF6B50','#4CBBE0'],
+				legend: {position: 'right', textStyle: {color: '#222'}},
+				title: "Percentage Mastery by Standard",
+				titleTextStyle: {fontSize:20, fontWeight:'normal'},
+				chartArea: {left:100,top:70,width:"70%",height:"70%"},
+				isStacked : true
+			}
+		}); 
+		var dashboard1 = new google.visualization.Dashboard(document.getElementById('chartsHere')).
+		bind(categoryPicker, columnChart).
+		draw(data,{allowHtml: true});
+		
+		j$('.printBtn').show();
+		
+
+				
+		//Get selected area from column chart 
+		google.visualization.events.addListener(columnChart, 'select', function() {
+		var selectedItem = columnChart.getChart().getSelection()[0];
+				
+		if (selectedItem && selectedItem.row != undefined && selectedItem.column != undefined) {
+			var value = data.getValue(selectedItem.row, selectedItem.column);		 
+		  //alert('The user selected ' + value);
+		  standardPickRow = selectedItem.row;
+		  standardPickCol = selectedItem.column;
+		  //alert(standardPickCol);
+		  
+		  standardPickName= data.getValue(selectedItem.row, 0);
+		  redrawStan = [];
+		  //alert(standardPickName);
+
+			drawVisualization2(reportData2);
+			setStandardFilter(reportData1);
+			showReport('chartsHere2','report_2');
+			j$('.report_2').show();			 
+		}		
+			
+		});
+			
+	}
+	
+	
+	//Set Standard Filter
+	function setStandardFilter(jsonParam) {
+		var data = new google.visualization.DataTable(jsonParam);
+							
+		var standardFilter = new google.visualization.ControlWrapper({
+				  controlType: 'CategoryFilter',
+				  containerId: 'controlStan',
+				  options: {
+					filterColumnLabel: 'Standard',
+					ui: {
+						  label: 'Standards',
+						  caption : 'Select Standards',
+						  allowTyping: false,
+						  allowMultiple: true,
+						  selectedValuesLayout: 'aside'
+						}
+				  },
+					state: {selectedValues: [standardPickName]}										 
+		});
+		
+		var table = new google.visualization.ChartWrapper({
+			chartType: 'Table',
+			containerId: 'stan_div'
+		});
+
+		var dashStan = new google.visualization.Dashboard(document.getElementById('stanFilter')).
+		bind(standardFilter, table).draw(data,{allowHtml: true});
+		
+		google.visualization.events.addListener(standardFilter, 'statechange', function () {
+		
+			standardState = standardFilter.getState();
+			//alert(standardState.selectedValues);
+			redrawStan = standardState.selectedValues;
+			//alert(redrawStan);			
+			drawVisualization2(reportData2);			
+		});					 
+	}   
+
+					
+//--------------------Draw Chart 2------------------------------	
+	
+	function drawVisualization2(jsonParam) {
+		var data2 = new google.visualization.DataTable(jsonParam);
+		var masterySelection;
+			if(standardPickCol == 5){
+				masterySelection = 'Not Mastered';
+			}
+			else if(standardPickCol == 7){
+				masterySelection = 'Not Assessed';
+			}
+			else if(standardPickCol == 3){
+				masterySelection = 'Mastered';
+			}
+		//alert(masterySelection);
+			var passedView = {columns: []};
+				passedView.columns.push(0);
+						
+			var passedState = {selectedValues: []};
+			for (var i=0; i<data2.getNumberOfColumns(); i++) {
+				if (data2.getColumnLabel(i) == 'Mastery'){
+					for (var j=0; j<data2.getNumberOfRows(); j++) {
+						if(data2.getValue(j,i) == masterySelection 
+							&& (data2.getColumnLabel(i - 2) == standardPickName || j$.inArray(data2.getColumnLabel(i - 2), redrawStan) >= 0)
+							&& j$.inArray(data2.getValue(j,0), passedState.selectedValues) < 0 ){
+							passedState.selectedValues.push(data2.getValue(j,0));
+						}					   
+					}   
+				}
+
+				if (data2.getColumnLabel(i) == standardPickName){							   
+					passedView.columns.push(i);				 
+					passedView.columns.push(i+1);				 
+				}   
+				for(var j=0; j<redrawStan.length; j++){
+					if((redrawStan[j] == data2.getColumnLabel(i)) && (redrawStan[j] != standardPickName)){
+						passedView.columns.push(i);
+						passedView.columns.push(i+1);
+						//alert(redrawStan[j]);
+					}
+				}												  
+			}
+			
+			passedState.selectedValues.sort(function(a,b) {
+			  var aln = (a.split(" "))[1].toLowerCase();
+			  var bln = (b.split(" "))[1].toLowerCase();
+			  return aln < bln ? -1 : aln > bln ? 1 : 0;  
+			});
+			window.advreport2 = {};
+			window.advreport2.passedState = passedState;
+
+				
+		// Create and draw the visualization.		   
+		var studentFilter = new google.visualization.ControlWrapper({
+				  controlType: 'CategoryFilter',
+				  containerId: 'control2',
+				  options: {
+					filterColumnIndex: 0,
+					ui: {
+						  label: 'Students',
+						  caption : 'Select Students',
+						  allowTyping: false,
+						  allowMultiple: true,
+						  selectedValuesLayout: 'aside'
+						}
+				  },
+					state: passedState
+		});
+		
+		google.visualization.events.addListener(studentFilter, 'ready', function() {
+			j$('#control2').append('<br/><input type="button" id="addAllStudents" class="btn grey_btn"  value="Add All" />');
+			j$('#addAllStudents').click(function(e) {
+				e.preventDefault();
+				var sv = studentFilter.getState().selectedValues;
+			  
+				for (var i=0; i<data2.getNumberOfRows(); i++) {
+					var val = data2.getValue(i,0);
+					if (j$.inArray(val, sv) < 0) {
+						sv.push(val);
+					}
+				}
+								
+								
+		   
+				studentFilter.draw();
+			});
+		});
+		
+				
+		
+														
+		var barChart = new google.visualization.ChartWrapper({
+			chartType: 'BarChart',
+			containerId: 'placeChart2',
+			options: {
+				width: 940,
+				height: 700,
+				vAxis: {title: "Student", 
+						titleTextStyle: {color: '#999', fontSize: 15},
+						gridlines:{color: '#999', count: 6}
+						},				  
+				hAxis: {title: "Standard Grade",
+						gridlines: {color: '#999'}, 
+						titleTextStyle: {color: '#999', fontSize: 15},
+						maxValue: 4,
+						viewWindow: {min: 0, max:4}
+						},
+				title: "Standard Performance by Student",
+				titleTextStyle: {fontSize:20},
+				chartArea: {left:200,top:70,width:"60%",height:"80%"}	   
+			//colors: ['#4CBBE0','#197392','#FFAA50']
+			},
+			state: passedState,
+			view: passedView
+		});
+
+							
+		var dashboard2 = new google.visualization.Dashboard(document.getElementById('chartsHere2'))
+		.bind(studentFilter, barChart).draw(data2,{allowHtml: true});
+			  
+		google.visualization.events.addListener(barChart, 'select', function () {   
+		
+
+					var selectedItem = barChart.getChart().getSelection()[0];
+				
+					if (selectedItem) {
+				  var studentPickRow = selectedItem.row;
+								  selectedStudentName = barChart.getDataTable().getValue(studentPickRow,0);
+				}
+				
+			redrawVisualization3();
+			modifyThirdReportHelpText();
+		});				 
+	   
+	}
+ 
+ 
+ 
+	
+	
+//-------------------Draw Chart3---------------------------------
+	
+
+//-----------Re-draw chart 3 with new timeframe--------------------------
+	function redrawVisualization3(){
+		var currentData = parseVis3Data(j$('#dataForReport3').html());
+		showReport('chartsHere3','report_3');
+		j$('.report_3').show();
+		
+		if (currentData != null) {
+			drawVisualization3(currentData);
+		}
+
+		checkIfVis3Empty(currentData);
+	}   
+
+	
+	function checkIfVis3Empty(currentData) {		
+		if (currentData == null) {
+			j$('#report3StandardChart').hide();
+			j$('#report3StandardNoData').show();
+		}
+		else {
+		   	j$('#report3StandardNoData').hide();		
+		}   
+	}
+
+	
+	function parseVis3Data(assignmentData) {
+		try {
+			var obj = j$.parseJSON(assignmentData);		
+			return obj;
+		}
+		catch (e) {
+		}
+		
+		return null;
+	}
+	
+	
+	function getVis3DatatableStandard(adata) {
+		var data = new google.visualization.DataTable();
+
+		data.addColumn('string', "ASSIGNMENT");
+		data.addColumn('string', "STANDARD");
+		
+		var numStudents = 0;
+		var studentPosMap = [];
+		for (var key in adata.students) {
+			numStudents++;  
+			var student = adata.students[key];			
+			data.addColumn('number', student.name);
+			data.addColumn({type:'string', role:'tooltip'});
+			
+			studentPosMap[key] = data.getNumberOfColumns() - 2;
+		}
+		
+		for (var key in adata.assignments) {
+			var assignment = adata.assignments[key];
+			
+			for (var key2 in adata.standards) {
+				var std = assignment.standards[key2];
+				if (std === undefined) continue;
+
+				var row = [];			
+				row.push(assignment.name);
+				row.push(adata.standards[key2].name);
+				
+				for (var i = 0; i < numStudents * 2; i += 2) {
+					row.push(null);
+					row.push(null);
+				}
+				
+				for (var i = 0; i < std.length; i++) {
+					var grade = std[i];
+					var pos = studentPosMap[grade.student_id];
+					row[pos] = grade.grade;
+					row[pos+1] = grade.tooltip.replace(/\\n/g, "\n");
+				}
+				
+				data.addRow(row);
+			}
+		}
+ 
+		return data;
+	}
+ 
+	
+	function buildVis3Standard(data, rawData) {
+		// First we need to set up a hidden proxy chart to allow filtering on 
+		// student names. This is because Controls filter rows on a particular 
+		// column, whereas we need to show/hide particular columns.
+		var columnsTable = new google.visualization.DataTable();
+		columnsTable.addColumn('number', 'colIndex');
+		columnsTable.addColumn('string', 'colLabel');
+		for (var i = 2; i < data.getNumberOfColumns(); i+=2) {
+			columnsTable.addRow([i, data.getColumnLabel(i)]);
+		}
+		
+		var columnFilter = new google.visualization.ControlWrapper({
+			controlType: 'CategoryFilter',
+			containerId: 'report3StandardColumnFilterControls',
+			options: {
+				filterColumnLabel: 'colLabel',
+				ui: {
+					label: 'Students',
+					caption : 'Select Students',
+					allowTyping: false,
+					allowMultiple: true,
+					selectedValuesLayout: 'aside'
+				}
+			},
+			state: {selectedValues: [selectedStudentName]}
+		});
+				
+		var columnFilterProxyChart = new google.visualization.ChartWrapper({
+			chartType: 'Table',
+			containerId: 'report3StandardColumnFilterProxyChart'
+		});
+
+		var filterByStudents = function() {
+			var state = columnFilter.getState();
+			var row;
+			var columnIndices = [0];
+			for (var i = 0; i < state.selectedValues.length; i++) {
+				row = columnsTable.getFilteredRows([{column: 1, value: state.selectedValues[i]}])[0];
+				if (typeof row != 'undefined') { 
+					columnIndices.push(columnsTable.getValue(row, 0));
+					columnIndices.push(columnsTable.getValue(row, 0) + 1);
+				}
+			}
+			
+			return columnIndices;
+		};
+
+		var columnFilterDashboard = new google.visualization.Dashboard(document.getElementById('report3StandardColumnFilter'))
+		.bind([columnFilter], [columnFilterProxyChart])
+
+
+		// Next, set up the real chart.
+		var chart = new google.visualization.ChartWrapper({
+			chartType: 'LineChart',
+			containerId: 'report3StandardChart',
+			dataTable: data,
+			options: {
+				width: 900,
+				height: 700,
+				allowHtml: true,
+			vAxis: {title: "Standard Score", 
+					titleTextStyle: {color: '#999', fontSize: 15},
+					minValue: 0
+					},
+			hAxis: {title: "Assignments",
+					titleTextStyle: {color: '#999', fontSize: 15}
+					},
+			/*title:"Performance on Standards Over Time: " + standardPickName,
+			titleTextStyle: {fontSize:20},*/
+			pointSize: 2,
+			chartArea: {left:100,top:80,width:"75%",height:"75%"}			
+			},
+			state: {selectedValues: [selectedStudentName]}
+		});
+		
+		var standardFilter = new google.visualization.ControlWrapper({
+			controlType: 'CategoryFilter',
+			containerId: 'report3StandardStandardFilterControls',
+			options: {
+				filterColumnIndex: 1,
+				ui: {
+					label: '',
+					caption : 'Select Standard',
+					allowTyping: false,
+					allowNone: false,
+					allowMultiple: false/*,
+					selectedValuesLayout: 'aside'*/
+				}
+			},
+			state: {selectedValues: [standardPickName]}
+		});
+
+
+		function updateTitle(std) {
+			var subtitle = "";
+			for (var id in rawData.standards) {
+				if (rawData.standards[id].name == std) {
+					subtitle = rawData.standards[id].description;
+					break;
+				}
+			}
+			
+			j$("#report3StandardTitle").html('<div class="report-title">Performance on Standards Over Time: '
+				 + std + '</div><div class="report-subtitle">' + subtitle + '</div>');
+		}
+		
+		updateTitle(standardPickName);
+		
+		google.visualization.events.addListener(standardFilter, 'statechange', function () {
+			var sv = standardFilter.getState().selectedValues;	 
+			updateTitle(sv[0]);   	
+		});
+		
+		var chartDashboard = new google.visualization.Dashboard(document.getElementById('report3Standard'))
+		.bind([standardFilter], [chart])
+
+
+		var redraw = function() {
+			chart.setView({columns: filterByStudents()});
+			chartDashboard.draw(data,{allowHtml:true});
+			columnFilterDashboard.draw(columnsTable,{allowHtml: true});
+		};	
+				
+		google.visualization.events.addListener(columnFilter, 'statechange', function () {
+			redraw();									   
+		});
+
+		redraw();
+	}
+
+
+	function getVis3DatatableStudent(adata) {
+		var data = new google.visualization.DataTable();
+
+		data.addColumn('string', "ASSIGNMENT");
+		data.addColumn('string', "STUDENT");
+		
+		var numStandards = 0;
+		var standardPosMap = [];
+		for (var key in adata.standards) {
+			numStandards++;  
+			var standard = adata.standards[key];			
+			data.addColumn('number', standard.name);
+			data.addColumn({type:'string', role:'tooltip'});
+			
+			standardPosMap[key] = data.getNumberOfColumns() - 2;
+		}
+
+		var numStudents = 0;
+		for (var key in adata.students) {
+			numStudents++;  
+		}
+				
+		for (var key in adata.assignments) {
+			var assignment = adata.assignments[key];
+			
+			for (var key2 in adata.students) {
+				var student = adata.students[key2];
+				
+				var row = [];
+				row.push(assignment.name);
+				row.push(student.name);
+								
+				for (var i = 0; i < numStandards * 2; i += 2) {
+					row.push(null);
+					row.push(null);
+				}
+				
+				for (var key3 in assignment.standards) {
+					var std = assignment.standards[key3];
+
+					for (var i = 0; i < std.length; i++) {
+						var grade = std[i];						
+						if (grade.student_id != key2) continue;
+						
+						var pos = standardPosMap[key3];
+						row[pos] = grade.grade;
+						row[pos+1] = grade.tooltip.replace(/\\n/g, "\n");
+					}
+				}
+				
+				
+				data.addRow(row);
+			}
+		}
+ 
+		return data;
+   	}
+	
+	
+	function buildVis3Student(data, rawData) {
+		// First we need to set up a hidden proxy chart to allow filtering on 
+		// student names. This is because Controls filter rows on a particular 
+		// column, whereas we need to show/hide particular columns.
+		var columnsTable = new google.visualization.DataTable();
+		columnsTable.addColumn('number', 'colIndex');
+		columnsTable.addColumn('string', 'colLabel');
+		for (var i = 2; i < data.getNumberOfColumns(); i+=2) {
+			columnsTable.addRow([i, data.getColumnLabel(i)]);
+		}
+		
+		var columnFilter = new google.visualization.ControlWrapper({
+			controlType: 'CategoryFilter',
+			containerId: 'report3StudentColumnFilterControls',
+			options: {
+				filterColumnLabel: 'colLabel',
+				ui: {
+					label: 'Standards',
+					caption : 'Select Standards',
+					allowTyping: false,
+					allowMultiple: true,
+					selectedValuesLayout: 'aside'
+				}
+			},
+			state: {selectedValues: [standardPickName]}
+		});
+				
+		var columnFilterProxyChart = new google.visualization.ChartWrapper({
+			chartType: 'Table',
+			containerId: 'report3StudentColumnFilterProxyChart'
+		});
+
+		var filterByStandards = function() {
+			var state = columnFilter.getState();
+			var row;
+			var columnIndices = [0];
+			for (var i = 0; i < state.selectedValues.length; i++) {
+				row = columnsTable.getFilteredRows([{column: 1, value: state.selectedValues[i]}])[0];
+				if (typeof row != 'undefined') { 
+					columnIndices.push(columnsTable.getValue(row, 0));
+					columnIndices.push(columnsTable.getValue(row, 0) + 1);
+				}
+			}
+			
+			return columnIndices;
+		};
+
+		var columnFilterDashboard = new google.visualization.Dashboard(document.getElementById('report3StudentColumnFilter'))
+		.bind([columnFilter], [columnFilterProxyChart])
+
+
+		// Next, set up the real chart.
+		var chart = new google.visualization.ChartWrapper({
+			chartType: 'LineChart',
+			containerId: 'report3StudentChart',
+			dataTable: data,
+			options: {
+				width: 900,
+				height: 700,
+				allowHtml: true,
+			vAxis: {title: "Standard Score", 
+					titleTextStyle: {color: '#999', fontSize: 15},
+					minValue: 0
+					},
+			hAxis: {title: "Assignments",
+					titleTextStyle: {color: '#999', fontSize: 15}
+					},
+			/*title:selectedStudentName,
+			titleTextStyle: {fontSize:20},*/
+			pointSize: 2,
+			chartArea: {left:100,top:80,width:"75%",height:"75%"}			   
+			},
+			state: {selectedValues: [standardPickName]}
+		});
+		
+		
+		var studentFilter = new google.visualization.ControlWrapper({
+			controlType: 'CategoryFilter',
+			containerId: 'report3StudentStudentFilterControls',
+			options: {
+				filterColumnIndex: 1,
+				ui: {
+					label: '',
+					caption : 'Select Student',
+					allowTyping: false,
+					allowNone: false,
+					allowMultiple: false/*,
+					selectedValuesLayout: 'aside'*/
+				}
+			},
+			state: {selectedValues: [selectedStudentName]}
+		});
+		
+
+		function updateTitle(std) {
+			var subtitle = "";
+			for (var id in rawData.students) {
+				if (rawData.students[id].name == std) {
+					subtitle = "(grade " + rawData.students[id].grade + ")";
+					break;
+				}
+			}
+
+			j$("#report3StudentTitle").html('<div class="report-title">' + std 
+				+ '</div><div class="report-subtitle">' + subtitle + '</div>');
+		}
+		
+		updateTitle(selectedStudentName);
+
+		google.visualization.events.addListener(studentFilter, 'statechange', function () {
+			var sv = studentFilter.getState().selectedValues;			
+			updateTitle(sv[0]);
+		});
+		
+	   
+		var chartDashboard = new google.visualization.Dashboard(document.getElementById('report3Student'))
+		.bind([studentFilter], [chart])
+
+
+		var redraw = function() {
+			chart.setView({columns: filterByStandards()});
+			chartDashboard.draw(data,{allowHtml:true});
+			columnFilterDashboard.draw(columnsTable,{allowHtml: true});
+		};	
+				
+		google.visualization.events.addListener(columnFilter, 'statechange', function () {
+			redraw();									   
+		});
+
+		redraw();	
+	}
+	
+	
+	function drawVisualization3 (adata) {
+		j$('#report3StandardChart').empty();
+
+ 		var dtStandard = getVis3DatatableStandard(adata);
+		buildVis3Standard(dtStandard, adata);
+		
+ 		var dtStudent = getVis3DatatableStudent(adata);
+		buildVis3Student(dtStudent, adata);
+	}
+	
+
+		//Print Page
+		function printPage(){
+		
+			if (j$('.report_1').hasClass('selected')){			  
+				currentChartType = 'ColumnChart';
+				currentChartData = reportData1;
+					
+			} else if (j$('.report_2').hasClass('selected')){
+				currentChartType = 'BarChart';
+				currentChartData = reportData2;
+				//currentChartState = passedState;
+				//currentChartView = passedView;
+			
+			} else if (j$('.report_3').hasClass('selected')){
+				currentChartType = 'LineChart';
+				currentChartData = j$('#dataForReport3').html();;
+				//currentChartState = passedState;		  
+			} 
+				//var url = '/apex/chartsPDF?Type='+currentChartType+'&Data='+currentChartData+'&State='+currentChartState+'&View='+currentChartView+'';
+				//DE3586
+				currentChartData = encodeURIComponent(currentChartData);
+				var url = '/apex/chartsPDF?currentChartType='+currentChartType+'&currentChartData='+currentChartData+'';										
+				var printWin = window.open(url,'','left=0,top=0,width=1125,height=840,toolbar=0,scrollbars=0,status  =0');
+				printWin.focus();
+			}
+				
+		//Data-Tables
+		function renderTables(styleClass){
+			j$('.'+styleClass).dataTable( {
+								"sScrollY": "300px",
+								"bAutoWidth": true,
+								"bPaginate": true,
+								"bJQueryUI": true,
+								"iDisplayLength" : 250
+								} );
+								
+		}				   
+					
+		//Show Element
+		function showElement(className){
+			j$("."+className).show();
+		}
+		
+		//Hide Element
+		function hideElement(className){
+			j$("."+className).hide();
+		}
+		
+		//Check All Button
+		function checkAll(cb,cbid)
+			{
+				var inputElem = document.getElementsByTagName("input");					 
+				for(var i=0; i<inputElem.length; i++)
+				{			 
+					 if(inputElem[i].id.indexOf(cbid)!=-1){										
+						inputElem[i].checked = cb.checked;
+					}
+				}
+			}
+						
+function CleanUpInput(inputname)
+{
+	if(inputname == 'Student')
+	{
+		if(deleteInProgress) {
+			j$('#selectedStudentTokens').tokenInput('clear');
+			j$('#selectedStudentsJsonString').empty();
+		}
+	}
+	else if (inputname == 'Standard')
+	{
+		if(deleteInProgress) {	
+			j$('#selectedStandardTokens').tokenInput('clear');
+			j$('#selectedStandardsJsonString').empty();
+		}
+	}
+	 deleteInProgress = false;
+	 unlockPage();
+}				   
+</script>
+
+	<div class="navHeader">
+		<nav>
+			<ul class="report_nav">
+				<li class="wizard_main" onclick="showReport('wizard','wizard_main');">Select Reporting Filters</li>
+				<li class="report_1" onclick="showReport('chartsHere','report_1');">Percentage Mastery by Standard</li>
+				<li class="report_2" onclick="showReport('chartsHere2','report_2');">Standard Performance by Student</li>
+				<!-- DE2411 updated width to include the full length text of the list item -->
+				<li class="report_3" onclick="showReport('chartsHere3','report_3'); modifyThirdReportHelpText();" style="width:240px">Performance on Standards Over Time</li>							   
+			</ul>
+		</nav>
+	</div>
+	
+	<a onclick="printPage(); return false;" class="printBtn">
+		<img src="{!$Resource.printer}" height="30" width="30px" alt="print" class="printStyle"/></a>
+	<div class="clear"></div>
+			
+	<!---- Students Modal----->
+	<div id="selectStudentsModal">
+		<apex:form id="selectStudentsPanel">
+			<div class="titleBar"><h2>Search Students</h2></div>
+						
+			<apex:dataTable styleClass="srchStu" value="{!wrappedStudents}" var="ws" title="Students" cellpadding="5px">
+				   <apex:column title="Select">				
+					   <apex:facet name="header"><apex:inputCheckbox styleClass="stuCheckAll" onclick="checkAll(this,'checkedstu')"/></apex:facet>
+					   <apex:inputCheckBox value="{!ws.selected}" id="checkedstu" />
+				   </apex:column>
+				   <apex:column title="Name">
+					   <apex:facet name="header">Select All</apex:facet>
+					   <apex:outputText value="{!ws.student.name}" />
+				   </apex:column>				
+			</apex:dataTable>
+		
+		<!-- <apex:commandButton value="Add Selected" action="{!selectStudents}"  styleClass="push_1" oncomplete="closeStudents();"
+						rerender="selectStudentsPanel, addedSelectStudentsPanel"/>-->
+						
+		<apex:actionFunction name="addingStudents" action="{!selectStudents}" oncomplete="tokenizeSelectedStudents();" rerender="selectStudentsPanel, addedSelectStudentsPanel" />  
+									
+		</apex:form>
+	</div>
+
+	<!-- Standards Modal -->
+	<div id="selectStandardsModal"> 
+		<apex:form id="selectStdsPanel">
+			<div class="titleBar"><h2>Search Standards</h2></div>
+			
+			<apex:dataTable styleClass="srchStan" value="{!wrappedStandards}" var="ws" title="Standards" cellpadding="5px">		 
+				   <apex:column title="Select">
+					   <apex:facet name="header"><apex:inputCheckbox styleClass="stanCheckAll" onclick="checkAll(this,'srStan')"/></apex:facet>
+					   <apex:inputCheckBox value="{!ws.selected}" id="srStan" />
+				   </apex:column>
+				   <apex:column title="Name">
+					   <apex:facet name="header">Standard</apex:facet>
+					   <apex:outputText value="{!ws.standard.name}" />
+				   </apex:column>
+				   <apex:column title="Description">
+					   <apex:facet name="header">Description</apex:facet>
+					   <apex:outputText value="{!ws.standard.Long_Text__c}" />
+				   </apex:column>						  
+			</apex:dataTable>
+	
+		<!-- <apex:commandButton value="Add Selected" action="{!selectStandards}" styleClass="push_1"
+							rerender="selectStdsPanel, addedSelectStdsPanel" oncomplete="renderTables('selectedStan');renderTables('srchStan');"/>-->
+
+		<apex:actionFunction name="addingStandards" action="{!selectStandards}" oncomplete="tokenizeSelectedStandards();" rerender="selectStdsPanel, addedSelectStdsPanel" />   
+
+		</apex:form>
+	</div>
+
+	<!-- div to show updating -->
+	<div id="updating" style="display: none;">
+		<span><apex:image url="/img/loading.gif"/>&nbsp; Loading, please wait...</span>
+	</div>
+
+<apex:form >
+	<apex:outputPanel id="messages">
+			<apex:pageMessages />
+	</apex:outputPanel>
+	<apex:actionFunction name="removeTokenStudents" action="{!removeSelectedStudents}" oncomplete="CleanUpInput('Student');" rerender="">	  
+		<apex:param id="removedStudents" name="removedStudents" value="" />  
+	</apex:actionFunction>
+	<apex:actionFunction name="removeTokenStandards" action="{!removeSelectedStandards}" oncomplete="CleanUpInput('Standard');" rerender="">	   
+		<apex:param id="removedStandards" name="removedStandards" value="" />  
+	</apex:actionFunction>	   
+<div class="container_12 alpha">
+ <div id="wizard" class="hideIt">
+   <!-- <img class="grid_1 toggleStudentDown"></img> -->
+   
+    <!-- DE2407 moved the help text above the Select Student Population -->
+	<div class="grid_12 instruct">
+	The advanced standards mastery reports allow users to view and drill into data around standard mastery.  First, select the student population you would like to report on.  As you drill into each of the three advanced reports, only the students selected at this point will be viewable on your reports.  You may search for students based on any of the basic, advanced, or advanced admin filters.  To view the advanced or advanced admin filters, click the arrow to the left of the filter name.  Clicking “Search Students” will return a list of students who match the selected filter criteria.  You must select the students you would like to report on.  Second, select the standards you would like to report on.  You may also choose the standard calculation type used for the standards grades if you would like to see mastery data for a calculation type other than your school’s default.  The calculation type will default to what your school has chosen if you leave Standard Calculation Type blank.
+	</div>	     
+   
+	<div class="grid_6"><h1>Select Student Population</h1></div>
+	<div class="populationFilters">	 
+		<!-- DE2406 updating help text below -->
+		<!-- 
+		<div class="grid_12 instruct">
+		The advanced standards mastery reports allow users to view and drill into data around standard mastery.  First, select the student population you would like to report on.  As you drill into each of the three advanced reports, only the students selected at this point will be viewable on your reports.  You may search for students based on any of the basic, advanced, or advanced admin filters.  To view the advanced or advanced admin filters, click the arrow to the left of the filter name.  Clicking “Search Students” will return a list of students who match the selected filter criteria.  You must select the students you would like to report on.  Second, select the standards you would like to report on.  You may also choose the standard calculation type used for the standards grades if you would like to see mastery data for a calculation type other than your school’s default.  The calculation type will default to what your school has chosen if you leave Standard Calculation Type blank.
+		</div>	  
+		-->
+	<div class="grid_12 withMargin">
+	
+	<div class="grid_half toggleBasicIcon downArrow"></div>
+	
+	<h2>Basic Filters</h2>
+	 <div class="clear"></div>
+	  <div class="basicFilt">
+
+		<apex:actionFunction name="changeSectionsJS" action="{!reRenderSections}" rerender="section, staff, messages" oncomplete="setMultis();"/>		 
+		<apex:outputPanel id="section">
+		<div class="grid_3">
+			<span class="helpButton" id="section-_help">
+				<label>Section</label>
+					<img src="/s.gif" alt="" class="helpOrb" />
+				<apex:selectList multiSelect="true" value="{!selectedSection}" styleClass="multi">
+					<apex:selectOptions value="{!availableSections}"/>
+				</apex:selectList>
+			</span>	 
+		</div>		  
+		</apex:outputPanel>
+		<div class="grid_3 push_1">
+			<span class="helpButton" id="grade-_help">
+				<label>Grade</label>
+					<img src="/s.gif" alt="" class="helpOrb" />
+				<apex:selectList multiSelect="true" value="{!selectedGrade}" styleClass="multi">
+					<apex:selectOptions value="{!availableGrades}"/>					
+				</apex:selectList>  
+			</span>
+		</div>
+	 </div> 
+	</div>
+		<!-------- End Basic ----------->
+		
+	<div class="grid_12 withMargin">
+		<div class="grid_half toggleAdvIcon rightArrow"></div>
+	
+	<h2>Advanced Filters</h2>   
+	 <div class="clear"></div>
+	 
+	   <div class="advFilt">
+		<div class="grid_3">
+			<span class="helpButton" id="race-_help">
+				<label>Race</label>
+					<img src="/s.gif" alt="" class="helpOrb" />
+				<apex:selectList multiSelect="true" value="{!dummyStudent.Race_Multi__c}" styleClass="multi">
+					<apex:selectOptions value="{!raceOptions}" />
+				</apex:selectList>
+			</span>
+		</div>
+		<div class= "grid_3 push_1">
+			<span class="helpButton" id="ethnicity-_help">
+				<label>Ethnicity</label>
+					<img src="/s.gif" alt="" class="helpOrb" />
+				<apex:inputField value="{!dummyStudent.Ethnicity__c}" styleClass="multi"/>
+			</span>
+		</div>
+		<div class= "grid_3 push_2 botMargin">							  
+			<span class="helpButton" id="gender-_help">
+				<label>Gender</label>
+					<img src="/s.gif" alt="" class="helpOrb" />
+				<apex:inputField value="{!dummyStudent.Gender__c}" styleClass="multi"/>
+			</span>
+		</div>  
+			<div class="clear"></div>
+		<div class="grid_3">
+			<span class="helpButton" id="ELL-_help">
+				<label>ELL</label>
+					<img src="/s.gif" alt="" class="helpOrb" />
+					<apex:selectList multiSelect="false" value="{!selectedELL}" styleClass="multiOne">
+						<apex:selectOption itemValue="none" itemLabel="--None--"/>
+						<apex:selectOption itemValue="true" itemLabel="true"/>
+						<apex:selectOption itemValue="false" itemLabel="false"/>
+					</apex:selectList>		  
+			</span>
+		</div>
+		<div class="grid_3 push_1">		 
+			<span class="helpButton" id="IEP-_help">
+				<label>IEP</label>
+					<img src="/s.gif" alt="" class="helpOrb" />
+					<apex:selectList multiSelect="false" value="{!selectedIEP}" styleClass="multiOne">
+						<apex:selectOption itemValue="none" itemLabel="--None--"/>  
+						<apex:selectOption itemValue="true" itemLabel="true"/>
+						<apex:selectOption itemValue="false" itemLabel="false"/>
+					</apex:selectList>
+			</span>
+		</div>
+		<div class="grid_3 push_2">		 
+			<span class="helpButton" id="title1Status-_help">
+				<label>Title 1 Status</label>
+					<img src="/s.gif" alt="" class="helpOrb" />
+				<apex:inputField value="{!dummyStudent.Title_1_Status__c}" styleClass="multi"/>
+			</span>		 
+		</div>
+	  </div>		
+	</div>
+	<!-------------- End Advanced --------------->
+				
+	<div class="grid_12 withMargin">
+		<div class="grid_half toggleAdvAdminIcon rightArrow"></div>
+		
+	<h2>Advanced Admin Filters</h2>	 
+	 <div class="clear"></div>
+
+	 <div class="advAdminFilt">
+		<div class="grid_3">
+			<span class="helpButton" id="school-_help">
+				<label>School</label>
+					<img src="/s.gif" alt="" class="helpOrb" />
+				<apex:selectList multiSelect="true" value="{!selectedSchool}" onchange="changeSectionsJS();" styleClass="multi">
+					<apex:selectOptions value="{!availableSchools}"/>
+				</apex:selectList>  
+			</span>
+		</div>
+		<apex:outputPanel id="staff">			 
+		<div class="grid_3 push_1">		 
+			<span class="helpButton" id="teacher-_help">
+				<label>Teacher</label>
+					<img src="/s.gif" alt="" class="helpOrb" />
+				<apex:selectList multiSelect="true" value="{!selectedTeacherIDs}" onchange="changeSectionsJS();" styleClass="multi">
+					<apex:selectOptions value="{!availableTeachers}"/>  
+				</apex:selectList>  
+			</span>
+		</div>
+		</apex:outputPanel>
+	  </div>
+	</div>  
+	<!------------- End Advanced Admin ------------>
+	<div class="clear"></div>
+	
+		
+		<div class="withMargin">
+		<apex:commandButton action="{!getStudents}" value="Search Students" styleClass="grey_btn" onclick="lockPage();" oncomplete="unlockPage(); openStudents();"
+							rerender="selectStudentsPanel" /> <span class="error-empty" id="student-empty-error">Please select Students</span> 
+		</div>				  
+
+	<apex:outPutPanel id="addedSelectStudentsPanel" styleClass="addedSelectStudentsPanel">
+	
+	  <div class="grid_12"><h2 class="toggleStu">Selected Student(s)</h2>
+		<div class="clear"></div>
+			<div class="stuFilt">
+			<div class="tokenRemoveLink">
+				<a onclick="lockPage(); deleteInProgress = true; removeTokenStudents(j$('#selectedStudentTokens').val());">
+					<img src="/img/func_icons/remove12_on.gif"/>Remove All</a>		  
+			</div>
+			<input type="text" id="selectedStudentTokens"></input>
+			<div id="selectedStudentsJsonString" style="display: none;">{!selectedStudentsJsonString}</div>
+			<!-- <apex:dataTable styleClass="grid_8 dTable selectedStu border_wrapper"  value="{!selectedStudents}" var="ss" title="Students" cellpadding="5px">
+				   <apex:column title="Select">
+					   <apex:facet name="header"><apex:inputCheckbox onclick="checkAll(this,'selStu')"/></apex:facet>
+					   <apex:inputCheckBox value="{!ss.selected}" id="selStu"/>
+				   </apex:column>
+				   <apex:column title="Name">
+					   <apex:facet name="header">Name</apex:facet>
+					   <apex:outputText value="{!ss.student.name}" />
+				   </apex:column>
+			</apex:dataTable>
+			<apex:commandButton action="{!removeStudents}" value="Remove Students" styleClass="grey_btn" onclick="lockPage();" oncomplete="unlockPage();"
+							rerender="selectStudentsPanel, addedSelectStudentsPanel" /> --> 
+			</div>					  
+	  </div>						
+	</apex:outPutPanel> 
+  </div><!-- END Student Population Toggle ----------------------------------------------------------->
+  <div class="clear"></div>
+  
+  <div class="grid_12 withBigMargin"><img class="divider" src="{!$Resource.divider}"/></div>
+	
+	<div class="grid_6 withMargin botMargin"><h1>Select Standards to View</h1></div>
+	 <div class="clear"></div>
+			 
+		<div class="grid_12">
+			<div class="grid_3 botMargin">
+			<span class="helpButton" id="identifier-_help">
+				<label>Identifier</label>
+					<img src="/s.gif" alt="" class="helpOrb" />
+				<apex:inputField value="{!dummyStandard.Identifier__c}"/>
+			</span>
+			</div>
+			<div class="grid_3 push_1">
+			<span class="helpButton" id="subject-_help">
+				<label>Subject</label>
+					<img src="/s.gif" alt="" class="helpOrb" />
+				<apex:inputText value="{!standardSubjectSearch}" /> 
+			</span>
+			</div>		  
+			<div class="grid_4 push_2">
+			<span class="helpButton" id="parentStrand-_help">
+				<label>Parent Standards</label>
+					<img src="/s.gif" alt="" class="helpOrb" />
+				<apex:inputText value="{!standardParentStandardSearch}"/>   
+			</span>
+			</div>
+		
+			<div class="clear"></div>
+			
+			<div class="grid_3">
+			<span class="helpButton" id="attributes-_help">
+				<label>Attributes</label>
+					<img src="/s.gif" alt="" class="helpOrb" />
+				<apex:inputField value="{!dummyStandard.Attribute__c}" styleClass="multi" />	
+			</span>
+			</div>			  
+			<div class="grid_3 push_1">		 
+				<span class="helpButton" id="cityWide-_help">
+					<label>Citywide Instructional Expectation</label>
+						<img src="/s.gif" alt="" class="helpOrb" />
+					<apex:selectList multiSelect="false" value="{!selectedCityWide}" styleClass="multiOne">
+						<apex:selectOption itemValue="none" itemLabel="--None--"/>  
+						<apex:selectOption itemValue="true" itemLabel="true"/>
+						<apex:selectOption itemValue="false" itemLabel="false"/>
+					</apex:selectList>
+				</span>
+			</div>		  
+			<div class="grid_3 push_2">		 
+				<span class="helpButton" id="calcType-_help">
+					<label>Standard Calculation Type</label>
+						<img src="/s.gif" alt="" class="helpOrb" />
+					<apex:selectList multiSelect="true" size="1" value="{!selectedCalcType}" styleClass="multiOne">
+						<apex:selectOptions value="{!calcType}"/>   
+					</apex:selectList>  
+				</span>
+			</div>					  
+		</div>			  
+	<div class="clear"></div>
+		
+	<div class="withBigMargin">													
+		  <apex:commandButton value="Search Standards" styleClass="grey_btn" rerender="selectStdsPanel" 
+						action="{!searchStandards}"  onclick="lockPage();" oncomplete="unlockPage(); openStandards(); "/>
+		   <span class="error-empty" id="standards-empty-error">Please select Standards</span>		   
+	</div>			
+	<div class="clear"></div>				
+	  <!------------ END Select Standards to View ------------------>
+					
+	<apex:outPutPanel id="addedSelectStdsPanel" styleClass="addedSelectStdsPanel">
+	
+	 <div class="grid_12"><h2 class="toggleStu">Selected Standards(s)</h2>
+		<div class="clear"></div>
+	
+			<div class="tokenRemoveLink">
+				<a onclick="lockPage(); deleteInProgress = true; removeTokenStandards(j$('#selectedStandardTokens').val());">
+					<img src="/img/func_icons/remove12_on.gif"/>Remove All</a>				  
+			</div>
+			<input type="text" id="selectedStandardTokens"></input>
+			<div id="selectedStandardsJsonString" style="display: none;">{!selectedStandardsJsonString}</div>   
+	
+		<!--<div class="report1Data hideit">{!bigStanString}</div>  
+		<div class="report2Data hideit">{!bigStudentString}</div>
+		<div class="report3Data hideit">{!bigAssString}</div>
+		
+				<apex:dataTable styleClass="grid_8 dTable selectedStan border_wrapper"  value="{!selectedStandards}" var="ss" title="Standards" cellpadding="5px">
+					   <apex:column title="Select">
+						   <apex:facet name="header"><apex:inputCheckbox onclick="checkAll(this,'checkedstan')"/></apex:facet>
+						   <apex:inputCheckBox value="{!ss.selected}" id="checkedstan"/>
+					   </apex:column>
+					   <apex:column title="Name">
+						   <apex:facet name="header">Name</apex:facet>
+						   <apex:outputText value="{!ss.standard.name}" />
+					   </apex:column>
+					   <apex:column title="Description">
+						   <apex:facet name="header">Description</apex:facet>
+						   <apex:outputText value="{!ss.standard.Long_Text__c}" />
+					   </apex:column>   
+				</apex:dataTable>
+				
+			<apex:commandButton action="{!removeStandards}" value="Remove Standards" styleClass="grey_btn" onclick="lockPage();" oncomplete="unlockPage();"
+							rerender="selectStdsPanel, addedSelectStdsPanel" />-->
+	</div>										  
+	</apex:outPutPanel>
+			
+	<div class="clear"></div>
+		
+	<div class="withMargin">
+	<apex:commandButton value="Generate Reports" action="{!generateReports2}" rerender="dataForReport1Holder, dataForReport2Holder, dataForReport3Holder, firstReport, secondReport, thirdReport, messages" 
+						styleClass="push_10 withMargin drk_blue_btn generateReportsBtn"
+						onclick="" oncomplete="unlockPage(); sendJSON(); showReport('chartsHere','report_1');" />
+	</div>						  
+
+  </div><!---- END Wizard ----->		
+</div><!------ END CONTAINER_12 ------------>
+
+	<div class="reports_wrapper">
+
+	 <apex:outputPanel id="firstReport">				
+		<div id="chartsHere" class="hideIt">
+		<!-- DE2408 updated help text -->
+			<div class="instruct">
+			The Percentage Mastery by Standard report is a stacked bar graph which shows the percentage of students who have mastered each standard, who have not mastered each standard, and who have not been assessed on each standard, for the population of students you selected. Clicking any segment of one of the stacked bars will drill into a new graph that shows each of the students who comprise that segment and their respective standards grades for the selected standard.  If you would like to update your filters, click on the gray “Select Reporting Filters” tab at the top of the screen (Note that you will need to press the “Generate Reports” button again after updating your filters).
+			</div>  
+		  <!--<span class="zdex"><h1>Percent Mastery by Standard</h1></span>-->			 
+			<div id="placeChart" ></div>
+			<div id="control" style="display:none;"></div>
+		</div>
+	 </apex:outPutPanel>	
+				
+	 <apex:outputPanel id="secondReport">
+		<div id="chartsHere2" class="hideIt">
+			<div class="instruct">
+			The Standard Performance by Student report shows each student from the population previously selected, who fall into the category clicked in the previous report (mastered, not mastered, or not assessed) for the selected standard, and their standard grade.  You may add students for the original population back into this report by selecting names from the drop down list below the graph.  You may also add additional standards from those originally selected by selecting available standards from the list below the graph.  By clicking on a single bar on the graph, you will drill into that student’s performance on that standard over all the assignments which have assessed it.
+			</div>		  
+		<!-- <span class="zdex"><h1>Standard Performance by Student</h1></span>-->													  
+			<div id="placeChart2"></div>
+				<div id="stanFilter">
+					<div id="controlStan" class="instructFilters">
+				</div>
+				<div id="stan_div" style="display:none;"></div>
+			</div>						  
+			<div id="control2" class="instructFilters"></div>		   
+		</div>
+	 </apex:outputPanel>
+		
+	 <apex:outputPanel id="thirdReport">
+		<div id="chartsHere3" class="hideIt">
+			<div class="instructThirdReport" id="thirdReportHelpText">
+			The Performance on Standards Over Time report shows two graphs.  
+			The graph on the left side of the screen displays student performance on a single standard over time.  
+			You may change standards by clicking the down arrow next to the standard name.  
+			You may also add additional students from those that were already selected by clicking the Select Students button below the graph and adding the desired student(s).  
+			The graph on the right side of the screen displays a single student's performance on multiple standards over time.  
+			You may change the student displayed in this graph by clicking the down arrow next to the student's name at the top of the graph.  
+			You may also add additional standards by clicking the Select Standards button below the graph.
+			</div>
+			<div class="chartContainer">
+				<div id="report3Standard">
+					<div id="report3StandardStandardFilterControls"></div>
+					<div id="report3StandardTitle"></div>
+					<div id="report3StandardChart"></div>
+					<div id="report3StandardNoData" class="hideIt error-empty">An invalid date range has been entered.</div>
+					<div id="report3StandardColumnFilter">
+						<div id="report3StandardColumnFilterControls" class="instructFilters"></div>
+						<div id="report3StandardColumnFilterProxyChart" style="display:none;"></div>
+					</div>		 
+				</div>
+				<div id="report3Student">
+					<div id="report3StudentStudentFilterControls"></div>
+					<div id="report3StudentTitle"></div>
+					<div id="report3StudentChart"></div>
+					<div id="report3StudentNoData" class="hideIt error-empty">An invalid date range has been entered.</div>
+					<div id="report3StudentColumnFilter">
+						<div id="report3StudentColumnFilterControls" class="instructFilters"></div>
+						<div id="report3StudentColumnFilterProxyChart" style="display:none;"></div>
+					</div>		 
+				</div>			
+			</div>
+			<div class="clear"></div>
+	   		<div class="instructFilters">
+		   		<span class="helpButton" id="startDate-_help">
+			   		<label style="margin-right:10px;">Start-Date:</label>	   
+			   		<apex:inputField value="{!startDate.Due_Date__c}" style="margin-right:5px;"/>
+		   		</span>
+		   		<span class="helpButton" id="endDate-_help">
+			   		<label style="margin:0 10px 0 50px;">End-Date:</label>		  
+			   		<apex:inputField value="{!endDate.Due_Date__c}" style="margin-right:5px;"/>
+		   		</span> 
+			   	<apex:commandButton id="report3StandardRegen" value="Re-Generate" action="{!generateReports2}" onclick="lockPage();" oncomplete="unlockPage(); redrawVisualization3();"
+				   	styleClass="drk_blue_btn" style="padding:7px !important; margin-left:40px" rerender="dataForReport3Holder, thirdReport" />									 
+	   		</div>			  
+		</div>
+	 </apex:outputPanel>
+	  
+	</div><!-- END reports wrapper -->	   
+
+<script type="text/javascript">
+
+	//Set help Texts
+	sfdcPage.setHelp('section','Select the Section(s) for which you wish to report on.');
+	sfdcPage.setHelp('grade','Select the grade level that you wish to report on.');
+	sfdcPage.setHelp('race','Select the race that you would like to use to search for students.');
+	sfdcPage.setHelp('ethnicity','Select the ethnicity you would like to use to search for students');
+	sfdcPage.setHelp('gender','Select the gender you would like to use to search for students');
+	sfdcPage.setHelp('ELL','Select "True" if you would like to search for students that are English Language Learners.  Select "False" if you would like to search for students that are not English Language Learners.  Select "None" if you would like to search for students that are both.');
+	sfdcPage.setHelp('IEP','Select "True" if you would like to search for students that have an Individual Education Plan.  Select "False" if you would like to search for students that do not have an Individualized Education Plan.  Select "None" if you would like to search for students that have both.');
+	sfdcPage.setHelp('title1Status','Select the Title 1 Status you would like to use to search students');
+	sfdcPage.setHelp('school','Select the school for which you wish to report on.');
+	sfdcPage.setHelp('teacher','Select the teacher(s) for which you wish to report on.');
+	sfdcPage.setHelp('identifier','Enter the Standard Identifier to search by Identifier.  Adding an * is a wildcard search and can broaden your results.');
+	sfdcPage.setHelp('parentStrand','Enter the Parent Standard to search by Parent Standard. Adding an * is a wildcard search and can broaden your results.');
+	sfdcPage.setHelp('subject','Enter the Strand Subject to search by Subject. Adding an * is a wildcard search and can broaden your results.');
+	sfdcPage.setHelp('calcType','Select the Standard Calculation type you would like to use to determine a student’s standard score across multiple assignment standard grades.');
+	sfdcPage.setHelp('attributes','Select the Attribute you would like to use to filter Standards on, to broaden your results.');
+	sfdcPage.setHelp('cityWide','Select either if you want to filter Standards on if they are CW Instructional (True) or not (False), to broaden your results.');
+		
+		//Modal Window Functionality			
+		function openDialog(element, w, h) {
+			j$(element).dialog({
+				draggable: true,
+				resizable: false,
+				modal: true,
+				width: w,
+				height: h,
+				closeOnEscape: false,
+				close: function(event, ui) {
+					j$(element).dialog('destroy');
+				}
+			});
+		}
+						
+		function closeDialog(element) {
+			j$(element).dialog('destroy');
+		}
+
+		function openUpdatingDialog() {
+			openDialog(j$('#updating'), 230, 85);
+		}
+		
+		function closeUpdatingDialog() {
+			closeDialog(j$('#updating'));
+		}
+		
+		function lockPage() {
+			openUpdatingDialog();
+		}
+		
+		function unlockPage() {
+			closeUpdatingDialog();
+		}
+		
+		// open Search Students Modal
+		function openStudents(){
+			j$('input.stuCheckAll').attr('checked', false);
+			j$('#selectStudentsModal').dialog("open");	  
+		}
+		
+		// open Search Standards Modal
+		function openStandards(){
+			j$('input.stanCheckAll').attr('checked', false);
+			j$('#selectStandardsModal').dialog("open");	 
+		}	   
+				
+		// Search Students Dialog
+		j$('#selectStudentsModal').dialog({
+			autoOpen: false,
+			width: 400,
+			height: 400,
+			modal: true,
+			draggable: false,
+			buttons: {
+				"Add Selected": function() {
+					addingStudents();
+					j$('input.stuCheckAll').attr('checked', false);
+					//closeDialog(j$('#selectStudentsModal'));
+					j$(this).dialog("close");			   
+				} 
+			}
+		});
+		
+		// Search Students Dialog
+		j$('#selectStandardsModal').dialog({
+			autoOpen: false,
+			width: 600,
+			height: 400,
+			modal: true,
+			draggable: false,
+			buttons: {
+				"Add Selected": function() {
+					addingStandards();
+					j$('input.stanCheckAll').attr('checked', false);
+					j$(this).dialog("close");				   
+				} 
+			}
+		});	 
+			
+			
+		j$('.generateReportsBtn').click(function(e) {
+			var students = j$.parseJSON(j$('#selectedStudentsJsonString').html());
+			var standards = j$.parseJSON(j$('#selectedStandardsJsonString').html());
+
+			if ((students == null || students.length == 0) || (standards == null || standards.length == 0)) {
+				
+								if(students == null || students.length == 0){
+									j$("#student-empty-error").show();
+								}
+								else {
+									j$("#student-empty-error").hide();
+								}
+								
+								if(standards == null || standards.length == 0) {
+									j$("#standards-empty-error").show();
+								}
+								else {
+									j$("#standards-empty-error").hide();
+								}
+								
+				e.preventDefault();
+				e.stopPropagation();
+			}
+			else {
+				j$(".error-empty").hide();// HIDE ERRORS
+				setNavDefault(); 
+				lockPage();
+			}
+			
+		});
+</script>
+<apex:outputPanel id="dataForReport1Holder"><div id="dataForReport1" style="display:none;">{!jSonString1}</div></apex:outputPanel>
+<apex:outputPanel id="dataForReport2Holder"><div id="dataForReport2" style="display:none;">{!jSonString2}</div></apex:outputPanel>
+<apex:outputPanel id="dataForReport3Holder"><div id="dataForReport3" style="display:none;">{!assignmentDataString}</div></apex:outputPanel>
+</apex:form>
+</apex:page>

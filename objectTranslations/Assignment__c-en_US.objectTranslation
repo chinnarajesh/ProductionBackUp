@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Assignment</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Assignments</value>
+    </caseValues>
+    <fields>
+        <label><!-- Assessment Type --></label>
+        <name>Assessment_Type__c</name>
+        <relationshipLabel><!-- Assignments (Assessment Type) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Long Description --></label>
+        <name>Assignment_Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Assignment Library --></label>
+        <name>Assignment_Library__c</name>
+        <relationshipLabel><!-- Assignments --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Color --></label>
+        <name>Color__c</name>
+        <picklistValues>
+            <masterLabel>blue</masterLabel>
+            <translation><!-- blue --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>brown</masterLabel>
+            <translation><!-- brown --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>green</masterLabel>
+            <translation><!-- green --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>orange</masterLabel>
+            <translation><!-- orange --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>pink</masterLabel>
+            <translation><!-- pink --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>tan</masterLabel>
+            <translation><!-- tan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>white</masterLabel>
+            <translation><!-- white --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Curriculum --></label>
+        <name>Curriculum__c</name>
+        <picklistValues>
+            <masterLabel>Please Setup</masterLabel>
+            <translation><!-- Please Setup --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Values Needed</masterLabel>
+            <translation><!-- Values Needed --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Description --></label>
+        <name>Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Display Code --></label>
+        <name>Display_Code__c</name>
+    </fields>
+    <fields>
+        <help><!-- When is Assignment due to be completed? --></help>
+        <label><!-- Due Date --></label>
+        <name>Due_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Due Date for Gradebook --></label>
+        <name>Due_Date_for_Gradebook__c</name>
+    </fields>
+    <fields>
+        <label><!-- External Id --></label>
+        <name>External_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Include in Final Grade --></label>
+        <name>Include_in_Final_Grade__c</name>
+    </fields>
+    <fields>
+        <label><!-- Instructional Approach --></label>
+        <name>Instructional_Approach__c</name>
+        <picklistValues>
+            <masterLabel>Please Setup</masterLabel>
+            <translation><!-- Please Setup --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Values Needed</masterLabel>
+            <translation><!-- Values Needed --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Local Assignment Type --></label>
+        <name>Local_Assignment_Type__c</name>
+    </fields>
+    <fields>
+        <help><!-- The Media Name will display in the Student/Parent Portal.  The name will appear under &quot;Now Playing&quot; in the Media Center, found in Current Assignments. The Media Name will also display on the Assignment page in SchoolForce. --></help>
+        <label><!-- Media Name --></label>
+        <name>Media_Name__c</name>
+    </fields>
+    <fields>
+        <help><!-- Please select a link to a video for the Media Source. This video will display, and play, in the Media Center in the Student/Parent Portal under Current Assignments. From YouTube, please select the embed link. For other videos, please select the URL. --></help>
+        <label><!-- Media Source --></label>
+        <name>Media_Source__c</name>
+    </fields>
+    <fields>
+        <label><!-- Name in Gradebook --></label>
+        <name>Name_in_Gradebook__c</name>
+    </fields>
+    <fields>
+        <label><!-- Objective/Skill --></label>
+        <name>Objective_Skill__c</name>
+    </fields>
+    <fields>
+        <label><!-- Grading Scale --></label>
+        <lookupFilter>
+            <errorMessage><!-- Selected value must be a grade scale. --></errorMessage>
+        </lookupFilter>
+        <name>Picklist_Value__c</name>
+        <relationshipLabel><!-- Assignments --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Possible Points --></label>
+        <name>Possible_Points__c</name>
+    </fields>
+    <fields>
+        <label><!-- Related Outside Source --></label>
+        <name>Related_Outside_Source__c</name>
+    </fields>
+    <fields>
+        <label><!-- Section --></label>
+        <name>Section__c</name>
+        <relationshipLabel><!-- Assignments --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Show in portal --></label>
+        <name>Show_in_portal__c</name>
+    </fields>
+    <fields>
+        <label><!-- Standard Scale --></label>
+        <name>Standard_Scale__c</name>
+        <relationshipLabel><!-- Assignments (Standard Scale) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Reporting Period --></label>
+        <name>Time__c</name>
+        <relationshipLabel><!-- Assignments --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Unique Assignment --></label>
+        <name>Unique_Assignment__c</name>
+    </fields>
+    <fields>
+        <help><!-- Weighting to be applied for this assignment (default to be set by the Assignment Weighting defaults for this course --></help>
+        <label><!-- Weighting Value --></label>
+        <name>Weighting_Value__c</name>
+    </fields>
+    <layouts>
+        <layout>Assignment Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Standards --></label>
+            <section>Standards</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Assignment Layout - Admin</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Standards --></label>
+            <section>Standards</section>
+        </sections>
+    </layouts>
+    <startsWith>Vowel</startsWith>
+    <validationRules>
+        <errorMessage><!-- Assignment Name cannot be changed. --></errorMessage>
+        <name>Assignment_Name_cannot_be_changed</name>
+    </validationRules>
+    <webLinks>
+        <label><!-- Edit_Assignment_Standards --></label>
+        <name>Edit_Assignment_Standards</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Show_in_Gradebook --></label>
+        <name>Show_in_Gradebook</name>
+    </webLinks>
+</CustomObjectTranslation>

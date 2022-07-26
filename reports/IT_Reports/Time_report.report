@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Time_Element__c$Name</field>
+    </columns>
+    <columns>
+        <field>Time_Element__c.Time__r$Name_On_Report_Card__c</field>
+    </columns>
+    <columns>
+        <field>Time_Element__c.Time__r$Name__c</field>
+    </columns>
+    <columns>
+        <field>Time_Element__c.Time__r$Date_Start_Date__c</field>
+    </columns>
+    <columns>
+        <field>Time_Element__c.Time__r$End_Date__c</field>
+    </columns>
+    <description>Time by school - with reporting period start and end dates</description>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Time_Element__c$Name__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Time report</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Time_with_location__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>false</showGrandTotal>
+    <showSubTotals>false</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>Time_Element__c$CreatedDate</dateColumn>
+        <interval>INTERVAL_CURFY</interval>
+    </timeFrameFilter>
+</Report>

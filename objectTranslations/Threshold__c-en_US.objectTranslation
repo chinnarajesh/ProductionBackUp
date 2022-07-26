@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Threshold</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Thresholds</value>
+    </caseValues>
+    <fields>
+        <label><!-- Consecutive --></label>
+        <name>Consecutive__c</name>
+    </fields>
+    <fields>
+        <label><!-- Cumulative --></label>
+        <name>Cumulative__c</name>
+    </fields>
+    <fields>
+        <label><!-- External Id --></label>
+        <name>External_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Notification --></label>
+        <name>Notification__c</name>
+        <relationshipLabel><!-- Thresholds --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- In Minutes. --></help>
+        <label><!-- Time Lost --></label>
+        <name>Time_Lost__c</name>
+    </fields>
+    <layouts>
+        <layout>Threshold Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

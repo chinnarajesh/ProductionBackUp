@@ -1,0 +1,2 @@
+<apex:page controller="core_LoadCSVData_v2" showHeader="false" sidebar="false" cache="false" contentType="text/csv#{!selectedTemplateFieldSet}.csv">{!csvStringHeader}
+</apex:page>

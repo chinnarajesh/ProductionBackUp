@@ -1,0 +1,96 @@
+<apex:page controller="CT_SchoolSetup_ActivateData" sidebar="false" tabStyle="SchoolForce_Setup__tab" >
+<c:CT_setupWizardSharedComponents summerSchoolMode="{!schoolSetup.School__r.ParentId != null}"/>
+<apex:outputPanel id="scripts">
+<script>
+function checkBatch(){
+	var bool = "{!bProcessing}";
+	if(bool=="true"){
+		showProgressBar("{!batch.status}"+'... '+"{!batch.processed}"+' of '+"{!batch.totalItems}"+' batch jobs completed.');
+		continueJS();
+	}
+}
+
+function wait(){
+	window.setInterval("checkBatch()",5000);
+}
+
+j$(document).ready( function(){
+	resetTable();
+	if({!bDisable}){
+		j$('.red_btn').attr('disabled','disabled');
+	}
+});
+</script>
+</apex:outputPanel>
+<apex:form id="mainForm">
+<table style="width:100%">
+	<tr>
+		<td style="vertical-align:top; width:15%">
+			<c:CT_setupWizardSidebar setupId="{!schoolSetup.id}"/>
+		</td>
+		<td style="vertical-align:top; width:85%">
+			<div id="schoolforce-wrapper" class="wrapper">
+				<!-- Error -->
+				<apex:outputPanel id="error" styleClass="pageMessages">
+					<apex:pageMessages />
+				</apex:outputPanel>
+				<!-- Error -->
+				<h1 class="centerHeader">
+					<input type="button" onclick="prevJs();" class="grey_btn_arrow" value="Previous" />
+					<span style="display:inline-block">{!schoolSetup.School__r.Name} Core Setup<br/>Activate Data</span>
+					<input type="button" onclick="nextJs();" class="green_btn_arrow" value="Next" />
+				</h1>
+				<apex:outputPanel styleClass="adminSummary">
+					<br/>
+					<p>
+					In this step, SchoolForce sets the Active check box to "True" for the Section, Staff/Section, Student, and Student/Section records you published in the Core Setup. 
+					You only need to complete this process once for the school year. 
+					After the initial activation, you can continue to modify and republish the school's schedule for the current school year using the previous steps in the Core Setup.
+					</p>
+					<br/>
+				</apex:outputPanel>
+				<div class="content-wrapper no-border">
+					<h3>Activation</h3>
+					<div class="section_content no-border" >
+						<apex:outputPanel rendered="{!!schoolSetup.Data_Activated__c}">
+							<center>
+							<input type="button" class="red_btn" value="Activate Data" style="{!IF(schoolSetup.Data_Activated__c,'display:none;','')}" onclick="if(confirm('Are you sure you are ready to activate your data?  This cannot be undone.')){
+								showProgressBar('Activating data.  Please wait.  Do not refresh.');
+								processDataJs();
+							}" />
+							</center>
+						</apex:outputPanel>
+						<apex:outputPanel rendered="{!schoolSetup.Data_Activated__c}">
+							<apex:dataTable styleClass="noFilter" value="{!logs}" var="dll">
+								<apex:column headerValue="Type">
+									<apex:outputField value="{!dll.Type__c}" />
+								</apex:column>
+								<apex:column headerValue="Start Time">
+									<apex:outputField value="{!dll.Start_Time_Text__c}" />
+								</apex:column>
+								<apex:column headerValue="End Time">
+									<apex:outputField value="{!dll.End_Time_Text__c}" />
+								</apex:column>
+								<apex:column headerValue="Total Records">
+									<apex:outputField value="{!dll.Total_Records__c}" />
+								</apex:column>
+								<apex:column headerValue="Failed Records">
+									<apex:outputField value="{!dll.Failed_Records__c}" />
+								</apex:column>
+								<apex:column headerValue="Messages">
+									<apex:outputField value="{!dll.Messages__c}" />
+								</apex:column>
+							</apex:dataTable>
+						</apex:outputPanel>
+					</div>
+				</div>
+			</div>
+		</td>
+	</tr>
+</table>
+<apex:actionFunction name="processDataJs" action="{!processData}" oncomplete="wait();" rerender="error, scripts" />
+<apex:actionFunction name="continueJS" action="{!continueBatch}" rerender="error, scripts" />
+<apex:actionFunction name="nextJs" action="{!next}" />
+<apex:actionFunction name="prevJs" action="{!prev}" />
+</apex:form>
+</apex:page>

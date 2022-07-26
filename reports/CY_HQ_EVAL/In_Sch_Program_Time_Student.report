@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>Section__c.Student_Section__r.Intervention_Session_Results__r$Amount_of_Time__c</field>
+    </columns>
+    <columns>
+        <field>Section__c$Name</field>
+    </columns>
+    <columns>
+        <field>Section__c.Student_Section__r$Name</field>
+    </columns>
+    <description>This report shows total in school and ELT program time by students (inactive and active).
+
+Important Note:  Large site (i.e., Boston, Chicago, Los Angeles, Miami, New York, Philadelphia, and Washington DC) will have to run and filter the report by school.</description>
+    <format>Matrix</format>
+    <groupingsAcross>
+        <dateGranularity>Day</dateGranularity>
+        <field>Section__c$Indicator_Area__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsAcross>
+    <groupingsAcross>
+        <dateGranularity>Day</dateGranularity>
+        <field>Section__c$Program__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsAcross>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Section__c.Student_Section__r$School__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Section__c.Student_Section__r$Student__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>In Sch &amp; ELT Program Time (Student)</name>
+    <params>
+        <name>co</name>
+        <value>0</value>
+    </params>
+    <reportType>Sections_with_Student_Section_with_Intervention_Session_Results__c</reportType>
+    <scope>organization</scope>
+    <showDetails>false</showDetails>
+    <showGrandTotal>false</showGrandTotal>
+    <showSubTotals>false</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>Section__c.Student_Section__r.Intervention_Session_Results__r$Intervention_Session_Date__c</dateColumn>
+        <interval>INTERVAL_CURFY</interval>
+    </timeFrameFilter>
+</Report>

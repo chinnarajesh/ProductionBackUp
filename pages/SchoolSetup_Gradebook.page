@@ -1,0 +1,838 @@
+<apex:page showHeader="true" sidebar="false" controller="SchoolSetup_Gradebook" tabStyle="Schoolforce_Setup__tab">
+	<c:setupWizardSharedComponents summerSchoolMode="{!cSetup.setup.School__r.ParentId != null}"/>
+	<script>
+		var dataTable;
+		var dataTable2;
+		var wasSaved = false;
+		j$('.tabs').addClass('hidden'); //basically this prevents FOUC: http://www.learningjquery.com/2008/10/1-way-to-avoid-the-flash-of-unstyled-content
+		j$(document).ready(function(){
+			resetValueTables();
+			setupTabs();
+			disableKeyFields();
+
+			if('{!showCSV}'=='true'){
+				j$('.tabs').tabs( "select", 3);
+				openUploadModal();
+			}
+
+			j$(".confirmField").focus(function(){
+				if(j$(this).prop('type') == 'checkbox'){
+					j$(this).data("prev",this.checked);
+				} else {
+					j$(this).data("prev",this.value);
+				}
+  			});
+		});
+
+		function setupTabs(){
+			j$('.tabs').removeClass('hidden'); //show the tabs, so that the init causes the table columns to resize nicely.
+			j$(".tabs").tabs({
+				//select works kind of like onClick, what we really want is onComplete (table is visable)
+  				show: function( event, ui ){
+  					for(var i=0;i<dataTable.size();i++){
+  						j$(dataTable[i]).dataTable().fnAdjustColumnSizing();
+  					}
+  					for(var i=0;i<dataTable2.size();i++){
+  						j$(dataTable2[i]).dataTable().fnAdjustColumnSizing();
+  					}
+  				}
+			});
+		}
+
+		function disableKeyFields(){
+			if('{!lockKeyFields}'=='true'){
+				j$('.keyField').prop('disabled', true);
+			}
+		}
+
+		function resetValueTables(){
+			dataTable = j$(".tablesorter").dataTable( {
+				"sScrollY": "200px",
+				//"sScrollX": "100%",
+				"bAutoWidth": true,
+				"bPaginate": false,
+				"bDestroy": true,
+				"aaSorting": [[ 1, "asc" ]],
+				"bJQueryUI": true, 
+				"iDisplayLength": 1000
+			});
+			dataTable2 = j$(".noFilter").dataTable( {
+				"sScrollY": "200px",
+				//"sScrollX": "100%",
+				"bAutoWidth": true,
+				"bPaginate": false,
+				"bDestroy": true,
+				"bJQueryUI": true,
+				"bFilter": false,
+				"iDisplayLength": 1000
+			});
+		}
+
+		function openStandardEditModal(){
+			j$('#standardEdit').dialog({
+				modal: true,
+				minWidth: 800,
+				minheight: 300,
+				zIndex: 5,
+				open: function(event, ui) {
+					j$(this).parent().appendTo(j$("[id$='mainForm']"));
+				},
+				close: function(event, ui) {
+					j$(this).dialog('destroy');
+				},
+				buttons: {
+					"Save": function(){
+                   		saveStandardJS();
+                   		j$(this).dialog('close');
+					},
+					"Cancel": function(){
+						j$(this).dialog('close');
+					}
+	            }
+			});
+		}
+
+		function saveGradeScale(){
+			if(j$('.catSelect:checked').prop('id') != null){
+				if(confirm('Once you publish for the first time you will be unable to change this option. Are you sure this is the grade scale catalog you wish to use this year?')){
+					saveOptionsGSCJS(j$('.catSelect:checked').prop('id'));
+				}
+			} else {
+				alert('Please select a grade scale catalog.');
+			}
+		}
+
+		function opengscModal(){
+			j$('#gscEdit').dialog({
+				modal: true,
+				minWidth: 800,
+				minheight: 300,
+				zIndex: 5,
+				open: function(event, ui) {
+					j$(this).parent().appendTo(j$("[id$='mainForm']"));
+				},
+				close: function(event, ui) {
+					j$(this).dialog('destroy');
+				},
+				buttons: {
+					"Save": function(){
+                   		saveCatalogJS();
+                   		j$(this).dialog('close');
+					},
+					"Cancel": function(){
+						j$(this).dialog('close');
+					}
+	            }
+			});
+		}
+
+		function openscaleModal(){
+			wasSaved = false;
+			j$('#addScaleModal').dialog('close');
+			j$('#scaleEdit').dialog({
+				modal: true,
+				minWidth: 800,
+				minheight: 300,
+				zIndex: 5,
+				close: function(event, ui) {
+					j$(this).dialog('destroy');
+				},
+				beforeClose: function(event, ui){
+					if(!wasSaved)
+						cancelScaleEditJS();
+				},
+				buttons: {
+					"Save": function(){
+						showProgressBar('Saving');
+						wasSaved = true;
+                   		saveScaleJS();
+					},
+					"Cancel": function(){
+						//j$(this).parent().appendTo(j$("[id$='mainForm']"));
+						j$(this).dialog('close');
+					}
+				}
+			});
+			j$('#scaleEdit').parent().appendTo(j$("[id$='mainForm']"));
+			j$.fancybox.close(); //close the spinner from loading the scale
+		}
+
+		function checkForClose(selector){
+			if(j$('[id$="messages"] .confirmM3').size() > 0 || j$('[id$="messages"] table').size() == 0){
+				j$(selector).dialog("close");
+			}
+			j$.fancybox.close();
+		}
+
+		function openCalcModal(){
+			j$('#calcType').dialog({
+				modal: true,
+				minWidth: 800,
+				minheight: 300,
+				zIndex: 5,
+				close: function(event, ui) {
+					j$(this).dialog('destroy');
+				},
+				buttons: {
+					"Save": function(){
+						j$(this).parent().appendTo(j$("[id$='mainForm']"));
+                   		saveOptionsJS();
+					},
+					"Cancel": function(){
+						reloadCalcTypesJS();
+						j$(this).dialog('close');
+					}
+	            }
+			});
+		}
+
+		function openAssignModal(){
+			j$('#assignEdit').dialog({
+				modal: true,
+				minWidth: 800,
+				minheight: 300,
+				zIndex: 5,
+				close: function(event, ui) {
+					j$(this).dialog('destroy');
+				},
+				buttons: {
+					"Save": function(){
+						j$(this).parent().appendTo(j$("[id$='mainForm']"));
+                   		saveAssignmentTypeJS();
+					},
+					"Cancel": function(){
+						j$(this).dialog('close');
+					}
+	            }
+			});
+		}
+
+		function openUploadModal(){
+			j$('#uploadModal').dialog({
+				modal: true,
+				minWidth: 800,
+				minheight: 300,
+				zIndex: 5,
+				open: function(event, ui) {
+					j$(this).parent().appendTo(j$("[id$='mainForm']"));
+				},
+				close: function(event, ui) {
+					j$(this).dialog('destroy');
+				},
+				buttons: {
+					"Close": function(){
+						j$(this).dialog('close');
+						hideCSVJS();
+					}
+	            }
+			});
+			j$.fancybox.close(); //close the spinner from loading the scale
+		}
+
+		function confirmStandardGradeRecalculation(field){
+			j$('#confirmModal').dialog({
+				modal: true,
+				minWidth: 500,
+				minheight: 300,
+				zIndex: 5,
+				open: function(event, ui) {
+					j$('#batchPageLink').blur();
+				},
+				close: function(event, ui) {
+					j$(this).dialog('destroy');
+				},
+				buttons: {
+					"OK": function(){
+						if(j$(field).prop('type') == 'checkbox'){
+							j$(field).data("prev",this.checked);
+						} else {
+							j$(field).data("prev",this.value);
+						}
+						j$(this).dialog('close');
+						checkLDADisplay();
+					},
+					"Cancel": function(){
+						if(j$(field).prop('type') == 'checkbox'){
+							field.checked = j$(field).data("prev");
+						} else {
+							field.value = j$(field).data("prev");
+						}
+						field.value = j$(field).data("prev");
+						j$(this).dialog('close');
+						checkLDADisplay();
+						return false;
+					}
+	            }
+			});
+		}
+
+		function checkLDADisplay(){
+			var LDAField = j$("[id*='calculationTypes']").val();
+			if(LDAField=='Law of Decaying Average'){
+				j$('#LDA').show();
+			}else{
+				j$('#LDA').hide();
+			}
+		}
+
+		function showGSAdd(){
+			j$('#addScaleModal').dialog({
+				modal: true,
+				minWidth: 800,
+				minheight: 300,
+				zIndex: 5,
+				close: function(event, ui) {
+					j$(this).dialog('destroy');
+				},
+				buttons: {
+					"Add Selected Grade Scale(s)": function(){
+						j$(this).parent().appendTo(j$("[id$='mainForm']"));
+						showProgressBar('Adding Scales');
+						addScaleJS();
+					},
+					"Close": function(){
+						j$(this).dialog('close');
+					}
+	            }
+			});
+			for(var i=0;i<dataTable.size();i++){
+  				j$(dataTable[i]).dataTable().fnAdjustColumnSizing();
+  			}
+		}
+	</script>
+	<style type="text/css">
+		.hidden{
+			display:none;
+		}
+		.tabPanel{
+			border-radius: 9px!important;
+			border: 1px solid #ccc!important;
+			border-top: 3px solid #666!important;
+			margin-top:0;
+		}
+		.adminSummary h1{
+			font-size: 18px;
+			color: #1797BF;
+			font-weight: bold;
+			text-transform: uppercase;
+			margin-bottom: 15px;
+			text-align: center;
+		}
+		
+		.actionColumn a{
+			color: #0066CC;
+			text-decoration: none;
+		}
+		
+		.actionColumn a:hover{
+			color: #666666;
+			text-decoration: underline;
+		}
+
+		.tabs .section_content{
+			margin-bottom: 0px;
+		}
+		.black_btn {
+			margin-bottom: 0!important;
+		}
+		.removeLink {
+			background: url("{!URLFOR($Resource.resources_Master,'/custom/images/scheduler-gird-sprite.png')}") -30px 0px no-repeat;
+			display: inline-block;
+			width: 15px;
+			height: 15px;
+		}
+
+		.requiredBlock {
+			background-color: #c00;
+			position: absolute;
+			left: -4px;
+			width: 3px;
+			top: 1px;
+			bottom: 1px;
+		}
+
+		.redBar{
+			border-left: 3px #C00 solid;
+			padding-left: 3px;
+		}
+
+		#gradebookOptions td.labelCol {
+			width: 20%;
+		}
+	</style>
+
+	<apex:form id="mainForm">
+		<apex:actionRegion id="theRegion">
+			<!-- MAIN CONTENT -->
+			<div style="width:990px; margin:0 auto;">
+				<apex:outputPanel id="messages">
+					<apex:pageMessages />
+				</apex:outputPanel>
+				<div class="adminSummary">
+					<h1 class="centerHeader" style="display:block;">
+						<input type="button" onclick="prevJs();" class="grey_btn_arrow" value="School Setup Homepage" />
+						<span style="display:inline-block;">{!cSetup.school.name} Module Setup<br/>Gradebook</span>
+						<input type="button" class="green_btn_arrow" value="Next" style="visibility:hidden;"/>
+					</h1>
+				</div>
+				<apex:pageBlock >
+					<div style="margin: 0px 0px 10px 0px;">
+						Select which type of gradebook your school will use this year.  Please refer to SchoolForce Help for additional information and details on each type of Gradebook.
+					</div>
+					<div style="margin-bottom:15px;">
+						Select your gradebook type:
+						<apex:selectRadio value="{!schoolType}" disabled="{!stateTracker.Gradebook_Type_Finalized__c}">
+							<apex:selectOption itemValue="Traditional" itemLabel="Traditional"/>
+							<apex:selectOption itemValue="Hybrid" itemLabel="Hybrid"/>
+							<apex:selectOption itemValue="Standards Only" itemLabel="Standards Only"/>
+						</apex:selectRadio>
+					</div>
+
+					<apex:outputPanel rendered="{!NOT(stateTracker.Gradebook_Type_Finalized__c)}">
+						<input type="button" onclick="saveOptionsJS();" class="black_btn" value="Save Options" style="float:right;"/>
+						<input type="button" class="red_btn" value="Finalize Gradebook Type" onClick="if(confirm('Once you finalize your gradebook type, you will no longer be able to change your gradebook type for this year. Are you sure you want to continue?')) finalizeTypeJS();"/>
+					</apex:outputPanel>
+				</apex:pageBlock>
+				<apex:pageBlock rendered="{!stateTracker.Gradebook_Type_Finalized__c}">
+					<div style="margin: 0px 0px 10px 0px;">
+						Welcome to the Gradebook Setup Wizard! This wizard will take you through each step necessary in setting up your Gradebook. Please complete all required fields and then click "Finalize Gradebook." See SchoolForce Help for more information.
+					</div>
+					<div class="tabs" style="width:100%; padding: 0px; border:0;">
+						<div id="tabList">
+							<ul style="position:relative; overflow-y:hidden;" >
+								<li style="cursor:pointer; list-style-type:none; float:left;">
+									<a href="#gradebookOptions" style="cursor:pointer;text-decoration:none;margin:0px;">Gradebook Options</a>
+								</li>
+								<!-- <li style="cursor:pointer; list-style-type:none; float:left;{!IF(cSetup.setup.Standards_Based_Grading__c,'','display:none;')}">
+									<a href="#loadStandards" style="cursor:pointer;text-decoration:none;margin:0px;">Standard/Strand Setup</a>
+								</li> -->
+								<li style="cursor:pointer; list-style-type:none; float:left;">
+									<a href="#gradeScales" style="cursor:pointer;text-decoration:none;margin:0px;">Grade Scales</a>
+								</li>
+								<li style="cursor:pointer; list-style-type:none; float:left;">
+									<a href="#assignmentTypes" style="cursor:pointer;text-decoration:none;margin:0px;">Assignment Types</a>
+								</li>
+							</ul>
+						</div>
+
+						<!-- Gradebook Options -->
+						<div id="gradebookOptions" class="section_content tabPanel">
+							<div style="margin: 0px 0px 10px 0px;">
+								You must complete the required fields in order to finalize the Gradebook setup.
+							</div> 
+							<apex:pageBlockSection >
+								<apex:inputField value="{!cSetup.setup.Show_Attendance_Sections_in_Gradebook__c}"/>
+								<apex:inputField value="{!cSetup.setup.Calculate_Class_Rank__c}"/>
+								<apex:pageBlockSectionItem helpText="{!$ObjectType.Setup__c.Fields.Passing_Grade_Threshold__c.inlineHelpText}">
+									<apex:outputLabel value="Passing Grade Threshold" />
+            						<apex:outputPanel >
+                						<div class="requiredInput">
+                    						<div class="requiredBlock"></div>
+                    						<apex:inputField value="{!cSetup.setup.Passing_Grade_Threshold__c}" styleClass="keyField"/>
+                						</div>
+            						</apex:outputPanel>
+            					</apex:pageBlockSectionItem>
+								
+								<apex:pageBlockSectionItem helpText="{!$ObjectType.Setup__c.Fields.On_Track_Threshold__c.inlineHelpText}">
+									<apex:outputLabel value="On Track Threshold" />
+            						<apex:outputPanel >
+                						<div class="requiredInput">
+                    						<div class="requiredBlock"></div>
+                    						<apex:inputField value="{!cSetup.setup.On_Track_Threshold__c}"/>
+                						</div>
+            						</apex:outputPanel>
+            					</apex:pageBlockSectionItem>
+
+            					<apex:pageBlockSectionItem helpText="{!$ObjectType.Setup__c.Fields.Standard_Grade_Mastery_Threshold__c.inlineHelpText}" rendered="{!cSetup.setup.Standards_Based_Grading__c}">
+									<apex:outputLabel value="Standard Grade Mastery Threshold" />
+            						<apex:outputPanel >
+                						<div class="requiredInput">
+                    						<div class="requiredBlock"></div>
+                    						<apex:inputField value="{!cSetup.setup.Standard_Grade_Mastery_Threshold__c}" />
+                						</div>
+            						</apex:outputPanel>
+            					</apex:pageBlockSectionItem>
+
+            					<apex:pageBlockSectionItem helpText="{!$ObjectType.Setup__c.Fields.Strand_Grade_Mastery_Percentage__c.inlineHelpText}" rendered="{!cSetup.setup.Standards_Based_Grading__c}">
+									<apex:outputLabel value="Strand Grade Mastery Percentage" />
+            						<apex:outputPanel >
+                						<div class="requiredInput">
+                    						<div class="requiredBlock"></div>
+                    						<apex:inputField value="{!cSetup.setup.Strand_Grade_Mastery_Percentage__c}" />
+                						</div>
+            						</apex:outputPanel>
+            					</apex:pageBlockSectionItem>
+		
+								<apex:inputField value="{!cSetup.setup.GPA_By_Reporting_Period_Rolling__c}"/>
+								<!-- US3603 -->
+								<apex:inputField value="{!cSetup.setup.Rolling_Standard_Grade__c}" rendered="{!schoolType=='Standards Only' || schoolType == 'Hybrid'}" styleclass="confirmField" onchange="confirmStandardGradeRecalculation(this);" styleClass="keyField"/>
+							</apex:pageBlockSection>
+							<input type="button" onclick="saveOptionsJS();" class="black_btn" value="Save Options" style="float:right;"/>
+							<div class="clear_fix">&nbsp;</div>
+						</div>
+						<!-- Standard loading -->
+						<!-- <div id="loadStandards" class="section_content tabPanel">
+							<apex:outputPanel id="standardsPanel" >
+								<a style="cursor:pointer;" onClick="newStandardJS();"><img src="/img/feeds/follow12.png"/>Add New Standard</a>
+								<apex:dataTable value="{!standards}" var="s" styleClass="tablesorter">
+									<apex:column headerValue="Actions">
+										<a href="#" onClick="editStandardJS('{!s.id}');">Edit</a>&nbsp;|&nbsp;<a href="#" onClick="if(confirm('Are you sure you want to delete this standard?'))deleteStandardJS('{!s.id}');">Del</a>
+									</apex:column>
+									<apex:column headerValue="Name">
+										<a href="/{!s.Id}" target="_blank">{!s.Name}</a>
+									</apex:column>
+									<apex:column headerValue="Subject" value="{!s.Subject__c}"/>
+									<apex:column headerValue="Strand">
+										<a href="/{!s.Strand__c}" target="_blank">{!s.Strand__r.Name}</a>
+									</apex:column>
+								</apex:dataTable>
+							</apex:outputPanel>
+						</div> -->
+						<!-- Grade scales -->
+						<div id="gradeScales" class="section_content tabPanel">
+							<apex:outputPanel id="gradeScalePanel">
+								<apex:outputPanel rendered="{!displayCatalogSelection}">
+									<h3 class="redBar">Current Grade Scale Catalogs</h3>
+									<div style="margin: 0px 0px 10px 0px;">
+										Please select a Gradescale for your school. You <b>must</b> have a Gradescale to finalize the Gradebook setup and to complete the Core Setup.
+									</div>
+									<a style="cursor: pointer;" onClick="removeHighlight();newGSCatalogJS();">
+										<img src="/img/feeds/follow12.png"/>Add Catalog
+									</a>
+									<br />
+									<div class="section_content">
+										<apex:dataTable styleClass="noFilter" value="{!availableCatalogs}" var="citem">
+											<apex:column headerValue="Select">
+												<input id="{!citem.id}" type="radio" class="radio catSelect" onClick="toggleRadio(j$(this)); addHighlight(j$(this).parent(), '2');"/>
+											</apex:column>
+											<apex:column headerValue="Details Options">
+												<a href="#" onclick="addHighlight(j$(this).parent());viewCatalogJS('{!citem.id}');">View</a>
+                        						&nbsp;&nbsp;&nbsp;&nbsp;
+                        						<a href="#" onclick="addHighlight(j$(this).parent());editGSCatalogJS('{!citem.id}');">Edit</a>                        
+                        						&nbsp;&nbsp;&nbsp;&nbsp;
+                        						<a href="#" onclick="if(confirm('Are you sure you want to delete this grade scale catalog?')){addHighlight(j$(this).parent());removeCatalogDetailsJs('{!citem.id}');}">Remove</a>
+											</apex:column>
+											<apex:column headerValue="Catalog Name">
+												<apex:outputText value="{!citem.name}"/>
+											</apex:column>
+											<apex:column headerValue="Catalog Description">
+												<apex:outputField value="{!citem.Description__c}"/>
+											</apex:column>
+											<apex:column headerValue="Created">
+												<apex:outputField value="{!citem.CreatedDate}" />
+											</apex:column>
+											<apex:column headerValue="Last Modified">
+												<apex:outputField value="{!citem.LastModifiedDate}"/>
+											</apex:column>
+
+								</apex:dataTable>
+
+								<input type="button" class="black_btn" onclick="saveGradeScale();"
+									title="Save all changes made to the setup."
+									alt="Save all changes made to the setup."
+									value="SAVE ASSOCIATED CATALOG" />
+
+								<div class="clear_fix">&nbsp;</div>
+							</div>
+								</apex:outputPanel>
+								<!-- Catalog Panel -->
+								<apex:outputPanel rendered="{!NOT(displayCatalogSelection)}">
+			  						<input type="button" class="drk_blue_btn" onclick="editScaleJs('');" value="Show Default Normalizations" />
+			  						<apex:outputPanel rendered="{!cSetup.setup.Standards_Based_Grading__c}">
+										<input type="button" class="drk_blue_btn" value="Edit Standard Calculation Type"
+											onclick="if({!displayCalcTypeButton}){openCalcModal();} else {alert('There are no grade scales configured with the standard type and most likely your school setup is of not type standard based grading, please correct this!')}"/>
+									</apex:outputPanel>
+
+									<div class="clear_fix">&nbsp;</div>
+									<h3 class="redBar">Configured Grade Scales for Catalog: {!selectedCatalogWrapper.catalog.name}</h3>
+									&nbsp;&nbsp;
+									<a style="cursor: pointer;" onClick="newScaleJS();">
+										<img src="/img/feeds/follow12.png"/>Add New Scale</a>
+									<input type="button" onclick="openCSVLoader('Grade Scales','{!cSetup.setup.id}',{!isManaged});" class="black_btn" value="Load From CSV" />
+									<div class="clear_fix"/>
+									<div class="section_content">
+										<apex:dataTable value="{!selectedCatalogWrapper.catalogElementList}" var="s" styleClass="tablesorter catalogsTable">
+											<apex:column headerValue="Remove?" width="100px">
+												<apex:inputCheckBox styleclass="courseCb1" value="{!s.useRecord}" />
+											</apex:column>
+											<apex:column headerValue="Action">
+												<a href="#" onClick="showProgressBar('Loading Scale');editScaleJs('{!s.gscs.Picklist_Value__c}')">Edit</a>&nbsp;|
+              									<a href="#" onClick="cloneScaleJS('{!s.gscs.Picklist_Value__c}')">Clone</a>
+											</apex:column>
+											<apex:column headerValue="Grade Scale Name">
+												<apex:outputText value="{!s.Gscs.picklist_value__r.name}" />
+											</apex:column>
+											<apex:column headerValue="Category">
+												<apex:outputText value="{!s.gscs.picklist_Value__r.Category__c}"/>
+											</apex:column>
+										</apex:dataTable>
+										<input type="button" class="drk_blue_btn" onclick="removeHighlight();removeScaleJS();" value="Remove Grade Scale(s)" />
+										<input type="button" class="drk_blue_btn" onclick="showGSAdd();" value="See Available Grade Scales" style="margin:0!important;"/>
+										<div class="clear_fix">&nbsp;</div>
+									</div>
+									<input type="button" style="float: right;{!IF(cSetup.setup.Published__c,'display:none;','')}" class="black_btn" onclick="showGSCSelectJS();" value="Change Catalogs" />
+									<div class="clear_fix">&nbsp;</div>
+								</apex:outputPanel>
+							</apex:outputPanel>
+						</div>
+						<!-- assignment types -->
+						<div id="assignmentTypes" class="section_content tabPanel">
+							<apex:outputPanel id="assignmentTypePanel">
+								<h3 class="redBar">Assignment Types</h3>
+								<div style="margin: 0px 0px 10px 0px;">
+									Assignment Types are used in calculating students’ section grades. Once Assignment Types are loaded in for your school, you will be able to determine which Assignment types correspond to Courses in the Core Setup.
+								</div>
+								<a style="cursor: pointer;" onClick="newAssignmentTypeJS();">
+									<img src="/img/feeds/follow12.png"/>Add New Assignment Type
+								</a>
+								<input type="button" onclick="openCSVLoader('Assignment Types','{!cSetup.setup.id}',{!isManaged});" class="black_btn" value="Load From CSV"/>
+								<div class="clear_fix"/>
+								<div style="margin-top:5px;">
+									<apex:dataTable styleClass="tablesorter" title="Asssignment Types" value="{!assignmentTypes}" var="a">
+										<apex:column headerValue="Actions" width="50px">
+											<a href="#" onClick="editAssignmentTypeJS('{!a.id}');">Edit</a>&nbsp;|&nbsp;<a href="#" onClick="if(confirm('This will permantly delete this assignment type. Are you sure you want to continue?'))deleteAssignmentTypeJS('{!a.id}');">Del</a>
+										</apex:column>
+										<apex:column value="{!a.Name}" headerValue="Name"/>
+									</apex:dataTable>
+								</div>
+							</apex:outputPanel>
+						</div>
+					</div>
+				</apex:pageBlock>
+				<apex:outputPanel id="finalizePanel">
+					<apex:outputPanel rendered="{!NOT(stateTracker.Gradebook_Wizard_Completed__c) && stateTracker.Gradebook_Type_Finalized__c}">
+						<input type="button" class="red_btn" onclick="finalizeJS();" value="Finalize Gradebook Setup" />
+					</apex:outputPanel>
+				</apex:outputPanel>
+			</div>
+
+			<apex:actionFunction action="{!prev}" name="prevJs" />
+			<apex:actionFunction action="{!finalize}" name="finalizeJS" rerender="messages,finalizePanel"/>
+			<!-- Tab 1 - GB Setup Options -->
+			<apex:actionFunction action="{!saveOptions}" name="saveOptionsJS" rerender="messages" onComplete="j$('#calcType').dialog('close');"/>
+			<apex:actionFunction action="{!finalizeGradebookType}" name="finalizeTypeJS" rerender="messages, mainForm" onComplete="resetValueTables();setupTabs();"/>
+			
+			<!-- Tab 2 - Standard/Stand Config -->
+			<!-- 
+			<apex:actionFunction action="{!deleteStandard}" name="deleteStandardJS" rerender="messages, standardsPanel" onComplete="resetValueTables();">
+				<apex:param value="" name="valueToDelete" assignTo="{!selectedStandard}"/>
+			</apex:actionFunction>
+			<apex:actionFunction action="{!editStandard}" name="editStandardJS" rerender="messages, editModal" onComplete="resetValueTables();openStandardEditModal();">
+				<apex:param value="" name="valueToEdit" assignTo="{!selectedStandard}"/>
+			</apex:actionFunction>
+			<apex:actionFunction action="{!newStandard}" name="newStandardJS" rerender="messages, editModal" onComplete="resetValueTables();openStandardEditModal();"/>
+			<apex:actionFunction action="{!saveStandard}" name="saveStandardJS" rerender="messages, editModal, standardsPanel" onComplete="resetValueTables();"/> -->
+
+			<!-- Tab 3 - Grade Scale Catalog -->
+			<apex:actionFunction action="{!saveOptions}" name="saveOptionsGSCJS" rerender="messages, gradeScalePanel" onComplete="resetValueTables();">
+				<apex:param value="" name="value" assignTo="{!selectedRecord}"/>
+			</apex:actionFunction>
+			<apex:actionFunction action="{!viewCatalog}" name="viewCatalogJS" rerender="messages, gradeScalePanel, unusedScales" onComplete="resetValueTables();">
+				<apex:param value="" name="value" assignTo="{!selectedRecord}"/>
+			</apex:actionFunction>
+			<apex:actionFunction action="{!deleteGSCatalog}" name="removeCatalogDetailsJs" rerender="messages, gradeScalePanel" onComplete="resetValueTables();">
+				<apex:param value="" name="value" assignTo="{!selectedRecord}"/>
+			</apex:actionFunction>
+			<apex:actionFunction action="{!newGSCatalog}" name="newGSCatalogJS" rerender="messages, gscModal" onComplete="resetValueTables();opengscModal();"/>
+			<apex:actionFunction action="{!editGSCatalog}" name="editGSCatalogJS" rerender="messages, gscModal" onComplete="resetValueTables();opengscModal();">
+				<apex:param value="" name="value" assignTo="{!selectedRecord}"/>
+			</apex:actionFunction>
+			<apex:actionFunction action="{!saveCatalog}" name="saveCatalogJS" rerender="messages, gradeScalePanel" onComplete="resetValueTables();"/>
+			<apex:actionFunction action="{!showGSCSelect}" name="showGSCSelectJS" rerender="messages, gradeScalePanel" onComplete="resetValueTables();"/>
+			<apex:actionFunction action="{!editGradeScale}" name="editScaleJs" rerender="messages, scaleModal" onComplete="resetValueTables();openscaleModal();dataTable2.fnAdjustColumnSizing();">
+				<apex:param value="" name="value" assignTo="{!selectedRecord}"/>
+			</apex:actionFunction>
+			<apex:actionFunction action="{!cloneGradeScale}" name="cloneScaleJS" rerender="messages, scaleModal" onComplete="resetValueTables();openscaleModal();dataTable2.fnAdjustColumnSizing();">
+				<apex:param value="" name="value" assignTo="{!selectedRecord}"/>
+			</apex:actionFunction>
+			<apex:actionFunction action="{!newGradeScale}" name="newScaleJS" rerender="messages, scaleModal" onComplete="resetValueTables();openscaleModal();dataTable2.fnAdjustColumnSizing();"/>
+			<apex:actionFunction action="{!saveGradeScale}" name="saveScaleJS" rerender="messages, gradeScalePanel, scaleModal" onComplete="resetValueTables();checkForClose('#scaleEdit');"/>
+			<apex:actionFunction action="{!cancelScaleEdit}" name="cancelScaleEditJS" rerender="scaleModal, messages" onComplete="checkForClose('#scaleEdit');"/>
+			<apex:actionFunction action="{!removeScale}" name="removeScaleJS" rerender="messages, gradeScalePanel" onComplete="resetValueTables();"/>
+			<apex:actionFunction action="{!addScale}" name="addScaleJS" rerender="messages, gradeScalePanel,unusedScales" onComplete="resetValueTables();j$('#addScaleModal').dialog('close');j$.fancybox.close();"/>
+			<apex:actionFunction action="{!removeNormalization}" name="removeNormalizationJS" rerender="messages, scaleModal" onComplete="resetValueTables();openscaleModal();dataTable2.fnAdjustColumnSizing();">
+				<apex:param value="" name="value" assignTo="{!selectedRecord}"/>
+			</apex:actionFunction>
+			<apex:actionFunction action="{!addNormalization}" name="addNormalizationJS" rerender="messages, scaleModal" onComplete="resetValueTables();openscaleModal();dataTable2.fnAdjustColumnSizing();"/>
+
+			<!-- Tab 4: Assignment Types -->
+			<apex:actionFunction action="{!newAssignmentType}" name="newAssignmentTypeJS" rerender="messages, assignModal" onComplete="resetValueTables();openAssignModal();"/>
+			<apex:actionFunction action="{!editAssignmentType}" name="editAssignmentTypeJS" rerender="messages, assignModal" onComplete="resetValueTables();openAssignModal();">
+				<apex:param value="" name="value" assignTo="{!selectedRecord}"/>
+			</apex:actionFunction>
+			<apex:actionFunction action="{!deleteAssignmentType}" name="deleteAssignmentTypeJS" rerender="messages, assignmentTypePanel" onComplete="resetValueTables();">
+				<apex:param value="" name="value" assignTo="{!selectedRecord}"/>
+			</apex:actionFunction>
+			<apex:actionFunction action="{!saveAssignmentType}" name="saveAssignmentTypeJS" rerender="messages, assignmentTypePanel" onComplete="resetValueTables();checkForClose('#assignEdit');"/>
+			<apex:actionFunction action="{!reloadCalcuationTypes}" name="reloadCalcTypesJS" rerender="calcTypeRender"/>
+
+			<div id="modals">
+				<div id="standardEdit" style="display:none;">
+					<apex:pageBlock id="editModal">
+						<apex:pageBlockSection >
+							<apex:inputField value="{!standardToEdit.Name}"/>
+							<apex:inputField value="{!standardToEdit.Subject__c}"/>
+
+							<apex:inputField value="{!standardToEdit.Parent_Standard__c}"/>
+							<apex:inputField value="{!standardToEdit.Strand__c}"/>
+
+							<apex:inputField value="{!standardToEdit.Grade_Level_Text__c}"/>
+							<apex:inputField value="{!standardToEdit.Identifier__c}"/>
+
+							<apex:pageBlockSectionItem >
+								<apex:outputLabel value="Description"/>
+								<apex:inputField value="{!standardToEdit.Long_Text__c}"/>
+							</apex:pageBlockSectionItem>	
+							<apex:inputField value="{!standardToEdit.Description_Spanish__c}"/>
+						</apex:pageBlockSection>
+					</apex:pageBlock>
+				</div>
+				<div id="confirmModal" style="display:none;">
+					If you make this update, SchoolForce will run a batch in order to update standard and strand grades. Please wait until the batch completes to do any sort of reporting (including report cards). You can view the Batch_StandardGradeRecalc batch running <a href="/apexpages/setup/listAsyncApexJobs.apexp?setupid=AsyncApexJobs" target="_blank" style="text-decoration: underline;" id="batchPageLink">here</a>.
+				</div>
+				<div id="gscEdit" style="display:none;">
+					<apex:pageBlock id="gscModal">
+						<apex:pageBlockSection >
+							<apex:inputField value="{!selectedCatalog.Name}"/>
+							<apex:inputField value="{!selectedCatalog.Description__c}"/>
+						</apex:pageBlockSection>
+					</apex:pageBlock>
+				</div>
+				<div id="scaleEdit" style="display:none;">
+					<apex:outputPanel id="scaleModal">
+						<apex:pageMessages />
+						<apex:outputPanel rendered="{!bEditScale}">
+							<h3 style="{!IF(selectedGrade_Scale.id == null || selectedRecord != null,'','display:none;')}">Create or Edit New Grade Scale</h3>
+							<h3 style="{!IF(selectedGrade_Scale.id == null || selectedRecord != null,'display:none;','')}">Edit Default Normalizations</h3>
+								
+							<div class="section_content">
+								<table style="width:100%;">
+									<tr>
+										<td>
+											<apex:outputLabel value="Scale Name: "/>
+											<div class="redBar">
+												<div class="requiredBlock"></div>
+												<apex:inputText value="{!selectedGrade_Scale.name}"/>
+											</div>
+										</td>
+										<td>
+											<apex:outputLabel value="Category: "/>
+											<div class="redBar">
+												<div class="requiredBlock"></div>
+												<apex:inputField value="{!SelectedGrade_Scale.Category__c}"/>
+											</div>
+											<!-- This is here because category is a dependent picklist, so type must be on the page -->
+											<div style="display:none;">
+												<apex:inputField value="{!SelectedGrade_Scale.Type__c}"/>
+											</div>
+										</td>
+									</tr>
+									<tr/>
+									<tr>
+										<td colspan='2'>
+											<apex:outputPanel id="normalizationTable">
+												<apex:outputPanel rendered="{!IF(rangeNormalizations != null && rangeNormalizations.size>0, true, false)}">
+													<div style="overflow: auto;">
+														<apex:dataTable styleClass="noFilter" value="{!rangeNormalizations}" var="disp">
+															<apex:column headerValue="Remove?">
+																<a href="#" onClick="showProgressBar('Removing Normalization'); removeNormalizationJS('{!disp.index}');" class="removeLink"></a>
+															</apex:column>
+															<apex:column headerValue="Starting Value">
+																<apex:inputText value="{!disp.startVal}" size="5"/>
+															</apex:column>
+															<apex:column headerValue="Ending Value" >
+																<apex:outputText value="{!disp.endVal}" />
+															</apex:column>
+															<apex:column headerValue="Grade Representation">
+																<apex:outputPanel >
+																	<apex:inputText value="{!disp.representation}" size="5"/>
+																</apex:outputPanel>
+															</apex:column>
+															<apex:column headerValue="GP Value" >
+																<apex:inputText value="{!disp.GPA}" size="5"/>
+															</apex:column>
+														</apex:dataTable>
+													</div>
+												</apex:outputPanel>
+											</apex:outputPanel>
+										</td>
+									</tr>
+								</table>
+								<a style="cursor: pointer;" href="javascript:void(0);" onClick="addNormalizationJS();">
+									<img src="/img/feeds/follow12.png" /> Add Normalization
+								</a>						
+								<div class="clear_fix">&nbsp;</div>
+							</div>
+						</apex:outputPanel>
+					</apex:outputPanel>
+				</div>
+				<apex:outputPanel id="calcTypeRender">
+					<div id="calcType" style="display:none;">
+						<h3>Select a Standard Calculation Method</h3>
+						<div style="margin: 0px 0px 10px 0px;">
+							SchoolForce provides multiple ways of calculating standard grades.  Select a method to calculate standard grades for your school.  You may edit this value throughout the year; however, each standard grade must be resubmitted to reflect the edited calculation.  Please see SchoolForce Help for more information.
+						</div>
+						<table>
+							<tr>
+								<td>
+									<apex:selectList id="calculationTypes" styleclass="confirmField" value="{!calculationTypeValues.Calculation_Type__c}" size="1" onchange="confirmStandardGradeRecalculation(this);" disabled="{!lockKeyFields}">
+										<apex:selectOptions value="{!calculationTypeOptions}" />
+									</apex:selectList></td>
+							</tr>
+							<tr>
+								<td style="{!IF(calculationTypeValues.Calculation_Type__c = 'Law of Decaying Average','','display:none;')}" id="LDA">
+									<apex:outputText value="Weight:" id="decayingAverageWeight"/>
+									<apex:inputField value="{!calculationTypeValues.Law_of_Decaying_Average_Weight__c}" onChange="confirmStandardGradeRecalculation(this);" styleclass="confirmField" styleClass="keyField"/>
+								</td>
+							</tr>
+						</table>
+					</div>
+				</apex:outputPanel>
+				<div id="assignEdit" style="display:none;">
+					<apex:pageBlock id="assignModal">
+						<apex:pageMessages />
+						<h3>Add/Edit Assignment Type</h3>
+						<apex:pageBlockSection >
+							<apex:inputField value="{!assignmentTypeToEdit.Name}"/>
+						</apex:pageBlockSection>
+					</apex:pageBlock>
+				</div>
+				<div id="addScaleModal" style="display:none;">
+					<apex:outputPanel id="unusedScales">
+						<h3>Search Existing Grade Scales</h3>
+						<div class="section_content">
+							<apex:dataTable styleClass="tablesorter" title="Available Grade Scales" value="{!wrappedgrade_scales}" var="c">
+								<apex:column headerValue="Add?" width="100px">
+									<apex:inputCheckBox value="{!c.useRecord}"/>
+								</apex:column>
+								<apex:column headerValue="Action">
+									<a href="#" onClick="showProgressBar('Loading Scale');editScaleJs('{!c.Grade_Scale.id}')">Edit</a>&nbsp;|
+									<a href="#" onClick="showProgressBar('Cloning Scale');cloneScaleJS('{!c.Grade_Scale.id}')">Clone</a>
+								</apex:column>
+								<apex:column headerValue="Grade Scale Name" value="{!c.grade_scale.name}" />
+								<apex:column headerValue="Category">
+									<apex:outputText value="{!c.Grade_Scale.Category__c}"/>
+								</apex:column>
+							</apex:dataTable>
+						</div>
+					</apex:outputPanel>
+				</div>
+			</div>
+			
+		</apex:actionRegion>
+
+		<div id="standardUploadModal" style="display:none;">
+			Please select the file you wish to upload:<br/>
+			<apex:inputFile contentType="{!fileContentType}" fileName="{!fileName}" fileSize="{!fileSize}" value="{!fileBlob}" />
+		</div>
+
+		<!-- <apex:outputPanel id="uploadWrapper">
+			<div id="uploadModal" style="display:none;">
+				<c:csvLoader csvLoaderObject="{!csvLoader}" />
+				<apex:actionRegion >
+					<apex:actionFunction action="{!hideCSV}" name="hideCSVJS" rerender="messages"/>
+				</apex:actionRegion>
+			</div>
+		</apex:outputPanel> -->
+	</apex:form>
+</apex:page>

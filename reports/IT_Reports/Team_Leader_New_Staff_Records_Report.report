@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>User$Id</field>
+    </columns>
+    <columns>
+        <field>User.User__r.Staff__r$Organization__c.Id</field>
+    </columns>
+    <columns>
+        <field>User.User__r.Staff__r$Name</field>
+    </columns>
+    <columns>
+        <field>User.User__r.Staff__r$First_Name_Staff__c</field>
+    </columns>
+    <columns>
+        <field>User.User__r.Staff__r$Staff_Last_Name__c</field>
+    </columns>
+    <columns>
+        <field>User.User__r.Staff__r$Organization__c</field>
+    </columns>
+    <columns>
+        <field>User$Profile</field>
+    </columns>
+    <columns>
+        <field>User.User__r.Staff__r$Role__c</field>
+    </columns>
+    <columns>
+        <field>User.User__r.Staff__r$Email__c</field>
+    </columns>
+    <description>Team leader staff records created this week</description>
+    <filter>
+        <criteriaItems>
+            <column>User$Title</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>contains</operator>
+            <value>Team Leader</value>
+        </criteriaItems>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>User.User__r.Staff__r$CreatedDate</field>
+        <sortOrder>Desc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>User*User$Site__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Team Leader New Staff Records Report</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Staff_Contact_USER_ONLY__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <sortColumn>User.User__r.Staff__r$Name</sortColumn>
+    <sortOrder>Asc</sortOrder>
+    <timeFrameFilter>
+        <dateColumn>User.User__r.Staff__r$CreatedDate</dateColumn>
+        <interval>INTERVAL_LAST7</interval>
+    </timeFrameFilter>
+</Report>

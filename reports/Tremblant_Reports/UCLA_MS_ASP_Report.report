@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Section__c.Student_Section__r$School__c</field>
+    </columns>
+    <columns>
+        <field>Section__c$Program__c</field>
+    </columns>
+    <columns>
+        <field>Section__c.Student_Section__r$Student_Name__c</field>
+    </columns>
+    <columns>
+        <field>Section__c.Student_Section__r$Dosage_to_Date__c</field>
+    </columns>
+    <columns>
+        <field>Section__c.Student_Section__r.Intervention_Session_Results__r$Intervention_Session_Date__c</field>
+    </columns>
+    <columns>
+        <field>Section__c.Student_Section__r.Intervention_Session_Results__r$Amount_of_Time__c</field>
+    </columns>
+    <description>Total and weekly time by student</description>
+    <filter>
+        <criteriaItems>
+            <column>Section__c$Program__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>Afterschool Heroes</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Section__c$School__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>UCLA Community School</value>
+        </criteriaItems>
+    </filter>
+    <format>Tabular</format>
+    <name>UCLA MS ASP Report</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Sections_with_Student_Section_with_Intervention_Session_Results__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>false</showGrandTotal>
+    <showSubTotals>false</showSubTotals>
+    <sortColumn>Section__c.Student_Section__r$School__c</sortColumn>
+    <sortOrder>Asc</sortOrder>
+    <timeFrameFilter>
+        <dateColumn>Section__c$CreatedDate</dateColumn>
+        <interval>INTERVAL_CURRENT</interval>
+    </timeFrameFilter>
+</Report>

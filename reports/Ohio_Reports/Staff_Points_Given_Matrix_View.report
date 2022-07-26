@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>Points__c$Points__c</field>
+    </columns>
+    <columns>
+        <field>Points__c$Student_Section__c.Section__c</field>
+    </columns>
+    <description>How many points have staff given per category per month in my school?</description>
+    <format>Matrix</format>
+    <groupingsAcross>
+        <dateGranularity>Month</dateGranularity>
+        <field>Points__c$Points_Date__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsAcross>
+    <groupingsAcross>
+        <dateGranularity>Day</dateGranularity>
+        <field>Points__c$Category__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsAcross>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Points__c$Staff__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Staff- Points Given- Matrix View</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Points_Reports_Type__c</reportType>
+    <scope>organization</scope>
+    <showDetails>false</showDetails>
+    <showGrandTotal>false</showGrandTotal>
+    <showSubTotals>false</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>Points__c$CreatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

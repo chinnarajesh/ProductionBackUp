@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Account.Students__r$Location__c</field>
+    </columns>
+    <columns>
+        <field>Account.Students__r$School_Name__c</field>
+    </columns>
+    <columns>
+        <field>Account.Students__r$Local_Student_ID__c</field>
+    </columns>
+    <columns>
+        <field>Account.Students__r.Student_Programs__r$Program1__c</field>
+    </columns>
+    <columns>
+        <field>Account.Students__r.Student_Programs__r$Amount_of_Time__c</field>
+    </columns>
+    <description>Username: cityyearsa
+Password: skyarrivehousehold
+
+https://tableau.strivetogether.org/#/site/P16PlusCouncilofGreaterBexarCounty/projects/245/workbooks</description>
+    <filter>
+        <criteriaItems>
+            <column>Account.Students__r.Student_Programs__r$Program1__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>contains</operator>
+            <value>tutoring,SEL,coaching,enrichment,homework</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account.Students__r.Student_Programs__r$Amount_of_Time__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>greaterThan</operator>
+            <value>0</value>
+        </criteriaItems>
+    </filter>
+    <format>Summary</format>
+    <name>EBBSA Report</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Accounts_with_Students_with_Student_Programs__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>Account.Students__r.Student_Programs__r$CreatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

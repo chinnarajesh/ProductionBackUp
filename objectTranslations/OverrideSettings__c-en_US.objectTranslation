@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Grade Overrides</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Grade Overrides</value>
+    </caseValues>
+    <fields>
+        <help><!-- these can be used as override grades for sections, separated by commas --></help>
+        <label><!-- Allowable Grades --></label>
+        <name>Allowable_Grades__c</name>
+    </fields>
+    <fields>
+        <help><!-- does this profile/user have permissions to override a section grade with one of the allowable grades? --></help>
+        <label><!-- Grade Override --></label>
+        <name>Grade_Override__c</name>
+    </fields>
+    <fields>
+        <help><!-- does this profile/user have permissions to override a section grade with &quot;W&quot;? --></help>
+        <label><!-- Withdraw Override --></label>
+        <name>Withdraw_Override__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

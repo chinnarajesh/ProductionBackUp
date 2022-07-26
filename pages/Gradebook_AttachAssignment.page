@@ -1,0 +1,156 @@
+<apex:page standardController="Assignment_Lib__c" extensions="Gradebook_AttachAssignment">
+
+<apex:pageBlock title="Attach files to Assignment Library">
+	<apex:includeScript value="{!URLFOR($Resource.jWerty, '/jWerty/jwerty.js')}" />
+	<apex:stylesheet value="{!$Resource.New_Core_UX}"/>
+	<script>
+	jwerty.key('enter',false);
+	</script>
+	
+	<apex:form >
+		<apex:outputpanel id="messages">
+           	<apex:pageMessages />
+   		</apex:outputpanel>
+		<div class="generic" style="width:30%; border:none">
+			<table>
+				<tr>
+					<th colspan="2">
+						Upload Attachment(s)
+					</th>
+				</tr>
+				<tr>
+					<td style="background-color:rgba(117, 190, 233, 0.48);padding-top:5px;padding-bottom:5px;text-align:center;" colspan="2">
+						Attachment 1
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<apex:inputFile contentType="{!fileContentType1}"  filename="{!newAssignDoc1.PathOnClient}" fileSize="{!fileSize1}" value="{!newAssignDoc1.VersionData}"  />
+					</td>
+				
+					<td>
+						
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<apex:outputLabel value="File Description" style="font-weight:bold"/>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2" style="padding-bottom:15px;">
+						<apex:inputTextArea value="{!fileDesc1}" rows="5" cols="65"/>
+					</td>
+					
+				</tr>
+				<tr>
+					<td style="background-color:rgba(117, 190, 233, 0.48);padding-top:5px;padding-bottom:5px;text-align:center;" colspan="2">
+						Attachment 2
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<apex:inputFile contentType="{!fileContentType2}"  filename="{!newAssignDoc2.PathOnClient}" fileSize="{!fileSize2}" value="{!newAssignDoc2.VersionData}"  />
+					</td>
+				
+					<td>
+						
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<apex:outputLabel value="File Description" style="font-weight:bold"/>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2" style="padding-bottom:15px;">
+						<apex:inputTextArea value="{!fileDesc2}" rows="5" cols="65"/>
+					</td>
+					
+				</tr>
+				<tr>
+					<td style="background-color:rgba(117, 190, 233, 0.48);padding-top:5px;padding-bottom:5px;text-align:center;" colspan="2">
+						Attachment 3
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<apex:inputFile contentType="{!fileContentType3}"  filename="{!newAssignDoc3.PathOnClient}" fileSize="{!fileSize3}" value="{!newAssignDoc3.VersionData}"  />
+					</td>
+				
+					<td>
+						
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<apex:outputLabel value="File Description" style="font-weight:bold"/>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2" style="padding-bottom:15px;">
+						<apex:inputTextArea value="{!fileDesc3}" rows="5" cols="65"/>
+					</td>
+					
+				</tr>
+				<tr>
+					<td style="background-color:rgba(117, 190, 233, 0.48);padding-top:5px;padding-bottom:5px;text-align:center;" colspan="2">
+						Attachment 4
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<apex:inputFile contentType="{!fileContentType4}"  filename="{!newAssignDoc4.PathOnClient}" fileSize="{!fileSize4}" value="{!newAssignDoc4.VersionData}"  />
+					</td>
+				
+					<td>
+						
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<apex:outputLabel value="File Description" style="font-weight:bold"/>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2" style="padding-bottom:15px;">
+						<apex:inputTextArea value="{!fileDesc4}" rows="5" cols="65"/>
+					</td>
+				</tr>
+				<tr>
+					<td style="background-color:rgba(117, 190, 233, 0.48);padding-top:5px;padding-bottom:5px;text-align:center;" colspan="2">
+						Attachment 5
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<apex:inputFile contentType="{!fileContentType5}"  filename="{!newAssignDoc5.PathOnClient}" fileSize="{!fileSize5}" value="{!newAssignDoc5.VersionData}"  />
+					</td>
+				
+					<td>
+						
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<apex:outputLabel value="File Description" style="font-weight:bold"/>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<apex:inputTextArea value="{!fileDesc5}" rows="5" cols="65"/>
+					</td>
+					
+				</tr>
+				<tr>
+					<td colspan="2" style="text-align:center">
+					<apex:commandbutton action="{!upload}" value="Save"/>
+					<apex:commandbutton action="{!uploadNew}" value="Save & Add More"/>
+					<apex:commandbutton action="{!cancel}" value="Cancel"/>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</apex:form>
+</apex:pageBlock>
+</apex:page>

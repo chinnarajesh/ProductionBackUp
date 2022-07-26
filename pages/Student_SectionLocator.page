@@ -1,0 +1,15 @@
+<apex:page standardController="Student__c" extensions="Student_SectionLocator" sidebar="false" showheader="false">
+<center>
+<apex:repeat value="{!selectedSessions}" var="s">
+<apex:variable rendered="{!bInClass&&s.sess.section__r.Room__c!=null}" value="{!s}" var="ss">
+{!student.name} is scheduled to be in &nbsp; <apex:outputLink value="#" onclick="window.parent.location.href='/{!ss.sess.Section__c}' ">{!ss.sess.section__r.name}</apex:outputLink>; Room: {!ROUND(ss.sess.section__r.room__r.Number__c,0)} from {!ss.sessStartTime} until {!ss.sessEndTime}.<br/>
+</apex:variable>
+<apex:variable rendered="{!bInClass&&s.sess.section__r.Room__c==null}" value="{!s}" var="ss">
+{!student.name} is scheduled to be in &nbsp; <apex:outputLink value="#" onclick="window.parent.location.href='/{!ss.sess.Section__c}' ">{!ss.sess.section__r.name}</apex:outputLink> from {!ss.sessStartTime} until {!ss.sessEndTime}.<br/>
+</apex:variable>
+</apex:repeat>
+<apex:variable rendered="{!!bInClass}" value="{!bInClass}" var="ss" >
+{!student.name} is not currently in class.
+</apex:variable>
+</center>
+</apex:page>

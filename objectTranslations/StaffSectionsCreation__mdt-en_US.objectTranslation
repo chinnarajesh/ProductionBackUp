@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>StaffSectionsCreation</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>StaffSectionsCreation</value>
+    </caseValues>
+    <fields>
+        <label><!-- End Date --></label>
+        <name>End_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- In School/ Extended Learning --></label>
+        <name>In_After_School__c</name>
+        <picklistValues>
+            <masterLabel>Extended Learning</masterLabel>
+            <translation><!-- Extended Learning --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>In School</masterLabel>
+            <translation><!-- In School --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>None</masterLabel>
+            <translation><!-- None --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Notes --></label>
+        <name>Notes__c</name>
+    </fields>
+    <fields>
+        <label><!-- Program Name --></label>
+        <name>Program_Name__c</name>
+        <picklistValues>
+            <masterLabel>50 Acts of Greatness</masterLabel>
+            <translation><!-- 50 Acts of Greatness --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>50 Acts of Leadership</masterLabel>
+            <translation><!-- 50 Acts of Leadership --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Attendance Check In Check Out</masterLabel>
+            <translation><!-- Attendance Check In Check Out --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Coaching: Attendance</masterLabel>
+            <translation><!-- Coaching: Attendance --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Coaching: SEL/SED (Local)</masterLabel>
+            <translation><!-- Coaching: SEL/SED (Local) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DESSA</masterLabel>
+            <translation><!-- DESSA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Enrichment</masterLabel>
+            <translation><!-- Enrichment --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Homework Assistance</masterLabel>
+            <translation><!-- Homework Assistance --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Math Inventory</masterLabel>
+            <translation><!-- Math Inventory --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Reading Inventory</masterLabel>
+            <translation><!-- Reading Inventory --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SEL/SED Check In Check Out</masterLabel>
+            <translation><!-- SEL/SED Check In Check Out --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Tutoring: Literacy</masterLabel>
+            <translation><!-- Tutoring: Literacy --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Tutoring: Math</masterLabel>
+            <translation><!-- Tutoring: Math --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Section Frequency --></label>
+        <name>Section_Frequency__c</name>
+    </fields>
+    <fields>
+        <label><!-- Start Date --></label>
+        <name>Start_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Target Dosage --></label>
+        <name>Target_Dosage__c</name>
+    </fields>
+    <layouts>
+        <layout>StaffSectionsCreation Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

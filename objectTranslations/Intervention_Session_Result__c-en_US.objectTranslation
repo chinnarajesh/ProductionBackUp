@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Intervention Session Result</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Intervention Session Results</value>
+    </caseValues>
+    <fields>
+        <help><!-- Amount of time spent with a student (in minutes) in a single Intervention Session --></help>
+        <label><!-- Amount of Time (in minutes) --></label>
+        <name>Amount_of_Time__c</name>
+    </fields>
+    <fields>
+        <label><!-- Exit Ticket --></label>
+        <name>Exit_Ticket__c</name>
+    </fields>
+    <fields>
+        <help><!-- Area for an individual comment for this student for this Intervention Session --></help>
+        <label><!-- Individual Student Comment --></label>
+        <name>Individual_Student_Comment__c</name>
+    </fields>
+    <fields>
+        <help><!-- Date of the Intervention Session --></help>
+        <label><!-- Intervention Session Date --></label>
+        <name>Intervention_Session_Date__c</name>
+    </fields>
+    <fields>
+        <help><!-- This field connects the Intervention Session Result record to the correct Intervention Session. --></help>
+        <label><!-- Intervention Session --></label>
+        <name>Intervention_Session__c</name>
+        <relationshipLabel><!-- Intervention Session Results --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Primary Skill --></label>
+        <name>Primary_Skill__c</name>
+    </fields>
+    <fields>
+        <label><!-- Program_Name --></label>
+        <name>Program_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Program --></label>
+        <name>Program__c</name>
+    </fields>
+    <fields>
+        <help><!-- Student&apos;s Name --></help>
+        <label><!-- Related Student&apos;s Name --></label>
+        <name>Related_Student_s_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Section ID --></label>
+        <name>Section_ID__c</name>
+    </fields>
+    <fields>
+        <help><!-- Intervention Section name related to this Intervention Session Result --></help>
+        <label><!-- Section Name --></label>
+        <name>Section_Name__c</name>
+    </fields>
+    <fields>
+        <help><!-- This value derive from a calculation of Intervention_Session_Date__c --></help>
+        <label><!-- Session DOW --></label>
+        <name>Session_DOW__c</name>
+    </fields>
+    <fields>
+        <label><!-- Other Skills --></label>
+        <name>SkillsCovered__c</name>
+    </fields>
+    <fields>
+        <label><!-- Skills Covered --></label>
+        <name>Skills_Covered__c</name>
+    </fields>
+    <fields>
+        <label><!-- Student Reference ID --></label>
+        <name>Student_Reference_ID__c</name>
+    </fields>
+    <fields>
+        <help><!-- This field connects the Intervention Session Result record to the correct Student/Section. --></help>
+        <label><!-- Student/Section --></label>
+        <name>Student_Section__c</name>
+        <relationshipLabel><!-- Intervention Session Results --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- This field connects the Student record to the Intervention Session Result --></help>
+        <label><!-- Student --></label>
+        <name>Student__c</name>
+        <relationshipLabel><!-- Intervention Session Results --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- section validation match --></label>
+        <name>section_validation_match__c</name>
+    </fields>
+    <fields>
+        <label><!-- text validate field --></label>
+        <name>text_validate_field__c</name>
+    </fields>
+    <layouts>
+        <layout>Intervention Session Result Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Intervention Session Result Layout - Admin</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- Session time for a day must be less then 500 minutes. --></errorMessage>
+        <name>Prevent_Over_500_Session_Time</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Session time cannot be less than 1. --></errorMessage>
+        <name>Prevent_Session_Time_Less_than_1</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please verify that the Section record associated with the Student/Section record and Intervention Section record are the same. --></errorMessage>
+        <name>Section_Validation</name>
+    </validationRules>
+</CustomObjectTranslation>

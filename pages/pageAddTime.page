@@ -1,0 +1,107 @@
+<apex:page controller="ctlAddTimeFlow" sidebar="false" docType="html-5.0">
+<script type="text/javascript">
+       function ValidateTime(value) {
+          var x = parseInt(value,0);
+          //BGR 03252015 Ensure time is 1-500
+          if(value.length>0 && (isNaN(x) || x<1 || x>=500))
+          {
+             alert('Time value should be numeric between 1-500');
+             return false;
+          }
+       }
+    function ValidateLen(value) {
+          if(value.length>255)
+          //BGR 03252015 field len is only 255 in the managed app which we cant control
+          {
+             alert('Skills or Comments can not be longer than 255 characters. Extra characters will be removed. Length: ' + value.length);
+             return false;
+          }
+       }
+       function checkSkills() {
+	       var isError = false;
+      		var selectedTextLeft = j$.map( j$('.leftList option'), function( o ){ 
+    					return o.text; 
+				}).join(', ')
+			var selectedTextRight = j$.map( j$('.rightList option'), function( o ){ 
+    					return o.text; 
+				}).join(', ')
+			if(selectedTextLeft.indexOf("*") >=0){
+				
+				if (selectedTextRight.indexOf("*") == -1){
+					j$("#requiredSkillsErrorSpan").show();
+					isError = true;
+				} else {
+					j$("#requiredSkillsErrorSpan").hide();
+				}	
+			}
+			if(!isError) {
+				sessionSubmit();
+			}
+       }
+    </script>
+	<style>
+		.leftList{
+			overflow: auto;
+		}
+		.rightList{
+			overflow: auto;
+		}
+		select option{
+			display: table-row;
+		}
+	</style>
+    <apex:pagemessages />
+<apex:form >
+
+  <apex:pageBlock >
+        <apex:pageblockButtons location="top">
+            <apex:commandButton action="{!doSessionSubmit}" value="Submit" />
+            <apex:commandButton action="{!doSessionCancel}" value="Cancel" />
+        </apex:pageblockButtons>
+
+      <apex:pageBlockSection title="Session Detail" columns="1">
+      
+            <!-- <apex:outputLabel value="Session Date:"/> --><apex:inputField value="{!currentSession.Date__c}" showDatePicker="{!showCalDatePicker}" id="dosageDateID"/>
+            <!-- <apex:outputLabel value="Skills Covered:"/> -->
+<!--             <apex:inputTextarea value="{!currentSession.Skills__c}" id="skillsId" onblur="ValidateLen(this.value)"/> -->
+ 			<apex:outputPanel id="detailBlock">          
+            <c:MultiselectPicklist leftLabel="Available Skills" leftOption="{!avaliableFields}" Alldata="{!null}"
+	    									rightLabel="Selected Skills" rightOption="{!selectedFields}" size="5" width="100%"/>
+			<span id="requiredSkillsErrorSpan" style="color:red;display:none">
+										{!$Label.Required_Skill_for_Literacy_Math}
+			</span><br />
+			</apex:outputPanel>
+            <!-- <apex:outputLabel value="Additional Comments:"/> --><apex:inputTextarea value="{!currentSession.Comments__c}" onblur="ValidateLen(this.value)"/>
+            <!-- THIS IS TO SUPPORT DEFAULT TIME UPDATE FUNCTION<apex:outputLabel value="Default Session Length(in min):"/> <apex:input label="Default Time" type="text" value="{!sessionDosage}" onblur="ValidateTime(this.value)" id="dosageId" />-->
+            <apex:message for="dosageDateID"/>
+       
+      </apex:pageBlockSection>
+     </apex:pageBlock>
+  
+    <apex:pageBlock id="StudentsAdd" title="SessionAttendee:">
+     <apex:pageBlockButtons location="top">
+        <apex:commandButton action="{!doAddStudentToSession}" title="Add" value="  +  " />
+     </apex:pageBlockButtons>
+     <apex:pageBlockTable style="width:100%" value="{!studentsInSession}" var="e" id="list">
+
+        <apex:column headerValue="Student" style="width:250px">
+            <apex:outputField value="{!e.Student_Section__r.Student__r.Name}"/>
+        </apex:column>
+
+
+        <apex:column headerValue="Time (in minutes)" style="width:125px" >
+            <apex:inputField value="{!e.Amount_of_Time__c}"  onblur="ValidateTime(this.value)" id="timeEntry"/>
+        </apex:column>
+
+        <apex:column style="width:250px">
+            <apex:commandLink value="Delete" action="{!doDeleteStudentFromSession}">
+                <apex:param name="ssID" value="{!e.Student_Section__c}"/>
+            </apex:commandLink>
+        </apex:column>
+      </apex:pageBlockTable>
+
+     </apex:pageBlock>
+<!-- 	<apex:actionFunction name="sessionSubmit" action="{!doSessionSubmit}" rerender="detailBlock"/> -->
+</apex:form>
+
+</apex:page>

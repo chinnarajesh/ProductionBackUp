@@ -1,0 +1,175 @@
+<apex:component id="ModalEnrollStudent" controller="ModalEnrollStudentController" allowDML="true" access="global">
+    <apex:attribute name="recSection" type="Section__c" assignTo="{!section}" access="global" required="true" description="Main Section."/>
+    <apex:attribute name="lstStudentSections" type="StudentInfoWrapper[]" assignTo="{!studentSections}" access="global" required="true" description="List StudentWrapper."/>
+    <!-- Add Student Modal -->
+    <div id="add-student" class="modal_window">
+        <div class="modal-top" style="cursor:move;">
+            <a class="modal_close" href="#" onclick="openModal('#enrollCancel');"></a>
+            <p>&nbsp;</p>
+        </div>
+        <span class="section-header">Enroll Student(s) in Intervention Section</span>
+
+        <apex:outputPanel id="enrollDatePanel">
+            <div class="field">
+                <apex:outputLabel value="Enrollment Date" for="enrollDate"/>
+                <div class="requiredInput" style="margin-left: 5px;">
+                    <div class="requiredBlock"></div>
+                    <apex:inputField value="{!studentSectionHolder.Enrollment_Start_Date__c}" id="enrollDate"/>
+                </div>
+                <span id="EnrollDateErrorSpan" style="color:red;display:none">Date entry is invalid please enter a new value</span>
+            </div>
+        </apex:outputPanel>
+
+        <hr/>
+        <apex:outputPanel id="bothTables">
+            <div class="box-left" style="width:400px">
+                <span class="section-header">Available Students</span>
+                <apex:outputPanel id="availStudents">
+                    <div class="field">
+                        <apex:selectList value="{!selectedSectionFilter}" onchange="loadAvailableStudentsJS();"
+                                         multiselect="false" size="1">
+                            <apex:selectOptions value="{!sectionFilters}"/>
+                        </apex:selectList>
+                        <apex:selectList value="{!selectedIndicatorAreaFilter}" onchange="loadAvailableStudentsJS();"
+                                         multiselect="false" size="1">
+                            <apex:selectOptions value="{!indicatorAreaFilters}"/>
+                        </apex:selectList>
+                        <apex:selectList value="{!selectedGradeFilter}" onchange="loadAvailableStudentsJS();"
+                                         multiselect="false" size="1">
+                            <apex:selectOptions value="{!gradeFilters}"/>
+                        </apex:selectList>
+                        <br/>
+                        <input name="filterBox" placeholder="Search by Name"
+                               onkeyup="filterName(this,'availableStudents')" type="text" size="50"
+                               style="margin-left:5px"/>
+                        <br/>
+                        <input type="checkBox" id="availCheck" onchange="highlightAllRows('availableStudents',this)"
+                               style="margin-left:5px">Select All</input>
+                        <apex:actionStatus startText="	Loading..." id="loadingStatus"
+                                           startStyle="float:right;margin-right:20px"/>
+                        <div>
+                            <apex:repeat value="{!alphabeticPagination.SerchAlphabet}" var="nn">
+                                <apex:commandLink action="{!displayStudent}" reRender="bothTables" status="loadingStatus">
+                                    <apex:param id="SearchVar" value="{!nn}"  name="letter"  assignTo="{!letter}"/> {!nn}
+                                </apex:commandLink>
+                            </apex:repeat>
+                        </div>
+                    </div>
+
+                    <apex:pageBlock id="pageBlockVariableStudents">
+                        <div class="table-box" id="showdata">
+                            <table id="availableStudents" class="iatable" style="cursor:pointer;">
+                                <thead>
+                                <th style="display:none;">Student ID</th>
+                                <th style="min-width:80px;" class="type-string">Name</th>
+                                <th style="min-width:80px;" class="type-string">CY-ID</th>
+                                <th style="min-width:80px;" class="type-string">Local ID</th>
+                                <th class="type-gradeLevel">Grade Level</th>
+                                <th class="type-string">Indicator</th>
+                                </thead>
+                                <tbody>
+                                    <apex:repeat value="{!availableStudents}" var="s">
+                                        <tr id="{!s.student.ID}" class="table_row">
+                                            <td style="display:none;">{!s.student.ID}</td>
+                                            <td>{!s.student.Student_First_Name__c}
+                                                 {!s.student.Student_Last_Name__c}</td>
+                                            <td><a href="/{!s.student.ID}"
+                                                   target="_new">{!s.student.Student_ID_Auto_Number__c}</a></td>
+                                            <td>{!s.student.Local_Student_ID__c}</td>
+                                            <td>{!s.student.Grade__c}</td>
+                                            <td>{!s.indicatorAreaDisplay}</td>
+                                            <td style="display:none;">
+                                                <apex:inputCheckbox value="{!s.selected}" styleClass="selectedBox"/>
+                                            </td>
+                                        </tr>
+                                        <div id="nodata" style="display:none;">
+                                            <p><b>No record by selected letter.</b></p>
+                                        </div>
+                                    </apex:repeat>
+                                </tbody>
+                            </table>
+                        </div>
+                    </apex:pageBlock>
+                    <div id="enrollTotalRecords"> Total Records Found: {!alphabeticPagination.sizee}</div>
+                    <script type="text/javascript">
+                        var sze = '{!alphabeticPagination.sizee}';
+                        sz = parseInt(sze);
+
+                        if (sz > 0) {
+                            document.getElementById('showdata').style.display = "block";
+                            document.getElementById('nodata').style.display = "none";
+                        } else {
+                            document.getElementById('showdata').style.display = "none";
+                            document.getElementById('nodata').style.display = "block";
+                        }
+
+                        j$(function () {
+                            j$('#availableStudents').tsort();
+                            j$('#selectedStudent').tsort();
+                        });
+                    </script>
+                </apex:outputPanel>
+            </div>
+            <div class="move-selection" style="margin-right:0px;margin-left:10px;margin-top:125px">
+                <a href="" onclick="ensureHighlightedAreChecked('availableStudents');addToSelectedJS();"><img
+                            src="{!URLFOR($Resource.Style_Bundle, 'images/arrow-right.png')}" width="16" height="18"
+                            alt="Add"/></a>
+                <p>&nbsp;</p>
+                <a href="" onclick="ensureHighlightedAreChecked('selectedStudent');removeFromSelectedJS();"><img
+                            src="{!URLFOR($Resource.Style_Bundle, 'images/arrow-left.png')}" width="16" height="18"
+                            alt="Remove"/></a>
+            </div>
+
+            <div class="box-left" style="width:250px">
+                <span class="section-header">Selected Students</span>
+                <div class="field">
+                    <input type="checkBox" id="selectCheck" onchange="highlightAllRows('selectedStudent',this)">Select
+                    All</input>
+                </div>
+                <div class="table-box">
+                    <table id="selectedStudent" style="cursor:pointer;">
+                        <thead>
+                        <th style="display:none;">Student ID</th>
+                        <th class="type-string">Student</th>
+                        <th class="type-gradeLevel">Grade Level</th>
+                        <th style="display:none;">Active</th>
+                        <th style="display:none;">Enrollment Date</th>
+                        </thead>
+                        <tbody>
+                        <apex:repeat value="{!selectedStudents}" var="s" id="selectedStudentsToSave">
+                            <tr id="{!s.student.ID}" class="table_row">
+                                <td style="display:none;">{!s.student.ID}</td>
+                                <td>{!s.student.Student_Last_Name__c}, {!s.student.Student_First_Name__c}</td>
+                                <td>{!s.student.Grade__c}</td>
+                                <td style="display:none;">
+                                    <apex:inputCheckbox value="{!s.selected}" styleClass="selectedBox"/>
+                                </td>
+                                <td style="display:none;">{!s.studentSection.Enrollment_End_Date__c}</td>
+                            </tr>
+                        </apex:repeat>
+                        </tbody>
+                    </table>
+                    <span id="EnrollStudentErrorSpan" style="color:red;display:none">Date entry is invalid please enter a new value</span>
+                </div>
+            </div>
+        </apex:outputPanel>
+        <div id="options" class="clear_fix"><p>&nbsp;</p>
+            <hr/>
+            <input type="button"
+                   onclick="saveEnrollDate()"
+                   class="black_btn" value="Save"/>
+            <input id="enrollCancel" type="button" class="grey_btn" value="Cancel" onclick='clearModal()'/>
+        </div>
+        <p>&nbsp;</p>
+    </div>
+    <apex:actionFunction name="removeFromSelectedJS" action="{!removeFromSelected}" rerender="bothTables, messages"/>
+    <apex:actionFunction name="addToSelectedJS" action="{!addToSelected}" rerender="bothTables, messages"/>
+    <apex:actionFunction name="loadAvailableStudentsJS" action="{!loadAvailableStudents}"
+                         rerender="availStudents, messages" status="loadingStatus"/>
+    <apex:actionFunction name="startEnrollStudentsJS" action="{!startEnrollStudents}"
+                         oncomplete="addStudents();resetWindowSize();"
+                         rerender="messages, bothTables, enrollDatePanel"/>
+    <apex:actionFunction name="enrollStudentsJS" action="{!enrollStudents}"
+                         onComplete="isSaving=false; checkDisabled(); reloadPage();"
+                         rerender="bothTables,studentTable,enrollDatePanel, messages"/>
+</apex:component>

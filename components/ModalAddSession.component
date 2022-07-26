@@ -1,0 +1,218 @@
+<!--
+ - Created by TarasTorubka on 21.09.2020.
+ -->
+
+<apex:component id="ModalAddSession" controller="ModalAddSessionCtrl" allowDML="true" access="global">
+    <apex:attribute name="recSection" type="Section__c" assignTo="{!section}" access="global" required="true" description="Main Section."/>
+    <apex:attribute name="lstStudentSections" type="StudentInfoWrapper[]" assignTo="{!studentSections}" access="global" required="true" description="List StudentWrapper."/>
+
+    <!-- Add Session Modal -->
+    <div id="add-session-time" class="modal_window" style="z-index:12000;position: relative;top:0px !important;width:1120px;">
+        <div class = "modal-top" style="cursor:move;" >
+            <span class="modalCloseButton" onClick="close_modal('#add-session-time');"></span>
+            <p>&nbsp;</p>
+        </div>
+        <apex:outputPanel id="addModalMessages">
+            <apex:pageMessages />
+        </apex:outputPanel>
+        <span class="section-header">Enter Session Time for {!section.Name}</span>
+
+        <apex:outputPanel id="addTimeInfo">
+            <div class="field">
+                &nbsp;<label><strong>Session time entered for:</strong></label>
+                <apex:selectList value="{!selectedStaff}" multiselect="false" size="1" >
+                    <apex:selectOptions value="{!availableStaff}"/>
+                </apex:selectList>
+            </div>
+            <hr />
+            <apex:outputPanel id="timePanel" layout="block">
+                <apex:outputPanel rendered="{!selectedSession.studentResults.size<1000}" style="width:53%;float:left;display:flex;" >
+                    <input type="button" style="padding:5px 10px !important;margin-left:10px;margin-top:5px;" class="blue_btn" onclick="showProgressBar('Please wait.'); startAddStudentsJS();" value="Add Students to Session"/>
+                    <div style="padding:5px 10px !important; margin-left: 10px; margin-top:5px;">
+                    <div class="requiredInput">
+                           <div class="requiredBlock"></div>
+                        <input type="number" size="2" onchange="changeDosage(this);" title="Populate Time" style="width: 70px;"/>
+                        <img src="{!URLFOR($Resource.Style_Bundle, 'images/arrow-down.png')}" onclick=" return newtime();" title="Add Time to Column"/>
+                        </div>
+                    </div>
+                    <div style="padding:5px 10px !important; margin-left: 35px; margin-top:5px;"><input type="text" size="255" onchange="changeExitTicket(this);" title="Populate Exit Ticket" style="width: 70px; height: 7px"/>
+                        <img src="{!URLFOR($Resource.Style_Bundle, 'images/arrow-down.png')}" title="Add Exit Ticket to Column"/></div>
+                </apex:outputPanel>
+                <div class="clear_fix" style="height: 1px;">&nbsp;</div>
+                <div class="half-column-left" style="width:53%;max-height:180px;overflow:auto;margin-top:5px;margin-left:10px;padding:0;">
+                    <table style="table-layout: fixed;width: 550px;">
+                        <thead>
+                        <th style="width: 150px;">Time to be Added <br/>to Selected Students</th>
+                        <th style="width: 140px;">Session Time</th>
+                        <th style="width: 140px;">Exit Ticket</th>
+                        <th>Delete</th>
+                        </thead>
+                        <apex:variable var="count" value="{!1}" />
+                        <apex:repeat value="{!selectedSession.studentResults}" var="s">
+                            <tr>
+                                <td style="width:150px;">{!s.Student_Section__r.Student_Name__c}</td>
+                                <td style="padding-left: 0;">
+                                <div class="requiredInput">
+                                 <div class="requiredBlock"></div>
+                                    <apex:inputField id="timeEntry" value="{!s.Amount_of_Time__c}"  styleClass="notBlank" style="width:140px;" />
+                                   </div>
+                                </td>
+                                <td style="padding-left: 0;">
+                                    <apex:inputField id="exitTicketEntry" value="{!s.Exit_Ticket__c}" style="width:140px;"/>
+                                </td>
+                                <td><a onClick="removeStudentFromSessionJS('{!s.Student_Section__c}');" style="cursor:pointer;">Delete</a></td>
+                            </tr>
+                        </apex:repeat>
+                        <apex:variable value="{!count=1}" var="count"/> <!--increment-->
+                    </table>
+                    <span id="dosageErrorSpan" style="color:red;display:none">Please enter a valid value for dosage. (A whole non-negative number.  No decimals or non numeric values. Less then 500 minutes.)</span><br />
+                    <!--<span id="dosageError" style="color:red;display:none">That's a very short session. Are you sure?</span><br/>
+                    <span id="dosageErrorTime" style="color:red;display:none">That's a very long session. Are you sure?</span><br/>-->
+                </div>
+            </apex:outputPanel>
+            <apex:outputPanel id="timeDetails">
+                <div class="box-left">
+                    <p>
+                        <label><strong>Date:</strong></label>
+                    <div class="requiredInput" style="margin-left:5px">
+                        <div class="requiredBlock"></div>
+                        <apex:inputField value="{!selectedSession.session.Date__c}" id="dosageDateID"/><br/>
+                    </div>
+                    <span id="dateErrorSpan" style="color:red;display:none">Date entry is invalid please enter a new value</span><br/>
+                    <div class="sessionId" style="{!IF(selectedSession.session.ID == null , 'display: none;', '')}">
+                        <div style="margin-bottom:15px">
+                            <label><strong>Session ID:</strong></label>
+                        </div>
+                        <apex:commandLink value="{!selectedSession.session.Name}" action="{!getRecordPage}" style="margin-left:2px">
+                            <apex:param name="sessionID" value="{!selectedSession.session.ID}" assignTo="{!sessionID}" />
+                        </apex:commandLink>
+                    </div>
+                    <!--                                    <label><strong>Time (in minutes)</strong></label> -->
+                    <!--                                    <div class="requiredInput" style="margin-left:5px"> -->
+                    <!--                                        <div class="requiredBlock"></div> -->
+                    <!--                                        <apex:inputText value="{!dosage}" id="dosageId" /><br /> -->
+                    <!--                                    </div> -->
+                    <!--                                    <span id="dosageErrorSpan" style="color:red;display:none">Please enter a valid value for dosage. (A whole non-negative number.  No decimals or non numeric values. Less then 500 minutes.)</span><br /> -->
+                    <div style="display: block;">
+                        <label><strong>{!$ObjectType.Intervention_Session__c.fields.Comments__c.Label}:</strong></label>
+                        <apex:inputField value="{!selectedSession.session.Comments__c}" />
+                    </div>
+                    <div style="margin-left:-620px;width: max-content;" >
+                        <div class="requiredInput" style="margin-top: 10px; display: inline-block">
+                            <div class="requiredBlock"></div>
+                            <label><strong>In-Person Service or Virtual Service:</strong></label>
+                            <apex:selectList size="1" value="{!selectedSession.session.All_avenues__c}" id="allAvenuesID" >
+                                <apex:selectOptions value="{!allAvenuesOptions}"/>
+                            </apex:selectList>
+                        </div>
+                        <div style="margin-left: 15px; display: inline-block;">
+                            <label><strong>Session Type:</strong></label>
+                            <apex:inputField value="{!selectedSession.session.Session_Type__c}">
+                            </apex:inputField>
+                        </div>
+                        <!--<div style="{!IF(!showTutoringModel, "display:none", "margin-left: 15px; display: inline-block;")}">
+                            <label><strong>Tutoring Model:</strong></label>
+                            <apex:inputField value="{!selectedSession.session.Tutoring_Model__c}">
+                            </apex:inputField>
+                        </div>-->
+                        <div style="margin-left: 15px; display: inline-block;">
+                            <label><strong>Session Format:</strong></label>
+                            <apex:inputField value="{!selectedSession.session.Session_Format__c}">
+                            </apex:inputField>
+                        </div>
+                        <div style="{!IF(!(siteDetailsOptions.size > 0), "display:none", "margin-left: 15px; display: inline-block;")}">
+                            <label><strong>Site Details:</strong></label>
+                            <apex:selectList size="1" value="{!selectedSession.session.Site_Details__c}" id="siteDetailsID" >
+                                <apex:selectOptions value="{!siteDetailsOptions}"/>
+                            </apex:selectList>
+                        </div>
+
+                        <label><strong><!--{!$ObjectType.Intervention_Session__c.fields.Skills_Covered_for_the_Session__c.Label}:--></strong></label>
+                       <!-- <div class="requiredInput" style="margin-top: 10px;"> -->
+                            <!--<div class="requiredBlock"></div>-->
+                            <!--                                        <apex:inputField value="{!selectedSession.session.Skills_Covered_for_the_Session__c}" id="skillsId"/><br /> -->
+                            <c:MultiselectPicklist leftLabel="Other Skills" leftOption="{!avaliableFields}" rightLabel="Selected Skills" rightOption="{!selectedFields}" size="6" width="490px" isPrimaryOption="true" Alldata="{!allPrimaryFields}" primaryLabel="Primary Skill" primaryOption="{!primarySkill}"/>
+                        <!-- </div> -->
+                        <span id="serviceErrorSpan" style="color:red;display:none;">{!$Label.Required_Service}</span>
+                        <span id="skillsErrorSpan" style="color:red;display:none;">{!$Label.Skills_Required}</span>
+                        <span id="skillsLengthErrorSpan" style="color:red;display:none;">{!$Label.Exceeded_Skill_Length}</span>
+                        <span id="requiredSkillsErrorSpan" style="color:red;display:none;">{!$Label.Required_Skill_for_Literacy_Math}</span>
+                    </div>
+                    <!--                                    <label><strong>{!$ObjectType.Intervention_Session__c.fields.Comments__c.Label}:</strong></label> -->
+                    <!--                                    <apex:inputField value="{!selectedSession.session.Comments__c}" /> -->
+                    </p>
+                </div>
+            </apex:outputPanel>
+        </apex:outputPanel>
+        <div id="options" class="clear_fix">
+            <hr />
+            <input type="button" class="black_btn" onclick="if(!isSaving){ isSaving=true; checkAddTime(); } else { isSaving=false; checkAddTime(); }" value="Submit"/>
+            <input type="button" class="grey_btn" onclick="close_modal('#add-session-time')" value="Cancel"/>
+        </div>
+        <p>&nbsp;</p>
+    </div>
+
+    <div id="add-students-to-session" class="modal_window" style="z-index:13000;position: relative;">
+        <div class = "modal-top" style="cursor:move;" >
+            <span class="modalCloseButton" onClick="close_modal('#add-students-to-session');"></span>
+            <p>&nbsp;</p>
+        </div>
+        <apex:outputPanel id="addSessionModalMessages">
+            <apex:pageMessages />
+        </apex:outputPanel>
+        <span class="section-header">Add Students to Session for {!section.Name}</span>
+        <apex:outputPanel id="addStudentsToSessionTable" layout="block" style="overflow:auto;height:400px;">
+            <script>
+                j$(function() {
+                    j$('#addableStudentsTable').tsort();
+                });
+
+            </script>
+            <table id="addableStudentsTable">
+                <thead style="cursor:pointer">
+                <th style="display:none;">StudentID</th>
+                <th>
+                    <input type="checkbox" onChange="toggleAllChecks(this,'addableStudentsTable')"/>
+                </th>
+                <th class="type-string">Student</th>
+                <th class="type-int">Grade</th>
+                <th class="type-float">Dosage to Date</th>
+                <th class="type-date">Enrollment Date</th>
+                </thead>
+                <tbody>
+                <apex:repeat value="{!addableStudents}" var="s">
+                    <tr>
+                        <td style="display:none;">{!s.studentSection.Student__c}</td>
+                        <td><apex:inputCheckbox value="{!s.selected}"/></td>
+                        <td ><a href="/{!s.studentSection.ID}" target="_new">{!s.studentSection.Student_Name__c}</a></td>
+                        <td>{!s.studentSection.Student_Grade__c}</td>
+                        <td>{!s.studentSection.Dosage_to_Date__c}</td>
+                        <td><apex:outputField value="{!s.studentSection.Intervention_Enrollment_Start_Date__c}" /></td>
+                    </tr>
+                </apex:repeat>
+                </tbody>
+            </table>
+        </apex:outputPanel>
+        <div id="options" class="clear_fix">
+            <hr />
+            <input type="button" class="black_btn" onclick="showProgressBar('Please wait.'); addStudentsToSessionJS();" value="Add Students"/>
+            <input type="button" class="grey_btn" onclick="close_modal('#add-students-to-session')" value="Cancel"/>
+        </div>
+        <script>
+            j$('#addableStudentsTable').tsort();
+        </script>
+    </div>
+
+
+    <apex:actionFunction name="startAddTimeJS" action="{!startAddTime}" onComplete="checkDisabled(); if(j$('.errorM3','.primaryErrorPanel').size() == 0){openModal('#time_modal');resetWindowSize();}" status="loadTime" rerender="timePanel, timeDetails, addTimeInfo, messages, addModalMessages"/>
+    <apex:actionFunction name="saveTimeJS" action="{!saveTime}" onComplete="if(j$('.errorM3','.primaryErrorPanel').size() == 0){close_modal('#add-session-time');close_modal('#edit-session-time');}isSaving=false; checkDisabled(); reloadPageAfterSaveTime();" rerender="studentTable,timeDetails, messages, addModalMessages"/>
+    <apex:actionFunction name="loadSessionJS" action="{!loadSession}" oncomplete="if(j$('.errorM3','.primaryErrorPanel').size() == 0){openStackedModal('#time_modal','#add-session-time');}" rerender="timePanel, timeDetails, messages, addTimeInfo, addModalMessages">
+        <apex:param value="" assignTo="{!selectedSessionID}" name="selectedSessionID"/>
+    </apex:actionFunction>
+
+    <apex:actionFunction name="startAddStudentsJS" action="{!startAddStudents}" onComplete="openStackedModal('#addToSession','#add-students-to-session');" rerender="messages, addStudentsToSessionTable" />
+    <apex:actionFunction name="addStudentsToSessionJS" action="{!addStudentsToSession}" onComplete="checkForModalClose('add-students-to-session');" rerender="timePanel, timeDetails, messages, addTimeInfo, addSessionModalMessages" />
+    <apex:actionFunction name="removeStudentFromSessionJS" action="{!removeStudentFromSession}" rerender="timePanel, messages">
+        <apex:param value="" assignTo="{!studentSectionIDToRemove}" name="ssID"/>
+    </apex:actionFunction>
+</apex:component>

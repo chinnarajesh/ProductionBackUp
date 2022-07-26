@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Grade</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Grades</value>
+    </caseValues>
+    <fields>
+        <label><!-- Assignment Weighting --></label>
+        <name>Assignment_Weighting__c</name>
+    </fields>
+    <fields>
+        <label><!-- Assignment --></label>
+        <name>Assignment__c</name>
+        <relationshipLabel><!-- Grades --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Comment --></label>
+        <name>Comment__c</name>
+    </fields>
+    <fields>
+        <label><!-- Course Id --></label>
+        <name>Course_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Course --></label>
+        <name>Course__c</name>
+        <relationshipLabel><!-- Grades --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Credit Hours --></label>
+        <name>Credit_Hours__c</name>
+    </fields>
+    <fields>
+        <label><!-- Due Date --></label>
+        <name>Due_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Entered Grade --></label>
+        <name>Entered_Grade__c</name>
+    </fields>
+    <fields>
+        <label><!-- External Id --></label>
+        <name>External_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Faux Grade --></label>
+        <name>Faux_Grade__c</name>
+    </fields>
+    <fields>
+        <label><!-- GPA Added Value Points --></label>
+        <name>GPA_Added_Value_Points__c</name>
+    </fields>
+    <fields>
+        <label><!-- Grade Number --></label>
+        <name>Grade_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Grade Scale Category --></label>
+        <name>Grade_Scale_Category__c</name>
+    </fields>
+    <fields>
+        <label><!-- Grade Scale Id --></label>
+        <name>Grade_Scale_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Grade Scale Name --></label>
+        <name>Grade_Scale_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Grade Scale RT --></label>
+        <name>Grade_Scale_RT__c</name>
+    </fields>
+    <fields>
+        <label><!-- Grade Update --></label>
+        <name>Grade_Update__c</name>
+    </fields>
+    <fields>
+        <label><!-- Grade With Standard --></label>
+        <name>Grade_With_Standard__c</name>
+    </fields>
+    <fields>
+        <label><!-- Grading Type Category --></label>
+        <name>Grading_Type_Category__c</name>
+    </fields>
+    <fields>
+        <label><!-- Grading Type Name --></label>
+        <name>Grading_Type_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Grading Type RT --></label>
+        <name>Grading_Type_RT__c</name>
+    </fields>
+    <fields>
+        <label><!-- Grading Type --></label>
+        <name>Grading_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Include In Standard Grade --></label>
+        <name>Include_In_Standard_Grade__c</name>
+    </fields>
+    <fields>
+        <label><!-- Locked for Final --></label>
+        <name>Locked_for_Final__c</name>
+    </fields>
+    <fields>
+        <label><!-- Multiply GPA Added Value Points --></label>
+        <name>Multiply_GPA_Added_Value_Points__c</name>
+    </fields>
+    <fields>
+        <label><!-- Numeric Course Grade --></label>
+        <name>Numeric_Course_Grade__c</name>
+    </fields>
+    <fields>
+        <label><!-- Points Grade --></label>
+        <name>Points_Grade__c</name>
+    </fields>
+    <fields>
+        <label><!-- Possible Points --></label>
+        <name>Possible_Points__c</name>
+    </fields>
+    <fields>
+        <help><!-- This box denotes whether the comment should be published to the portal. --></help>
+        <label><!-- Publish Comment --></label>
+        <name>Publish_Comment__c</name>
+    </fields>
+    <fields>
+        <label><!-- Raw Grade --></label>
+        <name>Raw_Grade__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reporting Period Is --></label>
+        <name>Reporting_Period_Is__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reporting Period Name --></label>
+        <name>Reporting_Period_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reporting Period Parent Parent --></label>
+        <name>Reporting_Period_Parent_Parent__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reporting Period Parent --></label>
+        <name>Reporting_Period_Parent__c</name>
+    </fields>
+    <fields>
+        <label><!-- Section RT --></label>
+        <name>Section_RT__c</name>
+    </fields>
+    <fields>
+        <label><!-- Section --></label>
+        <name>Section__c</name>
+    </fields>
+    <fields>
+        <label><!-- Standard Gradebook Grade --></label>
+        <name>Standard_Gradebook_Grade__c</name>
+        <relationshipLabel><!-- Grades --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Standard Strand --></label>
+        <name>Standard_Strand__c</name>
+    </fields>
+    <fields>
+        <label><!-- Standard Times Assignment --></label>
+        <name>Standard_Times_Assignment__c</name>
+    </fields>
+    <fields>
+        <label><!-- Standard Weighting --></label>
+        <name>Standard_Weighting__c</name>
+    </fields>
+    <fields>
+        <label><!-- Standard --></label>
+        <name>Standard__c</name>
+        <relationshipLabel><!-- Grades --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Standards Only Grading --></label>
+        <name>Standards_Only_Grading__c</name>
+    </fields>
+    <fields>
+        <label><!-- Strand Grade --></label>
+        <name>Strand_Grade__c</name>
+        <relationshipLabel><!-- Grades --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Student Reference ID --></label>
+        <name>Student_Reference_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Student/Section --></label>
+        <name>Student_Section__c</name>
+        <relationshipLabel><!-- Grades --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Student --></label>
+        <name>Student__c</name>
+        <relationshipLabel><!-- Grades --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- What Grade Reporting Period is this grade entry reported in? --></help>
+        <label><!-- Reporting Period --></label>
+        <name>Time__c</name>
+        <relationshipLabel><!-- Grades --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Unique Grade --></label>
+        <name>Unique_Grade__c</name>
+    </fields>
+    <fields>
+        <label><!-- Use Assignment Type Percentages --></label>
+        <name>Use_Assignment_Type_Percentages__c</name>
+    </fields>
+    <fields>
+        <label><!-- Valid Grade --></label>
+        <name>Valid_Grade__c</name>
+    </fields>
+    <fields>
+        <label><!-- Weighted Grade Value --></label>
+        <name>Weighted_Grade_Value__c</name>
+    </fields>
+    <fields>
+        <label><!-- Exclude From Section Grade --></label>
+        <name>exclude_From_Section_Grade__c</name>
+    </fields>
+    <layouts>
+        <layout>Grade Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Standards/Strands --></label>
+            <section>Standards/Strands</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Grade Layout_admin</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- Entered grade cannot be greater than 1. --></errorMessage>
+        <name>Preventing_values_greater_than_1</name>
+    </validationRules>
+</CustomObjectTranslation>

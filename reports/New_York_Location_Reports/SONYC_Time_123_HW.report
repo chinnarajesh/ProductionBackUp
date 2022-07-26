@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Section__c$Name</field>
+    </columns>
+    <columns>
+        <field>Section__c.Intervention_Sessions__r.Intervention_Session_Results__r$Related_Student_s_Name__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>Section__c.Intervention_Sessions__r.Intervention_Session_Results__r$Amount_of_Time__c</field>
+    </columns>
+    <columns>
+        <field>Section__c.Intervention_Sessions__r.Intervention_Session_Results__r$Intervention_Session_Date__c</field>
+    </columns>
+    <description>SONYC Homework Attendance - 123</description>
+    <filter>
+        <criteriaItems>
+            <column>Section__c$Active__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>1</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Section__c$School__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>IS 123X</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Section__c$In_After_School__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Extended Learning</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Section__c$Program__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Homework Assistance</value>
+        </criteriaItems>
+    </filter>
+    <format>Tabular</format>
+    <name>SONYC_Time-123 (HW)</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Sections_with_Intervention_Sessions_with_Intervent__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>Section__c.Intervention_Sessions__r$Date__c</dateColumn>
+        <interval>INTERVAL_LASTWEEK</interval>
+    </timeFrameFilter>
+</Report>

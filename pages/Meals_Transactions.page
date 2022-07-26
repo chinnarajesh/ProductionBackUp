@@ -1,0 +1,140 @@
+<apex:page id="thepage" controller="MealsController" sidebar="false" tabstyle="Meals__tab">
+
+<c:jQueryInit />
+<apex:includeScript value="{!URLFOR($Resource.jWerty, '/jWerty/jwerty.js')}" />
+<script>
+	j$ = jQuery.noConflict();
+	
+	var isFocused = false;
+	j$(document).ready(function() { 
+		var picString = '{!JSENCODE(student.Student_Picture__c)}'; 
+		j$(".studentPhoto").html(picString);
+	
+		j$('.studid').focus();
+	});	
+	
+	
+	j$(document).keypress(function(event){
+		if(j$('.studid').is(':focus')){
+			jwerty.key('enter',function() {document.getElementById('{!$Component.theblock.pullstudent}').click()});
+		}
+		else{
+			jwerty.key('enter',false);
+		}
+	});
+
+</script>
+<style>
+.theblockTable {margin-left:auto; margin-right:auto;}
+.theblockDiv, .studentIformation {text-align:center; font-weight:bold; width:100%; font-size:16px;}
+.theblockDiv label, .studentIformation label {color:#6F1527;}
+.studentIformation img {width:300px; height:325px;}
+.studentName {font-size:24px; color:#6F1527;}
+.studInfoMainDiv {border:2px solid #1797C0; margin:0 34%; -moz-border-radius: 10px 10px 10px 10px;}
+.theblockDiv table tr td, .studInfoMainDiv table tr td {text-align:left;}
+.theblockDiv table tr td:first-child, .studInfoMainDiv table tr td:first-child {text-align:right;}
+.theblockDiv table tr td.submitButtonTD {text-align:center;}
+.mealTypePickList {width:146px;}
+
+.fixer {clear:both; height: 2px;}
+.ruler {border-top:2px solid #1797C0}
+</style>
+
+<apex:outputpanel id="themessages">
+	<apex:pagemessages />
+</apex:outputpanel>
+<apex:outputpanel id="thepanel">
+	<apex:form id="theform">
+		<apex:outputPanel rendered="{!displayEverything}">
+        	<apex:pageblock id="theblock">
+        		<apex:commandLink value="Set Transaction date/time" style="font-size:small" rerender="themessages, dateField">
+					<apex:param value="true" assignTo="{!pastDate}"/>
+				</apex:commandLink>	
+        		<div class="theblockDiv" >
+        			<apex:outputPanel id="dateField">
+            			<table class="theblockTable">
+            			<tr>
+            				<td><apex:outputlabel value="Meal being served: "/></td>
+                    		<td>
+                    			<apex:selectList value="{!mealType}" multiselect="false" size="1" onchange="if({!firstClick}){mealReselect();}" styleclass="mealTypePickList">
+                                	<apex:selectOptions value="{!mealList}"/>
+                                </apex:selectList>
+                    		</td>
+                		</tr>
+		                <tr>                        
+		           			<td><apex:outputlabel value="Student ID:"/></td>
+							<td><apex:inputtext styleclass="studid" value="{!studID}" /></td>
+						</tr>
+						<tr>
+							<td>
+								<apex:outputlabel rendered="{!pastDate}" value="Date/Time:"/>
+							</td>
+							<td>	
+								<apex:inputField rendered="{!pastDate}" required="false" value="{!mealTime.Transaction_Date__c}"/>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2" class="submitButtonTD">
+								<apex:commandbutton id="pullstudent" action="{!pullStudent}" value="Submit" />
+							</td>
+						</tr>
+						</table>
+					</apex:outputPanel>
+				</div>
+				<apex:outputpanel id="thepage" rendered="{!showMeal}">
+	           		<div class="fixer" style="height:5px;"></div>
+            		<div class="fixer ruler"></div>
+            
+            		<div class="studentIformation">
+	                	<apex:outputtext value="{!student.Name}" id="studentName" styleclass="studentName"/>
+	                	<br/>
+	                	<div class="studentPhoto"></div>
+            			<div class="fixer" style="height:5px;"></div>
+	                	<div class="studInfoMainDiv">
+	                		<table>
+				            	<tr>
+				            		<td><apex:outputlabel value="Current Account Balance: "/></td>
+				                	<td><apex:outputfield value="{!student.Current_Meals_Balance__c}"/></td>
+				                </tr>
+								    	
+				                <tr>
+				                	<td><apex:outputlabel value="Meal Price: "/></td>
+				                	<td><apex:outputfield value="{!dummyMT.Transaction_Amount__c}"/></td>
+				                </tr>  
+		            		</table>		                
+	                	</div>
+            			<div class="fixer" style="height:5px;"></div>
+            				<apex:actionStatus id="submitStatus">
+	            				<apex:facet name="stop">
+			                		<apex:commandbutton status="submitStatus" id="buybtn" value="Buy" action="{!buymeal}" rerender="thepanel, themessages"/>
+			               		</apex:facet>
+			            		<apex:facet name="start">
+				                	<apex:commandbutton status="submitStatus" disabled="true" value="Buy"/>
+				                </apex:facet>
+	                		</apex:actionStatus>
+						</div>
+           			</apex:outputpanel>
+				</apex:pageblock>
+				<apex:outputpanel id="thetable" rendered="{!studentMealList.size>0}">
+					<apex:pageblock title="Today's Transactions">
+					<apex:pageblocktable value="{!studentMealList}" var="sml">            	
+						<apex:column value="{!sml.Transaction_Date__c}"/>
+            			<apex:column value="{!sml.Meal_Type__c}"/>
+            			<apex:column value="{!sml.Transaction_Amount__c}"/>
+            			<apex:column >
+		            		<apex:facet name="header">Void</apex:facet>
+		            		<apex:inputfield value="{!sml.Void__c}" rendered="{!!sml.Void__c}"/>
+		            		<apex:outputfield value="{!sml.Void__c}" rendered="{!sml.Void__c}"/>
+            			</apex:column>
+
+            		</apex:pageblocktable>
+		            <center>
+		            	<apex:commandbutton value="Void" action="{!voidTransactions}" rerender="thetable, themessages"/>
+		            </center>
+            		</apex:pageblock>
+            	</apex:outputpanel>
+            </apex:outputPanel>
+			<apex:actionFunction rerender="themessages" name="mealReselect" action="{!pullStudent}"/>
+	</apex:form>
+	</apex:outputpanel>
+</apex:page>

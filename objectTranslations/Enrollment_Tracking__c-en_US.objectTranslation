@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Enrollment Tracking</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Enrollment Tracking</value>
+    </caseValues>
+    <fields>
+        <label><!-- Active? --></label>
+        <name>Active__c</name>
+    </fields>
+    <fields>
+        <label><!-- Current Record? --></label>
+        <name>Current_Record__c</name>
+    </fields>
+    <fields>
+        <label><!-- End Date --></label>
+        <name>End_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Exit Comments --></label>
+        <name>Exit_Comments__c</name>
+    </fields>
+    <fields>
+        <label><!-- Exit Reason --></label>
+        <name>Exit_Reason__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reference Id --></label>
+        <name>Reference_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Start Date --></label>
+        <name>Start_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Student/Section --></label>
+        <name>Student_Section__c</name>
+        <relationshipLabel><!-- Enrollment Tracking --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Student --></label>
+        <name>Student__c</name>
+        <relationshipLabel><!-- Enrollment Tracking --></relationshipLabel>
+    </fields>
+    <layouts>
+        <layout>Enrollment Tracking Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Enroll/Exit Information --></label>
+            <section>Enroll/Exit Information</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

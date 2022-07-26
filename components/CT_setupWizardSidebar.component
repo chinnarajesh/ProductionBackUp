@@ -1,0 +1,97 @@
+<apex:component access="global" controller="CT_SetupWizardSidebar" allowDML="true">
+	<apex:attribute access="global" name="setupId" description="Setup Id" type="String" required="true" assignTo="{!cSetupId}" />
+	<script type="text/javascript">
+		j$(document).ready(function(){
+			try{
+				j$(".trees").treeview({
+					persist: "location",
+					collapsed: false,
+					unique: true
+				});
+			} catch(Exception){}
+		});
+	</script>
+	<style>
+	.section_content a{
+		font-size: 12px;
+		color: #0066CC;
+		margin-left: 18px;
+	}
+	.section_content a.hover{
+		color: #666666;
+	}
+	.trees span{
+		margin-left: 18px;
+	}
+	</style>
+	<apex:outputPanel rendered="{!NOT(ISNULL(cSetupID))}">
+		<div class="section_content" id="setupSidebarFrame">
+            <apex:outputPanel rendered="{!currentTermName != null}">
+                <p>Current term: <b>{!currentTermName}</b></p>
+            </apex:outputPanel>
+			<apex:outputPanel rendered="{!IF(CONTAINS(LOWER($CurrentPage.Name),'CT_SchoolSetup_Home'),false,true)}">
+				<apex:outputLink value="{!$Page.CT_SetupWizard_Home}?setupId={!cSetupId}">School Setup Homepage</apex:outputLink>
+				<br/>
+			</apex:outputPanel>
+			<!--<apex:outputLink value="{!$Page.CT_core_LoadCSVData_v2}?setupId={!cSetupId}&type=Scheduler">CSV Loader</apex:outputLink><br/>-->
+			<br/>
+			<ul class="trees">
+				<li>
+					Core Setup
+					<ul>
+						<li>
+							<apex:outputLink value="{!$Page.CT_core_TermSetup_v2}?setupId={!cSetupId}" disabled="{!AND(stepNo<TERMS,stepNo!=0)}">Configure Terms and Reporting Periods</apex:outputLink>
+						</li>
+						<!--<li>-->
+							<!--<apex:outputLink value="{!$Page.CT_SchoolSetup_Selections}?setupId={!cSetupId}" disabled="{!AND(stepNo<SELECTIONS,stepNo!=0)}">Select Schedule Options</apex:outputLink>-->
+						<!--</li>-->
+<!-- 						<li>
+							<apex:outputLink value="{!$Page.CT_core_ScheduleTemplate}?setupId={!cSetupId}" disabled="{!AND(stepNo<SELECTIONS,stepNo!=0)}">Create Schedule Templates</apex:outputLink>
+						</li> -->
+						<!--<li>-->
+							<!--<apex:outputLink value="{!$Page.CT_ReportingPeriodCalendarView}?setupId={!cSetupId}" disabled="{!AND(stepNo<CALENDAR,stepNo!=0)}">Create and Edit School Calendar</apex:outputLink>-->
+						<!--</li>-->
+						<!--<li>-->
+							<!--<apex:outputLink value="{!$Page.CT_core_CourseCatalogSetup}?setupId={!cSetupId}" disabled="{!AND(stepNo<COURSE_CATALOG,stepNo!=0)}">Set Up Courses</apex:outputLink>-->
+						<!--</li>-->
+						<!--<li style="{!IF(schoolSetup.Room_Dependent__c,'','display:none;')}">-->
+							<!--<apex:outputLink value="{!$Page.CT_core_RoomCreate}?setupId={!cSetupId}" disabled="{!AND(stepNo<ROOMS,stepNo!=0)}">Configure Rooms</apex:outputLink>-->
+						<!--</li>-->
+						<li>
+							<apex:outputLink value="{!$Page.CT_SchoolSetup_Staff}?setupId={!cSetupId}" disabled="{!AND(stepNo<CALENDAR,stepNo!=0)}">Create Staff/Students</apex:outputLink>
+						</li>
+						<!--<li style="{!IF(schoolSetup.Group_Based__c,'','display:none;')}">-->
+							<!--<apex:outputLink value="{!$Page.CT_core_GroupConfiguration}?setupId={!cSetupId}" disabled="{!AND(stepNo<GROUP_CONFIG,stepNo!=0)}">Create Schedule Groups</apex:outputLink>-->
+						<!--</li>-->
+						<li>
+							<apex:outputLink value="{!$Page.CT_GroupAgendaView}?setupId={!cSetupId}" rendered="{!schoolSetup.Group_Based__c}" disabled="{!AND(stepNo<CALENDAR,stepNo!=0)}">Schedule Sections</apex:outputLink>
+							<apex:outputLink value="{!$Page.CT_Scheduler_Grid}?setupId={!cSetupId}" rendered="{!!schoolSetup.Group_Based__c}" disabled="{!AND(stepNo<CALENDAR,stepNo!=0)}">Schedule Sections</apex:outputLink>
+						</li>
+						<!--<li>-->
+							<!--<apex:outputLink value="{!$Page.CT_SchoolSetup_StudentSections}?setupId={!cSetupId}&type=Student+Section" disabled="{!AND(stepNo<CALENDAR,stepNo!=0)}">Create Student/Sections</apex:outputLink>-->
+						<!--</li>-->
+						<apex:outputPanel rendered="{!$Profile.Name == 'System Administrator'}" >
+                            <li>
+                                <apex:outputLink value="{!$Page.CT_core_PublishSetup}?setupId={!cSetupId}" disabled="{!IF(schoolSetup.Verification_Status__c = 'Verification'|| schoolSetup.Verification_Status__c = 'Verified',false, true)}">Publish</apex:outputLink>
+                            </li>
+						</apex:outputPanel>
+                        <!--<apex:outputPanel rendered="{!$Profile.Name == 'System Administrator'}" >-->
+                            <!--<li>-->
+                                <!--<apex:outputLink value="{!$Page.CT_SchoolSetup_ActivateData}?setupId={!cSetupId}" disabled="{!AND(stepNo<ACTIVATION,stepNo!=0)}">Activate Data</apex:outputLink>-->
+                            <!--</li>-->
+						<!--</apex:outputPanel>-->
+					</ul>
+				</li>
+			</ul>
+
+			<br/>
+<!--			<apex:commandButton value="Activate SDS School" action="{!activateSDSSchool}" disabled="{!schoolSetup.School__r.SDS_School__c}"-->
+<!--				rendered="{!IF(AND(!schoolSetup.School__r.SDS_School__c, OR(CONTAINS(LOWER($CurrentPage.Name),'ct_scheduler_grid'),CONTAINS(LOWER($CurrentPage.Name),'ct_groupagendaview'))),true,false)}"/>-->
+		</div>
+	</apex:outputPanel>
+	<apex:outputPanel rendered="{!ISNULL(cSetupID)}">
+		<div class="section_content" id="setupSidebarFrame">
+			<apex:outputLink value="{!$Page.CT_SetupWizard_Home}">SchoolForce Setup</apex:outputLink><br/>
+		</div>
+	</apex:outputPanel>
+</apex:component>

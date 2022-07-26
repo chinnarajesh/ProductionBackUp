@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Skill</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Skills</value>
+    </caseValues>
+    <fields>
+        <label><!-- Category --></label>
+        <name>Category__c</name>
+        <picklistValues>
+            <masterLabel>Literacy</masterLabel>
+            <translation><!-- Literacy --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Math</masterLabel>
+            <translation><!-- Math --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SEL/Behavior and Attendance Interventions</masterLabel>
+            <translation><!-- SEL/Behavior and Attendance Interventions --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- IsPrimary --></label>
+        <name>IsPrimary__c</name>
+    </fields>
+    <layouts>
+        <layout>Skill Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

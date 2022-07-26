@@ -1,0 +1,2210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableEnhancedLookup>true</enableEnhancedLookup>
+    <enableFeeds>true</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>Read</externalSharingModel>
+    <fields>
+        <fullName>Active__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Active</label>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Address_1__c</fullName>
+        <externalId>false</externalId>
+        <label>Home Address</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Address_2__c</fullName>
+        <externalId>false</externalId>
+        <label>Address 2</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Afterschool__c</fullName>
+        <externalId>false</externalId>
+        <formula>INCLUDES(CreateSections__c, &apos;Homework Assistance &amp; Extended Learning&apos;) ||
+INCLUDES(CreateSections__c, &apos;Afterschool Heroes &amp; Extended Learning&apos;) ||
+INCLUDES(CreateSections__c, &apos;Enrichment &amp; Extended Learning&apos;) || 
+INCLUDES(CreateSections__c, &apos;Homework Assistance &amp; In School&apos;) ||
+INCLUDES(CreateSections__c, &apos;Afterschool Heroes &amp; In School&apos;) ||
+INCLUDES(CreateSections__c, &apos;Enrichment &amp; In School&apos;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Afterschool</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Age__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(MONTH(TODAY())&gt;MONTH(Birthday__c),YEAR(TODAY())-YEAR(Birthday__c),IF(AND(MONTH(TODAY())=MONTH(Birthday__c),DAY(TODAY())&gt;=DAY(Birthday__c)),YEAR(TODAY())-YEAR(Birthday__c),(YEAR(TODAY())-YEAR(Birthday__c))-1))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Age</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Attendance__c</fullName>
+        <externalId>false</externalId>
+        <formula>INCLUDES(CreateSections__c, &apos;Attendance Check In Check Out &amp; In School&apos;) ||
+INCLUDES(CreateSections__c, &apos;Attendance Check In Check Out &amp; Extended Learning&apos;) ||
+INCLUDES(CreateSections__c, &apos;Coaching: Attendance &amp; In School&apos;) ||
+INCLUDES(CreateSections__c, &apos;Coaching: Attendance &amp; Extended Learning&apos;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Attendance</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Base_School__c</fullName>
+        <externalId>false</externalId>
+        <label>Base School</label>
+        <length>30</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Behavior__c</fullName>
+        <externalId>false</externalId>
+        <formula>INCLUDES(CreateSections__c, &apos;50 Acts of Greatness &amp; In School&apos;) ||
+INCLUDES(CreateSections__c, &apos;50 Acts of Leadership &amp; In School&apos;) ||
+INCLUDES(CreateSections__c, &apos;Coaching: Behavior (Local) &amp; In School&apos;) ||
+INCLUDES(CreateSections__c, &apos;50 Acts of Greatness &amp; Extended Learning&apos;) ||
+INCLUDES(CreateSections__c, &apos;50 Acts of Leadership &amp; Extended Learning&apos;) ||
+INCLUDES(CreateSections__c, &apos;Coaching: Behavior (Local) &amp; Extended Learning&apos;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Behavior</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Birthday__c</fullName>
+        <externalId>false</externalId>
+        <label>Birthday</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Campus__c</fullName>
+        <externalId>false</externalId>
+        <label>Campus</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>DC-Georgia Ave</fullName>
+                    <default>false</default>
+                    <label>DC-Georgia Ave</label>
+                </value>
+                <value>
+                    <fullName>Kansas</fullName>
+                    <default>false</default>
+                    <label>Kansas</label>
+                </value>
+                <value>
+                    <fullName>Organization</fullName>
+                    <default>false</default>
+                    <label>Organization</label>
+                </value>
+                <value>
+                    <fullName>Base School</fullName>
+                    <default>false</default>
+                    <label>Base School</label>
+                </value>
+                <value>
+                    <fullName>Campus</fullName>
+                    <default>false</default>
+                    <label>Campus</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Certificate_Expiration_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Certificate Expiration Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>City__c</fullName>
+        <externalId>false</externalId>
+        <label>Home City</label>
+        <length>100</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CreateSections__c</fullName>
+        <externalId>false</externalId>
+        <label>CreateSections</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Tutoring: Math &amp; In School</fullName>
+                    <default>false</default>
+                    <label>Tutoring: Math &amp; In School</label>
+                </value>
+                <value>
+                    <fullName>Tutoring: Math &amp; Extended Learning</fullName>
+                    <default>false</default>
+                    <label>Tutoring: Math &amp; Extended Learning</label>
+                </value>
+                <value>
+                    <fullName>Tutoring: Literacy &amp; In School</fullName>
+                    <default>false</default>
+                    <label>Tutoring: Literacy &amp; In School</label>
+                </value>
+                <value>
+                    <fullName>Tutoring: Literacy &amp; Extended Learning</fullName>
+                    <default>false</default>
+                    <label>Tutoring: Literacy &amp; Extended Learning</label>
+                </value>
+                <value>
+                    <fullName>Enrichment &amp; In School</fullName>
+                    <default>false</default>
+                    <label>Enrichment &amp; In School</label>
+                </value>
+                <value>
+                    <fullName>Enrichment &amp; Extended Learning</fullName>
+                    <default>false</default>
+                    <label>Enrichment &amp; Extended Learning</label>
+                </value>
+                <value>
+                    <fullName>Attendance Check In Check Out &amp; In School</fullName>
+                    <default>false</default>
+                    <label>Attendance Check In Check Out &amp; In School</label>
+                </value>
+                <value>
+                    <fullName>Attendance Check In Check Out &amp; Extended Learning</fullName>
+                    <default>false</default>
+                    <label>Attendance Check In Check Out &amp; Extended Learning</label>
+                </value>
+                <value>
+                    <fullName>Coaching: Attendance &amp; In School</fullName>
+                    <default>false</default>
+                    <label>Coaching: Attendance &amp; In School</label>
+                </value>
+                <value>
+                    <fullName>Coaching: Attendance &amp; Extended Learning</fullName>
+                    <default>false</default>
+                    <label>Coaching: Attendance &amp; Extended Learning</label>
+                </value>
+                <value>
+                    <fullName>50 Acts of Greatness &amp; In School</fullName>
+                    <default>false</default>
+                    <label>50 Acts of Greatness &amp; In School</label>
+                </value>
+                <value>
+                    <fullName>50 Acts of Greatness &amp; Extended Learning</fullName>
+                    <default>false</default>
+                    <label>50 Acts of Greatness &amp; Extended Learning</label>
+                </value>
+                <value>
+                    <fullName>50 Acts of Leadership &amp; In School</fullName>
+                    <default>false</default>
+                    <label>50 Acts of Leadership &amp; In School</label>
+                </value>
+                <value>
+                    <fullName>50 Acts of Leadership &amp; Extended Learning</fullName>
+                    <default>false</default>
+                    <label>50 Acts of Leadership &amp; Extended Learning</label>
+                </value>
+                <value>
+                    <fullName>Coaching: SEL/SED (Local) &amp; In School</fullName>
+                    <default>false</default>
+                    <label>Coaching: SEL/SED (Local) &amp; In School</label>
+                </value>
+                <value>
+                    <fullName>Coaching: SEL/SED (Local) &amp; Extended Learning</fullName>
+                    <default>false</default>
+                    <label>Coaching: SEL/SED (Local) &amp; Extended Learning</label>
+                </value>
+                <value>
+                    <fullName>SEL/SED Check In Check Out &amp; Extended Learning</fullName>
+                    <default>false</default>
+                    <label>SEL/SED Check In Check Out &amp; Extended Learning</label>
+                </value>
+                <value>
+                    <fullName>SEL/SED Check In Check Out &amp; In School</fullName>
+                    <default>false</default>
+                    <label>SEL/SED Check In Check Out &amp; In School</label>
+                </value>
+                <value>
+                    <fullName>Homework Assistance &amp; Extended Learning</fullName>
+                    <default>false</default>
+                    <label>Homework Assistance &amp; Extended Learning</label>
+                </value>
+                <value>
+                    <fullName>Homework Assistance &amp; In School</fullName>
+                    <default>false</default>
+                    <label>Homework Assistance &amp; In School</label>
+                </value>
+                <value>
+                    <fullName>Reading Inventory &amp; In School</fullName>
+                    <default>false</default>
+                    <label>Reading Inventory &amp; In School</label>
+                </value>
+                <value>
+                    <fullName>Math Inventory &amp; In School</fullName>
+                    <default>false</default>
+                    <label>Math Inventory &amp; In School</label>
+                </value>
+                <value>
+                    <fullName>DESSA &amp; In School</fullName>
+                    <default>false</default>
+                    <label>DESSA &amp; In School</label>
+                </value>
+                <value>
+                    <fullName>50 Acts of Greatness</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>50 Acts of Greatness</label>
+                </value>
+                <value>
+                    <fullName>50 Acts of Leadership</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>50 Acts of Leadership</label>
+                </value>
+                <value>
+                    <fullName>Afterschool Heroes</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Afterschool Heroes</label>
+                </value>
+                <value>
+                    <fullName>Afterschool Heroes &amp; Extended Learning</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Afterschool Heroes &amp; Extended Learning</label>
+                </value>
+                <value>
+                    <fullName>Afterschool Heroes &amp; In School</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Afterschool Heroes &amp; In School</label>
+                </value>
+                <value>
+                    <fullName>Attendance Check In Check Out</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Attendance Check In Check Out</label>
+                </value>
+                <value>
+                    <fullName>Coaching: Attendance</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Coaching: Attendance</label>
+                </value>
+                <value>
+                    <fullName>Coaching: Behavior (Local)</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Coaching: Behavior (Local)</label>
+                </value>
+                <value>
+                    <fullName>DESSA</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>DESSA</label>
+                </value>
+                <value>
+                    <fullName>DESSA &amp; Extended Learning</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>DESSA &amp; Extended Learning</label>
+                </value>
+                <value>
+                    <fullName>Enrichment</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Enrichment</label>
+                </value>
+                <value>
+                    <fullName>Homework Assistance</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Homework Assistance</label>
+                </value>
+                <value>
+                    <fullName>Math Inventory</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Math Inventory</label>
+                </value>
+                <value>
+                    <fullName>Math Inventory &amp; Extended Learning</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Math Inventory &amp; Extended Learning</label>
+                </value>
+                <value>
+                    <fullName>Reading Inventory</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Reading Inventory</label>
+                </value>
+                <value>
+                    <fullName>Reading Inventory &amp; Extended Learning</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Reading Inventory &amp; Extended Learning</label>
+                </value>
+                <value>
+                    <fullName>Tutoring: Literacy</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Tutoring: Literacy</label>
+                </value>
+                <value>
+                    <fullName>Tutoring: Math</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Tutoring: Math</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+        <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Doctorate_Degree_1__c</fullName>
+        <externalId>false</externalId>
+        <label>Doctorate Degree 1</label>
+        <length>100</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Doctorate_Institute__c</fullName>
+        <externalId>false</externalId>
+        <label>Doctorate Institute</label>
+        <length>100</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ES_Focus_Lists__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>ACM&apos;s at participating sites will specialize in literacy or math. All ACM&apos;s will still support students in SEL and attendance coaching.</description>
+        <externalId>false</externalId>
+        <label>ES Focus Lists</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Email__c</fullName>
+        <externalId>false</externalId>
+        <label>Email</label>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Emergency_Contact_Email__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>What is the emergency contact&apos;s email?</inlineHelpText>
+        <label>Emergency Contact Email</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Emergency_Contact_POC__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>The name of the emergency contact for this staff member</inlineHelpText>
+        <label>Emergency Contact POC</label>
+        <length>100</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Emergency_Contact_Phone__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>What is the emergency contact&apos;s phone number?</inlineHelpText>
+        <label>Emergency Contact Phone</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Phone</type>
+    </fields>
+    <fields>
+        <fullName>Extension__c</fullName>
+        <externalId>false</externalId>
+        <label>Extension</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Phone</type>
+    </fields>
+    <fields>
+        <fullName>External_Id__c</fullName>
+        <externalId>true</externalId>
+        <label>External Id</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>First_Name_Staff__c</fullName>
+        <externalId>false</externalId>
+        <label>Staff First Name</label>
+        <length>80</length>
+        <required>true</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Gender__c</fullName>
+        <externalId>false</externalId>
+        <label>Gender</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Female</fullName>
+                    <default>false</default>
+                    <label>Female</label>
+                </value>
+                <value>
+                    <fullName>Male</fullName>
+                    <default>false</default>
+                    <label>Male</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Grade__c</fullName>
+        <externalId>false</externalId>
+        <label>Grade</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>K</fullName>
+                    <default>false</default>
+                    <label>K</label>
+                </value>
+                <value>
+                    <fullName>1</fullName>
+                    <default>false</default>
+                    <label>1</label>
+                </value>
+                <value>
+                    <fullName>2</fullName>
+                    <default>false</default>
+                    <label>2</label>
+                </value>
+                <value>
+                    <fullName>3</fullName>
+                    <default>false</default>
+                    <label>3</label>
+                </value>
+                <value>
+                    <fullName>4</fullName>
+                    <default>false</default>
+                    <label>4</label>
+                </value>
+                <value>
+                    <fullName>5</fullName>
+                    <default>false</default>
+                    <label>5</label>
+                </value>
+                <value>
+                    <fullName>6</fullName>
+                    <default>false</default>
+                    <label>6</label>
+                </value>
+                <value>
+                    <fullName>7</fullName>
+                    <default>false</default>
+                    <label>7</label>
+                </value>
+                <value>
+                    <fullName>8</fullName>
+                    <default>false</default>
+                    <label>8</label>
+                </value>
+                <value>
+                    <fullName>9</fullName>
+                    <default>false</default>
+                    <label>9</label>
+                </value>
+                <value>
+                    <fullName>10</fullName>
+                    <default>false</default>
+                    <label>10</label>
+                </value>
+                <value>
+                    <fullName>11</fullName>
+                    <default>false</default>
+                    <label>11</label>
+                </value>
+                <value>
+                    <fullName>12</fullName>
+                    <default>false</default>
+                    <label>12</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Highest_Education__c</fullName>
+        <externalId>false</externalId>
+        <label>Highest Education</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Undergraduate</fullName>
+                    <default>false</default>
+                    <label>Undergraduate</label>
+                </value>
+                <value>
+                    <fullName>Graduate</fullName>
+                    <default>false</default>
+                    <label>Graduate</label>
+                </value>
+                <value>
+                    <fullName>Masters</fullName>
+                    <default>false</default>
+                    <label>Masters</label>
+                </value>
+                <value>
+                    <fullName>Doctorate</fullName>
+                    <default>false</default>
+                    <label>Doctorate</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Holding_Source__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Holding Source</label>
+        <referenceTo>HoldingObj__c</referenceTo>
+        <relationshipLabel>Staff</relationshipLabel>
+        <relationshipName>Staff</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>ID__c</fullName>
+        <externalId>true</externalId>
+        <label>ID</label>
+        <length>20</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Individual__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Individual</label>
+        <referenceTo>Contact</referenceTo>
+        <relationshipLabel>Staff</relationshipLabel>
+        <relationshipName>Staff</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Instructional_Staff__c</fullName>
+        <defaultValue>true</defaultValue>
+        <externalId>false</externalId>
+        <label>Instructional Staff</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>IsSectionDESSA__c</fullName>
+        <externalId>false</externalId>
+        <formula>INCLUDES(CreateSections__c, &apos;DESSA&apos;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>DESSA</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>IsSectionLiteracy__c</fullName>
+        <externalId>false</externalId>
+        <formula>INCLUDES(CreateSections__c, &apos;Tutoring: Literacy &amp; In School&apos;) ||
+INCLUDES(CreateSections__c, &apos;Tutoring: Literacy &amp; Extended Learning&apos;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>ELA/Literacy</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>IsSectionMathInventory__c</fullName>
+        <externalId>false</externalId>
+        <formula>INCLUDES(CreateSections__c, &apos;Math Inventory&apos;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Math Inventory</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>IsSectionMath__c</fullName>
+        <externalId>false</externalId>
+        <formula>INCLUDES(CreateSections__c, &apos;Tutoring: Math &amp; In School&apos;) ||
+INCLUDES(CreateSections__c, &apos;Tutoring: Math &amp; Extended Learning&apos;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Math</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>IsSectionReadingInventory__c</fullName>
+        <externalId>false</externalId>
+        <formula>INCLUDES(CreateSections__c, &apos;Reading Inventory&apos;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Reading Inventory</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Is_Active__c</fullName>
+        <defaultValue>true</defaultValue>
+        <externalId>false</externalId>
+        <label>Active?</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Licensure_Institution__c</fullName>
+        <externalId>false</externalId>
+        <label>Licensure  Institution</label>
+        <length>100</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Licensure_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Licensure Type</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Teacher</fullName>
+                    <default>false</default>
+                    <label>Teacher</label>
+                </value>
+                <value>
+                    <fullName>Principal</fullName>
+                    <default>false</default>
+                    <label>Principal</label>
+                </value>
+                <value>
+                    <fullName>Admin</fullName>
+                    <default>false</default>
+                    <label>Admin</label>
+                </value>
+                <value>
+                    <fullName>Special Education</fullName>
+                    <default>false</default>
+                    <label>Special Education</label>
+                </value>
+                <value>
+                    <fullName>Pupil Personnel Services</fullName>
+                    <default>false</default>
+                    <label>Pupil Personnel Services</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Master_s_Degree_1__c</fullName>
+        <externalId>false</externalId>
+        <label>Master&apos;s Degree 1</label>
+        <length>100</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Master_s_Degree_2__c</fullName>
+        <externalId>false</externalId>
+        <label>Master&apos;s Degree 2</label>
+        <length>100</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Master_s_Degree_3__c</fullName>
+        <externalId>false</externalId>
+        <label>Master&apos;s Degree 3</label>
+        <length>100</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Masters_Institution_1__c</fullName>
+        <externalId>false</externalId>
+        <label>Masters Institution 1</label>
+        <length>100</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Masters_Institution_2__c</fullName>
+        <externalId>false</externalId>
+        <label>Masters Institution 2</label>
+        <length>100</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Masters_Institution_3__c</fullName>
+        <externalId>false</externalId>
+        <label>Masters Institution 3</label>
+        <length>100</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Middle_Name_Staff__c</fullName>
+        <externalId>false</externalId>
+        <label>Staff Middle Name</label>
+        <length>80</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>New_Returning__c</fullName>
+        <externalId>false</externalId>
+        <label>New/Returning</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>New</fullName>
+                    <default>false</default>
+                    <label>New</label>
+                </value>
+                <value>
+                    <fullName>Returning</fullName>
+                    <default>false</default>
+                    <label>Returning</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Nickname__c</fullName>
+        <externalId>false</externalId>
+        <label>Nickname</label>
+        <length>18</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Official_First_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Official First Name</label>
+        <length>40</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Organization__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Staff Member&apos;s employer</description>
+        <externalId>false</externalId>
+        <label>Organization</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Staff</relationshipLabel>
+        <relationshipName>Staff</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Personal_Phone__c</fullName>
+        <externalId>false</externalId>
+        <label>Personal Phone</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Phone</type>
+    </fields>
+    <fields>
+        <fullName>Position_2__c</fullName>
+        <externalId>false</externalId>
+        <label>Position 2</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Admin</fullName>
+                    <default>false</default>
+                    <label>Admin</label>
+                </value>
+                <value>
+                    <fullName>Coordinators/Dir</fullName>
+                    <default>false</default>
+                    <label>Coordinators/Dir</label>
+                </value>
+                <value>
+                    <fullName>Operations</fullName>
+                    <default>false</default>
+                    <label>Operations</label>
+                </value>
+                <value>
+                    <fullName>Social Worker</fullName>
+                    <default>false</default>
+                    <label>Social Worker</label>
+                </value>
+                <value>
+                    <fullName>Teacher</fullName>
+                    <default>false</default>
+                    <label>Teacher</label>
+                </value>
+                <value>
+                    <fullName>YRP</fullName>
+                    <default>false</default>
+                    <label>YRP</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Position__c</fullName>
+        <externalId>false</externalId>
+        <label>Position</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Admin</fullName>
+                    <default>false</default>
+                    <label>Admin</label>
+                </value>
+                <value>
+                    <fullName>Aide</fullName>
+                    <default>false</default>
+                    <label>Aide</label>
+                </value>
+                <value>
+                    <fullName>Behavior Coor</fullName>
+                    <default>false</default>
+                    <label>Behavior Coor</label>
+                </value>
+                <value>
+                    <fullName>Coordinators/Dir</fullName>
+                    <default>false</default>
+                    <label>Coordinators/Dir</label>
+                </value>
+                <value>
+                    <fullName>CTR</fullName>
+                    <default>false</default>
+                    <label>CTR</label>
+                </value>
+                <value>
+                    <fullName>ELL</fullName>
+                    <default>false</default>
+                    <label>ELL</label>
+                </value>
+                <value>
+                    <fullName>Family Outreach Coordinator</fullName>
+                    <default>false</default>
+                    <label>Family Outreach Coordinator</label>
+                </value>
+                <value>
+                    <fullName>General Ed Teacher</fullName>
+                    <default>false</default>
+                    <label>General Ed Teacher</label>
+                </value>
+                <value>
+                    <fullName>Inclusion</fullName>
+                    <default>false</default>
+                    <label>Inclusion</label>
+                </value>
+                <value>
+                    <fullName>Marketing/Dev</fullName>
+                    <default>false</default>
+                    <label>Marketing/Dev</label>
+                </value>
+                <value>
+                    <fullName>NLNS Resident</fullName>
+                    <default>false</default>
+                    <label>NLNS Resident</label>
+                </value>
+                <value>
+                    <fullName>Nurse</fullName>
+                    <default>false</default>
+                    <label>Nurse</label>
+                </value>
+                <value>
+                    <fullName>Operations</fullName>
+                    <default>false</default>
+                    <label>Operations</label>
+                </value>
+                <value>
+                    <fullName>Project Manager</fullName>
+                    <default>false</default>
+                    <label>Project Manager</label>
+                </value>
+                <value>
+                    <fullName>Social Work</fullName>
+                    <default>false</default>
+                    <label>Social Work</label>
+                </value>
+                <value>
+                    <fullName>Special</fullName>
+                    <default>false</default>
+                    <label>Special</label>
+                </value>
+                <value>
+                    <fullName>Speech Language Pathologist</fullName>
+                    <default>false</default>
+                    <label>Speech Language Pathologist</label>
+                </value>
+                <value>
+                    <fullName>Wilson</fullName>
+                    <default>false</default>
+                    <label>Wilson</label>
+                </value>
+                <value>
+                    <fullName>YRP</fullName>
+                    <default>false</default>
+                    <label>YRP</label>
+                </value>
+                <value>
+                    <fullName>Coordintaors/Dir</fullName>
+                    <default>false</default>
+                    <label>Coordintaors/Dir</label>
+                </value>
+                <value>
+                    <fullName>NLNS Resdient</fullName>
+                    <default>false</default>
+                    <label>NLNS Resdient</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Preferred_classroom__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Preferred classroom</label>
+        <referenceTo>Room__c</referenceTo>
+        <relationshipLabel>Teachers</relationshipLabel>
+        <relationshipName>Teachers</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Qualifications__c</fullName>
+        <externalId>false</externalId>
+        <label>Qualifications</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Honors</fullName>
+                    <default>false</default>
+                    <label>Honors</label>
+                </value>
+                <value>
+                    <fullName>AP</fullName>
+                    <default>false</default>
+                    <label>AP</label>
+                </value>
+                <value>
+                    <fullName>IB</fullName>
+                    <default>false</default>
+                    <label>IB</label>
+                </value>
+                <value>
+                    <fullName>ELA</fullName>
+                    <default>false</default>
+                    <label>ELA</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Race__c</fullName>
+        <externalId>false</externalId>
+        <label>Race</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>American Indian or Alaskan Native</fullName>
+                    <default>false</default>
+                    <label>American Indian or Alaskan Native</label>
+                </value>
+                <value>
+                    <fullName>African American</fullName>
+                    <default>false</default>
+                    <label>African American</label>
+                </value>
+                <value>
+                    <fullName>Asian</fullName>
+                    <default>false</default>
+                    <label>Asian</label>
+                </value>
+                <value>
+                    <fullName>Hispanic or Latino</fullName>
+                    <default>false</default>
+                    <label>Hispanic or Latino</label>
+                </value>
+                <value>
+                    <fullName>White</fullName>
+                    <default>false</default>
+                    <label>White</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Reference_Id__c</fullName>
+        <externalId>true</externalId>
+        <label>Reference Id</label>
+        <length>100</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Role_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Role Type</label>
+        <length>18</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Role__c</fullName>
+        <externalId>false</externalId>
+        <label>Role</label>
+        <length>50</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Secondary_Email__c</fullName>
+        <externalId>false</externalId>
+        <label>Secondary Email</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Site__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT(Organization__r.Site__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Location</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Staff_18_digit_id__c</fullName>
+        <externalId>false</externalId>
+        <formula>CASESAFEID(Id)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Staff 18 digit id</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Staff_Code__c</fullName>
+        <externalId>false</externalId>
+        <label>Staff Code</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Staff_Email__c</fullName>
+        <externalId>false</externalId>
+        <formula>Individual__r.User__r.Email</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Staff Email</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Staff_Last_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Staff Last Name</label>
+        <length>80</length>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Staff_Photo__c</fullName>
+        <externalId>false</externalId>
+        <label>Staff Photo</label>
+        <length>32000</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>25</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Staff_Picture_c__c</fullName>
+        <externalId>false</externalId>
+        <formula>IMAGE(&quot;/resource/&quot; &amp; $Setup.pictureHelper__c.pictureURL__c &amp; &quot;/pictures/&quot; &amp;  ID__c   &amp; &quot;.jpg&quot;, &quot;Staff Photo&quot;, 200, 200)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Staff Picture</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Start_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Start Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>State__c</fullName>
+        <externalId>false</externalId>
+        <label>Home State</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>DC</fullName>
+                    <default>false</default>
+                    <label>DC</label>
+                </value>
+                <value>
+                    <fullName>VA</fullName>
+                    <default>false</default>
+                    <label>VA</label>
+                </value>
+                <value>
+                    <fullName>MD</fullName>
+                    <default>false</default>
+                    <label>MD</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Supervisor__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Supervisor</label>
+        <referenceTo>Staff__c</referenceTo>
+        <relationshipLabel>Staff</relationshipLabel>
+        <relationshipName>Staff</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Title__c</fullName>
+        <externalId>false</externalId>
+        <label>Title</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>1st Grade Teacher</fullName>
+                    <default>false</default>
+                    <label>1st Grade Teacher</label>
+                </value>
+                <value>
+                    <fullName>2nd Grade Teacher</fullName>
+                    <default>false</default>
+                    <label>2nd Grade Teacher</label>
+                </value>
+                <value>
+                    <fullName>3rd Grade Teacher</fullName>
+                    <default>false</default>
+                    <label>3rd Grade Teacher</label>
+                </value>
+                <value>
+                    <fullName>4th Grade Teacher</fullName>
+                    <default>false</default>
+                    <label>4th Grade Teacher</label>
+                </value>
+                <value>
+                    <fullName>5th Grade Teacher</fullName>
+                    <default>false</default>
+                    <label>5th Grade Teacher</label>
+                </value>
+                <value>
+                    <fullName>6th Grade Teacher</fullName>
+                    <default>false</default>
+                    <label>6th Grade Teacher</label>
+                </value>
+                <value>
+                    <fullName>7th Grade Teacher</fullName>
+                    <default>false</default>
+                    <label>7th Grade Teacher</label>
+                </value>
+                <value>
+                    <fullName>8th Grade Teacher</fullName>
+                    <default>false</default>
+                    <label>8th Grade Teacher</label>
+                </value>
+                <value>
+                    <fullName>AmeriCorps - Extended Day Leader</fullName>
+                    <default>false</default>
+                    <label>AmeriCorps - Extended Day Leader</label>
+                </value>
+                <value>
+                    <fullName>Art Teacher</fullName>
+                    <default>false</default>
+                    <label>Art Teacher</label>
+                </value>
+                <value>
+                    <fullName>Behavior Analyst</fullName>
+                    <default>false</default>
+                    <label>Behavior Analyst</label>
+                </value>
+                <value>
+                    <fullName>Behavior and Culture Coordinator</fullName>
+                    <default>false</default>
+                    <label>Behavior and Culture Coordinator</label>
+                </value>
+                <value>
+                    <fullName>Capital Teaching Resident</fullName>
+                    <default>false</default>
+                    <label>Capital Teaching Resident</label>
+                </value>
+                <value>
+                    <fullName>Chief Academic Officer</fullName>
+                    <default>false</default>
+                    <label>Chief Academic Officer</label>
+                </value>
+                <value>
+                    <fullName>Child Care Subsidy Manager</fullName>
+                    <default>false</default>
+                    <label>Child Care Subsidy Manager</label>
+                </value>
+                <value>
+                    <fullName>Curriculum Coordinator</fullName>
+                    <default>false</default>
+                    <label>Curriculum Coordinator</label>
+                </value>
+                <value>
+                    <fullName>Dance Teacher</fullName>
+                    <default>false</default>
+                    <label>Dance Teacher</label>
+                </value>
+                <value>
+                    <fullName>Director of Family and Community Outreach</fullName>
+                    <default>false</default>
+                    <label>Director of Family and Community Outreach</label>
+                </value>
+                <value>
+                    <fullName>Director of Marketing and Development</fullName>
+                    <default>false</default>
+                    <label>Director of Marketing and Development</label>
+                </value>
+                <value>
+                    <fullName>Director of Operations and Finance</fullName>
+                    <default>false</default>
+                    <label>Director of Operations and Finance</label>
+                </value>
+                <value>
+                    <fullName>Director of Student Support Services</fullName>
+                    <default>false</default>
+                    <label>Director of Student Support Services</label>
+                </value>
+                <value>
+                    <fullName>Director of Year Round Programs</fullName>
+                    <default>false</default>
+                    <label>Director of Year Round Programs</label>
+                </value>
+                <value>
+                    <fullName>English Language Learning Teacher</fullName>
+                    <default>false</default>
+                    <label>English Language Learning Teacher</label>
+                </value>
+                <value>
+                    <fullName>Facility Aide</fullName>
+                    <default>false</default>
+                    <label>Facility Aide</label>
+                </value>
+                <value>
+                    <fullName>Facility Project Manager</fullName>
+                    <default>false</default>
+                    <label>Facility Project Manager</label>
+                </value>
+                <value>
+                    <fullName>Food Manager and Facility Assistant</fullName>
+                    <default>false</default>
+                    <label>Food Manager and Facility Assistant</label>
+                </value>
+                <value>
+                    <fullName>Founder and Head of School</fullName>
+                    <default>false</default>
+                    <label>Founder and Head of School</label>
+                </value>
+                <value>
+                    <fullName>Health and Fitness Teacher</fullName>
+                    <default>false</default>
+                    <label>Health and Fitness Teacher</label>
+                </value>
+                <value>
+                    <fullName>Inclusion Teacher</fullName>
+                    <default>false</default>
+                    <label>Inclusion Teacher</label>
+                </value>
+                <value>
+                    <fullName>Kindergarten Teacher</fullName>
+                    <default>false</default>
+                    <label>Kindergarten Teacher</label>
+                </value>
+                <value>
+                    <fullName>Literacy Coordinator</fullName>
+                    <default>false</default>
+                    <label>Literacy Coordinator</label>
+                </value>
+                <value>
+                    <fullName>Maintenance</fullName>
+                    <default>false</default>
+                    <label>Maintenance</label>
+                </value>
+                <value>
+                    <fullName>Marketing and Development Manager</fullName>
+                    <default>false</default>
+                    <label>Marketing and Development Manager</label>
+                </value>
+                <value>
+                    <fullName>Music Teacher</fullName>
+                    <default>false</default>
+                    <label>Music Teacher</label>
+                </value>
+                <value>
+                    <fullName>NLNS Resident Principal</fullName>
+                    <default>false</default>
+                    <label>NLNS Resident Principal</label>
+                </value>
+                <value>
+                    <fullName>Nurse</fullName>
+                    <default>false</default>
+                    <label>Nurse</label>
+                </value>
+                <value>
+                    <fullName>Office Manager/Registrar</fullName>
+                    <default>false</default>
+                    <label>Office Manager/Registrar</label>
+                </value>
+                <value>
+                    <fullName>Operations Manager, Georgia Avenue</fullName>
+                    <default>false</default>
+                    <label>Operations Manager, Georgia Avenue</label>
+                </value>
+                <value>
+                    <fullName>Operations Manager, Kansas Avenue</fullName>
+                    <default>false</default>
+                    <label>Operations Manager, Kansas Avenue</label>
+                </value>
+                <value>
+                    <fullName>PK3 Teacher</fullName>
+                    <default>false</default>
+                    <label>PK3 Teacher</label>
+                </value>
+                <value>
+                    <fullName>PK4 Teacher</fullName>
+                    <default>false</default>
+                    <label>PK4 Teacher</label>
+                </value>
+                <value>
+                    <fullName>Planning, Policy and Finance Fellow for Year Round Programs</fullName>
+                    <default>false</default>
+                    <label>Planning, Policy and Finance Fellow for Year Round Programs</label>
+                </value>
+                <value>
+                    <fullName>Principal, 3rd-8th Grades</fullName>
+                    <default>false</default>
+                    <label>Principal, 3rd-8th Grades</label>
+                </value>
+                <value>
+                    <fullName>Principal, High School</fullName>
+                    <default>false</default>
+                    <label>Principal, High School</label>
+                </value>
+                <value>
+                    <fullName>Principal, PK-2nd Grades</fullName>
+                    <default>false</default>
+                    <label>Principal, PK-2nd Grades</label>
+                </value>
+                <value>
+                    <fullName>Process Improvement and Dissemination Coordinator</fullName>
+                    <default>false</default>
+                    <label>Process Improvement and Dissemination Coordinator</label>
+                </value>
+                <value>
+                    <fullName>Recruitment Specialist and Development Associate</fullName>
+                    <default>false</default>
+                    <label>Recruitment Specialist and Development Associate</label>
+                </value>
+                <value>
+                    <fullName>Social Worker</fullName>
+                    <default>false</default>
+                    <label>Social Worker</label>
+                </value>
+                <value>
+                    <fullName>Spanish Teacher</fullName>
+                    <default>false</default>
+                    <label>Spanish Teacher</label>
+                </value>
+                <value>
+                    <fullName>Speech Language Pathologist</fullName>
+                    <default>false</default>
+                    <label>Speech Language Pathologist</label>
+                </value>
+                <value>
+                    <fullName>Strategic Planning Associate</fullName>
+                    <default>false</default>
+                    <label>Strategic Planning Associate</label>
+                </value>
+                <value>
+                    <fullName>Student Support Team Coordinator</fullName>
+                    <default>false</default>
+                    <label>Student Support Team Coordinator</label>
+                </value>
+                <value>
+                    <fullName>Teaching Aide</fullName>
+                    <default>false</default>
+                    <label>Teaching Aide</label>
+                </value>
+                <value>
+                    <fullName>Translation and Communication Specialist</fullName>
+                    <default>false</default>
+                    <label>Translation and Communication Specialist</label>
+                </value>
+                <value>
+                    <fullName>Wilson Reading Teacher</fullName>
+                    <default>false</default>
+                    <label>Wilson Reading Teacher</label>
+                </value>
+                <value>
+                    <fullName>Year Round Programs Site Manager</fullName>
+                    <default>false</default>
+                    <label>Year Round Programs Site Manager</label>
+                </value>
+                <value>
+                    <fullName>Kindergardent Teacher</fullName>
+                    <default>false</default>
+                    <label>Kindergardent Teacher</label>
+                </value>
+                <value>
+                    <fullName>NLNS Residentail Principal</fullName>
+                    <default>false</default>
+                    <label>NLNS Residentail Principal</label>
+                </value>
+                <value>
+                    <fullName>Speech Langauge Pathologist</fullName>
+                    <default>false</default>
+                    <label>Speech Langauge Pathologist</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Undergraduate_Degree_1__c</fullName>
+        <externalId>false</externalId>
+        <label>Undergraduate Degree 1</label>
+        <length>100</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Undergraduate_Degree_2__c</fullName>
+        <externalId>false</externalId>
+        <label>Undergraduate Degree 2</label>
+        <length>100</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Undergraduate_Degree_3__c</fullName>
+        <externalId>false</externalId>
+        <label>Undergraduate Degree 3</label>
+        <length>100</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Undergraduate_Institution_1__c</fullName>
+        <externalId>false</externalId>
+        <label>Undergraduate Institution 1</label>
+        <length>100</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Undergraduate_Institution_2__c</fullName>
+        <externalId>false</externalId>
+        <label>Undergraduate Institution 2</label>
+        <length>100</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Undergraduate_Institution_3__c</fullName>
+        <externalId>false</externalId>
+        <label>Undergraduate Institution 3</label>
+        <length>100</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Unique_Staff__c</fullName>
+        <externalId>false</externalId>
+        <formula>1</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Unique Staff</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>User_ID__c</fullName>
+        <externalId>false</externalId>
+        <formula>Individual__r.User_ID__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>User ID</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>User_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>User Name</label>
+        <length>30</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Utilization__c</fullName>
+        <externalId>false</externalId>
+        <label>Utilization</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>1</fullName>
+                    <default>true</default>
+                    <label>1</label>
+                </value>
+                <value>
+                    <fullName>2</fullName>
+                    <default>false</default>
+                    <label>2</label>
+                </value>
+                <value>
+                    <fullName>3</fullName>
+                    <default>false</default>
+                    <label>3</label>
+                </value>
+                <value>
+                    <fullName>4</fullName>
+                    <default>false</default>
+                    <label>4</label>
+                </value>
+                <value>
+                    <fullName>5</fullName>
+                    <default>false</default>
+                    <label>5</label>
+                </value>
+                <value>
+                    <fullName>6</fullName>
+                    <default>false</default>
+                    <label>6</label>
+                </value>
+                <value>
+                    <fullName>7</fullName>
+                    <default>false</default>
+                    <label>7</label>
+                </value>
+                <value>
+                    <fullName>8</fullName>
+                    <default>false</default>
+                    <label>8</label>
+                </value>
+                <value>
+                    <fullName>9</fullName>
+                    <default>false</default>
+                    <label>9</label>
+                </value>
+                <value>
+                    <fullName>10</fullName>
+                    <default>false</default>
+                    <label>10</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Years_at_School__c</fullName>
+        <externalId>false</externalId>
+        <label>Years at School</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Zip_Code__c</fullName>
+        <externalId>false</externalId>
+        <label>Home Zip Code</label>
+        <length>10</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>legacy_key1__c</fullName>
+        <externalId>false</externalId>
+        <label>legacy key1</label>
+        <length>100</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>legacy_key2__c</fullName>
+        <externalId>false</externalId>
+        <label>legacy key2</label>
+        <length>100</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Staff</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>First_Name_Staff__c</columns>
+        <columns>Staff_Last_Name__c</columns>
+        <columns>Organization__c</columns>
+        <columns>Active__c</columns>
+        <columns>Role__c</columns>
+        <columns>User_ID__c</columns>
+        <columns>Site__c</columns>
+        <columns>CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <listViews>
+        <fullName>All_Active</fullName>
+        <columns>NAME</columns>
+        <columns>First_Name_Staff__c</columns>
+        <columns>Staff_Last_Name__c</columns>
+        <columns>Organization__c</columns>
+        <columns>Active__c</columns>
+        <columns>Role__c</columns>
+        <columns>User_ID__c</columns>
+        <columns>Site__c</columns>
+        <columns>CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Active__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <label>All Active</label>
+    </listViews>
+    <nameField>
+        <label>Staff Name</label>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Staff</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>Role__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Organization__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Email__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Personal_Phone__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>External_Id__c</customTabListAdditionalFields>
+        <excludedStandardButtons>Import</excludedStandardButtons>
+        <excludedStandardButtons>ChangeOwner</excludedStandardButtons>
+        <excludedStandardButtons>Accept</excludedStandardButtons>
+        <excludedStandardButtons>MassChangeOwner</excludedStandardButtons>
+        <lookupDialogsAdditionalFields>Organization__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Role__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Email__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Active__c</lookupDialogsAdditionalFields>
+        <lookupFilterFields>Organization__c</lookupFilterFields>
+        <lookupPhoneDialogsAdditionalFields>Organization__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Email__c</lookupPhoneDialogsAdditionalFields>
+        <searchFilterFields>Is_Active__c</searchFilterFields>
+        <searchResultsAdditionalFields>Role__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Organization__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Email__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Active__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>ID__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>User_ID__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>Read</sharingModel>
+    <visibility>Public</visibility>
+    <webLinks>
+        <fullName>Print_Schedule</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <hasMenubar>false</hasMenubar>
+        <hasScrollbars>true</hasScrollbars>
+        <hasToolbar>false</hasToolbar>
+        <height>600</height>
+        <isResizable>true</isResizable>
+        <linkType>url</linkType>
+        <masterLabel>Print Schedule</masterLabel>
+        <openType>newWindow</openType>
+        <position>none</position>
+        <protected>false</protected>
+        <showsLocation>false</showsLocation>
+        <showsStatus>false</showsStatus>
+        <url>/apex/printSchedule?bPreSelect=true&amp;selectedID={! Staff__c.Reference_Id__c }&amp;scheduleType=staff</url>
+    </webLinks>
+</CustomObject>

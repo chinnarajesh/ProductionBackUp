@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Staff Evaluation</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Staff Evaluations</value>
+    </caseValues>
+    <fields>
+        <label><!-- Comments --></label>
+        <name>Comments__c</name>
+    </fields>
+    <fields>
+        <label><!-- Date Evaluation Conducted --></label>
+        <name>Date_Evaluation_Conducted__c</name>
+    </fields>
+    <fields>
+        <label><!-- Evaluation Conducted By --></label>
+        <name>Evaluation_Conducted_By__c</name>
+    </fields>
+    <fields>
+        <help><!-- Have Evaluation Results Been Uploaded to Content? --></help>
+        <label><!-- Are Eval Results in Content? --></label>
+        <name>Evaluation_Results_Uploaded__c</name>
+    </fields>
+    <fields>
+        <label><!-- External Id --></label>
+        <name>External_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Has the Evaluation Been Conducted? --></label>
+        <name>Has_The_Evaluation_Been_Conducted__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Have The Evaluation Been Conducted --></label>
+        <name>Have_The_Evaluation_Been_Conducted__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Staff Evaluation Conducted --></label>
+        <name>Staff_Evaluation_Conducted__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Staff --></label>
+        <name>Staff__c</name>
+        <relationshipLabel><!-- Staff Evaluations --></relationshipLabel>
+    </fields>
+    <layouts>
+        <layout>Admin Staff Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Staff Evaluation Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

@@ -1,0 +1,256 @@
+<apex:page controller="EOYWiz_SchoolStudentPromotional" tabStyle="EOY_Wizard__tab">
+	
+	<apex:includeScript value="{!URLFOR($Resource.jWerty, '/jWerty/jwerty.js')}" />
+  	<c:jQueryInit bLoadingPanel="true" bDataTables="true"/>
+	<apex:stylesheet value="{!$Resource.New_Core_UX}"/>
+	<apex:stylesheet value="{!URLFOR($Resource.schoolforce_demo_page, 'css/style.css')}"/>	
+	<c:EOYWiz_StyleModifications />
+	
+	<script>
+		var j$ = jQuery.noConflict();
+		var oTable;
+		unsavedPop = false;
+		
+		j$(document).ready(function() {
+			resetTables();					
+		});			
+		
+		//outside of the ready function
+		window.onbeforeunload = unloadMessage;		
+		
+		function unloadMessage() {
+			if(unsavedPop) {
+				return "There are unsaved changes!";
+			}
+		}	
+
+		//need destroy in this version, that's why not using admin component
+		function resetTables(){
+			oTable = j$(".tablesorter").dataTable( {
+				"sScrollX": "100%",
+				"sScrollY": "200px",
+		        "bAutoWidth": true,
+		        "bDestroy": true,
+				"aoColumnDefs": [
+					{ "sWidth": "100px", 
+					"aTargets": [ 0 ]}
+				],
+		        "bPaginate": false,
+		        "bJQueryUI": true, 
+		        "iDisplayLength": 1000
+    		}); 			
+    	} 		
+    	
+		function createModal() {
+			j$("#dialog-modal").dialog({
+				autoOpen: false,
+				minHeight: 100,
+				minWidth: 400,
+				modal: true,
+
+				//open: function(event, ui) {
+						//j$(this).dialog('destroy');
+						//j$(this).parent().appendTo(j$('[id$=mainForm]'));					
+				//},
+
+				close: function(event, ui) {
+					closeInputJS();
+				},
+				buttons: {
+					Upload: function() {	
+						j$(this).dialog('destroy');
+						j$(this).appendTo(j$('[id$=mainForm]'));
+						showProgressBar('Uploading File');
+						uploadCSVJS();					
+						setTimeout('hideProgressBar()', 300);
+					},
+					Cancel: function() {
+						j$(this).dialog("close");
+					}
+				}	
+			});	
+		}
+
+		function openModal() {
+			j$("#dialog-modal").dialog("open");		
+			document.getElementById(j$('[id$=uploadPanel]').attr('id')).style.display = 'inline';
+		}    	
+    	
+    	function selectAll0(cb) {
+    		var b = j$(cb).is(':checked');
+            j$('[id$=enrollmentID]').each(function() {
+                j$(this).attr('checked', b);
+            });    		
+    	}	
+    	function selectAll1(cb) {
+    		var b = j$(cb).is(':checked');
+            j$('[id$=intentID]').each(function() {
+                j$(this).attr('checked', b);
+            });    		
+    	}
+    		
+    	function selectAll2(cb) {
+    		var b = j$(cb).is(':checked');
+            j$('[id$=promotedID]').each(function() {
+                j$(this).attr('checked', b);
+            });      	
+    	}
+    	
+    	function selectAll3(cb) {
+    		var b = j$(cb).is(':checked');
+            j$('[id$=finalID]').each(function() {
+                j$(this).attr('checked', b);
+            });      	
+    	}
+  
+    	function saveFilePrompt() {
+    		var fname = prompt('Save file as:', '{!fileName}');
+			if(fname != null) {
+				console.log(fname);
+				generateCSVJS(fname);
+			}    	
+    	}    	
+	</script>	
+	
+	<apex:form id="mainForm" >
+		<apex:actionRegion >
+			<apex:outputPanel id="outerPanel" layout="block">
+							
+				<div id="schoolforce-wrapper" class="wrapper">
+			
+					<apex:outputPanel id="errorMessages" layout="block" styleClass="pageMessages">
+						<apex:pageMessages /><script>{!schoolProgress}</script>
+					</apex:outputPanel>			
+			
+					<h1 id="navPanel" class="centerHeader">
+						<input type="button" class="grey_btn_arrow" onClick="gotoSchoolGradeSpanJS();" value="Previous" />
+						<div style="display: inline-block">{!schoolProgress.School__r.Name} End of Year Wizard School Setup<br></br>Update Student Information</div>
+						<input id="next" type="button" class="green_btn_arrow" onClick="gotoSchoolNextYearStudentsJS();" value="Next" />
+						<script>if({!!schoolProgress.School_Student_Promotional_Completed__c}){document.getElementById('next').disabled = 'disabled';}</script>
+					</h1>
+					
+					<apex:outputPanel id="summary" styleClass="adminSummary">
+						<br></br>
+						<!-- <p>This information is needed to create new student records for the next school year. Once you finalize this step, you will not be able to return to this page. Please refer to "SchoolForce Help" for additional ways to update student information.</p> -->
+						<!-- <p>There are two ways to update the student information in this step: (1) by using a .csv file or (2) by making changes directly on this page. To use the .csv file, complete the following steps: download the .csv file template, update all fields without editing the column headers, save as a .csv on your computer, and upload it here. Once it has been uploaded, you may make changes directly on this page. </p> -->
+						<!-- <p>"Intent to Return to Org" indicates if a student is planning to return to a school within the SchoolForce org next year. "Promoted" specifies if a student will be promoted to the next grade level. "Final Grade Level in Org" marks if the student is currently in the last year of the SchoolForce org. "Next Year School" shows which school the student will attend next year and is a required field unless a student is not intending to return or is in the final grade level.</p> -->
+						<!-- 
+						<p>This information is needed to create new student records for the next school year. Once you finalize this step, you will not be able to return to this page. Please refer to SchoolForce Help for additional ways to update student information.</p>
+						<p>There are two ways to update the student information in this step: (1) by using a .csv file or (2) by making changes directly on this page. To use the .csv file, complete the following steps: download the .csv file template, update all fields without editing the column headers, save as a .csv on your computer, and upload it here. Once it has been uploaded, you may make changes directly on this page.</p>
+						<p>Enrollment Eligibility indicates whether a student is eligible to return to one of your school next year. Intent to Return to Org indicates if a student is planning to return to a school within the SchoolForce org next year. Promoted specifies if a student will be promoted to the next grade level. Final Grade Level in Org marks if the student is currently in the last year of the SchoolForce org. Next Year School shows which school the student will attend next year and is a required field unless a student is not intending to return or is in the final grade level.</p>
+						-->
+						<p>This information is needed to create new student records for the next school year. Once you finalize this step, you will not be able to return to this page. Please refer to SchoolForce Help for additional ways to update student information.</p>
+						<p>There are two ways to update the student information in this step: (1) by using a .csv file or (2) by making changes directly on this page. To use the .csv file, complete the following steps: download the .csv file template, update all fields without editing the column headers, save as a .csv on your computer, and upload it here. Once it has been uploaded, you may make changes directly on this page.</p>
+						<p>Enrollment Eligibility indicates whether a student is eligible to return to one of your schools next year. Intent to Return to Org indicates if a student is planning to return to a school within the SchoolForce org next year. Promoted specifies if a student will be promoted to the next grade level. Final Grade Level in Org marks if the student is currently in the last year of the SchoolForce org. Next Year School shows which school the student will attend next year and is a required field unless a student is not intending to return or is in the final grade level.</p>
+						<br></br>
+					</apex:outputPanel>
+					
+					<div class="content-wrapper">
+						<apex:pageBlock id="studentBlock" >
+	
+							<apex:outputPanel id="studentPanel" >
+								<table class="tablesorter" id="studentTable">
+									<thead>
+										<tr>
+											<!-- <th>Id</th> -->
+											<th>Student Id</th>
+											<th>Student</th>
+											<th>Current Grade</th>
+											<th><input id="checkAll0" type="checkbox" style="position:relative; right:3px;" onclick="selectAll0(this);" /><span style="position:relative; bottom:3px;">Enrollment Eligiblity</span></th>
+											<script>if({!schoolProgress.School_Student_Promotional_Completed__c}){document.getElementById('checkAll0').disabled = 'disabled';}</script>
+											<th><input id="checkAll1" type="checkbox" style="position:relative; right:3px;" onclick="selectAll1(this);" /><span style="position:relative; bottom:3px;">Intent to Return to Org</span></th>
+											<script>if({!schoolProgress.School_Student_Promotional_Completed__c}){document.getElementById('checkAll1').disabled = 'disabled';}</script>
+											<th><input id="checkAll2" type="checkbox" style="position:relative; right:3px;" onclick="selectAll2(this);" /><span style="position:relative; bottom:3px;">Promoted</span></th>
+											<script>if({!schoolProgress.School_Student_Promotional_Completed__c}){document.getElementById('checkAll2').disabled = 'disabled';}</script>
+											<th><input id="checkAll3" type="checkbox" style="position:relative; right:3px;" onclick="selectAll3(this);" /><span style="position:relative; bottom:3px;">Final Grade Level in Org</span></th>
+											<script>if({!schoolProgress.School_Student_Promotional_Completed__c}){document.getElementById('checkAll3').disabled = 'disabled';}</script>											
+											<th>Next Year School</th>
+										</tr>
+									</thead>
+									<tbody>
+										<!-- <apex:repeat value="{!dStudents}" var="display" id="studentTableData"> -->
+										<apex:repeat value="{!thousandBlocks}" var="block" id="studentTableData">
+										<apex:repeat value="{!block.students}" var="display">	
+											<tr>
+												<!-- <td>
+													<apex:outputField value="{!display.Id}" />
+												</td> -->
+												<td>
+													<apex:outputField value="{!display.Student_Id__c}" />
+												</td>
+												<td>
+													<!-- <apex:outputField value="{!display.Name}" /> -->
+													<apex:outputLink style="font-size:12px;" value="/{!display.ID}" target="_blank">{!display.Name}</apex:outputLink>
+												</td>
+												<td>
+													<apex:outputField value="{!display.Grade__c}" />
+												</td>
+												<td>
+													<apex:inputField id="enrollmentID" value="{!display.Eligible_For_Enrollment__c}" rendered="{!!schoolProgress.School_Student_Promotional_Completed__c}" />
+													<apex:outputField value="{!display.Eligible_For_Enrollment__c}" rendered="{!schoolProgress.School_Student_Promotional_Completed__c}" />
+												</td>
+												<td>
+													<apex:inputField id="intentID" value="{!display.Intent_to_Return_Following_Year__c}" rendered="{!!schoolProgress.School_Student_Promotional_Completed__c}" />
+													<apex:outputField value="{!display.Intent_to_Return_Following_Year__c}" rendered="{!schoolProgress.School_Student_Promotional_Completed__c}" />
+												</td> 
+												
+												<td>
+													<apex:inputField id="promotedID" value="{!display.Promoted__c}" rendered="{!!schoolProgress.School_Student_Promotional_Completed__c}" />
+													<apex:outputField value="{!display.Promoted__c}" rendered="{!schoolProgress.School_Student_Promotional_Completed__c}" />
+												</td>
+												<td>
+													<apex:inputField id="finalID" value="{!display.Final_Grade_Level__c}" rendered="{!!schoolProgress.School_Student_Promotional_Completed__c}" />
+													<apex:outputField value="{!display.Final_Grade_Level__c}" rendered="{!schoolProgress.School_Student_Promotional_Completed__c}" />
+												</td>												
+												<td>
+													<apex:selectList id="nextSchoolID" value="{!display.Next_School__c}" rendered="{!!schoolProgress.School_Student_Promotional_Completed__c}" size="1" >
+														<apex:selectOptions value="{!selectSchoolOptions}" />
+													</apex:selectList>
+													<apex:outputField value="{!display.Next_School__c}" rendered="{!schoolProgress.School_Student_Promotional_Completed__c}" />
+												</td>
+											</tr>
+										</apex:repeat>
+										</apex:repeat>
+									</tbody>
+								</table>
+								
+								<apex:outputPanel id="summaryFooter" style="text-align:center;">
+									<p>Last Modified: {!schoolProgress.School_Student_Promotional_Last_Modified__c} </p>
+									<br></br>
+									<br></br>
+									<br></br>
+								</apex:outputPanel>								
+								
+							</apex:outputPanel>	
+							
+							<apex:outputPanel id="buttons" >
+								<apex:commandButton styleClass="black_btn" value="Save Student Updates" action="{!saveStudentUpdates}" onClick="oTable.fnFilter(''); showProgressBar('Saving changes');" onComplete="resetTables(); setTimeout('hideProgressBar()', 300);" rerender="summaryFooter, errorMessages, studentPanel" disabled="{!schoolProgress.School_Student_Promotional_Completed__c}" />
+								<apex:commandButton styleClass="black_btn" value="Download CSV File" onclick="downloadCSVJS(); return false;" />				
+								<apex:commandButton styleClass="black_btn" value="Upload CSV File" onclick="createModal();" onComplete="openModal();" rerender="uploadPanel" disabled="{!schoolProgress.School_Student_Promotional_Completed__c}"/>
+								<apex:commandButton styleClass="red_btn" value="Finalize Student Updates" onclick="if(confirm('Are you sure you want to finalize the student promotional status for this year?')) {oTable.fnFilter(''); showProgressBar('Finalizing students promotional statuses'); finalizeStudentUpdatesJS();}" rerender="summaryFooter" disabled="{!schoolProgress.School_Student_Promotional_Completed__c}" />
+							</apex:outputPanel>
+						</apex:pageBlock>
+					</div>
+					
+				</div>
+			</apex:outputPanel>
+			<apex:actionFunction name="gotoSchoolGradeSpanJS" action="{!gotoSchoolGradeSpan}" />
+			<apex:actionFunction name="gotoSchoolNextYearStudentsJS" action="{!gotoSchoolNextYearStudents}" />
+			<apex:actionFunction name="downloadCSVJS" action="{!downloadCSV}" />
+			<apex:actionFunction name="closeInputJS" action="{!closeInput}" rerender="errorMessages" />
+			<apex:actionFunction name="finalizeStudentUpdatesJS" action="{!finalizeStudentUpdates}" rerender="navPanel, summaryFooter, errorMessages, studentBlock" onComplete="resetTables(); if({!schoolProgress.School_Student_Promotional_Completed__c}){document.getElementById('next').disabled = ''; document.getElementById('checkAll1').disabled = 'disabled'; document.getElementById('checkAll2').disabled = 'disabled'; document.getElementById('checkAll3').disabled = 'disabled';} setTimeout('hideProgressBar()', 300);" />			
+		</apex:actionRegion>
+		
+
+		<div id="dialog-modal" title="Upload a file">
+			<apex:outputPanel id="uploadPanel" style="display:none" >
+				<apex:inputFile id="inputFileID" contentType="{!fileContentType}" fileName="{!fileName}" fileSize="{!fileSize}" value="{!fileBlob}" alt="Upload CSV File" />		
+				<apex:actionRegion >
+					<apex:actionFunction name="uploadCSVJS" action="{!uploadCSV}" />
+				</apex:actionRegion>
+			</apex:outputPanel>
+		</div>
+
+	</apex:form>
+	
+</apex:page>

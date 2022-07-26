@@ -1,0 +1,72 @@
+<!--
+ - Created by TarasTorubka on 24.09.2020.
+ -->
+
+<apex:component id="ModalAddIaStudents" controller="ModalAddIaStudentsCtrl" allowDML="true" access="global">
+    <apex:attribute name="recSection" type="Section__c" assignTo="{!section}" access="global" required="true" description="Main Section."/>
+    <apex:attribute name="lstStudentSections" type="StudentInfoWrapper[]" assignTo="{!studentSections}" access="global" required="true" description="List StudentWrapper."/>
+
+    <!-- Add IA Students Modal -->
+    <div id="add-ia-students" class="modal_window" style="z-index:11000;position: relative;">
+        <div class = "modal-top" style="cursor:move;" >
+            <a class="modal_close" href="#" ></a>
+            <p>&nbsp;</p>
+        </div>
+        <apex:outputPanel id="messagesIA">
+            <apex:pageMessages escape="false"/>
+        </apex:outputPanel>
+        <span class="section-header">Add Student(s) to IA</span>
+        <apex:outputPanel id="iaDatePanel" style="display: flex;">
+            <div class="field">
+                <label><strong>IA Effective Date</strong></label>
+                <div class="requiredInput" style="margin-left:5px">
+                    <div style="bottom: 30px;" class="requiredBlock"></div>
+                    <apex:input type="date" value="{!dtIA}" id="iaDateID"/>
+                </div>
+                <span id="iaDateErrorSpan" style="color:red;display:none">Date entry is invalid please enter a new value</span><br/>
+            </div>
+            <div class="field">
+                <label><strong>Section Indicator Area: </strong></label>
+                <span style="padding-left:30px">{!section.Program__r.Indicator_Area__r.Name}</span>
+            </div>
+        </apex:outputPanel>
+        <hr />
+        <apex:outputPanel id="iaTable" >
+            <apex:actionStatus startText="Loading..." id="loadExit"/>
+            <div style="max-height:400px;overflow:auto;">
+                <table id="iaTable">
+                    <thead>
+                    <th>Students</th>
+                    <th class="type-string">Indicator Area</th>
+                    <th class="type-string">Assigned Programs</th>
+                    <th class="type-date">IA Effective Date</th>
+                    </thead>
+                    <tbody>
+                    <apex:repeat value="{!studentSections}" var="s">
+                        <tr style="{!IF(s.selected == true, '', 'display: none;')}">
+                            <td>{!s.studentSection.Student_Name__c}</td>
+                            <td><apex:outputLabel value="{!s.indicatorAreaDisplay}" /></td>
+                            <td><apex:outputLabel value="{!s.programsIADisplay}" /></td>
+                            <td style="">
+                                <apex:outputText value="{0,date,MM/dd/yyyy}">
+                                    <apex:param value="{!s.dtIA}"/>
+                                </apex:outputText>
+                            </td>
+                        </tr>
+                    </apex:repeat>
+                    </tbody>
+                </table>
+            </div>
+        </apex:outputPanel>
+        <div id="options">
+            <hr />
+            <input type="button" class="black_btn" onclick="if(!isSaving){ isSaving=true; saveIAToStudentsJS(); } else { alert('Please wait as the system validates your request.');}" value="Save"/>
+            <input type="button" class="grey_btn" value="Cancel" onclick="isSaving=false; close_modal('#add-ia-students');"/>
+        </div>
+        <p>&nbsp;</p>
+    </div>
+
+    <apex:actionFunction name="startAddIAToStudentsJS" action="{!startAddIAToStudents}" status="loadExit" onComplete="checkDisabled(); if(j$('.errorM3','.primaryErrorPanel').size() == 0){openModal('#ia_modal');resetWindowSize();}" rerender="iaTable,messages,messagesIA"/>
+    <apex:actionFunction name="saveIAToStudentsJS" action="{!saveIAToStudents}" status="loadExit" onComplete="checkDisabled(); isSaving=false; if(j$('.errorM3','.primaryErrorPanel').size() == 0){close_modal('#add-ia-students');}" rerender="studentTable,iaDatePanel,messages,messagesIA"/>
+
+</apex:component>

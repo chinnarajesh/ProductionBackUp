@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Program</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Programs</value>
+    </caseValues>
+    <fields>
+        <help><!-- If this box is checked then the Program is currently available for use. --></help>
+        <label><!-- Active? --></label>
+        <name>Active__c</name>
+    </fields>
+    <fields>
+        <help><!-- Any additional information to describe the Program --></help>
+        <label><!-- Additional Information --></label>
+        <name>Additional_Information__c</name>
+    </fields>
+    <fields>
+        <label><!-- External_ID --></label>
+        <name>External_ID__c</name>
+    </fields>
+    <fields>
+        <help><!-- Set of instructive or helpful links to end users who will be administering this Program. These links could be to a website, YouTube video, etc. --></help>
+        <label><!-- Helpful Links --></label>
+        <name>Helpful_Links__c</name>
+    </fields>
+    <fields>
+        <help><!-- You must select an Indicator Area that aligns with this Program. --></help>
+        <label><!-- Indicator Area --></label>
+        <name>Indicator_Area__c</name>
+        <relationshipLabel><!-- Programs --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Overall goal or target dosage (in mins) for this Program to be effective. This number will display on all Intervention Sections created under this Program. --></help>
+        <label><!-- Overall Target Dosage (in mins) --></label>
+        <name>Overall_Target_Dosage__c</name>
+    </fields>
+    <fields>
+        <help><!-- Provide description of the Program. This description will display on the Intervention Sections created under this Program. --></help>
+        <label><!-- Program Description --></label>
+        <name>Program_Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Program Type --></label>
+        <name>Program_Type__c</name>
+        <picklistValues>
+            <masterLabel>Assessment</masterLabel>
+            <translation><!-- Assessment --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Curriculum</masterLabel>
+            <translation><!-- Curriculum --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Intervention</masterLabel>
+            <translation><!-- Intervention --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Recommended amount of time (in min) that each meeting, or session, of this Intervention should take to be effective. This number will display on all Intervention Sections created under this Program. --></help>
+        <label><!-- Recommended Time per Session (in mins) --></label>
+        <name>Recommended_Time_per_Session__c</name>
+    </fields>
+    <fields>
+        <help><!-- Recommended frequency that this Program should meet in order to be effective. Select how many times per week this Program should meet. --></help>
+        <label><!-- Recommended Weekly Frequency --></label>
+        <name>Recommended_Weekly_Frequency__c</name>
+        <picklistValues>
+            <masterLabel>1 session a week</masterLabel>
+            <translation><!-- 1 session a week --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2 sessions a week</masterLabel>
+            <translation><!-- 2 sessions a week --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3 sessions a week</masterLabel>
+            <translation><!-- 3 sessions a week --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4 sessions a week</masterLabel>
+            <translation><!-- 4 sessions a week --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5 sessions a week</masterLabel>
+            <translation><!-- 5 sessions a week --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Is this Program required for your school or organization? Administrators can select whether Programs should be required or not. If yes, then each school will automatically be associated with this Program. Schools can opt of required Programs. --></help>
+        <label><!-- Required Program --></label>
+        <name>Required_Program__c</name>
+    </fields>
+    <fields>
+        <label><!-- Skip Dosage --></label>
+        <name>SkipDosage__c</name>
+    </fields>
+    <fields>
+        <help><!-- This field is automatically updated based on whether your organization has setup approval processes for Programs. --></help>
+        <label><!-- Status --></label>
+        <name>Status__c</name>
+        <picklistValues>
+            <masterLabel>Approved</masterLabel>
+            <translation><!-- Approved --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pending</masterLabel>
+            <translation><!-- Pending --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rejected</masterLabel>
+            <translation><!-- Rejected --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Submitter&apos;s Site --></label>
+        <name>Submitter_s_Site__c</name>
+    </fields>
+    <layouts>
+        <layout>Program Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Notes &amp; Comments --></label>
+            <section>Notes &amp; Comments</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Program Layout - End User</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Notes &amp; Comments --></label>
+            <section>Notes &amp; Comments</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Program Layout - Sys Admin</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Notes &amp; Comments --></label>
+            <section>Notes &amp; Comments</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

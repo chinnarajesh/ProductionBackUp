@@ -1,0 +1,222 @@
+<apex:page controller="Charts" showHeader="false" sidebar="false">
+
+<c:jQueryInit />
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
+<style>
+@media print{
+				@page {size:landscape;}	                  
+				@top-left {background:url() 18px 10px no-repeat; height:160px; width:500px;}
+				@bottom-left {font-family:Arial, sans-serif; color:#333; content:"NYC - Department of Education"}
+				@bottom-right {font-family:Arial, sans-serif; color:#333; content: "Advanced Reports" counter(page) " of " counter(pages);}
+			}
+}
+
+.title_container {width: auto}
+.title_container h1 {float:left; font-size:24px; font-weight:100;}
+.title_container h6 {float:right; font-size:12px; font-weight:100;}
+	   		
+</style>
+
+<script>
+
+	//global vars
+	var currentData;
+	var bigAssData;
+	var bigAssDataArrays;																								
+	var assignmentNames;
+	var allGrades;
+	var studentNames;
+	var bigStanArrays;
+	var bigStudentData;	
+	var currChartType;
+	var currChartData;
+	var j$ = jQuery.noConflict();
+		
+	j$(document).ready(function() {
+		currChartType = '{!JSENCODE(currentChartType)}';
+		currChartData= '{!JSENCODE(currentChartData)}';
+		if(currChartType == 'ColumnChart'){
+			drawVisualization1();		
+		} else if(currChartType == 'BarChart'){
+			drawVisualization2();
+		} else if(currChartType == 'LineChart'){	
+			toChartsArray();
+		}	 
+	});
+
+	function doPrint(){
+		setTimeout(function(){
+			window.print();},1000);
+	}	
+	
+	google.load("visualization", "1.1");
+	
+		function drawVisualization1() {					 
+			var wrapper = new google.visualization.ChartWrapper({
+			  	chartType: 'ColumnChart',
+			 	containerId: 'chartPDF',
+			  	dataTable: currChartData,
+			  	options: {
+            	width: 900,
+            	height: 600,
+            	vAxis: {gridlines:{color: '#999', count: 11}, 
+            			title:'Percentage of Students Exhibiting Mastery', 
+            			titleTextStyle:{color: '#999', fontSize: 15}
+            			},
+            	hAxis: {title:'Standard', 
+            			titleTextStyle:{color: '#999', fontSize: 15}
+            			},
+            	colors: ['#49E97F', '#FF6B50', '#4CBBE0'],
+            	legend: {position: 'right', textStyle: {color: '#222'}},
+            	title: "Percentage Mastery by Standard",
+            	titleTextStyle: {fontSize:20, fontWeight:'normal'},
+            	isStacked : true
+          	}
+			});		 
+			var dtable = new google.visualization.ChartWrapper({
+				chartType: 'Table',
+				containerId: 'tablePDF',
+				dataTable:  currChartData
+			});	
+			  			  					  
+		wrapper.draw();
+		dtable.draw();
+		doPrint();
+		}
+	
+		function drawVisualization2() {		
+			 
+			var barChart = new google.visualization.ChartWrapper({
+				chartType: 'BarChart',
+	          	containerId: 'chartPDF',
+	          	dataTable: currChartData,
+				options: {
+	          		width: 900,
+	          		height: 700,
+		            vAxis: {title: "Student", 
+		            		titleTextStyle: {color: '#999', fontSize: 15},
+		            		gridlines:{color: '#999', count: 6}
+		            		},            		
+		            hAxis: {title: "Standard Grade",
+		                    gridlines: {color: '#999'}, 
+		            		titleTextStyle: {color: '#999', fontSize: 15}
+		            		},
+	            	title: "Standard Performance by Student",
+	            	titleTextStyle: {fontSize:20}
+	            },
+	            //state: {!currentChartState},
+	            view: {columns:[0,1]}
+	        });
+			var dtable = new google.visualization.ChartWrapper({
+				chartType: 'Table',
+				containerId: 'tablePDF',
+				dataTable:  currChartData
+			});		        	
+			  			  					  
+		barChart.draw();
+		dtable.draw();
+		doPrint();
+		}
+		
+		
+		function toChartsArray(){
+		
+			bigAssData = j$('#dataForReport3').html();
+	        bigAssDataArrays 			= bigAssData.split('XXXOXXX');
+			var temp1 						= bigAssDataArrays[0];																										
+			assignmentNames 			= temp1.split('XXXAXXX');
+			var temp2						= bigAssDataArrays[1];
+			var allGradesWithCommas		= temp2.split('XXXGXXX');
+			//alert(allGradesWithCommas);
+			allGrades = new Array();
+			for(i=0;i<allGradesWithCommas.length;i++){
+				var tempArray = new Array();
+				for(j=0;j<allGradesWithCommas[i].length;j++){
+					if(allGradesWithCommas[i][j]!=','){
+				
+						if(allGradesWithCommas[i][j]!='~'){
+							tempArray.push(allGradesWithCommas[i][j]);
+						}
+						else{
+							tempArray.push('');
+						}
+					}
+				}
+				allGrades.push(tempArray);
+			}
+			
+			var temp3 			= bigAssDataArrays[2];
+			studentNames	= temp3.split('XXXNXXX');
+			var gradeData = new Array();
+			studentNames.splice(0,0,'STANDARD');
+			gradeData[0] = studentNames;
+			for(i=0; i<assignmentNames.length;i++){
+				var assignment = new Array();
+				assignment[0] = assignmentNames[i];
+
+				for(j=0;j<allGrades[i].length;j++){
+					
+					assignment.push(parseInt(allGrades[i][j]));
+				}
+				gradeData[i+1] = assignment;
+			
+			}
+			currentData =gradeData;
+			//alert(currentData);
+			drawVisualization3(currentData);	 	
+				
+		}
+		
+		function drawVisualization3(dataString) {
+					
+			var data = google.visualization.arrayToDataTable(dataString);
+										
+			var lineChart = new google.visualization.ChartWrapper({
+		        chartType: 'LineChart',
+		        containerId: 'chartPDF',
+		        dataTable: data,
+		        options: {
+		            width: 900,
+		            height: 600,
+	            vAxis: {title: "Standard Score", 
+	            		titleTextStyle: {color: '#999', fontSize: 15}
+	            		},
+	            hAxis: {title:"Assignments",
+	            		titleTextStyle: {color: '#999', fontSize: 15}
+	            		},
+	            title:"Performance Standards Over Time",
+	            titleTextStyle: {fontSize:20},	            		 	            
+		        },
+		        //state: {selectedValues: [selectedStudentName]},
+		        view: {columns:[0,5]}
+		    });
+		    
+			var dtable = new google.visualization.ChartWrapper({
+				chartType: 'Table',
+				containerId: 'tablePDF',
+				dataTable:  data
+			});		        	
+			  			  					  
+		lineChart.draw();
+		dtable.draw();
+		doPrint();		    		
+		}				
+				
+</script>
+
+<apex:form >
+
+		<div class ="title_container">
+			<h6>{!$User.LastName}, {!$User.FirstName}</h6>		
+		</div>
+		
+		<div id="chartPDF" class="container"></div>
+		<div id="tablePDF" class="container"></div>
+		
+		<div id="dataForReport3" style="display:none">{!currentChartData}</div>
+		
+</apex:form>
+
+
+</apex:page>

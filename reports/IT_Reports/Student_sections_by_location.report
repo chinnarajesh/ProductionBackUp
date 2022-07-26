@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Program__c.Sections__r.Student_Section__r$Location__c</field>
+    </columns>
+    <columns>
+        <field>Program__c.Sections__r.Student_Section__r$School__c</field>
+    </columns>
+    <columns>
+        <field>Program__c$Name</field>
+    </columns>
+    <columns>
+        <field>Program__c.Sections__r$Id</field>
+    </columns>
+    <columns>
+        <field>Program__c.Sections__r$Name</field>
+    </columns>
+    <columns>
+        <field>Program__c.Sections__r$Section_Nickname__c</field>
+    </columns>
+    <columns>
+        <field>Program__c.Sections__r.Student_Section__r$Id</field>
+    </columns>
+    <columns>
+        <field>Program__c.Sections__r.Student_Section__r$Name</field>
+    </columns>
+    <columns>
+        <field>Program__c.Sections__r.Student_Section__r$Student__c.Student_Id__c</field>
+    </columns>
+    <description>Intervention sections only</description>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Program__c.Sections__r$Location__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Student sections by location</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Programs_Sections_Students__c</reportType>
+    <scope>organization</scope>
+    <showDetails>false</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <sortColumn>Program__c.Sections__r.Student_Section__r$Student__c.Student_Id__c</sortColumn>
+    <sortOrder>Asc</sortOrder>
+    <timeFrameFilter>
+        <dateColumn>Program__c.Sections__r.Student_Section__r$CreatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Section__c$School__c</field>
+    </columns>
+    <columns>
+        <field>Section__c$Section_Nickname__c</field>
+    </columns>
+    <columns>
+        <field>Section__c.Student_Section__r$Student__c</field>
+    </columns>
+    <columns>
+        <field>Section__c.Student_Section__r$Student__c.Local_Student_ID__c</field>
+    </columns>
+    <columns>
+        <field>Section__c.Student_Section__r$Student_Grade__c</field>
+    </columns>
+    <columns>
+        <field>Section__c.Student_Section__r.Intervention_Session_Results__r$Intervention_Session_Date__c</field>
+    </columns>
+    <columns>
+        <field>Section__c.Student_Section__r.Intervention_Session_Results__r$Amount_of_Time__c</field>
+    </columns>
+    <description>Filter for required grades (FY19 grades 10 &amp; 11)</description>
+    <filter>
+        <criteriaItems>
+            <column>Section__c.Student_Section__r$Location__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>notEqual</operator>
+            <value></value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Section__c$In_After_School__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>contains</operator>
+            <value>extended</value>
+        </criteriaItems>
+    </filter>
+    <format>Tabular</format>
+    <name>Gear Up ELT Sessions</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Sections_with_Student_Section_with_Intervention_Session_Results__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>Section__c.Student_Section__r.Intervention_Session_Results__r$CreatedDate</dateColumn>
+        <interval>INTERVAL_CURFY</interval>
+    </timeFrameFilter>
+</Report>

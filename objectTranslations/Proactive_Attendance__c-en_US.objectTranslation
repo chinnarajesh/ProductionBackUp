@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Proactive Attendance</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Proactive Attendance</value>
+    </caseValues>
+    <fields>
+        <help><!-- Attendance Date --></help>
+        <label><!-- Attendance Date --></label>
+        <name>Attendance_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Attendance Status --></label>
+        <name>Attendance_Status__c</name>
+    </fields>
+    <fields>
+        <label><!-- Attendance Type --></label>
+        <name>Attendance_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- External Id --></label>
+        <name>External_Id__c</name>
+    </fields>
+    <fields>
+        <help><!-- Student First Name --></help>
+        <label><!-- First Name --></label>
+        <name>First_Name__c</name>
+    </fields>
+    <fields>
+        <help><!-- Student Last Name --></help>
+        <label><!-- Last Name --></label>
+        <name>Last_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- USI_ID --></label>
+        <name>USI_ID__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

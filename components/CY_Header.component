@@ -1,0 +1,23 @@
+<apex:component layout="none">
+    <nav class="navbar navbar-default">
+        <div class="container-bs">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#top-nav" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand logo" href="#">
+                    <img class="img-responsive" src="{!URLFOR($Resource.TWBSSass, 'img/cy-logo.png')}" alt="City Year Schoolhouse Corps Edition" />
+                </a>
+            </div>
+            <div class="collapse navbar-collapse" id="top-nav">
+                <ul class="nav navbar-nav navbar-right user">
+                    <li class="greeting hidden-xs">Welcome, <span class="name">{!$User.FirstName} {!$User.LastName}</span></li>
+                    <li><a href="{!$Site.Prefix}/secur/logout.jsp" class="logout"><span class="icon-log-out hidden-xs"></span><span class="visible-xs">Logout</span></a></li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+</apex:component>

@@ -1,0 +1,210 @@
+<apex:component access="global" >
+<apex:includeScript value="{!URLFOR($Resource.jWerty, '/jWerty/jwerty.js')}" />
+  <c:jQueryInit bLoadingPanel="true" bDataTables="true"/>
+
+<apex:stylesheet value="{!$Resource.New_Core_UX}"/>
+
+<script>
+var j$ = jQuery.noConflict();
+
+jQuery.fn.dataTableExt.oSort['dom-checkbox-asc']  = function(a,b) {
+  var a_sort = j$('input[name="'+j$(a).attr('name')+'"]').prop('checked');//j$(a).prop('checked');
+  var b_sort = j$('input[name="'+j$(b).attr('name')+'"]').prop('checked');//j$(b).prop('checked');
+  return ((a_sort < b_sort) ? -1 : ((a_sort > b_sort) ?  1 : 0));
+};
+
+jQuery.fn.dataTableExt.oSort['dom-checkbox-desc'] = function(a,b) {
+  var a_sort = j$('input[name="'+j$(a).attr('name')+'"]').prop('checked');//j$(a).prop('checked');
+  var b_sort = j$('input[name="'+j$(b).attr('name')+'"]').prop('checked');//j$(b).prop('checked');
+  return ((a_sort < b_sort) ?  1 : ((a_sort > b_sort) ? -1 : 0));
+};
+
+function centerModal(){
+	j$('.customModal').centerInClient();
+	j$('.customModal').css('position','fixed');
+	j$('.customModal').toggle(true);
+	}
+function resetTable(){
+	j$(".tablesorter").dataTable( {
+		"sScrollY": "200px",
+		"sScrollX": "100%",
+        "bAutoWidth": true,
+        "bPaginate": false,
+        "bDestroy": true,
+        "bJQueryUI": true, 
+        "iDisplayLength": 1000
+    } );
+
+    j$(".noFilter").dataTable( {
+		"sScrollY": "200px",
+		"sScrollX": "100%",
+		"bFilter": false,
+        "bAutoWidth": true,
+        "bPaginate": false,
+        "bDestroy": true,
+        "bJQueryUI": true, 
+        "iDisplayLength": 1000,
+        "aoColumns": [
+            { "bSortable": true, "sType": "dom-checkbox" },
+            { "bSortable": true, "sType": "dom-checkbox" },
+            { "bSortable": false },
+            { "bSortable": true },
+            { "bSortable": true },
+            { "bSortable": true },
+            { "bSortable": true }
+        ],
+
+    } );
+}
+       
+
+  function addHighlight(element){
+        removeHighlight();
+        j$(element).parent().addClass('datahighlight');
+    }
+    
+    function removeHighlight(){
+        j$(document).find('.datahighlight').removeClass('datahighlight');
+    }
+    
+    
+    
+        function toggleRadio(radio){
+        j$('.radio').each(function() {
+	      j$(this).attr('checked', false);
+	  });
+	 j$(radio).attr('checked', true);
+        removeHighlight();
+    }
+    
+
+    
+    function resetTimePicker(){
+        j$(document).ready(function() {
+	  j$('.TimePicker').each(function(index) {
+	      j$(this).timepicker({
+		showPeriod: true, 
+		showLeadingZero: true
+	      });
+	  });
+        });
+    }
+    
+  function selectAll(cb, theClass) {
+	  var b = j$(cb).is(':checked'); 
+	  j$('.'+theClass).each(function() {
+	      j$(this).attr('checked', b);
+	  });
+        }
+        
+    j$.fn.centerInClient = function(options) {
+    /// <summary>Centers the selected items in the browser window. Takes into account scroll position.
+    /// Ideally the selected set should only match a single element.
+    /// </summary>    
+    /// <param name="fn" type="Function">Optional function called when centering is complete. Passed DOM element as parameter</param>    
+    /// <param name="forceAbsolute" type="Boolean">if true forces the element to be removed from the document flow 
+    ///  and attached to the body element to ensure proper absolute positioning. 
+    /// Be aware that this may cause ID hierachy for CSS styles to be affected.
+    /// </param>
+    /// <returns type="jQuery" />
+    var opt = { forceAbsolute: false,
+	      container: window,    // selector of element to center in
+	      completeHandler: null
+	    };
+    j$.extend(opt, options);
+   
+    return this.each(function(i) {
+        var el = j$(this);
+        var jWin = j$(opt.container);
+        var isWin = opt.container == window;
+
+        // force to the top of document to ENSURE that 
+        // document absolute positioning is available
+        if (opt.forceAbsolute) {
+	  if (isWin)
+	      el.remove().appendTo("body");
+	  else
+	      el.remove().appendTo(jWin.get(0));
+        }
+
+        // have to make absolute
+        el.css("position", "absolute");
+
+        // height is off a bit so fudge it
+        var heightFudge = isWin ? 2.0 : 1.8;
+
+        var x = (isWin ? jWin.width() : jWin.outerWidth()) / 2 - el.outerWidth() / 2;
+        var y = (isWin ? jWin.height() : jWin.outerHeight()) / heightFudge - el.outerHeight() / 2;
+
+        el.css("left", x + jWin.scrollLeft());
+        el.css("top", y + jWin.scrollTop());
+
+        // if specified make callback and pass element
+        if (opt.completeHandler)
+	  opt.completeHandler(this);
+    });
+}    
+        
+
+
+jwerty.key('enter',false);
+    
+</script>
+<style>
+input.grey_btn {
+	cursor: pointer;
+	margin-left: 5px;
+	font-weight: normal;
+	padding: 10px 10px !important;
+	border-radius: 5px !important;
+	border: none !important;
+	text-transform: uppercase !important;
+	color: white !important;
+	background: #666;
+	background: -moz-linear-gradient(top, #999 0%, #666 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#999), color-stop(100%,#666));
+	background: -webkit-linear-gradient(top, #999 0%,#666 100%);
+	background: -o-linear-gradient(top, #999 0%,#666 100%);
+	background: -ms-linear-gradient(top, #999 0%,#666 100%);
+	background: linear-gradient(top, #999 0%,#666 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#999999', endColorstr='#666666',GradientType=0 );
+}
+.datahighlight {
+	background-color: #ffffcc !important;
+}
+
+.datahighlight2 {
+	background-color: #ffff99 !important;
+}
+.center_box {
+	margin:0 auto;
+}
+.customModal{
+	display:none;
+	background-color: white;
+	border-width: 2px;
+	border-style: solid;
+	z-index: 81;
+	top: 20%;
+	padding:10px;
+	position: fixed;
+	overflow:auto;
+	max-height:500px;
+	/* These are the 3 css properties you will need to change so the popup 
+	displays in the center of the screen. First set the width. Then set 
+	margin-left to negative half of what the width is. You can add 
+	the height property for a fixed size pop up if you want.*/
+}
+.modalBackground{
+	background-color:black;
+	opacity: 0.30;
+	filter: alpha(opacity = 30);
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	z-index: 80;
+}
+</style>
+</apex:component>

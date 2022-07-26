@@ -1,0 +1,4583 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableEnhancedLookup>false</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>Read</externalSharingModel>
+    <fieldSets>
+        <fullName>CourseCatSummary</fullName>
+        <description>Course information seen through available and configured course catalog tables in Course Catalog Page.</description>
+        <displayedFields>
+            <field>Course_Number__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Name</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Department__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Credit_Hours__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Grade_Scale_Lookup__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <label>Course Catalog Summary</label>
+    </fieldSets>
+    <fieldSets>
+        <fullName>Courses_Template</fullName>
+        <description>CSV Loader v2</description>
+        <displayedFields>
+            <field>Name</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>true</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Course_Number__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Credit_Hours__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Daily_Attendance__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Department__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Number_of_Reporting_Periods__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Reference_Id__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Has_Final_Grade__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Homework_Based__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Meets_every_day__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Required_for_graduation__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Grade_Scale_Lookup__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>true</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Name_Spanish__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Subject_Area__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Include_in_section_snapshot__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>RecordTypeId</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>true</isRequired>
+        </displayedFields>
+        <label>Courses Template</label>
+    </fieldSets>
+    <fieldSets>
+        <fullName>Recovery_Course</fullName>
+        <description>Used in Course Catalog Wizard for Recover Courses</description>
+        <displayedFields>
+            <field>Name</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <label>Recovery Course</label>
+    </fieldSets>
+    <fieldSets>
+        <fullName>courseCatalog</fullName>
+        <description>The core_CourseCatalog page.</description>
+        <displayedFields>
+            <field>Name_Spanish__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Course_Number__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>true</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Department__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Course_Notes__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Credit_Hours__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Type__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Multiply_GPA_Added_Value_Points__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>GPA_Added_Value_Points__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Required_for_graduation__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Min_of_enrollment__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Room_Type__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Max_of_enrollment__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Has_a_lab__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Homework_Based__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Meets_every_day__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Pre_requisites__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Exclude_on_RC_Transcripts__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Display_Numerical_Values_On_Report_Card__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Use_Assignment_Type_Percentages__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Include_in_section_snapshot__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Display_on_Student_Staff_Schedule__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <label>courseCatalog</label>
+    </fieldSets>
+    <fields>
+        <fullName>Account__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Links Courses to the School</description>
+        <externalId>false</externalId>
+        <label>School</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Courses</relationshipLabel>
+        <relationshipName>Courses</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Course_Id__c</fullName>
+        <externalId>false</externalId>
+        <formula>CASESAFEID(Id)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Course Id</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Course_Level_Characteristic__c</fullName>
+        <description>An indication of the general nature and difficulty of instruction provided throughout a course.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>An indication of the general nature and difficulty of instruction provided throughout a course.</inlineHelpText>
+        <label>Course Level Characteristic</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Remedial Course</fullName>
+                    <default>false</default>
+                    <label>Remedial Course</label>
+                </value>
+                <value>
+                    <fullName>Students with Disabilities Course</fullName>
+                    <default>false</default>
+                    <label>Students with Disabilities Course</label>
+                </value>
+                <value>
+                    <fullName>Basic Course</fullName>
+                    <default>false</default>
+                    <label>Basic Course</label>
+                </value>
+                <value>
+                    <fullName>General Course</fullName>
+                    <default>false</default>
+                    <label>General Course</label>
+                </value>
+                <value>
+                    <fullName>Honors Level Course</fullName>
+                    <default>false</default>
+                    <label>Honors Level Course</label>
+                </value>
+                <value>
+                    <fullName>Gifted and Talented Course</fullName>
+                    <default>false</default>
+                    <label>Gifted and Talented Course</label>
+                </value>
+                <value>
+                    <fullName>International Baccalaureate Course</fullName>
+                    <default>false</default>
+                    <label>International Baccalaureate Course</label>
+                </value>
+                <value>
+                    <fullName>Advanced Placement Course</fullName>
+                    <default>false</default>
+                    <label>Advanced Placement Course</label>
+                </value>
+                <value>
+                    <fullName>College-Level Course</fullName>
+                    <default>false</default>
+                    <label>College-Level Course</label>
+                </value>
+                <value>
+                    <fullName>Untracked Course</fullName>
+                    <default>false</default>
+                    <label>Untracked Course</label>
+                </value>
+                <value>
+                    <fullName>English Language Learner (ELL) Course</fullName>
+                    <default>false</default>
+                    <label>English Language Learner (ELL) Course</label>
+                </value>
+                <value>
+                    <fullName>Accepted as a High School Equivalent</fullName>
+                    <default>false</default>
+                    <label>Accepted as a High School Equivalent</label>
+                </value>
+                <value>
+                    <fullName>Other</fullName>
+                    <default>false</default>
+                    <label>Other</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Course_Notes__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter a description of the course. You can use this field for reporting purposes.</inlineHelpText>
+        <label>Course Description</label>
+        <length>32000</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Course_Number__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter the unique course number. SchoolForce uses this value to identify the course.</inlineHelpText>
+        <label>Course Number</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Course_Weighting_Records__c</fullName>
+        <externalId>false</externalId>
+        <label>Course Weighting Records</label>
+        <precision>2</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Credit_Hours__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter the number of credit hours students earn upon completion of this course. SchoolForce uses the credit hours to calculate weighted and unweighted GPAs.</inlineHelpText>
+        <label>Credit Hours</label>
+        <precision>7</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Credit_Type_Earned__c</fullName>
+        <description>The type of credits or units of value awarded for the completion of a course.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The type of credits or units of value awarded for the completion of a course.</inlineHelpText>
+        <label>Credit Type Earned</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Carnegie Unit</fullName>
+                    <default>false</default>
+                    <label>Carnegie Unit</label>
+                </value>
+                <value>
+                    <fullName>Semester Hour Credit</fullName>
+                    <default>false</default>
+                    <label>Semester Hour Credit</label>
+                </value>
+                <value>
+                    <fullName>Trimester Hour Credit</fullName>
+                    <default>false</default>
+                    <label>Trimester Hour Credit</label>
+                </value>
+                <value>
+                    <fullName>Quarter Hour Credit</fullName>
+                    <default>false</default>
+                    <label>Quarter Hour Credit</label>
+                </value>
+                <value>
+                    <fullName>Quinmester Hour Credit</fullName>
+                    <default>false</default>
+                    <label>Quinmester Hour Credit</label>
+                </value>
+                <value>
+                    <fullName>Mini-Term Hour Credit</fullName>
+                    <default>false</default>
+                    <label>Mini-Term Hour Credit</label>
+                </value>
+                <value>
+                    <fullName>Summer Term Hour Credit</fullName>
+                    <default>false</default>
+                    <label>Summer Term Hour Credit</label>
+                </value>
+                <value>
+                    <fullName>Intersession Hour Credit</fullName>
+                    <default>false</default>
+                    <label>Intersession Hour Credit</label>
+                </value>
+                <value>
+                    <fullName>Long Session Hour Credit</fullName>
+                    <default>false</default>
+                    <label>Long Session Hour Credit</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Credits__c</fullName>
+        <defaultValue>1</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>Number of Credits for this course, for final grade calculation</inlineHelpText>
+        <label>Credits</label>
+        <precision>4</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Curriculum_Framework__c</fullName>
+        <description>An indication of the standard curriculum used for this course.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>An indication of the standard curriculum used for this course.</inlineHelpText>
+        <label>Curriculum Framework</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>State Curriculum Framework</fullName>
+                    <default>false</default>
+                    <label>State Curriculum Framework</label>
+                </value>
+                <value>
+                    <fullName>LEA Curriculum Framework</fullName>
+                    <default>false</default>
+                    <label>LEA Curriculum Framework</label>
+                </value>
+                <value>
+                    <fullName>School Curriculum Framework</fullName>
+                    <default>false</default>
+                    <label>School Curriculum Framework</label>
+                </value>
+                <value>
+                    <fullName>Private, Religious Curriculum</fullName>
+                    <default>false</default>
+                    <label>Private, Religious Curriculum</label>
+                </value>
+                <value>
+                    <fullName>National Curriculum Standard</fullName>
+                    <default>false</default>
+                    <label>National Curriculum Standard</label>
+                </value>
+                <value>
+                    <fullName>Other</fullName>
+                    <default>false</default>
+                    <label>Other</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Daily_Attendance__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Daily Attendance</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Default_Maximum_Enrollment__c</fullName>
+        <externalId>false</externalId>
+        <label>Default Maximum Enrollment</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Department__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Select the department that teaches the course. You can use this field for reporting purposes.</inlineHelpText>
+        <label>Department</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>English</fullName>
+                    <default>false</default>
+                    <label>English</label>
+                </value>
+                <value>
+                    <fullName>Mathematics</fullName>
+                    <default>false</default>
+                    <label>Mathematics</label>
+                </value>
+                <value>
+                    <fullName>Social Studies</fullName>
+                    <default>false</default>
+                    <label>Social Studies</label>
+                </value>
+                <value>
+                    <fullName>Science</fullName>
+                    <default>false</default>
+                    <label>Science</label>
+                </value>
+                <value>
+                    <fullName>Extracurricular</fullName>
+                    <default>false</default>
+                    <label>Extracurricular</label>
+                </value>
+                <value>
+                    <fullName>Art</fullName>
+                    <default>false</default>
+                    <label>Art</label>
+                </value>
+                <value>
+                    <fullName>Music</fullName>
+                    <default>false</default>
+                    <label>Music</label>
+                </value>
+                <value>
+                    <fullName>Language</fullName>
+                    <default>false</default>
+                    <label>Language</label>
+                </value>
+                <value>
+                    <fullName>Physical Education</fullName>
+                    <default>false</default>
+                    <label>Physical Education</label>
+                </value>
+                <value>
+                    <fullName>Other</fullName>
+                    <default>false</default>
+                    <label>Other</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Description__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>What topics are covered in this course? How would you describe the coursework you&apos;re going to cover?</inlineHelpText>
+        <label>Description</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Display_Numerical_Values_On_Report_Card__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Controls the rendering of the report card to either use the letter grades or use the actual numerical values between 0-100 for display</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Select if you want the numerical value for a grade to display on report cards (e.g., 98 instead of A+).</inlineHelpText>
+        <label>Display Numerical Values On Report Card</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Display_Order__c</fullName>
+        <defaultValue>9999</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>On Homework Tracker, Course will be displayed according to the order in this field (1 = Furthest Left). Any records with the default of 9999 will be displayed in A-Z order after the ordered records</inlineHelpText>
+        <label>Display Order</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Display_on_Student_Staff_Schedule__c</fullName>
+        <defaultValue>true</defaultValue>
+        <description>This field allows users to select which courses show up on staff/student schedules.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>If this check box is selected, this course displays on student and staff schedules. By default, this check box is selected.</inlineHelpText>
+        <label>Display on Student/Staff Schedule?</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Exclude_from_Class_Rank__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Exclude from Class Rank</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Exclude_from_GPA__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Exclude from GPA</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Exclude_from_Honor_Roll__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Exclude from Honor Roll</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Exclude_on_RC_Transcripts__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>Select if you want this course excluded from displaying on report cards and transcripts.</inlineHelpText>
+        <label>Exclude on RC/Transcripts</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>External_Id__c</fullName>
+        <externalId>true</externalId>
+        <label>External Id</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>GPA_Added_Value_Points__c</fullName>
+        <defaultValue>0</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>If this course uses value-added points for weighted GPA grading, enter the number of points you want SchoolForce to add or multiply to calculate the weighted GPA.</inlineHelpText>
+        <label>GPA Added Value Points</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Grade_Scale_Category__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT(Grade_Scale_Lookup__r.Category__c)</formula>
+        <label>Grade Scale Category</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Grade_Scale_Id__c</fullName>
+        <externalId>false</externalId>
+        <formula>CASESAFEID(Grade_Scale_Lookup__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Grade Scale Id</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Grade_Scale_Lookup__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Not active until the Hawaii release.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Select the grade scale this course will use to calculate grades.</inlineHelpText>
+        <label>Grade Scale</label>
+        <lookupFilter>
+            <active>true</active>
+            <errorMessage>Grade Scale field must be of Record Type Grade Scale</errorMessage>
+            <filterItems>
+                <field>Picklist_Value__c.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>Grade Scale</value>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>Picklist_Value__c</referenceTo>
+        <relationshipLabel>Courses</relationshipLabel>
+        <relationshipName>Courses</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Grade_Scale_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>Grade_Scale_Lookup__r.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Grade Scale Name</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Grade_Scale_RT__c</fullName>
+        <externalId>false</externalId>
+        <formula>Grade_Scale_Lookup__r.RecordType.DeveloperName</formula>
+        <label>Grade Scale RT</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Grade_Scale__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>SchoolForce no longer uses this field. Do not select a value.</inlineHelpText>
+        <label>Legacy Grade Scale *Do Not Use*</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Credit/No Credit</fullName>
+                    <default>false</default>
+                    <label>Credit/No Credit</label>
+                </value>
+                <value>
+                    <fullName>Points</fullName>
+                    <default>false</default>
+                    <label>Points</label>
+                </value>
+                <value>
+                    <fullName>Standard</fullName>
+                    <default>false</default>
+                    <label>Standard</label>
+                </value>
+                <value>
+                    <fullName>Default</fullName>
+                    <default>true</default>
+                    <label>Default</label>
+                </value>
+                <value>
+                    <fullName>ELH 1-2-3-4 Rubric</fullName>
+                    <default>false</default>
+                    <label>ELH 1-2-3-4 Rubric</label>
+                </value>
+                <value>
+                    <fullName>4ELH 1-2-3-4 Rubric TENTHS</fullName>
+                    <default>false</default>
+                    <label>4ELH 1-2-3-4 Rubric TENTHS</label>
+                </value>
+                <value>
+                    <fullName>ELH Traditional</fullName>
+                    <default>false</default>
+                    <label>ELH Traditional</label>
+                </value>
+                <value>
+                    <fullName>Percentage</fullName>
+                    <default>false</default>
+                    <label>Percentage</label>
+                </value>
+                <value>
+                    <fullName>Standards</fullName>
+                    <default>false</default>
+                    <label>Standards</label>
+                </value>
+                <value>
+                    <fullName>0-100</fullName>
+                    <default>false</default>
+                    <label>0-100</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Grading_reporting_period_length__c</fullName>
+        <externalId>false</externalId>
+        <label>Grading/reporting period length</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Full year</fullName>
+                    <default>false</default>
+                    <label>Full year</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Has_Final_Grade__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>Select if the course has a final exam grade for each reporting period. If selected, SchoolForce automatically adds a default weighting for the final reporting periods on the Configure Course Reporting Period Weightings screen when you save the course.</inlineHelpText>
+        <label>Has Final Grade</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Has_a_lab__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>Select if the course has a corresponding lab (e.g., a science of language class). You can use this field for reporting purposes.</inlineHelpText>
+        <label>Has a lab?</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Homework_Based__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>Select if you want the sections created from this course to display in the Homework module.</inlineHelpText>
+        <label>Homework Based</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Honors_Course__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Students successfully completing this course will receive honor&apos;s credit.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Students successfully completing this course will receive honor&apos;s credit.</inlineHelpText>
+        <label>Honors Course</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Include_in_section_snapshot__c</fullName>
+        <defaultValue>true</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>Select if you want SchoolForce to include the information for this course in the Section snapshots that are created in the End of Year Wizard</inlineHelpText>
+        <label>Include in section snapshot</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Legacy_ID__c</fullName>
+        <externalId>true</externalId>
+        <label>Legacy ID</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Max_of_enrollment__c</fullName>
+        <description>Maximum number of enrollment</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter the maximum number of students that can be enrolled in this course. You can use this field for reporting purposes.</inlineHelpText>
+        <label>Max # of enrollment</label>
+        <length>2</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Meets_every_day__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>Select if this course meets every day. You can use this field for reporting purposes.</inlineHelpText>
+        <label>Meets every day?</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Min_of_enrollment__c</fullName>
+        <description>Minimum # of enrollment</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter the minimum number of students that should be enrolled in this course. You can use this field for reporting purposes.</inlineHelpText>
+        <label>Min # of enrollment</label>
+        <length>2</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Multiply_GPA_Added_Value_Points__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Users can choose to multiply instead of adding to the GPA weight.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Select if this is a course that uses value-added points for weighted GPA grading and you want SchoolForce to multiply the value added points to calculate the weighted GPA. If you do not select this check box, SchoolForce adds the value added points.</inlineHelpText>
+        <label>Multiply GPA Added Value Points</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Name_Spanish__c</fullName>
+        <description>The Course Name in Spanish language.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter the Spanish translation of the course name. This value will display on translated report cards, progress reports, transcripts, and the Student/Parent Portal.</inlineHelpText>
+        <label>Name in Spanish</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Number_of_Reporting_Periods__c</fullName>
+        <defaultValue>1</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>Select the default number of reporting periods over which the sections in this course will meet. If the number of reporting periods for this course is variable, you can define additional reporting period durations by clicking Edit Grade Weightings.</inlineHelpText>
+        <label>Number of Reporting Periods</label>
+        <precision>2</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Pre_requisites__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <inlineHelpText>Search for and select the course that is required before a student can enroll in this course. You can use this field for reporting purposes.</inlineHelpText>
+        <label>Pre-requisites</label>
+        <referenceTo>Course__c</referenceTo>
+        <relationshipLabel>Courses</relationshipLabel>
+        <relationshipName>Courses</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Reference_Id__c</fullName>
+        <description>School-Course Name Unique Key</description>
+        <externalId>true</externalId>
+        <label>Reference Id</label>
+        <length>100</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Reporting_Course_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Reporting Course Name</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Required_for_graduation__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>Select If students are required to take this course in order to graduate. You can use this field for reporting purposes as well as for cohort requirements.</inlineHelpText>
+        <label>Required for graduation</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Room_Type__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Select the type of room in which this course should be scheduled. You can use this field for reporting purposes.</inlineHelpText>
+        <label>Room Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Art Room</fullName>
+                    <default>true</default>
+                    <label>Art Room</label>
+                </value>
+                <value>
+                    <fullName>Auditorium</fullName>
+                    <default>false</default>
+                    <label>Auditorium</label>
+                </value>
+                <value>
+                    <fullName>Band/Orchestra Room</fullName>
+                    <default>false</default>
+                    <label>Band/Orchestra Room</label>
+                </value>
+                <value>
+                    <fullName>Classroom</fullName>
+                    <default>false</default>
+                    <label>Classroom</label>
+                </value>
+                <value>
+                    <fullName>Clinic</fullName>
+                    <default>false</default>
+                    <label>Clinic</label>
+                </value>
+                <value>
+                    <fullName>Computer Lab</fullName>
+                    <default>false</default>
+                    <label>Computer Lab</label>
+                </value>
+                <value>
+                    <fullName>Gymnasium</fullName>
+                    <default>false</default>
+                    <label>Gymnasium</label>
+                </value>
+                <value>
+                    <fullName>Home Economics Classroom</fullName>
+                    <default>false</default>
+                    <label>Home Economics Classroom</label>
+                </value>
+                <value>
+                    <fullName>Library</fullName>
+                    <default>false</default>
+                    <label>Library</label>
+                </value>
+                <value>
+                    <fullName>Lunchroom</fullName>
+                    <default>false</default>
+                    <label>Lunchroom</label>
+                </value>
+                <value>
+                    <fullName>Music Room</fullName>
+                    <default>false</default>
+                    <label>Music Room</label>
+                </value>
+                <value>
+                    <fullName>Nurse&apos;s Office</fullName>
+                    <default>false</default>
+                    <label>Nurse&apos;s Office</label>
+                </value>
+                <value>
+                    <fullName>Playground</fullName>
+                    <default>false</default>
+                    <label>Playground</label>
+                </value>
+                <value>
+                    <fullName>Science Lab</fullName>
+                    <default>false</default>
+                    <label>Science Lab</label>
+                </value>
+                <value>
+                    <fullName>Teacher&apos;s Lounge</fullName>
+                    <default>false</default>
+                    <label>Teacher&apos;s Lounge</label>
+                </value>
+                <value>
+                    <fullName>Workshop</fullName>
+                    <default>false</default>
+                    <label>Workshop</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Secondary_Course_Identifier__c</fullName>
+        <description>The five-digit SCED code and name of the course. The first two-digits of the code represent the Secondary Course Subject Area. These identifiers are fairly general but provide enough specificity to identify the course&apos;s topic and to distinguish it from other courses in that subject area.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The five-digit SCED code and name of the course. The first two-digits of the code represent the Secondary Course Subject Area.</inlineHelpText>
+        <label>Secondary Course Identifier</label>
+        <length>40</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Secondary_Course_Level__c</fullName>
+        <description>An indication of the general nature and difficulty of instruction provided throughout a course.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>An indication of the general nature and difficulty of instruction provided throughout a course.</inlineHelpText>
+        <label>Secondary Course Level</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>B - Basic or Remedial</fullName>
+                    <default>false</default>
+                    <label>B - Basic or Remedial</label>
+                </value>
+                <value>
+                    <fullName>G - General or Regular</fullName>
+                    <default>false</default>
+                    <label>G - General or Regular</label>
+                </value>
+                <value>
+                    <fullName>E - Enriched or Advanced</fullName>
+                    <default>false</default>
+                    <label>E - Enriched or Advanced</label>
+                </value>
+                <value>
+                    <fullName>H - Honors</fullName>
+                    <default>false</default>
+                    <label>H - Honors</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Secondary_Course_Subject_Area__c</fullName>
+        <description>The intended major subject area of the secondary education course.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The intended major subject area of the secondary education course.</inlineHelpText>
+        <label>Secondary Course Subject Area</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>01 - English Language and Literature</fullName>
+                    <default>false</default>
+                    <label>01 - English Language and Literature</label>
+                </value>
+                <value>
+                    <fullName>02 - Mathematics</fullName>
+                    <default>false</default>
+                    <label>02 - Mathematics</label>
+                </value>
+                <value>
+                    <fullName>03 - Life and Physical Sciences</fullName>
+                    <default>false</default>
+                    <label>03 - Life and Physical Sciences</label>
+                </value>
+                <value>
+                    <fullName>04 - Social Sciences and History</fullName>
+                    <default>false</default>
+                    <label>04 - Social Sciences and History</label>
+                </value>
+                <value>
+                    <fullName>05 - Fine and Performing Arts</fullName>
+                    <default>false</default>
+                    <label>05 - Fine and Performing Arts</label>
+                </value>
+                <value>
+                    <fullName>06 - Foreign Language and Literature</fullName>
+                    <default>false</default>
+                    <label>06 - Foreign Language and Literature</label>
+                </value>
+                <value>
+                    <fullName>07 - Religious Education and Theology</fullName>
+                    <default>false</default>
+                    <label>07 - Religious Education and Theology</label>
+                </value>
+                <value>
+                    <fullName>08 - Physical, Health, and Safety Education</fullName>
+                    <default>false</default>
+                    <label>08 - Physical, Health, and Safety Education</label>
+                </value>
+                <value>
+                    <fullName>09 - Military Science</fullName>
+                    <default>false</default>
+                    <label>09 - Military Science</label>
+                </value>
+                <value>
+                    <fullName>10 - Computer and Information Sciences</fullName>
+                    <default>false</default>
+                    <label>10 - Computer and Information Sciences</label>
+                </value>
+                <value>
+                    <fullName>11 - Communications and Audio/Visual Technology</fullName>
+                    <default>false</default>
+                    <label>11 - Communications and Audio/Visual Technology</label>
+                </value>
+                <value>
+                    <fullName>12 - Business and Marketing</fullName>
+                    <default>false</default>
+                    <label>12 - Business and Marketing</label>
+                </value>
+                <value>
+                    <fullName>13 - Manufacturing</fullName>
+                    <default>false</default>
+                    <label>13 - Manufacturing</label>
+                </value>
+                <value>
+                    <fullName>14 - Health Care Sciences</fullName>
+                    <default>false</default>
+                    <label>14 - Health Care Sciences</label>
+                </value>
+                <value>
+                    <fullName>15 - Public, Protective, and Government Service</fullName>
+                    <default>false</default>
+                    <label>15 - Public, Protective, and Government Service</label>
+                </value>
+                <value>
+                    <fullName>16 - Hospitality and Tourism</fullName>
+                    <default>false</default>
+                    <label>16 - Hospitality and Tourism</label>
+                </value>
+                <value>
+                    <fullName>17 - Architecture and Construction</fullName>
+                    <default>false</default>
+                    <label>17 - Architecture and Construction</label>
+                </value>
+                <value>
+                    <fullName>18 - Agriculture, Food, and Natural Resources</fullName>
+                    <default>false</default>
+                    <label>18 - Agriculture, Food, and Natural Resources</label>
+                </value>
+                <value>
+                    <fullName>19 - Human Services</fullName>
+                    <default>false</default>
+                    <label>19 - Human Services</label>
+                </value>
+                <value>
+                    <fullName>20 - Transportation, Distribution and Logistics</fullName>
+                    <default>false</default>
+                    <label>20 - Transportation, Distribution and Logistics</label>
+                </value>
+                <value>
+                    <fullName>21 - Engineering and Technology</fullName>
+                    <default>false</default>
+                    <label>21 - Engineering and Technology</label>
+                </value>
+                <value>
+                    <fullName>22 - Miscellaneous</fullName>
+                    <default>false</default>
+                    <label>22 - Miscellaneous</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Special_Subject__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Special Subject</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Subject_Area_Lookup__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <inlineHelpText>Select the applicable subject area for this course. You can use the subject area for reporting purposes as well as for cohort requirements.</inlineHelpText>
+        <label>Subject Area Lookup</label>
+        <referenceTo>Course__c</referenceTo>
+        <relationshipLabel>Courses (Subject Area Lookup)</relationshipLabel>
+        <relationshipName>Course</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Subject_Area__c</fullName>
+        <externalId>false</externalId>
+        <label>Subject Area</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Citizenship</fullName>
+                    <default>false</default>
+                    <label>Citizenship</label>
+                </value>
+                <value>
+                    <fullName>Cognitive Development</fullName>
+                    <default>false</default>
+                    <label>Cognitive Development</label>
+                </value>
+                <value>
+                    <fullName>Computer Science Programming</fullName>
+                    <default>false</default>
+                    <label>Computer Science Programming</label>
+                </value>
+                <value>
+                    <fullName>Computer Skills/Literacy</fullName>
+                    <default>false</default>
+                    <label>Computer Skills/Literacy</label>
+                </value>
+                <value>
+                    <fullName>Elective Activities</fullName>
+                    <default>false</default>
+                    <label>Elective Activities</label>
+                </value>
+                <value>
+                    <fullName>English as a Second Language</fullName>
+                    <default>false</default>
+                    <label>English as a Second Language</label>
+                </value>
+                <value>
+                    <fullName>Fine Arts - Art</fullName>
+                    <default>false</default>
+                    <label>Fine Arts - Art</label>
+                </value>
+                <value>
+                    <fullName>Fine Arts - Dance</fullName>
+                    <default>false</default>
+                    <label>Fine Arts - Dance</label>
+                </value>
+                <value>
+                    <fullName>Fine Arts - Drama/Theater</fullName>
+                    <default>false</default>
+                    <label>Fine Arts - Drama/Theater</label>
+                </value>
+                <value>
+                    <fullName>Fine Arts - Music</fullName>
+                    <default>false</default>
+                    <label>Fine Arts - Music</label>
+                </value>
+                <value>
+                    <fullName>Fitness</fullName>
+                    <default>false</default>
+                    <label>Fitness</label>
+                </value>
+                <value>
+                    <fullName>Foreign Language and Literature</fullName>
+                    <default>false</default>
+                    <label>Foreign Language and Literature</label>
+                </value>
+                <value>
+                    <fullName>Geography</fullName>
+                    <default>false</default>
+                    <label>Geography</label>
+                </value>
+                <value>
+                    <fullName>Handwriting/Penmanship</fullName>
+                    <default>false</default>
+                    <label>Handwriting/Penmanship</label>
+                </value>
+                <value>
+                    <fullName>Health</fullName>
+                    <default>false</default>
+                    <label>Health</label>
+                </value>
+                <value>
+                    <fullName>History</fullName>
+                    <default>false</default>
+                    <label>History</label>
+                </value>
+                <value>
+                    <fullName>Home Economics</fullName>
+                    <default>false</default>
+                    <label>Home Economics</label>
+                </value>
+                <value>
+                    <fullName>Homework</fullName>
+                    <default>false</default>
+                    <label>Homework</label>
+                </value>
+                <value>
+                    <fullName>Industrial Arts</fullName>
+                    <default>false</default>
+                    <label>Industrial Arts</label>
+                </value>
+                <value>
+                    <fullName>Keyboarding/typing</fullName>
+                    <default>false</default>
+                    <label>Keyboarding/typing</label>
+                </value>
+                <value>
+                    <fullName>Language Arts</fullName>
+                    <default>false</default>
+                    <label>Language Arts</label>
+                </value>
+                <value>
+                    <fullName>Library Skills</fullName>
+                    <default>false</default>
+                    <label>Library Skills</label>
+                </value>
+                <value>
+                    <fullName>Listening &amp; Speaking</fullName>
+                    <default>false</default>
+                    <label>Listening &amp; Speaking</label>
+                </value>
+                <value>
+                    <fullName>Literacy</fullName>
+                    <default>false</default>
+                    <label>Literacy</label>
+                </value>
+                <value>
+                    <fullName>Math</fullName>
+                    <default>false</default>
+                    <label>Math</label>
+                </value>
+                <value>
+                    <fullName>Mathematics/Arithmetic</fullName>
+                    <default>false</default>
+                    <label>Mathematics/Arithmetic</label>
+                </value>
+                <value>
+                    <fullName>Military Science</fullName>
+                    <default>false</default>
+                    <label>Military Science</label>
+                </value>
+                <value>
+                    <fullName>Multi/Interdisciplinary Studies</fullName>
+                    <default>false</default>
+                    <label>Multi/Interdisciplinary Studies</label>
+                </value>
+                <value>
+                    <fullName>Physical Development</fullName>
+                    <default>false</default>
+                    <label>Physical Development</label>
+                </value>
+                <value>
+                    <fullName>Physical Education</fullName>
+                    <default>false</default>
+                    <label>Physical Education</label>
+                </value>
+                <value>
+                    <fullName>Reading</fullName>
+                    <default>false</default>
+                    <label>Reading</label>
+                </value>
+                <value>
+                    <fullName>Religious Education and Theology</fullName>
+                    <default>false</default>
+                    <label>Religious Education and Theology</label>
+                </value>
+                <value>
+                    <fullName>Science</fullName>
+                    <default>false</default>
+                    <label>Science</label>
+                </value>
+                <value>
+                    <fullName>Science &amp; Social Studies</fullName>
+                    <default>false</default>
+                    <label>Science &amp; Social Studies</label>
+                </value>
+                <value>
+                    <fullName>Social &amp; Emotional Development</fullName>
+                    <default>false</default>
+                    <label>Social &amp; Emotional Development</label>
+                </value>
+                <value>
+                    <fullName>Social Studies</fullName>
+                    <default>false</default>
+                    <label>Social Studies</label>
+                </value>
+                <value>
+                    <fullName>Spanish</fullName>
+                    <default>false</default>
+                    <label>Spanish</label>
+                </value>
+                <value>
+                    <fullName>Spelling</fullName>
+                    <default>false</default>
+                    <label>Spelling</label>
+                </value>
+                <value>
+                    <fullName>Study Skills</fullName>
+                    <default>false</default>
+                    <label>Study Skills</label>
+                </value>
+                <value>
+                    <fullName>Test Preparation</fullName>
+                    <default>false</default>
+                    <label>Test Preparation</label>
+                </value>
+                <value>
+                    <fullName>Writing</fullName>
+                    <default>false</default>
+                    <label>Writing</label>
+                </value>
+                <value>
+                    <fullName>Other</fullName>
+                    <default>false</default>
+                    <label>Other</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Transfer_School__c</fullName>
+        <description>The name of the External school the course belongs too.</description>
+        <externalId>false</externalId>
+        <label>Transfer School</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Type__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Select the type of course. For example, the type of course may include options such as honors, AP, international baccalaureate. You can use this field for reporting purposes as well as for cohort requirements.</inlineHelpText>
+        <label>Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>AP</fullName>
+                    <default>false</default>
+                    <label>AP</label>
+                </value>
+                <value>
+                    <fullName>Honors</fullName>
+                    <default>false</default>
+                    <label>Honors</label>
+                </value>
+                <value>
+                    <fullName>IB</fullName>
+                    <default>false</default>
+                    <label>IB</label>
+                </value>
+                <value>
+                    <fullName>Remedial</fullName>
+                    <default>false</default>
+                    <label>Remedial</label>
+                </value>
+                <value>
+                    <fullName>Credit/No Credit</fullName>
+                    <default>false</default>
+                    <label>Credit/No Credit</label>
+                </value>
+                <value>
+                    <fullName>Points</fullName>
+                    <default>false</default>
+                    <label>Points</label>
+                </value>
+                <value>
+                    <fullName>Standard</fullName>
+                    <default>false</default>
+                    <label>Standard</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Use_Assignment_Type_Percentages__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>This determines if section grades are graded using % weighted assignment types. Ex: Test = 50% HW = 30% Classwork = 20%</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Select if you want SchoolForce to weigh the assignment types using a percentage. For example, you can designate Homework as worth 30% of a student&apos;s section grade.</inlineHelpText>
+        <label>Use Assignment Type Percentages</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Weighting_Check__c</fullName>
+        <externalId>false</externalId>
+        <label>Weighting % Check</label>
+        <summarizedField>Course_Weightings__c.Weighting__c</summarizedField>
+        <summaryForeignKey>Course_Weightings__c.Course__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Weightings__c</fullName>
+        <externalId>false</externalId>
+        <label>Weightings</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>1</fullName>
+                    <default>true</default>
+                    <label>1</label>
+                </value>
+                <value>
+                    <fullName>2</fullName>
+                    <default>false</default>
+                    <label>2</label>
+                </value>
+                <value>
+                    <fullName>3</fullName>
+                    <default>false</default>
+                    <label>3</label>
+                </value>
+                <value>
+                    <fullName>4</fullName>
+                    <default>false</default>
+                    <label>4</label>
+                </value>
+                <value>
+                    <fullName>5</fullName>
+                    <default>false</default>
+                    <label>5</label>
+                </value>
+                <value>
+                    <fullName>6</fullName>
+                    <default>false</default>
+                    <label>6</label>
+                </value>
+                <value>
+                    <fullName>7</fullName>
+                    <default>false</default>
+                    <label>7</label>
+                </value>
+                <value>
+                    <fullName>8</fullName>
+                    <default>false</default>
+                    <label>8</label>
+                </value>
+                <value>
+                    <fullName>9</fullName>
+                    <default>false</default>
+                    <label>9</label>
+                </value>
+                <value>
+                    <fullName>10</fullName>
+                    <default>false</default>
+                    <label>10</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <label>Course</label>
+    <listViews>
+        <fullName>AP</fullName>
+        <columns>NAME</columns>
+        <columns>Course_Number__c</columns>
+        <columns>Credit_Hours__c</columns>
+        <columns>GPA_Added_Value_Points__c</columns>
+        <columns>Department__c</columns>
+        <columns>Grade_Scale__c</columns>
+        <columns>Course_Notes__c</columns>
+        <columns>Subject_Area_Lookup__c</columns>
+        <columns>RECORDTYPE</columns>
+        <filterScope>Everything</filterScope>
+        <label>AP</label>
+    </listViews>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>Course_Id__c</columns>
+        <columns>NAME</columns>
+        <columns>Course_Number__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <listViews>
+        <fullName>All1</fullName>
+        <columns>OBJECT_ID</columns>
+        <columns>Course_Number__c</columns>
+        <columns>NAME</columns>
+        <columns>Subject_Area_Lookup__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <listViews>
+        <fullName>All_Honors_Courses</fullName>
+        <columns>NAME</columns>
+        <columns>Course_Number__c</columns>
+        <columns>Subject_Area__c</columns>
+        <columns>Credits__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Honors_Course__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <label>All Honors Courses</label>
+    </listViews>
+    <listViews>
+        <fullName>Basic_or_Remedial_Courses</fullName>
+        <columns>NAME</columns>
+        <columns>Course_Number__c</columns>
+        <columns>Secondary_Course_Subject_Area__c</columns>
+        <columns>Secondary_Course_Level__c</columns>
+        <columns>Credits__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Secondary_Course_Level__c</field>
+            <operation>equals</operation>
+            <value>B - Basic or Remedial</value>
+        </filters>
+        <label>Basic or Remedial Courses</label>
+    </listViews>
+    <listViews>
+        <fullName>Enriched_or_Advanced_Courses</fullName>
+        <columns>NAME</columns>
+        <columns>Course_Number__c</columns>
+        <columns>Secondary_Course_Subject_Area__c</columns>
+        <columns>Secondary_Course_Level__c</columns>
+        <columns>Credits__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Secondary_Course_Level__c</field>
+            <operation>equals</operation>
+            <value>E - Enriched or Advanced</value>
+        </filters>
+        <label>Enriched or Advanced Courses</label>
+    </listViews>
+    <listViews>
+        <fullName>General_or_Regular_Course</fullName>
+        <columns>NAME</columns>
+        <columns>Course_Number__c</columns>
+        <columns>Secondary_Course_Subject_Area__c</columns>
+        <columns>Secondary_Course_Level__c</columns>
+        <columns>Credits__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Secondary_Course_Level__c</field>
+            <operation>equals</operation>
+            <value>G - General or Regular</value>
+        </filters>
+        <label>General or Regular Courses</label>
+    </listViews>
+    <listViews>
+        <fullName>Language_Arts_Courses</fullName>
+        <columns>NAME</columns>
+        <columns>Course_Number__c</columns>
+        <columns>Subject_Area__c</columns>
+        <columns>Course_Level_Characteristic__c</columns>
+        <columns>Credits__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Department__c</field>
+            <operation>equals</operation>
+            <value>English</value>
+        </filters>
+        <label>Language Arts Courses</label>
+    </listViews>
+    <listViews>
+        <fullName>Math_Courses</fullName>
+        <columns>NAME</columns>
+        <columns>Course_Number__c</columns>
+        <columns>Subject_Area__c</columns>
+        <columns>Credits__c</columns>
+        <columns>Course_Level_Characteristic__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Department__c</field>
+            <operation>equals</operation>
+            <value>Math</value>
+        </filters>
+        <label>Math Courses</label>
+    </listViews>
+    <listViews>
+        <fullName>Science_Courses</fullName>
+        <columns>NAME</columns>
+        <columns>Course_Number__c</columns>
+        <columns>Subject_Area__c</columns>
+        <columns>Course_Level_Characteristic__c</columns>
+        <columns>Credits__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Department__c</field>
+            <operation>equals</operation>
+            <value>Science</value>
+        </filters>
+        <label>Science Courses</label>
+    </listViews>
+    <listViews>
+        <fullName>Social_Study_Courses</fullName>
+        <columns>NAME</columns>
+        <columns>Course_Number__c</columns>
+        <columns>Subject_Area__c</columns>
+        <columns>Course_Level_Characteristic__c</columns>
+        <columns>Credits__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Department__c</field>
+            <operation>equals</operation>
+            <value>Social Studies</value>
+        </filters>
+        <label>Social Studies Courses</label>
+    </listViews>
+    <listViews>
+        <fullName>Subject_Areas</fullName>
+        <columns>NAME</columns>
+        <columns>CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Course__c.Subject_Area</value>
+        </filters>
+        <label>Subject Areas</label>
+    </listViews>
+    <nameField>
+        <label>Course Name</label>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Courses</pluralLabel>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
+    <recordTypes>
+        <fullName>Course</fullName>
+        <active>true</active>
+        <label>Course</label>
+        <picklistValues>
+            <picklist>Course_Level_Characteristic__c</picklist>
+            <values>
+                <fullName>Accepted as a High School Equivalent</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Advanced Placement Course</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Basic Course</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>College-Level Course</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>English Language Learner %28ELL%29 Course</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>General Course</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Gifted and Talented Course</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Honors Level Course</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>International Baccalaureate Course</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Remedial Course</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Students with Disabilities Course</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Untracked Course</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Credit_Type_Earned__c</picklist>
+            <values>
+                <fullName>Carnegie Unit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Intersession Hour Credit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Long Session Hour Credit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mini-Term Hour Credit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quarter Hour Credit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quinmester Hour Credit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Semester Hour Credit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Summer Term Hour Credit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trimester Hour Credit</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Curriculum_Framework__c</picklist>
+            <values>
+                <fullName>LEA Curriculum Framework</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>National Curriculum Standard</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Private%2C Religious Curriculum</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>School Curriculum Framework</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>State Curriculum Framework</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Department__c</picklist>
+            <values>
+                <fullName>Art</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>English</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Extracurricular</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Language</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mathematics</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Music</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Physical Education</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Science</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Social Studies</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Grade_Scale__c</picklist>
+            <values>
+                <fullName>4ELH 1-2-3-4 Rubric TENTHS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Credit%2FNo Credit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Default</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>ELH 1-2-3-4 Rubric</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ELH Traditional</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Percentage</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Points</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Standard</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Grading_reporting_period_length__c</picklist>
+            <values>
+                <fullName>Full year</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Room_Type__c</picklist>
+            <values>
+                <fullName>Art Room</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Auditorium</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Band%2FOrchestra Room</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Classroom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Clinic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Computer Lab</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Gymnasium</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Home Economics Classroom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Library</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lunchroom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Music Room</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Nurse%27s Office</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Playground</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Science Lab</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Teacher%27s Lounge</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Workshop</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Secondary_Course_Level__c</picklist>
+            <values>
+                <fullName>B - Basic or Remedial</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>E - Enriched or Advanced</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>G - General or Regular</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>H - Honors</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Secondary_Course_Subject_Area__c</picklist>
+            <values>
+                <fullName>01 - English Language and Literature</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>02 - Mathematics</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>03 - Life and Physical Sciences</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>04 - Social Sciences and History</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>05 - Fine and Performing Arts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>06 - Foreign Language and Literature</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>07 - Religious Education and Theology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>08 - Physical%2C Health%2C and Safety Education</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>09 - Military Science</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>10 - Computer and Information Sciences</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11 - Communications and Audio%2FVisual Technology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>12 - Business and Marketing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>13 - Manufacturing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>14 - Health Care Sciences</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>15 - Public%2C Protective%2C and Government Service</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>16 - Hospitality and Tourism</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>17 - Architecture and Construction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>18 - Agriculture%2C Food%2C and Natural Resources</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>19 - Human Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>20 - Transportation%2C Distribution and Logistics</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>21 - Engineering and Technology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>22 - Miscellaneous</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Subject_Area__c</picklist>
+            <values>
+                <fullName>Citizenship</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cognitive Development</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Computer Science Programming</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Computer Skills%2FLiteracy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Elective Activities</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>English as a Second Language</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fine Arts - Art</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fine Arts - Dance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fine Arts - Drama%2FTheater</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fine Arts - Music</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fitness</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Foreign Language and Literature</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Geography</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Handwriting%2FPenmanship</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Health</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>History</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Home Economics</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Homework</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Industrial Arts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Keyboarding%2Ftyping</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Language Arts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Library Skills</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Listening %26 Speaking</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Literacy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Math</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mathematics%2FArithmetic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Military Science</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Multi%2FInterdisciplinary Studies</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Physical Development</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Physical Education</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reading</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Religious Education and Theology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Science</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Science %26 Social Studies</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Social %26 Emotional Development</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Social Studies</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Spanish</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Spelling</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Study Skills</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Test Preparation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Writing</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type__c</picklist>
+            <values>
+                <fullName>AP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Credit%2FNo Credit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Honors</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Points</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Remedial</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Standard</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Weightings__c</picklist>
+            <values>
+                <fullName>1</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>10</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>7</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>8</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>9</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Recovery</fullName>
+        <active>true</active>
+        <description>Courses taught for students to earn recovery credits</description>
+        <label>Recovery</label>
+        <picklistValues>
+            <picklist>Course_Level_Characteristic__c</picklist>
+            <values>
+                <fullName>Accepted as a High School Equivalent</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Advanced Placement Course</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Basic Course</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>College-Level Course</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>English Language Learner %28ELL%29 Course</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>General Course</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Gifted and Talented Course</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Honors Level Course</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>International Baccalaureate Course</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Remedial Course</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Students with Disabilities Course</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Untracked Course</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Credit_Type_Earned__c</picklist>
+            <values>
+                <fullName>Carnegie Unit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Intersession Hour Credit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Long Session Hour Credit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mini-Term Hour Credit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quarter Hour Credit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quinmester Hour Credit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Semester Hour Credit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Summer Term Hour Credit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trimester Hour Credit</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Curriculum_Framework__c</picklist>
+            <values>
+                <fullName>LEA Curriculum Framework</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>National Curriculum Standard</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Private%2C Religious Curriculum</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>School Curriculum Framework</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>State Curriculum Framework</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Department__c</picklist>
+            <values>
+                <fullName>Art</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>English</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Extracurricular</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Language</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mathematics</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Music</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Physical Education</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Science</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Social Studies</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Grade_Scale__c</picklist>
+            <values>
+                <fullName>4ELH 1-2-3-4 Rubric TENTHS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Credit%2FNo Credit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Default</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>ELH 1-2-3-4 Rubric</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ELH Traditional</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Percentage</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Points</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Standard</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Grading_reporting_period_length__c</picklist>
+            <values>
+                <fullName>Full year</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Room_Type__c</picklist>
+            <values>
+                <fullName>Art Room</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Auditorium</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Band%2FOrchestra Room</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Classroom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Clinic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Computer Lab</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Gymnasium</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Home Economics Classroom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Library</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lunchroom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Music Room</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Nurse%27s Office</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Playground</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Science Lab</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Teacher%27s Lounge</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Workshop</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Secondary_Course_Level__c</picklist>
+            <values>
+                <fullName>B - Basic or Remedial</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>E - Enriched or Advanced</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>G - General or Regular</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>H - Honors</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Secondary_Course_Subject_Area__c</picklist>
+            <values>
+                <fullName>01 - English Language and Literature</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>02 - Mathematics</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>03 - Life and Physical Sciences</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>04 - Social Sciences and History</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>05 - Fine and Performing Arts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>06 - Foreign Language and Literature</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>07 - Religious Education and Theology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>08 - Physical%2C Health%2C and Safety Education</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>09 - Military Science</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>10 - Computer and Information Sciences</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11 - Communications and Audio%2FVisual Technology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>12 - Business and Marketing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>13 - Manufacturing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>14 - Health Care Sciences</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>15 - Public%2C Protective%2C and Government Service</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>16 - Hospitality and Tourism</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>17 - Architecture and Construction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>18 - Agriculture%2C Food%2C and Natural Resources</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>19 - Human Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>20 - Transportation%2C Distribution and Logistics</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>21 - Engineering and Technology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>22 - Miscellaneous</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Subject_Area__c</picklist>
+            <values>
+                <fullName>Citizenship</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cognitive Development</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Computer Science Programming</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Computer Skills%2FLiteracy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Elective Activities</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>English as a Second Language</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fine Arts - Art</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fine Arts - Dance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fine Arts - Drama%2FTheater</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fine Arts - Music</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fitness</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Foreign Language and Literature</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Geography</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Handwriting%2FPenmanship</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Health</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>History</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Home Economics</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Homework</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Industrial Arts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Keyboarding%2Ftyping</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Language Arts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Library Skills</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Listening %26 Speaking</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Literacy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Math</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mathematics%2FArithmetic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Military Science</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Multi%2FInterdisciplinary Studies</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Physical Development</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Physical Education</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reading</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Religious Education and Theology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Science</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Science %26 Social Studies</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Social %26 Emotional Development</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Social Studies</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Spanish</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Spelling</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Study Skills</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Test Preparation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Writing</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type__c</picklist>
+            <values>
+                <fullName>AP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Credit%2FNo Credit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Honors</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Points</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Remedial</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Standard</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Weightings__c</picklist>
+            <values>
+                <fullName>1</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>10</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>7</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>8</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>9</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Subject_Area</fullName>
+        <active>true</active>
+        <label>Subject Area</label>
+        <picklistValues>
+            <picklist>Course_Level_Characteristic__c</picklist>
+            <values>
+                <fullName>Accepted as a High School Equivalent</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Advanced Placement Course</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Basic Course</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>College-Level Course</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>English Language Learner %28ELL%29 Course</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>General Course</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Gifted and Talented Course</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Honors Level Course</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>International Baccalaureate Course</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Remedial Course</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Students with Disabilities Course</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Untracked Course</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Credit_Type_Earned__c</picklist>
+            <values>
+                <fullName>Carnegie Unit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Intersession Hour Credit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Long Session Hour Credit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mini-Term Hour Credit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quarter Hour Credit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quinmester Hour Credit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Semester Hour Credit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Summer Term Hour Credit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trimester Hour Credit</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Curriculum_Framework__c</picklist>
+            <values>
+                <fullName>LEA Curriculum Framework</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>National Curriculum Standard</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Private%2C Religious Curriculum</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>School Curriculum Framework</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>State Curriculum Framework</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Department__c</picklist>
+            <values>
+                <fullName>Art</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>English</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Extracurricular</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Language</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mathematics</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Music</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Physical Education</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Science</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Social Studies</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Grade_Scale__c</picklist>
+            <values>
+                <fullName>4ELH 1-2-3-4 Rubric TENTHS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Credit%2FNo Credit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Default</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>ELH 1-2-3-4 Rubric</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ELH Traditional</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Percentage</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Points</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Standard</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Grading_reporting_period_length__c</picklist>
+            <values>
+                <fullName>Full year</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Room_Type__c</picklist>
+            <values>
+                <fullName>Art Room</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Auditorium</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Band%2FOrchestra Room</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Classroom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Clinic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Computer Lab</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Gymnasium</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Home Economics Classroom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Library</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lunchroom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Music Room</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Nurse%27s Office</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Playground</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Science Lab</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Teacher%27s Lounge</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Workshop</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Secondary_Course_Level__c</picklist>
+            <values>
+                <fullName>B - Basic or Remedial</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>E - Enriched or Advanced</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>G - General or Regular</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>H - Honors</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Secondary_Course_Subject_Area__c</picklist>
+            <values>
+                <fullName>01 - English Language and Literature</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>02 - Mathematics</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>03 - Life and Physical Sciences</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>04 - Social Sciences and History</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>05 - Fine and Performing Arts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>06 - Foreign Language and Literature</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>07 - Religious Education and Theology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>08 - Physical%2C Health%2C and Safety Education</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>09 - Military Science</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>10 - Computer and Information Sciences</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11 - Communications and Audio%2FVisual Technology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>12 - Business and Marketing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>13 - Manufacturing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>14 - Health Care Sciences</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>15 - Public%2C Protective%2C and Government Service</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>16 - Hospitality and Tourism</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>17 - Architecture and Construction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>18 - Agriculture%2C Food%2C and Natural Resources</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>19 - Human Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>20 - Transportation%2C Distribution and Logistics</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>21 - Engineering and Technology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>22 - Miscellaneous</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Subject_Area__c</picklist>
+            <values>
+                <fullName>Citizenship</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cognitive Development</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Computer Science Programming</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Computer Skills%2FLiteracy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Elective Activities</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>English as a Second Language</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fine Arts - Art</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fine Arts - Dance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fine Arts - Drama%2FTheater</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fine Arts - Music</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fitness</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Foreign Language and Literature</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Geography</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Handwriting%2FPenmanship</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Health</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>History</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Home Economics</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Homework</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Industrial Arts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Keyboarding%2Ftyping</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Language Arts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Library Skills</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Listening %26 Speaking</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Literacy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Math</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mathematics%2FArithmetic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Military Science</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Multi%2FInterdisciplinary Studies</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Physical Development</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Physical Education</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reading</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Religious Education and Theology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Science</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Science %26 Social Studies</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Social %26 Emotional Development</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Social Studies</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Spanish</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Spelling</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Study Skills</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Test Preparation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Writing</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type__c</picklist>
+            <values>
+                <fullName>AP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Credit%2FNo Credit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Honors</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Points</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Remedial</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Standard</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Weightings__c</picklist>
+            <values>
+                <fullName>1</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>10</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>7</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>8</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>9</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Transfer</fullName>
+        <active>true</active>
+        <description>Course used to represent a course from an external school system.</description>
+        <label>Transfer</label>
+        <picklistValues>
+            <picklist>Course_Level_Characteristic__c</picklist>
+            <values>
+                <fullName>Accepted as a High School Equivalent</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Advanced Placement Course</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Basic Course</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>College-Level Course</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>English Language Learner %28ELL%29 Course</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>General Course</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Gifted and Talented Course</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Honors Level Course</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>International Baccalaureate Course</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Remedial Course</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Students with Disabilities Course</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Untracked Course</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Credit_Type_Earned__c</picklist>
+            <values>
+                <fullName>Carnegie Unit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Intersession Hour Credit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Long Session Hour Credit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mini-Term Hour Credit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quarter Hour Credit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quinmester Hour Credit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Semester Hour Credit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Summer Term Hour Credit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trimester Hour Credit</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Curriculum_Framework__c</picklist>
+            <values>
+                <fullName>LEA Curriculum Framework</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>National Curriculum Standard</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Private%2C Religious Curriculum</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>School Curriculum Framework</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>State Curriculum Framework</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Department__c</picklist>
+            <values>
+                <fullName>Art</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>English</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Extracurricular</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Language</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mathematics</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Music</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Physical Education</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Science</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Social Studies</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Grade_Scale__c</picklist>
+            <values>
+                <fullName>4ELH 1-2-3-4 Rubric TENTHS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Credit%2FNo Credit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Default</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>ELH 1-2-3-4 Rubric</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ELH Traditional</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Percentage</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Points</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Standard</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Grading_reporting_period_length__c</picklist>
+            <values>
+                <fullName>Full year</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Room_Type__c</picklist>
+            <values>
+                <fullName>Art Room</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Auditorium</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Band%2FOrchestra Room</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Classroom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Clinic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Computer Lab</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Gymnasium</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Home Economics Classroom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Library</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lunchroom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Music Room</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Nurse%27s Office</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Playground</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Science Lab</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Teacher%27s Lounge</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Workshop</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Secondary_Course_Level__c</picklist>
+            <values>
+                <fullName>B - Basic or Remedial</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>E - Enriched or Advanced</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>G - General or Regular</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>H - Honors</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Secondary_Course_Subject_Area__c</picklist>
+            <values>
+                <fullName>01 - English Language and Literature</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>02 - Mathematics</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>03 - Life and Physical Sciences</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>04 - Social Sciences and History</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>05 - Fine and Performing Arts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>06 - Foreign Language and Literature</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>07 - Religious Education and Theology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>08 - Physical%2C Health%2C and Safety Education</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>09 - Military Science</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>10 - Computer and Information Sciences</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11 - Communications and Audio%2FVisual Technology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>12 - Business and Marketing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>13 - Manufacturing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>14 - Health Care Sciences</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>15 - Public%2C Protective%2C and Government Service</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>16 - Hospitality and Tourism</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>17 - Architecture and Construction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>18 - Agriculture%2C Food%2C and Natural Resources</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>19 - Human Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>20 - Transportation%2C Distribution and Logistics</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>21 - Engineering and Technology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>22 - Miscellaneous</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Subject_Area__c</picklist>
+            <values>
+                <fullName>Citizenship</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cognitive Development</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Computer Science Programming</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Computer Skills%2FLiteracy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Elective Activities</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>English as a Second Language</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fine Arts - Art</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fine Arts - Dance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fine Arts - Drama%2FTheater</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fine Arts - Music</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fitness</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Foreign Language and Literature</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Geography</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Handwriting%2FPenmanship</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Health</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>History</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Home Economics</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Homework</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Industrial Arts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Keyboarding%2Ftyping</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Language Arts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Library Skills</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Listening %26 Speaking</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Literacy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Math</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mathematics%2FArithmetic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Military Science</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Multi%2FInterdisciplinary Studies</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Physical Development</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Physical Education</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reading</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Religious Education and Theology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Science</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Science %26 Social Studies</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Social %26 Emotional Development</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Social Studies</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Spanish</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Spelling</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Study Skills</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Test Preparation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Writing</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type__c</picklist>
+            <values>
+                <fullName>AP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Credit%2FNo Credit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Honors</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Points</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Remedial</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Standard</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Weightings__c</picklist>
+            <values>
+                <fullName>1</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>10</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>7</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>8</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>9</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts>
+        <customTabListAdditionalFields>Course_Number__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Department__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Subject_Area__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Grade_Scale__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Credit_Hours__c</customTabListAdditionalFields>
+        <lookupDialogsAdditionalFields>Course_Number__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Credit_Hours__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Department__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Grade_Scale__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Course_Notes__c</lookupDialogsAdditionalFields>
+        <searchFilterFields>NAME</searchFilterFields>
+        <searchResultsAdditionalFields>Course_Number__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Credit_Hours__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Department__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Grade_Scale__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Course_Notes__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>Read</sharingModel>
+    <validationRules>
+        <fullName>Course_Is_SubjectArea_Blank</fullName>
+        <active>false</active>
+        <errorConditionFormula>ISBLANK( Subject_Area_Lookup__c  )</errorConditionFormula>
+        <errorDisplayField>Subject_Area_Lookup__c</errorDisplayField>
+        <errorMessage>Subject Area cannot be blank.</errorMessage>
+    </validationRules>
+    <visibility>Public</visibility>
+</CustomObject>

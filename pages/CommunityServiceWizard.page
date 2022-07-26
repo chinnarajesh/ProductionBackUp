@@ -1,0 +1,118 @@
+<apex:page controller="CommunityServiceWizardController" showHeader="true" extensions="CommunityServiceWizardController" >
+
+ 	<c:admin />
+
+	<apex:form >
+    
+    <apex:outputPanel id="pageMessagePanel" >
+        <apex:pageMessages id="pageMessages" />
+    </apex:outputPanel>
+    
+    <apex:outputPanel id="advSearch" >
+    	<apex:pageBlock title="Community Service Wizard" id="advSearchBlock">
+			<h3>Student Search</h3>
+			<div class="section_content">
+	    	<apex:pageBlockSection collapsible="false" columns="2" >
+	            <apex:inputField required="false" value="{!searchstudent.student.Student_First_Name__c}" />
+				<apex:inputField value="{!searchstudent.student.Student_Last_Name__c}" />
+				<apex:inputField value="{!searchstudent.student.Grade__c}" />
+           		<apex:inputField value="{!searchstudent.student.Gender__c}" />
+	        </apex:pageBlockSection>
+	        <apex:commandButton styleClass="black_btn" value="Search" action="{!searchStudents}" reRender="searchResultsPanel, studentsAddedPanel, pageMessagePanel" oncomplete="resetTable();"/>
+	                 <div class="clear_fix">&nbsp;</div>  
+			</div>
+			
+	        <apex:outputPanel id="searchResultsPanel" >
+	        <apex:outputPanel rendered="{!showSearchResults}"> 
+			<h3>Student Search Results</h3>
+			<div class="section_content">
+			 		<div style="float:left">
+		 <apex:outputText style="font-weight:bold; " value="Select All? " />&nbsp;
+                    <input type="checkbox" style=" margin:0 5px 0 0;" onclick="selectAll(this,'addStudentCB')" />
+			                </div>
+	        <apex:pageBlockSection collapsible="false" columns="1">
+	            <apex:dataTable styleClass="tablesorter" title="Student Results" value="{!searchResultsList}" var="s">
+	                <apex:column headerValue="Add?" >
+	                    <apex:inputCheckbox styleClass="addStudentCB" value="{!s.add}" />
+	                </apex:column>
+	                <apex:column headerValue="Student First Name" >
+	                    <apex:outputField value="{!s.student.Student_First_Name__c}" />
+	                </apex:column>
+	                <apex:column headerValue="Student Last Name" >
+	                    <apex:outputField value="{!s.student.Student_Last_Name__c}" />
+	                </apex:column>
+	                <apex:column headerValue="Grade" >
+						<apex:outputField value="{!s.student.Grade__c}" />
+					</apex:column>
+			<!-- 	<apex:column headerValue="Gender" >
+						<apex:outputField value="{!s.student.Gender__c}" />
+					</apex:column>  -->
+					<apex:column headerValue="School" >
+						<apex:outputField value="{!s.student.School__c}" />
+					</apex:column>
+	            </apex:dataTable>
+	        </apex:pageBlockSection>
+
+	            <apex:commandButton styleClass="black_btn" value="Add Students" action="{!addStudents}"
+	                reRender="searchResultsPanel, studentsAddedPanel"  oncomplete="resetTable();"/>
+	                 <div class="clear_fix">&nbsp;</div>  
+	                 </div>
+	          </apex:outputPanel>
+	        </apex:outputPanel>
+	        
+		 <apex:outputPanel id="studentsAddedPanel" >
+	        <apex:outputPanel rendered="{!showSearchResults}"> 
+			<h3>Students Added</h3>
+			             
+			<div class="section_content">
+		<div style="float:left">
+		 <apex:outputText style="font-weight:bold; " value="Select All?" />&nbsp;
+                    <input type="checkbox" style="  margin:2px 5px 0 0;" onclick="selectAll(this,'removeStudentCB')" />	           
+	        </div>
+	        <apex:pageBlockSection collapsible="false" columns="1">
+	            <apex:dataTable styleClass="tablesorter" title="Student Results" value="{!addedStudentList}" var="s">
+           
+	                <apex:column headerValue="Remove?" >
+	                    <apex:inputCheckbox styleClass="removeStudentCB" value="{!s.add}" />
+	                </apex:column>
+
+	                <apex:column headerValue="Student First Name" >
+	                    <apex:outputField value="{!s.student.Student_First_Name__c}" />
+	                </apex:column>
+	                <apex:column headerValue="Student Last Name" >
+	                    <apex:outputField value="{!s.student.Student_Last_Name__c}" />
+	                </apex:column>
+	            </apex:dataTable>
+	        </apex:pageBlockSection>
+
+	       <apex:commandButton styleClass="black_btn" value="Remove Student(s)" action="{!removeStudents}" reRender="searchResultsPanel, studentsAddedPanel" oncomplete="resetTable();" />
+	                   
+	        <apex:commandButton styleClass="black_btn" value="Add Community Service" action="{!addCommunityService}" reRender="communityServicePanel" />
+	          <div class="clear_fix">&nbsp;</div>  
+	          </div>
+	          
+	          </apex:outputPanel>
+	        </apex:outputPanel>
+		 
+			<apex:outputPanel id="communityServicePanel" >
+				<apex:outputPanel rendered="{!showCommunityService}"> 
+				<h3>Community Service Details</h3>
+					             
+					<div class="section_content">
+					 <apex:pageBlockSection collapsible="false" columns="1">
+				 	 <apex:repeat value="{!$ObjectType.Community_Service__c.FieldSets.Community_Service_Wizard}" var="fieldSet">
+				                          <apex:inputField required="{!fieldSet.required}" value="{!communityService[fieldSet]}" /> 
+				</apex:repeat>
+				</apex:pageBlockSection>
+				 <apex:commandButton value="Save Community Service" action="{!saveCommunityService}" styleClass="black_btn" reRender="searchResultsPanel, studentsAddedPanel, communityServicePanel, pageMessagePanel" />
+				         <div class="clear_fix">&nbsp;</div>  
+				</div> 
+				</apex:outputPanel>
+			</apex:outputPanel>
+		 
+    </apex:pageBlock> 
+    </apex:outputPanel>
+	
+	</apex:form>
+
+</apex:page>

@@ -1,0 +1,108 @@
+<apex:component >
+	<!-- just steal some styling for now... create component later -->
+	<style>
+		.centerHeader {text-align:center; padding-top:20px; margin-left:0px;}
+		.adminSummary {text-align:left; display:block;}
+ 		input.green_btn_arrow
+     		{margin-left:0px; border:1px red solid; float:right; width:125px;}
+		input.green_btn_arrow:disabled { 
+			background:#177610 url(../images/arrow.png) top right no-repeat !important; 
+		}     		
+      	input.grey_btn_arrow
+			{margin-right:0px; border:1px red solid; float:left; width:125px;}	
+
+		input.red_btn:disabled { background:#7F0E00 !important; }
+		input.black_btn:disabled { background:#000 !important; }
+
+		#schoolforce-wrapper table tr {
+			text-align:left;
+			height:auto;
+		}	
+		#schoolforce-wrapper{
+			font-family: 'Varela', sans-serif !important;
+			width:990px;
+		} 	
+		
+		#schoolforce-wrapper table {
+			width: 100%;
+		}
+
+		.pageMessages table, 
+		.pageMessages tr, 
+		.pageMessages td{
+			border: none !important;
+			padding: 0px !important;
+			height: auto !important;
+		}
+		
+		.pageMessages .message.warningM3 {
+			margin-left: 0px;
+			margin-right: 0px;
+		}
+		.pageMessages .message.infoM3 {
+			margin-left: 0px;
+			margin-right: 0px;
+		}
+		.pageMessages .message.errorM3 {
+			margin-left: 0px;
+			margin-right: 0px;
+		}
+		.pageMessages .message.successM3 {
+			margin-left: 0px;
+			margin-right: 0px;
+		}
+		.pageMessages .messageTable td {
+			max-width: 35px;
+		}
+		.pageMessages .messageTable td.messageCell {
+			width: 95%;
+		}
+		
+		
+		
+		.detailList .helpOrb{
+			position:inherit;
+			right:0px;
+		}
+		label {
+			margin:0 0 0 0;
+		}
+		
+		
+		
+		.tabs .section_content{
+			margin-bottom: 0px;
+		}
+		.tabPanel{
+			border-radius: 9px!important;
+			border: 1px solid #ccc!important;
+			border-top: 3px solid #666!important;
+			margin-top:0;
+		}	
+		
+		.tabs #tabList .ui-widget-content {
+			border: 0px solid #AAA !important;
+		}
+		.tabs #tabList .ui-widget-header {
+			background-color: white !important; border:0px solid #fff;
+			border: 0px solid #67B2CE !important;
+		}
+		.tabs #tabList .ui-tabs-nav {
+			border-width: 0px 0px 1px 0px;
+			border-radius: 0px;
+			-moz-border-radius: 0px;
+			-webkit-border-radius: 0px;
+		}
+		.tabs #tabList .ui-widget-header {
+			border: 0px;
+			background: white;
+			color: #222/*{fcHeader}*/;
+			/*font-weight: bold;*/
+		}
+		.tabs #tabList .ui-state-active a {
+			background: -webkit-gradient(linear, left top, left bottom, from(#e6f3f7), to(#cbe9f0));
+			background: -moz-linear-gradient(top, #e6f3f7, #cbe9f0);
+		}			
+		
+	</style>
+</apex:component>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <description>Controls what users will have the sharing run</description>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>Profile_Name__c</fullName>
+        <description>Profile name must contain this text for these users to have sharing recalculated.  For instance, if Profile Name = &apos;Corps Member&apos;, sharing will be recalculated for &apos;NEW Corps Member&apos;, &apos;Corps Member OLD&apos;, etc.</description>
+        <externalId>false</externalId>
+        <label>Profile Name</label>
+        <length>255</length>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Sharing Controls</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>SETUP_TYPE</columns>
+        <columns>SETUP_OWNER_NAME</columns>
+        <columns>Profile_Name__c</columns>
+        <columns>UPDATEDBY_USER.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <visibility>Public</visibility>
+</CustomObject>

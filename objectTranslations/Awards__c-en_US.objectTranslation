@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Award</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Awards</value>
+    </caseValues>
+    <fields>
+        <label><!-- Award File --></label>
+        <name>Award_File__c</name>
+    </fields>
+    <fields>
+        <label><!-- Award Type Detail --></label>
+        <name>Award_Type_Detail__c</name>
+        <picklistValues>
+            <masterLabel>Blue</masterLabel>
+            <translation><!-- Blue --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Bronze</masterLabel>
+            <translation><!-- Bronze --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Gold</masterLabel>
+            <translation><!-- Gold --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Gold Striped</masterLabel>
+            <translation><!-- Gold Striped --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Red</masterLabel>
+            <translation><!-- Red --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Silver</masterLabel>
+            <translation><!-- Silver --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Silver &amp; Blue</masterLabel>
+            <translation><!-- Silver &amp; Blue --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Silver &amp; Red</masterLabel>
+            <translation><!-- Silver &amp; Red --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Silver Striped</masterLabel>
+            <translation><!-- Silver Striped --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Stripe</masterLabel>
+            <translation><!-- Stripe --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Award Type --></label>
+        <name>Award_Type__c</name>
+        <picklistValues>
+            <masterLabel>Cup</masterLabel>
+            <translation><!-- Cup --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Medal</masterLabel>
+            <translation><!-- Medal --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ribbon</masterLabel>
+            <translation><!-- Ribbon --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Cup --></label>
+        <name>Cup__c</name>
+        <picklistValues>
+            <masterLabel>Bronze</masterLabel>
+            <translation><!-- Bronze --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Gold</masterLabel>
+            <translation><!-- Gold --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Silver</masterLabel>
+            <translation><!-- Silver --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Description --></label>
+        <name>Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- External Id --></label>
+        <name>External_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Medal --></label>
+        <name>Medal__c</name>
+        <picklistValues>
+            <masterLabel>Blue/Silver</masterLabel>
+            <translation><!-- Blue/Silver --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Red/Silver</masterLabel>
+            <translation><!-- Red/Silver --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Striped/Gold</masterLabel>
+            <translation><!-- Striped/Gold --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Striped/Silver</masterLabel>
+            <translation><!-- Striped/Silver --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Reason --></label>
+        <name>Reason__c</name>
+        <picklistValues>
+            <masterLabel>100% attendance this week</masterLabel>
+            <translation><!-- 100% attendance this week --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Completed extra credit</masterLabel>
+            <translation><!-- Completed extra credit --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Great participation</masterLabel>
+            <translation><!-- Great participation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Helped out another student</masterLabel>
+            <translation><!-- Helped out another student --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Helped teacher with task</masterLabel>
+            <translation><!-- Helped teacher with task --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Showed significant improvement</masterLabel>
+            <translation><!-- Showed significant improvement --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Was extra nice to a classmate</masterLabel>
+            <translation><!-- Was extra nice to a classmate --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Ribbon --></label>
+        <name>Ribbon__c</name>
+        <picklistValues>
+            <masterLabel>Blue</masterLabel>
+            <translation><!-- Blue --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Red</masterLabel>
+            <translation><!-- Red --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Stripe</masterLabel>
+            <translation><!-- Stripe --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Student --></label>
+        <name>Student__c</name>
+        <relationshipLabel><!-- Awards --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Type --></label>
+        <name>Type__c</name>
+        <picklistValues>
+            <masterLabel>Cup</masterLabel>
+            <translation><!-- Cup --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Medal</masterLabel>
+            <translation><!-- Medal --></translation>
+        </picklistValues>
+    </fields>
+    <layouts>
+        <layout>Award Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Vowel</startsWith>
+</CustomObjectTranslation>

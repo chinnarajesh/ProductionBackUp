@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <buckets>
+        <bucketType>text</bucketType>
+        <developerName>BucketField_86796729</developerName>
+        <masterLabel>Pueblo</masterLabel>
+        <nullTreatment>n</nullTreatment>
+        <sourceColumnName>Section__c$School__c</sourceColumnName>
+        <useOther>false</useOther>
+        <values>
+            <sourceValues>
+                <sourceValue>John Liechty Middle School</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>UCLA Community School</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>NOW Academy</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Belmont High School</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Virgil MS</sourceValue>
+            </sourceValues>
+            <value>Night Into Day</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>John Muir MS</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Clinton MS</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Jefferson HS</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Manual Arts High School</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Santee Education Complex</sourceValue>
+            </sourceValues>
+            <value>Bridge Builder</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>Gompers Middle School</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Jordan HS</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Markham MS</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Normandie Avenue ES</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Alain LeRoy Locke College Preparatory Academy</sourceValue>
+            </sourceValues>
+            <value>Never Doubt</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>99th Street Elementary</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Hollenbeck MS</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Mendez High School</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Roosevelt HS</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Stevenson MS</sourceValue>
+            </sourceValues>
+            <value>Water</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>109th Street ES</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>122nd Street Elementary School</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>93rd Street ES</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Compton Avenue ES</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Figueroa Street ES</sourceValue>
+            </sourceValues>
+            <value>Love and Joy</value>
+        </values>
+    </buckets>
+    <columns>
+        <field>Section__c.Student_Section__r$Local_Student_ID__c</field>
+    </columns>
+    <columns>
+        <field>Section__c.Student_Section__r$Student__c.Student_ID_Auto_Number__c</field>
+    </columns>
+    <columns>
+        <field>Section__c.Student_Section__r$Location__c</field>
+    </columns>
+    <columns>
+        <field>BucketField_86796729</field>
+    </columns>
+    <columns>
+        <field>Section__c$School__c</field>
+    </columns>
+    <columns>
+        <field>Section__c$Intervention_Primary_Staff__c</field>
+    </columns>
+    <columns>
+        <field>Section__c$Section_Nickname__c</field>
+    </columns>
+    <columns>
+        <field>Section__c$Indicator_Area__c</field>
+    </columns>
+    <columns>
+        <field>Section__c.Student_Section__r$Student__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>Section__c.Student_Section__r.Intervention_Session_Results__r$Amount_of_Time__c</field>
+    </columns>
+    <columns>
+        <field>Section__c.Student_Section__r.Intervention_Session_Results__r$Intervention_Session_Date__c</field>
+    </columns>
+    <columns>
+        <field>Section__c.Student_Section__r.Intervention_Session_Results__r$Session_DOW__c</field>
+    </columns>
+    <columns>
+        <field>Section__c.Student_Section__r$Active__c</field>
+    </columns>
+    <filter>
+        <criteriaItems>
+            <column>Section__c.Student_Section__r$Location__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>Los Angeles</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Section__c.Student_Section__r.Intervention_Session_Results__r$Amount_of_Time__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>greaterThan</operator>
+            <value>0</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Section__c$Section_Nickname__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>notContain</operator>
+            <value>WSWC ASP</value>
+        </criteriaItems>
+    </filter>
+    <format>Tabular</format>
+    <name>Impact Workbook Report_NonASP</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Sections_with_Student_Section_with_Intervention_Session_Results__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>false</showGrandTotal>
+    <showSubTotals>false</showSubTotals>
+    <sortColumn>Section__c.Student_Section__r$Local_Student_ID__c</sortColumn>
+    <sortOrder>Asc</sortOrder>
+    <timeFrameFilter>
+        <dateColumn>Section__c$CreatedDate</dateColumn>
+        <interval>INTERVAL_CURFY</interval>
+    </timeFrameFilter>
+</Report>

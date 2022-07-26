@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Snapshot Log</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Snapshot Log</value>
+    </caseValues>
+    <fields>
+        <label><!-- External Id --></label>
+        <name>External_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Is Final --></label>
+        <name>Is_Final__c</name>
+    </fields>
+    <fields>
+        <label><!-- Period End --></label>
+        <name>Period_End__c</name>
+    </fields>
+    <fields>
+        <label><!-- Period Start --></label>
+        <name>Period_Start__c</name>
+    </fields>
+    <fields>
+        <label><!-- School --></label>
+        <name>School__c</name>
+        <relationshipLabel><!-- Snapshot Log --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Setup --></label>
+        <name>Setup__c</name>
+        <relationshipLabel><!-- Snapshot Log --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Snapshot Taken --></label>
+        <name>Snapshot_Taken__c</name>
+    </fields>
+    <fields>
+        <label><!-- Snapshot Type --></label>
+        <name>Snapshot_Type__c</name>
+        <picklistValues>
+            <masterLabel>Quarterly</masterLabel>
+            <translation><!-- Quarterly --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yearly</masterLabel>
+            <translation><!-- Yearly --></translation>
+        </picklistValues>
+    </fields>
+    <layouts>
+        <layout>Snapshot Log Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

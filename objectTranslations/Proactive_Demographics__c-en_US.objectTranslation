@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Proactive Demographics</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Proactive Demographics</value>
+    </caseValues>
+    <fields>
+        <label><!-- Address --></label>
+        <name>Address__c</name>
+    </fields>
+    <fields>
+        <label><!-- City --></label>
+        <name>City__c</name>
+    </fields>
+    <fields>
+        <label><!-- Contact First Name --></label>
+        <name>Contact_First_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Contact Last Name --></label>
+        <name>Contact_Last_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Contact Middle Initial --></label>
+        <name>Contact_Middle_Initial__c</name>
+    </fields>
+    <fields>
+        <label><!-- Contact Phone --></label>
+        <name>Contact_Phone__c</name>
+    </fields>
+    <fields>
+        <label><!-- Contact Relationship --></label>
+        <name>Contact_Relationship__c</name>
+    </fields>
+    <fields>
+        <label><!-- DC Resident --></label>
+        <name>DC_Resident__c</name>
+    </fields>
+    <fields>
+        <label><!-- Date of Birth --></label>
+        <name>Date_of_Birth__c</name>
+    </fields>
+    <fields>
+        <label><!-- ELL Status --></label>
+        <name>ELL_Status__c</name>
+    </fields>
+    <fields>
+        <label><!-- Entry Code --></label>
+        <name>Entry_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Entry Date --></label>
+        <name>Entry_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Ethnicity --></label>
+        <name>Ethnicity__c</name>
+    </fields>
+    <fields>
+        <label><!-- Exit Code --></label>
+        <name>Exit_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Exit Date --></label>
+        <name>Exit_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- External Id --></label>
+        <name>External_Id__c</name>
+    </fields>
+    <fields>
+        <help><!-- Student First Name --></help>
+        <label><!-- First Name --></label>
+        <name>First_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Gender --></label>
+        <name>Gender__c</name>
+    </fields>
+    <fields>
+        <label><!-- Grade --></label>
+        <name>Grade__c</name>
+    </fields>
+    <fields>
+        <label><!-- Homeroom --></label>
+        <name>Homeroom__c</name>
+    </fields>
+    <fields>
+        <label><!-- Immigrant --></label>
+        <name>Immigrant__c</name>
+    </fields>
+    <fields>
+        <help><!-- Student Last Name --></help>
+        <label><!-- Last Name --></label>
+        <name>Last_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Middle Initial --></label>
+        <name>Middle_Initial__c</name>
+    </fields>
+    <fields>
+        <label><!-- Original Graduation Year --></label>
+        <name>Original_Graduation_Year__c</name>
+    </fields>
+    <fields>
+        <label><!-- Race --></label>
+        <name>Race__c</name>
+    </fields>
+    <fields>
+        <label><!-- SPED Hours --></label>
+        <name>SPED_Hours__c</name>
+    </fields>
+    <fields>
+        <label><!-- SPED Level --></label>
+        <name>SPED_Level__c</name>
+    </fields>
+    <fields>
+        <label><!-- SPED School --></label>
+        <name>SPED_School__c</name>
+    </fields>
+    <fields>
+        <label><!-- School Name --></label>
+        <name>School_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- School Year --></label>
+        <name>School_Year__c</name>
+    </fields>
+    <fields>
+        <label><!-- Special Education --></label>
+        <name>Special_Education__c</name>
+    </fields>
+    <fields>
+        <label><!-- State --></label>
+        <name>State__c</name>
+    </fields>
+    <fields>
+        <label><!-- Teacher --></label>
+        <name>Teacher__c</name>
+    </fields>
+    <fields>
+        <label><!-- Title 1 Status --></label>
+        <name>Title1_Status__c</name>
+    </fields>
+    <fields>
+        <label><!-- USI ID --></label>
+        <name>USI_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Zip Code --></label>
+        <name>Zip_Code__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

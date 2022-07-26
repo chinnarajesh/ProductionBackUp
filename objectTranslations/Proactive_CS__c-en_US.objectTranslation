@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Proactive Attendance/Demographics</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Proactive Attendance/Demographics</value>
+    </caseValues>
+    <fields>
+        <label><!-- Name Type --></label>
+        <name>Name_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Proactive Attendance Status --></label>
+        <name>Proactive_Attendance_Status__c</name>
+    </fields>
+    <fields>
+        <label><!-- Proactive Attendance Type --></label>
+        <name>Proactive_Attendance_Type__c</name>
+    </fields>
+    <fields>
+        <help><!-- P/G Proactive conversion Value --></help>
+        <label><!-- Proactive P/G Relationship --></label>
+        <name>Proactive_PG_Relationship__c</name>
+    </fields>
+    <fields>
+        <label><!-- Proactive SPED School --></label>
+        <name>Proactive_SPED_School__c</name>
+    </fields>
+    <fields>
+        <label><!-- Proactive Student Entry --></label>
+        <name>Proactive_Student_Entry__c</name>
+    </fields>
+    <fields>
+        <label><!-- Proactive Student Exit --></label>
+        <name>Proactive_Student_Exit__c</name>
+    </fields>
+    <fields>
+        <label><!-- Proactive TitleI --></label>
+        <name>Proactive_TitleI__c</name>
+    </fields>
+    <fields>
+        <label><!-- SF Attendance Status --></label>
+        <name>SF_Attendance_Status__c</name>
+    </fields>
+    <fields>
+        <label><!-- SF Attendance Type --></label>
+        <name>SF_Attendance_Type__c</name>
+    </fields>
+    <fields>
+        <help><!-- SF Value for PG Relationship --></help>
+        <label><!-- SF P/G Relationship --></label>
+        <name>SF_PG_Relationship__c</name>
+    </fields>
+    <fields>
+        <label><!-- SF SPED School --></label>
+        <name>SF_SPED_School__c</name>
+    </fields>
+    <fields>
+        <label><!-- SF Student Entry --></label>
+        <name>SF_Student_Entry__c</name>
+    </fields>
+    <fields>
+        <label><!-- SF Student Exit --></label>
+        <name>SF_Student_Exit__c</name>
+    </fields>
+    <fields>
+        <label><!-- SF TitleI --></label>
+        <name>SF_TitleI__c</name>
+    </fields>
+    <fields>
+        <label><!-- Student Exit Type --></label>
+        <name>Student_Exit_Type__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

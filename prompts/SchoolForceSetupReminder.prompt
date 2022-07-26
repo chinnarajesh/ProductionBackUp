@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Prompt xmlns="http://soap.sforce.com/2006/04/metadata">
+    <masterLabel>SchoolForce Setup Reminder</masterLabel>
+    <promptVersions>
+        <body>&lt;p&gt;At least one or more of your schools does not have a calendar submitted and calendars are needed for EOY reporting. Click Next to see what needs to be done. &lt;/p&gt;</body>
+        <delayDays>1</delayDays>
+        <displayType>DockedComposer</displayType>
+        <endDate>2022-06-30</endDate>
+        <header>Action Required: SchoolForce Setup</header>
+        <isPublished>true</isPublished>
+        <masterLabel>SchoolForce Setup Reminder Step 1</masterLabel>
+        <publishedDate>2022-05-13</publishedDate>
+        <shouldDisplayActionButton>false</shouldDisplayActionButton>
+        <shouldIgnoreGlobalDelay>true</shouldIgnoreGlobalDelay>
+        <startDate>2022-05-13</startDate>
+        <stepNumber>1</stepNumber>
+        <targetPageKey1>home</targetPageKey1>
+        <targetPageType>standard__namedPage</targetPageType>
+        <themeColor>Theme1</themeColor>
+        <themeSaturation>Dark</themeSaturation>
+        <timesToDisplay>5</timesToDisplay>
+        <title>Your time is up. You are great.</title>
+        <uiFormulaRule>
+            <booleanFilter>1 OR 2 OR 3 OR 4 OR 5 OR 6 OR 7</booleanFilter>
+            <criteria>
+                <leftValue>{!$User.Profile.Key}</leftValue>
+                <operator>EQUAL</operator>
+                <rightValue>custom_site administrator</rightValue>
+            </criteria>
+            <criteria>
+                <leftValue>{!$User.Profile.Key}</leftValue>
+                <operator>EQUAL</operator>
+                <rightValue>Admin</rightValue>
+            </criteria>
+            <criteria>
+                <leftValue>{!$User.Profile.Key}</leftValue>
+                <operator>EQUAL</operator>
+                <rightValue>custom_tier 1 administrators</rightValue>
+            </criteria>
+            <criteria>
+                <leftValue>{!$User.Profile.Key}</leftValue>
+                <operator>EQUAL</operator>
+                <rightValue>custom_tier 1 super administrators</rightValue>
+            </criteria>
+            <criteria>
+                <leftValue>{!$User.Profile.Key}</leftValue>
+                <operator>EQUAL</operator>
+                <rightValue>custom_cy system administrator</rightValue>
+            </criteria>
+            <criteria>
+                <leftValue>{!$User.Profile.Key}</leftValue>
+                <operator>EQUAL</operator>
+                <rightValue>custom_network administrator</rightValue>
+            </criteria>
+            <criteria>
+                <leftValue>{!$User.Profile.Key}</leftValue>
+                <operator>EQUAL</operator>
+                <rightValue>custom_school administrator</rightValue>
+            </criteria>
+        </uiFormulaRule>
+        <userAccess>Everyone</userAccess>
+        <userProfileAccess>SpecificProfiles</userProfileAccess>
+        <versionNumber>1</versionNumber>
+    </promptVersions>
+    <promptVersions>
+        <actionButtonLabel>SchoolForce Setup Guide</actionButtonLabel>
+        <actionButtonLink>https://cityyear.sharepoint.com/:b:/s/cyschoolhouseLEARN/EdgE5JqDKmRJmetHdAB3NjIBYFRZOe1uX19y7NAuquv82w</actionButtonLink>
+        <body>&lt;p&gt;Click the CY Schoolforce tab on the home ribbon to get started or navigate to the step-by-step guide on cyLearn linked in the button below!&lt;/p&gt;</body>
+        <dismissButtonLabel>Dismiss</dismissButtonLabel>
+        <displayPosition>TopRight</displayPosition>
+        <displayType>FloatingPanel</displayType>
+        <image>Capture12</image>
+        <imageAltText>CY SchoolForce Setup</imageAltText>
+        <imageLocation>Bottom</imageLocation>
+        <isPublished>false</isPublished>
+        <masterLabel>SchoolForce Setup Reminder Step 2</masterLabel>
+        <shouldDisplayActionButton>true</shouldDisplayActionButton>
+        <shouldIgnoreGlobalDelay>false</shouldIgnoreGlobalDelay>
+        <stepNumber>2</stepNumber>
+        <targetPageKey1>home</targetPageKey1>
+        <targetPageType>standard__namedPage</targetPageType>
+        <title>Where do I start?</title>
+        <userAccess>Everyone</userAccess>
+        <userProfileAccess>Everyone</userProfileAccess>
+        <versionNumber>1</versionNumber>
+    </promptVersions>
+</Prompt>

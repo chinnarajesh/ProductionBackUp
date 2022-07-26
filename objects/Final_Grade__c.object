@@ -1,0 +1,699 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Stores Final Grades for a course - rollup to Student to get Final GPA</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableEnhancedLookup>false</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ControlledByParent</externalSharingModel>
+    <fields>
+        <fullName>Course_Credits__c</fullName>
+        <defaultValue>1</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>This is the possible credits for a course. This field is used to calculate the total possible credits attempted displayed in the Total Credits Earned field.</inlineHelpText>
+        <label>Course Credits</label>
+        <precision>7</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Course_Id__c</fullName>
+        <externalId>false</externalId>
+        <formula>CASESAFEID(Course__r.Id)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Course Id</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Course__c</fullName>
+        <externalId>false</externalId>
+        <label>Course</label>
+        <referenceTo>Course__c</referenceTo>
+        <relationshipLabel>Final Grades</relationshipLabel>
+        <relationshipName>Final_Grades</relationshipName>
+        <relationshipOrder>1</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>true</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Credit_Earned_Override__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Used to override the passing grade threshold logic, gives credit earned always when checked.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Check this field only when Student is earning credit hours despite grade being lower than the passing grade threshold.</inlineHelpText>
+        <label>Credit Earned Override</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Credit_Hours__c</fullName>
+        <externalId>false</externalId>
+        <formula>Course__r.Credit_Hours__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Credit Hours</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Credit_No_Credit_Current_Grade__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(AND(TEXT(Course__r.Grade_Scale__c)= &apos;Credit/No Credit&apos;,  Current_Grade_Value__c  &gt;= 97), &apos;C&apos;, IF(AND(TEXT(Course__r.Grade_Scale__c)= &apos;Credit/No Credit&apos;, NOT(ISBLANK(Current_Grade_Value__c))),&apos;NC&apos;,&apos;&apos;))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Credit/No Credit Current Grade</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Credit_No_Credit_Final_Grade__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(AND(TEXT(Course__r.Grade_Scale__c)= &apos;Credit/No Credit&apos;, Final_Grade_Value__c &gt;= 97), &apos;C&apos;, IF(AND(TEXT(Course__r.Grade_Scale__c)= &apos;Credit/No Credit&apos;, NOT(ISBLANK(Final_Grade_Value__c))),&apos;NC&apos;,&apos;&apos;))</formula>
+        <label>Credit/No Credit Final Grade</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Credits_Earned__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(  ISNULL(Student__r.Setup__r.Passing_Grade_Threshold__c) , Course_Credits__c, IF (Credit_Earned_Override__c , Course_Credits__c, IF (Final_Grade_Value__c  &gt;=  Student__r.Setup__r.Passing_Grade_Threshold__c, Course_Credits__c, 0)))</formula>
+        <inlineHelpText>This is the credits earned for a course. This field displays on transcripts.</inlineHelpText>
+        <label>Credits Earned</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Current_Grade_Letter__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Current Letter Grade Equivalent</inlineHelpText>
+        <label>Current Grade Letter</label>
+        <length>3</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Current_Grade_Letter_v2__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Current Letter Grade Equivalent</inlineHelpText>
+        <label>Current Grade Letter</label>
+        <length>15</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Current_Grade_Value__c</fullName>
+        <defaultValue>0</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>Year to Date Grade Value, with no time/course weightings applied</inlineHelpText>
+        <label>Current Grade Value</label>
+        <precision>17</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Display_Current_Grade_Formula__c</fullName>
+        <externalId>false</externalId>
+        <formula>Final_Grade_Letter_v2__c</formula>
+        <label>Current Grade</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Display_Final_Grade_Formula__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF (  ISBLANK(Course__r.Grade_Scale_Lookup__c)  , 
+CASE( Course__r.Grade_Scale__c , &apos;Standard&apos;, TEXT( Standard_Final_Grade__c ), &apos;Credit/No Credit&apos;, Credit_No_Credit_Final_Grade__c , Final_Grade_Letter_v2__c ),  Final_Grade_Letter_v2__c )</formula>
+        <label>Final Grade</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Exclude_Course_from_GPA__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Based on value on Course - but needs to be stored locally so we can use in Rollups on Student</description>
+        <externalId>false</externalId>
+        <label>Exclude Course from GPA?</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>External_Id__c</fullName>
+        <externalId>true</externalId>
+        <label>External Id</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Final_GPA_Value__c</fullName>
+        <defaultValue>0</defaultValue>
+        <externalId>false</externalId>
+        <label>Final Course Value</label>
+        <precision>17</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Final_Grade_Letter__c</fullName>
+        <externalId>false</externalId>
+        <label>Final Grade Letter</label>
+        <length>3</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Final_Grade_Letter_v2__c</fullName>
+        <externalId>false</externalId>
+        <label>Final Grade Letter</label>
+        <length>15</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Final_Grade_Value__c</fullName>
+        <defaultValue>0</defaultValue>
+        <externalId>false</externalId>
+        <label>Final Grade Value</label>
+        <precision>17</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Final__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Checked &apos;true&apos; when Final Grade batch run manually through Generate Documents page; checked &apos;false&apos; when Nightly Batch (sched_CurrentCourseGradeCalculation) run.</description>
+        <externalId>false</externalId>
+        <label>Final?</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>GPA_Added_Value_Points__c</fullName>
+        <externalId>false</externalId>
+        <formula>Course__r.GPA_Added_Value_Points__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>GPA Added Value Points</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Grade_Overridden__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Grade Overridden</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Grade_Override__c</fullName>
+        <externalId>false</externalId>
+        <label>Grade Override</label>
+        <length>10</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Grade_Scale_Category__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT(Course__r.Grade_Scale_Lookup__r.Category__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Grade Scale Category</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Grade_Scale_Id__c</fullName>
+        <externalId>false</externalId>
+        <formula>CASESAFEID(Course__r.Grade_Scale_Lookup__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Grade Scale Id</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Grade_Scale_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>Course__r.Grade_Scale_Lookup__r.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Grade Scale Name</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Grade_Scale_RT__c</fullName>
+        <externalId>false</externalId>
+        <formula>Course__r.Grade_Scale_Lookup__r.RecordType.DeveloperName</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Grade Scale RT</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Grade_Scale__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF (ISNULL(Course__r.Grade_Scale_Lookup__c), TEXT(Course__r.Grade_Scale__c), Course__r.Grade_Scale_Lookup__r.Name)</formula>
+        <label>Grade Scale</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Key__c</fullName>
+        <caseSensitive>true</caseSensitive>
+        <description>Stores Unique Key for Student/Course Association to enable update via upsert</description>
+        <externalId>true</externalId>
+        <label>Key</label>
+        <length>40</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>Multiply_GPA_Added_Value_Points__c</fullName>
+        <externalId>false</externalId>
+        <formula>Course__r.Multiply_GPA_Added_Value_Points__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Multiply GPA Added Value Points</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Section_Grades_Overridden__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Section Grades Overridden</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Show_in_Portal__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>This field determines whether or not to display the final grade in the student portal</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This field determines whether or not to display the final grade in the student portal</inlineHelpText>
+        <label>Show in Portal</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Standard_Current_Grade__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( Current_Grade_Value__c &gt;96,4.0,IF(Current_Grade_Value__c&gt;89,3.5,IF(Current_Grade_Value__c&gt;85,3.0,IF(Current_Grade_Value__c&gt;77, 2.5,IF(Current_Grade_Value__c&gt;72,2.0,IF(Current_Grade_Value__c&gt;65,1.5,IF(Current_Grade_Value__c&gt;60,1.0,IF(Current_Grade_Value__c&gt;53,0.5,0))))))))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Standard Current Grade</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Standard_Final_Grade__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(Final_Grade_Value__c &gt;=99.4,4.0, 
+IF(Final_Grade_Value__c &gt;=98.2,3.9, 
+IF(Final_Grade_Value__c &gt;=97,3.8, 
+IF(Final_Grade_Value__c &gt;=95.8,3.7, 
+IF(Final_Grade_Value__c &gt;=94.6,3.6, 
+IF(Final_Grade_Value__c &gt;=93.4,3.5, 
+IF(Final_Grade_Value__c &gt;=92.2,3.4, 
+IF(Final_Grade_Value__c &gt;=91,3.3, 
+IF(Final_Grade_Value__c &gt;=89.8,3.2, 
+IF(Final_Grade_Value__c &gt;=88.6,3.1, 
+IF(Final_Grade_Value__c &gt;=87.4,3.0, 
+IF(Final_Grade_Value__c &gt;=86.2,2.9, 
+IF(Final_Grade_Value__c &gt;=85,2.8, 
+IF(Final_Grade_Value__c &gt;=83.8,2.7, 
+IF(Final_Grade_Value__c &gt;=82.6,2.6, 
+IF(Final_Grade_Value__c &gt;=81.4,2.5, 
+IF(Final_Grade_Value__c &gt;=80.2,2.4, 
+IF(Final_Grade_Value__c &gt;=79,2.3, 
+IF(Final_Grade_Value__c &gt;=77.8,2.2, 
+IF(Final_Grade_Value__c &gt;=76.6,2.1, 
+IF(Final_Grade_Value__c &gt;=75.4,2.0, 
+IF(Final_Grade_Value__c &gt;=74.2,1.9, 
+IF(Final_Grade_Value__c &gt;=73,1.8, 
+IF(Final_Grade_Value__c &gt;=71.8,1.7, 
+IF(Final_Grade_Value__c &gt;=70.6,1.6, 
+IF(Final_Grade_Value__c &gt;=69.4,1.5, 
+IF(Final_Grade_Value__c &gt;=68.2,1.4, 
+IF(Final_Grade_Value__c &gt;=67,1.3, 
+IF(Final_Grade_Value__c &gt;=65.8,1.2, 
+IF(Final_Grade_Value__c &gt;=64.6,1.1, 
+IF(Final_Grade_Value__c &gt;=63.4,1.0, 
+IF(Final_Grade_Value__c &gt;=62.2,0.9, 
+IF(Final_Grade_Value__c &gt;=61,0.8, 
+IF(Final_Grade_Value__c &gt;=59.8,0.7, 
+IF(Final_Grade_Value__c &gt;=58.6,0.6, 
+IF(Final_Grade_Value__c &gt;=57.4,0.5, 
+IF(Final_Grade_Value__c &gt;=56.2,0.4, 
+IF(Final_Grade_Value__c &gt;=55,0.3, 
+IF(Final_Grade_Value__c &gt;=53.8,0.2, 
+IF(Final_Grade_Value__c &gt;=52.6,0.1,0))))))))))))))))))))))))))))))))))))))))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Standard Final Grade</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>1</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Student_Setup_Active__c</fullName>
+        <externalId>false</externalId>
+        <formula>Student__r.Setup__r.Active__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Student Setup Active</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Student_Setup_Year_End_Date__c</fullName>
+        <externalId>false</externalId>
+        <formula>Student__r.Setup__r.Year__r.End_Date__c</formula>
+        <label>Student Setup Year End Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Student__c</fullName>
+        <externalId>false</externalId>
+        <label>Student</label>
+        <referenceTo>Student__c</referenceTo>
+        <relationshipLabel>Final Grades</relationshipLabel>
+        <relationshipName>Final_Grades</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>true</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Total_GPA_Credit_Value__c</fullName>
+        <defaultValue>0</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>This is a roll up value that is used when calculating Unweighted, Weighted, and Career GPAs.</inlineHelpText>
+        <label>Total GPA Credit Value</label>
+        <precision>5</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Total_Weighted_GPA_Credit_Value__c</fullName>
+        <externalId>false</externalId>
+        <label>Total Weighted GPA Credit Value</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Transfer_School__c</fullName>
+        <description>Populate this field for transferred grades.</description>
+        <externalId>false</externalId>
+        <label>Transfer School</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Unweighted_GPA__c</fullName>
+        <externalId>false</externalId>
+        <label>Unweighted GPA</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Use_Assignment_Type_Percentages__c</fullName>
+        <externalId>false</externalId>
+        <formula>Course__r.Use_Assignment_Type_Percentages__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Use Assignment Type Percentages</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Weighted_GPA__c</fullName>
+        <externalId>false</externalId>
+        <label>Weighted GPA</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <label>Final Grade</label>
+    <listViews>
+        <fullName>All_Final_Grades</fullName>
+        <columns>NAME</columns>
+        <columns>Student__c</columns>
+        <columns>Course__c</columns>
+        <columns>Show_in_Portal__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All Final Grades</label>
+    </listViews>
+    <nameField>
+        <displayFormat>FG-{0000}</displayFormat>
+        <label>Final Grade Name</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Final Grades</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+    <validationRules>
+        <fullName>Unweighted_GPA_is_in_range</fullName>
+        <active>true</active>
+        <errorConditionFormula>OR(Unweighted_GPA__c &lt; 0, Unweighted_GPA__c &gt;= 10)</errorConditionFormula>
+        <errorDisplayField>Unweighted_GPA__c</errorDisplayField>
+        <errorMessage>Unweighted GPA cannot be greater than 10 or less than 0.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Weighted_GPA_is_within_range</fullName>
+        <active>true</active>
+        <errorConditionFormula>OR(Weighted_GPA__c &lt; 0, Weighted_GPA__c &gt;= 10)</errorConditionFormula>
+        <errorDisplayField>Weighted_GPA__c</errorDisplayField>
+        <errorMessage>The weighted GPA cannot be greater than 10 or less than 0.</errorMessage>
+    </validationRules>
+    <visibility>Public</visibility>
+</CustomObject>

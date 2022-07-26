@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Staff/Section</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Staff/Section</value>
+    </caseValues>
+    <fields>
+        <help><!-- Shouldn&apos;t be changed --></help>
+        <label><!-- School --></label>
+        <name>Account__c</name>
+        <relationshipLabel><!-- Staff/Section --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Archived --></label>
+        <name>Archived__c</name>
+    </fields>
+    <fields>
+        <label><!-- Deactivated --></label>
+        <name>Deactivated__c</name>
+    </fields>
+    <fields>
+        <label><!-- Display Teacher On RC/PR --></label>
+        <name>Display_Teacher_On_RC_PR__c</name>
+    </fields>
+    <fields>
+        <label><!-- External Id --></label>
+        <name>External_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Grade Levels --></label>
+        <name>Grade_Levels__c</name>
+    </fields>
+    <fields>
+        <label><!-- Grade --></label>
+        <name>Grade__c</name>
+    </fields>
+    <fields>
+        <label><!-- Holding Source --></label>
+        <name>Holding_Source__c</name>
+        <relationshipLabel><!-- Staff/Section --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- In School/Extended Learning/Curriculum --></label>
+        <name>In_School_Extended_Learning_Curriculum__c</name>
+    </fields>
+    <fields>
+        <help><!-- The Intervention Section&apos;s Primary Staff member. Many staff members can be associated with an Intervention Section, but only one is the primary staff member. --></help>
+        <label><!-- Intervention Primary Staff --></label>
+        <name>Intervention_Primary_Staff__c</name>
+    </fields>
+    <fields>
+        <label><!-- Is Active? --></label>
+        <name>Is_Active__c</name>
+    </fields>
+    <fields>
+        <label><!-- Is Admin Configured --></label>
+        <name>Is_Admin_Configured__c</name>
+    </fields>
+    <fields>
+        <label><!-- Legacy ID --></label>
+        <name>Legacy_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Order --></label>
+        <name>Order__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reference Id --></label>
+        <name>Reference_Id__c</name>
+    </fields>
+    <fields>
+        <help><!-- The School related to this Section --></help>
+        <label><!-- School --></label>
+        <name>School__c</name>
+    </fields>
+    <fields>
+        <label><!-- Section --></label>
+        <name>Section__c</name>
+        <relationshipLabel><!-- Staff --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- StaffUnique --></label>
+        <name>StaffUnique__c</name>
+    </fields>
+    <fields>
+        <label><!-- Staff --></label>
+        <name>Staff__c</name>
+        <relationshipLabel><!-- Sections --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Unique Staff/Section --></label>
+        <name>Unique_Staff_Section__c</name>
+    </fields>
+    <fields>
+        <label><!-- View Gradebook as Read Only --></label>
+        <name>View_Gradebook_as_Read_Only__c</name>
+    </fields>
+    <layouts>
+        <layout>CY Staff/Section Layout - Admins</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>CY Staff/Section Layout - End Users</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>CY Staff/Section Layout - Sys Admin</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>CY Student/Section Layout - End Users</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Non Admin Staff/Section Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Non Admin Staff_Section Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Staff/Section Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Staff_Section Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+    <webLinks>
+        <label><!-- Add_Staff --></label>
+        <name>Add_Staff</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- New_Staff_Section --></label>
+        <name>New_Staff_Section</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- add_Staff_Section --></label>
+        <name>add_Staff_Section</name>
+    </webLinks>
+</CustomObjectTranslation>

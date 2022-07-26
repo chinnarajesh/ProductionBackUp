@@ -1,0 +1,93 @@
+<apex:page controller="SessionInterventionBulkUploadController" id="SessionInterventionBulkUploadImportSess" >
+    <c:jQueryInit bDataTables="true" bLoadingPanel="true"/>
+    <c:admin />
+    <apex:includeScript value="{!URLFOR($Resource.jWerty, '/jWerty/jwerty.js')}" />
+    <style>
+        .isImport {
+            width: 30%;
+            margin: auto;
+            padding-top: 1rem;
+        }
+        .inputFile {
+            padding: 0.5rem 0;
+        }
+    </style>
+    <script type="text/javascript">
+
+        function resetDataTables(){
+            j$(j$('#dataDiv th')[1]).css("display", "none");
+            j$(".tablesorter").dataTable( {
+                "sScrollY": "200px",
+                "sScrollX": "100px",
+                "bLengthChange": true,
+                "bFilter": true,
+                "bInfo": false,
+                "aoColumnDefs": [{ "sWidth": "300px", "aTargets": [ 3 ]}],
+                "bAutoWidth": true,
+                "bSort" :true,
+                "bDestroy": true,
+                "bScrollAutoCss": true,
+                "bPaginate": true,
+                "bScrollCollapse": true,
+                "bJQueryUI": true,
+                "bSaveState": true,
+                "iDisplayLength": 100,
+                "asStripClasses": [ 'odd', 'even' ]
+            });
+            j$('.dataTables_wrapper').css('min-height','200');
+        }
+        jwerty.key('enter',false);
+
+        function importJS(){
+            showProgressBar('Please wait while data is processed.');
+            processInputJS();
+            hideProgressBar();
+        }
+    </script>
+    <apex:form id="theForm">
+        <div id="confirm_dialog" style="Display:none">begin</div>
+        <apex:actionFunction name="processInputJS" action="{!processSessionsInput}" />
+        <apex:actionFunction name="cancelImportJS" action="{!cancelImport}"/>
+
+        <apex:outputPanel id="messagePanel">
+            <apex:pageMessages escape="false"/>
+        </apex:outputPanel>
+        <apex:outputPanel id="sessionsImportSection" style="{!(IF(showSessionsImportSection, '', 'display : none;'))}">
+            <div class="isImport">
+                <h1 style="font-size: 1rem;">Intervention Sessions Import</h1>
+                <div>
+                    <div class="inputFile">
+                        <apex:actionRegion >
+                            <apex:inputFile contentType="{!fileContentType}" fileName="{!fileName}" fileSize="{!fileSize}" value="{!fileBlob}" />
+                        </apex:actionRegion>
+                    </div>
+                    <input type="button" value="Cancel" onclick="cancelImportJS();" class="black_btn"/>
+                    <input type="button" value="Import" onclick="importJS();" class="black_btn" />
+                </div>
+            </div>
+        </apex:outputPanel>
+        <apex:outputPanel id="sessions" rendered="{!showUpdatedSessions}">
+
+            <apex:pageBlock >
+                <h1 style="font-size:16px;">Intervention Sessions Generated</h1>
+                <apex:pageBlockTable value="{!createdSessions}" var="session">
+                    <apex:column headerValue="Inter. Session ID"><a href="/{!session.Id}" target="_blank">{!session.Name}</a></apex:column>
+                    <apex:column value="{!session.Date__c}"/>
+                    <apex:column value="{!session.ISR_Count__c}"/>
+                    <apex:column headerValue="Section"><a href="/{!session.Section__c}" target="_blank">{!session.Section__r.Name}</a></apex:column>
+                    <apex:column headerValue="Session Time Completed For"><a href="/{!session.Session_Time_Completed_For__c}" target="_blank">{!session.Session_Time_Completed_For__r.Name}</a></apex:column>
+                    <apex:column value="{!session.Comments__c}"/>
+                    <apex:column value="{!session.All_avenues__c}"/>
+                    <apex:column value="{!session.Skill_Primary__c}"/>
+                    <apex:column value="{!session.Skills_Covered_for_the_Session__c}"/>
+                    <apex:column value="{!session.Session_Type__c}"/>
+                    <apex:column value="{!session.Session_Format__c}"/>
+                    <apex:column value="{!session.Site_Details__c}"/>
+                </apex:pageBlockTable>
+            </apex:pageBlock>
+        </apex:outputPanel>
+    </apex:form>
+    <script>
+        resetDataTables();
+    </script>
+</apex:page>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Section__c$School__c</field>
+    </columns>
+    <columns>
+        <field>Section__c.Student_Section__r$Student__c.Student_ID_Auto_Number__c</field>
+    </columns>
+    <columns>
+        <field>Section__c.Student_Section__r$Local_Student_ID__c</field>
+    </columns>
+    <columns>
+        <field>Section__c.Student_Section__r$Student__c</field>
+    </columns>
+    <columns>
+        <field>Section__c$Name</field>
+    </columns>
+    <columns>
+        <field>Section__c$Indicator_Area__c</field>
+    </columns>
+    <columns>
+        <field>Section__c.Student_Section__r.Intervention_Session_Results__r$Intervention_Session_Date__c</field>
+    </columns>
+    <columns>
+        <field>Section__c.Student_Section__r.Intervention_Session_Results__r$Amount_of_Time__c</field>
+    </columns>
+    <columns>
+        <field>Section__c.Student_Section__r$Dosage_to_Date_hrs__c</field>
+    </columns>
+    <description>With this report you will be able to report back student attendance to campus partners (addition of student ID number). Total dosage adds together enrichment AND homework help time.</description>
+    <filter>
+        <criteriaItems>
+            <column>Section__c$Location__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>san antonio</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Section__c$Indicator_Area__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>contains</operator>
+            <value>non-specific IA</value>
+        </criteriaItems>
+    </filter>
+    <format>Tabular</format>
+    <name>After School Report</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Sections_with_Student_Section_with_Intervention_Session_Results__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>Section__c$CreatedDate</dateColumn>
+        <endDate>2017-06-02</endDate>
+        <interval>INTERVAL_CUSTOM</interval>
+        <startDate>2016-07-01</startDate>
+    </timeFrameFilter>
+</Report>

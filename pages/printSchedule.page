@@ -1,0 +1,213 @@
+<apex:page controller="scheduler_printPageController">
+	<apex:includeScript value="{!URLFOR($Resource.jWerty, '/jWerty/jwerty.js')}"  />
+	<c:admin />
+	<apex:stylesheet value="{!$Resource.New_Core_UX}"/>
+	<script>
+		jwerty.key('enter',false);
+		var j$ = jQuery.noConflict();
+		onload = true;
+
+		function openGenModal(){
+			var genModal = j$('#generateModal').dialog({
+				modal: true,
+				minWidth: "765",
+				minHeight: "300",
+				zIndex: 5,
+				autoOpen: false,
+				open: function(event, ui) {
+					j$(this).parent().appendTo(j$("[id$='theForm']"));
+				},
+				close: function(event, ui) {
+					j$(this).dialog('destroy');
+				},
+				buttons: {
+					"Email Schedule": function() {
+						
+						showProgressBar('Generating');
+                   		emailJS();
+					},
+					"Print/View Schedule":function(){
+						showProgressBar('Generating');
+						printJS();
+					},
+					"Cancel": function(){
+						j$(this).dialog('close');
+					}
+	            }
+			});
+
+			genModal.dialog('open');
+
+			j$.fancybox.close();
+		}
+
+		function checkForClose(){
+			if(j$('.errorM3').size()==0)
+                j$('#generateModal').dialog('close');
+            j$.fancybox.close();
+            hideProgressBar();
+		}
+	</script>
+
+	<apex:form id="theForm">
+		<apex:pageBlock >
+			<div class="wrapper gradebook">
+    		<apex:outputPanel id="theFilters">
+    			<apex:outputPanel id="messages">
+  					<apex:pageMessages />
+    			</apex:outputPanel>
+
+				<apex:outputPanel styleClass="section_content" rendered="{!NOT(bPreSelect)}" layout="block">
+					<div>
+						<apex:outputText >Schedule Type</apex:outputText>
+	        			<br/>
+						<apex:SelectRadio value="{!scheduleType}" onChange="changeScheduleTypeJS(this.value);">
+							<apex:selectOption itemValue="student" itemLabel="Student"/>
+							<apex:selectOption itemValue="staff" itemLabel="Teacher"/>
+						</apex:SelectRadio>
+					</div>
+				</apex:outputPanel>
+	
+				<apex:outputPanel rendered="{!scheduleType == 'student'}">
+					<h4>Student Search</h4>
+        			<apex:outputPanel styleClass="section_content" rendered="{!NOT(bPreSelect)}" layout="block">
+            			<apex:pageBlockSection >
+            				<apex:pageBlockSectionItem >
+	            				<apex:outputLabel value="First Name"/>
+	            				<apex:outputPanel layout="block" styleClass="requiredInput">
+	                                <apex:outputPanel layout="block" styleClass="requiredBlock"/>
+		          						<apex:inputText value="{!searchFirstName}"/>
+		          				</apex:outputPanel>
+		          			</apex:pageBlockSectionItem>
+		          			<apex:pageBlockSectionItem >
+		          				<apex:outputLabel value="Last Name"/>
+		          				<apex:inputText value="{!searchLastName}"/>
+		          			</apex:pageBlockSectionItem>
+						</apex:pageBlockSection>
+						<apex:commandButton styleclass="black_btn" value="Search" action="{!getStudents}" rerender="theFilters, messages"/>
+						<div class="clear_fix"/>
+					</apex:outputPanel>
+      	
+					<apex:outputPanel rendered="{!scheduleType == 'student' && studentSearchResults.size > 0}">
+        				<br/>
+						<div class="section_content no-bottom-margin">
+         					<apex:pageBlockTable value="{!studentSearchResults}" var="s" style="margin-top:0px;">
+								<apex:column headerValue="First Name" value="{!s.Student_First_Name__c}"/>
+								<apex:column headerValue="Last Name" value="{!s.Student_Last_Name__c}"/>
+								<apex:column headerValue="Grade" value="{!s.Grade__c}"/>
+								<apex:column headerValue="School" value="{!s.School__r.Name}"/>
+								<apex:column headerValue="Generate" >
+								<input type="button" value="Generate Schedule" class="no-bottom-margin black_btn" onClick="loadForGenJS('{!s.ID}');"/>
+								</apex:column>
+	       					</apex:pageBlockTable>
+	    				</div>
+					</apex:outputPanel>
+				</apex:outputPanel>
+        
+				<apex:outputPanel rendered="{!scheduleType == 'staff'}">
+					<h4>Staff Search</h4>
+					<apex:outputPanel layout="block" Styleclass="section_content no-bottom-margin" rendered="{!NOT(bPreSelect)}">
+						<apex:pageBlockSection >
+							<apex:pageBlockSectionItem >
+								<apex:outputLabel value="First Name"/>
+	            				<apex:outputPanel layout="block" styleClass="requiredInput">
+	                                <apex:outputPanel layout="block" styleClass="requiredBlock"/>
+		          						<apex:inputText value="{!searchFirstName}"/>
+		          				</apex:outputPanel>
+		          			</apex:pageBlockSectionItem>
+		          			<apex:pageBlockSectionItem >
+		          				<apex:outputLabel value="Last Name"/>
+		          				<apex:inputText value="{!searchLastName}"/>
+		          			</apex:pageBlockSectionItem>
+						</apex:pageBlockSection>
+						<apex:commandButton styleclass="black_btn" value="Search" action="{!getStaff}" rerender="theFilters, messages"/>
+						<div class="clear_fix"/>
+					</apex:outputPanel>
+	        
+					<apex:outputPanel rendered="{!scheduleType == 'staff' && staffSearchResults.size > 0}">
+						<div class="section_content no-bottom-margin">
+							<apex:pageBlockTable value="{!staffSearchResults}" var="s" style="margin-top:0px;">
+				        		<apex:column headerValue="First Name" value="{!s.First_Name_Staff__c}"/>
+								<apex:column headerValue="Last Name" value="{!s.Staff_Last_Name__c}"/>
+								<apex:column headerValue="School" value="{!s.Organization__r.Name}"/>
+								<apex:column headerValue="Generate">
+									<input type="button" value="Generate Schedule" class="no-bottom-margin black_btn" onClick="loadForGenJS('{!s.Reference_Id__c}');"/>
+								</apex:column>
+							</apex:pageBlockTable>
+						</div>
+					</apex:outputPanel>
+				</apex:outputPanel>		
+			</apex:outputPanel>
+		</div>
+	</apex:pageBlock>
+
+	<div id="generateModal" style="display:none;">
+		<apex:outputPanel id="generatePanel">
+			<apex:pageBlock >
+				<apex:outputPanel id="modalmessages">
+  					<apex:pageMessages />
+    			</apex:outputPanel>
+				If you want to view/print this schedule, please enter a date range, then select View/Print Schedule.<br/>
+				If you want to email this schedule, please enter a date, and the email addresses you would like the schedule to be emailed to. Multiple emails can be sperated by commas. All schedules will be sent as pdf attachments.
+				<apex:pageBlockSection >
+					<apex:pageBlockSectionItem >
+						<apex:outputLabel value="Email:"/>
+						<apex:inputText value="{!scheduleEmail}"/>
+					</apex:pageBlockSectionItem>
+					<apex:pageBlockSectionItem >
+						<apex:outputLabel value="CC:"/>
+						<apex:inputText value="{!scheduleCCEmail}"/>
+					</apex:pageBlockSectionItem>
+				</apex:pageBlockSection>
+				<apex:outputPanel rendered="{!bTimeFiltersDisplay}" id="timeFilters">
+        			<div class="section_content no-bottom-margin">
+	    				View By<br />{!dateType}
+	        			<apex:selectRadio value="{!dateType}" onChange="refreshDateTypeJS(this.value);">
+				        	<apex:selectOption itemValue="oneweek" itemLabel="1 Week"/>
+				            <apex:selectOption itemValue="twoweeks" itemLabel="2 Weeks"/>
+				            <apex:selectOption itemValue="all" itemLabel="All Selected Dates"/>
+	        			</apex:selectRadio>
+            			<div class="section_content no-bottom-margin">
+            				<div>
+	                			Grading Period<br />
+				                <apex:selectList value="{!selectedRP}" multiselect="false" size="1" onchange="filterJS();" id="rpselect">
+				                    <apex:selectOptions value="{!rpList}"/>
+				                </apex:selectList>
+	            			</div>
+	            			<apex:outputPanel rendered="{!dateType != 'all'}">
+		            			<div>
+		                			Week Of<br />
+		                			<apex:inputField value="{!DateHolder.Date_Start_Date__c}" required="true"/>
+		            			</div>
+	            			</apex:outputPanel>
+	            			<apex:outputPanel rendered="{!dateType = 'all'}">
+		            			<div>
+		                			Start Date<br />
+		                			<apex:inputField value="{!DateHolder.Date_Start_Date__c}" onFocus="if(onload){j$(this).blur();onload=false;}"/>
+		            			</div>
+					            <div>
+					                End Date<br />
+					                <apex:inputField value="{!DateHolder.End_Date__c}"/>
+					            </div>
+	            			</apex:outputPanel>
+            			</div>
+        			</div>
+				</apex:outputPanel>
+			</apex:pageBlock>
+		</apex:outputPanel>
+	</div>
+	
+	<apex:actionFunction name="filterJS" action="{!updateFilters}" rerender="generatePanel"/>
+	<apex:actionFunction name="refreshDateTypeJS" action="{!refreshDateType}" rerender="generatePanel">
+		<apex:param value="" assignTo="{!dateType}" name="dateType"/>
+	</apex:actionFunction>
+	<apex:actionFunction name="changeScheduleTypeJS" action="{!refreshDateType}" rerender="theFilters">
+		<apex:param value="" assignTo="{!scheduleType}" name="scheduleType"/>
+	</apex:actionFunction>
+	<apex:actionFunction name="loadForGenJS" action="{!loadForGeneation}" rerender="generatePanel" onComplete="openGenModal();">
+		<apex:param value="" assignTo="{!selectedID}" name="recordToGen"/>
+	</apex:actionFunction>
+	<apex:actionFunction name="emailJS" action="{!generateAndEmail}" rerender="generatePanel, messages" onComplete="checkForClose();hideProgressBar();"/>
+	<apex:actionFunction name="printJS" action="{!generateAndPrint}"/>
+	</apex:form>
+</apex:page>

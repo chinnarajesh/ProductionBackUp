@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Consequence</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Consequences</value>
+    </caseValues>
+    <fields>
+        <label><!-- Behavior Incident ID Formula --></label>
+        <name>Behavior_Incident_ID_Formula__c</name>
+    </fields>
+    <fields>
+        <label><!-- Behavior Type Formula --></label>
+        <name>Behavior_Type_Formula__c</name>
+    </fields>
+    <fields>
+        <label><!-- Consequence Category --></label>
+        <name>Consequence_Category__c</name>
+    </fields>
+    <fields>
+        <label><!-- Consequence Read Only --></label>
+        <name>Consequence_Read_Only__c</name>
+    </fields>
+    <fields>
+        <label><!-- Consequence Weighting --></label>
+        <name>Consequence_Weighting__c</name>
+    </fields>
+    <fields>
+        <label><!-- Consequence --></label>
+        <name>Consequence__c</name>
+        <picklistValues>
+            <masterLabel>Awaiting Admin Decision</masterLabel>
+            <translation><!-- Awaiting Admin Decision --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Buddy Classroom/Reflection Room</masterLabel>
+            <translation><!-- Buddy Classroom/Reflection Room --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Conference with Administrator</masterLabel>
+            <translation><!-- Conference with Administrator --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Conference with BCC</masterLabel>
+            <translation><!-- Conference with BCC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fieldwork Restriction</masterLabel>
+            <translation><!-- Fieldwork Restriction --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Lose Free Time (Choice Time)</masterLabel>
+            <translation><!-- Lose Free Time (Choice Time) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Lose Free Time (Recess)</masterLabel>
+            <translation><!-- Lose Free Time (Recess) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other Loss of Privilege</masterLabel>
+            <translation><!-- Other Loss of Privilege --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other Time Away</masterLabel>
+            <translation><!-- Other Time Away --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Refocus Center (Time after school)</masterLabel>
+            <translation><!-- Refocus Center (Time after school) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Saturday Detention</masterLabel>
+            <translation><!-- Saturday Detention --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Service (Break It Fix it)</masterLabel>
+            <translation><!-- Service (Break It Fix it) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Silent Lunch</masterLabel>
+            <translation><!-- Silent Lunch --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Student Sent Home (Not Suspended)</masterLabel>
+            <translation><!-- Student Sent Home (Not Suspended) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Suspendable (Waived)</masterLabel>
+            <translation><!-- Suspendable (Waived) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Suspension (In School)</masterLabel>
+            <translation><!-- Suspension (In School) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Suspension (Out of School)</masterLabel>
+            <translation><!-- Suspension (Out of School) --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Date of Re-entry --></label>
+        <name>Date_of_Re_entry__c</name>
+    </fields>
+    <fields>
+        <help><!-- In Days --></help>
+        <label><!-- Days Suspended --></label>
+        <name>Days_Suspended__c</name>
+    </fields>
+    <fields>
+        <label><!-- External Id --></label>
+        <name>External_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Final Consequence --></label>
+        <name>Final_Consequence__c</name>
+    </fields>
+    <fields>
+        <label><!-- Incident Date Formula --></label>
+        <name>Incident_Date_Formula__c</name>
+    </fields>
+    <fields>
+        <label><!-- Is Suspended? --></label>
+        <name>Is_Suspended__c</name>
+    </fields>
+    <fields>
+        <label><!-- Picklist Value --></label>
+        <name>Picklist_Value__c</name>
+        <relationshipLabel><!-- Consequences --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Re-entry Mtg Date --></label>
+        <name>Re_entry_Mtg_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Re-entry Mtg Time --></label>
+        <name>Re_entry_Mtg_Time__c</name>
+        <picklistValues>
+            <masterLabel>10:00 AM</masterLabel>
+            <translation><!-- 10:00 AM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>10:30 AM</masterLabel>
+            <translation><!-- 10:30 AM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>11:00 AM</masterLabel>
+            <translation><!-- 11:00 AM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>11:30 AM</masterLabel>
+            <translation><!-- 11:30 AM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>12:00 PM</masterLabel>
+            <translation><!-- 12:00 PM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>12:30 PM</masterLabel>
+            <translation><!-- 12:30 PM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1:00 PM</masterLabel>
+            <translation><!-- 1:00 PM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1:30 PM</masterLabel>
+            <translation><!-- 1:30 PM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2:00 PM</masterLabel>
+            <translation><!-- 2:00 PM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2:30 PM</masterLabel>
+            <translation><!-- 2:30 PM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3:00 PM</masterLabel>
+            <translation><!-- 3:00 PM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3:30 PM</masterLabel>
+            <translation><!-- 3:30 PM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4:00 PM</masterLabel>
+            <translation><!-- 4:00 PM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4:30 PM</masterLabel>
+            <translation><!-- 4:30 PM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5:00 PM</masterLabel>
+            <translation><!-- 5:00 PM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5:30 PM</masterLabel>
+            <translation><!-- 5:30 PM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7:00 AM</masterLabel>
+            <translation><!-- 7:00 AM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7:30 AM</masterLabel>
+            <translation><!-- 7:30 AM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>8:00 AM</masterLabel>
+            <translation><!-- 8:00 AM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>8:30 AM</masterLabel>
+            <translation><!-- 8:30 AM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>9:00 AM</masterLabel>
+            <translation><!-- 9:00 AM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>9:30 AM</masterLabel>
+            <translation><!-- 9:30 AM --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Re-entry Notes --></label>
+        <name>Re_entry_Notes__c</name>
+    </fields>
+    <fields>
+        <help><!-- If selected, the students attendance records for the days they have been suspended will be marked to reflect the suspension. --></help>
+        <label><!-- Show Suspension In Attendance --></label>
+        <name>Show_Suspension_In_Attendance__c</name>
+    </fields>
+    <fields>
+        <label><!-- Student Consequence --></label>
+        <name>Student_Consequence__c</name>
+        <relationshipLabel><!-- Consequences --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Student Name Formula --></label>
+        <name>Student_Name_Formula__c</name>
+    </fields>
+    <fields>
+        <label><!-- Student Behavior Lookup --></label>
+        <name>Student__c</name>
+        <relationshipLabel><!-- Consequences --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Student&apos;s Grade --></label>
+        <name>Student_s_Grade__c</name>
+    </fields>
+    <fields>
+        <label><!-- Suspension End Date --></label>
+        <name>Suspension_End_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Suspension Start Date --></label>
+        <name>Suspension_Start_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Time Lost --></label>
+        <name>Time_Lost__c</name>
+    </fields>
+    <layouts>
+        <layout>Consequence Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

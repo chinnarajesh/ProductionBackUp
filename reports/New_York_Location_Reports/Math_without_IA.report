@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <buckets>
+        <bucketType>number</bucketType>
+        <developerName>BucketField_53034447</developerName>
+        <masterLabel>Dosage Delivery</masterLabel>
+        <nullTreatment>z</nullTreatment>
+        <sourceColumnName>Account.Sections__r.Student_Section__r$Dosage_to_Date__c</sourceColumnName>
+        <useOther>false</useOther>
+        <values>
+            <sourceValues>
+                <to>0</to>
+            </sourceValues>
+            <value>No Dosage in Section</value>
+        </values>
+        <values>
+            <sourceValues>
+                <from>0</from>
+            </sourceValues>
+            <value>Service Delivered</value>
+        </values>
+    </buckets>
+    <columns>
+        <field>Account.Sections__r.Student_Section__r$Student_Id__c</field>
+    </columns>
+    <columns>
+        <field>Account.Sections__r.Student_Section__r$Student__c.Student_Last_Name__c</field>
+    </columns>
+    <columns>
+        <field>Account.Sections__r.Student_Section__r$Student__c</field>
+    </columns>
+    <columns>
+        <field>Account.Sections__r.Student_Section__r$Student__c.Grade__c</field>
+    </columns>
+    <columns>
+        <field>Account$Name</field>
+    </columns>
+    <columns>
+        <field>Account.Sections__r$Auto_Name__c</field>
+    </columns>
+    <columns>
+        <field>Account.Sections__r.Student_Section__r$Intervention_Enrollment_Start_Date__c</field>
+    </columns>
+    <columns>
+        <field>Account.Sections__r.Student_Section__r$Enrollment_End_Date__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>Account.Sections__r.Student_Section__r$Dosage_to_Date_hrs__c</field>
+    </columns>
+    <description>Just for eval team: list of students in Math sections without a Math IA.</description>
+    <filter>
+        <criteriaItems>
+            <column>Account.Sections__r$Program__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>Tutoring: Math</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account.Sections__r$In_After_School__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>contains</operator>
+            <value>,In School,Extended Learning</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account.Sections__r.Student_Section__r$Location__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>notEqual</operator>
+            <value></value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account.Sections__r.Student_Section__r$Student__c.Math__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>0</value>
+        </criteriaItems>
+    </filter>
+    <format>Tabular</format>
+    <name>Math without IA</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Accounts_with_Sections_with_Student_Section__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>Account.Sections__r.Student_Section__r$CreatedDate</dateColumn>
+        <interval>INTERVAL_CURFY</interval>
+    </timeFrameFilter>
+</Report>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Student/Program</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Student/Programs</value>
+    </caseValues>
+    <fields>
+        <label><!-- Total Time for Program --></label>
+        <name>Amount_of_Time__c</name>
+    </fields>
+    <fields>
+        <label><!-- Indicator Area --></label>
+        <name>Indicator_Area__c</name>
+    </fields>
+    <fields>
+        <label><!-- Intervention Session --></label>
+        <name>Intervention_Session__c</name>
+        <relationshipLabel><!-- Student/Programs --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Program Name --></label>
+        <name>Program1__c</name>
+        <relationshipLabel><!-- Student/Programs --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Program --></label>
+        <name>Program__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reference --></label>
+        <name>Reference__c</name>
+    </fields>
+    <fields>
+        <label><!-- Section --></label>
+        <name>Section_del__c</name>
+        <relationshipLabel><!-- Student/Programs --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Student --></label>
+        <name>Student__c</name>
+        <relationshipLabel><!-- Student/Programs --></relationshipLabel>
+    </fields>
+    <layouts>
+        <layout>Student/Program Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Student Program --></label>
+            <section>Student Program</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

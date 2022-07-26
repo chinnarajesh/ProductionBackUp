@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Final Grade</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Final Grades</value>
+    </caseValues>
+    <fields>
+        <help><!-- This is the possible credits for a course. This field is used to calculate the total possible credits attempted displayed in the Total Credits Earned field. --></help>
+        <label><!-- Course Credits --></label>
+        <name>Course_Credits__c</name>
+    </fields>
+    <fields>
+        <label><!-- Course Id --></label>
+        <name>Course_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Course --></label>
+        <name>Course__c</name>
+        <relationshipLabel><!-- Final Grades --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Check this field only when Student is earning credit hours despite grade being lower than the passing grade threshold. --></help>
+        <label><!-- Credit Earned Override --></label>
+        <name>Credit_Earned_Override__c</name>
+    </fields>
+    <fields>
+        <label><!-- Credit Hours --></label>
+        <name>Credit_Hours__c</name>
+    </fields>
+    <fields>
+        <label><!-- Credit/No Credit Current Grade --></label>
+        <name>Credit_No_Credit_Current_Grade__c</name>
+    </fields>
+    <fields>
+        <label><!-- Credit/No Credit Final Grade --></label>
+        <name>Credit_No_Credit_Final_Grade__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the credits earned for a course. This field displays on transcripts. --></help>
+        <label><!-- Credits Earned --></label>
+        <name>Credits_Earned__c</name>
+    </fields>
+    <fields>
+        <help><!-- Current Letter Grade Equivalent --></help>
+        <label><!-- Current Grade Letter --></label>
+        <name>Current_Grade_Letter__c</name>
+    </fields>
+    <fields>
+        <help><!-- Current Letter Grade Equivalent --></help>
+        <label><!-- Current Grade Letter --></label>
+        <name>Current_Grade_Letter_v2__c</name>
+    </fields>
+    <fields>
+        <help><!-- Year to Date Grade Value, with no time/course weightings applied --></help>
+        <label><!-- Current Grade Value --></label>
+        <name>Current_Grade_Value__c</name>
+    </fields>
+    <fields>
+        <label><!-- Current Grade --></label>
+        <name>Display_Current_Grade_Formula__c</name>
+    </fields>
+    <fields>
+        <label><!-- Final Grade --></label>
+        <name>Display_Final_Grade_Formula__c</name>
+    </fields>
+    <fields>
+        <label><!-- Exclude Course from GPA? --></label>
+        <name>Exclude_Course_from_GPA__c</name>
+    </fields>
+    <fields>
+        <label><!-- External Id --></label>
+        <name>External_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Final Course Value --></label>
+        <name>Final_GPA_Value__c</name>
+    </fields>
+    <fields>
+        <label><!-- Final Grade Letter --></label>
+        <name>Final_Grade_Letter__c</name>
+    </fields>
+    <fields>
+        <label><!-- Final Grade Letter --></label>
+        <name>Final_Grade_Letter_v2__c</name>
+    </fields>
+    <fields>
+        <label><!-- Final Grade Value --></label>
+        <name>Final_Grade_Value__c</name>
+    </fields>
+    <fields>
+        <label><!-- Final? --></label>
+        <name>Final__c</name>
+    </fields>
+    <fields>
+        <label><!-- GPA Added Value Points --></label>
+        <name>GPA_Added_Value_Points__c</name>
+    </fields>
+    <fields>
+        <label><!-- Grade Overridden --></label>
+        <name>Grade_Overridden__c</name>
+    </fields>
+    <fields>
+        <label><!-- Grade Override --></label>
+        <name>Grade_Override__c</name>
+    </fields>
+    <fields>
+        <label><!-- Grade Scale Category --></label>
+        <name>Grade_Scale_Category__c</name>
+    </fields>
+    <fields>
+        <label><!-- Grade Scale Id --></label>
+        <name>Grade_Scale_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Grade Scale Name --></label>
+        <name>Grade_Scale_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Grade Scale RT --></label>
+        <name>Grade_Scale_RT__c</name>
+    </fields>
+    <fields>
+        <label><!-- Grade Scale --></label>
+        <name>Grade_Scale__c</name>
+    </fields>
+    <fields>
+        <label><!-- Key --></label>
+        <name>Key__c</name>
+    </fields>
+    <fields>
+        <label><!-- Multiply GPA Added Value Points --></label>
+        <name>Multiply_GPA_Added_Value_Points__c</name>
+    </fields>
+    <fields>
+        <label><!-- Section Grades Overridden --></label>
+        <name>Section_Grades_Overridden__c</name>
+    </fields>
+    <fields>
+        <help><!-- This field determines whether or not to display the final grade in the student portal --></help>
+        <label><!-- Show in Portal --></label>
+        <name>Show_in_Portal__c</name>
+    </fields>
+    <fields>
+        <label><!-- Standard Current Grade --></label>
+        <name>Standard_Current_Grade__c</name>
+    </fields>
+    <fields>
+        <label><!-- Standard Final Grade --></label>
+        <name>Standard_Final_Grade__c</name>
+    </fields>
+    <fields>
+        <label><!-- Student Setup Active --></label>
+        <name>Student_Setup_Active__c</name>
+    </fields>
+    <fields>
+        <label><!-- Student Setup Year End Date --></label>
+        <name>Student_Setup_Year_End_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Student --></label>
+        <name>Student__c</name>
+        <relationshipLabel><!-- Final Grades --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- This is a roll up value that is used when calculating Unweighted, Weighted, and Career GPAs. --></help>
+        <label><!-- Total GPA Credit Value --></label>
+        <name>Total_GPA_Credit_Value__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total Weighted GPA Credit Value --></label>
+        <name>Total_Weighted_GPA_Credit_Value__c</name>
+    </fields>
+    <fields>
+        <label><!-- Transfer School --></label>
+        <name>Transfer_School__c</name>
+    </fields>
+    <fields>
+        <label><!-- Unweighted GPA --></label>
+        <name>Unweighted_GPA__c</name>
+    </fields>
+    <fields>
+        <label><!-- Use Assignment Type Percentages --></label>
+        <name>Use_Assignment_Type_Percentages__c</name>
+    </fields>
+    <fields>
+        <label><!-- Weighted GPA --></label>
+        <name>Weighted_GPA__c</name>
+    </fields>
+    <layouts>
+        <layout>Copy of Final Grade Layout_admin</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Course Grade Layout</layout>
+        <sections>
+            <label><!-- Current Grade --></label>
+            <section>Current Grade</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Final Grade --></label>
+            <section>Final Grade</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Final Grade Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- Unweighted GPA cannot be greater than 10 or less than 0. --></errorMessage>
+        <name>Unweighted_GPA_is_in_range</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The weighted GPA cannot be greater than 10 or less than 0. --></errorMessage>
+        <name>Weighted_GPA_is_within_range</name>
+    </validationRules>
+</CustomObjectTranslation>

@@ -1,0 +1,667 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableEnhancedLookup>false</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>Active__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Active</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Additional_Reimbursement_1_Amount__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>This is the amount for an additional reimbursement applied at the state level.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This is the amount for an additional reimbursement applied at the state level.</inlineHelpText>
+        <label>Additional Reimbursement 1 Amount</label>
+        <precision>3</precision>
+        <required>true</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Additional_Reimbursement_1_Applies_To__c</fullName>
+        <externalId>false</externalId>
+        <label>Additional Reimbursement 1 Applies To</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Breakfast</fullName>
+                    <default>false</default>
+                    <label>Breakfast</label>
+                </value>
+                <value>
+                    <fullName>Lunch</fullName>
+                    <default>false</default>
+                    <label>Lunch</label>
+                </value>
+                <value>
+                    <fullName>Both</fullName>
+                    <default>false</default>
+                    <label>Both</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Additional_Reimbursement_1_Description__c</fullName>
+        <description>This is the description for an additional reimbursement applied at the state level.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This is the description for an additional reimbursement applied at the state level.</inlineHelpText>
+        <label>Additional Reimbursement 1 Description</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Additional_Reimbursement_2_Amount__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>This is the amount for an additional reimbursement applied at the state level.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This is the amount for an additional reimbursement applied at the state level.</inlineHelpText>
+        <label>Additional Reimbursement 2 Amount</label>
+        <precision>18</precision>
+        <required>true</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Additional_Reimbursement_2_Applies_To__c</fullName>
+        <externalId>false</externalId>
+        <label>Additional Reimbursement 2 Applies To</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Breakfast</fullName>
+                    <default>false</default>
+                    <label>Breakfast</label>
+                </value>
+                <value>
+                    <fullName>Lunch</fullName>
+                    <default>false</default>
+                    <label>Lunch</label>
+                </value>
+                <value>
+                    <fullName>Both</fullName>
+                    <default>false</default>
+                    <label>Both</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Additional_Reimbursement_2_Description__c</fullName>
+        <description>This is the description for an additional reimbursement applied at the state level.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This is the description for an additional reimbursement applied at the state level.</inlineHelpText>
+        <label>Additional Reimbursement 2 Description</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Additional_Reimbursement_3_Amount__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>This is the amount for an additional reimbursement applied at the state level.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This is the amount for an additional reimbursement applied at the state level.</inlineHelpText>
+        <label>Additional Reimbursement 3 Amount</label>
+        <precision>18</precision>
+        <required>true</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Additional_Reimbursement_3_Applies_To__c</fullName>
+        <externalId>false</externalId>
+        <label>Additional Reimbursement 3 Applies To</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Breakfast</fullName>
+                    <default>false</default>
+                    <label>Breakfast</label>
+                </value>
+                <value>
+                    <fullName>Lunch</fullName>
+                    <default>false</default>
+                    <label>Lunch</label>
+                </value>
+                <value>
+                    <fullName>Both</fullName>
+                    <default>false</default>
+                    <label>Both</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Additional_Reimbursement_3_Description__c</fullName>
+        <description>This is the description for an additional reimbursement applied at the state level.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This is the description for an additional reimbursement applied at the state level.</inlineHelpText>
+        <label>Additional Reimbursement 3 Description</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>External_Id__c</fullName>
+        <externalId>true</externalId>
+        <label>External Id</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Fed_Free_Breakfast_Reimbursement__c</fullName>
+        <defaultValue>0</defaultValue>
+        <externalId>false</externalId>
+        <label>Fed Free Breakfast Reimbursement</label>
+        <precision>18</precision>
+        <required>true</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Fed_Free_Lunch_Reimbursement__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>This is the amount of money that the school is reimbursed for free lunches that are served.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This is the amount of money that the school is reimbursed for free lunches that are served.</inlineHelpText>
+        <label>Fed Free Lunch Reimbursement</label>
+        <precision>18</precision>
+        <required>true</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Fed_Full_Price_Breakfast_Reimbursement__c</fullName>
+        <defaultValue>0</defaultValue>
+        <externalId>false</externalId>
+        <label>Fed Full-Price Breakfast Reimbursement</label>
+        <precision>18</precision>
+        <required>true</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Fed_Full_Price_Lunch_Reimbursement__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>This is the amount of money that the school is reimbursed for full-priced lunches that are served.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This is the amount of money that the school is reimbursed for full-priced lunches that are served.</inlineHelpText>
+        <label>Fed Full-Price Lunch Reimbursement</label>
+        <precision>18</precision>
+        <required>true</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Fed_Reduced_Breakfast_Reimbursement__c</fullName>
+        <defaultValue>0</defaultValue>
+        <externalId>false</externalId>
+        <label>Fed Reduced Breakfast Reimbursement</label>
+        <precision>18</precision>
+        <required>true</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Fed_Reduced_Lunch_Reimbursement__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>This is the amount of money that the school is reimbursed for reduced lunches that are served.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This is the amount of money that the school is reimbursed for reduced lunches that are served.</inlineHelpText>
+        <label>Fed Reduced Lunch Reimbursement</label>
+        <precision>18</precision>
+        <required>true</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Free_Reduced_Threshold__c</fullName>
+        <description>This is the threshold percentage for students that are eligible for free or reduced meals.  If the actual percentage is above this threshold all students get free breakfast.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This is the threshold percentage for students that are eligible for free or reduced meals.  If the actual percentage is above this threshold all students get free breakfast.</inlineHelpText>
+        <label>Free/Reduced Threshold</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Full_Price_Breakfast_Price__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>This is the amount a student pays for a full-priced breakfast.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This is the amount a student pays for a full-priced breakfast.</inlineHelpText>
+        <label>Full-Price Breakfast Price</label>
+        <precision>18</precision>
+        <required>true</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Full_Price_Lunch_Price__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>This is the amount a student pays for a full-priced lunch.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This is the amount a student pays for a full-priced lunch.</inlineHelpText>
+        <label>Full-Price Lunch Price</label>
+        <precision>18</precision>
+        <required>true</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Reduced_Breakfast_Price__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>This is the amount a student pays for a reduced breakfast.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This is the amount a student pays for a reduced breakfast.</inlineHelpText>
+        <label>Reduced Breakfast Price</label>
+        <precision>18</precision>
+        <required>true</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Reduced_Lunch_Price__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>This is the amount a student pays for a reduced lunch.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This is the amount a student pays for a reduced lunch.</inlineHelpText>
+        <label>Reduced Lunch Price</label>
+        <precision>18</precision>
+        <required>true</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>School__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>School</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Meals</relationshipLabel>
+        <relationshipName>Meals_Setup</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Schoolwide_Free_Breakfast__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>This should be checked if breakfast is free for all students.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This should be checked if breakfast is free for all students.</inlineHelpText>
+        <label>Schoolwide Free Breakfast</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Setup__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Setup</label>
+        <referenceTo>Setup__c</referenceTo>
+        <relationshipLabel>Meals Setup</relationshipLabel>
+        <relationshipName>Meals_Setup</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>State_Free_Breakfast_Reimbursement__c</fullName>
+        <defaultValue>0</defaultValue>
+        <externalId>false</externalId>
+        <label>State Free Breakfast Reimbursement</label>
+        <precision>18</precision>
+        <required>true</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>State_Free_Lunch_Reimbursement__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>This is the amount of money that the school is reimbursed for free lunches that are served.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This is the amount of money that the school is reimbursed for free lunches that are served.</inlineHelpText>
+        <label>State Free Lunch Reimbursement</label>
+        <precision>18</precision>
+        <required>true</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>State_Full_Price_Breakfast_Reimbursement__c</fullName>
+        <defaultValue>0</defaultValue>
+        <externalId>false</externalId>
+        <label>State Full-Price Breakfast Reimbursement</label>
+        <precision>18</precision>
+        <required>true</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>State_Full_Price_Lunch_Reimbursement__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>This is the amount of money that the school is reimbursed for full-priced lunches that are served.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This is the amount of money that the school is reimbursed for full-priced lunches that are served.</inlineHelpText>
+        <label>State Full-Price Lunch Reimbursement</label>
+        <precision>18</precision>
+        <required>true</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>State_Reduced_Breakfast_Reimbursement__c</fullName>
+        <defaultValue>0</defaultValue>
+        <externalId>false</externalId>
+        <label>State Reduced Breakfast Reimbursement</label>
+        <precision>18</precision>
+        <required>true</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>State_Reduced_Lunch_Reimbursement__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>This is the amount of money that the school is reimbursed for reduced lunches that are served.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This is the amount of money that the school is reimbursed for reduced lunches that are served.</inlineHelpText>
+        <label>State Reduced Lunch Reimbursement</label>
+        <precision>18</precision>
+        <required>true</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Students_Eligible_for_Free_Reduced__c</fullName>
+        <description>This is the percentage of students who are eligible to receive free or reduced meals.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This is the percentage of students who are eligible to receive free or reduced meals.</inlineHelpText>
+        <label>% Students Eligible for Free/Reduced</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>of_Students_Receiving_Free_Meals__c</fullName>
+        <externalId>false</externalId>
+        <label># of Students Receiving Free Meals</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>of_Students_Receiving_Full_Price_Meals__c</fullName>
+        <externalId>false</externalId>
+        <label># of Students Receiving Full-Price Meals</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>of_Students_Receiving_Reduced_Meals__c</fullName>
+        <externalId>false</externalId>
+        <label># of Students Receiving Reduced Meals</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <label>Meals Setup</label>
+    <nameField>
+        <displayFormat>MS-{0}</displayFormat>
+        <label>Meals Setup Number</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Meals Setup</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

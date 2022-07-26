@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Account/Program</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Accounts/Programs</value>
+    </caseValues>
+    <fields>
+        <help><!-- Is this Program active for this School in this year? --></help>
+        <label><!-- Active? --></label>
+        <name>Active__c</name>
+    </fields>
+    <fields>
+        <label><!-- Additional Program Information --></label>
+        <name>Additional_Program_Information__c</name>
+    </fields>
+    <fields>
+        <help><!-- The year that this record is (was) active for --></help>
+        <label><!-- Current Year ID --></label>
+        <name>Current_Year_ID__c</name>
+        <relationshipLabel><!-- Accounts/Programs --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- The name of the year that this record is (was) active for --></help>
+        <label><!-- Current Year --></label>
+        <name>Current_Year__c</name>
+    </fields>
+    <fields>
+        <label><!-- External ID --></label>
+        <name>External_ID__c</name>
+    </fields>
+    <fields>
+        <help><!-- This field joins the Account/Program record to the correct intervention Program --></help>
+        <label><!-- Program --></label>
+        <name>Program__c</name>
+        <relationshipLabel><!-- School Programs --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- If applicable, what is the reason this School is not participating in the Program? --></help>
+        <label><!-- Reason for Not Participating --></label>
+        <name>Reason_for_Not_Participating__c</name>
+    </fields>
+    <fields>
+        <help><!-- This ID is used to prevent duplicate Account/Program records. It should not be changed. --></help>
+        <label><!-- Reference ID --></label>
+        <name>Reference_ID__c</name>
+    </fields>
+    <fields>
+        <help><!-- This field joins the Account/Program record to the correct School. --></help>
+        <label><!-- School --></label>
+        <name>School__c</name>
+        <relationshipLabel><!-- Accounts/Programs --></relationshipLabel>
+    </fields>
+    <layouts>
+        <layout>Account/Program Layout</layout>
+        <sections>
+            <label><!-- Additional Program Information --></label>
+            <section>Additional Program Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Account/Program Layout - HQ</layout>
+        <sections>
+            <label><!-- Additional Program Information --></label>
+            <section>Additional Program Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

@@ -1,0 +1,247 @@
+<apex:page controller="core_SetupWizard" tabStyle="SchoolForce_Setup__tab" sidebar="false">
+	<c:setupWizardSharedComponents />
+	<script>
+		
+		j$(document).ready(function() {
+			resetTable();
+		});
+		
+		function initSchoolModal(){
+			initModal('#schoolModal',cancelSchoolJs);
+		}
+		
+		function initYearModal(){
+			initModal('#yearModal',cancelYearJs);
+		}
+		
+		function uncheckFlag(year){
+			if(year == 'past' && j$('.newyear').is(':checked') && j$('.pastyear').is(':checked'))
+				j$('.newyear').removeAttr('checked');
+			if(year == 'new' && j$('.pastyear').is(':checked') && j$('.newyear').is(':checked'))
+			    j$('.pastyear').removeAttr('checked'); 	 
+		
+		}
+
+		function showSummerSchoolName(element){
+			var bool = j$(element).attr('checked')=='checked';
+			var parent = j$(element).parent().parent();
+			parent.find('input:[id$="ssName"]').toggle(bool);
+			parent.find('[id$="ssNameLabel"]').parent().parent().toggle(bool);
+			
+			if((parent.find('input:[id$="ssName"]').val()==null || parent.find('input:[id$="ssName"]').val()=='') && j$('.Name').val()!=null && j$('.Name').val()!=''){
+				parent.find('input:[id$="ssName"]').val(j$('.Name').val()+' SS');
+			}
+		}
+	</script>
+	<body>
+		<apex:form id="mainForm">
+			<apex:outputPanel id="resetPanel">
+				<script>
+					resetTable();
+					
+					function checkSchools(){
+						checkModalClose({!!bEditSchool},'#schoolModal');
+					}
+					
+					function checkYears(){
+						checkModalClose({!!bEditYear},'#yearModal');
+					}
+				</script>
+			</apex:outputPanel>
+			<apex:outputPanel id="wizardPanel">
+				<table style="width: 100%">
+					<tr>
+						<td style="vertical-align: top; width: 15%">
+							<!-- <c:setup_sidebar setup="{!setup}" />
+							<c:setupWizardSidebar /> -->
+						</td>
+						<td style="vertical-align: top; width: 85%">
+							<div id="schoolforce-wrapper" class="wrapper">
+								<apex:outputPanel id="error" styleClass="pageMessages" >
+									<apex:pageMessages />
+								</apex:outputPanel>
+								<h1 class="centerHeader">
+									<input type="button" onclick="prevJs();" class="grey_btn_arrow" value="Previous" style="{!IF(iStep==2,'','display:none;')}"/>
+									<input type="button" onclick="goHomeJs();" class="grey_btn_arrow" value="Return to Setup Home" style="{!IF(iStep<2,'','display:none;')}"/>
+									<span style="display:inline-block;">SchoolForce Start Up<br/>{!welcomeString}</span>
+									<input type="button" onclick="nextJs();" class="green_btn_arrow" value="Next" style="{!IF(iStep<2,'','display:none;')}"/>
+									<input type="button" onclick="goHomeJs();" class="green_btn_arrow" value="Complete Org Wide Setup" style="{!IF(iStep==2,'','display:none;')}"/>
+								</h1>
+								<!-- STEP 1: DEFAULT VALUE SETUP -->
+								<apex:outputPanel id="loadOrgDefault" rendered="{!IF(iStep==0,true,false)}">
+									<apex:outputPanel styleClass="adminSummary">
+										<br/>
+										<p>Please click the button to create default values for SchoolForce, which are required for further setup.</p>
+										<br/>
+									</apex:outputPanel>
+									<div class="content-wrapper">
+										<h3>Create Default Values for SchoolForce</h3>
+										<div class="section_content">
+											<apex:commandButton value="Load Default Schoolforce Values" action="{!loadOrgDefaults}" rerender="wizardPanel" />
+										</div>
+									</div>
+								</apex:outputPanel>
+								
+								<!-- STEP 2: SCHOOL WIZARD -->
+								<apex:outputPanel id="schoolLoadPanel" rendered="{!IF(iStep==1,true,false)}">
+									<apex:outputPanel styleClass="adminSummary">
+										<br/>
+										<p>
+											On this screen, you can create new schools or modify the basic information for existing schools. 
+											For each school you create, you must complete the Core Setup steps and the setup for the modules the school will use.  
+											<br/>
+											<br/>
+											If you hold a summer school session at the school, you must select the <b>Require summer school?</b> check box on that school's setup. 
+											Click <b>Edit</b> to view the information for the school that has a summer school session.
+											<br/>
+											<br/>
+											Refer to SchoolForce Help for more information.
+										</p>
+										<br/>
+									</apex:outputPanel>
+									<div class="content-wrapper">
+										<h3>Current Schools</h3>
+										<a style="cursor: pointer;" onClick="initSchoolModal(); addSchoolJs();"><img
+											src="/img/feeds/follow12.png" />Add School</a>
+										<apex:dataTable styleClass="noFilter no-border" value="{!SchoolList}" var="school" rendered="{!IF(SchoolList.size>0,true,false)}">
+											<apex:column headerValue="Action">
+												<a href="#" onClick="initSchoolModal(); editSchoolJs('{!school.id}');">Edit</a>
+											</apex:column>
+											<apex:repeat value="{!$ObjectType.Account.FieldSets.Setup_Wizard_School}" var="f">
+												<apex:column headerValue="{!f.Label}">
+													<apex:outputField value="{!school[f]}" />
+												</apex:column>
+											</apex:repeat>
+										</apex:dataTable>
+										<div class="clear_fix">&nbsp;</div>
+										
+										<apex:actionFunction name="editSchoolJs" action="{!editSchool}" onComplete="openModal('#schoolModal');" rerender="editSchoolPanel">
+											<apex:param name="selectedSchoolId" assignTo="{!selectedSchoolId}" value="" />
+										</apex:actionFunction>
+										<apex:actionFunction name="addSchoolJs" action="{!initSchool}" onComplete="openModal('#schoolModal');" rerender="editSchoolPanel" />
+										<apex:actionFunction name="saveSchoolJs" action="{!saveSchool}" onComplete="checkSchools();" rerender="resetPanel,editSchoolPanel,schoolLoadPanel" />
+									</div>
+								</apex:outputPanel>
+								
+								<!-- STEP 3: YEAR WIZARD -->
+								<apex:outputPanel id="yearLoadPanel" rendered="{!IF(iStep==2,true,false)}">
+									<apex:outputPanel styleClass="adminSummary">
+										<br/>
+										<p>
+											On this screen, you can create a new school year for your SchoolForce organization.   
+											In SchoolForce, the school year defines the calendar year in which the term falls. 
+											The term is the actual first and last day that the school is in session.
+											For example, you might define the school year for 2013-2014 as 8/1/2013 through 7/31/2014.
+											You might then define the term for the regular school year as 8/21/2013 through 6/2/2014.  
+											If your school has a summer school, you might define the summer school term as 6/16/2014 through 7/31/2014.
+											<br/>
+											<br/>
+											Refer to SchoolForce Help for more information.
+										</p>
+										<br/>
+									</apex:outputPanel>
+									<div class="content-wrapper">
+										<h3>Current Years</h3>
+										<a style="cursor: pointer;" onClick="initYearModal(); addYearJs();"><img
+											src="/img/feeds/follow12.png" />Add Year</a>
+										<apex:dataTable styleClass="noFilter no-border" value="{!yearList}" var="year" rendered="{!IF(yearList.size>0,true,false)}">
+											<apex:column >
+												<a href="#" onClick="initYearModal(); editYearJs('{!year.id}')">Edit</a>
+											</apex:column>
+											<apex:repeat value="{!$ObjectType.Time_Element__c.FieldSets.Year}" var="f">
+												<apex:column headerValue="{!f.Label}">
+													<apex:outputField value="{!year[f]}" />
+												</apex:column>
+											</apex:repeat>
+										</apex:dataTable>
+										<div class="clear_fix">&nbsp;</div>
+									</div>
+									
+									<apex:actionFunction name="editYearJs" action="{!editYear}" onComplete="openModal('#yearModal');" rerender="editYearPanel">
+										<apex:param name="selectedYearId" assignTo="{!selectedYearId}" value="" />
+									</apex:actionFunction>
+									<apex:actionFunction name="addYearJs" action="{!initYear}" onComplete="openModal('#yearModal');" rerender="editYearPanel" />
+									<apex:actionFunction name="saveYearJs" action="{!saveYear}" oncomplete="checkYears();" rerender="resetPanel,yearLoadPanel,editYearPanel" />
+								</apex:outputPanel>
+							</div>
+						</td>
+					</tr>
+				</table>
+			</apex:outputPanel>
+			
+			<div id="schoolModal" >
+				<apex:outputPanel id="editSchoolPanel">
+					<apex:outputPanel rendered="{!bEditSchool}">
+						<apex:pageMessages />
+						<h3>Enter/Maintain School</h3>
+						<apex:pageBlock >
+						<div class="section_content no-border">
+							<apex:pageBlockSection >
+								<apex:repeat value="{!$ObjectType.Account.FieldSets.Setup_Wizard_School}" var="f" >
+									<apex:inputField styleClass="{!f.Label}" value="{!school[f]}" />
+								</apex:repeat>
+								<apex:inputField value="{!schoolSetup.Grade_Span__c}" />
+							</apex:pageBlockSection>
+						</div>
+						<h3>Summer School</h3>
+						<div class="section_content no-border">
+							<apex:pageBlockSection >
+								<apex:pageBlockSectionItem helpText="Select to indicate that the school will use SchoolForce to track summer school. If you select this option, SchoolForce creates a setup record for the summer school. You must set up the summer school using the SchoolForce Setup Wizard.">
+									<apex:outputLabel value="Require summer school?" />
+									<apex:inputCheckbox disabled="{!IF(summerSchool.id==null,false,true)}" value="{!hasSummerSchool}" label="Require summer school?" onchange="showSummerSchoolName(this);" />
+								</apex:pageBlockSectionItem>
+								<!-- <apex:outputPanel style="{!IF(hasSummerSchool,'','display:none;')}" id="ssNameLabel"> -->
+									<apex:pageBlockSectionItem helpText="The name for the summer school. The summer school cannot have the same name as the associated (parent) school. By default, SchoolForce sets this value to Account Name + 'SS'." labelStyle="{!IF(hasSummerSchool,'','display:none;')}">
+										<apex:outputLabel id="ssNameLabel" for="ssName" value="Summer School Name" />
+										<apex:inputText id="ssName" value="{!summerSchool.Name}" style="{!IF(hasSummerSchool,'','display:none;')}" />
+									</apex:pageBlockSectionItem>
+								<!-- </apex:outputPanel> -->
+							</apex:pageBlockSection>
+						</div>
+						</apex:pageBlock>
+						<input type="button" class="grey_btn" value="CANCEL" onClick="closeModal('#schoolModal');" />
+						<input type="button" class="black_btn" value="SAVE" onClick="if(confirm('Are you sure that you would like to save this school?')){
+																						showProgressBar(' Saving school ');
+																						saveSchoolJs();
+																					} " />
+						<div class="clear_fix">&nbsp;</div>
+					</apex:outputPanel>
+				</apex:outputPanel>
+			</div>
+			
+			<div id="yearModal" >
+				<apex:outputPanel id="editYearPanel">
+					<apex:outputPanel rendered="{!bEditYear}">
+						<apex:pageMessages />
+						<h3>Enter/Maintain Year</h3>
+						<apex:pageBlock >
+						<div class="section_content no-border">
+							<apex:pageBlockSection columns="1">
+								<apex:repeat value="{!$ObjectType.Time_Element__c.FieldSets.Year}"	var="f">
+									<apex:inputField required="{!OR(f.required,f.dbrequired)}" value="{!selectedYear[f]}" />
+								</apex:repeat>
+								<apex:outputField label="Past Year" value="{!selectedYear.Previous_Year__c}" rendered="{!IF(selectedYear.Id != '',true,false)}"/> 
+								<apex:outputField label="New Year" value="{!selectedYear.New_School_Year__c}" rendered="{!IF(selectedYear.Id != '',true,false)}"/>
+								<apex:inputField styleclass="pastyear" onclick="uncheckFlag('past');" label="Past Year" value="{!selectedYear.Previous_Year__c}" rendered="{!IF(selectedYear.Id == '',true,false)}"/> 
+								<apex:inputField styleclass="newyear" onclick="uncheckFlag('new');" label="New Year " value="{!selectedYear.New_School_Year__c}" rendered="{!IF(selectedYear.Id == '',true,false)}"/>
+							</apex:pageBlockSection>
+						</div>
+						</apex:pageBlock>
+						<input type="button" class="grey_btn" value="CANCEL" onClick="closeModal('#yearModal');" />
+						<input type="button" class="black_btn" value="SAVE" onClick="if (confirm('You are about to create a New Year. Doing this will create new setup records for all schools. New School Year and Past Year are not editable once the setups are created. To continue, click \'OK\'. To review the settings, click \'Cancel\'.')){
+																						showProgressBar(' Saving year ');
+																						saveYearJs();
+																					}" />
+						<div class="clear_fix">&nbsp;</div>
+					</apex:outputPanel>
+				</apex:outputPanel>
+			</div>
+			
+			<apex:actionFunction name="cancelSchoolJs" action="{!cancelSchool}" rerender="editSchoolPanel" />
+			<apex:actionFunction name="cancelYearJs" action="{!cancelYear}" rerender="editYearPanel" />
+			<apex:actionFunction name="nextJs" action="{!nextStep}" rerender="wizardPanel, resetPanel" />
+			<apex:actionFunction name="prevJs" action="{!prevStep}" rerender="wizardPanel, resetPanel" />
+			<apex:actionFunction name="goHomeJs" action="{!goHome}" />
+		</apex:form>
+	</body>
+</apex:page>

@@ -1,0 +1,266 @@
+<apex:page showHeader="true" sidebar="false" controller="SchoolSetup_Documents" tabStyle="SchoolForce_Setup__tab" >
+	<c:setupWizardSharedComponents summerSchoolMode="{!cSetup.setup.School__r.ParentId != null}"/>
+	<style>
+		.standardsLegend textarea{
+			width:300px;
+			height:125px;
+		}
+		.tabPanel{
+			border-radius: 9px!important;
+			border: 1px solid #ccc!important;
+			border-top: 3px solid #666!important;
+			margin-top:0;
+		}
+		.tabs .section_content .section_content{
+			margin-bottom: 10px;
+		}
+		#schoolLogo .cke_contents{
+			height:250px!important;
+		}
+
+		#schoolLogo span{
+			max-width:500px;
+		}
+
+		.adminSummary h1{
+			font-size: 18px;
+			color: #1797BF;
+			font-weight: bold;
+			text-transform: uppercase;
+			margin-bottom: 15px;
+		}
+
+		.black_btn {
+			margin-bottom: 0!important;
+		}
+
+		.redBar{
+			border-left: 3px #C00 solid;
+			padding-left: 3px;
+		}
+	</style>
+	<script>
+		j$(document).ready(function(){
+			j$(".tabs").tabs();
+		});
+
+		function validate(validationType, value){
+			var alertText = '';
+			if(validationType == 'legend' && value){
+				if(!j$("[id$='incSecGrade']").prop('checked')){
+					alertText += 'Displaying the report card legend requires section grades to be displayed. Section grades will be enabled.\n\n';
+					j$("[id$='incSecGrade']").prop('checked',true);
+				}
+			} else if(validationType == 'semesterGrade' && value){
+				if(!j$("[id$='incSecGrade']").prop('checked')){
+					alertText += 'Displaying semester grades requires section grades to be displayed. Section grades will be enabled.\n\n';
+					j$("[id$='incSecGrade']").prop('checked',true);
+				}
+			} else if(validationType == 'incSecGrade' && !value){
+				if(j$("[id$='semesterGrade']").prop('checked')){
+					alertText += 'Displaying semester grades requires section grades to be displayed. Semester grades will be disabled.\n\n';
+					j$("[id$='semesterGrade']").prop('checked',false);
+				}
+				if(j$("[id$='secAtt']").prop('checked')){
+					alertText += 'Displaying sectional attendance requires section grades to be displayed. Sectional attendance will be disabled.\n\n';
+					j$("[id$='secAtt']").prop('checked',false);
+				}
+				if(j$("[id$='secHW']").prop('checked')){
+					alertText += 'Displaying homework percentages requires section grades to be displayed. Homework percentages will be disabled.\n\n';
+					j$("[id$='secHW']").prop('checked',false);
+				}
+				if(j$("[id$='legend']").prop('checked')){
+					alertText += 'Displaying the report card legend requires section grades to be displayed. The legend will be disabled.\n\n';
+					j$("[id$='legend']").prop('checked',false);
+				}
+				if(j$("[id$='incAssign']").prop('checked')){
+					alertText += 'Displaying incomplete assignments requires section grades to be displayed. Incomplete assignments will be disabled.\n\n';
+					j$("[id$='incAssign']").prop('checked',false);
+				}
+			} else if(validationType=='secAtt' && value){
+				if(!j$("[id$='incSecGrade']").prop('checked')){
+					alertText += 'Displaying sectional attendance requires section grades to be displayed. Section grades will be enabled.\n\n';
+					j$("[id$='incSecGrade']").prop('checked',true);
+				}
+			} else if(validationType=='secHW' && value){
+				if(!j$("[id$='incSecGrade']").prop('checked')){
+					alertText += 'Displaying homework percentages requires section grades to be displayed. Section grades will be enabled.\n\n';
+					j$("[id$='incSecGrade']").prop('checked',true);
+				}
+			} else if(validationType=='incAssign' && value){
+				if(!j$("[id$='incSecGrade']").prop('checked')){
+					alertText += 'Displaying incomplete assignments requires section grades to be displayed. Section grades will be enabled.\n\n';
+					j$("[id$='incSecGrade']").prop('checked',true);
+				}
+			}
+
+			if(alertText != ''){
+				alert(alertText);
+			}
+		}
+	</script>
+
+	<apex:form >
+		<!-- MAIN CONTENT -->
+		<div style="width:990px;margin: 0 auto;">
+			<apex:outputPanel id="messages">
+				<apex:pageMessages />
+			</apex:outputPanel>
+			<div class="adminSummary">
+				<h1 class="centerHeader" style="display:block;">
+					<input type="button" onclick="prevJs();" class="grey_btn_arrow" value="School Setup Homepage"/>
+					<span style="display:inline-block;">{!cSetup.school.name} Module Setup<br/>Student Documents</span>
+					<input type="button" class="green_btn_arrow" value="Next" style="visibility:hidden;"/>
+				</h1>
+			</div>
+			<apex:pageBlock >
+				<div style="margin: 0px 0px 10px 0px;">
+					Welcome to the Student Documents Setup Wizard! This wizard will take you through each step necessary in setting up Student Documents.  Please complete all required fields and then click "Save Preferences." See SchoolForce Help for more information.
+				</div>
+
+				<div class="tabs" style="width:100%; padding: 0px; border:0;">
+					<div id="tabList">
+						<ul style="position:relative; overflow-y:hidden;" >
+							<li style="cursor:pointer; list-style-type:none; float:left;">
+								<a href="#documentTypes" style="cursor:pointer;text-decoration:none;margin:0px;">Document Types</a>
+							</li>
+							<li style="cursor:pointer; list-style-type:none; float:left;">
+								<a href="#rpOptions" style="cursor:pointer;text-decoration:none;margin:0px;">Report Card Options</a>
+							</li>
+							<li style="cursor:pointer; list-style-type:none; float:left;">
+								<a href="#transcriptOptions" style="cursor:pointer;text-decoration:none;margin:0px;">Transcript Options</a>
+							</li>
+						</ul>
+					</div>
+
+					<div id="documentTypes" class="section_content tabPanel">
+						<div id="evalDocs">
+							<apex:outputLabel value="Evaluation Documents"/>
+							<apex:inputField value="{!cSetup.setup.Evaluation_Documents__c}"/>
+						</div>
+						<div id="schoolLogo">
+							<apex:outputLabel value="School Document Logo"/>
+							<apex:inputField value="{!cSetup.setup.School_picture__c}" style="width:500px;height:250px!important;"/>
+						</div>
+						<input type="button" onclick="saveJS();" class="black_btn" value="Save Preferences"/>
+						<div class="clear_fix"/>
+					</div>
+					<div id="rpOptions" class="section_content tabPanel">
+						<h3>Global Options</h3>
+						<div class="section_content">
+							<apex:pageBlockSection >
+								<apex:inputField value="{!cSetup.setup.Display_GPA_on_Report_Cards__c}"/>
+								<apex:inputField value="{!cSetup.setup.Display_Weighted_GPA_on_Documents__c}"/>
+
+								<apex:inputField value="{!cSetup.setup.Show_Normalizations_on_Report_Cards__c}"/>
+								<apex:inputField value="{!cSetup.setup.Display_Legend_on_Report_Cards__c}" id="legend" onChange="validate('legend', this.checked);"/>
+
+								<apex:inputField value="{!cSetup.setup.Display_Reading_Level_On_Report_Card__c}"/>
+								<apex:inputField value="{!cSetup.setup.Show_Section_Comments__c}"/>
+
+								<apex:inputField value="{!cSetup.setup.Include_Section_Grades__c}" id="incSecGrade" onChange="validate('incSecGrade', this.checked);"/>
+								<apex:inputField value="{!cSetup.setup.Show_Semester_Grades_On_Report_Cards__c}" id="semesterGrade" onChange="validate('semesterGrade', this.checked);"/>
+
+								<apex:inputField value="{!cSetup.setup.Show_Sectional_Attendance_on_Report_Card__c}" id="secAtt" onChange="validate('secAtt', this.checked);"/>
+								<apex:inputField value="{!cSetup.setup.Show_Homework_Percentage__c}" id="secHW" onChange="validate('secHW', this.checked);"/>
+
+								<apex:inputField value="{!cSetup.setup.Display_Incomplete_Assignments__c}" id="incAssign" onChange="validate('incAssign', this.checked);"/>
+								<apex:inputCheckBox value="{!cSetup.setup.Show_Class_Rank__c}" disabled="{!!cSetup.setup.Calculate_Class_Rank__c}" title="Displaying the class rank requires Calculate Class Rank be true."/>
+
+								<apex:inputField value="{!cSetup.setup.Display_Cumulative_Weighted_GPA__c}"/>
+								<apex:inputField value="{!cSetup.setup.Display_Community_Service_Hours__c}"/>
+								
+								<!-- US3257 -->
+								<apex:inputField value="{!cSetup.setup.Use_1st_Reporting_Period_Start_Date_RC__c}" />
+							</apex:pageBlockSection>
+						</div>
+						<apex:outputPanel rendered="{!cSetup.setup.Standards_Based_Grading__c}">
+							<h3>Standards Based Options</h3>
+							<div class="section_content">
+								<apex:pageBlockSection >
+									<apex:inputField value="{!cSetup.setup.Show_Standard_Grades__c}"/>
+									<apex:inputField value="{!cSetup.setup.Show_Standard_Scale_on_Report_Cards__c}"/>
+
+									<apex:inputField value="{!cSetup.setup.Report_Card_Standard_Display__c}"/>
+									<apex:inputField value="{!cSetup.setup.Progress_Report_Standard_Display__c}"/>
+								</apex:pageBlockSection>
+							</div>
+						</apex:outputPanel>
+						<apex:outputPanel rendered="{!cSetup.setup.Standards_Based_Grading__c}">
+							<h3>Standards Legend</h3>
+							<div class="section_content standardsLegend">
+								<apex:pageBlockSection >
+									<apex:inputField value="{!cSetup.setup.Standard_Legend_1__c}"/>
+									<apex:inputField value="{!cSetup.setup.Standard_Legend_1_Spanish__c}"/>
+
+									<apex:inputField value="{!cSetup.setup.Standard_Legend_2__c}"/>
+									<apex:inputField value="{!cSetup.setup.Standard_Legend_2_Spanish__c}"/>
+
+									<apex:inputField value="{!cSetup.setup.Standard_Legend_3__c}"/>
+									<apex:inputField value="{!cSetup.setup.Standard_Legend_3_Spanish__c}"/>
+
+									<apex:inputField value="{!cSetup.setup.Standard_Legend_4__c}"/>
+									<apex:inputField value="{!cSetup.setup.Standard_Legend_4_Spanish__c}"/>
+
+									<apex:inputField value="{!cSetup.setup.Standard_Legend_Description_1__c}"/>
+									<apex:inputField value="{!cSetup.setup.Standard_Legend_Description_1_Spanish__c}"/>
+
+									<apex:inputField value="{!cSetup.setup.Standard_Legend_Description_2__c}"/>
+									<apex:inputField value="{!cSetup.setup.Standard_Legend_Description_2_Spanish__c}"/>
+
+									<apex:inputField value="{!cSetup.setup.Standard_Legend_Description_3__c}"/>
+									<apex:inputField value="{!cSetup.setup.Standard_Legend_Description_3_Spanish__c}"/>
+
+									<apex:inputField value="{!cSetup.setup.Standard_Legend_Description_4__c}"/>
+									<apex:inputField value="{!cSetup.setup.Standard_Legend_Description_4_Spanish__c}"/>
+								</apex:pageBlockSection>
+							</div>
+						</apex:outputPanel>
+						<input type="button" onclick="saveJS();" class="black_btn" value="Save Preferences"/>
+						<div class="clear_fix"/>
+					</div>
+					<div id="transcriptOptions" class="section_content tabPanel">
+						
+						<!-- US3229 release: Fall 2013 -->
+						<h3>Global Options</h3>
+						<div class="section_content">
+							<apex:pageBlockSection >
+								<apex:inputCheckbox value="{!csetup.setup.Show_Class_Rank_on_Transcripts__c}" disabled="{!!cSetup.setup.Calculate_Class_Rank__c}" title="Displaying the class rank requires Calculate Class Rank be true."/>
+								<apex:inputField value="{!csetup.setup.Show_Assessments_on_Transcripts__c}" />
+
+								<apex:inputField value="{!csetup.setup.Show_Activities_on_Transcripts__c}" />
+								<apex:inputField value="{!csetup.setup.Show_Honors_on_Transcripts__c}" />
+								
+								<apex:inputField value="{!csetup.setup.Show_Signature_on_Transcripts__c}" />
+								
+								<apex:inputField value="{!csetup.setup.Show_Notes_on_Transcripts__c}" />
+								<apex:inputField style="width: 100%;" value="{!csetup.setup.Notes_on_Transcripts__c}" />
+							</apex:pageBlockSection>																					
+						</div>					
+						
+						<h3>Display Options</h3>
+						<div class ="section_content">
+							<apex:pageBlockSection >
+								<apex:inputField value="{!cSetup.setup.CEEB_Code__c}"/>
+								<apex:inputField value="{!cSetup.setup.Counselor__c}"/>
+
+								<apex:inputField value="{!cSetup.setup.Registrar__c}"/>
+								<apex:inputField value="{!cSetup.setup.Registrar_Phone__c}"/>
+							</apex:pageBlockSection>
+						</div>
+						<input type="button" onclick="saveJS();" class="black_btn" value="Save Preferences"/>
+						<div class="clear_fix"/>
+					</div>
+				</div>
+			</apex:pageBlock>
+			<apex:outputPanel id="finalizeButton">
+				<apex:outputPanel rendered="{!NOT(progress.Documents_Wizard_Completed__c)}">
+					<input type="button" onClick="finalizeJS();" value="Finalize Document Setup" class="red_btn"/>
+				</apex:outputPanel>
+			</apex:outputPanel>
+		</div>
+		<apex:actionFunction action="{!save}" name="saveJS" rerender="messages"/>
+		<apex:actionFunction action="{!finalize}" name="finalizeJS" rerender="messages,finalizeButton"/>
+		<apex:actionFunction action="{!prev}" name="prevJs"/>
+	</apex:form>
+</apex:page>

@@ -1,0 +1,60 @@
+<apex:component >
+	<apex:attribute name="StudentSectionHolder" type="Student_Section__c" required="true" description="Main Section."/>
+	<apex:attribute name="StudentsToWithdraw" type="StudentInfoWrapper[]" required="true" description="List StudentWrapper."/>
+
+	<!-- Exit Student Modal -->
+	<div id="exit-student" class="modal_window"> 
+		<div class = "modal-top" style="cursor:move;" >
+			<a class="modal_close" href="#" ></a>
+			<p>&nbsp;</p>
+		</div>
+		<span class="section-header">Withdraw Student(s)</span>
+		<apex:outputPanel id="exitDatePanel">
+			<div class="field">
+				<label><strong>Exit Date</strong></label>
+				<div class="requiredInput" style="margin-left:5px">
+					<div class="requiredBlock"></div>
+		 			<apex:inputField value="{!studentSectionHolder.Enrollment_End_Date__c}"  id="exitDateID"/>
+		 		</div>
+		 		<span id="ExitdateErrorSpan" style="color:red;display:none">Date entry is invalid please enter a new value</span><br/>	
+		 		&nbsp;<label><strong>Exit Reason</strong></label>
+		 		<div class="requiredInput" style="margin-left:5px">
+					<div class="requiredBlock"></div>
+		 			<apex:inputField value="{!studentSectionHolder.Section_Exit_Reason__c}" id="exitReasonID"></apex:inputField>
+		 		</div>
+		 		<span id="ExitReasonErrorSpan" style="color:red;display:none;padding-left:90px">Exit reason is invalid please enter a new value</span>
+			</div>
+		</apex:outputPanel>
+		<hr />
+			<apex:outputPanel id="exitTable" >
+				<apex:actionStatus startText="Loading..." id="loadExit"/>
+				<div style="max-height:400px;overflow:auto;">
+					<table id="exitTable">
+						<thead>
+						<th>Students to be Exited</th>
+					</thead>
+					<tbody>
+						<apex:repeat value="{!studentsToWithdraw}" var="s">
+							<tr>
+								<td>
+									{!s.studentSection.Student_Name__c}
+									<span id="ExitDate{!s.studentSection.Student__c}" style="color:red;display:none;padding-left:90px">Cannot exit student before enrollment date.</span>
+								</td>
+								<td style="display:none">{!s.studentSection.Enrollment_Start_Date__c}</td>
+								<td style="display:none">{!s.studentSection.Student__c}</td>
+							</tr>
+						</apex:repeat>
+					</tbody>
+					  
+				</table>
+			</div>
+		</apex:outputPanel>
+		<div id="options">
+			<hr />
+			<input type="button" class="black_btn" onclick="if(!isSaving){ isSaving=true; checkErrorsExit(); } else { alert('Please wait as the system validates your request.');}" value="Save"/>
+			<input type="button" class="grey_btn" value="Cancel" onclick="close_modal('#exit-student')"/>
+		</div>
+		<p>&nbsp;</p>
+	</div>
+
+</apex:component>

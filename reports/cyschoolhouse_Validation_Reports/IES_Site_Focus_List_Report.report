@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>CUST_NAME</field>
+    </columns>
+    <columns>
+        <field>Student__c.IES_Consent_Accepted__c</field>
+    </columns>
+    <columns>
+        <field>Student__c.Local_Student_ID__c</field>
+    </columns>
+    <columns>
+        <field>Student__c.Student_Id__c</field>
+    </columns>
+    <columns>
+        <field>CUST_ID</field>
+    </columns>
+    <columns>
+        <field>Student__c.Attendance__c</field>
+    </columns>
+    <columns>
+        <field>Student__c.Behavior__c</field>
+    </columns>
+    <columns>
+        <field>Student__c.ELA_Literacy__c</field>
+    </columns>
+    <columns>
+        <field>Student__c.Math__c</field>
+    </columns>
+    <description>Use this to indicate which students have been selected for focus lists.</description>
+    <filter>
+        <criteriaItems>
+            <column>Student__c.Location__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>jacksonville,orlando,new york,los angeles,san antonio</value>
+        </criteriaItems>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Student__c.Location__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>ACCOUNT.NAME</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>IES Site Focus List Report</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>AccountCustomEntity$Student__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>DUE_DATE</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

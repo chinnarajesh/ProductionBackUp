@@ -1,0 +1,483 @@
+<apex:page sidebar="false" controller="Report_Card_Controller" showHeader="false" cache="false" renderAs="{!IF(renderPDF,'pdf','')}" action="{!saveLog}">
+	<!-- renderAs="pdf"  -->
+	<apex:stylesheet value="{!$Resource.ReportCard_CSS}"/>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>{!ldw['reportCardTitle']}</title>
+		<style type="text/css">
+			@page {
+				@bottom-left{
+					content: "{!card.School.Name}, {!card.studentInfo.student.School_Year__r.Name__c}, {!card.reportingPeriod.Name__c}";
+				}
+				@bottom-right {
+					content: "{!card.studentInfo.student.Name}, Grade {!card.studentInfo.student.Grade__c}";
+				}
+				@bottom-center {
+					content : counter(page) " of " counter(pages);
+				}
+
+			}
+		</style>
+	</head>
+	<body>
+		<div id="highschool-report" class="wrapper">
+			<div id="header" class="section-divider" style="border:1px solid #403f41; font-size:10px;">
+				<div class="main-info">
+					<c:documentLogo image="{!card.studentInfo.student}" bSchoolPicture="false" />
+					<ul>
+						<li class="school-principal" style="padding-bottom:5px;">
+							{!ldw['principal']}:<br />
+							<span>{!card.school.Principal__r.Name}</span>
+						</li>
+						<li class="school-address">
+							{!ldw['schoolAddress']}:<br /> <!-- School Address: -->
+							<span>
+								{!card.school.BillingStreet}, {!card.school.BillingCity}, {!card.school.BillingState} {!card.school.BillingPostalCode}
+							</span>
+						</li>
+					</ul>
+					<ul style="float:right; padding-right:15px;">
+						<li class="report-name">
+							{!IF(bProgressReport, ldw['progressReportFor'], ldw['reportCardFor'])}:<br />
+							<span>{!card.reportingPeriod.Name__c}</span>
+						</li>
+						<li class="report-name">
+							<span>
+								<apex:outputText value=" {0,date,yyyy'-'MM'-'dd}" style="font-weight:bold;" rendered="{!IF(card.setup.Use_1st_Reporting_Period_Start_Date_RC__c, false, true)}">
+									<apex:param value="{!card.reportingPeriod.Date_Start_Date__c}" />
+								</apex:outputText>
+
+								<apex:outputText value=" {0,date,yyyy'-'MM'-'dd}" style="font-weight:bold;" rendered="{!IF(card.setup.Use_1st_Reporting_Period_Start_Date_RC__c, true, false)}">
+									<apex:param value="{!orderedReportingPeriods[0].Date_Start_Date__c}" />
+								</apex:outputText>
+
+								 to
+								<apex:outputText value=" {0,date,yyyy'-'MM'-'dd}" style="font-weight:bold;">
+									<apex:param value="{!card.reportingPeriod.End_Date__c}" />
+								</apex:outputText>
+							</span>
+						</li>
+					</ul>
+				</div>
+				<div class="clear-fix"></div>
+			</div>
+
+			<div class="student-section-divider" style="margin-bottom:10px; width:100%; font-size:10px; padding-bottom:10px; font-size:12px; border:1px solid #403f41; font-weight:bold;" >
+				<table width="100%" id="student-info">
+					<tr>
+						<td style="font-size:20px; font-weight:bold;">
+							{!card.studentInfo.student.Name}
+						</td>
+						<td>
+							{!ldw['studentID']}#: <span>{!card.studentInfo.student.Student_Id__c}</span>
+						</td>
+						<td>
+							{!ldw['grade']}: <span>{!card.studentInfo.student.Grade__c}</span>
+						</td>
+						<td>
+							<div style="padding:0;margin:0;{!IF(bShowClassRank, '','display:none;')}">
+								{!ldw['classRank']}: <span>{!ROUND(card.studentInfo.student.Class_Rank__c,0)} of {!card.studentInfo.classSize}</span>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							{!card.studentInfo.Address}
+						</td>
+						<td>
+							{!ldw['dateOfBirth']}:
+							<apex:outputText value=" {0,date,yyyy'-'MM'-'dd}" style="font-weight:bold;">
+								<apex:param value="{!card.StudentInfo.student.Date_of_Birth__c}" />
+							 </apex:outputText>
+						</td>
+						<td>
+							<div style="{!IF(card.setup.Display_GPA_on_Report_Cards__c,'','display:none;')}">
+								{!ldw['overallGPA']}:
+								<span>{!card.studentInfo.overallGPA}</span>
+							</div>
+						</td>
+						<td>
+							<div style="padding:0;margin:0;{!IF(card.setup.Display_Weighted_GPA_on_Documents__c, '','display:none;')}">
+								{!ldw['weightedGPA']}:
+								<span>{!card.studentInfo.finalWeightedGPA}</span>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+						</td>
+						<td style="max-width:30%;">
+							<div style="padding:0;margin:0;{!IF(card.setup.Display_Cumulative_Weighted_GPA__c, '','display:none;')}">
+								{!ldw['cumulativeGPA']}:
+								<span>{!card.studentInfo.cumulativeWeightedGPA}</span>
+							</div>
+						</td>
+						<td>
+						</td>
+						<td>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div id="sectionPanel">
+				<apex:outputPanel rendered="{!bDisplaySectionGrades}">
+					<div id="main-content" style="padding:1px 30px 1px 1px; border:1px solid #403f41; border-radius:5px; overflow:hidden; min-height:0;">
+						<table id="sectionList">
+							<thead>
+								<tr>
+									<th>{!ldw['course']}</th>
+									<th>{!ldw['professor']}</th>
+									<th style="{!IF(card.setup.Show_Sectional_Attendance_on_Report_Card__c,'','display:none')}">{!ldw['attLabel']}</th>
+									<th style="{!IF(card.setup.Show_Sectional_Attendance_on_Report_Card__c,'','display:none')}">T</th>
+									<th style="{!IF(bShowHomework,'','display:none')}">H</th>
+									<th style="{!IF(card.setup.Display_Incomplete_Assignments__c,'','display:none;')}">IA</th>
+									<apex:repeat value="{!card.reportingPeriodDisplayList}" var="rp">
+										<th>{!rp}</th>
+									</apex:repeat>
+									<apex:variable value="{!bProgressReport}" var="bProgress" rendered="{!!bProgressReport}">
+										<th>{!ldw['finalGradeLabel']}</th>
+									</apex:variable>
+									<apex:variable value="{!bProgressReport}" var="bProgress" rendered="{!bProgressReport}">
+										<th>{!ldw['currentGradeLabel']}</th>
+									</apex:variable>
+								</tr>
+							</thead>
+							<tbody>
+								<apex:repeat value="{!card.sectionWrappers}" var="sw">
+									<tr class="{!sw.cssClass}">
+										<td class="course-info">
+												{!sw.courseName}
+										</td>
+										<td class="course-info">
+											{!sw.teachers}
+										</td>
+										<td class="grade" style="{!IF(card.setup.Show_Sectional_Attendance_on_Report_Card__c,'','display:none')}">
+											<apex:outputText rendered="{!sw.totalAbsent!=''}">
+												{!sw.totalAbsent}|{!sw.unexcusedPercent}%
+											</apex:outputText>
+										</td>
+										<td class="grade" style="{!IF(card.setup.Show_Sectional_Attendance_on_Report_Card__c,'','display:none')}">
+											{!sw.totalTardies}
+										</td>
+										<td class="grade" style="{!IF(bShowHomework,'','display:none;')}">
+											<apex:outputText rendered="{!sw.homeworkPercentage!=''}">
+												{!sw.homeworkPercentage}%
+											</apex:outputText>
+										</td>
+										<td class="grade" style="{!IF(card.setup.Display_Incomplete_Assignments__c,'','display:none;')}">
+											{!sw.incompleteGrades}
+										</td>
+										<apex:repeat value="{!sw.displayGrades}" var="sg">
+											<td class="grade">
+												{!sg}
+											</td>
+										</apex:repeat>
+										<td class="grade" id="sectionGrade">
+											{!sw.sectionGrade}
+										</td>
+									</tr>
+								</apex:repeat>
+							</tbody>
+						</table>
+					</div>
+				</apex:outputPanel>
+			</div>
+			<!-- Normalization display -->
+			<div style="{!IF(bDisplaySectionGrades,'','display:none;')}" id="normalizationPanel">
+				<div>
+					<div class="generic" style="width:25%; border:1px solid #403f41; margin-right:10px; overflow:hidden;{!IF(card.setup.Show_Normalizations_on_Report_Cards__c,'','display:none;')}">
+						<apex:dataTable styleClass="range-table" style="border-top:1px solid #403f41;" value="{!card.normalizations}" var="gn" rowClasses="even,odd">
+							<apex:column headerValue="{!ldw['range']}"  style="width:100%;overflow:hidden;">
+								{!gn.range}
+							</apex:column>
+							<apex:column headerValue="{!ldw['letter']}" styleClass="last" style="overflow:hidden;">
+								{!gn.Letter}
+							</apex:column>
+						</apex:dataTable>
+					</div>
+				</div>
+				<!-- Reading levels -->
+				<apex:outputPanel rendered="{!bDisplayReadingLevel}">
+					<div class="generic" style="margin-right:10px;margin-left:10px;width:20%;text-align:center; border:1px solid #403f41; overflow:hidden;">
+						<apex:dataTable styleClass="range-table" value="{!card.srps}" var="srp" id="reading-level" rowClasses="even,odd">
+							<apex:column headerValue="{!ldw['quarter']}" value="{!srp.Time__r.Name_On_Report_Card__c}"/>
+							<apex:column headerValue="{!ldw['readingLevelLabel']}" value="{!srp.Reading_Level__c}"/>
+						</apex:dataTable>
+					</div>
+				</apex:outputPanel>
+				<!-- Legend -->
+				<div class="generic" style="width:25%; border:1px solid #403f41; float:right; overflow:hidden;{!IF(card.setup.Display_Legend_on_Report_Cards__c,'','display:none;')}">
+					<small><small>
+						<table cellspacing="5" cellpadding="5" id="abreviations" style="overflow:hidden;">
+							<thead style="overflow:hidden;">
+								<tr style="overflow:hidden;">
+									<th style="width:25%">{!ldw['legendLabel']}</th>
+									<th style="width:75%">{!ldw['legendFullName']}</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="nobreak" style="{!IF(card.setup.Show_Sectional_Attendance_on_Report_Card__c,'','display:none')}">
+									<td >{!ldw['attLabel']}</td>
+									<td style="border-left:1px solid #ccc;">{!ldw['attendance']}</td>
+								</tr>
+								<tr class="nobreak" style="{!IF(card.setup.Show_Sectional_Attendance_on_Report_Card__c,'','display:none')}">
+									<td>T</td>
+									<td style="border-left:1px solid #ccc;">{!ldw['tardies']}</td>
+								   </tr>
+								<tr class="nobreak" style="{!IF(card.setup.Show_Homework_Percentage__c,'','display:none;')}">
+									<td>H</td>
+									<td style="border-left:1px solid #ccc;">{!ldw['hwCompletion']}</td>
+								</tr>
+								<tr class="nobreak" style="{!IF(card.setup.Display_Incomplete_Assignments__c,'','display:none;')}">
+									<td>IA</td>
+									<td style="border-left:1px solid #ccc;">{!ldw['incompleteAssignments']}</td>
+								</tr>
+								<apex:repeat value="{!orderedReportingPeriods}" var="rpd">
+									<tr class="nobreak">
+										<td>
+											{!rpd.Name_On_Report_Card__c}
+										</td>
+										<td  style="border-left:1px solid #ccc;">
+											{!rpd.Name__c}
+										</td>
+									</tr>
+								</apex:repeat>
+									<apex:variable value="{!bProgressReport}" var="bProgress" rendered="{!!bProgressReport}">
+									<tr class="nobreak">
+										<td class="abbr">{!ldw['finalGradeLabel']}</td>
+										<td  style="border-left:1px solid #ccc;">{!ldw['finalGrade']}</td>
+									</tr>
+								</apex:variable>
+								<apex:variable value="{!bProgressReport}" var="bProgress" rendered="{!bProgressReport}">
+									<tr class="nobreak">
+										<td class="abbr">{!ldw['currentGradeLabel']}</td>
+										<td style="border-left:1px solid #ccc;">{!ldw['currentGrade']}</td>
+									</tr>
+								</apex:variable>
+							</tbody>
+						</table>
+				   </small></small>
+				</div>
+			</div>
+
+				<!-- Standard Key -->
+				<div style="{!IF(card.Setup.Show_Standard_Scale_on_Report_Cards__c,'','display:none;')}" id="standardScale">
+					<div class="clear-fix"></div>
+						<div class="clear-fix generic" style="border:1px solid #403f41;overflow:hidden;float:none;">
+							<table class="bordered-cells" id="comments">
+								<thead>
+									<tr>
+										<th colspan="2" style="text-align:center">{!ldw['reportingKey']}</th>
+										<th style="text-align:center">{!ldw['forSkillsLabel']}</th>
+									</tr>
+								</thead>
+							<tbody>
+								<tr class="odd">
+									<td class="report-key-number">4</td>
+									<td class="report-key-definition" style="border-left:1px solid #ccc;">
+										{!IF(displaySpanish && card.Setup.Standard_Legend_4_Spanish__c!=null,card.Setup.Standard_Legend_4_Spanish__c,card.Setup.Standard_Legend_4__c)}
+									</td>
+									<td class="report-key-subject-area" style="border-left:1px solid #ccc;">
+										{!IF(displaySpanish && card.Setup.Standard_Legend_Description_4_Spanish__c!=null,card.Setup.Standard_Legend_Description_4_Spanish__c,card.Setup.Standard_Legend_Description_4__c)}
+									</td>
+								</tr>
+								<tr>
+									<td class="report-key-number">3</td>
+									<td class="report-key-definition" style="border-left:1px solid #ccc;">
+										{!IF(displaySpanish && card.Setup.Standard_Legend_3_Spanish__c!=null,card.Setup.Standard_Legend_3_Spanish__c,card.Setup.Standard_Legend_3__c)}
+									</td>
+									<td class="report-key-subject-area" style="border-left:1px solid #ccc;">
+										{!IF(displaySpanish && card.Setup.Standard_Legend_Description_3_Spanish__c!=null,card.Setup.Standard_Legend_Description_3_Spanish__c,card.Setup.Standard_Legend_Description_3__c)}
+									</td>
+								</tr>
+								<tr class="odd">
+									<td class="report-key-number">2</td>
+									<td class="report-key-definition" style="border-left:1px solid #ccc;">
+										{!IF(displaySpanish && card.Setup.Standard_Legend_2_Spanish__c!=null,card.Setup.Standard_Legend_2_Spanish__c,card.Setup.Standard_Legend_2__c)}
+									</td>
+									<td class="report-key-subject-area" style="border-left:1px solid #ccc;">
+										{!IF(displaySpanish && card.Setup.Standard_Legend_Description_2_Spanish__c!=null,card.Setup.Standard_Legend_Description_2_Spanish__c,card.Setup.Standard_Legend_Description_2__c)}
+									</td>
+								</tr>
+								<tr>
+									<td class="report-key-number">1</td>
+									<td class="report-key-definition" style="border-left:1px solid #ccc;">
+										{!IF(displaySpanish && card.Setup.Standard_Legend_1_Spanish__c!=null,card.Setup.Standard_Legend_1_Spanish__c,card.Setup.Standard_Legend_1__c)}
+									</td>
+									<td class="report-key-subject-area" style="border-left:1px solid #ccc;">
+										{!IF(displaySpanish && card.Setup.Standard_Legend_Description_1_Spanish__c!=null,card.Setup.Standard_Legend_Description_1_Spanish__c,card.Setup.Standard_Legend_Description_1__c)}
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<!--  Standards/Strnds Table -->
+				<div style="{!IF(bDisplayStandards,'','display:none;')}" id="standardsPanel">
+					<div class="clear-fix generic items-table" style="border:1px solid #403f41; overflow:hidden;float:none;display:inline-block;width:100%;">
+						<table class="bordered-cells" id="standardsTable" style="border:1px solid #403f41;overflow:hidden;">
+							<thead>
+								<tr style="{!IF(!bDisplayStrands,'','display:none;')}">
+								  <th class="section-title" style="text-align:center;min-width: 90px;">{!ldw['standardNameLabel']}</th>
+								  <th class="section-title" style="text-align:center;">{!ldw['description']}</th>
+								  <!-- <th style="text-align:center;">{!ldw['mastery']}</th> -->
+								  <apex:repeat value="{!orderedReportingPeriods}" var="rpd">
+									<th style="text-align:center;">{!rpd.Name_On_Report_Card__c}</th>
+								  </apex:repeat>
+								</tr>
+								<tr style="{!IF(bDisplayStrands,'','display:none;')}">
+								  <th class="section-title" style="text-align:center;min-width: 90px;">{!ldw['strandNameLabel']}</th>
+								  <th class="section-title" style="text-align:center;">{!ldw['description']}</th>
+								  <apex:repeat value="{!orderedReportingPeriods}" var="rpd">
+									<th style="text-align:center;">{!rpd.Name_On_Report_Card__c}</th>
+								  </apex:repeat>
+								</tr>
+							</thead>
+							<tbody style="overflow:hidden;">
+								<apex:repeat value="{!card.subjectWrappers}" var="list">
+									<tr style="overflow:hidden;">
+										<td style="background-color:#BCDFF3;padding-top:5px;padding-bottom:5px;text-align:center;border:0;" colspan="500">
+											<span style="font-weight:bold;">{!list.subject}</span>
+										</td>
+									</tr>
+									<apex:repeat value="{!list.standards}" var="stand">
+										<tr style="overflow:hidden;">
+											<td class="items" style="text-align:center;vertical-align:bottom;">{!stand.Name}</td>
+											<td class="items-definition" style="text-align:left;"><div>{!stand.description}</div></td>
+											<apex:repeat value="{!stand.grades}" var="g">
+												<td class="items-numbers" style="border-right:none; text-align:center;vertical-align:bottom;{!IF(g.isMissingRecord,'background-color:#d8d8d8;','')}">{!g.grade}</td>
+											</apex:repeat>
+										</tr>
+									</apex:repeat>
+								</apex:repeat>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<!-- Section Comments -->
+				<apex:outputPanel rendered="{!bShowSectionComments}" id="sectionComments">
+					<div class="generic" style="border:1px solid #403f41; overflow:hidden;">
+						<div>
+							<table cellspacing="5" cellpadding="5">
+								<thead>
+									<tr>
+										<th>{!ldw['course']}</th>
+										<th>{!ldw['comments']}</th>
+									</tr>
+								</thead>
+								<tbody>
+									<apex:repeat value="{!card.SectionWrappers}" var="sw">
+										<tr style="{!IF((sw.sectionComments!=null && sw.sectionComments!=''),'','display:none;')}">
+											<td>
+												{!sw.courseName}
+											</td>
+											<td style="border-left:1px solid #ccc">
+												{!sw.sectionComments}
+											</td>
+										</tr>
+									</apex:repeat>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</apex:outputPanel>
+
+				<!-- Overall comments -->
+				<apex:outputPanel rendered="{!bOverallComments}">
+					<div class="generic" style="border:1px solid #403f41; overflow:hidden;">
+						<table>
+							<thead>
+								<tr>
+									<th>{!ldw['overallComments']}</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>{!IF(displayAltLangFields,card.StudentInfo.student.Alternate_Lang_Comments__c,card.studentInfo.student.Comments__c)}</td>
+								</tr>
+						</tbody>
+					</table>
+				</div>
+				</apex:outputPanel>
+
+				<!-- Card Footer -->
+				<div style="clear:both;"/>
+				<div id="attendance" style="float:none;">
+					<div class="generic" style="border:1px solid #403f41; overflow:hidden;">
+						<div style="width: 33.7%; float: left; display: block;">
+							<table style="height:100%;overflow:hidden;" id="attendanceTableInfo">
+								<thead>
+									<tr>
+										<th colspan="2" style="border:0;">{!ldw['ydAttendanceInfo']}</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td style="font-weight:bold;">
+											{!ldw['totalAbsences']}:
+										</td>
+										<td>{!card.totalAbsent}</td>
+									</tr>
+									<tr>
+										<td style="font-weight:bold;">
+											{!ldw['totalUnexcused']}:
+										</td>
+										<td>{!card.unexcusedPercent}</td>
+									</tr>
+									<tr>
+										<td style="font-weight:bold;">
+											{!ldw['totalTardies']}:
+										</td>
+										<td>{!card.totalTardy}</td>
+									</tr>
+									<tr style="{!IF(card.setup.Display_Community_Service_Hours__c,'','display:none;')}">
+										<td style="font-weight:bold;">
+											{!ldw['serviceHours']}:
+										</td>
+										<td>{!card.studentInfo.student.Individual__r.Service_Hours_Completed__c}</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div style="width: 66%; height: 100%; float: left; display: block; text-align: center; border-left:1px solid #403f41;">
+							<table>
+								<thead>
+									<th style="border:0;height:12px;font-size:12px;padding:7px;" colspan="3">
+										&nbsp;
+									</th>
+								</thead>
+								<tbody>
+									<tr>
+										<td style="padding:0 0 0 3px;">
+											<span style="font-weight:bold;">{!ldw['promotionalStatus']}:</span> {!card.StudentInfo.student.Promotional_Status__c}
+										</td>
+										<td>
+											<span style="font-weight:bold;">{!ldw['issueDate']}:</span>
+											<apex:outputText value=" {0,date,yyyy'-'MM'-'dd}">
+												<apex:param value="{!TODAY()}" />
+											</apex:outputText>
+										</td>
+										<td style="vertical-align: top;">
+											<apex:outputPanel rendered="{!bDisplayReadingLevel && !bDisplaySectionGrades}">
+												<apex:dataTable styleClass="range-table" value="{!card.srps}" var="srp" id="so-reading-level" rowClasses="even,odd" cellpadding="3">
+													<apex:column headerValue="{!ldw['quarter']}" value="{!srp.Time__r.Name_On_Report_Card__c}"/>
+													<apex:column headerValue="{!ldw['readingLevelLabel']}" value="{!srp.Reading_Level__c}"/>
+												</apex:dataTable>
+											</apex:outputPanel>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+
+				<!-- Signature -->
+				<div class="signatures">
+					<p class="input-line">{!ldw['signature']}</p>
+					<p class="input-line">{!ldw['dateLabel']}</p>
+				</div>
+		</div>
+	</body>
+</apex:page>

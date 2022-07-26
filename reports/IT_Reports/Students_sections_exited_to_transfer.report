@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Student__c$Id</field>
+    </columns>
+    <columns>
+        <field>Student__c$Student_ID_Auto_Number__c</field>
+    </columns>
+    <columns>
+        <field>Student__c.Student_Section__r$Local_Student_ID__c</field>
+    </columns>
+    <columns>
+        <field>Student__c.Student_Section__r$Name</field>
+    </columns>
+    <columns>
+        <field>Student__c.Student_Section__r$Section_Exit_Reason__c</field>
+    </columns>
+    <columns>
+        <field>Student__c.Student_Section__r$Enrollment_End_Date__c</field>
+    </columns>
+    <columns>
+        <field>Student__c.Student_Section__r$LastModifiedDate</field>
+    </columns>
+    <description>Student/section records that were exited as tranferred to another city year school</description>
+    <filter>
+        <criteriaItems>
+            <column>Student__c.Student_Section__r$Section_Exit_Reason__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Transferred to another City Year school</value>
+        </criteriaItems>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Student__c.Student_Section__r$Location__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Student__c$Name</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Students/sections exited to transfer</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Students_with_Sections__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <sortColumn>Student__c.Student_Section__r$LastModifiedDate</sortColumn>
+    <sortOrder>Asc</sortOrder>
+    <timeFrameFilter>
+        <dateColumn>Student__c.Student_Section__r$CreatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

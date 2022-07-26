@@ -1,0 +1,185 @@
+<apex:page standardController="Setup__c" extensions="core_PublishSetup" sidebar="false" tabStyle="Schoolforce_Setup__tab">
+
+<c:setupWizardSharedComponents summerSchoolMode="{!cSetup.setup.School__r.ParentId != null}"/>
+<script>
+j$(document).ready(function(){
+	resetTable();
+});
+</script>
+
+<apex:outputPanel id="scripts">
+<script>
+function checkBatch(){
+	var bool = "{!bProcessing}";
+	if(bool=="true"){
+		showProgressBar("{!batch.status}"+'... '+"{!batch.processed}"+' of '+"{!batch.totalItems}"+' batch jobs completed.');
+		continueJS();
+	}
+}
+
+function wait(){
+	window.setInterval("checkBatch()",5000);
+}
+</script>
+</apex:outputPanel>
+<!-- List of Catalogs -->
+<table style="width:100%">
+	<tr>
+		<td style="vertical-align:top; width:15%">
+			<!-- <c:setup_sidebar setup="{!cSetup}"/> -->
+			<c:setupWizardSidebar setupId="{!cSetup.setup.id}"/>
+		</td>
+		<td style="vertical-align:top; width:85%">
+			<div id="schoolforce-wrapper" class="wrapper">
+				<!-- Error -->
+				<apex:outputPanel id="error" styleClass="pageMessages">
+					<apex:pageMessages />
+				</apex:outputPanel>
+				<!-- Error -->
+				<!-- Reset panel -->
+				<apex:outputPanel id="resetPanel">
+					<script>
+						resetTable();
+					</script>
+				</apex:outputPanel>
+				<!-- reset Panel -->
+				<h1 class="centerHeader">
+					<input type="button" onclick="prevJs();" class="grey_btn_arrow" value="Previous" />
+					<span style="display:inline-block">{!cSetup.school.Name} Core Setup<br/>Publish Schedule</span>
+					<input type="button" onclick="nextJs();" class="green_btn_arrow" value="Next" />
+				</h1>
+				<apex:outputPanel styleClass="adminSummary">
+					<br/>
+					<p>
+					In this step, SchoolForce creates the Section, Session, Staff, Staff/Section, Student, and Student/Section records for the items you set up in the Core Setup.
+					You must perform this step any time you perform any of the following tasks:
+					<ul>
+					<li>Schedule sections</li>
+					<li>Upload new staff members</li>
+					<li>Upload new students</li>
+					<li>Upload new student section assignments</li>
+					<li>Upload new staff section assignments</li>
+					</ul>
+					To publish the Section and Session records, click <b>Prepare Data</b>. 
+					When the prepare data process completes, click <b>Publish Schedule</b>.
+					</p>
+					<br/>
+				</apex:outputPanel>
+				<div class="content-wrapper no-border">
+					<apex:outputPanel id="homePanel">
+						<apex:form >
+							<h3>Publish Schedule for School: {!cSetup.setup.school__r.name}; Term: {!cSetup.setup.year__r.Name__c}</h3>
+							<div class="section_content">
+								<table>
+									<apex:repeat value="{!reportingPeriods}" var="r">
+										<tr>
+											<td>Reporting Period Name: {!r.te.Name__c}; Id: {!r.te.id}</td>
+											<td id="prepareData">
+												<span class="helpButton" id="prepareData_helpText-_help">
+													<img src="/s.gif" class="helpOrb" />
+													<script type="text/javascript">
+														sfdcPage.setHelp('prepareData_helpText','Click to prepare the scheduled section data in the holding objects.');
+													</script>
+												</span>
+											</td>
+											<td>
+												<apex:commandButton value="Prepare Data" disabled="{!!r.bSetup}" onclick="showProgressBar('Preparing data for publish.  Please wait. Do not refresh.');" action="{!setupPublish}" oncomplete="wait();" rerender="error, scripts">
+													<apex:param name="rpId"  value="{!JSENCODE(r.te.id)}" assignTo="{!rpId}"/>
+												</apex:commandButton>
+											</td>
+											<td id="publishData">
+												<span class="helpButton" id="publishData_helpText-_help">
+													<img src="/s.gif" class="helpOrb" />
+													<script type="text/javascript">
+														sfdcPage.setHelp('publishData_helpText','Click to create the sections and sessions from the data in the holding objects.');
+													</script>
+												</span>
+											</td>
+											<td>
+												<apex:commandButton value="Publish Schedule" disabled="{!!r.bPublish}" onclick="showProgressBar('Publishing data.  Please wait.  Do not refresh.');" action="{!publishData}" oncomplete="wait();" rerender="error, scripts">
+													<apex:param name="rpId" value="{!JSENCODE(r.te.id)}" assignTo="{!rpId}" />
+												</apex:commandButton>
+											</td>
+										</tr>
+										<apex:outputPanel rendered="{!IF(r.publishLog.size==0,false,true)}" >
+											<tr>
+												<td>
+												<table>
+													<tr style="height:auto;">
+														<td style="width:20px" />
+														<th style="width:75px">Log Type</th>
+														<th style="width:75px">Status</th>
+														<th style="width:150px">Total Records Processed</th>
+														<th style="width:100px">Records Failed</th>
+														<th style="width:200px">Run Complete</th>
+													</tr>
+													<apex:repeat value="{!r.publishLog}" var="log">
+														<tr style="height:auto;">	
+															<td style="width:20px" />
+															<td>{!log.Type__c}</td>
+															<td>{!log.Status__c}</td>
+															<td>{!FLOOR(log.Total_Records__c)}</td>
+															<td>{!FLOOR(log.Failed_Records__c)}</td>	
+															<td>{!log.End_Time_Text__c}</td>						
+														</tr>
+														<tr style="height:auto;">	
+															<td style="width:20px" />
+															<apex:outputPanel rendered="{!IF(log.Messages__c==null,false,true)}" >
+															<td>Error Messages: {!log.Messages__c}</td>
+															</apex:outputPanel>
+														</tr>
+													</apex:repeat>
+												</table>
+												</td>
+											</tr>
+										</apex:outputPanel>
+										<apex:outputPanel rendered="{!IF(r.needPublish && (r.errors.size>0),true,false)}">
+											<tr style="height:auto;">
+												<td>
+												<table>
+													<tr style="height:auto;">
+														<td style="width:20px" ></td>
+														<td>
+															<apex:dataTable styleclass="tablesorter" title="Error Results" value="{!r.errors}" var="err">
+																<apex:column headerValue="Holder ID" value="{!err.id}" />
+																<apex:column headerValue="Type" value="{!err.Type__c}" />
+																<apex:column headerValue="Error" value="{!err.Error_Message__c}" />
+															</apex:dataTable>
+														</td>
+													</tr>
+												</table>
+												</td>
+											</tr>
+										</apex:outputPanel>
+									</apex:repeat>
+								</table>
+							</div>
+							<h3>Other Publish Information</h3>
+							<div class="section_content">
+							    <p>
+							    Click <b>Publish Staff/Student Records</b> to create any Staff, Staff/Section, Student, or Students/Section records you have set up in previous steps.
+							    </p>
+								<apex:commandButton value="Publish Staff/Student Records" disabled="{!!nonRPBased}" onclick="showProgressBar('Publishing data.  Please wait.  Do not refresh.');" action="{!publishData}" oncomplete="wait();" rerender="error, scripts" />
+								<br />
+								<b>Data logs from previous publishes:</b>
+								<apex:dataTable styleclass="tablesorter" title="Log History" value="{!logs}" var="l">
+									<apex:column headerValue="Log Type" value="{!l.Type__c}" />
+									<apex:column headerValue="Status" value="{!l.Status__c}" />
+									<apex:column headerValue="Total Records Processed" value="{!l.Total_Records__c}" />
+									<apex:column headerValue="Records Failed" value="{!l.Failed_Records__c}" />
+									<apex:column headerValue="Run Complete" value="{!l.End_Time_Text__c}" />
+									<apex:column headerValue="Owner" value="{!l.OwnerId}" />
+								</apex:dataTable>
+							</div>
+							<!-- ACTION FUNCTIONS -->
+							<apex:actionFunction name="continueJS" action="{!continueBatch}" rerender="error, scripts" />
+							<apex:actionFunction name="prevJs" action="{!prev}" />
+							<apex:actionFunction name="nextJs" action="{!next}" />
+						</apex:form>
+					</apex:outputPanel>
+				</div>
+			</div>
+		</td>
+	</tr>
+</table>
+</apex:page>

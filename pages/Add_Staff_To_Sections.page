@@ -1,0 +1,63 @@
+<apex:page controller="Gradebook_AddStaff" >
+
+    <c:admin />
+    
+    <apex:form >
+    <apex:outputPanel id="addStaff">
+                <table style="width:100%">
+                <tr>
+                    <th>
+                    Staff
+                    </th>
+                    <th>
+                    Sections
+                    </th>
+                </tr>
+                    <tr>
+                        <td>
+                            <apex:dataTable styleClass="staffToSections"  value="{!options1}" var="ss" title="Sections">
+                               <apex:column title="Select" width="15px">
+                                   <apex:facet name="header">Select</apex:facet>
+                                   <apex:inputCheckBox value="{!ss.selected}" />
+                               </apex:column>
+                               <apex:column title="Name">
+                                   <apex:facet name="header">Name</apex:facet>
+                                   <apex:outputText value="{!ss.name}" />
+                               </apex:column>
+                                <apex:column title="Name">
+                                   <apex:facet name="header">School</apex:facet>
+                                   <apex:outputText value="{!ss.data1}" />
+                               </apex:column>
+                            </apex:dataTable>   
+                        </td>
+                        <td>
+                            <apex:dataTable styleClass="staffToSections"  value="{!options2}" var="ss" title="Sections">
+                               <apex:column title="Select" >
+                                   <apex:facet name="header">Select</apex:facet>
+                                   <apex:inputCheckBox value="{!ss.selected}" />
+                               </apex:column>
+                               <apex:column title="Name">
+                                   <apex:facet name="header">Name</apex:facet>
+                                   <apex:outputText value="{!ss.name}" />
+                               </apex:column>
+                               <apex:column title="School">
+                                   <apex:facet name="header">School</apex:facet>
+                                   <apex:outputText value="{!ss.data1}" />
+                               </apex:column>
+                            </apex:dataTable>   
+                        </td>
+                    </tr>
+                </table>
+                <apex:commandButton value="Add Staff" action="{!addStaff}" rerender="addStaff" oncomplete="renderTables(staffToSections);"/>
+                <script>
+                j$('.staffToSections').dataTable( {
+                            "sScrollY": "300px",
+                            "bAutoWidth": true,
+                            "bPaginate": true,
+                            "bJQueryUI": true,
+                            "iDisplayLength" : 25
+                            } );
+                </script>
+            </apex:outputPanel>
+    </apex:form>
+</apex:page>

@@ -1,0 +1,337 @@
+<apex:page sidebar="false" renderAs="{!IF(renderPDF,'pdf','')}" controller="Transcript_Controller"  showHeader="false" cache="false" action="{!saveLog}">
+    <!--  renderAs="pdf"  -->
+    <apex:stylesheet value="{!$Resource.Transcript_CSS}"/>
+    <head>
+	    <title></title>
+	    <style>
+	        @page {
+	        	margin: 0%;
+	        	size:letter landscape;
+	        }
+	    </style> 
+    </head>
+    
+    <body>
+    	<div class="mainPage">
+	    	<div class="tbody">
+		    	<div id="transcript-header" class="wrapper">
+					<div id="header" class="section-divider">
+		                <!-- In the white area -->
+		                <div class="high-level-student-info">
+		                    <c:documentLogo image="{!pictureHolder}" bSchoolPicture="{!bSchoolPicture}"/>
+		                    <ul style="margin-left:20px; margin-right:15px; float:right;">
+		                    	<li>
+		                    		<h2 style="{!IF(bOfficialTranscript, '', 'display:none;')}">Official</h2>
+		                    		<h2 style="{!IF(bOfficialTranscript, 'display:none;', '')}">Unofficial</h2>
+		                    	</li>
+		                        <li><h2>Transcript</h2></li>
+		                        <li><span>{!studentWrapper.PeriodInfo}</span></li>
+		                    </ul>
+		                    <ul style="margin-left:20px; float:right;">
+		                       <li>BIRTHDATE<span>{!studentWrapper.dateOfBirth}</span></li> 
+		                       <li>GRADE<span>{!studentWrapper.Grade}</span></li>
+		                   </ul>
+		                   <ul style="margin-left:15px; float:right;">
+		                        <li>STATE ID#<span>{!studentWrapper.StateID}</span></li>
+		                        <li>STUDENT ID#<span>{!studentWrapper.StudentID}</span></li> 
+		                    </ul>
+		                    
+		                    <div class="clear_fix"></div>
+		                </div><!-- END HIGH LEVEL INFO -->
+		                
+		                <br/>
+		                
+		                <!-- In the blue area -->
+		                <div class="high-level-school-info">
+		                   	<ul>
+		                        <li>
+		                            <span>
+		                                {!studentWrapper.schoolName}
+		                            </span> 
+		                        </li>
+		                        <li>
+		                            <span style="clear:right;">
+		                                {!studentWrapper.schoolStreetAddress1}
+		                            </span>
+		                            <br />
+		                            <span>
+		                                {!studentWrapper.schoolStreetAddress2}
+		                            </span>
+								</li> 
+		                   	</ul>
+		                   	<ul>
+		                        <li>
+		                            <span>
+		                                School Phone: {!studentWrapper.schoolPhone}
+		                            </span>
+		                            <br/>
+		                            <span>
+		                                {!studentWrapper.schoolWebsite}
+		                            </span>
+		                        </li>
+		                    </ul>
+		                    <ul>
+		                        <li>Registrar: <span>{!studentWrapper.registrar}</span></li>
+		                        <li>Registrar Phone: <span>{!studentWrapper.registrarPhone}</span></li> 
+		                    </ul>
+		                    <ul>
+		                        <li>CEEB#: <span>{!studentWrapper.CEEB}</span></li>
+		                        <li>Counselor: <span>{!studentWrapper.counselor}</span></li> 
+		                    </ul>
+		                    <ul>
+		                        <li>Principal: <span>{!studentWrapper.principal}</span></li>
+		                        <li>ISSUED ON: <span>{!studentWrapper.issueDate }</span></li>
+		                    </ul>
+		                </div>
+		                
+		                <div style="clear:both;background-color:#75BEE9;height:1px;">&nbsp;</div>
+					
+					</div>    	
+		    	</div>
+		    
+		        <div id="transcript-body" class="wrapper">         
+		            <!-- The area above the school summary -->    
+		            <div class="wrapper">
+		                <div class="student-name">               
+		                    <ul>
+		                        <li>{!studentWrapper.studentName}</li>
+		                    </ul>
+		                    
+		                     <ul>
+		                        <li>
+		                            <span style="clear:right;">
+		                                {!studentWrapper.Address1}
+		                            </span>
+		                            <span>
+		                                {!studentWrapper.Address2}
+		                            </span>
+		                        </li>
+		                    </ul>
+		                    <ul>
+		                        <li>Guardian(s): <span>{!studentWrapper.parentInfo}</span></li>
+		                    </ul>   
+		                </div>   
+		           	</div>
+		            
+		            <br/>
+		    
+			    	<!-- Where school summary Info starts -->
+			        <div style="clear:both;padding-top:2px;">
+			            <apex:repeat value="{!studentGradeList}" var="yearlist">  
+			                <div style="width:142px; float:left; text-align:center; margin-left: 6px; padding: 5px 0px;">
+			                    {!yearlist.reportingYear}
+			                </div>
+			            </apex:repeat>
+			        </div>
+		        
+		        	<div style="clear:both;">
+			        	<!-- did not touch much here! -->
+			        	<apex:repeat value="{!studentGradeList}" var="gl">
+			        		<apex:outputpanel rendered="{!!gl.isFake}">
+			            		<div id="schools" class="year-summary">
+			                		<table style="font-size:9px;" >
+			                    		<tr >
+			                        		<th style="font-size:9px;width:82px;background-color: #75BEE9;border-right: 1px solid  #99D2F4; font-weight: bold;padding: 5px 0px;text-align: center;height: 20px;" >
+			                            		Course
+			                        		</th>
+			                        		<th style="font-size:9px;width:30px;background-color: #75BEE9;border-right: 1px solid  #99D2F4; font-weight: bold;padding: 5px 0px;text-align: center;height: 20px;" class="rotate">
+			                            		FG
+			                        		</th>
+			                        		<th style="font-size:9px;width:30px;background-color: #75BEE9;border-right: 1px solid  #99D2F4; font-weight: bold;padding: 5px 0px;text-align: center;height: 20px;" class="rotate">
+			                            		CE
+			                        		</th> 
+			                    		</tr>
+			                    		
+			                    		<tbody style="width:142px;min-height:210px;">
+			                        		<apex:repeat value="{!gl.schools}" var="s">
+			                        			<tr style="background-color:#1C75BC;font-size:10px;font-color:#FFFFFF;">
+						                            <td colspan="3" style="padding: 2px;height:15px; color:#fff;">  
+						                                    {!s.schoolName}
+						                            </td>
+			                        			</tr>
+			                        			<tr>
+							                        <td colspan="3">
+							                            <div>
+							                                <table>
+							                                    <apex:repeat value="{!s.FinalGrades}" var="fg">
+							                                        <tr style="padding: 5px 0px;">
+							                                            <td style="width:82px;border-right:1px solid #DFDFDF;text-align:left;font-size:9;padding: 5px 3px;">
+							                                                {!fg.courseName} 
+							                                            </td>
+							                                            <td style="text-align:center;font-size:9;;width:30px;border-right:1px solid #DFDFDF;padding: 5px 3px;">
+							                                                {!fg.finalGrade} 
+							                                            </td >
+							                                            <td style="text-align:center;font-size:9;width:30px;border-right:1px solid #DFDFDF;padding: 5px 3px;">
+							                                                {!fg.creditEarned} 
+							                                            </td>
+							                                        </tr>
+							                                   </apex:repeat>
+							                               </table>
+							                           </div>
+							                       </td>
+							       				</tr>
+			                       			</apex:repeat>
+			                       		</tbody>
+				                       	<tfoot>
+				                        	<tr valign="bottom" style="background-color: #D8D8D8;" >
+				                            	<td valign="bottom" style="padding: 5px 0px;margin:0px;border-right:1px solid #DFDFDF;text-align:center;font-size:9;">
+				                               		Final GPA
+				                               	</td>
+				                               	<td colspan="2" style="padding: 5px 0px;margin:0px;text-align:center;font-size:9;">
+				                               		{!gl.finalGPA}
+				                               	</td>
+				                           	</tr>
+				                           	<tr valign="bottom" style="background-color: #FFFFFF;">
+				                               	<td valign="bottom" style="padding: 5px 0px;margin:0px;border-right:1px solid #DFDFDF;text-align:center;font-size:9;">
+				                               	Cumulative Credits
+				                               	</td>
+				                              	<td colspan="2" style="padding: 5px 0px;margin:0px;text-align:center;font-size:9;">
+				                                	{!gl.creditAccu}
+				                              	</td>
+				                           	</tr>
+				                      	</tfoot>
+			                		</table>
+			                	</div>
+			               	</apex:outputpanel> 
+			        	</apex:repeat>
+			        </div> <!-- end of transcript body-->       
+			
+					<div style="clear:both;"/>
+			
+		           	<div id="legends">
+		                <div style="max-width: 50%; width:49.8%; max-height:96px; position: relative; float:right; padding-bottom: 6px; margin:0; border-radius:5px; border:1px solid #403f41;{!IF(student.Setup__r.Show_Standard_Scale_on_Report_Cards__c,'','display:none;')}"> <!-- width:280px; -->
+		                	<table class="bordered-cells" style="width:100%; font-size:9px;">
+		                    	<tr>
+		                        	<th colspan="2" style="background-color:#75BEE9;height:15px; font-size:11px; padding:3px; border-top:0px solid #403f41;">Reporting Key</th>
+		                        </tr>
+			                    <tbody>
+				                    <tr>
+				                      <td class="report-key-number" style="padding:3px;">4</td>
+				                      <td class="report-key-definition" style="padding:3px;">{!student.Setup__r.Standard_Legend_4__c}</td>
+				                    </tr>
+				                    <tr>
+				                      <td class="report-key-number" style="padding:3px;">3</td>
+				                      <td class="report-key-definition" style="padding:3px;">{!student.Setup__r.Standard_Legend_3__c}</td>
+				                    </tr>
+				                    <tr>
+				                      <td class="report-key-number" style="padding:3px;">2</td>
+				                      <td class="report-key-definition" style="padding:3px;">{!student.Setup__r.Standard_Legend_2__c}</td>
+				                    </tr>   
+				                    <tr>
+				                      <td class="report-key-number" style="padding:3px;">1</td>
+				                      <td class="report-key-definition" style="padding:3px;">{!student.Setup__r.Standard_Legend_1__c}</td>
+				                    </tr>
+			                  	</tbody>
+			                </table>
+			            </div>
+			            
+						<div class="grade-legend" style="max-width:50%; width: 49.8%; max-height:96px; position: relative; float:right; border-radius:5px;border:1px solid #403f41;{!IF(student.Setup__r.Show_Normalizations_on_Report_Cards__c,'','display:none;')}">
+						    <div style="width:auto;background-color:#75BEE9; padding:3px; font-size:11px;">
+						    	<span>Grade Scale</span>    
+							</div>				
+							<div style="width: 100%; height: auto;">
+								<ul>
+									<apex:repeat value="{!rkList1}" var="rk">
+										<li class="{!rk.column}" style="background-color:{!rk.bgColor};">
+											<span style="width: 100%; padding: 2px;"> 
+												{!rk.range} 
+											</span>
+											<span style="width: 100%; padding: 2px; text-align:left;">
+												{!rk.Grade}
+											</span>
+										</li>
+									</apex:repeat>
+								</ul>
+							</div>	
+				    	</div>		            
+			               
+		            </div><!-- end of second horizontal info -->		
+					
+					<!-- additional information -->		
+					<div class="additional-info">
+				    	<div style="background-color:#75BEE9; padding:3px; margin-top:0px; font-size:11px;">Additional Information</div>
+						<div style="background-color:white;">
+							<table style="width: 100%;">
+								<tr>
+									<td style="{!IF(!student.Setup__r.Show_Assessments_on_Transcripts__c && !student.Setup__r.Show_Activities_on_Transcripts__c && !student.Setup__r.Show_Honors_on_Transcripts__c, 'border-right:1px solid #414042;max-width:23%; width:23%; margin-left:5px; vertical-align: top;', 'border-right:1px solid #414042;max-width:23%; width:23%;margin-left:5px; vertical-align: top;')}">
+										<div>
+											<span style="margin-right:7px; padding-left: 5px; font-weight:bold;">Cumulative Credit Earned:</span> {!studentWrapper.cumCredits}<br/>
+											<span style="margin-right:7px; padding-left: 5px; font-weight:bold;">Weighted GPA:</span>{!studentWrapper.overallGPA}<br />
+											<span style="{!IF(student.Setup__r.Display_GPA_on_Report_Cards__c,'','display:none;')}">
+											<span style="margin-right:7px; padding-left: 5px; font-weight:bold;">Unweighted GPA:</span>{!studentWrapper.overallUnWeightedGPA}<br/>
+											</span>
+										 
+											<!-- US3229 release: Fall 2013 -->
+											<span style="{!IF(student.Setup__r.Show_Class_Rank_on_Transcripts__c, '', 'display:none;')}" >
+												<span style="margin-right:7px; padding-left: 5px; font-weight:bold;">Class Rank:</span><span style="{!IF(studentWrapper.classRank = '','display:none;','')}">{!studentWrapper.classRank} out of {!studentWrapper.classSize}</span><br/>
+											</span>
+										
+											<span style="margin-right:7px; padding-left: 5px; font-weight:bold;">Community Service Hours:</span>{!studentWrapper.totalServicehours} <br/>
+											<span style="margin-right:7px; padding-left: 5px; font-weight:bold;">Projected Graduation Date:</span>{!studentWrapper.projectedGraduationDate}<br/>
+											<span style="margin-right:7px; padding-left: 5px; font-weight:bold;">Actual Graduation Date:</span>{!studentWrapper.ActualGraduationDate}<br/>
+																
+											<div style="padding-right:0px; padding-top: 5px;"> <!-- width=100%;border-right:1px solid #414042; -->
+												<div style="background-color:#75BEE9; width=236px; padding:3px; font-size:11px;">
+													<span>Key</span>
+												</div>
+											</div>
+											<div style="margin:3px;">
+												<span style="margin: 0 7px; padding:3px;">FG - Final Grade</span>
+												<span style="padding:3px;" >CE - Credits Earned</span>
+											</div>
+										</div>                       
+									</td>
+									
+											<td style="{!IF(student.Setup__r.Show_Assessments_on_Transcripts__c, 'padding:5px;margin-left:5px; border-right:1px solid #414042;', 'display:none;')}" rowspan="3">Assessment:<br/>
+												{!studentWrapper.Assessment}&nbsp;
+											</td>
+
+											<td style="{!IF(student.Setup__r.Show_Activities_on_Transcripts__c, 'padding:5px;margin-left:5px; border-right:1px solid #414042;', 'display:none;')}" rowspan="3">Activities:<br/>
+												{!studentWrapper.Activities}&nbsp;  
+											</td>
+
+											<td style="{!IF(student.Setup__r.Show_Honors_on_Transcripts__c, 'padding:5px;margin-left:5px; border-right:1px solid #414042;', 'display:none;')}" rowspan="3">Honors:<br/>
+												{!studentWrapper.Honors}&nbsp;
+											</td>									
+								</tr>    
+							</table>
+						</div>
+					</div><!-- END of additional-info -->
+					<div class="clear-fix"></div>
+					<br/>    
+		           
+				</div>      	
+			</div>
+			
+			<div class="clear-fix"></div>
+			<div class="grade-legend" style="max-width:50%; width: 49.8%; max-height:96px; float:right; border-radius:5px;border:1px solid #403f41;{!IF(student.Setup__r.Show_Notes_on_Transcripts__c,'','display:none;')}">
+			    <div style="width:auto;background-color:#75BEE9; padding:3px; font-size:11px;">
+			    	<span>Notes</span>    
+				</div>
+				<div style="width: 100%; height: auto; font-size:10px;">
+					<div style="padding:3px;">
+						{!student.setup__r.Notes_on_Transcripts__c}
+					</div>
+				</div>	
+			</div> 
+			<div id="transcript-footer" class="tfooter">
+	           	<div id="footer" class="wrapper">
+	            	<div id="official-authorization" style="{!IF(student.Setup__r.Show_Signature_on_Transcripts__c, 'max-width: 50%; width: 50%; margin-left: 50px; magin-right: 50px;', 'display: none;')}">
+			           	<div style="padding:0px;float:left;">
+			            	<div style="width:200px;float:left;text-align:center; ">
+			                	<div style="height:85px;"></div>
+				                <hr style="width:200Px;"></hr>
+				                ADMINISTRATOR'S SIGNATURE
+				            </div>     
+		                </div>
+		                <div style="width:200px;float:left; text-align:center;">
+		                	<div style="height:85px;"></div>
+		                	<hr style="width:100Px;"></hr>
+		                	SIGNER'S TITLE    
+				       	</div>    	
+			       	</div>
+		       	</div>
+			</div>
+		</div>        
+	</body>
+</apex:page>

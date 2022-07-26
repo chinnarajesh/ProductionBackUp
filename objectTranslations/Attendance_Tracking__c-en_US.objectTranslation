@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Attendance Tracking</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Attendance Tracking</value>
+    </caseValues>
+    <fields>
+        <label><!-- Admin Notifications (Consecutive) --></label>
+        <name>Admin_Notifications_cons__c</name>
+        <picklistValues>
+            <masterLabel>Administration Notified</masterLabel>
+            <translation><!-- Administration Notified --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Notify Administration</masterLabel>
+            <translation><!-- Notify Administration --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Admin Notifications (Cumulative) --></label>
+        <name>Admin_Notifications_cuml__c</name>
+        <picklistValues>
+            <masterLabel>Administration Notified</masterLabel>
+            <translation><!-- Administration Notified --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Notify Administration</masterLabel>
+            <translation><!-- Notify Administration --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Consecutive --></label>
+        <name>Consecutive__c</name>
+    </fields>
+    <fields>
+        <label><!-- Cumulative --></label>
+        <name>Cumulative__c</name>
+    </fields>
+    <fields>
+        <label><!-- External Id --></label>
+        <name>External_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Key --></label>
+        <name>Key__c</name>
+    </fields>
+    <fields>
+        <label><!-- Minutes Lost --></label>
+        <name>Minutes_Lost__c</name>
+    </fields>
+    <fields>
+        <label><!-- Notification --></label>
+        <name>Notification__c</name>
+        <relationshipLabel><!-- Attendance Tracking --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Old Consecutive Value --></label>
+        <name>Old_Consecutive_Value__c</name>
+    </fields>
+    <fields>
+        <label><!-- Parental Notification Required --></label>
+        <name>Parental_Notification_Required__c</name>
+        <picklistValues>
+            <masterLabel>Notification Sent</masterLabel>
+            <translation><!-- Notification Sent --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Send Notification</masterLabel>
+            <translation><!-- Send Notification --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>Picklist_Value__c</name>
+        <relationshipLabel><!-- Attendance Tracking --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Requires Processing? --></label>
+        <name>Requires_Processing__c</name>
+    </fields>
+    <fields>
+        <label><!-- School Name --></label>
+        <name>School_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>Status__c</name>
+    </fields>
+    <fields>
+        <label><!-- Student --></label>
+        <name>Student__c</name>
+        <relationshipLabel><!-- Attendance Tracking --></relationshipLabel>
+    </fields>
+    <layouts>
+        <layout>Attendance Tracking Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Vowel</startsWith>
+</CustomObjectTranslation>

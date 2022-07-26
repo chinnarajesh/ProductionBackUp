@@ -1,0 +1,13 @@
+<apex:page controller="core_CustomLinksController" sidebar="false" showHeader="false">
+<div style="background-color:#cfeef8; height:500px;">
+
+
+<apex:repeat value="{!linkList}" var="Master">
+<h3>{!Master.sLabel}</h3><br/>
+<apex:repeat value="{!Master.lwList}" var="Child">
+<small><a href="{!Child.redirect}" target="top">{!Child.label}</a><br/></small> 
+</apex:repeat><br/>
+</apex:repeat><br/> 
+<small><small></small></small>
+</div>
+</apex:page>

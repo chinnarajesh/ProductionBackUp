@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Account$Name</field>
+    </columns>
+    <columns>
+        <field>Account.Sections__r.Student_Section__r$School__c</field>
+    </columns>
+    <columns>
+        <field>Account.Sections__r.Student_Section__r$Id</field>
+    </columns>
+    <columns>
+        <field>Account.Sections__r.Student_Section__r$Student_Name__c</field>
+    </columns>
+    <columns>
+        <field>Account.Sections__r$Name</field>
+    </columns>
+    <columns>
+        <field>Account.Sections__r$Id</field>
+    </columns>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Account.Sections__r$Location__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Student/section with school</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Student_section_with_school__c</reportType>
+    <scope>organization</scope>
+    <showDetails>false</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>Account$CreatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

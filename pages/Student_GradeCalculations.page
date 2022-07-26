@@ -1,0 +1,651 @@
+<apex:page showHeader="false" sidebar="false" controller="Student_GradeCalculations">
+	<apex:stylesheet value="{!$Resource.New_Core_UX}"/>
+	<c:jQueryInit bDataTables="true" bClueTip="true" bLoadingPanel="true"/>
+
+	<script>
+		var table1;
+		j$(document).ready(function(){
+			resetTables();
+			setupTabs();
+			fixSize();
+		});
+
+		function fixSize(){
+			newWidth = j$('.wrapper').outerWidth()+20;
+			newHeight = .8*screen.height;
+			window.resizeBy(newWidth-j$(window).width(), newHeight-j$(window).height());
+		}
+		function resetTables(){
+			table1 = j$(".tablesorter").dataTable( {
+				"sScrollY": "200px",
+				"bFilter": false,
+				"bSort": false,
+				"bInfo": false,
+				"bAutoWidth": true,
+				"bPaginate": false,
+				"bDestroy": true,
+				"bJQueryUI": true,
+				"bScrollCollapse": true,
+				"iDisplayLength": 1000
+			});
+		}
+
+		function resizeTables(){
+			if(table1 != null){
+				for(var i=0;i<table1.size();i++){
+					j$(table1[i]).dataTable().fnAdjustColumnSizing();
+				}
+	  		}
+		}
+
+		function setupTabs(){
+			j$(".tabs").tabs({
+				//select: works kind of like onClick, what we really want is onComplete (table is visable), so use show:
+  				show: function( event, ui ){
+  					resizeTables();
+  				}
+			});
+		}
+
+		function configureModal(selector){
+			var viewportHeight = j$(window).height();
+			var viewportWidth = j$(window).width();
+
+			var dialog = 
+				j$(selector).dialog({
+					modal: true,
+					minWidth: .8*viewportWidth,
+					maxHeight: .9*screen.height,
+					height: .9*viewportHeight,
+					zIndex: 5,
+					resizeStop: function(event, ui){
+						resizeTables();
+					},
+					title: '{!student.Name} - {!student.School_Year__r.Name__c}',
+					close: function(event, ui) {
+						j$(this).dialog('destroy');
+					},
+					buttons: {
+						"Cancel": function(){
+							j$(this).dialog('close');
+						}
+		            }
+				});
+
+			console.log(j$(dialog).parent()[0].scrollHeight);
+			console.log(0.7*viewportHeight);
+			
+		}
+
+		function resetSize(selector){
+			var viewportHeight = screen.height;
+
+			if(j$(selector).parent()[0].scrollHeight>0.7*viewportHeight){
+				resizeTables();
+			}
+		}
+
+		function openFGModal(){
+			configureModal('#finalGradeDrill');
+			resetTables();
+			resetSize('#finalGradeDrill');
+		}
+
+		function openSGModal(){
+			configureModal('#sectionGradeDrill');
+			resetTables();
+			resetSize('#sectionGradeDrill');
+		}
+
+		function openRankModal(){
+			configureModal('#rankDrill');
+		}
+	</script>
+	<style type="text/css">
+		.drillable{
+			border-bottom: 1px solid blue;
+			cursor: pointer;
+		}
+
+		.innerBlock, .contentBlock{
+			border: 1px solid #ccc;
+			border-radius:7px;
+			padding: 3px;
+		}
+
+		.contentBlock{
+			padding:10px;
+		}
+		.resultsTable{
+			margin:auto;
+			margin-top:5px;
+			width:80%
+		}
+		.resultsTable th{
+			padding:3px; 
+			background:#B5E3F2; 
+			border:1px solid #67b2ce;
+			text-align: center;
+		}
+		.resultsTable td{
+			padding:3px;
+			text-align: center;
+		}
+		.topSpace{
+			margin-top:20px;
+		}
+		.bottomSpace{
+			margin-bottom:20px;
+		}
+		.center{
+			text-align: center;
+		}
+		.same-col-size{
+			table-layout: fixed;
+		}
+	</style>
+<apex:form >
+	<apex:pageMessages />
+	<div class="wrapper tabs">
+		<h1>Detailed grade information for: {!student.Name} for {!student.School_Year__r.Name__c}</h1>
+		<div id="tabList">
+			<ul style="position:relative; overflow-y:hidden;" >
+				<li style="cursor:pointer; list-style-type:none; float:left;">
+					<a href="#finalGrades" style="cursor:pointer;text-decoration:none;margin:0px;">Section/Final Grades</a>
+				</li>
+				<li style="cursor:pointer; list-style-type:none; float:left;">
+					<a href="#GPAs" style="cursor:pointer;text-decoration:none;margin:0px;">GPAs</a>
+				</li>
+				<!-- <li style="cursor:pointer; list-style-type:none; float:left;">
+					<a href="#standardGrades" style="cursor:pointer;text-decoration:none;margin:0px;">Standard Grades</a>
+				</li>
+				<li style="cursor:pointer; list-style-type:none; float:left;">
+					<a href="#strandGrades" style="cursor:pointer;text-decoration:none;margin:0px;">Strand Grades</a>
+				</li> -->
+			</ul>
+		</div>
+
+		<div id="finalGrades">
+			<apex:pageBlock >
+				<table style="margin:auto;" class="tablesorter">
+					<thead>
+						<tr>
+							<th>Course Name</th>
+							<apex:repeat value="{!gradeTable.TableDisplayList}" var="rp">
+								<th>{!rp}</th>
+							</apex:repeat>
+							<th>Final Grade</th>
+						</tr>
+					</thead>
+					<tbody>
+					<apex:repeat value="{!gradeTable.sections}" var="s">
+						<tr>
+							<td><a href="/{!s.sectionInfo.courseId}" target="_new">{!s.sectionInfo.courseName}</a></td>
+							<apex:repeat value="{!s.sectionGrades}" var="g">
+								<td>
+									<span class="drillable" onClick="drillSGJS('{!s.sectionInfo.courseId}','{!g.sg.id}');" style="{!IF(ISNULL(g.sg.Time__c),'display:none;','')}">
+										{!g.displayValue}
+									</span>
+									<span class="drillable" onClick="alert('Semester grade calculations coming soon!');" style="{!IF(ISNULL(g.sg.Time__c),'','display:none;')}">
+										{!g.displayValue}
+									</span>
+
+								</td>
+							</apex:repeat>
+							<td>
+								<span class="drillable" onClick="drillFGJS('{!s.sectionInfo.courseId}');">
+									{!s.finalGradeDisplayValue}
+								</span>
+							</td>
+						</tr>
+					</apex:repeat>
+					</tbody>
+				</table>
+			</apex:pageBlock>
+		</div>
+		<div id="GPAs">
+			<div>
+				<h4>Reporting Period GPAs</h4>
+				<div class="contentBlock">
+					<table style="margin:auto;" class="tablesorter">
+						<thead>
+							<tr>
+								<apex:repeat value="{!primaryReportingPeriods}" var="rp">
+									<th>{!rp.Name_On_Report_Card__c}</th>
+								</apex:repeat>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<apex:repeat value="{!srpList}" var="gpa">
+									<td>
+										<!-- <span class="drillable" onClick="alert('This feature is currently disabled.');"> -->
+											{!ROUND(gpa.GPA__c,2)}
+										<!-- </span> -->
+									</td>
+								</apex:repeat>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="topSpace">
+				<h4>Student Yearly and Overall GPAs</h4>
+				<div class="contentBlock">
+					<table style="margin:auto;" class="tablesorter">
+						<thead>
+							<tr>
+								<th>Final Unweighted GPA</th>
+								<th>Final Weighted GPA</th>
+								<th>Overall Unweighted GPA</th>
+								<th>Overall Weighted GPA</th>
+								<th>Class Rank</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<!-- <span class="drillable" onClick="alert('This feature is currently disabled.');"> -->
+										{!student.Final_GPA_Value__c}
+									<!-- </span> -->
+								</td>
+								<td>
+									<!-- <span class="drillable" onClick="alert('This feature is currently disabled.');"> -->
+										{!student.Final_Weighted_GPA_Value__c}
+									<!-- </span> -->
+								</td>
+								<td>
+									<!-- <span class="drillable" onClick="alert('This feature is currently disabled.');"> -->
+										{!ROUND(student.GPA_To_Date__c,2)}
+									<!-- </span> -->
+								</td>
+								<td>
+									<!-- <span class="drillable" onClick="alert('This feature is currently disabled.');"> -->
+										{!ROUND(student.Weighted_GPA_To_Date__c,2)}
+									<!-- </span> -->
+								</td>
+								<td>
+									<!-- <span class="drillable" onClick="openRankModal();"> -->
+										{!student.Class_Rank__c}
+									<!-- </span> -->
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<!-- <div id="standardGrades">
+			This feature coming soon!
+		</div>
+		<div id="strandGrades">
+			This feature coming soon!
+		</div> -->
+	</div>
+		<!-- END MAIN PAGE -->
+
+		<!-- START FINAL GRADE DETAIL -->
+		<div id="finalGradeDrill" style="display:none;">
+			<apex:outputPanel id="fgPanel">
+				<apex:outputPanel rendered="{!detailWrapper.sectiongrades.size >0 && !detailWrapper.finalGrade.Grade_Overridden__c}">
+					<h1>Final Grade Information for {!student.name}: {!detailWrapper.sectionInfo.courseName} - {!student.School_Year__r.Name__c}</h1>
+					<div class="innerBlock">
+						<table class="resultsTable">
+							<tr>
+								<th>Raw Final Grade</th>
+								<th>Displayed Final Grade</th>
+							</tr>
+							<tr>
+								<td class="center">
+									{!ROUND(detailWrapper.finalGradeValue,2)}
+								</td>
+								<td class="center">
+									{!IF(detailWrapper.finalGrade.Course__r.Display_Numerical_Values_On_Report_Card__c,ROUND(detailWrapper.finalGradeValue,2),detailWrapper.fgn.Transformed_Grade__c)}
+								</td>
+							</tr>
+						</table>
+					</div>
+					<h4>Grades and Weightings</h4>
+					<div class="innerBlock bottomSpace">
+						Final grade calculation begins with {!student.name}'s section grades for {!detailWrapper.sectionInfo.courseName}. If {!student.name} was not enrolled in the class for the entire year, or did not receive a grade for a reporting period, it will display as a blank below.
+						<table class="resultsTable same-col-size">
+							<thead>
+								<tr>
+									<th style="width:20%;">Course Name</th>
+									<apex:repeat value="{!detailWrapper.sgRPs}" var="rp">
+										<th>{!rp}</th>
+									</apex:repeat>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><a href="/{!detailWrapper.sectionInfo.CourseID}" target="_new">{!detailWrapper.sectionInfo.courseName}</a></td>
+									<apex:repeat value="{!detailWrapper.sectionGrades}" var="g">
+										<td>
+											<span class="drillable" onClick="drillSGJS('{!detailWrapper.sectionInfo.courseId}','{!g.sg.id}');">{!IF(ISNULL(g.sg.Grade__c),g.displayValue, g.sg.Grade__c)}</span>
+										</td>
+									</apex:repeat>
+								</tr>
+							</tbody>
+						</table>
+
+						For each reporting period the course is taught, the system assigns the percentage weighting that your system administrator has defined for {!detailWrapper.sectionInfo.courseName}.
+						<table class="resultsTable same-col-size">
+							<thead>
+								<tr>
+									<th style="width:20%;">Course Name</th>
+									<apex:repeat value="{!detailWrapper.sgRPs}" var="rp">
+										<th>{!rp}</th>
+									</apex:repeat>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><a href="/{!detailWrapper.sectionInfo.CourseID}">{!detailWrapper.sectionInfo.courseName}</a></td>
+									<apex:repeat value="{!detailWrapper.sectionGrades}" var="g">
+										<td>
+											<apex:outputPanel rendered="{!g.sg.ID!= null}">
+												{!g.sg.Course_Weighting__r.Weighting__c}%
+											</apex:outputPanel>
+										</td>
+									</apex:repeat>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<h4>Calculating the Final Grade</h4>
+					<div class="innerBlock bottomSpace">
+						For each reporting period above, the section grade is multiplied by the weighting.
+						<table class="resultsTable same-col-size">
+							<thead>
+								<tr>
+									<th style="width:20%;">Course Name</th>
+									<apex:repeat value="{!detailWrapper.sgRPs}" var="rp">
+										<th>{!rp}</th>
+									</apex:repeat>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><a href="/{!detailWrapper.sectionInfo.CourseID}">{!detailWrapper.sectionInfo.courseName}</a></td>
+									<apex:repeat value="{!detailWrapper.sectionGrades}" var="g">
+										<td>
+											{!g.sg.Grade__c*(g.sg.Course_Weighting__r.Weighting__c/100)}
+										</td>
+									</apex:repeat>
+								</tr>
+							</tbody>
+						</table>
+
+						The sum of these weighted grades is taken, and then divided by the sum of the weightings. For reporting periods without a grade, the weightings are excluded. The result is the raw final grade value.
+						<table class="resultsTable">
+							<tr>
+								<th>Sum Weighted Grades</th>
+								<th>Sum Weightings</th>
+								<th>Raw Final Grade</th>
+							</tr>
+							<tr>
+								<td class="center">
+									{!detailWrapper.sumGrades}
+								</td>
+								<td class="center">
+									{!ROUND(detailWrapper.sumWeightings*100,2)}%
+								</td>
+								<td class="center">
+									{!ROUND(detailWrapper.finalGradeValue,2)}
+								</td>
+							</tr>
+						</table>
+					</div>
+					<h4>Final Grade and GPA Values</h4>
+					<div class="innerBlock">
+						The raw final grade is then mapped to the displayed final grade and unweighted GPA using the {!detailWrapper.gradeScaleName} grade scale that your system administrator has defined. The weighted GPA is then calculated based on the GPA Added Value Points fields on the course.
+						<apex:outputPanel rendered="{!detailWrapper.finalGrade.Course__r.GPA_Added_Value_Points__c=0}">
+							{!detailWrapper.sectionInfo.courseName} does not weight the student's GPA, so the weighted GPA is the same as the unweighted.
+						</apex:outputPanel>
+						<table class="resultsTable">
+							<tr>
+								<th>Raw Final Grade</th>
+								<th>Displayed Final Grade</th>
+								<th>Unweighted GPA</th>
+								<th>Weighted GPA</th>
+							</tr>
+							<tr>
+								<td class="center">
+									{!ROUND(detailWrapper.finalGradeValue,2)}
+								</td>
+								<td class="center">
+									{!IF(detailWrapper.finalGrade.Course__r.Display_Numerical_Values_On_Report_Card__c,ROUND(detailWrapper.finalGradeValue,2),detailWrapper.fgn.Transformed_Grade__c)}
+								</td>
+								<td class="center">
+									{!detailWrapper.fgn.GP_Value__c}
+								</td>
+								<td class="center">
+									{!IF(detailWrapper.finalGrade.Course__r.Multiply_GPA_Added_Value_Points__c,detailWrapper.fgn.GP_Value__c*detailWrapper.finalGrade.Course__r.GPA_Added_Value_Points__c,detailWrapper.fgn.GP_Value__c+detailWrapper.finalGrade.Course__r.GPA_Added_Value_Points__c)}
+								</td>
+							</tr>
+						</table>
+					</div>
+				</apex:outputPanel>
+				<apex:outputPanel rendered="{!detailWrapper.sectiongrades.size >0 && detailWrapper.finalGrade.Grade_Overridden__c}">
+					<h1>Final Grade Information for {!student.name}: {!detailWrapper.sectionInfo.courseName} - {!student.School_Year__r.Name__c}</h1>
+					<div class="innerBlock">
+						The final grade value for {!detailWrapper.sectionInfo.courseName} has been overriden. The entered value is shown below.
+						<apex:outputPanel rendered="{!ISNULL(detailWrapper.finalGrade.Final_Grade_Value__c)}">
+							Because the value was part of the grade overrides, the weighted and unweighted GPAs could not be calculated for this grade.
+						</apex:outputPanel>
+						<apex:outputPanel rendered="{!NOT(ISNULL(detailWrapper.finalGrade.Final_Grade_Value__c))}">
+							Because the value was part of the {!detailWrapper.gradeScaleName} grade scale, the weighted and unweighted GPAs are taken from the normalization for that value.
+						</apex:outputPanel>
+						<table class="resultsTable">
+							<tr>
+								<th>Displayed Final Grade</th>
+								<th>Unweighted GPA</th>
+								<th>Weighted GPA</th>
+							</tr>
+							<tr>
+								<td class="center">
+									{!detailWrapper.finalGradeDisplayValue}
+								</td>
+								<td class="center">
+									{!detailWrapper.finalGrade.Unweighted_GPA__c}
+								</td>
+								<td class="center">
+									{!detailWrapper.finalGrade.Weighted_GPA__c}
+								</td>
+							</tr>
+						</table>
+					</div>
+				</apex:outputPanel>
+			</apex:outputPanel>
+		</div>
+		<!-- END FINAL GRADE DETAIL -->
+		<!-- START SECTION GRADE DETAIL -->
+		<div id="sectionGradeDrill" style="display:none;">
+			<apex:outputPanel id="sgPanel">
+				<h4>Section Grade Information for {!Student.Name}: {!gradeDetailWrapper.sgw.sg.Student_Section__r.Section__r.Course__r.Name} for {!gradeDetailWrapper.sgw.sg.Time__r.Name__c}</h4>
+				<apex:outputPanel rendered="{!!gradeDetailWrapper.sgw.sg.Grade_Overridden__c}">
+					<div class="innerBlock" style="margin-bottom:20px;">
+						<table class="resultsTable">
+							<tr>
+								<th>Raw Section Grade</th>
+								<th> Displayed Section Grade</th>
+							</tr>
+							<tr>
+								<td>
+									{!gradeDetailWrapper.midpoint}
+								</td>
+								<td>
+									{!gradeDetailWrapper.sgw.displayValue}
+								</td>
+							</tr>
+						</table>
+					</div>
+					<h4>Assignment Types *</h4>
+					<div class="innerBlock">
+						Section grade calculation starts with the assignment types.
+						<apex:outputPanel rendered="{!!gradeDetailWrapper.pointsBased}">
+							Each assignment grade is converted to a 0-100 scale and multiplied by the assignment's weighting. The system then calculates the sum of the weighted grades for each assignment type, as well as the sum of the assignment weightings.
+						</apex:outputPanel>
+						<apex:outputpanel rendered="{!gradeDetailWrapper.percentageBased && !gradeDetailWrapper.pointsBased}">
+							The sum of the weighted grades is then divided by the sum of the weightings to get the average grade for each assignment type.
+						</apex:outputpanel>
+						<apex:outputPanel rendered="{!gradeDetailWrapper.pointsBased}">
+							Each assignment grade is converted to a 0-100 scale. For each assignment type, the system then calculates the sum of the assignment grades and the sum of the possible points.
+						</apex:outputPanel>
+						<apex:datatable value="{!gradeDetailWrapper.dawList}" var="daw" styleclass="tablesorter">
+							<apex:column headerValue="Assignment Type">
+								<span class="drillable" onClick="alert('Assignment level calculations coming soon!');">{!daw.daw.Picklist_Value__r.Name}</span>
+							</apex:column>
+							<apex:column headerValue="Sum of Weighted Grades">
+								{!ROUND(daw.sumGrades,2)}
+							</apex:column>
+							<apex:column headerValue="Sum of Weightings" value="{!daw.totalGrades}" rendered="{! !gradeDetailWrapper.pointsBased}"/>
+							<apex:column headerValue="Sum of Points Possible" value="{!daw.totalGrades}" rendered="{!gradeDetailWrapper.pointsBased}"/>
+							<apex:column headerValue="Average of Grades" rendered="{!gradeDetailWrapper.percentageBased}">
+								<span title="Rounded to 2 decimal places for space. System uses unrounded value.">
+									{!ROUND(daw.sumGrades/daw.totalGrades,2)}
+								</span>
+							</apex:column>
+						</apex:datatable>
+					</div>
+					<apex:outputPanel rendered="{!gradeDetailWrapper.percentageBased}">
+						<h4>Percent Weightings</h4>
+						<div class="innerBlock">
+							To calculate the raw section grade, the average grades are multiplied by the percent weighting as defined by the Default Assignment Weightings for the course.
+							<apex:datatable value="{!gradeDetailWrapper.dawList}" var="daw" styleclass="tablesorter">
+								<apex:column headerValue="Assignment Type">
+									<span class="drillable" onClick="alert('Assignment level calculations coming soon!');">{!daw.daw.Picklist_Value__r.Name}</span>
+								</apex:column>
+								<apex:column headerValue="Average of Grades">
+									<span title="Rounded to 2 decimal places for space. System uses unrounded value.">
+										{!ROUND(daw.sumGrades/daw.totalGrades,2)}
+									</span>
+								</apex:column>
+								<apex:column value="{!daw.daw.Percent_Of_Section_Grade__c}" headerValue="Percent Weighting"/>
+								<apex:column headerValue="Weighted Average">
+									{!ROUND((daw.sumGrades/daw.totalGrades)*(daw.daw.Percent_Of_Section_Grade__c/100),2)}
+								</apex:column>
+							</apex:datatable>
+						</div>
+						<h4>Calculating the Section Grade</h4>
+						<div class="innerBlock">
+							The weighted averages of the assignment types are summed to get the raw section grade. The raw section grade is then mapped to the displayed section grade using the {!gradeDetailWrapper.sgw.sg.Student_Section__r.Section__r.Course__r.Grade_Scale_Lookup__r.Name} grade scale that your system administrator has defined for {!gradeDetailWrapper.sgw.sg.Student_Section__r.Section__r.Course__r.Name}.
+							<table class="resultsTable">
+								<tr>
+									<th>Raw Section Grade</th>
+									<th>Displayed Section Grade</th>
+								</tr>
+								<tr>
+									<td>{!gradeDetailWrapper.midpoint}</td>
+									<td>{!gradeDetailWrapper.sgw.displayValue}</td>
+								</tr>
+							</table>
+						</div>
+					</apex:outputPanel>
+					<apex:outputPanel rendered="{!NOT(gradeDetailWrapper.percentageBased)}">
+						<h4>Calculating the Section Grade</h4>
+						<div class="innerBlock">
+							<apex:outputPanel rendered="{!!gradeDetailWrapper.pointsBased}">
+								The grades and weightings from above are summed. Then the sum of the grades is divided by the sum of the weightings to arrive at the raw section grade.
+							</apex:outputPanel>
+							<apex:outputPanel rendered="{!gradeDetailWrapper.pointsBased}">
+								The grades and possible points from above are summed. Then the sum of the grades is divided by the sum of the possible points to arrive at the raw section grade.
+							</apex:outputPanel>
+							<table class="resultsTable">
+								<tr>
+									<th>Sum of All Grades</th>
+									<th>{!IF(gradeDetailWrapper.pointsBased,'Sum of Possible Points','Sum of All Weightings')}</th>
+									<th>Raw Section Grade</th>
+								</tr>
+								<tr>
+									<td>
+										{!ROUND(gradeDetailWrapper.sumWeightedGrades,2)}
+									</td>
+									<td>
+										{!gradeDetailWrapper.sumWeightings}
+									</td>
+									<td>
+										<apex:outputPanel rendered="{!NOT(gradeDetailWrapper.pointsBased)}">
+											{!ROUND(gradeDetailWrapper.sumWeightedGrades/gradeDetailWrapper.sumWeightings,2)}
+										</apex:outputPanel>
+										<apex:outputPanel rendered="{!gradeDetailWrapper.pointsBased}">
+											{!ROUND((gradeDetailWrapper.sumWeightedGrades/gradeDetailWrapper.sumWeightings)*100,2)}
+										</apex:outputPanel>
+									</td>
+								</tr>
+							</table>
+							<br/>
+							The raw section grade is then mapped to the displayed section grade using the the {!gradeDetailWrapper.sgw.sg.Student_Section__r.Section__r.Course__r.Grade_Scale_Lookup__r.Name} grade scale that your system administrator has defined for {!gradeDetailWrapper.sgw.sg.Student_Section__r.Section__r.Course__r.Name}.
+							<table class="resultsTable">
+								<tr>
+									<th>Raw Section Grade</th>
+									<th>Displayed Section Grade</th>
+								</tr>
+								<tr>
+									<td>
+										{!gradeDetailWrapper.midpoint}
+									</td>
+									<td>
+										{!gradeDetailWrapper.sgw.displayValue}
+									</td>
+								</tr>
+							</table>
+						</div>
+					</apex:outputPanel>
+					<div>
+						*The course {!gradeDetailWrapper.sgw.sg.Student_Section__r.Section__r.Course__r.Name} uses {!IF(gradeDetailWrapper.percentageBased,'percentage','number')}-based assignment weightings and is {!IF(gradeDetailWrapper.pointsBased,'','not ')} points based, so the {!IF(gradeDetailWrapper.percentageBased,'percentage','number')}-based section grade calculation process for {!IF(gradeDetailWrapper.pointsBased,'','non-')}points-based courses is used.
+					</div>
+				</apex:outputPanel>
+				<apex:outputPanel rendered="{!gradeDetailWrapper.sgw.sg.Grade_Overridden__c}">
+					<div class="innerBlock">
+						This section grade has been overridden.
+						<apex:outputPanel rendered="{!ISNULL(gradeDetailWrapper.sgw.sg.Grade__c)}">
+							Because an override value was used, this section grade will no longer be included in the final grade for this section.
+							<table class="resultsTable">
+							<tr>
+								<th>Displayed Section Grade</th>
+							</tr>
+							<tr>
+								<td>
+									{!gradeDetailWrapper.sgw.displayValue}
+								</td>
+							</tr>
+						</table>
+						</apex:outputPanel>
+						<apex:outputPanel rendered="{!NOT(ISNULL(gradeDetailWrapper.sgw.sg.Grade__c))}">
+							Because the override value uses a value in the {!gradeDetailWrapper.sgw.sg.Student_Section__r.Section__r.Course__r.Grade_Scale_Lookup__r.Name} grade scale, this section grade will be included in the student's final grade.
+							<table class="resultsTable">
+							<tr>
+								<th>Raw Section Grade</th>
+								<th>Displayed Section Grade</th>
+							</tr>
+							<tr>
+								<td>{!gradeDetailWrapper.sgw.sg.Grade__c}</td>
+								<td>
+									{!gradeDetailWrapper.sgw.displayValue}
+								</td>
+							</tr>
+						</table>
+						</apex:outputPanel>
+					</div>
+				</apex:outputPanel>
+			</apex:outputPanel>
+		</div>
+		<!-- END SECTION GRADE DETAIL -->
+		<!-- START RANK DETAIL -->
+		<div id="rankDrill" style="display:none;"> <!-- This was intended functionality but this section was never fully implemented and therefor never renders -->
+			{!student.name}'s class rank is {!student.Class_Rank__c} out of {TODO: Calculate class size}.
+			His class rank is calculated by taking all the of students that attend {!setup.School__r.Name} in grade {!student.Grade__c}. This group is ordered by their
+			career unweighted GPA value and then assigned a class rank based on that order. In the event of several students all at the same GPA value, all students at that value are assigned the same class rank. The student with the next lowest GPA value is then assigned a rank equal to the tied rank plus the number of tied students for that rank.
+		</div> 
+		<!-- END RANK DETAIL -->
+	<apex:actionFunction action="{!drillFinalGrade}" onComplete="openFGModal();" name="drillFGJS" rerender="fgPanel, messages">
+		<apex:param value="" name="value" assignTo="{!selectedCourse}"/>
+	</apex:actionFunction>
+	<apex:actionFunction action="{!drillSectionGrade}" onComplete="openSGModal();" name="drillSGJS" rerender="sgPanel, messages">
+		<apex:param value="" name="coursevalue" assignTo="{!selectedCourse}"/>
+		<apex:param value="" name="gradevalue" assignTo="{!selectedRecord}"/>
+	</apex:actionFunction>
+</apex:form>
+</apex:page>

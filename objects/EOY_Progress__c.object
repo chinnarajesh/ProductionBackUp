@@ -1,0 +1,622 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>This object is used to determine the current completion progress in the EOY Wizard.</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableEnhancedLookup>false</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>Attendance_Wizard_Completed__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Attendance Wizard Completed</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Attendance_Wizard_Started__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Attendance Wizard Started</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Behavior_Wizard_Completed__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Behavior Wizard Completed</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Behavior_Wizard_Started__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Behavior Wizard Started</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Documents_Wizard_Completed__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Documents Wizard Completed</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Documents_Wizard_Started__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Documents Wizard Started</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>EOY_Export_Completed__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Reminder as best practice to export schools&apos; data.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This will be checked when data and reports are successfully exported.</inlineHelpText>
+        <label>EOY Export Completed</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>EOY_Export_Last_Modified__c</fullName>
+        <description>To keep track of the individual who last modified, the time, and the date.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Last user to modify and the time.</inlineHelpText>
+        <label>EOY Export Last Modified</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>EOY_Next_School_Year_Completed__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Create the next school year here or potentially in the school setup wizard.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This will be checked if the next school year is created.</inlineHelpText>
+        <label>EOY Next School Year Completed</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>EOY_Next_School_Year_Last_Modified__c</fullName>
+        <description>To keep track of the individual who last modified, the time, and date.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Last user to modify and the time.</inlineHelpText>
+        <label>EOY Next School Year Last Modified</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>EOY_Purge_Settings_Completed__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Customizing the Purge Settings for the entire org.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This is set to true if the EOY Purge custom settings are configured for the year.</inlineHelpText>
+        <label>EOY Purge Settings Completed</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>EOY_Purge_Settings_Last_Modified__c</fullName>
+        <description>To keep track of the individual who last modified, the time, and date.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Last user to modify and the time.</inlineHelpText>
+        <label>EOY Purge Settings Last Modified</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>External_Id__c</fullName>
+        <externalId>true</externalId>
+        <label>External Id</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Gradebook_Type_Finalized__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Gradebook Type Finalized</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Gradebook_Wizard_Completed__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Gradebook Wizard Completed</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Gradebook_Wizard_Started__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Gradebook Wizard Started</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Is_Complete__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Is Complete</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Module_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Module Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Parent_Progress__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>This is the parent progress tracking record for this record.</description>
+        <externalId>false</externalId>
+        <label>Parent Progress</label>
+        <referenceTo>EOY_Progress__c</referenceTo>
+        <relationshipLabel>EOY Progresses</relationshipLabel>
+        <relationshipName>EOY_Progresses</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Purge_Historical_Data_Last_Modified__c</fullName>
+        <description>To keep track of the individual who last modified, the time, and the date.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Last user to modify and the time.</inlineHelpText>
+        <label>Purge Historical Data Last Modified</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>School_Grade_Span_Completed__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Select the grade span for the school.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This will be checked when the grade span has been confirmed for the next school year.</inlineHelpText>
+        <label>School Grade Span Completed</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>School_Grade_Span_Last_Modified__c</fullName>
+        <description>To keep track of the individual who last modified, the time, and the date.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Last user to modify and the time.</inlineHelpText>
+        <label>School Grade Span Last Modified</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>School_Next_Year_Students_Completed__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Schools will create the next year student records here.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This will be checked when the net new student records are generated for the next year.</inlineHelpText>
+        <label>School Next Year Students Completed</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>School_Next_Year_Students_Last_Modified__c</fullName>
+        <description>To keep track of the individual who last modified, the time, and the date.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Last user to modify and the time.</inlineHelpText>
+        <label>School Next Year Students Last Modified</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>School_Process_Data_Completed__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Schools will process the EOY data, where records will get deactivated and archived.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This will be checked when the EOY Data is deactivated and archived has been verified.</inlineHelpText>
+        <label>School Process Data Completed</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>School_Process_Data_Last_Modified__c</fullName>
+        <description>To keep track of the individual who last modified, the time, and the date.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Last user to modify and the time.</inlineHelpText>
+        <label>School Process Data Last Modified</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>School_Purge_EOY_Data_Completed__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>School EOY Data purge process.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This will be checked when the EOY Data has successfully been purged.</inlineHelpText>
+        <label>School Purge EOY Data Completed</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>School_Purge_EOY_Data_Last_Modified__c</fullName>
+        <description>To keep track of the individual who last modified, the time, and the date.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Last user to modify and the time.</inlineHelpText>
+        <label>School Purge EOY Data Last Modified</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>School_Purge_Historical_Data_Completed__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>School process to purge historical data.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This will be checked when Historical Data has been successfully purged.</inlineHelpText>
+        <label>School Purge Historical Data Completed</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>School_Selections_Completed__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>In the setup wizard, schools must make selections indicating their preferences for the school year.  This field indicates whether these selections have been completed.</description>
+        <externalId>false</externalId>
+        <label>School Selections Completed</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>School_Snapshots_Completed__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Schools will create snapshot records for the year.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This will be checked when snapshots are successfully created for the year.</inlineHelpText>
+        <label>School Snapshots Completed</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>School_Snapshots_Last_Modified__c</fullName>
+        <description>To keep track of the individual who last modified, the time, and the date.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Last user to modify and the time.</inlineHelpText>
+        <label>School Snapshots Last Modified</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>School_Student_Promotional_Completed__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Set the students&apos; promotional status for the following year.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This will be checked when the student&apos;s record is verified for: Intent to return, Promoted, Next year School, and Final Grade Level.</inlineHelpText>
+        <label>School Student Promotional Completed</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>School_Student_Promotional_Last_Modified__c</fullName>
+        <description>To keep track of the individual who last modified, the time, and the date.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Last user to modify and the time.</inlineHelpText>
+        <label>School Student Promotional Last Modified</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>School__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>This field is required to keep track of the EOY progression for a school.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This field is required for EOY Progression on schools.</inlineHelpText>
+        <label>School</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>EOY Progresses</relationshipLabel>
+        <relationshipName>EOY_Progresses</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Setup__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Look up to the setup record, since a setup represents an active configuration for a school.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Determine the progress for an active setup to a school.</inlineHelpText>
+        <label>Setup</label>
+        <referenceTo>Setup__c</referenceTo>
+        <relationshipLabel>EOY Progresses</relationshipLabel>
+        <relationshipName>EOY_Progresses</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Year__c</fullName>
+        <deleteConstraint>Restrict</deleteConstraint>
+        <description>The year that the EOY Wizard process is for.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The year for the EOY Wizard to process.</inlineHelpText>
+        <label>Year</label>
+        <referenceTo>Time_Element__c</referenceTo>
+        <relationshipLabel>EOY Progresses</relationshipLabel>
+        <relationshipName>EOY_Progresses</relationshipName>
+        <required>true</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <label>EOY Progress</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>OBJECT_ID</columns>
+        <columns>School__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>Setup__c</columns>
+        <columns>Year__c</columns>
+        <columns>RECORDTYPE</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <listViews>
+        <fullName>All_Progress</fullName>
+        <columns>OBJECT_ID</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>School__c</columns>
+        <columns>Year__c</columns>
+        <columns>Setup__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All Progress</label>
+    </listViews>
+    <nameField>
+        <label>EOY Save State Name</label>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>EOY Progresses</pluralLabel>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
+    <recordTypes>
+        <fullName>EOY</fullName>
+        <active>true</active>
+        <label>EOY</label>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Setup_Wizard</fullName>
+        <active>true</active>
+        <label>Setup Wizard</label>
+    </recordTypes>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>SchoolForce Settings</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>SchoolForce Settings</value>
+    </caseValues>
+    <fields>
+        <label><!-- EOY Purged Objs --></label>
+        <name>EOY_Purged_Objs__c</name>
+    </fields>
+    <fields>
+        <label><!-- Schoolforce Enabled? --></label>
+        <name>Enabled__c</name>
+    </fields>
+    <fields>
+        <label><!-- Non-Present Daily Attendance --></label>
+        <name>Non_Present_Daily_Attendance__c</name>
+    </fields>
+    <fields>
+        <label><!-- Purged Setup --></label>
+        <name>Purged_Setup__c</name>
+    </fields>
+    <fields>
+        <label><!-- Static Reference IDs --></label>
+        <name>Static_Reference_IDs__c</name>
+    </fields>
+    <fields>
+        <label><!-- Triggers Disabled --></label>
+        <name>Triggers_Disabled__c</name>
+    </fields>
+    <fields>
+        <label><!-- Two Year Old Purged Objects --></label>
+        <name>Two_Year_Old_Purged_Objects__c</name>
+    </fields>
+    <fields>
+        <label><!-- Show Mytonomy in Portal? --></label>
+        <name>mytonomy__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

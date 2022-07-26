@@ -1,0 +1,86 @@
+<apex:page controller="ctlAddTimeFlow" sidebar="false">
+ <c:jQueryInit bDataTables="true" bLoadingPanel="false"/>   
+ <apex:includeScript value="{!URLFOR($Resource.jWerty, '/jWerty/jwerty.js')}" />
+    <apex:stylesheet value="{!$Resource.New_Core_UX}"/>
+    <script type="text/javascript">
+    var generated = false;
+    var tabelwidth = 'firstload';
+    jwerty.key('enter',false);
+     j$ = jQuery.noConflict();
+			j$(document).ready( function () {
+				var contactTable = j$('[id$="list"]').DataTable({
+				 "sScrollY": "200px",
+            "bLengthChange": true,
+            "bFilter": true,
+            "bInfo": false,
+            "aoColumnDefs": [{ "sWidth": "30%", "aTargets": [ 0 ]}],
+            "bAutoWidth": true,
+            "bSort" :true,
+            "bDestroy": true,
+            "bScrollAutoCss": true,
+            "bPaginate": false,
+            "bScrollCollapse": true,
+            "bJQueryUI": true,
+            "bSaveState": true,
+            iDisplayLength : 25,
+            "asStripClasses": [ 'odd', 'even' ]	
+				});
+			});
+   
+    </script>
+    
+    <apex:form >
+  <apex:pageBlock title="Welcome, {!$User.FirstName} {!$User.LastName}!">
+
+       <apex:pageBlockButtons >
+       <apex:outputPanel id="myPage">
+
+
+
+
+        <apex:commandButton action="{!Beginning}" title="Beginning" value="<<" disabled="{!prev}" reRender="mySection,myPage"/>
+        <apex:commandButton action="{!Previous}" title="Previous" value="<" disabled="{!prev}" reRender="mySection,myPage"/>
+        <apex:commandButton action="{!Next}" title="Next" value=">" disabled="{!nxt}" reRender="mySection,myPage"/>
+        <apex:commandButton action="{!End}" title="End" value=">>" disabled="{!nxt}" reRender="mySection,myPage"/>
+
+       </apex:outputPanel>
+
+       </apex:pageBlockButtons>
+
+       <apex:pageBlockSection collapsible="false" columns="1" >
+       <apex:outputPanel id="mySection">
+
+       <apex:pageMessages id="theSections" />
+
+       <apex:pageBlockTable value="{!secList}" var="s" id="list" >
+
+        <apex:column headerValue="Section Name" >
+            <apex:commandLink value="{!s.Name}" action="{!doSectionStudents}" rendered="{!s.Active__c}">
+                <apex:param name="sectionID" value="{!s.Id}" assignTo="{!sectionID}"/>
+                <apex:param name="sectionName" value="{!s.Name}" assignTo="{!sectionName}"/>
+                <apex:param name="sectionELT" value="{!s.In_After_School__c}" assignTo="{!sectionELT}"/>
+                <apex:param name="sectionNickName" value="{!s.Section_Nickname__c}" assignTo="{!sectionNickName}"/>
+            </apex:commandLink>
+            <apex:outputField value="{!s.Name}" rendered="{!NOT(s.Active__c)}"/>
+        </apex:column>
+
+        <apex:column headerValue="Section Nickname"  value="{!s.Section_Nickname__c}" >
+
+        </apex:column>
+
+        <apex:column headerValue="In School/ELT"  value="{!s.In_After_School__c}" >
+        </apex:column>
+
+      <apex:column headerValue="Active" >
+                                <apex:image value="/img/permissions_confirm16.gif" rendered="{!s.Active__c}" />
+                  <apex:image value="/img/permissions_deny16.gif" rendered="{!NOT(s.Active__c)}" />
+        </apex:column>
+
+        <apex:facet name="footer">Displaying Page # {!pageNumber} of {!totalPages}</apex:facet>
+      </apex:pageBlockTable>
+
+     </apex:outputPanel>
+     </apex:pageBlockSection>
+    </apex:pageBlock>
+   </apex:form>
+</apex:page>

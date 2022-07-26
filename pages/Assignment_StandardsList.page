@@ -1,0 +1,38 @@
+<apex:page standardController="Assignment__c" extensions="Assignment_StandardsListController" sidebar="false">
+	<c:jQueryInit />
+	<apex:includeScript value="{!URLFOR($Resource.resources_Master, '/plugin/treeview/jquery.treeview.js')}" />
+	<apex:stylesheet value="{!URLFOR($Resource.resources_Master, '/plugin/treeview/jquery.treeview.css')}"/>
+	<script type="text/javascript">
+		
+	  $(document).ready(function(){
+	    $("#Strands").treeview({
+	    	persist: "location",
+			collapsed: true,
+			unique: true
+		});
+	  });
+  	</script>
+    <apex:pageBlock rendered="{!displayList}">
+    	<ul id="Strands">
+        	<apex:repeat var="s" value="{!standards}">
+                <li>
+                	<a href="{!URLFOR($Action.Standard__c.View, s.standard.id)}" target="_blank" style="font-weight:bold">Strand - {!s.standard.Name}</a>
+                	<apex:repeat var="s2" value="{!s.childStandards}">
+                    	<ul>
+                        	<li>
+                        		<a href="{!URLFOR($Action.Standard__c.View, s2.id)}" target="_blank" style="font-weight:bold">Standard - {!s2.Name}</a>
+	                            	<ul>
+	                            		<li>
+	                            			<p>{!s2.Long_Text__c}</p>
+	                            		</li>
+	                            	</ul>
+	                            
+                        	</li>
+                    	</ul>
+                	</apex:repeat>
+                </li>
+        	</apex:repeat>
+        </ul>
+    </apex:pageBlock>
+    <span style="{!IF(!displayList, "", "display:none")}">This Assignment is not associated with any standards.</span>
+</apex:page>

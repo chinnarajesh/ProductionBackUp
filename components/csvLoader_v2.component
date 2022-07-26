@@ -1,0 +1,683 @@
+<apex:component allowDML="true" controller="CT_core_LoadCSVData_v2">
+	<script>
+		var fileLoadTime;
+		var file;
+		var byteLocation;
+		var encodingByteLocation;
+		var encoding;
+		var parseHandler;
+		var parseResults;
+		var parseSize;
+		var totalParseSize;
+		var successes, failures;
+		var transmitComplete;
+		var headers;
+		var templateType;
+		var errorRows;
+		var isAborted;
+		var isURL;
+
+		j$(document).ready(function(){
+			var maxWidth = j$('#output').width()-10;
+			j$('#output').css('width', maxWidth+'px');
+
+			isURL = false;
+		});
+
+		function loadFile(){
+			isURL = false;
+			isAborted = false;
+			sessionStorage.clear();
+			j$('#errorLogButton').hide();
+			resetMessages();
+
+			if(!validateSupport()){
+				return;
+			}
+
+			file = validateFile();
+			if(typeof file != 'object'){
+				return;
+			}
+
+			showProgressBar('Loading File');
+			console.log('Starting file load');
+			fileLoadTime = new Date().getTime();
+			//to prevent locking, batch everything, and chain for sequences
+			setTimeout(emptyTable, 200);
+		}
+		
+		function loadDefaultFile() {
+			isURL = true;
+			isAborted = false;
+			sessionStorage.clear();
+			j$('#errorLogButton').hide();
+			resetMessages();
+
+			//do something to file
+			Visualforce.remoting.Manager.invokeAction(
+				'{!$RemoteAction.CT_core_LoadCSVData_v2.getSRLink}',
+				j$('[id*="objectTypeSelect"]').val(),
+				{!bManagedPackage},
+				setFileLink
+			);
+		}
+		
+		function setFileLink(result, event) {
+			if(event.status) {
+				console.log(result);
+				file = result;
+
+				showProgressBar('Loading File');
+				console.log('Starting default file load');
+				fileLoadTime = new Date().getTime();
+
+				setTimeout(emptyTable, 200);				
+			}
+			else {
+				alert('Failed to find a template.');
+			}
+			
+		}
+
+		function clearData(){
+			var inputFile = document.getElementById('selectedFile');
+			j$(inputFile).wrap('<form>').parent('form').trigger('reset');
+			j$(inputFile).unwrap();
+
+			var table = document.getElementById('output');
+
+			while (table.firstChild){
+				table.removeChild(table.firstChild);
+			}
+
+			table.innerHTML = '<table class="dataTable"></table>';
+		}
+
+		function emptyTable(){
+			var startTime = new Date().getTime();
+			var table = document.getElementById('output');
+
+			while (startTime - new Date().getTime() < 50 && table.firstChild){
+				table.removeChild(table.firstChild);
+			}
+
+			if(table.firstChild){
+				setTimeout(emptyTable, 10);
+			} else {
+				console.log('Cleared table in: '+ (new Date().getTime()-fileLoadTime)/1000);
+				table.innerHTML = '<table class="dataTable"></table>';
+				if(!isURL) {
+					setTimeout(function(){setupEncodingCheck(file)},10);
+				}
+				else {
+					setTimeout(function(){loadPreviewData(file, 'utf-8')},10);
+				}
+				
+			}
+		}
+
+		function validateSupport(){
+			if ((window.File && window.FileReader && window.FileList && window.Blob) === false || typeof(Storage) === 'undefined'){
+				writeErrorMessage('Your browser lacks the ability to use the features offered by this page. Please select a browser from the list <a href="https://acumensolutions.force.com/sfinfo/articles/FAQ/What-browsers-does-SchoolForce-support" target="_blank">here</a>.');
+				return false;
+			}
+			return true;
+		}
+
+		function validateFile(){
+			var files = document.getElementById('selectedFile').files;
+			if(files.length === 0){
+				writeErrorMessage('Please select a file.');
+
+				return false;
+			}
+
+			return files[0];
+		}
+
+		function setupEncodingCheck(file){
+			byteLocation = 0;
+			checkNextByteChunk(file);
+		}
+
+		function checkNextByteChunk(file){
+			var reader = new FileReader();
+			
+			reader.addEventListener("load",
+				function(event){
+					encodingByteLocation = 0;
+					setTimeout(function(){detectFileEncoding(event.target.result, file)},10);
+				}
+			);
+			if(file.size > 10000000){
+				var endingByte = (byteLocation+10000000>file.size)?file.size:byteLocation+10000000;
+				var blob = file.slice(byteLocation, endingByte+1);
+				console.log('Reading byte '+byteLocation+'-'+endingByte);
+				byteLocation =endingByte+1;
+				reader.readAsArrayBuffer(blob);
+			} else {
+				byteLocation = file.size;
+				reader.readAsArrayBuffer(file);
+			}
+		}
+
+		function detectFileEncoding(loadedFile, file){
+			var contents = new Uint8Array(loadedFile);
+			var startTime = new Date().getTime();
+			encoding = '';
+			while(encodingByteLocation < contents.length && (new Date().getTime()-startTime) < 50){
+				encoding = getByteEncoding(contents.subarray(encodingByteLocation, encodingByteLocation+4));
+				if(encoding == 'ascii'){
+					console.log('ascii returned, breaking');
+					break;
+				}
+			}
+
+			//case 1: Reached timeout within current chunk
+			if(encodingByteLocation < contents.length && encoding != 'ascii'){
+				setTimeout(function(){detectFileEncoding(loadedFile, file);}, 10);
+			} else if(byteLocation < file.size && encoding != 'ascii'){ //reached end of current chunk, read the next
+				setTimeout(function(){checkNextByteChunk(file)}, 10);
+			} else { //all done, start the parser
+				if(encoding === 'moreBytes'){
+					console.log('asking for more bytes at EOF, setting to ascii');
+					encoding = 'ascii';
+				}
+				console.log('Encoding detected in: '+ (new Date().getTime()-fileLoadTime)/1000);
+				loadPreviewData(file, encoding);
+			}
+		}
+
+		function getByteEncoding(bytes){
+			encodingByteLocation++;
+			if(bytes[0] > 0xF4){ //unicode cannot have it's first byte be greater then 0xF4
+				console.log('Found invalid first byte');
+				return 'ascii';
+			} else if (bytes[0] > 0x7F){//ascii code 128+ utf-8 and ascii diverge, so we need to check here
+				//utf-8 can be 1,2,3 or 4 bytes depending on the value of byte 1. Check that this group meets that.
+				var expectedBytes = (bytes[0]<0xE0)?1:(bytes[0]<0xF0)?2:3;
+				encodingByteLocation += expectedBytes;
+				if((bytes.length-1) < expectedBytes){
+					byteLocation -= bytes.length;
+					console.log('Given '+bytes.length+' expected '+expectedBytes+' bytes');
+					return 'moreBytes';
+				}
+
+				for(var i=1;i<=expectedBytes;i++){
+					if(bytes[i] < 0x80 || bytes[i] > 0xBF){
+						console.log('Found code out of range');
+						return 'ascii';
+					}
+				}
+			}
+			return 'utf-8';
+		}
+
+		function loadPreviewData(file, encoding){
+			console.log('processing file with encoding '+encoding);
+			Papa.parse(
+				file, 
+				{
+					complete: function(results){
+						console.log('File parsed in: '+ (new Date().getTime()-fileLoadTime)/1000);
+						setTimeout(function(){setupDataTables(results)},0);
+					},
+					error: function(error, file){
+						writeErrorMessage('The system was unable to load the provided the file you provided. '+error);
+					},
+					preview: 21, //need 20+headers
+					encoding: encoding,
+					worker: true,
+					//header: true
+					download:isURL
+				}
+			);
+		}
+
+		function setupDataTables(csvData){
+			console.log(csvData);
+			//need 3 versions of the headers, one for the table, one for the error log, one for transmission to SFDC.
+			headers = new Array(csvData.data[0].length);
+			var stringHeaders = new Array(csvData.data[0].length);
+			var tableHeaders = new Array(csvData.data[0].length);
+			for(var i=0;i<csvData.data[0].length;i++){
+				tableHeaders[i] = {title: csvData.data[0][i]};
+				stringHeaders[i] = '"'+csvData.data[0][i].replace(/\"/g,'""')+'"';
+				headers[i] = csvData.data[0][i];
+			}
+			stringHeaders.push('Errors');
+			errorRows = new Array();
+			errorRows[0] = stringHeaders.join(',');
+
+			var previewTableLength = (csvData.data.length>21)?20:(csvData.data.length-1);
+			var previewTableData = new Array(previewTableLength);
+			console.log(previewTableLength);
+
+			for(var i=1;i<csvData.data.length;i++){
+				var rowData = csvData.data[i];
+				previewTableData[i-1] = new Array(headers.length);
+				for(var j = 0;j<headers.length;j++){
+					if(rowData[j] !== undefined){
+						previewTableData[i-1][j] = rowData[j];
+					} else {
+						previewTableData[i-1][j] = '';
+					}
+				}
+			}
+
+			console.log(previewTableData);
+
+			var dataTable = j$(".dataTable").dataTable({
+				"data": previewTableData,
+				"deferRender": true,
+				"bJQueryUI": true,
+				"columns": tableHeaders,
+				"sScrollY": "200px",
+				"scrollX": true,
+				"scrollCollapse": true,
+				"bAutoWidth": true,
+				"bPaginate": false,
+				"bDestroy": true,
+				"iDisplayLength": 1000,
+				"bSort": false,
+				"bFilter": false,
+				"bInfo": false
+			});
+
+			j$('#startBatchButton').show();
+			closeSpinner();
+			console.log('Table ready in '+(new Date().getTime()-fileLoadTime)/1000);
+		}
+
+		function resetMessages(){
+			var baseErrorStructure = '<ul style="padding-left:10px;padding-top:0px;margin:0px"></ul>';
+			j$('table','#customMessagingPanel').find('tr:last').find('td:last').empty().append(baseErrorStructure);
+			j$('#customMessagingPanel').hide();
+		}
+
+		function writeErrorMessage(message){
+			j$('#startBatchButton').hide();
+			var structuredMessage = '<li><div class="messageText">'+message+'</div></li>';
+			j$('table','#customMessagingPanel').find('ul').append(structuredMessage);
+			j$('#customMessagingPanel').show();
+		}
+
+		function closeSpinner(){
+			setTimeout("hideProgressBar()",500);
+		}
+
+		function parseFile(){
+			console.log('starting full file parse');
+			Papa.parse(
+				file, 
+				{
+					complete: function(results){
+						transmitComplete = true;
+						if(parseSize !== 100){
+							//step will call this automatically if there there is a multiple of 100 rows
+							//but we need to send the last batch otherwise.
+							if(!isAborted){
+								setTimeout(function(){sendParsedChunk();},1);
+							} else {
+								setTimeout(function(){handleAbort(parseResults);},1);
+							}
+						} else {
+							checkFileProgress();
+						}
+					},
+					error: function(error, file){
+						console.log(error);
+						writeErrorMessage('The system was unable to load the provided the file you provided. '+error);
+					},
+					encoding: encoding,
+					step: function(result, handle){
+						if(totalParseSize === -1){
+							totalParseSize = 0;
+						} else {
+							parseResults.push(result.data[0]);
+							parseSize++;
+							totalParseSize++;
+							if(parseSize === 100){
+								parserHandler = handle;
+								handle.pause();
+								if(!isAborted){
+									setTimeout(function(){sendParsedChunk();},1);
+								} else {
+									setTimeout(function(){handleAbort(parseResults);},1);
+								}
+							}
+						}
+					},
+					download:isURL
+				}
+			);
+		}
+
+		function startSFDCTransferBatch(){
+			if(typeof file === 'undefined'){
+				alert('Please select and upload a file.');
+				return;
+			}
+
+			parseFile();
+			parseResults = new Array();
+			parseSize = 0;
+			totalParseSize = -1;
+			fileLoadTime = new Date().getTime();
+			successes = 0;
+			failures = 0;
+			transmitComplete = false;
+			isAborted = false;
+			updateDisplay();
+			openResultsModal();
+		}
+
+		function openResultsModal(){
+			j$("#resultsModal").dialog({
+				modal: true,
+				closeOnEscape: false,
+				minWidth: '860',
+				close: function(event,ui){
+					j$('#progressDiv').remove();
+					j$('#sCell','#visualforceOutput').html();
+					j$('#fCell','#visualforceOutput').html();
+				},
+				buttons: {
+					"Download Error Log": function() {
+						//TODO: Disable error button by default
+						j$('#errorLogLink')[0].click();
+					},
+					"Abort": function(){
+						isAborted = true;
+						console.log('User aborted load');
+						j$('#progressText').html('Aborting....');
+					}
+				}
+			});
+			//sorry if thing string looks bad, it's like some nasty mix of HTML, Visualforce and javascript
+			var processProgress = 
+				'<div id="progressDiv" style="margin: .5em 0;">'+
+				'<img src="'+"{!URLFOR($Resource.resources_Master, '/custom/images/AjaxLoader.gif')}"+'" style="width: 100; height: 100; vertical-align: middle;"/>'+
+				'<span id="progressText">Records Processed: 0</span></div>';
+			j$('.ui-dialog-buttonpane').append(processProgress);
+		}
+
+		function sendParsedChunk(){
+			var namespace = ('{!$RemoteAction.CT_core_LoadCSVData_v2.handleData}'.indexOf('SchoolForce') != -1)?'SchoolForce':'c';
+			Visualforce.remoting.Manager.invokeAction(
+				'{!$RemoteAction.CT_core_LoadCSVData_v2.handleData}',
+				{
+					'apexType': namespace+'.CT_core_LoadCSVData_v2.CSVDataHandler',
+					csvData: parseResults,
+					selectOptionString: j$('[id*="objectTypeSelect"]').val(),
+					header: headers,
+					setupId: '{!cSetup.setup.Id}'
+				},
+				handleResults,
+				{
+					'buffer': false,
+					'escape': false
+				}
+			);
+		}
+
+		function handleResults(batchStatus, event){
+			//console.log(event);
+			//console.log(batchStatus);
+			if(event.type === 'exception'){
+				for(var row in event.data[0].csvData){
+					failures++;
+					var dataToAdd = buildErrorRow(event.data[0].csvData[row],event.message);
+					errorRows.push(dataToAdd);
+				}
+			} else {
+				for(var i=0;i<batchStatus.totalRows;i++){
+					if(batchStatus.results[i].isSuccess){
+						successes++;
+					} else {
+						failures++;
+						errorRows.push(buildErrorRow(batchStatus.csvData[i], batchStatus.results[i].errorMessage));
+					}
+				}
+			}
+			parseResults = new Array();
+			parseSize = 0;
+			updateDisplay();
+			checkFileProgress();
+		}
+
+		function handleAbort(failedRows){
+			for(var i=0;i<failedRows.length;i++){
+				failures++;
+				var dataToAdd = buildErrorRow(failedRows[i],'Aborted');
+				errorRows.push(dataToAdd);
+			}
+			parseResults = new Array();
+			parseSize = 0;
+			updateDisplay();
+			checkFileProgress();
+		}
+
+		function buildErrorRow(dataValues, errorMessage){
+			var dataToAdd = '';
+			for(var j in dataValues){
+				if(typeof dataValues[j] !== 'function'){ //seems using this process of iterating over arrays hits a "hidden" function included in the array
+					dataToAdd+='"'+String(dataValues[j]).replace(/\"/g,'""')+'",';
+				}
+			}
+			dataToAdd+='"'+String(errorMessage).replace(/\"/g,'""')+'"';
+			return dataToAdd;
+		}
+
+		function checkFileProgress(){
+			if(totalParseSize % 1000 === 0 || transmitComplete){
+				var timePassed = (new Date().getTime()-fileLoadTime)/1000;
+				console.log(timePassed+' seconds have passed. Processing at '+Math.round(totalParseSize/timePassed)+' records per second.');
+			}
+			if(!transmitComplete){
+				parserHandler.resume();
+			} else {
+				console.log('Transmission Complete');
+				j$('img','#progressDiv').remove();
+				var modal = j$("#resultsModal");
+				var buttons = j$(modal).dialog('option','buttons');
+
+				if(failures > 0){
+					j$('#progressDiv').prepend('<img src="/img/msg_icons/warning24.png"/>');
+					//TODO: Enable error log download button
+					var errorString = errorRows.join('\r\n');
+					errorRows = new Array();
+					var blob = new Blob([errorString], {type: 'text/csv'});
+					errorLogLink.href = URL.createObjectURL(blob);
+					if(!isURL){
+						errorLogLink.download = file.name.substring(0,file.name.indexOf('.csv'))+'_errors.csv';
+					} else {
+						var templateName = j$('[id*="objectTypeSelect"]').val();
+						errorLogLink.download = templateName.replace(' ','_')+'_errors.csv';
+					}
+
+					if(isAborted){
+						j$('#progressText').html('Aborted');
+					}
+				} else {
+					j$('#progressDiv').prepend('<img src="/img/msg_icons/confirm24.png"/>');
+					delete buttons['Download Error Log'];
+				}
+
+				
+				delete buttons.Abort;
+				buttons.Close = function(){
+					clearData();
+					j$(this).dialog('close');
+				};
+				j$(modal).dialog('option','buttons',buttons);
+				console.log(buttons);
+			}
+		}
+
+		function updateDisplay(){
+			if(!isAborted){
+				j$('#progressText').html('Records Processed: '+totalParseSize);
+			}
+			j$('#sCell','#visualforceOutput').html(successes);
+			j$('#fCell','#visualforceOutput').html(failures);
+		}
+	</script>
+	<style>
+		.zen-tabMenu{
+			overflow:hidden; /*Fixes a fun little salesforce scroll bug when sidebar=false */
+		}
+		#customMessagingPanel a{
+			font-size:100%;
+			margin:0;
+		}
+		.sidebar{
+			float:left;
+			width:15%;
+		}
+		.mainContent{
+			/*margin:10px;*/
+			margin-left:15%;
+			margin-top:5px;
+			padding-left: 10px;
+		}
+		.innerConent{
+			border:1px solid #ccc;
+			border-radius:7px;
+		}
+		.sectionHeader{
+			font-weight:bold;
+			font-size: 16px;
+			text-transform: uppercase;
+		}
+		.stepHeader{
+			background-color:#C0C0C0;
+			font-size:16px;
+			padding:5px;
+		}
+		.stepBody{
+			padding:5px;
+		}
+		.bold{
+			font-weight:bold;
+		}
+		.italics{
+			font-style: italic;
+		}
+		#setupSidebarFrame{
+			margin-top:5px!important;
+		}
+		#progressText{
+			margin-left:10px;
+		}
+		.ui-dialog-titlebar {
+  			display:none;
+		}
+		.dataTable td{
+			word-wrap: break-word;
+		}
+		.ui-helper-clearfix:after{
+			clear:none!important;
+		}
+		#output table th{
+			text-transform: none;
+			font-size: 12px;
+		}
+	</style>
+	<!-- <apex:form > -->
+		<div class="mainContent">
+			<div id="customMessagingPanel" style="display:none;">
+				<apex:pagemessage id="messages" strength="2" severity="error" title="Error">
+				</apex:pagemessage>
+			</div>
+			<apex:outputPanel id="messagePanel">
+				<apex:pageMessages />
+			</apex:outputPanel>
+			<h2 class="sectionHeader">CSV LOADER FOR {!cSetup.setup.School__r.Name} {!cSetup.setup.Year__r.Name__c}</h2>
+		</div>
+		<!--
+		<div class="sidebar">
+			<c:setupWizardSidebar setupId="{!cSetup.setup.id}" />
+		</div>
+		-->
+		<div class="mainContent">
+			<div class="innerConent">
+				<div class="stepHeader">
+					<span class="bold">Step 1: </span>
+					Select the template to load.
+				</div>
+				<div class="stepBody">
+					<apex:selectList value="{!selectedTemplate}"  multiselect="false" size="1" onChange="clearData(); setSelectedTemplateParametersJS();" id="objectTypeSelect">
+						<apex:selectOptions value="{!templateList}"/>
+					</apex:selectList>
+				</div>
+				<div class="stepHeader">
+					<span class="bold">Step 2: </span>
+					<span class="italics">(Optional)</span>
+					Download the template or load the template values into the preview table.
+					<span class="helpButton" title="The template contains the required column headers and sample data for the CSV file. You may want to use the values in the template as is; in this case, use the Load Template Values button." style="z-index: 1000;">
+						<img src="/s.gif" class="helpIcon" />
+					</span>
+				</div>
+				<div class="stepBody">
+					<input type="button" onClick="setSelectedTemplateParametersJS(); downloadTemplateJS();" value="Download Template" style="margin-right:10px;"/>
+					OR
+					<input type="button" onClick="setSelectedTemplateParametersJS(); loadDefaultFile();" value="Load Template Values" style="margin-left:10px;"/>
+				</div>
+
+				<div class="stepHeader">
+					<span class="bold">Step 3: </span>
+					Select the CSV file from your computer and upload it.
+				</div>
+				<div class="stepBody">
+					<input type="file" id="selectedFile" value="Select File" onChange="file = undefined;" accept="text/csv,.csv,text/tab-separated-values,.tsv"/>
+					<input type="button" onClick="loadFile();" value="Upload File"/>
+				</div>
+
+				<div class="stepHeader">
+					<span class="bold">Step 4: </span>
+					Preview your data and ensure it looks accurate. Clear data if it does not. Only 20 rows display.
+				</div>
+				<div class="stepBody">
+					<input type="button" id="startBatchButton" onclick="clearData();" value="Clear Data" class="blue_btn" style="float:right;"/>
+					<div id="output" style="clear:right;">
+					</div>
+				</div>
+
+				<div class="stepHeader">
+					<span class="bold">Step 5: </span>
+					Insert the data into SchoolForce. 
+				</div>
+				<div class="stepBody">
+					<input type="button" id="startBatchButton" onclick="startSFDCTransferBatch();" value="Insert Data" class="basic_black_btn"/>
+				</div>
+			</div>
+
+			<div id="resultsModal" style="display:none;">
+				This page must remain open until all records are processed. Opening a new tab or window will not interrupt this process.
+				<div id="visualforceOutput">
+					<table style="width:100%;">
+					<tr >
+						<td style="text-align:right;width:50%;">
+							Successes:
+						</td>
+						<td id="sCell" style="text-align:left;"></td>
+					</tr>
+					<tr>
+						<td style="text-align:right;width:50%;">
+							Failures:
+						</td>
+						<td id="fCell" style="text-align:left;"></td>
+					</tr>
+					</table>
+				</div>
+				<a id="errorLogLink" style="display:none;">Download Errors</a>
+			</div>
+		</div>
+
+		<apex:actionFunction name="setSelectedTemplateParametersJS" action="{!setSelectedTemplateParameters}" reRender="messagePanel"/>
+
+		<apex:actionFunction name="downloadTemplateJS" action="{!downloadTemplate}" immediate="true" reRender="messagePanel"/>
+	<!-- </apex:form> -->
+</apex:component>

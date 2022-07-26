@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Standard Weight/Config</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Standard Weights/Configs</value>
+    </caseValues>
+    <fields>
+        <label><!-- Default Weighting --></label>
+        <name>Default_Weighting__c</name>
+    </fields>
+    <fields>
+        <label><!-- External Id --></label>
+        <name>External_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Section --></label>
+        <name>Section__c</name>
+        <relationshipLabel><!-- Standard Weights/Configs --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Standard Name --></label>
+        <name>Standard_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Standard --></label>
+        <name>Standard__c</name>
+        <relationshipLabel><!-- Standard Weights/Configs --></relationshipLabel>
+    </fields>
+    <layouts>
+        <layout>Standard Weight/Config Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

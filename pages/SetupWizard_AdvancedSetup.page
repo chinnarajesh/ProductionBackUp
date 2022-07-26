@@ -1,0 +1,45 @@
+<apex:page controller="SetupWizard_AdvancedSetup" sidebar="false" tabStyle="SchoolForce_Setup__tab" >
+	<c:setupWizardSharedComponents />
+	<!-- SYSTEM ADMIN LINK LANDING PAGE -->
+	<apex:outputPanel id="documentationPanel">
+		<table style="width: 100%">
+			<tr>
+				<td style="vertical-align: top; width: 15%">
+					<!-- <c:setupWizardSidebar /> -->
+				</td>
+				<td style="vertical-align: top; width: 85%">
+					<div id="schoolforce-wrapper" class="wrapper">
+						<apex:outputPanel id="error" styleClass="pageMessages" >
+							<apex:pageMessages />
+						</apex:outputPanel>
+						<h1 class="centerHeader">
+							<span style="display:inline-block;">SchoolForce Advanced Setup</span>
+							<input type="button" onclick="goHomeJs();" class="green_btn_arrow" value="Return to Setup Home" />
+						</h1>
+						<apex:outputPanel styleClass="adminSummary">
+							<br/>
+							<p>Below are a series of links to documentation on how to create and change the following Salesforce or SchoolForce preferences.  Each of these items will be available to return to throughout the year.</p>
+							<br/>
+						</apex:outputPanel>
+						<apex:form >
+						<div class="content-wrapper">
+							<h3>Advanced Setup</h3>
+							<ul>
+								<li><apex:outputLink value="https://acumensolutions.force.com/sfinfo/articles/procedure/customize-schoolforce-page-layouts">Page Layouts</apex:outputLink></li>
+								<li><apex:outputLink value="https://acumensolutions.force.com/sfinfo/articles/procedure/public-groups-what-they-are-and-how-to-create-them">Public Groups</apex:outputLink></li>
+								<li><apex:outputLink value="https://acumensolutions.force.com/sfinfo/articles/procedure/profiles-roles-what-they-are-and-how-to-modify-them">Profiles/Roles</apex:outputLink></li>
+								<li><apex:outputLink value="https://acumensolutions.force.com/sfinfo/articles/procedure/create-email-communications">Email Communications</apex:outputLink></li>
+								<li><apex:outputLink value="https://acumensolutions.force.com/sfinfo/articles/procedure/integrate-google-with-schoolforce">Google Integration</apex:outputLink></li>
+								<li><apex:outputLink value="https://acumensolutions.force.com/sfinfo/articles/procedure/libraries-what-they-are-and-how-to-create-them">Libraries</apex:outputLink></li>
+								<li><apex:outputLink value="https://acumensolutions.force.com/sfinfo/articles/procedure/schedule-reports">Schedule Reports</apex:outputLink></li>
+								<li><apex:outputLink value="https://acumensolutions.force.com/sfinfo/articles/procedure/set-up-notifications">Notifications</apex:outputLink></li>
+							</ul>
+						</div>
+						<apex:actionFunction name="goHomeJs" action="{!goHome}" />
+						</apex:form>
+					</div>
+				</td>
+			</tr>
+		</table>
+	</apex:outputPanel>
+</apex:page>

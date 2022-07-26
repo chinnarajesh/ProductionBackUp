@@ -1,0 +1,108 @@
+<apex:page controller="AssessmentWizardController" tabstyle="Assesment__c" id="thePage">
+<c:jQueryInit bDataTables="true" bLoadingPanel="true"/>
+<c:admin />
+<apex:includeScript value="{!URLFOR($Resource.jWerty, '/jWerty/jwerty.js')}" />
+<apex:stylesheet value="{!$Resource.New_Core_UX}"/>    
+<script type="text/javascript">
+	
+	function resetDataTables(){ 
+    	j$(j$('#dataDiv th')[1]).css("display", "none");
+    	j$(".tablesorter").dataTable( {
+			"sScrollY": "200px",
+			"sScrollX": "100px",
+            "bLengthChange": true,
+            "bFilter": true,
+            "bInfo": false,
+            "aoColumnDefs": [{ "sWidth": "300px", "aTargets": [ 3 ]}],
+            "bAutoWidth": true,
+            "bSort" :true,
+            "bDestroy": true,
+            "bScrollAutoCss": true,
+            "bPaginate": true,
+            "bScrollCollapse": true,
+        	"bJQueryUI": true,
+        	"bSaveState": true,
+        	"iDisplayLength": 100,
+        	"asStripClasses": [ 'odd', 'even' ]
+        });
+        j$('.dataTables_wrapper').css('min-height','200');
+    }
+    jwerty.key('enter',false);
+    
+    
+    function importJS(){
+    	showProgressBar('Please wait while data is processed.');
+    	processInputJS();
+        hideProgressBar();
+         //setTimeout('hideProgressBar()',5000);
+    }
+
+    function removeAssessmentJS(rowNum){
+    	var row = j$('#dataDiv tr .row'+rowNum).parent().parent();
+    	row.find('.rowRem'+rowNum).attr('checked', true);
+    	j$(row).css("display", "none");
+    }
+</script>
+	<apex:form id="theForm">
+        <div id="confirm_dialog" style="Display:none">begin</div>
+		<apex:actionFunction name="processInputJS" action="{!processInput}"/>
+		<apex:actionFunction name="cancelImportJS" action="{!cancelImport}"/>
+
+		<apex:outputPanel id="messagePanel">
+		    <apex:pageMessages escape="false"/>
+		</apex:outputPanel>
+        <h1 style="font-size:16px;">Assessment Import (Only the first {!$Label.AssessmentWizardImportProcessRecordsLimit} records will be imported)</h1>
+		<apex:pageBlock >
+			<apex:inputFile contentType="{!fileContentType}" fileName="{!fileName}" fileSize="{!fileSize}" value="{!fileBlob}" />
+			<div class="clear_fix">&nbsp;</div>
+			<input type="button" value="Cancel" onclick="cancelImportJS();" class="black_btn"/>
+			<input type="button" value="Import" onclick="importJS();" class="black_btn" />
+			<div class="clear_fix">&nbsp;</div>
+		</apex:pageBlock>
+		<apex:outputPanel id="dataPanel" styleClass="dataPanel" rendered="{!IF(inputWrapper.assessments.size > 0, true, false)}">
+		<apex:pageBlock >
+				<h3>{!fileName} Data</h3>
+				<div class="section_content">
+					<apex:pageBlockSection collapsible="false" columns="1">
+						<apex:outputPanel id="tbl" style="margin-left:auto; margin-right:auto; min-width:700px; width:700px;">
+						<div id="dataDiv" style="margin-left:auto; margin-right:auto; min-width:700px; width:700px;">
+							<apex:variable var="i" value="{!1}"/>
+							<apex:dataTable id="dataTable" styleclass="tablesorter" title="Student List" value="{!inputWrapper.assessments}" var="wrapper" width="700px" >
+								<apex:column headerValue="Remove">
+									<button type="button" onclick="removeAssessmentJS('{!FLOOR(i)}');">Delete</button>
+								</apex:column>
+								<apex:column style="display: none;" headerValue="Removed">
+									<apex:inputCheckbox styleClass="rowRem{!FLOOR(i)}" value="{!mapAssessmentToRemove[wrapper['Id']]}"/>
+								</apex:column>								
+								<apex:column headerValue="Row">
+									<apex:outputText styleClass="row{!FLOOR(i)}" value="{0,number,#,##0}">
+										<apex:param value="{!i}"/>
+									</apex:outputText>
+									<apex:variable var="i" value="{!i+1}" />
+								</apex:column>
+								<apex:column headerValue="Student Name">
+									<apex:outputField value="{!wrapper['Student_Name__c']}"/>
+								</apex:column>
+								<apex:repeat value="{!inputWrapper.displayLabels}" var="field">
+							    	<apex:column headerValue="{!field.labelName}" >
+										<apex:inputField value="{!wrapper[field.apiName]}" rendered="{!IF(field.fieldType != 'BOOLEAN', true, false)}"/>
+										<apex:inputCheckbox value="{!wrapper[field.apiName]}" rendered="{!IF(field.fieldType == 'BOOLEAN', true, false)}"/>
+								    </apex:column>
+							    </apex:repeat>
+
+							</apex:dataTable>
+						</div>
+						</apex:outputPanel>
+					</apex:pageBlockSection>
+				</div>
+
+				<div class="clear_fix" style="line-height: 1%">&nbsp;</div>
+				<apex:commandButton value="Save" action="{!saveInput}" styleclass="black_btn"/>
+				<div class="clear_fix" style="line-height: 1%">&nbsp;</div>
+			</apex:pageBlock>
+		</apex:outputPanel>
+	</apex:form>
+	<script>
+		resetDataTables();
+	</script>
+</apex:page>

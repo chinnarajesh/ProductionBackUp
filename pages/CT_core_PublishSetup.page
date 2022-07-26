@@ -1,0 +1,181 @@
+<apex:page standardController="Setup__c" extensions="CT_core_PublishSetup" sidebar="false" tabStyle="Schoolforce_Setup__tab">
+
+<c:CT_setupWizardSharedComponents summerSchoolMode="{!cSetup.setup.School__r.ParentId != null}"/>
+<script>
+j$(document).ready(function(){
+	resetTable();
+});
+</script>
+
+<apex:outputPanel id="scripts">
+<apex:includeScript value="{!URLFOR($Resource.resources_Master, '/custom/js/scheduler_grid.js')}"/>
+<script>
+function checkBatch(){
+	var bool = "{!bProcessing}";
+	if(bool=="true"){
+		showProgressBar("{!batch.status}"+'... '+"{!batch.processed}"+' of '+"{!batch.totalItems}"+' batch jobs completed.');
+		continueJS();
+	}
+}
+
+function wait(){
+	window.setInterval("checkBatch()",5000);
+}
+
+function initRejectionModal(){
+    initModal('#rejectionModal',cancelPanel);
+}
+
+function closeModalAfterTimeout(){
+	closeModal('#rejectionModal');
+    setTimeout('hideProgressBar()',500);
+}
+function openModalAfterTimeout(){
+    openModal('#rejectionModal');
+    setTimeout('hideProgressBar()',500);
+}
+</script>
+</apex:outputPanel>
+<!-- List of Catalogs -->
+<table style="width:100%">
+	<tr>
+		<td style="vertical-align:top; width:15%">
+			<!-- <c:CT_setup_sidebar setup="{!cSetup}"/> -->
+			<apex:form >
+				<c:CT_setupWizardSidebar setupId="{!cSetup.setup.id}"/>
+			</apex:form>
+		</td>
+		<td style="vertical-align:top; width:85%">
+			<div id="schoolforce-wrapper" class="wrapper">
+				<!-- Error -->
+				<apex:outputPanel id="error" styleClass="pageMessages">
+					<apex:pageMessages />
+				</apex:outputPanel>
+				<!-- Error -->
+				<!-- Reset panel -->
+				<apex:outputPanel id="resetPanel">
+					<script>
+						resetTable();
+					</script>
+				</apex:outputPanel>
+				<!-- reset Panel -->
+				<h1 class="centerHeader">
+					<input type="button" onclick="prevJs();" class="grey_btn_arrow" value="Previous" />
+					<span style="display:inline-block">{!cSetup.school.Name} Core Setup<br/>Publish Schedule</span>
+					<input type="button" onclick="nextJs();" class="green_btn_arrow" value="Next" />
+				</h1>
+				<apex:outputPanel styleClass="adminSummary">
+					<br/>
+					<p>
+					In this step, SchoolForce creates the Section, Session, Staff, Staff/Section, Student, and Student/Section records for the items you set up in the Core Setup.
+					You must perform this step any time you perform any of the following tasks:
+					<ul>
+					<li>Schedule sections</li>
+					<li>Upload new staff members</li>
+					<li>Upload new students</li>
+					<li>Upload new student section assignments</li>
+					<li>Upload new staff section assignments</li>
+					</ul>
+					To publish the Section and Session records, click <b>Prepare Data</b>. 
+					When the prepare data process completes, click <b>Publish Schedule</b>.
+					</p>
+					<br/>
+				</apex:outputPanel>
+				<div class="content-wrapper no-border">
+					<apex:outputPanel id="homePanel">
+						<apex:form >
+							<h3>Publish Schedule for School: {!cSetup.setup.school__r.name}; Term: {!cSetup.setup.year__r.Name__c}</h3>
+							<div class="section_content">
+								<table>
+									<apex:repeat value="{!termsToPublish}" var="term">
+										<tr>
+											<td>Selected Term: {!term}</td>
+											<!--<td id="prepareData">-->
+												<!--<span class="helpButton" id="prepareData_helpText-_help">-->
+													<!--<img src="/s.gif" class="helpOrb" />-->
+													<!--<script type="text/javascript">-->
+														<!--sfdcPage.setHelp('prepareData_helpText','Click to prepare the scheduled section data in the holding objects.');-->
+													<!--</script>-->
+												<!--</span>-->
+											<!--</td>-->
+											<!--<td>-->
+												<!--<apex:commandButton value="Prepare Data" disabled="{!!r.bSetup}" onclick="showProgressBar('Preparing data for publish.  Please wait. Do not refresh.');" action="{!setupPublish}" oncomplete="wait();" rerender="error, scripts">-->
+													<!--<apex:param name="rpId"  value="{!JSENCODE(r.te.id)}" assignTo="{!rpId}"/>-->
+												<!--</apex:commandButton>-->
+											<!--</td>-->
+											<!--<td id="publishData">-->
+												<!--<span class="helpButton" id="publishData_helpText-_help">-->
+													<!--<img src="/s.gif" class="helpOrb" />-->
+													<!--<script type="text/javascript">-->
+														<!--sfdcPage.setHelp('publishData_helpText','Click to create the sections and sessions from the data in the holding objects.');-->
+													<!--</script>-->
+												<!--</span>-->
+											<!--</td>-->
+
+										</tr>
+
+									</apex:repeat>
+								</table>
+								<p style="float: right;">
+                                    <apex:commandButton value="Publish Schedule"   action="{!publish}"  rerender="error, scripts" disabled="{!bOccupancyError}">
+                                        <!--<apex:param name="rpId" value="{!JSENCODE(r.te.id)}" assignTo="{!rpId}" />-->
+                                        <!--onclick="showProgressBar('Publishing data.  Please wait.  Do not refresh.');"-->
+                                    </apex:commandButton>
+								</p>
+								<p style="float: right; padding-right: 10px">
+                                    <apex:commandButton value="Reject Publish" onClick="showProgressBar('Initializing..'); initRejectionModal(); openModalJs();" rerender="rejectionModal">
+                                        <!--<apex:param name="rpId" value="{!JSENCODE(r.te.id)}" assignTo="{!rpId}" />-->
+                                        <!--onclick="showProgressBar('Publishing data.  Please wait.  Do not refresh.');"-->
+                                    </apex:commandButton>
+								</p>
+
+							</div>
+
+                            <div id="rejectionModal" >
+                                <apex:outputPanel id="RejectionPanel">
+                                    <apex:outputPanel rendered="{!bOpenModal}">
+                                        <apex:pageBlock >
+                                            <apex:pageMessages />
+                                            <h3>Rejection Reason</h3>
+                                            <div class="section_content">
+												<apex:outputLabel style="" >Description:</apex:outputLabel>
+												<apex:inputField id="rejectionReason" style="width: 400px; hight: 200px;" value="{!cSetup.setup.Rejection_Reason__c}"  required="true" />
+                                            </div>
+                                            <input type="button" class="grey_btn" value="Cancel" onClick="showProgressBar(' Canceling '); closeModal('#rejectionModal');" />
+                                            <input type="button" class="black_btn" value="SAVE" onClick="showProgressBar(' Saving'); pushData();" />
+                                            <div class="clear_fix">&nbsp;</div>
+                                        </apex:pageBlock>
+                                    </apex:outputPanel>
+                                </apex:outputPanel>
+
+                                <script>
+									function pushData() {
+                                        var descriptionValue = document.querySelectorAll('textarea[id$="rejectionReason"]')[0].value;
+                                        console.log(descriptionValue);
+                                        saveRejectionJs(descriptionValue);
+									}
+								</script>
+                            </div>
+
+
+
+							<!-- ACTION FUNCTIONS -->
+                            <apex:actionFunction name="openModalJs" action="{!openWindow}" rerender="RejectionPanel" oncomplete="openModalAfterTimeout();"/>
+                            <apex:actionFunction name="cancelPanel" immediate="true" action="{!closeWindow}" rerender="RejectionPanel" onComplete="closeModalAfterTimeout();"/>
+                            <apex:actionFunction name="saveRejectionJs" immediate="true" action="{!rejectPublish}" rerender="RejectionPanel, error" onComplete="closeModalAfterTimeout();">
+                                <apex:param name="Description" value=""/>
+							</apex:actionFunction>
+
+                            <apex:actionFunction name="continueJS" action="{!continueBatch}" rerender="error, scripts" />
+							<apex:actionFunction name="prevJs" action="{!prev}" />
+							<apex:actionFunction name="nextJs" action="{!next}" />
+
+
+						</apex:form>
+					</apex:outputPanel>
+				</div>
+			</div>
+		</td>
+	</tr>
+</table>
+</apex:page>

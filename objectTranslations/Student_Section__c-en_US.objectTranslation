@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Student/Section</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Student/Section</value>
+    </caseValues>
+    <fields>
+        <label><!-- Active --></label>
+        <name>Active__c</name>
+    </fields>
+    <fields>
+        <label><!-- Alternate Lang Comments --></label>
+        <name>Alternate_Lang_Comments__c</name>
+    </fields>
+    <fields>
+        <label><!-- Amount of time per section --></label>
+        <name>Amount_of_Time__c</name>
+    </fields>
+    <fields>
+        <label><!-- Archived --></label>
+        <name>Archived__c</name>
+    </fields>
+    <fields>
+        <label><!-- Average Section Grade --></label>
+        <name>Average_Section_Grade__c</name>
+    </fields>
+    <fields>
+        <label><!-- Count Section Grades --></label>
+        <name>Count_Section_Grades__c</name>
+    </fields>
+    <fields>
+        <label><!-- Deactivated --></label>
+        <name>Deactivated__c</name>
+    </fields>
+    <fields>
+        <help><!-- The total number of minutes to date that this student has had in this particular Intervention Section --></help>
+        <label><!-- Dosage to Date --></label>
+        <name>Dosage_to_Date__c</name>
+    </fields>
+    <fields>
+        <help><!-- Dosage to Date calculated in hours --></help>
+        <label><!-- Dosage to Date (hrs) --></label>
+        <name>Dosage_to_Date_hrs__c</name>
+    </fields>
+    <fields>
+        <label><!-- Enrollment End Date --></label>
+        <name>Enrollment_End_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Enrollment Start Date --></label>
+        <name>Enrollment_Start_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- External Id --></label>
+        <name>External_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Failing --></label>
+        <name>Failing__c</name>
+    </fields>
+    <fields>
+        <label><!-- Goal --></label>
+        <name>Goal__c</name>
+    </fields>
+    <fields>
+        <label><!-- Holding Source --></label>
+        <name>Holding_Source__c</name>
+        <relationshipLabel><!-- Student/Section --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- In School/Extended Learning/Curriculum --></label>
+        <name>In_School_Extended_Learning_Curriculum__c</name>
+    </fields>
+    <fields>
+        <help><!-- Date the Student was enrolled in the Section. If the Student has re-entered this Section, this field will update with the new enrollment date. --></help>
+        <label><!-- Intervention Enrollment Start Date --></label>
+        <name>Intervention_Enrollment_Start_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Is Section --></label>
+        <name>Is_Section__c</name>
+    </fields>
+    <fields>
+        <label><!-- Local Student ID --></label>
+        <name>Local_Student_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Location --></label>
+        <name>Location__c</name>
+    </fields>
+    <fields>
+        <label><!-- Original School Salesforce ID --></label>
+        <name>Original_School_Salesforce_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Original School --></label>
+        <name>Original_School__c</name>
+    </fields>
+    <fields>
+        <label><!-- Program --></label>
+        <name>Program__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reference ID --></label>
+        <name>Reference_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- School Reference Id --></label>
+        <name>School_Reference_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- School Year Name --></label>
+        <name>School_Year_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- School --></label>
+        <name>School__c</name>
+    </fields>
+    <fields>
+        <label><!-- Section Attendance Flag --></label>
+        <name>Section_Attendance_Flag__c</name>
+    </fields>
+    <fields>
+        <label><!-- Section Exit Reason --></label>
+        <name>Section_Exit_Reason__c</name>
+        <picklistValues>
+            <masterLabel>ACM no longer available</masterLabel>
+            <translation><!-- ACM no longer available --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Accidental Enrollment</masterLabel>
+            <translation><!-- Accidental Enrollment --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Deactivated by trigger.</masterLabel>
+            <translation><!-- Deactivated by trigger. --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>School Year ended</masterLabel>
+            <translation><!-- School Year ended --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Student no longer available</masterLabel>
+            <translation><!-- Student no longer available --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Section Name --></label>
+        <name>Section_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Section Period --></label>
+        <name>Section_Period__c</name>
+    </fields>
+    <fields>
+        <label><!-- Section RT --></label>
+        <name>Section_RT__c</name>
+    </fields>
+    <fields>
+        <label><!-- Section Reporting Period Start Date --></label>
+        <name>Section_ReportingPeriod_StartDate__c</name>
+    </fields>
+    <fields>
+        <label><!-- Section --></label>
+        <name>Section__c</name>
+        <relationshipLabel><!-- Student --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Section time --></label>
+        <name>Section_time__c</name>
+    </fields>
+    <fields>
+        <label><!-- Setup Year Name --></label>
+        <name>Setup_Year_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Student Entry Date --></label>
+        <name>Student_Entry_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Student First Name --></label>
+        <name>Student_First_Name__c</name>
+    </fields>
+    <fields>
+        <help><!-- The Student&apos;s grade level at the time of the Section --></help>
+        <label><!-- Student Grade --></label>
+        <name>Student_Grade__c</name>
+    </fields>
+    <fields>
+        <label><!-- Student Id --></label>
+        <name>Student_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Student Name --></label>
+        <name>Student_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Student/Program --></label>
+        <name>Student_Program__c</name>
+        <relationshipLabel><!-- Student/Section --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Student --></label>
+        <name>Student__c</name>
+        <relationshipLabel><!-- Section --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Student school year --></label>
+        <name>Student_school_year__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total Grade Value --></label>
+        <name>Total_Grade_Value__c</name>
+    </fields>
+    <fields>
+        <label><!-- Unique Student/Section --></label>
+        <name>Unique_Student_Section__c</name>
+    </fields>
+    <fields>
+        <label><!-- 18 digit ID --></label>
+        <name>X18_digit_ID__c</name>
+    </fields>
+    <fields>
+        <help><!-- System generated tally of number of late homework assignments for the particular section --></help>
+        <label><!-- # of Late Homework --></label>
+        <name>of_Late_Homework__c</name>
+    </fields>
+    <fields>
+        <help><!-- System generated tally of number of missing homework assignments for the particular section --></help>
+        <label><!-- # of Missing Homework --></label>
+        <name>of_Missing_Homework__c</name>
+    </fields>
+    <layouts>
+        <layout>CY Student/Section Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Enrollment &amp; Exit Information --></label>
+            <section>Enrollment &amp; Exit Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Non Admin Student/Section</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Student/Section Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- Accidentally enrolled students should have no program dosage and 0 days of enrollment. --></errorMessage>
+        <name>Accidental_Enrollment_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- An Exit Reason Is Required --></errorMessage>
+        <name>Exit_reason_required</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Intervention Exit Date cannot be before Intervention Enrollment Start Date. --></errorMessage>
+        <name>Intervention_validation</name>
+    </validationRules>
+</CustomObjectTranslation>

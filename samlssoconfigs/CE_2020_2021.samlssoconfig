@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SamlSsoConfig xmlns="http://soap.sforce.com/2006/04/metadata">
+    <identityLocation>SubjectNameId</identityLocation>
+    <identityMapping>Username</identityMapping>
+    <issuer>exk1jbm6tv4Dvq61z0h8</issuer>
+    <loginUrl>https://cityyear.okta.com/app/salesforce/exk1jbm6tv4Dvq61z0h8/sso/saml</loginUrl>
+    <logoutUrl>https://cityyear.okta.com</logoutUrl>
+    <name>CE 2020-2021</name>
+    <oauthTokenEndpoint>https://cyschoolhouseb.my.salesforce.com/services/oauth2/token?so=00D36000000jJ3t</oauthTokenEndpoint>
+    <redirectBinding>false</redirectBinding>
+    <requestSignatureMethod>1</requestSignatureMethod>
+    <requestSigningCertId>0P11R0000029wYx</requestSigningCertId>
+    <salesforceLoginUrl>https://cyschoolhouseb.my.salesforce.com?so=00D36000000jJ3t</salesforceLoginUrl>
+    <samlEntityId>https://saml.salesforce.com</samlEntityId>
+    <samlVersion>SAML2_0</samlVersion>
+    <useConfigRequestMethod>true</useConfigRequestMethod>
+    <userProvisioning>false</userProvisioning>
+    <validationCert>MIIDoDCCAoigAwIBAgIGAV2hd7SeMA0GCSqGSIb3DQEBCwUAMIGQMQswCQYDVQQGEwJVUzETMBEGA1UECAwKQ2FsaWZvcm5pYTEWMBQGA1UEBwwNU2FuIEZyYW5jaXNjbzENMAsGA1UECgwET2t0YTEUMBIGA1UECwwLU1NPUHJvdmlkZXIxETAPBgNVBAMMCGNpdHl5ZWFyMRwwGgYJKoZIhvcNAQkBFg1pbmZvQG9rdGEuY29tMB4XDTE3MDgwMjA1NDE0M1oXDTI3MDgwMjA1NDI0MlowgZAxCzAJBgNVBAYTAlVTMRMwEQYDVQQIDApDYWxpZm9ybmlhMRYwFAYDVQQHDA1TYW4gRnJhbmNpc2NvMQ0wCwYDVQQKDARPa3RhMRQwEgYDVQQLDAtTU09Qcm92aWRlcjERMA8GA1UEAwwIY2l0eXllYXIxHDAaBgkqhkiG9w0BCQEWDWluZm9Ab2t0YS5jb20wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDfBz2hEBIV2uLTMtEaLPtv3AxmgRhPyE8J9UKiiruaO+ELSgUqZPstf59xdZ6JGQeZ5QEruyhudt1qpbZ3h3qxNxBKiwcQYCJXn8BcyG1Qckl4EmKJ4Gz7pdl5SzRIDoYjpXAr9Y5YkY00DRU11Ge9WHwAxnrh21JfsC2LrGZuagFPvhlJxWnmgNxsOWY0UOv2FHDYIgmdL9oohaR2vZ90fAYzEWWAY+S94PY50UidGSUs0avwCFFXiDz4BFDqa+iTaAs1AD8nMitMPKE/mShSzMOwDOt9fBtGzMiJP5pda3mhMrR5xWoetlX3A4BKkJMYt0S4w4gRFGXUcFssfOaLAgMBAAEwDQYJKoZIhvcNAQELBQADggEBAN2BCI5GDTUhJwHJxJkGb7hhLBm/bX32kNgfIl4qV5e0Ljg0wyqUmLDp1AvHWnm4ZAZ9CaTv0xeKo5wWDi/5+PTrqxVTaV18Ge0OO0lTyc5ktmwAXQU444ASGY0jR000bvk7LoxpKrXqQKvV6VdGYpdmvOAUVaGJCgDGTNnuVwBqLULOeIXnDGffCIUP3RlyiZXQ+pfX+HaYRdIKUVKALBQV6Dx/Sfs1gxzK4CqyqRUD8KCKj91mBgdjktlcI/vs8AhhyZI2Asn0iwHFHJV7g2+okGP3ptD/0RR7chxyyTSqvGFQmNHmQdn6fYj5XeIxQxH9rQviZv1Z6D5vRZIVKbw=</validationCert>
+</SamlSsoConfig>

@@ -1,0 +1,441 @@
+<apex:page standardController="Section__c" extensions="StudentProgramController" >
+<apex:Form > 
+
+<c:resourceComponent />
+
+<style>
+#schoolforce-wrapper table td { padding-left:3px; padding-right:0px;}
+#schoolforce-wrapper table tbody tr:hover { 
+	text-decoration:underline;
+}
+.requiredBlock {
+	background-color: #c00;
+	position: absolute;
+	left: -4px;
+	width: 3px;
+	top: 1px;
+	bottom: 1px;
+}
+.requiredInput {
+	position: relative;
+	height: 100%;
+}
+</style>
+<script>
+	function setFocusOnLoad() {}
+	
+	function sortColumn(cell) {
+		var selected = cell;
+		doSort(selected.innerHTML);
+	}
+	
+	function sendAvailable() {
+		var ids = "";
+		ids = grabHighlighted("availableStudents");
+		doAddStudents(ids);
+	}
+	function removeSelected() {
+		var ids = "";
+		ids = grabHighlighted("selectedStudent");
+		doRemoveStudents(ids);
+	}
+
+	function setupTableClicking(){
+		console.log('enabling clicking');
+		j$('#select-student tbody tr').click(function(){
+			console.log('toggling row selected');
+			var checkbox = j$(this).children(':last').children('input')[0];
+			checkbox.checked = !checkbox.checked;
+		});
+	}
+
+	function hasChanges() {
+		var staffID = document.getElementById("{!$Component.staffID}");
+		var startDateID = document.getElementById("{!$Component.startDateID}");
+		var endDateID = document.getElementById("{!$Component.endDateID}");
+		var notesID = document.getElementById("{!$Component.notesID}");
+		var freqID = document.getElementById("{!$Component.freqID}");
+		var inAfterID = document.getElementById("{!$Component.inAfterID}");
+		var totalDosageID = document.getElementById("{!$Component.totalDosageID}");
+		var enrollID = document.getElementById("{!$Component.enrollDate}");
+		var selectedStu = document.getElementById("selectedStudent");
+		
+		if(staffID.value != "null") {return true;}
+		if(startDateID.value != ""){return true;}
+		if(endDateID.value != "" ){return true;}
+		if(notesID.value != "" ){return true;}
+		for(var i = 0; i < freqID.rows[0].cells.length; i++) {
+			if(freqID.rows[0].cells[i].children[0].checked==true) {return true;}
+		}
+		if(inAfterID.value != ""){return true;}
+		if(totalDosageID.value != ""){return true;}
+		if(enrollID.value != ""){return true;}
+		if(selectedStu.rows.length > 2){return true;}
+		return false;
+	}
+	function onModalCancel() {
+		close_modal("#test");
+		var programID = document.getElementById("{!$Component.programID}");
+		if(modalMethod == "chngPrg") {programID.rows[progIndex].cells[0].children[0].checked=true;}		   
+	}
+	function onModalProceed() {
+		close_modal("#test");
+		var programID = document.getElementById("{!$Component.programID}");
+		if(modalMethod == "chngPrg") {
+			changeProg();
+			for(var i = 0; i < programID.rows.length; i++) {
+				if(programID.rows[i].cells[0].children[0].checked==true) {progIndex = i;}
+			}
+		}
+	}
+	
+	window.onbeforeunload = function(){
+		if(hasChanges() && !isSaving)
+			return 'You have unsaved work on this page. If you proceed, this work will be lost.';
+	}
+
+	function selectAllRows(table, checkbox){
+		if(checkbox.checked)
+			j$('tr','#'+table).children('td:hidden').children('input').prop('checked','checked');
+		else
+			j$('tr','#'+table).children('td:hidden').children('input').prop('checked','');
+		highlightAllRows(table,checkbox);
+	}
+
+	function filterTableByName(query, tableID) {
+   		var val = query.value.toLowerCase();
+   		var table = document.getElementById(tableID);
+   		for (i = 1; i < table.rows.length; i++) {
+    		toggleRow(table.rows[i],false);
+    		var cell = table.rows[i].cells[0];
+    		var name = cell.innerHTML;
+    		if(val == "" || name.toLowerCase().indexOf(val) >-1 ) {
+     			table.rows[i].style.display = '';
+    		}
+    		else table.rows[i].style.display ='none';
+   		}
+  	} 
+	
+</script>
+
+<script type="text/javascript">
+	var progIndex = 0;
+	var modalMethod = ""
+
+	j$(document).ready(function(){	
+		j$("#lean_overlay").click(function () {
+			onModalCancel();
+		});
+		setupTableClicking();
+	});
+	
+	function checkPoint(action) { 
+		var programID = document.getElementById("{!$Component.programID}");
+		var bool = hasChanges();
+		if(bool==true) {
+			modalMethod = action;
+			j$("#modalOpen").click();
+		} else {
+			if(action == "chngPrg") {
+				changeProg();
+				for(var i = 0; i < programID.rows.length; i++) {
+					if(programID.rows[i].cells[0].children[0].checked==true) {progIndex = i;}
+				}
+			}
+		}
+	}
+
+	function ensureHighlightedAreChecked(elementId){
+		var table = document.getElementById(elementId);
+		var ids="";
+		var highlight = '#acacac';
+		var rows = table.getElementsByTagName("tr");
+		for (i = 0; i < rows.length; i++) {
+			var currentRow = table.rows[i];
+			if(currentRow.bgColor == highlight) {
+				j$(currentRow).find('.selectedBox').prop('checked','checked');
+			} else {
+				j$(currentRow).find('.selectedBox').prop('checked','');
+			}
+		}
+	}
+</script>
+<div id="schoolforce-wrapper" class="wrapper">
+{!sectionHolder.Program__c}
+<br/>
+<h1>Create Intervention Section</h1>
+<hr />
+<div class="no-border">
+<apex:outputPanel id="messages">
+	<apex:pageMessages />
+</apex:outputPanel>
+</div>
+
+<div class="content-wrapper">
+<div style="padding-left:15px;padding-top:15px;" >
+	<apex:selectList value="{!activeSchoolId}" onchange="changeSch()" multiselect="false" size="1" id="school-selector" disabled="{!OR(NOT(isMultipleSchools),isClone)}">
+		<apex:selectOptions value="{!schoolList}"/>
+	</apex:selectList>
+	<h2 style="display: inline; margin-top:8px; position:relative; left:140px;"><apex:outputPanel id="prgName">{!programName}</apex:outputPanel></h2>
+	</div>
+	<apex:outputPanel id="contentDetails" >
+	<div class="content">
+
+			<div class="content-column" >
+				
+						<span class="section-header">Available Programs</span>
+							<div class="content-list" style="padding:0px;Width:190px;max-height:300px;overflow:auto">
+							<p> 
+							
+							   <apex:selectRadio value="{!selectedProgram}" id="programID" onchange="checkPoint('chngPrg')" layout="pageDirection" border="0" style="border-style:none; font-size:80%; margin:0px;" disabled="{!isClone}">
+								<apex:selectOptions value="{!programs}"/>
+							   </apex:selectRadio>
+							</p>
+							</div>
+					  
+			</div>
+		<apex:outputPanel id="sectionDetails" > 
+		
+	  <div class="half-column-left" >
+		<p>
+			<strong>Program Description:</strong>
+			<br />
+			<div class="requiredInput">
+				<div class="requiredBlock"></div>
+				<apex:outputText value="{!programDescription}"/>
+			</div>
+			<br/><br/>
+		  
+		   <apex:outputLabel value="Interventions Primary Staff:" for="staffID" /> 
+		   <div class="requiredInput">
+				<div class="requiredBlock"></div>
+				<apex:selectList id="staffID"  value="{!selectedStaff}" multiselect="false" size="1">
+					<apex:selectOptions value="{!staff}"/>
+				</apex:selectList>
+			</div>
+			<br/><br/>
+			
+			<strong>Indicator Area:</strong> 
+			<br />
+			{!indicatorArea}
+			<br/><br/>
+			
+			<apex:outputLabel value="Start Date" for="startDateID" />
+			<div class="requiredInput">
+				<div class="requiredBlock"></div>
+				<apex:inputField id="startDateID"  value="{!sectionHolder.Start_Date__c}" />
+			</div>
+			<br/><br/>
+			 
+			<br />
+			<br />
+		</p>
+		</div>
+										
+		<div class="half-column-right" style="margin-left:15px;padding-left:5px">
+			<p>
+				<apex:outputLabel value="Recommended Frequency per Week:" for="reqfreq" />
+				<apex:outputText id="reqfreq"  value=" {!recFreq}" />
+			</p> 
+										
+<!--			<apex:outputLabel value="Section Frequency:" for="freqID" />-->
+<!--			<div class="requiredInput">-->
+<!--				<div class="requiredBlock"></div>-->
+<!--				<apex:selectCheckboxes id="freqID"  value="{!freqChecks}"  style="margin:0px;padding:0px;width:10px;border-style:none;font-size:8px">-->
+<!--					<apex:selectOptions value="{!FreqOptions}" />-->
+<!--				</apex:selectCheckboxes>-->
+<!--			</div>-->
+<!--			<br/>-->
+										
+			<apex:outputLabel value="In School/Extended Learning/Curriculum:" for="inAfterID" /> <br/>
+			<div class="requiredInput">
+				<div class="requiredBlock"></div>
+				<apex:inputField id="inAfterID"  value="{!sectionHolder.In_After_School__c}" />
+			</div>
+			<br /><br />
+										
+			<apex:outputLabel value="Recommended Time per Session:" for="reqtime" />
+			<br/>
+			<apex:outputText id="reqtime"  value=" {!recTimeSess}" />
+			<br/><br/>
+			<apex:outputLabel value="Recommended Target Dosage (Org Goal):" for="reqtargdose" />
+			<br/>
+			<apex:outputText id="reqtargdose"  value=" {!recTimeDos}" />
+			<br/><br/>
+
+			<apex:outputLabel value="End Date" for="endDateID" />
+			<div class="requiredInput">
+				<div class="requiredBlock"></div>
+				<apex:inputField id="endDateID"  value="{!sectionHolder.End_Date__c}" />
+			</div>
+			<br/><br/>
+
+<!--			<apex:outputLabel value="Target Dosage (Section Goal)" for="totalDosageID" /> -->
+<!--			<br />-->
+<!--			<div class="requiredInput">-->
+<!--				<div class="requiredBlock"></div>-->
+<!--				<apex:inputField id="totalDosageID"  value="{!sectionHolder.Target_Dosage_Section_Goal__c}" /><br/>-->
+<!--			</div>-->
+		</div>
+	</apex:outputPanel>
+					
+					
+</div> <br/>
+<div style="width:620px; padding-left:255px; padding-bottom:20px;margin-top:-70px;">
+<apex:outputLabel value="Notes" for="notesID" /> 
+										<apex:inputField id="notesID" value="{!sectionHolder.Notes__c}" />
+										</div>			
+<!-- Use this to hide on clone <apex:outputPanel id="bothTables" rendered="{!NOT(isClone)}"> -->
+ <apex:outputPanel id="bothTables" >
+	<div id="select-student">
+		<div class="bigbox-left">
+			<span class="section-header">Available Students</span>
+			<div class="field">
+				<apex:selectList value="{!selectedfilterSection}" multiselect="false" size="1" >
+					<apex:selectOption itemvalue="null" itemLabel="--None--"/>
+					<apex:selectOptions value="{!filterSections}"/>
+					<apex:actionSupport event="onchange" action="{!changeSection}" rerender="availStudents,messages,bothTables" status="loadingStatus" oncomplete="setupTableClicking();"/>
+				</apex:selectList> <br/>
+				<apex:selectList value="{!selectedIndicatorArea}" multiselect="false" size="1" style="width:150px;" >
+					<apex:selectOption itemvalue="null" itemLabel="--None--"/>
+					<apex:selectOptions value="{!indicatorAreas}"/>
+					<apex:actionSupport event="onchange" action="{!changeIndicatorArea}" rerender="availStudents,bothTables,messages" status="loadingStatus" oncomplete="setupTableClicking();"/>
+				</apex:selectList>
+				<apex:selectList value="{!selectedGrade}" multiselect="false" size="1" style="width:150px;" >
+					<apex:selectOptions value="{!grades}"/>
+					<apex:actionSupport event="onchange" action="{!changeGrade}" rerender="availStudents,bothTables,messages" status="loadingStatus" oncomplete="setupTableClicking();"/>
+				</apex:selectList> <br/>
+			   <input name="filterBox" placeholder="Search by name" onkeyup="filterTableByName(this,'availableStudents')" type="text" />
+			   <input type="checkBox" id="availCheck" onchange="selectAllRows('availableStudents',this)" >Select All</input>
+			  <apex:actionStatus startText="	Loading..." id="loadingStatus"/>
+			</div>
+						
+			   
+			<apex:outputPanel id="availStudents" >
+				<div class="table-box">
+					<apex:outputText value="There are no available students." rendered="{!availableStudents.size == 0}" />
+						<table id="availableStudents" style="cursor:pointer;" class="student_table">
+						
+									   
+								<thead>
+								   <th style="display:none;">StudentID</th>
+									<th class="type-string">Student</th>
+									<th class="type-int">Grade Level</th>
+									<th class="type-string">Indicator</th>
+								</thead>
+									<!-- wrap in repeater -->
+									<tbody>
+								<apex:repeat value="{!availableStudents}" var="s">
+								<tr id="{!s.studentID}" class="table_row">
+									<td style="padding-left:7px;">{!s.studentName}</td>
+									<td style="text-align:center;">{!s.gradeLevel}</td>
+									<td style="padding-left:7px;">{!s.indicatorArea}</td>
+									<td style="display:none;">
+										<apex:inputCheckbox styleClass="selectedBox" value="{!s.checked}"/></td>
+									</tr>
+								</apex:repeat>
+						</tbody>
+								  
+				</table></div>
+				</apex:outputPanel>
+				</div>
+				
+				<div class="move-selection">
+			   <a href="" onclick="ensureHighlightedAreChecked('availableStudents');sendAvailable()"><img src="{!URLFOR($Resource.Style_Bundle, 'images/arrow-right.png')}" width="16" height="18" alt="Add" /></a>
+				
+			  <p>&nbsp;</p>
+			   <a href="" onclick="ensureHighlightedAreChecked('selectedStudent');removeSelected()"><img src="{!URLFOR($Resource.Style_Bundle, 'images/arrow-left.png')}" width="16" height="18" alt="Remove" /></a>
+			   </div>
+
+		<div class="box-right">
+			<span class="section-header">Selected Students</span>
+			<div class="field">
+				&nbsp; 
+				<apex:outputLabel value="Enrollment Date" for="enrollDate" />&nbsp;
+				<div class="requiredInput">
+					<div class="requiredBlock"></div>
+					<apex:inputField value="{!stuSecHolder.Enrollment_Start_Date__c}" id="enrollDate" />
+				</div>
+			</div>
+				
+				<!--/4column-->
+		<div class="table-box">
+		
+				<table id = "selectedStudent" style="cursor:pointer;" class="student_table">
+								<thead>
+									<th style="display:none;">StudentID</th>
+									<th class="type-string">Student</th>
+									<th class="type-int">Grade Level</th>
+								</thead>
+								<tbody>
+									
+								<apex:repeat value="{!selectedStudents}" var="s">
+								<tr id="{!s.studentID}" class="table_row">
+									<td style="padding-left:7px;">{!s.studentName}</td>
+									<td style="text-align:center;">{!s.gradeLevel}</td>
+									<td style="display:none;">
+										<apex:inputCheckbox styleClass="selectedBox" value="{!s.checked}"/>
+									</td>
+								</tr>
+								</apex:repeat>
+							   <tr>
+							   <td>
+							   <apex:outputText value="There are no students selected" rendered="{!selectedStudents.size == 0}" />
+							   </td></tr>
+							   
+						</tbody>
+									
+				</table></div><p>&nbsp;</p>
+			 </div>
+			
+	
+	</div>
+ </apex:outputPanel>  
+</apex:outputPanel></div>
+
+  <!-- / content -->
+  <br />
+  <div class="content">
+	<a href="#test" rel="leanModal" id="modalOpen" ></a>
+	<input type="button" class="black_btn" value="Save" onclick="if(!isSaving){ isSaving=true;saveSection(); } else { alert('Save in progress. Press OK and then wait while the page refreshes.'); }" />
+	<input type="button" class="black_btn" onclick="if(!isSaving){ isSaving=true; saveNewSection(); } else { alert('Save in progress. Press OK and then wait while the page refreshes.'); }" value="Save & New" />
+	<input type="button" class="grey_btn" id="cancelCheck" onclick="cancelSection()" value="Cancel" />
+  </div>
+  <apex:actionFunction name="saveSection" action="{!saveSection}" rerender="messages" oncomplete="isSaving=false;"/>
+  <apex:actionFunction name="saveNewSection" action="{!saveAndNewSection}" rerender="messages" oncomplete="isSaving=false;"/>
+  <apex:actionFunction name="cancelSection" action="{!cancel}" rerender="messages"/>
+  <apex:outputPanel id="changePan" >
+	<input type="hidden" id="changeBool" value="{!isChange}" />
+	</apex:outputPanel>
+  <!-- / content --> 
+  
+  
+  <div id="test" class="modal_window">
+			<a class="modal_close" href="#" onclick="onModalCancel()"></a>
+			<p>&nbsp;</p>
+			<center>
+			<p>
+			You have unsaved work on this page, if you proceed, this work will be lost.<br />
+			<strong>Do you want to leave the page?</strong></p>
+	</center>
+			<hr />
+	
+	<div id="options" align="center">
+			<input type="button" class="black_btn" onclick ="onModalProceed()" value="Proceed"/>
+			<input type="button" class="grey_btn" onclick ="onModalCancel()" value="Cancel"/>
+	</div>
+					<p>&nbsp;</p>
+	 
+					
+			</div>
+		   
+  <!--/#content-wrapper--> 
+</div>
+
+<apex:actionFunction name="doAddStudents" action="{!addStudents}" rerender="bothTables,messages" onComplete="setupTableClicking();"/> 
+<apex:actionFunction name="doRemoveStudents" action="{!removeStudents}" rerender="bothTables,messages" oncomplete="setupTableClicking();"/>
+<apex:actionFunction name="changeSch" action="{!changeSchool}" rerender="contentDetails,messages" oncomplete="setupTableClicking();"/>
+<apex:actionFunction name="changeProg" action="{!changeProgram}" rerender="sectionDetails, prgName,messages"/>
+
+</apex:Form>
+</apex:page>

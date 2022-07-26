@@ -1,0 +1,39 @@
+<apex:page standardController="Student__c" sidebar="false" showHeader="false" extensions="Student_StandardGrades">
+
+	<apex:stylesheet value="{!$Resource.ReportCard_CSS}"/>
+                <div id="standardsPanel">
+                    <div class="clear-fix generic items-table" style="border:1px solid #403f41; overflow:hidden;float:none;display:inline-block;width:99%;">
+                        <table class="bordered-cells" id="standardsTable" style="border:1px solid #403f41;overflow:hidden;">
+                            <thead>
+                                <tr>
+                                  <th class="section-title" style="text-align:center;">Standard Name</th>
+                                  <th class="section-title" style="text-align:center;">Description</th>
+                                  <apex:repeat value="{!orderedReportingPeriods}" var="rpd">
+                                    <th style="text-align:center;">{!rpd.Name_On_Report_Card__c}</th>
+                                  </apex:repeat>                                  
+                                </tr>
+                            </thead>
+                            <tbody style="overflow:hidden;">
+                                <apex:repeat value="{!subjectWrappers}" var="list">
+                                    <tr style="overflow:hidden;">
+                                        <td style="background-color:#BCDFF3;padding-top:5px;padding-bottom:5px;text-align:center;border:0;" colspan="500">
+                                            <span style="font-weight:bold;">{!list.subject}</span>
+                                        </td>
+                                    </tr>
+                                    <apex:repeat value="{!list.standards}" var="stand">
+                                        <tr style="overflow:hidden;">
+                                            <td class="items" style="text-align:center;vertical-align:bottom;">{!stand.Name}</td>
+                                            <td class="items-definition" style="text-align:left;"><div>{!stand.description}</div></td>
+                                            <apex:repeat value="{!stand.grade}" var="g">
+                                                <td class="items-numbers" style="border-right:none; text-align:center;vertical-align:bottom;">{!g}</td>
+                                            </apex:repeat>
+                                        </tr>
+                                    </apex:repeat>
+                                </apex:repeat>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+</apex:page>

@@ -1,0 +1,176 @@
+<apex:page id="oaCommentsPage" controller="Overall_CommentsController" sidebar="false">
+    <c:jQueryInit bClueTip="true"  bLoadingPanel="true"/>
+    <c:loadingPanel />
+    <script>
+		function scrollVertical(){
+            var j$ = jQuery.noConflict();
+            var docHeight = j$(document).height();
+            var winHeight = j$(window).height();
+            j$('html,body').animate({scrollTop: 0}, 700);
+        } 
+    </script>
+    <apex:stylesheet value="{!URLFOR($Resource.Gradebook_SG_Comments, '/resources/css/styles.css')}"/>
+    
+    <apex:outputpanel id="themsgs">
+            <apex:pageMessage id="errorMsg" summary="Unexpected Error. Please try again later." Severity="error" Strength="1"/>
+            <apex:pageMessage id="SuccessMsg" summary="All comments saved successfully." Severity="confirm" Strength="1"/>
+        <script>scrollVertical();</script>
+    </apex:outputpanel>
+
+    <script>      
+        document.getElementById('oaCommentsPage:errorMsg').style.display = 'none';
+        document.getElementById('oaCommentsPage:SuccessMsg').style.display = 'none';
+        
+        var oaComments = {};
+        var oaAltComments = {};
+        
+        function setOAComments(ssID,comments){
+            oaComments[ssID] = comments;
+        }
+        
+        function setOAAltComments(ssID,comments){
+            oaAltComments[ssID] = comments;
+        }
+
+        function updateComments(){
+			Visualforce.remoting.Manager.invokeAction(
+							'{!$RemoteAction.Overall_CommentsController.updateComments}', 
+							oaComments, 
+							oaAltComments, 
+							handleUpdateComments);
+        }
+        
+        function handleUpdateComments(result, event) {
+            if(result == 'success') {
+                document.getElementById('oaCommentsPage:errorMsg').style.display = 'none';
+                document.getElementById('oaCommentsPage:SuccessMsg').style.display = 'block';
+            }else{
+                document.getElementById('oaCommentsPage:errorMsg').style.display = 'block';
+                document.getElementById('oaCommentsPage:SuccessMsg').style.display = 'none';
+                scrollVertical();
+            }
+        }
+    </script>
+    
+	<style>
+		.wrapper {
+			width:1070px;
+			margin:0 auto;
+		}
+		
+		.commentForm {
+			width:1050px;
+			padding:0;
+		}
+		
+		.commentForm table .comments textarea {
+			border:1;
+			padding:0 0 0 5px;
+			font-size:10px;
+			height:35px;
+			width:360px;
+			display:block;
+			background:none;
+			resize:none;
+			overflow:hidden;
+		}
+		
+	    .altLang textarea{
+	        border-left:1px solid #ccc !important;
+	    }
+	    
+	    .commentForm table th.grades {
+			color:#fff;
+		}
+	    
+	    .commentForm table td.grades{
+			background:#B5E3F2;
+			border-bottom:2px solid #fff;
+			border-top:2px solid #fff;
+			text-align:left;
+			width:50px;
+			font-size:13px;
+			font-weight:bold;
+		}
+
+	    .commentForm table td.grade{
+			background:#B5E3F2;
+			border-bottom:2px solid #fff;
+			border-right:2px solid #fff;
+			border-top:2px solid #fff;
+			text-align:left;
+			width:75px;
+			font-size:13px;
+			font-weight:bold;
+		}
+    </style>
+    <apex:form id="oaCommentsForm">
+    <div class="wrapper">
+        <div class="content-section commentForm">
+            <div id="tabs">
+				<ul>
+					<apex:repeat value="{!displayWrapper}" var="sg">
+						<li>
+							<a href="#{!sg.Id}">{!sg.scheduleGroupName}</a>
+						</li>
+					</apex:repeat>
+				</ul>
+			<apex:repeat value="{!displayWrapper}" var="sg">
+				<div id="{!sg.Id}">
+		            <table>
+		                <thead>
+		                    <tr>
+		                        <th class="studentName">Students</th>
+		                        <th class="grade"> Alt Language</th>
+		                        <th class="comments" style="text-align:center;">Comments</th>
+		                        <th class="comments" style="text-align:center;">Alt Lang Comments</th>
+		                    </tr>
+		                </thead>
+		                <tbody>
+		                    <apex:repeat value="{!sg.students}" var="s" id="studentnamerepeat">
+			                    <tr>
+			                        <td class="studentName">{!s.Name}</td>
+			                        <td class="grade">{!s.Home_Language__c}</td>
+			                        <td class="comments">
+			                        	<textarea tabindex="1" onblur="setOAComments('{!s.Id}',this.value);">{!s.Comments__c}</textarea>
+			                        </td>
+			                        <td class="comments altLang">
+			                        	<textarea tabindex="2" onblur="setOAAltComments('{!s.Id}',this.value);">{!s.Alternate_Lang_Comments__c}</textarea>
+			                        </td>
+			                    </tr>
+		                    </apex:repeat>
+		                </tbody>
+		            </table>
+	            </div>
+          	</apex:repeat>
+            </div>
+    	</div>
+    </div><!-- /WRAPPER -->
+    
+	<script type="text/javascript">
+		j$("textarea").focus(function(){
+			j$(this).css("height", "50px");
+			j$(this).addClass("focus");
+			j$(this).css("margin-top", "-20px");
+		});
+		j$("textarea").blur(function(){
+			j$(this).removeClass("focus");
+			j$(this).css("width","360px");
+			j$(this).css("height", "35px");
+			j$(this).css("margin-top", "0px");
+		});
+		
+	</script>
+    <div class="wrapper">
+    	<!-- DE 863 - Consistency in Button -->
+      <button class="blackBtn" style="float:right;margin:25px 20px 0 0;" type="button" onclick="updateComments();">Submit<span class="arrow">&nbsp;</span></button>
+     </div><!-- END WRAPPER -->
+     <script>             
+		        
+      j$(function() {
+		j$( "#tabs" ).tabs();
+		});
+
+	</script>
+    </apex:form>
+</apex:page>

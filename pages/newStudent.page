@@ -1,0 +1,51 @@
+<apex:page standardController="Student__c" extensions="newStudentController" title="Student Edit: New Student ~ salesforce.com - Unlimited Edition" >
+	<style>
+	textarea {
+		width: 50%;
+		height: 90px
+		}
+	</style>
+	<div class="bPageTitle">
+		<div class="ptBody" >
+			<div class="content">
+				<img src="/s.gif" alt="Student" class="pageTitleIcon" title="Student" />
+				<h1 class="pageType">Student Edit<span class="titleSeparatingColon">:</span></h1>
+				<h2 class="pageDescription"> New Student</h2>
+				<div class="blank">&nbsp;</div>
+			</div>
+			<div class="ptBreadcrumb"></div>
+		</div>
+	</div>
+	<apex:pageMessages />
+	<apex:form >
+        <apex:pageBlock title="Student Edit" mode="edit">
+            <apex:pageBlockButtons >
+                <apex:commandButton action="{!saveStudent}" value="Save"/>
+                <apex:commandButton action="{!saveAndNewStudent}" value="Save & New"/>
+                <apex:commandButton action="{!cancel}" value="Cancel"/>
+            </apex:pageBlockButtons>
+            <apex:pageBlockSection title="Information" columns="2">
+                    <apex:inputField value="{!stu.Student_First_Name__c}" required="true"/>
+                    <apex:inputField value="{!stu.Student__c}" />
+                    <apex:inputField value="{!stu.Date_of_Birth__c}"/>
+                    <apex:inputField value="{!stu.Student_Last_Name__c}" required="true"/>
+                    <apex:inputField value="{!stu.Gender__c}" required="true"/>
+                    <apex:inputField value="{!stu.School__c}" required="true"/>
+                    <apex:inputField value="{!stu.Grade__c}" required="true"/>
+                    <apex:inputField value="{!stu.Ethnicity__c}" />
+                    <apex:inputField value="{!stu.Race__c}" />
+                    <apex:inputField value="{!stu.Lunch_Status__c}" />
+            </apex:pageBlockSection>
+            <apex:pageBlockSection title="Additional Information" columns="1">
+            	<apex:repeat value="{!addInfo}" var="ai" >
+            		 <apex:inputField value="{!stu[ai]}"/>
+            	</apex:repeat>
+            </apex:pageBlockSection>
+            <apex:pageBlockSection title="System Information" columns="2">
+            	<apex:repeat value="{!sysInfo}" var="si" >
+            		 <apex:inputField value="{!stu[si]}"/>
+            	</apex:repeat>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

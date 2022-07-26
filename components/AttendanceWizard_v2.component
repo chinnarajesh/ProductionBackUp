@@ -1,0 +1,401 @@
+<apex:component >
+	<c:jQueryInit bJQuery8="true" bDataTables="true" bLoadingPanel="true" bTimePicker="true"/>
+	<!-- <apex:stylesheet value="{!$Resource.New_Core_UX}"/> -->
+	<style>
+		.bPageBlock {
+			border-width: 0 !important;
+			padding: 0 !important;
+		}
+		.textStyle {
+			font-family: Verdana,Arial,sans-serif; 
+			font-size: 1em; 
+		}
+		.topHeader {
+			height: 25px;
+		}
+		.topRightHeader {
+			float: right;
+		}
+		.boxBorder {
+			border: 1px solid;
+			margin-bottom: 5px;
+		}
+		.boxBorderContent {
+			display: inline-block;
+			text-align: center;
+			margin-top: 10px;
+			margin-bottom: 10px;
+			vertical-align: top;
+		}
+		.side {
+			width: 25%;
+		}
+		.center {
+			width: 48%;
+			border-left: 1px solid;
+			border-right: 1px solid;
+		}
+		.boxBorderItem {
+			display: inline-block;
+			width: 49%;
+		}
+		.boxBorderTable {
+			width: 100%;
+			/*padding: 7px;*/
+			padding: 0 7px 0 0;
+		}
+		.boxBorderTable td {
+			width: 32%;
+		}
+		.boxBorderTable div {
+			display: inline-block;
+			width: 48%;
+		}
+		.width100 {
+			width: 99%;
+		}
+		.taLeft {
+			text-align: left;
+			margin-left: 1%;
+		}
+		.taRight {
+			text-align: right;
+		}
+		.dateMinWidth {
+			min-width: 85px;
+		}
+		.displayNone {
+			display: none;
+		}
+		.tableStyle th{
+			vertical-align: top;
+		}
+		.apply-score{
+			display: inline-block;
+			vertical-align: top;
+			background: url({!URLFOR($Resource.Gradebook, '/images/GradebookCopyDownButtons.png')}) no-repeat -32px -16px;
+			width: 16px;
+			height: 16px;
+		}
+		a.apply-score:hover{
+    		background-position:0 -48px;
+		}
+		.dateWidth90 {
+			width: 90px;
+		}
+
+		/* Buttons should really move to it's own component, will need refactoring one day*/
+		.darkBlueButton{ /* importants override salesforce button styles (because having customizable UI is overrated)*/
+			color: white!important;
+			padding: 5px!important;
+			margin-bottom: 3px!important;
+			font-family: Arial,Helvetica,sans-serif !important;
+			font-size: 11px !important;
+			text-transform: uppercase;
+
+			background: #59afcc !important; /* Old browsers */
+			background: -moz-linear-gradient(top,  #59afcc 21%, #0180ab 85%) !important; /* FF3.6+ */
+			background: -webkit-gradient(linear, left top, left bottom, color-stop(21%,#59afcc), color-stop(85%,#0180ab)) !important; /* Chrome,Safari4+ */
+			background: -webkit-linear-gradient(top,  #59afcc 21%,#0180ab 85%) !important; /* Chrome10+,Safari5.1+ */
+			background: -o-linear-gradient(top,  #59afcc 21%,#0180ab 85%) !important; /* Opera 11.10+ */
+			background: -ms-linear-gradient(top,  #59afcc 21%,#0180ab 85%) !important; /* IE10+ */
+			background: linear-gradient(top,  #59afcc 21%,#0180ab 85%) !important; /* W3C */
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#59afcc', endColorstr='#0180ab',GradientType=0 ) !important; /* IE6-9 */
+		}
+
+		.darkBlueButton:hover{
+			background:#0180AB!important;
+		}
+
+		.blackButton{ /* importants override salesforce button styles (because having customizable UI is overrated)*/
+			color: white!important;
+			padding: 5px!important;
+			font-family: Arial,Helvetica,sans-serif !important;
+			font-size: 11px !important;
+			/*font-weight: normal!important;*/ /*Just in case Elise feels the button still "just doesn't look right"*/
+			text-transform: uppercase;
+
+			background: #4c4c4c !important; /* Old browsers */
+			background: -moz-linear-gradient(top,  #4c4c4c 0%, #474747 29%, #2c2c2c 52%, #000000 64%, #1c1c1c 93%, #131313 100%) !important; /* FF3.6+ */
+			background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#4c4c4c), color-stop(29%,#474747), color-stop(52%,#2c2c2c), color-stop(64%,#000000), color-stop(93%,#1c1c1c), color-stop(100%,#131313)) !important; /* Chrome,Safari4+ */
+			background: -webkit-linear-gradient(top,  #4c4c4c 0%,#474747 29%,#2c2c2c 52%,#000000 64%,#1c1c1c 93%,#131313 100%) !important; /* Chrome10+,Safari5.1+ */
+			background: -o-linear-gradient(top,  #4c4c4c 0%,#474747 29%,#2c2c2c 52%,#000000 64%,#1c1c1c 93%,#131313 100%) !important; /* Opera 11.10+ */
+			background: -ms-linear-gradient(top,  #4c4c4c 0%,#474747 29%,#2c2c2c 52%,#000000 64%,#1c1c1c 93%,#131313 100%) !important; /* IE10+ */
+			background: linear-gradient(top,  #4c4c4c 0%,#474747 29%,#2c2c2c 52%,#000000 64%,#1c1c1c 93%,#131313 100%) !important; /* W3C */
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4c4c4c', endColorstr='#131313',GradientType=0 ) !important; /* IE6-9 */
+		}
+
+		.blackButton:hover{
+			background:#000 !important;
+		}		
+	</style>
+
+	<script type="text/javascript">
+		j$ = jQuery.noConflict();
+		var tableHeightConsant;
+		var statusArray = new Array();
+		var currentTime = new Date();
+	    var hour = currentTime.getHours();
+	    var minute = currentTime.getMinutes();
+	    var ampm;
+	    var bUnSaved = false;
+	    var bSessionAllClicked = false;
+
+		j$(document).ready(function() {
+			tableHeightConstant = calcDataTableHeight();
+			console.log('tableHeightConstant: ' + tableHeightConstant);
+			tabs();
+			date();
+			table('#studentResultTable'); 
+			var h = j$('#studentResultDiv').height();
+			j$('#studentResultWrapper').height(h);
+
+			resetTimePicker();
+	        j$('.currentTime').each(function(index) {
+	            j$(this).html(hour+':'+minute+' '+ampm);
+	            j$(this).css('text-decoration', 'underline');
+	        });			
+	        timePicker();
+		});
+
+		window.onbeforeunload = function(){
+			if(bUnSaved){
+				return "Please submit attendance!";
+			}				
+		}		
+
+		function tabs() {
+			try {
+				j$("#tabs").tabs();
+			}
+			catch(exception) {
+				console.log('tabs: ' + exception);
+			}
+		}
+
+		function date() {
+			try {
+				j$(".datepicker").datepicker({
+					changeMonth : true,
+					changeYear : true
+				});
+			}
+			catch(exception) {
+				console.log('date: ' + exception);
+			}
+		}
+
+		function timePicker() {
+			resetTimePicker();
+	        j$('.TimePicker').each(function() {
+	          	j$(this).timepicker({
+	                showPeriod: true, 
+	                showLeadingZero: true,
+	                showOn: 'focus'
+	            });
+	        });  
+		}
+
+		function resetTimePicker() {
+		    hour = currentTime.getHours();
+		    minute = currentTime.getMinutes();
+		    if (minute < 10){
+		        minute = "0" + minute;
+		    }
+		    if (hour == 0) {
+		        ampm = "AM";
+		        hour = 12;
+		    }
+		    else if(hour > 11){
+		        ampm = "PM";
+		        if (hour != 12) hour = hour-12;
+		    }
+		    else {
+		        ampm = "AM";
+		    }	    
+		}
+
+		function table(thisTable) {
+			try {
+				j$(thisTable).dataTable({ 
+					"sScrollY" : tableHeightConstant,
+	                "sScrollX" : "100%",
+	                "bInfo" : false,
+	                "bDestroy" : true,
+	                "bAutoWidth" : false,
+	                "bPaginate" : false,
+	                "bJQueryUI" : true,
+	                "bSort" : false
+				});
+			}
+			catch(exception) {
+				console.log('table: ' + exception);
+			}
+		}
+
+		function modalTable(thisTable) {
+			try {
+				var h = j$(window).height();
+				h = h * .5;
+				console.log('*~*~* h: ' + h);
+				j$(thisTable).dataTable({
+					"sScrollY" : h,
+	                "sScrollX" : "100%",
+	                "bInfo" : true,
+	                "bDestroy" : true,
+	                "bAutoWidth" : true,
+	                "bPaginate" : false,
+	                "bJQueryUI" : true,
+	                "bFilter" : false,
+	                "bSort" : false        
+				});
+				timePicker();
+			}
+			catch(exception) {
+				console.log('modalTable: ' + exception);
+			}			
+		}
+
+		function calcDataTableHeight() {
+			var windowHeight = j$(window).height();
+			var contentWrapperHeight = j$("#contentWrapper").height();
+			var bPageHeaderHeight = j$(".bPageHeader").height();
+			var bPageFooterHeight = j$(".bPageFooter").height();
+			var filterBoxHeight = j$("#filterBox").height();
+			var titleHeader = 25;
+			var tabHeader = 36;
+			var tabTitleHeader = 16;
+			var tableSearchBar = 25;
+			var tableSortBar = 40;
+			var marginPaddingConstants = 30 + 25 + 8 + 27 + 7 + 7 + 4 + 4 + 5 + 3 + 25 + 14;
+
+			var tableHeight = contentWrapperHeight - bPageHeaderHeight - bPageFooterHeight - filterBoxHeight - tabHeader - titleHeader - tabTitleHeader - tableSearchBar - tableSortBar - marginPaddingConstants;
+			
+			var extraSpace = windowHeight - contentWrapperHeight;
+			if(extraSpace > 0) {
+				tableHeight += extraSpace;
+			}
+			var boxMessages = j$('.message').height();
+			if(boxMessages > 0) {
+				tableHeight -= (boxMessages + 22);
+			}
+
+			if(tableHeight > 0) {
+				return tableHeight;
+			}
+			else {
+				return "auto";
+			}
+		}		
+
+		function bindOnRowStudentClick(thisTable) {
+			j$(thisTable).on("click", "tr", function() {
+				modal('#studentSelected', 'auto', 'auto');
+				showProgressBar('Retrieving Student Attendance...');
+				onRowClickStudentJS(this.getAttribute("id"));
+			});			
+		}
+
+		function bindOnRowSessionClick(thisTable) {
+			j$(thisTable).on("click", "tr", function() {
+				modal('#sessionSelected', 'auto', 'auto');
+				showProgressBar('Retrieving Student Attendance...');
+				onRowClickSessionJS(this.getAttribute("id"));
+			});	
+		}
+
+		function modal(element, w, h) {
+			j$(element).dialog({
+				autoOpen: false,
+				minHeight: 200,
+				minWidth: 200,
+				modal : true,
+				resizable : false,
+				width : w,
+				height : h,
+				open : function(event, ui) {
+					j$(this).parent().appendTo(j$("[id$='form']"));
+					j$('.ui-widget-overlay').css('height', '100%');
+					j$('.ui-widget-overlay').css('width', '100%');
+					j$(this).dialog({position: {my : "center", at: "center top+25%", of: window, within: window} });
+				},
+				beforeClose : function(event, ui) {
+					console.log('bUnSaved: ' + bUnSaved);
+					if(bUnSaved) {
+						var bConfirm = confirm('Please submit your work!  \nAre you sure you want to leave this page without submitting?');
+						if(bConfirm) {
+							bUnSaved = false;
+						}
+						return bConfirm;
+					}
+					else {
+						return true;
+					}
+				},
+				close : function(event, ui) {
+					//j$(this).dialog('destroy');
+					reRenderMessagesJS();
+					bSessionAllClicked = false;
+					setTimeout('hideProgressBar()', 250);
+				}
+			});
+		}
+
+		function selectAll(cb, theClass) {
+			var b = j$(cb).is(':checked'); 
+			j$('.'+theClass).each(function() {
+				j$(this).attr('checked', b);
+			});
+        }	
+
+        function copyDown(table, value, theClass) {
+        	j$(table + ' tr').each(function(){
+        		if(j$(this).children('td').children('.multiSelect').attr('checked') == 'checked') {
+        			j$(this).find('.'+theClass).val(value);
+        			if(theClass == "statusColumn") {
+        				checkPLV(j$(this).find('.'+theClass));
+        			}
+        			//you made a change with the copyDown
+        			bUnSaved = true;
+        		}
+        	});
+        }	
+
+        function initializePLV(theClass) {
+			j$('.'+theClass).each(function(index) {
+	            checkPLV(j$(this));
+	        });        	
+        }
+
+        function checkPLV(plValue) {
+		    var value = j$(plValue).val();
+		    for(i = 0; i < statusArray.length; i++) {
+		    	if(value == statusArray[i].id){
+		    		var code = statusArray[i].code;
+		    		var tar = statusArray[i].tardy;
+		    		var dep = statusArray[i].depart;
+		    		var bDefault = statusArray[i].bDefault;
+		    	}
+		    }
+		    if (tar=="true"){
+		            j$(plValue).parent().parent().find('.arrivalTimeCell').css('visibility', 'visible');
+		            j$(plValue).parent().parent().find('.departureTimeCell').css("visibility", "hidden");
+		            j$(plValue).parent().parent().find('.commentColumn').css('visibility', 'visible');
+		            if(dep=="true") j$(plValue).parent().parent().find('.departureTimeCell').css('visibility', 'visible');
+		    }
+		    else if (dep=="true"){
+		        j$(plValue).parent().parent().find('.departureTimeCell').css('visibility', 'visible');
+		        j$(plValue).parent().parent().find('.arrivalTimeCell').css("visibility", "hidden");
+		        j$(plValue).parent().parent().find('.commentColumn').css('visibility', 'visible');
+		    }
+		    else {
+		        j$(plValue).parent().parent().find('.departureTimeCell').css("visibility", "hidden");
+		        j$(plValue).parent().parent().find('.arrivalTimeCell').css("visibility", "hidden");
+		        j$(plValue).parent().parent().find('.commentColumn').css('visibility', 'visible');
+		        if (bDefault=="true"){
+		            j$(plValue).parent().parent().find('.commentColumn').css("visibility", "hidden");
+		        }
+		    }
+        }
+	</script>
+</apex:component>

@@ -1,0 +1,377 @@
+<apex:page controller="CT_core_TermSetup_v2" tabStyle="SchoolForce_Setup__tab" sidebar="false" showHeader="true">
+    <c:CT_setupWizardSharedComponents summerSchoolMode="{!cSetup.setup.School__r.ParentId != null}"/>
+    <style>
+        .detailList .labelCol,
+        .detailList .data2Col{
+            width: auto !important;
+        }
+    </style>
+    <script>
+        function initTermModal(){
+            initModal('#termModal',cancelTermDetailsJs);
+        }
+
+        function initRpModal(){
+            initModal('#rpModal',cancelReportingPeriodJs);
+        }
+        function initRpModalEdit(){
+            initModal('#rpModalEdit',cancelReportingPeriodJs);
+        }
+
+        getValueFromTermList();
+    </script>
+    <style>
+        .section_content a{
+            font-size: 12px;
+            color: #0066CC;
+            margin-left: 18px;
+        }
+        .section_content a.hover{
+            color: #666666;
+        }
+        .trees span{
+            margin-left: 18px;
+        }
+    </style>
+    <apex:outputPanel id="sidebarScript">
+        <script>
+            var j$ = jQuery.noConflict();
+
+            j$(document).ready(function(){
+                resetTable();
+            });
+
+            j$(document).ready(function(){
+                try{
+                    j$(".trees").treeview({
+                        persist: "location",
+                        collapsed: false,
+                        unique: true
+                    });
+                } catch(Exception){}
+            });
+        </script>
+    </apex:outputPanel>
+    <apex:outputPanel id="scriptPanel">
+        <script>
+            var checkOnEdit = function() {
+                var isEdit = '{!bEdit}';
+                isEdit = isEdit == 'true' ? true : false;
+                console.log("isEdit = " + isEdit);
+                if(!isEdit){
+                    console.log("isEdit1 = " + isEdit);
+
+                    if(confirm('Are you sure you would like to save this term?')){
+                        showProgressBar(' Saving Term ');
+                        saveTermConfigJs();
+                    }
+                };
+                if(isEdit){
+                    console.log("isEdit2 = " + isEdit);
+                    if(confirm('Reporting Period Type had changed. All periods will be deleted. Click OK to confirm or Cancel to return.')){
+                        showProgressBar(' Editing Term ');
+                        saveTermConfigJs();
+                    }
+                };
+            }
+
+        </script>
+    </apex:outputPanel>
+
+    <apex:form id="mainForm">
+        <table style="width:100%">
+            <tr>
+                <td style="vertical-align:top; width:15%">
+                    <!-- <c:CT_setup_sidebar setup="{!cSetup}"/> -->
+                    <c:CT_setupWizardSidebar setupId="{!cSetup.setup.id}"/>
+                </td>
+                <td style="vertical-align:top; width:85%">
+                    <div id="schoolforce-wrapper" class="wrapper">
+                        <!-- Error -->
+                        <apex:outputPanel id="error" styleClass="pageMessages">
+                            <apex:pageMessages />
+                        </apex:outputPanel>
+
+                        <!-- Reset panel -->
+                        <apex:outputPanel id="resetPanel">
+                            <script>
+                                resetTable();
+
+                                function checkTerms(){
+                                    checkModalClose({!!bConfigureTerm},'#termModal');
+                                }
+
+                                function checkReportingPeriod(){
+                                    checkModalClose({!!bConfigureRp},'#rpModal');
+                                }
+                                function checkReportingPeriodEdit(){
+                                    checkModalClose({!!bConfigureRp},'#rpModalEdit');
+                                }
+
+
+                            </script>
+                        </apex:outputPanel>
+                        <!-- reset Panel -->
+
+                        <!-- Select Time Elements to Configure -->
+                        <apex:outputPanel id="homePanel">
+                            <apex:outputPanel id="termPanel">
+                                <h1 class="centerHeader">
+                                    <input type="button" onclick="goHomeJs();" class="grey_btn_arrow" value="Return to Setup Home" />
+                                    <span style="display:inline-block;">{!cSetup.school.Name} Core Setup<br/>Configure Terms and Reporting Periods</span>
+                                    <input type="button" onclick="nextWithSaveJs();" class="green_btn_arrow" value="Next" />
+                                </h1>
+                                <apex:outputPanel styleClass="adminSummary">
+                                    <br/>
+                                    <p></p>
+                                    <br/>
+                                </apex:outputPanel>
+                                <div class="content-wrapper" style="{!IF(bShowTerms,'','display:none;')}" id="mainTable">
+                                    <h3>Available Terms for School Year: {!selectedYear.Name__c}</h3>
+                                    <div class="childSummary">
+                                        Click <b>Add Term</b> to create the term for your school.  Be sure to select the term that is one more than your school operates for proper calendar set up.  Example if you operate on a quarterly schedule, select fifth as your term.
+                                        Next select the term your school will use by clicking the option button in the row of the term, and click <b>Save Term Selection.</b> After you have saved your term selection, click <b>View Reporting Periods</b> to complete this step.
+                                        <br/><br/>
+                                        A term defines the actual first and last day that school is in session and includes your reporting periods (e.g., quarters, semesters). The terms you create on this screen are available for all the schools in your SchoolForce organization.
+                                        Refer to SchoolForce Help for more information.
+                                    </div>
+                                    <a style="cursor: pointer;" onclick="removeHighlight(); initTermModal(); configureNewTermJs();"><img
+                                            src="/img/feeds/follow12.png" />Add Term</a>
+                                    <apex:dataTable styleClass="noFilter no-border" rendered="{!IF(availableTerms.size>0, true, false)}" value="{!availableTerms}" var="t">
+                                        <apex:column headerValue="Assign Terms" >
+                                            <apex:inputCheckbox value="{!t.bIsSelected}" />
+                                        </apex:column>
+                                        <apex:column headerValue="Selected Term">
+                                            <input type="radio" name="radio{!t.timeElement.id}" class="radio" id="{!t.timeElement.id}" onclick="toggleRadio(j$(this));  addHighlight(j$(this).parent(), '2'); setTermDetailsJs('{!t.TimeElement.id}');"/>
+                                            <script>
+                                                var thisElementId  = '{!JSENCODE(t.TimeElement.id)}';
+                                                var selectedTermId = '{!JSENCODE(selectedTermId)}';
+                                                if(thisElementId.indexOf(selectedTermId, 0)!=-1&&selectedTermId!=''){
+                                                    j$('input:radio[id={!t.TimeElement.id}]').click();
+                                                }
+                                            </script>
+                                        </apex:column>
+                                        <apex:column headerValue="Action" >
+                                            <a href="#" onclick="addHighlight(j$(this).parent(),'2'); initTermModal(); editTermDetailsJs('{!t.timeElement.id}')">Edit</a>
+                                            |
+                                            <a href="#" onclick="addHighlight(j$(this).parent(),'2'); viewReportingPeriodsJs('{!t.timeElement.id}')">View Reporting Periods</a>
+                                        </apex:column>
+                                        <apex:column headerValue="Name" value="{!t.timeElement.Name__c}" />
+                                        <!-- <apex:column headerValue="Name on RC" value="{!t.timeElement.Name_On_Report_Card__c}" /> -->
+                                        <apex:column headerValue="Start Date" value="{!t.timeElement.Date_Start_Date__c}" />
+                                        <apex:column headerValue="End Date" value="{!t.timeElement.End_Date__c}" />
+                                        <apex:column headerValue="Reporting Period Type" value="{!t.timeElement.Reporting_Period_Value__r.name}" />
+                                    </apex:dataTable>
+                                    <div class="clear_fix">&nbsp;</div>
+                                    <input class="black_btn" onclick="saveSetupJs()" type="button" value="Save Term Selection"/>
+                                    <div class="clear_fix">&nbsp;</div>
+                                </div>
+
+                                <div class="content-wrapper" style="{!IF(!bShowTerms,'','display:none;')}">
+                                    <apex:outputPanel id="rpTable">
+                                        <apex:outputPanel rendered="{!IF(bReportingPeriods, true, false)}">
+                                            <h3>Configured Reporting Periods for {!selectedTermWrapper.term.Name__c}</h3>
+                                            <div class="childSummary">
+                                                You can add new or edit existing reporting periods on this screen.
+                                                The date ranges associated with reporting periods help City Year identify how data points should be represented in our analytics.
+                                                The reporting period’s start and end date must fall within the start and end date range of the associated term.
+                                                Additionally, the start and end dates of each reporting period cannot overlap each other.
+                                                The number of reporting periods you need to create are based on the value you selected in the Reporting Period Type drop-down list on the Terms Details screen.
+                                                Refer to SchoolForce Help for more information.
+                                            </div>
+                                            <a>
+                                                <apex:outputPanel style="cursor: pointer;" onclick="initRpModal(); initReportingPeriodJs();" rendered="{!selectedTermWrapper.timeElementList.size = 0}">
+                                                    <apex:image value="/img/feeds/follow12.png"/>
+                                                    Add Reporting Periods
+                                                </apex:outputPanel>
+                                            </a>
+                                            <a>
+                                                <apex:outputPanel style="cursor: pointer;" onclick="initRpModalEdit(); editReportingPeriodJs();" rendered="{!selectedTermWrapper.timeElementList.size > 0}">
+                                                    <apex:image value="/img/feeds/follow12.png"/>
+                                                    Edit Reporting Periods
+                                                </apex:outputPanel>
+                                            </a>
+                                                <apex:dataTable styleClass="noFilter no-border" value="{!selectedTermWrapper.timeElementList}" var="t">
+                                                <apex:column headerValue="Name" value="{!t.Name__c}"/>
+                                                <apex:column headerValue="Type" value="{!t.Picklist_Value__r.Name}"/>
+                                                <apex:column headervalue="Start Date" value="{!t.Date_Start_Date__c}"/>
+                                                <apex:column headervalue="End Date"  value="{!t.End_Date__c}"/>
+                                            </apex:dataTable>
+                                            <input class="black_btn" onclick="cancelViewReportingPeriodsJs()" type="button" value="Back to Terms"/>
+                                        </apex:outputPanel>
+                                    </apex:outputPanel>
+                                </div>
+
+                                <!-- TERM FUNCTIONS -->
+                                <apex:actionFunction action="{!saveSetup}" name="saveSetupJs" reRender="sidebarPanel, termPanel, sidebarScript" />
+                                <!--<apex:actionFunction name="justName" action="{!checkTermSelectionChanges}" />-->
+
+                                <!--<script>-->
+                                    <!--(function someNameFor() {-->
+                                        <!--var arr = [], l = document.querySelectorAll("#tabBar ul");-->
+                                        <!--console.log(l);-->
+                                        <!--for(var i=0; i<l.length; i++) {-->
+                                            <!--var children = l[i].childNodes;-->
+                                            <!--console.log('dsad' + children.getAttributeNode('href'));-->
+                                            <!--for(var j=0; j<children.length; j++) {-->
+                                                <!--j.setAttribute('onClick', 'alertFunction();');-->
+                                            <!--}-->
+                                            <!--//l[i].setAttribute('onClick', 'alertFunction();')-->
+                                            <!--//arr.push(l[i].href);-->
+                                        <!--}-->
+                                        <!--console.log(arr);-->
+                                        <!--console.log( 'ggggggggggggggggggggggggg');-->
+                                        <!--justName();-->
+                                        <!--//console.log( justName() );-->
+
+
+                                    <!--})();-->
+
+                                    <!--function alertFunction() {-->
+                                        <!--console.log('saveSetupJs => ', saveSetupJs);-->
+                                        <!--if(confirm('Alerrttt !!')) {-->
+
+                                            <!--saveSetupJs();-->
+                                        <!--}-->
+                                    <!--}-->
+                                <!--</script>-->
+                                <apex:actionFunction action="{!configureNewTerm}" name="configureNewTermJs" onComplete="openModal('#termModal');" reRender="editTermPanel" />
+                                <apex:actionFunction action="{!editTermDetails}" name="editTermDetailsJs" onComplete="openModal('#termModal');" reRender="editTermPanel">
+                                    <apex:param name="selectedTermId" assignTo="{!selectedTermId}" value="" />
+                                </apex:actionFunction>
+                                <apex:actionFunction action="{!setTerm}" name="setTermDetailsJs" rerender="termDetails, termEntry, error" >
+                                    <apex:param name="selectedTermIdForSetup" assignTo="{!selectedTermIdForSetup}" value="" />
+                                </apex:actionFunction>
+                                <apex:actionFunction action="{!viewReportingPeriods}" name="viewReportingPeriodsJs" reRender="homePanel,resetPanel">
+                                    <apex:param name="selectedTermId" assignTo="{!selectedTermId}" value="" />
+                                </apex:actionFunction>
+                                <apex:actionFunction action="{!saveTermConfig}" name="saveTermConfigJs" onComplete="checkTerms();" reRender="termEntry,editTermPanel,resetPanel" />
+                                <apex:actionFunction action="{!checkReportingPeriod}" name="checkReportingPeriodJs" onComplete="checkTerms(); rerenderScriptPanelJs();" reRender="termEntry,editTermPanel,resetPanel" />
+                                <!-- REPORTING PERIOD FUNCTIONS -->
+                                <apex:actionFunction action="{!cancelViewReportingPeriods}" name="cancelViewReportingPeriodsJs" reRender="homePanel,resetPanel" />
+                                <!--<apex:actionFunction action="{!editReportingPeriod}" name="editReportingPeriodJs" onComplete="openModal('#rpModal');" reRender="editRpPanel" >-->
+                                <!--<apex:param name="selectedRpId" assignTo="{!selectedRpId}" value="" />-->
+                                <!--</apex:actionFunction>-->
+                                <apex:actionFunction action="{!editReportingPeriod}" name="editReportingPeriodJs" onComplete="openModal('#rpModalEdit');" reRender="editRpPanel1" >
+                                    <apex:param name="selectedRpId" assignTo="{!selectedRpId}" value="" />
+                                </apex:actionFunction>
+                                <apex:actionFunction action="{!initReportingPeriod}" name="initReportingPeriodJs" onComplete="openModal('#rpModal');" reRender="editRpPanel" />
+                                <apex:actionFunction action="{!saveReportingPeriod}" name="saveReportingPeriodJs" onComplete="checkReportingPeriod();" reRender="resetPanel,editRpPanel,rpTable" />
+                                <apex:actionFunction action="{!saveReportingPeriodAfterEdit}" name="saveReportingPeriodEditJs" onComplete="checkReportingPeriodEdit();" reRender="resetPanel,editRpPanel1,rpTable" />
+                                <apex:actionFunction action="{!addReportingPeriod}" name="addReportingPeriodJs" onComplete="checkReportingPeriod();" reRender="resetPanel,editRpPanel,rpTable" />
+                                <apex:actionFunction name="rerenderScriptPanelJs"  reRender="scriptPanel" onComplete="console.log('script panel'); checkOnEdit();"/>
+                            </apex:outputPanel>
+                        </apex:outputPanel>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <apex:outputPanel id="modalPanel">
+            <div id="termModal" >
+                <apex:outputPanel id="editTermPanel">
+                    <apex:outputPanel rendered="{!bConfigureTerm}">
+                        <apex:pageMessages />
+                        <h3>{!IF(selectedTermWrapper.term.id!= null,selectedTermWrapper.term.Name__c,'New Term')} Details for {!selectedYear.Name__c}</h3>
+                        <apex:pageBlock >
+                            <div class="section_content">
+                                <apex:pageBlockSection columns="1" >
+                                    <c:CT_dayOfWeek dowElement="{!selectedTermWrapper.cQasw.days}"/>
+                                    <apex:inputField required="true" value="{!selectedTermWrapper.term.Name__c}"/>
+                                    <apex:inputField required="true" value="{!selectedTermWrapper.term.Date_Start_Date__c}"/>
+                                    <apex:inputField required="true" value="{!selectedTermWrapper.term.End_Date__c}"/>
+                                    <apex:pageBlockSectionItem >
+                                        <apex:outputLabel >Reporting Period Type</apex:outputLabel>
+                                        <apex:selectList value="{!selectedTermWrapper.term.Reporting_Period_Value__c}" multiselect="false" size="1">
+                                            <apex:selectOptions value="{!selectedTermWrapper.reportingPeriodOptionList}" />
+                                        </apex:selectList>
+                                    </apex:pageBlockSectionItem>
+                                </apex:pageBlockSection>
+                            </div>
+                            <!-- END SECTION CONTENT -->
+                            <input class="black_btn" type="button" value="Save" onclick=" checkReportingPeriodJs();
+                                                                                            <!--if(confirm('Are you sure you would like to save this term?')){-->
+                                                                                            <!--showProgressBar(' Editing Term ');-->
+																					        <!--saveTermConfigJs()-->
+																				            <!--};-->
+                                                                                         " />
+
+                            <input class="grey_btn" type="button" value="Cancel" onclick="closeModal('#termModal');"/>
+
+                            <div class="clear_fix">&nbsp;</div>
+                        </apex:pageBlock>
+                    </apex:outputPanel>
+                </apex:outputPanel>
+            </div>
+            <div id="rpModal" >
+                <apex:outputPanel id="editRpPanel">
+                    <apex:outputPanel rendered="{!bConfigureRp}">
+                        <apex:pageMessages />
+                        <h3>Create/Edit Reporting Period</h3>
+                        <apex:pageBlock >
+                            <apex:pageBlockTable value="{!reportingPeriodElement.timeElementList}" var="timeElement">
+                                <div class="section_content" style="max-width:865px;"><!-- Added the min width to fix the buttons from wrapping badly-->
+                                    <apex:column ><apex:facet name="header">Name</apex:facet>
+                                        <apex:inputField required="true" value="{!timeElement.Name__c}"/>
+                                    </apex:column>
+                                    <apex:column ><apex:facet name="header">Start Date</apex:facet>
+                                        <apex:inputField required="true" value="{!timeElement.Date_Start_Date__c}"/>
+                                    </apex:column>
+                                    <apex:column ><apex:facet name="header">End Date</apex:facet>
+                                        <apex:inputField required="true" value="{!timeElement.End_Date__c}"/>
+                                    </apex:column>
+                                    <apex:column ><apex:facet name="header" >Name on Report Card</apex:facet>
+                                        <apex:inputField required="true" value="{!timeElement.Name_On_Report_Card__c}"/>
+                                    </apex:column>
+                                </div>
+                            </apex:pageBlockTable>
+                        </apex:pageBlock>
+                        <input class="grey_btn" onclick="closeModal('#rpModal');" type="button" value="Cancel"/>
+                        <input class="black_btn" type="button" value="Save" onclick="if(confirm('Are you sure you would like to save this reporting period?')){
+																					showProgressBar(' Saving Reporting Period ');
+																					saveReportingPeriodJs();
+																				}"/>
+                    </apex:outputPanel>
+                </apex:outputPanel>
+            </div>
+            <div id="rpModalEdit" >
+                <apex:outputPanel id="editRpPanel1" >
+                    <apex:outputPanel rendered="{!bConfigureRp}">
+                        <apex:pageMessages />
+                        <h3>Create/Edit Reporting Period</h3>
+                        <apex:pageBlock >
+                            <apex:pageBlockTable value="{!reportingPeriodElementEdit.timeElementList}" var="timeElement">
+                                <div class="section_content" style="max-width:865px;"><!-- Added the min width to fix the buttons from wrapping badly-->
+                                    <apex:column ><apex:facet name="header">Name</apex:facet>
+                                        <apex:inputField required="true" value="{!timeElement.Name__c}"/>
+                                    </apex:column>
+                                    <apex:column ><apex:facet name="header">Start Date</apex:facet>
+                                        <apex:inputField required="true" value="{!timeElement.Date_Start_Date__c}"/>
+                                    </apex:column>
+                                    <apex:column ><apex:facet name="header">End Date</apex:facet>
+                                        <apex:inputField required="true" value="{!timeElement.End_Date__c}"/>
+                                    </apex:column>
+                                    <apex:column ><apex:facet name="header" >Name on Report Card</apex:facet>
+                                        <apex:inputField required="true" value="{!timeElement.Name_On_Report_Card__c}"/>
+                                    </apex:column>
+                                </div>
+                            </apex:pageBlockTable>
+                        </apex:pageBlock>
+                        <input class="grey_btn" onclick="closeModal('#rpModalEdit');" type="button" value="Cancel"/>
+                        <input class="black_btn" type="button" value="Save" onclick="if(confirm('Are you sure you would like to save this reporting period?')){
+																					showProgressBar(' Saving Reporting Period ');
+																					saveReportingPeriodEditJs();
+																				}"/>
+                    </apex:outputPanel>
+                </apex:outputPanel>
+            </div>
+        </apex:outputPanel>
+
+
+        <apex:actionFunction name="goHomeJs" action="{!goHomeModified}" />
+        <apex:actionFunction name="nextJs" action="{!next}" rerender="error"/>
+        <apex:actionFunction name="nextWithSaveJs" action="{!saveSetup}" rerender="error" onComplete="nextJs();"/>
+        <apex:actionFunction action="{!cancelTermDetails}" name="cancelTermDetailsJs" reRender="termEntry,termPanel,resetPanel" immediate="true" />
+        <apex:actionFunction action="{!cancelAddReportingPeriod}" name="cancelReportingPeriodJs" reRender="resetPanel,rpTable,editRpPanel" immediate="true" />
+    </apex:form>
+</apex:page>

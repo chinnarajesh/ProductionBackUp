@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <buckets>
+        <bucketType>number</bucketType>
+        <developerName>BucketField_13454583</developerName>
+        <masterLabel>Session delivery</masterLabel>
+        <nullTreatment>z</nullTreatment>
+        <sourceColumnName>Account.Sections__r.Student_Section__r$Dosage_to_Date__c</sourceColumnName>
+        <useOther>false</useOther>
+        <values>
+            <sourceValues>
+                <to>0</to>
+            </sourceValues>
+            <value>No Dosage</value>
+        </values>
+        <values>
+            <sourceValues>
+                <from>0</from>
+            </sourceValues>
+            <value>Dosage Received</value>
+        </values>
+    </buckets>
+    <description>Shows the number of student/sections with and without dosage associated. Active students only.</description>
+    <filter>
+        <criteriaItems>
+            <column>Account.Sections__r$Program__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>contains</operator>
+            <value>literacy,math</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account.Sections__r$In_After_School__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>contains</operator>
+            <value>,In School,Extended Learning</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account.Sections__r.Student_Section__r$Location__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>notEqual</operator>
+            <value></value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account.Sections__r.Student_Section__r$Student__c.Name</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>notContain</operator>
+            <value>delete</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account.Sections__r$Section_Nickname__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>notContain</operator>
+            <value>delete</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account$Name</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>notEqual</operator>
+            <value>108 School Natalie,Test Shawn School of Excellence,CY,Individuals,Test School-Do Not Use</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account.Sections__r.Student_Section__r$Active__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>equals</operator>
+            <value>1</value>
+        </criteriaItems>
+    </filter>
+    <format>Matrix</format>
+    <groupingsAcross>
+        <dateGranularity>Day</dateGranularity>
+        <field>BucketField_13454583</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsAcross>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Account.Sections__r.Student_Section__r$Location__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Student/Sections Dosage</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Accounts_with_Sections_with_Student_Section__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>false</showGrandTotal>
+    <showSubTotals>false</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>Account.Sections__r.Student_Section__r$CreatedDate</dateColumn>
+        <interval>INTERVAL_CURFY</interval>
+    </timeFrameFilter>
+</Report>

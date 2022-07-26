@@ -1,0 +1,80 @@
+<apex:page StandardController="Behavior_Incident__c" extensions="BehaviorIncidentController" showHeader="true" sidebar="true">
+<style type="text/css">
+.Custom92Tab .tertiaryPalette, .individualPalette .Custom92Block .tertiaryPalette, .layoutEdit .individualPalette .Custom92Block .tertiaryPalette {
+    background-color: black;
+    border-color: black;
+} 
+</style>
+<c:jQueryInit bDataTables="false" bLoadingPanel="false"/>
+<apex:includeScript value="{!URLFOR($Resource.jWerty, '/jWerty/jwerty.js')}" />
+<script>
+var $ = jQuery.noConflict(); 
+jwerty.key('enter',false);
+</script>
+
+<apex:form >
+    <apex:outputPanel id="errors">
+                <apex:pageMessages />
+    </apex:outputPanel>
+    <apex:pageBlock title="Students Involved" rendered="{!displayStudentTable}">
+        <apex:repeat rendered="{!displayStudentTable}" value="{!stuWrapperList}" var="wrapper">
+            <apex:pageBlockSection id="student" title="{!wrapper.student.Name}" columns="1">
+                <apex:pageBlockTable value="{!wrapper.sb}" var="sb">
+                    <apex:column headerValue="Student" >
+                        <a href="/{!sb.Student__c}">{!sb.Student__r.Name}</a>
+                    </apex:column>
+                    <apex:column value="{!sb.Student__r.Grade__c}"/>
+                    <apex:column value="{!sb.Incident_Role__c}"/>
+                    <apex:column value="{!sb.Family_Contacted__c}"/>
+                    <apex:column value="{!sb.Consequence_Time_Lost__c}"/>
+                    <apex:column value="{!sb.Final_Consequence_Weighting__c}"/>
+                    <apex:column value="{!sb.Total_Time_Lost__c}"/>
+                </apex:pageBlockTable>
+                
+                    <apex:pageblockTable value="{!wrapper.conList}" id="consTable" var="cons" Title="{!wrapper.student.Name}'s Consequences" rendered="{!wrapper.conList.size>0}" >
+                        <apex:column >
+                            <apex:outputField value="{!cons.con.Final_Consequence__c}" id="finalCons"/>                       
+                            <apex:facet name="header">Final</apex:facet>  
+                        </apex:column>
+                        <apex:column >
+                            <apex:outputField value="{!cons.con.Picklist_Value__r.Name}" id="consequence"/>                       
+                            <apex:facet name="header">Consequence</apex:facet>  
+                        </apex:column>
+                        <apex:column >
+                            <apex:outputField value="{!cons.con.Time_Lost__c}" id="timeLost"/>                       
+                            <apex:facet name="header">Time (Minutes)</apex:facet>  
+                        </apex:column>
+                        <apex:column >
+                            <apex:outputField value="{!cons.con.Consequence_Category__c}"/>                       
+                            <apex:facet name="header">Category</apex:facet>
+                        </apex:column>          
+                        <apex:column >
+                            <apex:outputField value="{!cons.con.Consequence_Weighting__c}"/>                       
+                            <apex:facet name="header">Weighting</apex:facet>
+                        </apex:column>
+                    </apex:pageblockTable>
+                    
+                    <apex:pageBlockSection title="{!wrapper.student.Name}'s Suspension Information" rendered="{!wrapper.suspension.Is_Suspended__c == 'Yes'}" collapsible="false">
+                    <apex:outputField value="{!wrapper.suspension.Days_Suspended__c}"/>                   
+                    <apex:outputField value="{!wrapper.suspension.Re_entry_Mtg_Date__c}"/>                   
+                    <apex:outputField value="{!wrapper.suspension.Date_of_Re_entry__c}"/> 
+                    <apex:outputField value="{!wrapper.suspension.Re_entry_Mtg_Time__c}"/>
+                    <apex:outputField value="{!wrapper.suspension.Re_entry_Notes__c}" style="width:600px; height:80px;" />
+                    <apex:outputField value="{!wrapper.suspension.Show_Suspension_In_Attendance__c}" />
+					<apex:outputField value="{!wrapper.suspension.Suspension_Start_Date__c}" styleClass="requiredInput"/>
+                    <apex:outputField value="{!wrapper.suspension.Suspension_End_Date__c}" styleClass="requiredInput"/>
+                    </apex:pageBlockSection>
+        </apex:pageBlockSection>
+    </apex:repeat>
+    </apex:pageBlock>
+    <apex:detail relatedList="false"/>        
+    </apex:form>
+    <apex:relatedList list="NotesAndAttachments" title="Notes" />
+    <apex:relatedList list="ActivityHistories" title="Activity Histories" />
+    <script>
+    	if({!bfatalError}){
+    		$('#topButtonRow').hide();
+            $('#bottomButtonRow').hide();
+        }
+    </script>
+</apex:page>

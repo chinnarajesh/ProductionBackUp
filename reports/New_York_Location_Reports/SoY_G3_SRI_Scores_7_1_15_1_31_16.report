@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <buckets>
+        <bucketType>number</bucketType>
+        <developerName>BucketField_67388462</developerName>
+        <masterLabel>Performance Status</masterLabel>
+        <nullTreatment>n</nullTreatment>
+        <sourceColumnName>Assesment__c$Lexile_Score__c</sourceColumnName>
+        <useOther>false</useOther>
+        <values>
+            <sourceValues>
+                <to>325</to>
+            </sourceValues>
+            <value>Off Track</value>
+        </values>
+        <values>
+            <sourceValues>
+                <from>325</from>
+                <to>515</to>
+            </sourceValues>
+            <value>Sliding</value>
+        </values>
+        <values>
+            <sourceValues>
+                <from>515</from>
+            </sourceValues>
+            <value>On Track</value>
+        </values>
+    </buckets>
+    <buckets>
+        <bucketType>text</bucketType>
+        <developerName>BucketField_83460624</developerName>
+        <masterLabel>School Zone</masterLabel>
+        <nullTreatment>n</nullTreatment>
+        <sourceColumnName>Assesment__c$School__c</sourceColumnName>
+        <useOther>false</useOther>
+        <values>
+            <sourceValues>
+                <sourceValue>PS 83M</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>PS 96M</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>PS-MS 206M</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>PS- MS 57M</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>PS 102M Jacques Cartier</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Isaac Newton Middle School</sourceValue>
+            </sourceValues>
+            <value>Seven Generations</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>PS 154X</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>PS 48X</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>PS 130X</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>MS 302X</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>PS 75X</sourceValue>
+            </sourceValues>
+            <value>Lighthouse</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>IS 123X</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Bronx Early College Academy (324X)</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>IS 303X Leadership &amp; Community Service</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Grant Avenue Elementary</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>CS 55X Benjamin Franklin</sourceValue>
+            </sourceValues>
+            <value>Cathedral Builders</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>PS 149K Danny Kaye</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>PS 345K</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>JHS 218K James P Sinnott</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>PS 108K Sal Abbracciamento</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>PS 158K Warwick</sourceValue>
+            </sourceValues>
+            <value>Bridge Builders</value>
+        </values>
+        <values>
+            <sourceValues>
+                <sourceValue>PS 112Q</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>PS 171 Q</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>IS 126Q</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>IS 204Q</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>M.S. 126K John Ericsson Middle School</sourceValue>
+            </sourceValues>
+            <sourceValues>
+                <sourceValue>Newtown High School</sourceValue>
+            </sourceValues>
+            <value>Water</value>
+        </values>
+    </buckets>
+    <columns>
+        <field>Assesment__c$Student_First_Name__c</field>
+    </columns>
+    <columns>
+        <field>Assesment__c$Student_Last_Name__c</field>
+    </columns>
+    <columns>
+        <field>Assesment__c$Student_Id__c</field>
+    </columns>
+    <columns>
+        <field>Assesment__c$Type__c</field>
+    </columns>
+    <columns>
+        <field>Assesment__c$Student_Grade__c</field>
+    </columns>
+    <columns>
+        <field>Assesment__c$Student__c</field>
+    </columns>
+    <columns>
+        <field>Assesment__c$Lexile_Score__c</field>
+    </columns>
+    <columns>
+        <field>Assesment__c$Date_Administered__c</field>
+    </columns>
+    <filter>
+        <criteriaItems>
+            <column>Assesment__c$Type__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>contains</operator>
+            <value>SRI</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Assesment__c$Lexile_Score__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>notEqual</operator>
+            <value></value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Assesment__c$Student_Grade__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>3</value>
+        </criteriaItems>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>BucketField_83460624</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Assesment__c$School__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>BucketField_67388462</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>SoY G3 SRI Scores_7.1.15-1.31.16</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Assessments__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>false</showGrandTotal>
+    <showSubTotals>false</showSubTotals>
+    <sortColumn>Assesment__c$Lexile_Score__c</sortColumn>
+    <sortOrder>Asc</sortOrder>
+    <timeFrameFilter>
+        <dateColumn>Assesment__c$Date_Administered__c</dateColumn>
+        <endDate>2016-01-31</endDate>
+        <interval>INTERVAL_CUSTOM</interval>
+        <startDate>2015-07-01</startDate>
+    </timeFrameFilter>
+</Report>

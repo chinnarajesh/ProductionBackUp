@@ -1,0 +1,40 @@
+<apex:page controller="Portal_AddAttachmentsController" showheader="false" sidebar="false">
+
+<apex:includeScript value="{!URLFOR($Resource.jWerty, '/jWerty/jwerty.js')}" />
+<script>
+jwerty.key('enter',false);
+</script>
+	
+	<apex:pageBlock title="Attach Assignment">
+		<apex:form enctype="multipart/form-data">
+			
+			<table>
+			<tr>
+				<td>
+					<apex:inputFile contentType="{!fileContentType}" id="postFileId" fileName="{!fileName}" fileSize="{!fileSize}" value="{!fileBlob}" />&nbsp;
+					<apex:pageMessages />
+				</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>
+					<div></div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<apex:outputLabel value="File Description" style="font-weight:bold"/>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<apex:inputTextArea value="{!fileDesc}" rows="5" cols="50"/>
+				</td>
+				<td>
+					<apex:commandbutton action="{!upload}" value="Save"/>
+				</td>
+			</tr>
+			</table>
+		</apex:form>
+	</apex:pageBlock>
+</apex:page>

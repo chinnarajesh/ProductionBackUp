@@ -1,0 +1,497 @@
+<apex:page controller="Transfer_CourseWizard">  
+
+	<c:admin />
+    <apex:stylesheet value="{!$Resource.New_Core_UX}"/>
+    <apex:includeScript value="{!URLFOR($Resource.jWerty, '/jWerty/jwerty.js')}" />
+     
+	<c:jQueryInit bDataTables="true"/>
+
+    <style>
+        h3{ 
+            color:black;
+        }
+        .pbBody { padding-top:0px !important; } 
+    </style>
+      
+    <script>        
+		var courseArray = new Array();
+		var tabelwidth = 'firstload';
+		j$(document).ready(function(){
+	        resetTables();
+	       
+		});
+
+        function scrollVertical(){
+            var docHeight = j$(document).height();
+            var winHeight = j$(window).height();
+            j$('html,body').animate({scrollTop: docHeight - winHeight}, 700);
+        }
+		
+		function selectOne(obj) {
+        	var tab = j$('[id$=datatable2]')
+        	var allcb = j$(tab).find("input:checkbox");
+        		allcb.attr('checked', false);
+        	j$(obj).attr('checked', true);
+        }
+		
+		function resetTables(){
+			j$(".tablesorter").dataTable( {
+				"sScrollY": "200px",
+				"sScrollX": "100%",
+		        "bAutoWidth": true,
+		        "bDestroy": true,
+				"aoColumnDefs": [
+					{ "sWidth": "100px", 
+					"aTargets": [ 0 ]}
+				],
+		        "bPaginate": false,
+		        "bJQueryUI": true, 
+		        "iDisplayLength": 1000
+    		}); 
+    		
+		    j$(".noFilter").dataTable( {
+				"sScrollY": "200px",
+				"sScrollX": "100%",
+				"bFilter": false,
+		        "bAutoWidth": true,
+		        "bDestroy": true,
+				"aoColumnDefs": [
+					{ "sWidth": "100px", 
+					"aTargets": [ 0 ]}
+				],
+		        "bPaginate": false,
+		        "bJQueryUI": true, 
+		        "iDisplayLength": 1000
+		    } );    		
+    	}  
+
+    	function checkForCouseSaveError(){
+    		j$.fancybox.close();
+    		setTimeout('hideProgressBar();',500);
+
+    		if(j$('.customCreateCourseModal .messageText').size() == 0){
+    			getTransferCoursesJS(); 
+    			closeTransferCreateCoursesJS();
+    		}
+    	}   
+    </script>     
+  
+  	<script>
+        function reDrawTable(oTable)
+        {
+        	oTable.fnFilterClear(); 
+        	oTable.fnPageChange('first'); 
+			oTable.fnSettings()._iDisplayLength = 1000;
+			oTable.fnDraw(true);
+        }   
+    </script>	
+    
+	<apex:form >		 
+		<apex:outputPanel id="OuterPanel" >
+			<apex:outputPanel id="errors" >
+				<apex:pageMessages />
+			</apex:outputPanel>
+			<apex:outputPanel id="step1">
+				<apex:outputPanel id="displayStep1"	rendered="{!displayStep1}" >				
+				<apex:outputPanel id="topSection" >
+					<apex:pageBlock title="Transfer Course/Credit Wizard" >	
+						<p>Click Show Available Courses to view the list of available transfer courses.</p>
+						<apex:commandButton styleClass="drk_blue_btn" title="View available transfer courses or create new ones." value="Show Available Courses" action="{!getTransferCourses}" onComplete="openTransferCoursesJS();" />			
+					</apex:pageBlock>
+				</apex:outputPanel>
+				<!-- End of 'topSection' -->				
+				
+					<apex:pageBlock title="Search for Students" >	
+						<apex:outputPanel id="searchInfo" >				        		        
+					        <p>Students must have an active profile for the current school year prior to adding final grades from previous schools or years. Use the 
+								<apex:commandLink action="{!enrollmentWizard}" value="Section Wizard" style="color:#12C; text-decoration:underline;"/>
+					         to create the active profile. You will be able to create student records for previous years later in the Transfer Wizard.</p> 
+					        <br/>
+							<div class="section_content">
+						        <apex:pageBlockSection collapsible="false"   columns="2" >
+						            <apex:inputField required="false" value="{!searchResults.student.Student_First_Name__c}" />
+						            <apex:inputField value="{!searchResults.student.Student_Last_Name__c}" />
+						            <apex:inputField value="{!searchResults.student.Student_Id__c}" />
+						            <apex:pageBlockSectionItem >
+						            	<apex:outputLabel for="searchCalendar" value="Date of Birth" />
+						            	<apex:inputText id="searchCalendar" value="{!searchResults.student.Date_of_Birth__c}" />
+						            </apex:pageBlockSectionItem>
+						            <apex:inputField value="{!searchResults.student.Grade__c}" />
+						            <!-- <apex:inputfield value="{!searchResults.student.Cohort__c}" /> -->
+						            <apex:pageBlockSectionItem >
+						            	<apex:outputLabel for="cohort1" value="Cohort" />          
+								            <apex:selectList id="cohort1" value="{!searchResults.student.Cohort__c}" multiselect="false" size="1" >
+								            	<apex:selectOptions value="{!cohortSelections}" />
+								            </apex:selectList>
+						            </apex:pageBlockSectionItem>						            
+						            <apex:pageBlockSectionItem >
+						            	<apex:outputLabel for="oldCalendar" value="Entry Date" />
+						            	<apex:inputText id="oldCalendar" value="{!searchResults.student.Entry_Date__c}" />
+						            </apex:pageBlockSectionItem>
+						            <apex:inputField value="{!searchResults.student.Gender__c}" />
+						            <apex:inputField value="{!searchResults.student.Race_Multi__c}" />
+						        </apex:pageBlockSection>
+						    </div>    
+							    	
+				        	<apex:commandButton styleClass="drk_blue_btn" value="Search" action="{!searchStudents}" rerender="searchResults, outputTable2, errors" onComplete="resetTables(); scrollVertical(); " />
+				        	<div class="clear_fix">&nbsp;</div>
+							        						        		        	
+				        	<apex:outputPanel id="searchResults" >
+								<apex:outputPanel rendered="{!displaySearchResults}" >
+								<h3>Student Search Results</h3>
+									<div class="Section_content" >
+							            <apex:dataTable id="datatable2" styleclass="tablesorter" title="Student Results" value="{!fromSearchStudent}" var="tsw">
+							                <apex:column headerValue="Select" >
+							                    <apex:inputCheckbox styleclass="searchResultCb" value="{!tsw.selected}" title="Select one student to Enter Course Grades" onClick="selectOne(this);"/>
+							                </apex:column>
+							                <apex:column headerValue="Student ID" >
+							                    <apex:outputField value="{!tsw.student.Student_Id__c}" />
+							                </apex:column>
+							                <apex:column headerValue="Student First Name" >
+							                    <apex:outputField value="{!tsw.student.Student_First_Name__c}" />
+							                </apex:column>
+							                <apex:column headerValue="Student Last Name" >
+							                    <apex:outputField value="{!tsw.student.Student_Last_Name__c}" />
+							                </apex:column>
+							                <apex:column headerValue="Grade" >
+							                    <apex:outputField value="{!tsw.student.Grade__c}" />
+							                </apex:column>
+							            </apex:dataTable>					            									
+									</div>
+									
+									<!-- Place buttons here -->
+									<apex:commandButton styleClass="drk_blue_btn" value="Enter Final Grades" action="{!page2Transition}" rerender="step1, step2, errors" onComplete="resetTables();"/>
+								</apex:outputPanel>		        	
+				        	</apex:outputPanel>
+				        	<!-- End of searchResults -->
+						</apex:outputPanel>   								        		
+					</apex:pageBlock>	
+				</apex:outputPanel>
+			</apex:outputPanel>
+			<!-- End of 'step1' -->
+			
+			<apex:outputPanel id="step2" >
+				<apex:outputPanel id="displayStep2" rendered="{!displayStep2}" >
+				
+				<!-- show some basic info, so it's easier to tell what student we are looking at -->
+				<apex:outputPanel id="studentInfo" >
+					<apex:pageBlock title="Student Detail" >
+						<div class="Section_content" >
+							<apex:pageBlockSection columns="2">
+								<apex:outputField value="{!chosenStudent.student.Student_First_Name__c}" />
+								<apex:outputField value="{!chosenStudent.student.Student_Last_Name__c}" />
+								<apex:outputField value="{!chosenStudent.student.Student_Id__c}" />
+								<apex:outputField value="{!chosenStudent.student.Entry_Date__c}" />
+								<apex:outputField value="{!chosenStudent.student.Grade__c}" />
+								<apex:outputField Label="School Year" value="{!chosenStudent.student.School_Year__r.Name__c}" />
+								<apex:outputField value="{!chosenStudent.student.Date_of_Birth__c}"	/>
+								<apex:outputField value="{!chosenStudent.student.Race_Multi__c}" />
+							</apex:pageBlockSection>
+						</div>
+					</apex:pageBlock>
+				</apex:outputPanel>
+				
+					<apex:pageBlock title="Final Grade Details">
+						
+						<p>Click Show Final Grades to view and enter Final Grades for student for the year listed. If a new student record is needed click Add Student Record. If the year is not listed in the School Year dropdown, please contact your System Administrator to create the new year.</p>
+						<br/>
+						<a style="cursor:pointer;" title="Click Add Student Record to create a student record for a previous  year. 
+						" onClick="openCreateStudentRecordJS();"><img src="/img/feeds/follow12.png"/>Add Student Record</a><br/>					
+						<apex:pageBlockSection collapsible="false" columns="1" >
+							<apex:outputPanel id="dataTable3" >
+								<!-- <apex:dataTable styleClass="tablesorter3" value="{!chosenStudent.studentForYearX}" var="cs" title="Student Records"> -->
+								<apex:dataTable styleClass="tablesorter" value="{!chosenStudent.studentForYearX}" var="cs" title="Student Records">
+
+									<apex:column headerValue="Delete" >
+										<!-- <a href="#" onclick="if({!cs.Active__c == false}){deleteStudentRowJS('{!cs.ID}');} else {return false;}"> Delete&nbsp;</a> -->
+										<apex:outputLink value="#" rendered="{!!cs.Active__c}" onclick="if({!cs.Active__c == false}){deleteStudentRowJS('{!cs.ID}');} else {return false;}"> Delete&nbsp;</apex:outputLink>
+									</apex:column>
+			
+									<apex:column headerValue="Active" >
+										<apex:outputField value="{!cs.Active__c}" />
+									</apex:column>
+									<apex:column headerValue="School Year" >
+										<apex:outputField value="{!cs.School_Year__r.Name__c}" />
+									</apex:column>
+									<apex:column headerValue="Grade" >
+										<apex:outputField value="{!cs.Grade__c}" />
+									</apex:column>
+									<apex:column headerValue="Final Grades">
+										<a href="#" onclick="showFinalGradeJS('{!cs.ID}')">Show Final Grades</a>	
+									</apex:column>
+								</apex:dataTable>
+							</apex:outputPanel>
+							<apex:commandButton styleClass="drk_blue_btn" immediate="true" value="Go Back" action="{!nextStep}" rerender="step1, step2" onComplete="resetTables();"/>
+							<!-- When going back, do a page reset? -->
+						</apex:pageBlockSection>
+					</apex:pageBlock>
+				</apex:outputPanel>
+			</apex:outputPanel>
+				
+			<apex:actionFunction name="openTransferCreateCoursesJS" action="{!openTransferCreateCourses}" rerender="createTransferCourse" />	
+			<apex:actionFunction name="closeTransferCreateCoursesJS" action="{!closeTransferCreateCourses}" rerender="createTransferCourse" onComplete="resetTables();"/>
+			<apex:actionFunction name="openTransferCoursesJS" action="{!openTransferCourses}" rerender="table1, quickShowTransferCourse"  onComplete="resetTables();"/>	
+			<apex:actionFunction name="openTransferCourses2JS" action="{!openTransferCourses}" rerender="table1, quickShowTransferCourse" onComplete="resetTables();"/>
+			<apex:actionFunction name="openCreateStudentRecordJS" action="{!openCreateStudentRecord}" rerender="createStudentRecord" onComplete="centerModal();" />									
+			<apex:actionFunction name="getTransferCoursesJS" action="{!getTransferCourses}" onComplete="if({!displayStep1}){openTransferCourses2JS();} else {openEditFinalGradeJS();}"/>
+			
+			<apex:actionFunction name="openEditFinalGradeJS" action="{!openEditFinalGrade}" rerender="editFinalGrade" onComplete="resetTables(); "/>		
+			<apex:actionFunction name="closeEditFinalGradeJS" action="{!closeEditFinalGrade}" rerender="editFinalGrade" />
+			<apex:actionFunction name="showFinalGradeJS" action="{!chosenStudent.editFinalGrade}" onComplete="openEditFinalGradeJS();" >
+				<apex:param name="selectedStudentID" assignTo="{!selectedStudentID}" value="" />
+			</apex:actionFunction> 
+
+			<apex:actionFunction name="addFinalGradeJS" action="{!chosenStudent.addFinalGrade}" rerender="dataTable4" onComplete="resetTables();"/>	
+			<apex:actionFunction name="deleteRowJS" action="{!deleteRow}" rerender="dataTable4" onComplete="resetTables();">
+				<apex:param name="selectedRowID" assignTo="{!selectedRowID}" value="" />
+			</apex:actionFunction>	
+
+			<apex:actionFunction name="deleteStudentRowJS" action="{!deleteStudentRow}" rerender="dataTable3" onComplete="resetTables();">
+				<apex:param name="selectedStudentRowID" assignTo="{!selectedStudentRowID}" value="" />
+			</apex:actionFunction>						
+						
+			<!-- Modals below -->
+			<apex:outputPanel id="createTransferCourse" >
+            	<apex:outputPanel styleClass="modalBackground" layout="block" rendered="{!displayTransferCreateCourses}" />
+            	<apex:outputPanel styleClass="customCreateCourseModal" layout="block" rendered="{!displayTransferCreateCourses}" >
+            		<apex:pageMessages />
+            		<apex:pageBlock title="Create Transfer Course" >
+						<apex:pageBlockSection columns="2" >
+							<apex:pageBlockSectionItem >
+								<apex:outputLabel for="in1" value="Course Name" title="The Course Name will display on the student transcript and in the Student Grades related list on the Student Contact." />
+								<apex:inputField id="in1" value="{!newCourse.Name}" required="{!required}" />							
+							</apex:pageBlockSectionItem>
+							<apex:inputField id="in5" value="{!newCourse.Course_Number__c}" required="{!required}" />
+							<apex:pageBlockSectionItem >
+								<apex:outputLabel for="in3" value="Subject Area Lookup" />
+								<apex:outputPanel layout="block" styleClass="requiredInput">
+								<apex:outputPanel layout="block" styleClass="requiredBlock"></apex:outputPanel>
+									<!-- quick design change <apex:inputField id="in2" value="{!newCourse.Transfer_School__c}" required="{!required}" /> -->
+									<apex:selectList id="in3" value="{!newCourse.Subject_Area_Lookup__c}" multiselect="false" size="1" required="{!required}" >
+										<apex:selectOptions value="{!subjectSelections}" />
+									</apex:selectList>
+								</apex:outputPanel>
+							</apex:pageBlockSectionItem>
+							<apex:pageBlockSectionItem >
+								<apex:outputLabel value="Credit Hours" title="The Credit Hours display on the transcript." for="in4" />			
+								<apex:inputField id="in4" value="{!newCourse.Credit_Hours__c}" required="{!required}" />  
+							</apex:pageBlockSectionItem>
+							<apex:pageBlockSectionItem >
+								<apex:outputLabel for="in5" value="Grade Scale" />
+								<apex:outputPanel layout="block" styleClass="requiredInput">
+								<apex:outputPanel layout="block" styleClass="requiredBlock"></apex:outputPanel>
+									<!-- quick design change <apex:inputField id="in2" value="{!newCourse.Transfer_School__c}" required="{!required}" /> -->
+									<apex:selectList id="in5" value="{!newCourse.Grade_Scale_Lookup__c}" multiselect="false" size="1" required="{!required}" >
+										<apex:selectOptions value="{!gradeScaleOptionList}" />
+									</apex:selectList>
+								</apex:outputPanel>
+							</apex:pageBlockSectionItem>
+						</apex:pageBlockSection>
+					
+					</apex:pageBlock>
+					<apex:commandButton styleClass="black_btn" value="SAVE" action="{!createTransferCourse}" onclick="showProgressBar('Saving...');" onComplete="checkForCouseSaveError();" rerender="createTransferCourse"/>
+					<apex:commandButton styleClass="grey_btn" value="CANCEL" immediate="true" action="{!cancelingCourse}" onComplete="closeTransferCreateCoursesJS();" />
+            		<div class="clear_fix">&nbsp;</div>
+            	</apex:outputPanel>	           			
+			</apex:outputPanel>			
+			
+			
+			<!-- another modal temporary -->
+			<apex:outputPanel id="quickShowTransferCourse" >
+				<apex:outputPanel styleClass="modalBackground" layout="block" rendered="{!displayTransferCourses}" />
+				<apex:outputPanel styleClass="customShowModal" layout="block" rendered="{!displayTransferCourses}" >
+					<apex:pageBlock title="Transfer Courses" >
+						<a style="cursor:pointer;" title="Click Create Transfer Course to create a new course.
+						" onClick="openTransferCreateCoursesJS(); this.disabled=true;" onComplete="this.disabled=false;"><img src="/img/feeds/follow12.png"/>Create Transfer Course</a> 
+						<br/>
+						<apex:pageBlockSection columns="1" >				
+							<!-- <apex:dataTable styleClass="tablesorter1" value="{!transferCourses}" var="tc">	-->	
+							<apex:dataTable styleClass="tablesorter" value="{!transferCourses}" var="tc">
+								<apex:column headerValue="Name" >
+									<apex:outputField value="{!tc.Name}" />
+								</apex:column>
+								<apex:column headerValue="Credits" >
+									<apex:outputField value="{!tc.Credit_Hours__c}" />
+								</apex:column>
+								<apex:column headerValue="Subject" >
+									<apex:outputText value="{!tc.Subject_Area_Lookup__r.Name}" />
+								</apex:column>
+								<apex:column headerValue="Grade Scale" >
+									<apex:outputText value="{!tc.Grade_Scale_Lookup__r.Name}" />
+								</apex:column>
+							</apex:dataTable>						
+						</apex:pageBlockSection>
+					</apex:pageBlock>
+					<apex:commandButton styleClass="drk_blue_btn" immediate="true" value="Close" action="{!closeTransferCourses}" rerender="quickShowTransferCourse" />
+				</apex:outputPanel>
+			</apex:outputPanel>			
+			
+			<!-- create student records modal -->
+			<apex:outputPanel id="createStudentRecord" >
+				<apex:outputPanel styleClass="modalBackground" layout="block" rendered="{!displayCreateStudentRecord}" />
+				<apex:outputPanel styleClass="customShowModal" layout="block" rendered="{!displayCreateStudentRecord}" >
+					<apex:pageBlock title="Create Student Record" >
+						<apex:pageBlockSection columns="1" >
+							<apex:inputField value="{!chosenStudent.dummyStudent.Grade__c}" />
+							<apex:selectList id="inCSR" value="{!chosenStudent.dummyStudent.School_Year__c}" multiselect="false" size="1" >
+								<apex:selectOptions value="{!yearSelections}" />
+							</apex:selectList>
+						</apex:pageBlockSection>
+					</apex:pageBlock>
+					<apex:commandButton styleClass="black_btn" value="SAVE" action="{!chosenStudent.addStudentRecord}" onComplete="if({!!chosenStudent.saveSRError}){resetTables();} else{resetTables(); alert('There exists a student record for this year and grade.');}" rerender="createStudentRecord, step2"/>
+					<apex:commandButton styleClass="grey_btn" immediate="true" value="CANCEL" action="{!closeCreateStudentRecord}" rerender="createStudentRecord" />
+					<div class="clear_fix">&nbsp;</div>
+				</apex:outputPanel>
+			</apex:outputPanel>		
+						
+			<!-- Edit Final Grades -->
+			<apex:outputPanel id="editFinalGrade" >
+				<apex:outputPanel styleClass="modalBackground" layout="block" rendered="{!displayEditFinalGrade}" />
+				<apex:outputPanel styleClass="customEditFinalGradeModal" layout="block" rendered="{!displayEditFinalGrade}" >
+					<apex:pageBlock title="Final Grades" >
+						<p>Click Add Final Grade to enter a course and final grade information for a student.  If the course is not available in the Course dropdown, click Create Transfer Course.</p>
+						<br/>
+
+						<a style="cursor:pointer;" onClick="addFinalGradeJS(); this.disabled=true;" onComplete="this.disabled=false; "><img src="/img/feeds/follow12.png"/>Add Final Grade</a>&nbsp;&nbsp;&nbsp;&nbsp;
+						<a style="cursor:pointer;" onClick="openTransferCreateCoursesJS(); this.disabled=true;" onComplete="this.disabled=false;"><img src="/img/feeds/follow12.png"/>Create Transfer Course</a><br/>
+		
+						<apex:outputPanel id="dataTable4" >
+									<apex:pageMessages />
+							<apex:dataTable styleClass="noFilter" value="{!chosenStudent.currentFinalGradeList}" var="cfgl">
+								
+								<apex:column style="width : 50px !important;" headerValue="Delete" >
+									<apex:outputLink rendered="{!cfgl.Transfer_School__c != null}" value="#" style="width : 50px !important;" onclick="if({!cfgl.Transfer_School__c != null}){deleteRowJS('{!JSENCODE(cfgl.Key__c)}');} else {return false;}"> Delete&nbsp;</apex:outputLink>
+								</apex:column>
+
+								<apex:column style="width : 160px !important;" headerValue="Transfer School" >
+									<apex:outputPanel layout="block" styleClass="requiredInput">
+									<apex:outputPanel layout="block" styleClass="requiredBlock"></apex:outputPanel>									
+										<apex:inputField style="width : 160px !important;" id="cfgl6" value="{!cfgl.Transfer_School__c}" />
+										<script>document.getElementById('{!JSENCODE($Component.cfgl6)}').disabled = {!cfgl.Transfer_School__c == null}; </script>	
+									</apex:outputPanel>
+								</apex:column>
+								<apex:column style="width : 200px !important;" headerValue="Course" >
+									<apex:outputPanel layout="block" styleClass="requiredInput">
+									<apex:outputPanel layout="block" styleClass="requiredBlock"></apex:outputPanel>									
+										<!-- <apex:inputField value="{!cfgl.Course__c}"	/> -->
+										<apex:selectList style="width : 200px !important;" id="cfgl1" value="{!cfgl.Course__c}" multiselect="false" size="1" >
+											<apex:selectOptions value="{!transferSelections}" />
+										</apex:selectList>
+										<script>document.getElementById('{!JSENCODE($Component.cfgl1)}').disabled = {!cfgl.Transfer_School__c == null}; </script>									
+									</apex:outputPanel>
+								</apex:column>
+								<apex:column style="width : 80px !important;" headerValue="Grade Override" >					
+										<apex:inputField style="width : 80px !important;" id="cfglx" value="{!cfgl.Grade_Override__c}" />
+										<script>document.getElementById('{!JSENCODE($Component.cfglx)}').disabled = {!cfgl.Transfer_School__c == null}; </script>
+								</apex:column>
+								<apex:column style="width : 80px !important;" headerValue="Letter Grade" >				
+										<apex:inputField style="width : 80px !important;" id="cfgl7" value="{!cfgl.Final_Grade_Letter_v2__c}" />
+										<script>document.getElementById('{!JSENCODE($Component.cfgl7)}').disabled = {!cfgl.Transfer_School__c == null}; </script>
+								</apex:column>
+								<apex:column style="width : 80px !important;" headerValue="Grade Value" >					
+										<apex:inputField style="width : 80px !important;" id="cfgl8" value="{!cfgl.Final_Grade_Value__c}" />
+										<script>document.getElementById('{!JSENCODE($Component.cfgl8)}').disabled = {!cfgl.Transfer_School__c == null}; </script>
+								</apex:column>
+								
+								<apex:column style="width : 80px !important;" headerValue="Credit Earned Override?" >
+										<apex:inputField style="width : 80px !important;" id="cfgl90" value="{!cfgl.Credit_Earned_Override__c}"  />
+										<script>document.getElementById('{!JSENCODE($Component.cfgl90)}').disabled = {!cfgl.Transfer_School__c == null}; </script>
+								</apex:column>
+			
+								<apex:column style="width : 80px !important;" headerValue="Unweighted GPA" >						
+										<apex:inputField style="width : 80px !important;" id="cfgl9" value="{!cfgl.Unweighted_GPA__c}" />
+										<script>document.getElementById('{!JSENCODE($Component.cfgl9)}').disabled = {!cfgl.Transfer_School__c == null}; </script>
+								</apex:column>
+								<apex:column style="width : 80px !important;" headerValue="Weighted GPA" >						
+										<apex:inputField style="width : 80px !important;" id="cfgl10" value="{!cfgl.Weighted_GPA__c}" />
+										<script>document.getElementById('{!JSENCODE($Component.cfgl10)}').disabled = {!cfgl.Transfer_School__c == null}; </script>
+								</apex:column>							
+							</apex:dataTable>
+						</apex:outputPanel>
+					</apex:pageBlock>	
+					
+					<apex:commandButton styleClass="black_btn" value="SAVE" action="{!chosenStudent.saveFinalGrade}" onClick="this.disabled=true;" onComplete="if({!!chosenStudent.saveFGError}) {this.disabled=false; closeEditFinalGradeJS();} else {resetTables(); alert('There are some fields not populated. Please check each row.');}" rerender="editFinalGrade"/>
+					<apex:commandbutton styleClass="grey_btn" immediate="true" value="CANCEL" action="{!closeEditFinalGrade}" rerender="editFinalGrade"/>
+					<div class="clear_fix">&nbsp;</div>
+				</apex:outputPanel>
+			</apex:outputPanel>
+			
+			<!-- End of Modals -->
+			
+		</apex:outputPanel>
+		
+	</apex:form>
+	
+			    <style type="text/css">
+			        .customShowModal{
+			            background-color: white;
+			            border-width: 2px;
+			            border-style: solid;
+			            z-index: 702;
+			            left: 50%;
+			            padding:10px;
+			            position: absolute;
+			            /* These are the 3 css properties you will need to change so the popup 
+			            displays in the center of the screen. First set the width. Then set 
+			            margin-left to negative half of what the width is. You can add 
+			            the height property for a fixed size pop up if you want.*/
+			            width: 50%;
+			            height: 60%;
+			            min-height: 600px;
+			            
+			            margin-left: -500px;    
+			            top:10%;
+			        }
+
+			        .customEditFinalGradeModal{
+			            background-color: white;
+			            border-width: 2px;
+			            border-style: solid;
+			            z-index: 702;
+			            left: 50%;
+			            padding:10px;
+			            position: absolute;
+			            /* These are the 3 css properties you will need to change so the popup 
+			            displays in the center of the screen. First set the width. Then set 
+			            margin-left to negative half of what the width is. You can add 
+			            the height property for a fixed size pop up if you want.*/
+			            height: 60%;
+			            min-height: 600px;
+			            
+			            margin-left: -500px;    
+			            top:10%;
+			        }
+
+			        .customCreateCourseModal{
+			            background-color: white;
+			            border-width: 2px;
+			            border-style: solid;
+			            z-index: 703;
+			            left: 50%;
+			            padding:10px;
+			            position: absolute;
+			            /* These are the 3 css properties you will need to change so the popup 
+			            displays in the center of the screen. First set the width. Then set 
+			            margin-left to negative half of what the width is. You can add 
+			            the height property for a fixed size pop up if you want.*/
+			            width: 1000px;
+			            height: 60%;
+			            min-height: 600px;
+			            
+			            margin-left: -500px;    
+			            top:10%;
+			        }
+			        			        
+			        .modalBackground{
+			            background-color:black;
+			            opacity: 0.30;
+			            filter: alpha(opacity = 30);
+			            position: absolute;
+			            width: 100%;
+			            height: 100%;
+			            top: 0;
+			            left: 0;
+			            z-index: 701;
+			        }		
+			    </style> 	
+</apex:page>

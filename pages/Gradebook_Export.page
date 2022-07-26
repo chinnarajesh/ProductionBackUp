@@ -1,0 +1,123 @@
+<apex:page controller="GradebookController" sidebar="false" showheader="false" cache="true" contenttype="application/vnd.ms-excel">
+<apex:outputPanel id="theBlockPanel">
+                <table class="leftTable" id="leftTable" border="1">
+                    <thead>
+                    	<tr class="header">
+                    		<apex:variable value="{!gradebookObj.header}" var="h" rendered="{!standardDisplay}">
+                    		<th colspan="3">
+                    			<i>Standard</i>
+                    		</th>
+                    		<apex:repeat value="{!gradebookObj.header.standardWrapperList}" var="stand" id="standrepeat">
+	                                <th colspan="{!stand.gradeListSize}">
+	                                			{!stand.standardName}
+	                                </th>
+			                </apex:repeat>
+                    		</apex:variable>
+                    		<apex:variable value="{!gradebookObj.header}" var="h" rendered="{!!standardDisplay}">
+                    		<th colspan="3">
+                    			<i>Assignment</i>
+                    		</th> 
+                    		<apex:repeat value="{!gradeBookObj.header.assignmentWrapperList}" var="assign" id="assignmentrepeat">
+	                                <th colspan="{!assign.gradeListSize}" >	                                		
+	                                			{!assign.assignment.Name}
+	                                </th>
+			                    </apex:repeat>
+                    		</apex:variable>
+                    	</tr>
+                    	<apex:variable value="{!gradebookObj.bHasStandards}" var="b" rendered="{!IF(standardDisplay||(gradebookObj.bHasStandards&&!standardDisplay), true, false)}">
+                        <tr class="header">
+                    		<apex:variable value="{!gradebookObj.header}" var="h" rendered="{!!standardDisplay}">
+                    		<th colspan="3">
+                    			<i>Standard</i>
+                    		</th>
+                    		<apex:repeat value="{!gradebookObj.header.assignmentWrapperList}" var="assign" id="assignmentrepeat2">
+	                                    <apex:repeat value="{!assign.gradeList}" var="grade" id="graderepeat2">
+	                                        <th >
+	                                        		{!grade.Standard__r.Name}
+						                   </th>
+	                                    </apex:repeat> 
+	                        </apex:repeat>                   		
+                    		</apex:variable>
+                    		<apex:variable value="{!gradebookObj.header}" var="h" rendered="{!standardDisplay}">
+                    		<th colspan="3">
+                    			<i>Assignment</i>
+                    		</th>
+                    		<apex:repeat value="{!gradebookObj.header.standardWrapperList}" var="stand" id="standrepeat2">
+	                                    <apex:repeat value="{!stand.gradeList}" var="grade" id="graderepeat">
+	                                        <th>
+	                                        		{!grade.Assignment__r.Name}
+	                                        </th>
+	                                    </apex:repeat>
+		                         </apex:repeat>
+                    		</apex:variable>
+                        </tr>
+                        </apex:variable>
+                        <tr>
+                        <th colspan="3">
+                        	<i>Due Date</i>
+                        </th>
+                        <apex:variable value="{!gradebookObj.header}" var="h" rendered="{!standardDisplay}">
+                        		<apex:repeat value="{!gradebookObj.header.standardWrapperList}" var="stand" id="standrepeat3">
+	                                    <apex:repeat value="{!stand.gradeList}" var="grade" id="graderepeat2">
+	                                    	<th>
+	                                    		<apex:outputtext value="{0,date,MM/dd}">
+							                   			<apex:param value="{!grade.Assignment__r.Due_Date__c}"/>
+							                   	</apex:outputtext>
+							                </th>
+							             </apex:repeat>
+							    </apex:repeat>
+						</apex:variable>
+						<apex:variable value="{!gradebookObj.header}" var="h" rendered="{!!standardDisplay}">
+							    <apex:repeat value="{!gradebookObj.header.assignmentWrapperList}" var="assign" id="assignmentrepeat3">
+	                                    <apex:repeat value="{!assign.gradeList}" var="grade" id="graderepeat3">
+	                                    	<th>
+	                                    		<apex:outputtext value="{0,date,MM/dd}">
+							                   			<apex:param value="{!grade.Assignment__r.Due_Date__c}"/>
+							                   	</apex:outputtext>
+							                </th>
+							             </apex:repeat>
+							    </apex:repeat>
+						</apex:variable>
+                        </tr>                           
+                    </thead>
+                    <tbody>
+                        <apex:repeat value="{!gradebookObj.studentWrapperList}" var="stud" id="studentnamerepeat">
+                            <tr class="{!stud.rowStyle}">
+                                <td class="studCol">
+                                	
+                                    	{!stud.student.Name}                     
+                                    
+                                </td>
+                                    
+                                <td >
+                                    <apex:outputtext styleclass="numGrade" value="{!ROUND(stud.sectionGrade.Grade__c,0)}"  />
+                              
+                                </td>
+                                <td>
+                                	<apex:outputtext styleclass="letGrade" value="{!stud.sectionGrade.Letter_Grade__c}" />
+                                </td>
+                                <apex:variable value="{!gradebookObj.header}" var="h" rendered="{!gradebookObj.studentWrapperList.size>0&&standardDisplay}">
+	                                <apex:repeat value="{!stud.standardWrapperList}" var="stand" id="standrepeat">
+	                                                    <apex:repeat value="{!stand.gradeList}" var="grade" id="graderepeat">
+	                                                        <td class="tabCol" nowrap="nowrap">
+	                                                        	<apex:outputText value="{!grade.Entered_Grade__c}"/>
+	                                                        </td>
+	                                                    </apex:repeat>
+	                                </apex:repeat>
+                                </apex:variable>
+                                <apex:variable value="{!gradebookObj.header}" var="h2" rendered="{!gradebookObj.studentWrapperList.size>0&&!standardDisplay}">
+	                                <apex:repeat value="{!stud.assignmentWrapperList}" var="assign" id="assignmentrepeat3">
+	
+	                                                    <apex:repeat value="{!assign.gradeList}" var="grade" id="graderepeat2">
+	                                                        <td class="tabCol" nowrap="nowrap">
+	                                                        	<apex:outputText value="{!grade.Entered_Grade__c}"/>
+	                                                        </td>
+	                                                    </apex:repeat>
+	                                    </apex:repeat>
+                                </apex:variable>
+                            </tr>
+                        </apex:repeat>
+	                   </tbody>
+                	</table>
+        </apex:outputPanel>
+</apex:page>

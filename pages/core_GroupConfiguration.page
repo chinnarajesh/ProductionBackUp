@@ -1,0 +1,254 @@
+<apex:page controller="core_GroupConfiguration" tabStyle="SchoolForce_Setup__tab" sidebar="false" showHeader="true">
+<c:setupWizardSharedComponents summerSchoolMode="{!cSetup.setup.School__r.ParentId != null}"/>
+<script>
+	j$(document).ready(function(){
+		resetTable();
+	});
+	
+	function initGroupModal(){
+		initModal('#groupModal',backJs);
+	}
+</script>
+<!-- List of Catalogs -->
+<table style="width:100%">
+	<tr>
+		<td style="vertical-align:top; width:15%">
+			<!-- <c:setup_sidebar setup="{!cSetup}"/> -->
+			<c:setupWizardSidebar setupId="{!cSetup.setup.id}" />
+		</td>
+		<td style="vertical-align:top; width:85%">
+			<apex:outputPanel id="resetPanel">
+				<script>
+					resetTable();
+					
+					function checkGroup(){
+						if({!!bConfigureGroup}){
+							closeModal('#groupModal');
+						}
+						setTimeout('hideProgressBar()',500);
+					}
+				</script>
+			</apex:outputPanel>
+			<!-- Error -->
+			<apex:form id="mainForm">
+				<div id="schoolforce-wrapper" class="wrapper">
+					<apex:outputPanel id="error" styleClass="pageMessages">
+						<apex:pageMessages />
+					</apex:outputPanel>
+					<h1 class="centerHeader">
+						<input type="button" onclick="prevJs();" class="grey_btn_arrow" value="Previous" />
+						<span style="display:inline-block;">{!cSetup.school.Name} Core Setup<br/>Configure Schedule Groups</span>
+						<input type="button" onclick="nextJs();" class="green_btn_arrow" value="Next" />
+					</h1>
+					<apex:outputPanel styleClass="adminSummary">
+						<br/>
+						<p>
+						Schedule groups define the students who will attend classes together as a group. 
+						In this step, you must create your schedule groups and assign the students who belong in each group. 
+						In the Schedule Sections step, you will schedule each group’s sections and the staff members who will teach each section.
+						<br/><br/>
+						If you have not added the new students to SchoolForce who you want to add to groups, return to the Create Staff/Students step and upload the students using the CSV Loader.
+						<br/><br/>
+						Refer to SchoolForce Help for more information.
+						</p>
+						<br/>
+					</apex:outputPanel>
+					<div class="content-wrapper no-border">
+						<apex:outputPanel id="availableGroupsPanel">
+							<apex:outputPanel rendered="{!!bShowGroupsDetails}">
+								<h3>Group Configuration</h3>
+								<a style="cursor:pointer;" onclick="initGroupModal(); addGroupJs();" ><img src="/img/feeds/follow12.png"/>Add Schedule Group</a>
+								<input type="button" onclick="openCSVLoader('Schedule Groups','{!cSetup.setup.id}',{!isManaged});" class="black_btn" value="Load From CSV" />
+								<div class="clear_fix"/>
+								<apex:dataTable styleclass="tablesorter" value="{!availableGroups}" var="group">
+									<apex:column headerValue="Action" width="300px">
+										<div class="tabCol" sfdcId="{!group.id}"></div>
+										<a href="#" onclick="addHighlight(j$(this).parent(), '2'); showProgressBar(' Pulling Student Information '); editGroupJs('{!group.id}')" >Add/Remove Students</a> | 
+										<a href="#" onclick="addHighlight(j$(this).parent(), '2'); initGroupModal(); editGroupInfoJs('{!group.id}')" >Edit</a> 
+										<apex:variable value="{!cSetup.setup.Published__c}" var="b" rendered="{!!cSetup.setup.Published__c}">
+											 | <a href="#" onclick="addHighlight(j$(this).parent(), '2'); if(confirm('Are you sure you would like to delete this schedule group?  This cannot be undone.')){
+																											showProgressBar(' Deleting Schedule Group ');
+																											deleteGroupJs('{!group.id}');
+																										}" >Delete</a>
+										</apex:variable>
+									</apex:column>
+									<apex:column headerValue="Name" value="{!group.name}" />
+									<apex:column headerValue="Name in Spanish" value="{!group.Name_Spanish__c}" />
+									<apex:column headerValue="Grade Level" value="{!group.All_Grades__c}" />
+									<apex:column headerValue="Description" value="{!group.Description__c}" />
+								</apex:dataTable>
+							</apex:outputPanel>
+							<apex:actionFunction action="{!editGroup}" name="editGroupJs" reRender="groupEdit, studentsInGroup, availableGroupsPanel, availableStudents, error, resetPanel" onComplete="setTimeout('hideProgressBar()',500);" >
+								<apex:param name="selectedGroupId" assignTo="{!selectedGroupId}" value="" />
+							</apex:actionFunction>
+							<apex:actionFunction action="{!addGroup}" name="addGroupJs" reRender="groupEdit" onComplete="openModal('#groupModal');" />
+							<apex:actionFunction action="{!editGroupInfo}" name="editGroupInfoJs" reRender="groupEdit" onComplete="openModal('#groupModal');">
+								<apex:param name="selectedGroupId" assignTo="{!selectedGroupId}" value="" />
+							</apex:actionFunction>
+							<apex:actionFunction action="{!deleteGroup}" name="deleteGroupJs" reRender="availableGroupsPanel,error,resetPanel" onComplete="setTimeout('hideProgressBar()',500);">
+								<apex:param name="selectedGroupId" assignTo="{!selectedGroupId}" value="" />
+							</apex:actionFunction>	
+						</apex:outputPanel>
+						<apex:outputPanel id="studentsInGroup">
+							<apex:outputPanel rendered="{!bShowGroupsDetails}">
+								<h3>Students in Group {!selectedGroup.Name} - ({!numStudentsInGroup})</h3>
+								<div class="section_content">
+									<apex:variable value="{!studentsInGroup}" var="stud" rendered="{!IF(studentsInGroup.size>0, true, false)}">
+										<apex:outputText style="font-weight:bold" value="Select All?" />
+										<input type="checkbox" onclick="selectAll(this,'currentStudCb')" />
+										<table class="tablesorter" >
+											<thead>
+												<tr>
+													<th>Selected</th>
+													<th>Student Name</th>
+													<th>Race</th>
+													<th>Grade</th>
+													<th>Gender</th>
+													<th>Special Ed?</th>
+													<th>IEP?</th>
+													<th>ELL?</th>
+												</tr>
+											</thead>
+											<tbody>
+												<apex:repeat value="{!studentsInGroup}" var="sList">
+												<apex:repeat value="{!sList}" var="stud1">
+													<tr>
+														<td>
+															<apex:inputCheckbox styleClass="currentStudCb" value="{!stud1.bSelected}" />
+														</td>
+														<td>
+															<apex:outputLink value="/{!stud1.studentSection.Student__c}">{!stud1.studentSection.student__r.name}</apex:outputLink>
+														</td>
+														<td>
+															<apex:outputField value="{!stud1.studentSection.student__r.Race__c}" />
+														</td>
+														<td>
+															<apex:outputField value="{!stud1.studentSection.student__r.Grade__c}" />
+														</td>
+														<td>
+															<apex:outputField value="{!stud1.studentSection.student__r.Gender__c}" />
+														</td>
+														<td>
+															<apex:outputField value="{!stud1.studentSection.student__r.Special_Ed__c}" />
+														</td>
+														<td>
+															<apex:outputField value="{!stud1.studentSection.student__r.IEP__c}" />
+														</td>
+														<td>
+															<apex:outputField value="{!stud1.studentSection.student__r.ELL__c}" />
+														</td>
+													</tr>
+												</apex:repeat>
+												</apex:repeat>
+											</tbody>
+										</table>
+										<input class="black_btn" onclick="showProgressBar(' Removing Students from Group '); removeStudentsFromGroupJs()" type="button" value="Remove Students" />
+									</apex:variable>
+									<div class="clear_fix">&nbsp;</div>
+								</div>
+							</apex:outputPanel>
+						</apex:outputPanel>
+						<apex:outputPanel id="availableStudents">
+							<apex:outputPanel rendered="{!bShowGroupsDetails}" >
+								<h3>Students In Grade(s) {!selectedGroup.All_Grades__c}  Not Currently Assigned - ({!numStudentsNotInGroup})</h3>
+								<div class="section_content">
+									<apex:variable value="{!availableStudents}" var="sb" rendered="{!IF(availableStudents.size>0, true, false)}">
+										<apex:outputText style="font-weight:bold" value="Select All?" />
+										<input type="checkbox" onclick="selectAll(this,'availStudCb')" />
+										<table class="tablesorter" >
+											<thead>
+												<tr>
+													<th>Selected</th>
+													<th>Student Name</th>
+													<th>Race</th>
+													<th>Grade</th>
+													<th>Gender</th>
+													<th>Special Ed?</th>
+													<th>IEP?</th>
+													<th>ELL?</th>
+												</tr>
+											</thead>
+											<tbody>
+												<apex:repeat value="{!availableStudents}" var="sList">
+												<apex:repeat value="{!sList}" var="stud2">
+													<tr>
+														<td>
+															<apex:inputCheckbox styleClass="availStudCb" value="{!stud2.bSelected}" />
+														</td>
+														<td>
+															<apex:outputLink value="/{!stud2.student.Id}">{!stud2.student.name}</apex:outputLink>
+														</td>
+														<td>
+															<apex:outputField value="{!stud2.student.Race__c}" />
+														</td>
+														<td>
+															<apex:outputField value="{!stud2.student.Grade__c}" />
+														</td>
+														<td>
+															<apex:outputField value="{!stud2.student.Gender__c}" />
+														</td>
+														<td>
+															<apex:outputField value="{!stud2.student.Special_Ed__c}" />
+														</td>
+														<td>
+															<apex:outputField value="{!stud2.student.IEP__c}" />
+														</td>
+														<td>
+															<apex:outputField value="{!stud2.student.ELL__c}" />
+														</td>
+													</tr>
+												</apex:repeat>
+												</apex:repeat>
+											</tbody>
+										</table>
+										<input class="black_btn" onclick="showProgressBar(' Adding Students to Group '); saveStudentListJs()" type="button" value="Add Students To Group" />
+									</apex:variable>
+									<div class="clear_fix">&nbsp;</div>
+								</div>
+								<input class="grey_btn" onclick="backToGroupsJs()" type="button" value="Back to Groups" />
+							</apex:outputPanel>
+						</apex:outputPanel>
+					</div>
+					<apex:actionFunction action="{!saveStudentList}" name="saveStudentListJs" onComplete="setTimeout('hideProgressBar()',500);" reRender="studentsInGroup, groupEdit, availableStudents, error, resetPanel" />
+					<apex:actionFunction action="{!removeStudentsFromGroup}" name="removeStudentsFromGroupJs" onComplete="setTimeout('hideProgressBar()',500);" reRender="studentsInGroup, groupEdit, availableStudents, error, resetPanel" />
+					<apex:actionFunction action="{!goBack}" name="backToGroupsJs" reRender="studentsInGroup, availableStudents, availableGroupsPanel, resetPanel" />
+					<apex:actionFunction action="{!prev}" name="prevJs" />
+					<apex:actionFunction action="{!next}" name="nextJs" />
+
+					<!-- MODALS -->
+					<div id="groupModal" >
+						<apex:outputPanel id="groupEdit">
+							<apex:outputPanel rendered="{!bConfigureGroup}">
+								<apex:outputPanel id="groupErrors">
+									<apex:pageMessages />
+								</apex:outputPanel>
+								<h3>Create/Edit Schedule Group</h3>
+								<div class="section_content">
+									<apex:pageBlock >
+										<apex:pageBlockSection >
+											<apex:inputField value="{!selectedGroup.Name}" required="true"/>
+											<apex:inputField value="{!selectedGroup.Name_Spanish__c}" />
+											<apex:inputField value="{!selectedGroup.All_Grades__c}" required="true"/>
+											<apex:inputField value="{!selectedGroup.Description__c}" />
+										</apex:pageBlockSection>
+									</apex:pageBlock>
+								</div>
+								<input class="black_btn" type="button" value="Save Group" onclick="if(confirm('Are you sure you would like to save this schedule group?')){
+																										showProgressBar(' Saving Schedule Group ');
+																										saveGroupJs();
+																									}" />
+								<input class="grey_btn" type="button" value="Cancel" onclick="closeModal('#groupModal');" />
+							</apex:outputPanel>
+						</apex:outputPanel>
+					</div>
+					<apex:actionFunction action="{!saveGroup}" name="saveGroupJs" reRender="groupErrors,resetPanel" onComplete="checkGroup();" />
+					<apex:actionFunction action="{!goBack}" name="backJs" reRender="availableGroupsPanel,groupEdit,error,resetPanel" immediate="true" />
+				</div>
+			</apex:form>
+		</td>
+	</tr>
+</table>
+
+
+
+</apex:page>

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Data Load Log</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Data Load Log</value>
+    </caseValues>
+    <fields>
+        <label><!-- BatchNext ID --></label>
+        <name>BatchNext_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Batch ID --></label>
+        <name>Batch_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Class Name --></label>
+        <name>Class_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- End Time Text --></label>
+        <name>End_Time_Text__c</name>
+    </fields>
+    <fields>
+        <label><!-- End Time --></label>
+        <name>End_Time__c</name>
+    </fields>
+    <fields>
+        <label><!-- External Id --></label>
+        <name>External_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Failed Records --></label>
+        <name>Failed_Records__c</name>
+    </fields>
+    <fields>
+        <label><!-- Messages --></label>
+        <name>Messages__c</name>
+    </fields>
+    <fields>
+        <label><!-- Processed Record Type --></label>
+        <name>Processed_Record_Type__c</name>
+    </fields>
+    <fields>
+        <help><!-- The total number of records processed successfully by this batch. --></help>
+        <label><!-- Processed Records --></label>
+        <name>Processed_Records__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reporting Period --></label>
+        <name>Reporting_Period__c</name>
+        <relationshipLabel><!-- Data Load Log --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Setup --></label>
+        <name>Setup__c</name>
+        <relationshipLabel><!-- Data Load Log --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Start Time Text --></label>
+        <name>Start_Time_Text__c</name>
+    </fields>
+    <fields>
+        <label><!-- Start Time --></label>
+        <name>Start_Time__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>Status__c</name>
+        <picklistValues>
+            <masterLabel>Completed</masterLabel>
+            <translation><!-- Completed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pending</masterLabel>
+            <translation><!-- Pending --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Running</masterLabel>
+            <translation><!-- Running --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Total Records --></label>
+        <name>Total_Records__c</name>
+    </fields>
+    <fields>
+        <label><!-- Type --></label>
+        <name>Type__c</name>
+        <picklistValues>
+            <masterLabel>Interventions Data Deactivation</masterLabel>
+            <translation><!-- Interventions Data Deactivation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Section</masterLabel>
+            <translation><!-- Section --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Session</masterLabel>
+            <translation><!-- Session --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Staff</masterLabel>
+            <translation><!-- Staff --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Staff/Section</masterLabel>
+            <translation><!-- Staff/Section --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Student</masterLabel>
+            <translation><!-- Student --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Student/Section</masterLabel>
+            <translation><!-- Student/Section --></translation>
+        </picklistValues>
+    </fields>
+    <layouts>
+        <layout>Data Load Log Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

@@ -1,0 +1,48 @@
+<apex:page standardController="Contact" extensions="Behavior_YoYDisplayController" sidebar="false">
+<script>
+	function resetDataTables(){ 
+    	$(".tablesorter").dataTable( {
+			"sScrollY": "200px",
+            "bLengthChange": false,
+            "bFilter": false,
+            "bInfo": false,
+            "bAutoWidth": false,
+            "bSort" :true,
+            "bDestroy": true,
+            "bScrollAutoCss": true,
+            "bPaginate": false,
+            "bScrollCollapse": true,
+        	"bJQueryUI": true,
+        	"bSaveState": true,
+        	iDisplayLength : 25,
+        	"asStripClasses": [ 'odd', 'even' ]
+        });
+    }
+</script>
+<c:jQueryInit bDataTables="true" bLoadingPanel="false"/>
+<apex:stylesheet value="{!$Resource.New_Core_UX}"/>
+	<apex:form id="theForm">
+		<apex:outputPanel id="messagePanel">
+        	<apex:pageMessages />
+    	</apex:outputPanel>
+		<apex:pageBlock >
+			<apex:pageBlockSection columns="1">
+				<p style="display:{!IF(sbList.size > 0, 'none', '')}">There are no past incidents involving this student.</p>
+				<apex:dataTable var="sb" value="{!sbList}" styleClass="tablesorter" columns="5" rendered="{!IF(sbList.size > 0, true, false)}">
+					<apex:column headerValue="Incident ID">
+						<apex:commandLink action="{!viewSingle}" value="{!sb.Behavior_Incident__c}" onComplete="parent.location.href ='{!redirectString}';" rerender="theform">
+                        	<apex:param name="selectedIncident" assignTo="{!selectedIncident}" value="{!sb.Behavior_Incident__c}" />
+                        </apex:commandLink>
+					</apex:column>
+					<apex:column headerValue="Incident Title" value="{!sb.Behavior_Incident__r.Incident_Title__c}"/>
+					<apex:column headerValue="Incident Date" value="{!sb.Behavior_Incident__r.Incident_Date__c}"/>
+					<apex:column headerValue="Behavior Category" value="{!sb.Behavior_Incident__r.Selected_Behavior_Category__c}"/>
+					<apex:column headerValue="Behavior Incident Type" value="{!sb.Behavior_Incident__r.Selected_Behavior_Incident_Type_Formula__c}"/>
+				</apex:dataTable>
+			</apex:pageBlockSection>
+		</apex:pageBlock>
+	</apex:form>
+	<script>
+		resetDataTables();
+	</script>
+</apex:page>

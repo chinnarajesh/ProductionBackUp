@@ -1,0 +1,18 @@
+<apex:page standardController="Student__c">
+    <style>
+    h1 {
+        font-size: 18px;
+        font-weight: bold;
+        margin-left: 100px;
+        display: block;
+    }
+    </style>
+    <br/>
+    <br/>
+    <br/>
+    <!--<h1>You have chosen an invalid option. 
+    For the correct procedure to add new students, refer to the following article in SchoolForce Help: 
+    SchoolForce Setup Wizard: Create New Staff &amp; Students</h1>-->
+    <h1>"You have chosen an invalid option. 
+    For the correct procedure to add new students, refer to the Upload Student Roster guide on cyschoolhouse LEARN."</h1>
+</apex:page>

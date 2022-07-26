@@ -1,0 +1,5 @@
+<apex:page controller="GradebookController" tabstyle="Gradebook__tab" sidebar="false" action="{!redirectInitialPage}">
+	<apex:form >
+		<apex:pagemessages />
+	</apex:form>
+</apex:page>

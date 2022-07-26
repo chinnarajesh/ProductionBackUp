@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Accidental Enrollment</fullName>
+        <default>false</default>
+        <label>Accidental Enrollment</label>
+    </customValue>
+    <customValue>
+        <fullName>Student no longer enrolled at school</fullName>
+        <default>false</default>
+        <label>Student no longer enrolled at school</label>
+    </customValue>
+    <customValue>
+        <fullName>School Year ended</fullName>
+        <default>false</default>
+        <label>School Year ended</label>
+    </customValue>
+    <customValue>
+        <fullName>ACM no longer available</fullName>
+        <default>false</default>
+        <label>ACM no longer available</label>
+    </customValue>
+    <customValue>
+        <fullName>Deactivated by trigger.</fullName>
+        <default>false</default>
+        <label>Deactivated by trigger.</label>
+    </customValue>
+    <customValue>
+        <fullName>Teacher scheduling change/reassignment</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Teacher scheduling change/reassignment</label>
+    </customValue>
+    <customValue>
+        <fullName>Behavior significantly distracts sessions</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Behavior significantly distracts sessions</label>
+    </customValue>
+    <customValue>
+        <fullName>Transferred to another City Year school</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Transferred to another City Year school</label>
+    </customValue>
+    <customValue>
+        <fullName>Corps member has left the school or service</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Corps member has left the school or service</label>
+    </customValue>
+    <customValue>
+        <fullName>Student completed participation criteria, though should be reenrolled in subsequent section</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Student completed participation criteria, though should be reenrolled in subsequent section</label>
+    </customValue>
+    <customValue>
+        <fullName>Student met exit criteria</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Student met exit criteria</label>
+    </customValue>
+    <customValue>
+        <fullName>Student scheduling change prevents regular participation</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Student scheduling change prevents regular participation</label>
+    </customValue>
+    <customValue>
+        <fullName>Student referred for more intensive services by other personnel</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Student referred for more intensive services by other personnel</label>
+    </customValue>
+    <customValue>
+        <fullName>Chronic absenteeism</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>Chronic absenteeism</label>
+    </customValue>
+    <masterLabel>SS Exit Reason</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

@@ -1,0 +1,125 @@
+<apex:page controller="Gradebook_CompleteSectionsController">
+	<c:jQueryInit bDataTables="true" bLoadingPanel="true" />
+	<c:admin />
+	<apex:stylesheet value="{!$Resource.New_Core_UX}" />
+	<style>
+		h5 {
+			font-weight:normal;
+		}
+	</style>
+	<script type="text/javascript">
+		var sectionModalTable;
+		function dataTables(selector){
+			return j$(selector).dataTable({
+				"sScrollY": "200px",
+				"bAutoWidth": true,
+				"bPaginate": false,
+				"bJQueryUI": true, 
+				"iDisplayLength": 1000,
+				"bDestory": true,
+				"aoColumnDefs": [
+					{"sWidth": "5px", "aTargets": [ 1 ]}
+				]
+			});
+		}
+
+		function openSectionModal(){
+			window.setTimeout(function(){j$.fancybox.close();},500);
+
+			if(j$('.sectionModal tbody tr').size() >= 1){
+				sectionModalTable = dataTables('.tablesorter');
+				j$("#sectionModal").dialog({
+					modal: true,
+					minWidth: 540, //these keep the modal at least the size of the datatable
+					minHeight: 440,
+					close: function(event,ui){
+						j$(this).dialog('destroy');
+					},
+					buttons: {
+	                    "Save": function(){
+	                    	showProgressBar('Saving...');
+	                    	j$(this).parent().appendTo(j$('[id$="theForm"]'));
+	                    	saveCurrentSectionsJS();
+	                    	j$(this).dialog('close');
+	                    },
+	                    "Close": function(){
+	                    	j$(this).dialog('close');
+	                    	j$(this).appendTo(j$('[id$="theForm"]'));
+	                    }
+	                }
+				});
+				sectionModalTable.fnAdjustColumnSizing();
+			}
+			j$.fancybox.close();
+		}
+	</script>
+<apex:form id="theForm">
+	<apex:outputPanel id="messages">
+		<apex:pageMessages />
+	</apex:outputPanel>
+	<h3>Select Sections to Mark Complete</h3> <br/>
+	<h5>Mark a section's Reporting Period complete once all assignment grades for that Reporting Period have been entered. Once all Reporting Periods for a section are marked complete, the system will calculate a Final Grade and GPA the next time the GPA Calculation job is run. </h5> <br/>
+	<h5>NOTE: the system does not consider "final" reporting periods (i.e. Q2F, Q4F) as children reporting periods.  To ensure "final" reporting periods are included in Final Grades and Final GPAs, only mark reporting periods complete after entering grades for "final" reporting periods. </h5><br/>
+	<br/>
+	<h5>Assignments, grades and attendance can still be entered after a section is complete. </h5>
+	<apex:outputPanel id="schools">
+		<div class="generic">
+			<table>
+				<tr>
+					<th>School Name</th>
+					<th>Reporting Period</th>
+					<th>Filter Sections?</th>
+				</tr> 
+				<apex:repeat var="s" value="{!rrcc.schools}">
+					<tr>
+						<td>
+							<apex:outputText value="{!s.DisplayName}" />
+						</td>
+						<td>
+							<apex:selectList multiselect="0" size="1" value="{!s.selectedReportingPeriod}">
+								<apex:selectOptions value="{!s.reportingPeriods}" />
+							</apex:selectList>
+						</td>
+						<td>
+							<apex:commandLink value="Show"
+									onClick="showProgressBar('Retrieving Sections...');"
+									action="{!rrcc.showCurrentSections}" rerender="messages, secModalWrapper"
+									onComplete="openSectionModal();">
+									<apex:param name="selectedSection" value="{!s.recordID}" assignTo="{!rrcc.selectedSectionSchool}"/>
+							</apex:commandLink>
+						</td>
+					</tr>
+				</apex:repeat>
+			</table> 	
+		</div>
+	</apex:outputPanel>
+
+	<div id="modals">
+		<div id="sectionModal" style="display:none;" class="sectionModal">
+			<apex:outputPanel id="secModalWrapper">
+				<div id="sectionTable">
+					<apex:dataTable styleClass="tablesorter"
+						value="{!rrcc.sectionDisplayWrapper}"
+						var="wrapper">
+						<apex:column title="Section Name">
+							<apex:facet name="header">Section</apex:facet>
+							<apex:outputLink value="/{!wrapper.section.id}" target="">{!wrapper.section.Name}</apex:outputLink>
+						</apex:column>
+						<apex:column title="Section RP">
+							<apex:facet name="header">Completed? <input
+									type="checkbox" checked="checked"
+									onClick="selectAll(this, 'completedCb')" />
+							</apex:facet>
+							<apex:inputCheckbox styleClass="completedCb" value="{!wrapper.srp.Completed__c}"/>
+						</apex:column>
+					</apex:dataTable>
+				</div>
+			</apex:outputPanel>
+		</div>
+	</div>
+		
+	<apex:actionFunction name="saveCurrentSectionsJS"
+		action="{!markSectionsCompleted}" rerender="messages"
+		onComplete="hideProgressBar();" />
+</apex:form>
+</apex:page>

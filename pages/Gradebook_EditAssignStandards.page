@@ -1,0 +1,351 @@
+<apex:page controller="Gradebook_EditAssignStandardsController" tabStyle="gradebook__tab"
+	title="Edit Assignment Standards" showHeader="true" sidebar="true">  
+	<c:setupWizardSharedComponents />
+	<apex:stylesheet value="{!URLFOR($Resource.resources_Master, '/custom/css/course_Catalog.css')}"/>
+
+	<script type="text/javascript" src="jquery.dataTables.js"></script>
+	<script>
+		j$.fn.dataTableExt.oApi.fnFilterClear  = function ( oSettings )
+		{
+			/* Remove global filter */
+			oSettings.oPreviousSearch.sSearch = "";
+			 
+			/* Remove the text of the global filter in the input boxes */
+			if ( typeof oSettings.aanFeatures.f != 'undefined' )
+			{
+				var n = oSettings.aanFeatures.f;
+				for ( var i=0, iLen=n.length ; i<iLen ; i++ )
+				{
+					j$('input', n[i]).val( '' );
+				}
+			}
+			 
+			/* Remove the search text for the column filters - NOTE - if you have input boxes for these
+			 * filters, these will need to be reset
+			 */
+			for ( var i=0, iLen=oSettings.aoPreSearchCols.length ; i<iLen ; i++ )
+			{
+				oSettings.aoPreSearchCols[i].sSearch = "";
+			}
+			 
+			/* Redraw */
+			oSettings.oApi._fnReDraw( oSettings );
+		}
+	</script>
+
+	<style>
+		h3{ 
+			color:black;
+		}
+	</style>
+	 
+	<script>
+		j$ = jQuery.noConflict();
+		j$('.dataTables_scrollBody').scroll(function () { 
+			j$(".tablesorter tr:odd").css("background-color", "#CFEEF8");
+			j$(".tablesorter tr:even").css("background-color", "#F3F3EC");
+		});
+						 
+		function scrollVertical(){
+			var docHeight = j$(document).height();
+			var winHeight = j$(window).height();
+			j$('html,body').animate({scrollTop: docHeight - winHeight}, 700);
+		} 
+		
+		function addHighlight(element){
+			removeHighlight();
+			j$(element).parent().addClass('datahighlight');
+		}
+		
+		function removeHighlight(){
+			j$('.datahighlight').removeClass('datahighlight');
+		}
+		
+		function collapseSection(SectId){
+			var element = document.getElementById(SectId);
+			twistSection(element.childNodes[0].childNodes[0]);//this collapses the assignment results panel in case there are a large number of results
+		}
+		
+		jwerty.key('enter',false);
+	</script>  
+	  
+	<apex:form id="mainForm">
+		<apex:outputpanel id="messages">
+			<apex:pageMessages /> 
+		</apex:outputpanel>
+	
+		<apex:outputPanel id="thePanel">
+			<apex:outputPanel >	 
+				<apex:pageBlock title="Assignment Information"> 
+					<apex:pageBlockSection columns="2" >  
+						<apex:outputText label="Assignment Name" style="font-weight:bold">
+							<apex:outputLink value="/{!assignment.ID}">{!assignment.Name}</apex:outputLInk>
+						</apex:outputText>
+						<apex:outputText label="Assignment Library" style="font-weight:bold">
+							<apex:outputLink value="/{!assignment.Assignment_Library__c}">{!assignment.Assignment_Library__r.Name}</apex:outputLink>
+						</apex:outputText>
+						<apex:outputText label="Section" style="font-weight:bold"> 
+							<apex:outputLink value="/{!assignment.Section__c}">{!assignment.Section__r.Name}</apex:outputLink>
+						</apex:outputText>
+						<apex:outputText label="Reporting Period" style="font-weight:bold">
+							<apex:outputLink value="/{!assignment.Time__c}">{!assignment.Time__r.Name__c}</apex:outputLink>
+						</apex:outputText>
+						<apex:outputText label="Due Date" style="font-weight:bold" >{!assignment.Due_Date_for_Gradebook__c}</apex:outputText>
+						<apex:outputText label="Grade Scale" style="font-weight:bold">
+							<apex:outputLink value="/{!assignment.Picklist_Value__c}">{!assignment.Picklist_Value__r.Name}</apex:outputLink>
+						</apex:outputText> 		
+						<apex:outputText label="Weighting Value" style="font-weight:bold">{!assignment.Weighting_Value__c}</apex:outputText>
+						<apex:outputText label="Standard Scale" style="font-weight:bold">
+							<apex:outputLink value="/{!assignment.Standard_Scale__c}">{!assignment.Standard_Scale__r.Name}</apex:outputLink>
+						</apex:outputText>
+						<apex:outputText label="Possible Points" style="font-weight:bold">{!assignment.Possible_Points__c}</apex:outputText>
+						<apex:inputCheckBox label="Include in Final Grade?" style="font-weight:bold" value="{!assignment.Include_in_Final_Grade__c}" disabled="true"/>
+						<apex:inputCheckBox label="Show in Portal?" style="font-weight:bold" value="{!assignment.Show_in_portal__c}" disabled="true"/>
+					</apex:pageBlockSection>
+				</apex:pageBlock>
+			</apex:outputPanel>
+			
+			<apex:outputPanel id="standardDetails" rendered="{!!noStandardScale}">	
+				<script>
+					var j$ = jQuery.noConflict();
+					var oTable1, oTable2;
+					j$(document).ready(function() {
+						oTable1 = reDrawTable('.tablesorter1');
+						oTable2 = reDrawTable('.tablesorter2');
+					});
+					
+					function reDrawTable(selector)
+					{
+						var oTable = j$(selector).dataTable( {
+							"sScrollY": "300px",
+							"bAutoWidth": true,
+							"bJQueryUI": true,
+							"bRetrieve": true,
+							iDisplayLength : 50,
+							"bPaginate": true,
+							"bDestroy": true
+						} );
+						j$(".tablesorter tr:odd").css("background-color", "#CFEEF8");
+						j$(".tablesorter tr:even").css("background-color", "#F3F3EC");
+						return oTable;
+					}		
+				</script>
+				<apex:outputPanel >
+					<apex:pageBlock title="Standards">
+						<apex:pageBlockSection collapsible="false"  columns="1" id="currentStandardTable">
+							<apex:outputPanel >
+								<h3>Currently Selected Standards</h3>
+								<apex:outputPanel >
+									<apex:dataTable value="{!standardList}" var="wrapper" id="sList" styleClass="tablesorter tablesorter1">
+										<apex:column >
+											<apex:facet name="header">Select</apex:facet>
+											<apex:inputCheckbox title="If disabled, there are grades for this standard on the assignment.  Please clear all grades in your Gradebook associated to this standard in order to remove it." value="{!wrapper.selected}" disabled="{!wrapper.doNotTouch}"/>
+										</apex:column>
+										<apex:column >
+											<apex:facet name="header">Include In Standard Grade</apex:facet>
+											<!-- DE1636 removed the disabled property so that users can edit disabled="{!wrapper.doNotTouch}" -->
+											<apex:inputCheckbox value="{!wrapper.includeStandardGrade}" />
+										</apex:column>
+										<apex:column >
+											<apex:facet name="header">Standard Name</apex:facet>
+											<apex:outputLink value="/{!wrapper.standard.ID}">{!wrapper.standard.Name}</apex:outputLink>
+										</apex:column>
+										<apex:column >
+											<apex:facet name="header">Strand</apex:facet>		
+											<apex:outputLink value="/{!wrapper.standard.Strand__c}">{!wrapper.standard.Strand__r.Name}</apex:outputLink>
+										</apex:column>
+										<apex:column >
+											<apex:facet name="header">Subject</apex:facet>			  
+											<apex:outputText value="{!wrapper.standard.Subject__c}" />
+										</apex:column>
+										<apex:column >
+											<apex:facet name="header">Description</apex:facet>			  
+											<apex:outputText value="{!wrapper.standard.Long_Text__c}" />
+										</apex:column>
+									</apex:dataTable>
+								</apex:outputPanel>
+								<apex:outputLabel id="Removelabel">
+									<apex:actionStatus id="mySaveStatusRemove">
+										<apex:facet name="stop">
+											<apex:commandButton title="Select standards in the above table.  When finish, click here to remove the selected standard(s)." value="Remove Selected Standards" styleClass="black_btn"
+																rerender="availableTable, sList, standardDetails" status="mySaveStatusRemove"
+																action="{!removeStandards}" onclick="reDrawTable('.tablesorter1'); showProgressBar('Removing standards. Please wait.');"
+																oncomplete="setTimeout('hideProgressBar()',500); "/>						
+										</apex:facet>
+										<apex:facet name="start">
+											<apex:commandButton styleClass="black_btn" value="Removing Selected Standards..." disabled="true" status="mySaveStatusRemove" rendered="true" rerender="Removelabel" />
+										</apex:facet>
+									</apex:actionStatus>
+								</apex:outputLabel> 
+								<!-- DE931: Standard Search Enhancement -->
+								<apex:commandButton id="addFunction" title="Click here to start the process of adding standards to an assignment." immediate="true" value="Add Standards" styleClass="black_btn" action="{!showSearchBar}" rendered="{!displayAddButton}" rerender="addFunction, searchFunction, thePanel" oncomplete="scrollVertical()"/>
+									
+								<apex:commandButton id="editFunction" title="Click here to save the changes made in the Currently Select Standards table." value="Save Standards" styleClass="black_btn" action="{!editSaveStandards}" rerender="availableTable, sList, standardDetails" onclick="reDrawTable('.tablesorter1'); showProgressBar('Saving standards. Please wait.');" oncomplete="setTimeout('hideProgressBar()',500); "/>
+							</apex:outputPanel>
+						</apex:pageBlockSection>
+					</apex:pageBlock>
+				</apex:outputPanel>
+				
+				<apex:outputPanel id="searchFunction" rendered="{!displaySearchBar}">
+					<div class="section">
+						<h3>Add Standards?</h3>
+						<div class="section_content">
+							<table cellpadding="5" >
+								<tr>
+									<td ALIGN="right">
+										<apex:outputLabel value="Identifier" style="font-weight:bold"/>
+										<span class="helpButton"  id="identifier-_help">
+											<img src="/s.gif" class="helpOrb" />
+											<script type="text/javascript">
+												sfdcPage.setHelp('identifier','Enter the Strand/Standard Identifier to search by Identifier. Adding a * is a wildcard search and can broaden your results.');
+											</script>
+										</span>
+									</td>
+									<td>
+										<apex:inputText value="{!standardIdentifierSearch}" />
+									</td>
+									<td ALIGN="right">
+										<apex:outputLabel value="Parent Standard" style="font-weight:bold"/>
+										<span class="helpButton"  id="parent_standard-_help">
+											<img src="/s.gif" class="helpOrb" />
+											<script type="text/javascript">
+												sfdcPage.setHelp('parent_standard','Enter the Strand/Standard Parent Strand to search by Parent Strand. Adding a * is a wildcard search and can broaden your results.');
+											</script>
+										</span>
+									</td>
+									<td>
+										<apex:inputText value="{!standardParentStandardSearch}"/>
+									</td>
+								</tr>
+								<tr>
+									<td ALIGN="right">
+										<apex:outputLabel value="Strand" style="font-weight:bold"/>
+										<span class="helpButton"  id="strand-_help">
+											<img src="/s.gif" class="helpOrb" />
+											<script type="text/javascript">
+												sfdcPage.setHelp('strand','Enter the Strand/Standard name to search by Strand. Adding a * is a wildcard search and can broaden your results.');
+											</script>
+										</span>
+									</td>
+									<td>
+										<apex:inputText value="{!standardStrandSearch}"/>
+									</td>
+									<td ALIGN="right">
+										<apex:outputLabel value="Subject" style="font-weight:bold"/>
+										<span class="helpButton"  id="subject-_help">
+											<img src="/s.gif" class="helpOrb" />
+											<script type="text/javascript">
+												sfdcPage.setHelp('subject','Enter the Strand/Standard Subject to search by Subject. Adding a * is a wildcard search and can broaden your results.');
+											</script>
+										</span>
+									</td>
+									<td>
+										<apex:inputText value="{!standardSubjectSearch}"/>
+									</td>
+								</tr>
+							</table>
+							<center>
+								<apex:outputLabel id="label">
+									<apex:actionStatus id="mySaveStatus1">		
+										<apex:facet name="stop">
+											<apex:commandButton title="Retrieves a table of standards given the search criteria." value="Search Standards" styleClass="drk_blue_btn"
+												status="mySaveStatus1"
+												action="{!searchStandardMethods}" onclick="showProgressBar('Searching standards. Please wait.');"
+												oncomplete="
+													if({!bNoStandards}){
+														alert('No standards found! Please try again.');
+														setTimeout('hideProgressBar()',500); 
+													}
+													else{
+														if({!bLimitReached}){
+															alert('Your search returned over 1000 results. Refine your search if you do not see the relevant standards.');
+														}
+														initModal('#standardsModal',closeModalJS);
+														showModalJS();
+													}" />
+										</apex:facet>
+										<apex:facet name="start">
+											<apex:commandButton styleClass="drk_blue_btn" value="Searching..." disabled="true" status="mySaveStatus1" rendered="true" rerender="label" />
+										</apex:facet>
+									</apex:actionStatus>
+									<apex:commandButton value="Cancel" rerender="sList, standardDetails" styleClass="drk_blue_btn" immediate="true" action="{!cancel}" />
+								</apex:outputLabel>
+							</center>
+						</div>
+					</div>
+				</apex:outputPanel>
+				<apex:actionFunction name="showModalJS" action="{!showModal}" rerender="standardDetails, availableStandards, label" oncomplete="
+												showSearchResultsJS();
+												setTimeout('hideProgressBar()',500);
+												openModal('#standardsModal');
+												oTable2.fnAdjustColumnSizing();"/>
+				<apex:actionFunction name="showSearchResultsJS" action="{!showSearchResults}" rerender="label" />
+				<apex:commandButton title="Returns to the previous page." value="Return to Assignment Page" styleClass="black_btn" action="{!returnToAssignment}" />
+			</apex:outputPanel>
+		</apex:outputPanel>
+		<div id="standardsModal">
+			<apex:outputPanel id="availableStandards">
+				<apex:outputPanel rendered="{!!bNoStandards}">
+					<div class="section">
+						<div class="section_content">
+							<br />
+							<apex:outputPanel id="availableTable">
+								<h3>Select Standards</h3>	
+								<apex:dataTable styleClass="tablesorter tablesorter2" 
+									value="{!searchList}" var="wrapper"
+									title="Available Standards">
+									<apex:column title="use?">
+										<apex:facet name="header">Select</apex:facet>
+										<apex:inputCheckBox value="{!wrapper.selected}" disabled="{!wrapper.doNotTouch}"></apex:inputCheckBox>
+									</apex:column>
+									<apex:column >
+										<apex:facet name="header">Include In Standard Grades</apex:facet>
+										<apex:inputCheckBox value="{!wrapper.IncludeStandardGrade}" />
+									</apex:column>
+									<apex:column title="Name">
+										<apex:facet name="header">Standard Name</apex:facet>
+										<apex:outputLink value="/{!wrapper.standard.ID}">{!wrapper.standard.Name}</apex:outputLink>
+									</apex:column>
+									<apex:column title="Name">
+										<apex:facet name="header">Strand</apex:facet>
+										<apex:outputLink value="/{!wrapper.standard.Strand__c}">{!wrapper.standard.Strand__r.Name}</apex:outputLink>
+									</apex:column>
+									<apex:column title="Name">
+										<apex:facet name="header">Subject</apex:facet>			  
+										<apex:outputText value="{!wrapper.standard.Subject__c}" />
+									</apex:column>										
+									<apex:column title="Name">
+										<apex:facet name="header">Description</apex:facet>
+										<apex:outputText value="{!wrapper.standard.Long_Text__c}" />
+									</apex:column>
+								</apex:dataTable>
+							</apex:outputPanel>
+							<br />
+						</div>
+					</div>
+					<center>
+						<apex:actionStatus id="mySaveStatus5">
+							<apex:facet name="stop">
+								<apex:commandButton styleClass="drk_blue_btn" title="Adds the selected standards from the current table to the assignment." value="Add to Assignment" status="mySaveStatus5"
+									rerender="" onclick="showProgressBar('Assigning standards...');" action="{!addStandards}"
+									oncomplete="setTimeout('hideProgressBar()',500); if({!bNoStandardsSelected}){
+															alert('Please select at least one standard');
+														} 
+														else{
+															closeModal('#standardsModal');
+														}" />
+							</apex:facet>
+							<apex:facet name="start">
+								<apex:commandButton value="Adding to Assignment..." styleClass="drk_blue_btn" disabled="true"
+									status="mySaveStatus5" rendered="true" />
+							</apex:facet>
+						</apex:actionStatus>
+						<input type="button" value="Cancel" class="drk_blue_btn" onclick="closeModal('#standardsModal');"/>
+					</center>
+					<br /><br />
+				</apex:outputPanel>
+				<apex:actionFunction name="closeModalJS" action="{!hideModal}" immediate="true" rerender="availableStandards, sList, standardDetails" />
+			</apex:outputPanel>
+		</div>
+	</apex:form>
+</apex:page>

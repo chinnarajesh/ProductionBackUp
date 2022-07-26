@@ -1,0 +1,557 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Dashboard xmlns="http://soap.sforce.com/2006/04/metadata">
+    <backgroundEndColor>#FFFFFF</backgroundEndColor>
+    <backgroundFadeDirection>Diagonal</backgroundFadeDirection>
+    <backgroundStartColor>#FFFFFF</backgroundStartColor>
+    <dashboardFilters>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>109th Street ES</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>122nd Street Elementary School</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>93rd Street ES</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>99th Street Elementary</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>Alain LeRoy Locke College Preparatory Academy</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>Belmont High School</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>Carver MS</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>Clinton MS</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>Compton Avenue ES</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>Figueroa Street ES</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>Hollenbeck MS</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>Jefferson HS</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>John Liechty Middle School</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>John Muir MS</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>Jordan HS</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>Manual Arts High School</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>Markham MS</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>Mendez High School</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>Nava College Prep</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>Normandie Avenue ES</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>NOW Academy</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>Roosevelt HS</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>Santee Education Complex</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>Stevenson MS</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>UCLA Community School</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>Virgil MS</values>
+        </dashboardFilterOptions>
+        <name>School: Account Name</name>
+    </dashboardFilters>
+    <dashboardFilters>
+        <dashboardFilterOptions>
+            <operator>contains</operator>
+            <values>Tutoring</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>contains</operator>
+            <values>Math</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>contains</operator>
+            <values>Literacy</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>contains</operator>
+            <values>50 Acts,Attendance</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>50 Acts</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>Attendance</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>contains</operator>
+            <values>Homework</values>
+        </dashboardFilterOptions>
+        <name>Program</name>
+    </dashboardFilters>
+    <dashboardFilters>
+        <dashboardFilterOptions>
+            <operator>lessOrEqual</operator>
+            <values>11/6/2015</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>lessOrEqual</operator>
+            <values>11/13/2015</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>lessOrEqual</operator>
+            <values>11/20/2015</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>lessOrEqual</operator>
+            <values>11/27/2015</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>notEqual</operator>
+            <values>12/4/2015</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>12/11/2015</values>
+        </dashboardFilterOptions>
+        <name>Intervention Session Date</name>
+    </dashboardFilters>
+    <dashboardType>SpecifiedUser</dashboardType>
+    <description>Site Level T2ST Dashboard. Please note that some elements of this dashboard will only function properly when filtered/unfiltered. Chart headers and footers clarify what is measured and how charts should be filtered.</description>
+    <isGridLayout>false</isGridLayout>
+    <leftSection>
+        <columnSize>Wide</columnSize>
+        <components>
+            <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
+            <chartAxisRange>Auto</chartAxisRange>
+            <chartSummary>
+                <axisBinding>x</axisBinding>
+                <column>FORMULA1</column>
+            </chartSummary>
+            <chartSummary>
+                <axisBinding>y</axisBinding>
+                <column>RowCount</column>
+            </chartSummary>
+            <componentType>ScatterGrouped</componentType>
+            <dashboardFilterColumns>
+                <column>Section__c$School__c</column>
+            </dashboardFilterColumns>
+            <dashboardFilterColumns>
+                <column>Section__c$Name</column>
+            </dashboardFilterColumns>
+            <dashboardFilterColumns>
+                <column>Section__c.Student_Section__r.Intervention_Session_Results__r$Intervention_Session_Date__c</column>
+            </dashboardFilterColumns>
+            <displayUnits>Integer</displayUnits>
+            <drillEnabled>false</drillEnabled>
+            <drillToDetailEnabled>true</drillToDetailEnabled>
+            <enableHover>true</enableHover>
+            <expandOthers>false</expandOthers>
+            <footer>Shows ACM total T2ST and session counts. Divide values together to get an ACMs average session length.</footer>
+            <groupingColumn>Section__c$Intervention_Primary_Staff__c</groupingColumn>
+            <groupingColumn>Section__c$School__c</groupingColumn>
+            <groupingSortProperties/>
+            <legendPosition>Bottom</legendPosition>
+            <report>Los_Angeles_Location_Reports/T2ST_Without_Nulls1</report>
+            <showPercentage>false</showPercentage>
+            <showValues>false</showValues>
+            <sortBy>RowValueAscending</sortBy>
+            <title>Session and T2ST Distribution</title>
+            <useReportChart>false</useReportChart>
+        </components>
+        <components>
+            <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
+            <chartSummary>
+                <axisBinding>y</axisBinding>
+                <column>FORMULA1</column>
+            </chartSummary>
+            <componentType>Gauge</componentType>
+            <dashboardFilterColumns>
+                <column>Section__c$School__c</column>
+            </dashboardFilterColumns>
+            <dashboardFilterColumns>
+                <column>Section__c$Name</column>
+            </dashboardFilterColumns>
+            <dashboardFilterColumns>
+                <column>Section__c.Student_Section__r.Intervention_Session_Results__r$Intervention_Session_Date__c</column>
+            </dashboardFilterColumns>
+            <displayUnits>Integer</displayUnits>
+            <footer>CYLA T2ST Target for 282 ACMs. 6hr goal is start of yellow. 12 hour goal is start of green 15 hour goal is end of green.</footer>
+            <gaugeMax>43110.0</gaugeMax>
+            <gaugeMin>8622.0</gaugeMin>
+            <groupingSortProperties/>
+            <header>Only accurate when unfiltered</header>
+            <indicatorBreakpoint1>17244.0</indicatorBreakpoint1>
+            <indicatorBreakpoint2>34388.0</indicatorBreakpoint2>
+            <indicatorHighColor>#54C254</indicatorHighColor>
+            <indicatorLowColor>#C25454</indicatorLowColor>
+            <indicatorMiddleColor>#C2C254</indicatorMiddleColor>
+            <report>Los_Angeles_Location_Reports/CYLA_T2ST_Table_Weekly2</report>
+            <showPercentage>false</showPercentage>
+            <showRange>false</showRange>
+            <showTotal>true</showTotal>
+            <showValues>false</showValues>
+            <title>Site T2ST Target</title>
+        </components>
+        <components>
+            <autoselectColumnsFromReport>true</autoselectColumnsFromReport>
+            <componentType>Table</componentType>
+            <dashboardFilterColumns>
+                <column>Section__c$School__c</column>
+            </dashboardFilterColumns>
+            <dashboardFilterColumns>
+                <column>Section__c$Name</column>
+            </dashboardFilterColumns>
+            <dashboardFilterColumns>
+                <column>Section__c.Student_Section__r.Intervention_Session_Results__r$Intervention_Session_Date__c</column>
+            </dashboardFilterColumns>
+            <dashboardTableColumn>
+                <column>Section__c$Intervention_Primary_Staff__c</column>
+                <sortBy>RowLabelAscending</sortBy>
+            </dashboardTableColumn>
+            <dashboardTableColumn>
+                <aggregateType>Maximum</aggregateType>
+                <calculatePercent>false</calculatePercent>
+                <column>Section__c.Student_Section__r.Intervention_Session_Results__r$Amount_of_Time__c</column>
+                <showTotal>false</showTotal>
+            </dashboardTableColumn>
+            <dashboardTableColumn>
+                <calculatePercent>false</calculatePercent>
+                <column>RowCount</column>
+                <showTotal>true</showTotal>
+            </dashboardTableColumn>
+            <displayUnits>Auto</displayUnits>
+            <drillEnabled>false</drillEnabled>
+            <drillToDetailEnabled>false</drillToDetailEnabled>
+            <groupingSortProperties/>
+            <indicatorHighColor>#54C254</indicatorHighColor>
+            <indicatorLowColor>#C25454</indicatorLowColor>
+            <indicatorMiddleColor>#C2C254</indicatorMiddleColor>
+            <report>Los_Angeles_Location_Reports/CYLA_Sessions_Over_60_Minutes3</report>
+            <showPicturesOnTables>false</showPicturesOnTables>
+            <title>Sessions over 45 Minutes</title>
+        </components>
+    </leftSection>
+    <middleSection>
+        <columnSize>Wide</columnSize>
+        <components>
+            <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
+            <chartAxisRange>Auto</chartAxisRange>
+            <chartSummary>
+                <axisBinding>y</axisBinding>
+                <column>FORMULA1</column>
+            </chartSummary>
+            <componentType>LineGroupedCumulative</componentType>
+            <dashboardFilterColumns>
+                <column>Section__c$School__c</column>
+            </dashboardFilterColumns>
+            <dashboardFilterColumns>
+                <column>Section__c$Name</column>
+            </dashboardFilterColumns>
+            <dashboardFilterColumns>
+                <column>Section__c.Student_Section__r.Intervention_Session_Results__r$Intervention_Session_Date__c</column>
+            </dashboardFilterColumns>
+            <displayUnits>Integer</displayUnits>
+            <drillEnabled>false</drillEnabled>
+            <drillToDetailEnabled>false</drillToDetailEnabled>
+            <enableHover>true</enableHover>
+            <expandOthers>false</expandOthers>
+            <groupingColumn>Section__c.Student_Section__r.Intervention_Session_Results__r$Intervention_Session_Date__c</groupingColumn>
+            <groupingColumn>BucketField_28920843</groupingColumn>
+            <groupingSortProperties/>
+            <legendPosition>Bottom</legendPosition>
+            <report>Los_Angeles_Location_Reports/Pueblo_School_Intervention_Date_Report</report>
+            <showPercentage>false</showPercentage>
+            <showValues>false</showValues>
+            <sortBy>RowLabelAscending</sortBy>
+            <title>Total T2ST By Pueblo/School</title>
+            <useReportChart>false</useReportChart>
+        </components>
+        <components>
+            <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
+            <chartAxisRange>Auto</chartAxisRange>
+            <chartSummary>
+                <axisBinding>y</axisBinding>
+                <column>FORMULA1</column>
+            </chartSummary>
+            <componentType>LineCumulative</componentType>
+            <dashboardFilterColumns>
+                <column>Section__c$School__c</column>
+            </dashboardFilterColumns>
+            <dashboardFilterColumns>
+                <column>Section__c$Name</column>
+            </dashboardFilterColumns>
+            <dashboardFilterColumns>
+                <column>Section__c.Student_Section__r.Intervention_Session_Results__r$Intervention_Session_Date__c</column>
+            </dashboardFilterColumns>
+            <displayUnits>Integer</displayUnits>
+            <drillEnabled>false</drillEnabled>
+            <drillToDetailEnabled>false</drillToDetailEnabled>
+            <enableHover>true</enableHover>
+            <expandOthers>false</expandOthers>
+            <footer>T2ST aggrigated over time.</footer>
+            <groupingColumn>Section__c.Student_Section__r.Intervention_Session_Results__r$Intervention_Session_Date__c</groupingColumn>
+            <groupingSortProperties/>
+            <legendPosition>Bottom</legendPosition>
+            <report>Los_Angeles_Location_Reports/Total_Intervention_Time1</report>
+            <showPercentage>false</showPercentage>
+            <showValues>false</showValues>
+            <sortBy>RowLabelAscending</sortBy>
+            <title>Cumulative T2ST</title>
+            <useReportChart>false</useReportChart>
+        </components>
+        <components>
+            <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
+            <chartAxisRange>Auto</chartAxisRange>
+            <chartSummary>
+                <aggregate>Sum</aggregate>
+                <axisBinding>y</axisBinding>
+                <column>Section__c.Student_Section__r.Intervention_Session_Results__r$Amount_of_Time__c</column>
+            </chartSummary>
+            <chartSummary>
+                <axisBinding>y2</axisBinding>
+                <column>RowCount</column>
+            </chartSummary>
+            <componentType>ColumnLine</componentType>
+            <dashboardFilterColumns>
+                <column>Section__c$School__c</column>
+            </dashboardFilterColumns>
+            <dashboardFilterColumns>
+                <column>Section__c$Name</column>
+            </dashboardFilterColumns>
+            <dashboardFilterColumns>
+                <column>Section__c.Student_Section__r.Intervention_Session_Results__r$Intervention_Session_Date__c</column>
+            </dashboardFilterColumns>
+            <displayUnits>Auto</displayUnits>
+            <drillEnabled>false</drillEnabled>
+            <drillToDetailEnabled>false</drillToDetailEnabled>
+            <enableHover>true</enableHover>
+            <expandOthers>false</expandOthers>
+            <groupingColumn>Section__c.Student_Section__r.Intervention_Session_Results__r$Session_DOW__c</groupingColumn>
+            <groupingSortProperties/>
+            <legendPosition>Bottom</legendPosition>
+            <report>Los_Angeles_Location_Reports/T2ST_By_DOW</report>
+            <showPercentage>false</showPercentage>
+            <showValues>false</showValues>
+            <sortBy>RowValueAscending</sortBy>
+            <title>T2ST Logged by Day</title>
+            <useReportChart>false</useReportChart>
+        </components>
+        <components>
+            <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
+            <chartAxisRange>Auto</chartAxisRange>
+            <chartSummary>
+                <axisBinding>y</axisBinding>
+                <column>FORMULA1</column>
+            </chartSummary>
+            <componentType>Donut</componentType>
+            <dashboardFilterColumns>
+                <column>Section__c$School__c</column>
+            </dashboardFilterColumns>
+            <dashboardFilterColumns>
+                <column>Section__c$Name</column>
+            </dashboardFilterColumns>
+            <dashboardFilterColumns>
+                <column>Section__c.Student_Section__r.Intervention_Session_Results__r$Intervention_Session_Date__c</column>
+            </dashboardFilterColumns>
+            <displayUnits>Integer</displayUnits>
+            <drillEnabled>false</drillEnabled>
+            <drillToDetailEnabled>false</drillToDetailEnabled>
+            <enableHover>true</enableHover>
+            <expandOthers>true</expandOthers>
+            <footer>Displays all T2ST by ACM.</footer>
+            <groupingColumn>Section__c$Intervention_Primary_Staff__c</groupingColumn>
+            <groupingSortProperties/>
+            <legendPosition>Bottom</legendPosition>
+            <report>Los_Angeles_Location_Reports/T2ST_Report_CB</report>
+            <showPercentage>false</showPercentage>
+            <showTotal>true</showTotal>
+            <showValues>true</showValues>
+            <sortBy>RowValueAscending</sortBy>
+            <title>T2ST by ACM</title>
+            <useReportChart>false</useReportChart>
+        </components>
+    </middleSection>
+    <rightSection>
+        <columnSize>Wide</columnSize>
+        <components>
+            <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
+            <chartAxisRange>Auto</chartAxisRange>
+            <chartSummary>
+                <axisBinding>y</axisBinding>
+                <column>FORMULA1</column>
+            </chartSummary>
+            <componentType>Donut</componentType>
+            <dashboardFilterColumns>
+                <column>Section__c$School__c</column>
+            </dashboardFilterColumns>
+            <dashboardFilterColumns>
+                <column>Section__c$Name</column>
+            </dashboardFilterColumns>
+            <dashboardFilterColumns>
+                <column>Section__c.Student_Section__r.Intervention_Session_Results__r$Intervention_Session_Date__c</column>
+            </dashboardFilterColumns>
+            <displayUnits>Integer</displayUnits>
+            <drillEnabled>false</drillEnabled>
+            <drillToDetailEnabled>false</drillToDetailEnabled>
+            <enableHover>true</enableHover>
+            <expandOthers>true</expandOthers>
+            <footer>Shows all T2ST logged by type of intervention provided.</footer>
+            <groupingColumn>Section__c$Section_Nickname__c</groupingColumn>
+            <groupingSortProperties/>
+            <legendPosition>Bottom</legendPosition>
+            <report>Los_Angeles_Location_Reports/T2ST_by_Intervention_Type3</report>
+            <showPercentage>true</showPercentage>
+            <showTotal>true</showTotal>
+            <showValues>true</showValues>
+            <sortBy>RowValueAscending</sortBy>
+            <title>T2ST by Intervention Type</title>
+            <useReportChart>false</useReportChart>
+        </components>
+        <components>
+            <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
+            <chartAxisRange>Auto</chartAxisRange>
+            <chartSummary>
+                <axisBinding>y</axisBinding>
+                <column>FORMULA1</column>
+            </chartSummary>
+            <componentType>BarStacked</componentType>
+            <dashboardFilterColumns>
+                <column>Section__c$School__c</column>
+            </dashboardFilterColumns>
+            <dashboardFilterColumns>
+                <column>Section__c$Name</column>
+            </dashboardFilterColumns>
+            <dashboardFilterColumns>
+                <column>Section__c.Student_Section__r.Intervention_Session_Results__r$Intervention_Session_Date__c</column>
+            </dashboardFilterColumns>
+            <displayUnits>Integer</displayUnits>
+            <drillEnabled>false</drillEnabled>
+            <drillToDetailEnabled>false</drillToDetailEnabled>
+            <enableHover>true</enableHover>
+            <expandOthers>false</expandOthers>
+            <footer>Displays School T2ST by indicator area. Blue line shows total number of sessions provided.</footer>
+            <groupingColumn>Section__c$School__c</groupingColumn>
+            <groupingColumn>Section__c$Indicator_Area__c</groupingColumn>
+            <groupingSortProperties/>
+            <legendPosition>Bottom</legendPosition>
+            <report>Los_Angeles_Location_Reports/IA_T2ST_Report</report>
+            <showPercentage>false</showPercentage>
+            <showValues>false</showValues>
+            <sortBy>RowValueAscending</sortBy>
+            <title>T2ST By Indicator Area</title>
+            <useReportChart>false</useReportChart>
+        </components>
+        <components>
+            <autoselectColumnsFromReport>true</autoselectColumnsFromReport>
+            <chartAxisRange>Auto</chartAxisRange>
+            <componentType>Bar</componentType>
+            <dashboardFilterColumns>
+                <column>Section__c$School__c</column>
+            </dashboardFilterColumns>
+            <dashboardFilterColumns>
+                <column>Section__c$Name</column>
+            </dashboardFilterColumns>
+            <dashboardFilterColumns>
+                <column>Section__c.Student_Section__r.Intervention_Session_Results__r$Intervention_Session_Date__c</column>
+            </dashboardFilterColumns>
+            <displayUnits>Auto</displayUnits>
+            <drillEnabled>false</drillEnabled>
+            <drillToDetailEnabled>false</drillToDetailEnabled>
+            <enableHover>true</enableHover>
+            <expandOthers>false</expandOthers>
+            <groupingSortProperties/>
+            <legendPosition>Bottom</legendPosition>
+            <report>Los_Angeles_Location_Reports/Total_Intervention_Time_by_IS_vs_ELT3</report>
+            <showPercentage>false</showPercentage>
+            <showPicturesOnCharts>false</showPicturesOnCharts>
+            <showValues>false</showValues>
+            <sortBy>RowLabelAscending</sortBy>
+            <title>CYLA T2ST by Day (IS vs ELT)</title>
+            <useReportChart>true</useReportChart>
+        </components>
+        <components>
+            <autoselectColumnsFromReport>true</autoselectColumnsFromReport>
+            <componentType>Table</componentType>
+            <dashboardFilterColumns>
+                <column>Account.Students__r$Next_School__c</column>
+            </dashboardFilterColumns>
+            <dashboardFilterColumns>
+                <column>Account.Students__r$Advisory__c</column>
+            </dashboardFilterColumns>
+            <dashboardFilterColumns>
+                <column>Account.Students__r$Actual_graduation_date__c</column>
+            </dashboardFilterColumns>
+            <displayUnits>Auto</displayUnits>
+            <drillEnabled>false</drillEnabled>
+            <drillToDetailEnabled>false</drillToDetailEnabled>
+            <footer>Students enrolled at a given school.</footer>
+            <groupingSortProperties/>
+            <header>Works at any level.</header>
+            <indicatorHighColor>#54C254</indicatorHighColor>
+            <indicatorLowColor>#C25454</indicatorLowColor>
+            <indicatorMiddleColor>#C2C254</indicatorMiddleColor>
+            <report>Dashboard_Reports/Schools_with_Students_Uploaded</report>
+            <showPicturesOnTables>false</showPicturesOnTables>
+            <sortBy>RowLabelAscending</sortBy>
+            <title>Schools with Students</title>
+        </components>
+    </rightSection>
+    <runningUser>juturi.rajesh@jaxconsult.com.cyschorgb</runningUser>
+    <textColor>#000000</textColor>
+    <title>CYLA Site Dashboard Example</title>
+    <titleColor>#000000</titleColor>
+    <titleSize>12</titleSize>
+</Dashboard>

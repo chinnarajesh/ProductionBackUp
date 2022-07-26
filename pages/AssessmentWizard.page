@@ -1,0 +1,592 @@
+<apex:page controller="AssessmentWizardController" tabstyle="Assesment__c" id="thePage">
+
+<c:admin />
+<apex:stylesheet value="{!$Resource.New_Core_UX}"/>
+<style>
+    .black_btn {
+        cursor: pointer;
+        margin-left: 5px;
+        margin-bottom: 25px;
+        font-weight: normal;
+        float: right !important;
+        padding: 10px 10px !important;
+        border-radius: 5px !important;
+        border: none !important;
+        text-trasform: upercase !important;
+        color: #fff !important;
+        background: #4c4c4c !important; /* Old browsers */
+        background: -moz-linear-gradient(top, #4c4c4c 0%, #474747 29%, #2c2c2c 52%, #000000 64%, #1c1c1c 93%, #131313 100%) !important; /* FF3.6+ */
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #4c4c4c), color-stop(29%, #474747), color-stop(52%, #2c2c2c), color-stop(64%, #000000), color-stop(93%, #1c1c1c), color-stop(100%, #131313)) ! importnat; /* Chrome,Safari4+ */
+        background: -webkit-linear-gradient(top, #4c4c4c 0%, #474747 29%, #2c2c2c 52%, #000000 64%, #1c1c1c 93%, #131313 100%) !important; /* Chrome10+,Safari5.1+ */
+        background: -o-linear-gradient(top, #4c4c4c 0%, #474747 29%, #2c2c2c 52%, #000000 64%, #1c1c1c 93%, #131313 100%) !important; /* Opera 11.10+ */
+        background: -ms-linear-gradient(top, #4c4c4c 0%, #474747 29%, #2c2c2c 52%, #000000 64%, #1c1c1c 93%, #131313 100%) !important; /* IE10+ */
+        background: linear-gradient(top, #4c4c4c 0%, #474747 29%, #2c2c2c 52%, #000000 64%, #1c1c1c 93%, #131313 100%) !important; /* W3C */
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#4c4c4c', endColorstr='#131313', GradientType=0) !important; /* IE6-9 */
+    }
+    .requiredDiv{
+        border-left: 2px solid #c00;
+    }
+</style>
+<script type="text/javascript">
+    var generated = false;
+    
+    var tabelwidth = 'firstload';
+    
+    function resetDataTables(){ 
+        j$(".tablesorter").dataTable( {
+            "sScrollY": "200px",
+            "bLengthChange": true,
+            "bFilter": true,
+            "bInfo": false,
+            "aoColumnDefs": [{ "sWidth": "100px", "aTargets": [ 0 ]}],
+            "bAutoWidth": true,
+            "bSort" :true,
+            "bDestroy": true,
+            "bScrollAutoCss": true,
+            "bPaginate": false,
+            "bScrollCollapse": true,
+            "bJQueryUI": true,
+            "bSaveState": true,
+            iDisplayLength : 25,
+            "asStripClasses": [ 'odd', 'even' ]
+        });
+    }
+    
+    function resetDataTablesForPagination(){ 
+        j$(".tablesorter").dataTable( {
+            "sScrollY": "300px",
+            "bLengthChange": true,
+            "bFilter": true,
+            "bInfo": false,
+            "aoColumnDefs": [{ "sWidth": "100px", "aTargets": [ 0 ]}],
+            "bAutoWidth": true,
+            "bSort" :true,
+            "bDestroy": true,
+            "bScrollAutoCss": true,
+            "bPaginate": true,
+            "bScrollCollapse": true,
+            "bJQueryUI": true,
+            "bSaveState": true,
+            iDisplayLength : 100,
+            "asStripClasses": [ 'odd', 'even' ]
+        });
+    }
+    function resetDataTablesExisting(){ 
+        j$(".tablesorterExisting").dataTable( {
+            "sScrollY": "200px",
+            "sScrollX": "100%",
+            "bAutoWidth": true,
+            "bLengthChange": false,
+            "bFilter": true,
+            "bInfo": false,
+            "aoColumnDefs": [{ "sWidth": "200px", "aTargets": [ 0 ]}],
+            "bSort" :true,
+            "bDestroy": true,
+            "bScrollAutoCss": true,
+            "bPaginate": false,
+            "bScrollCollapse": true,
+            "bJQueryUI": true,
+            "bSaveState": true,
+            iDisplayLength : 25,
+            "asStripClasses": [ 'odd', 'even' ]
+        });
+        j$('.dataTables_wrapper').css('min-height','200');
+    }
+                          
+    function datefix(){
+         console.log('Date Region');
+        /*       j$('input[id*=selectedDate]').datepicker({
+            changeMonth: true,
+            changeYear: true,
+            yearRange: '2000:2050'
+        });   */   j$('input[id$=selectedDate1]').datepicker().datepicker("show");          
+    }
+     function datefix2(){
+         console.log('Date Region');
+        /*       j$('input[id*=selectedDate]').datepicker({
+            changeMonth: true,
+            changeYear: true,
+            yearRange: '2000:2050'
+        });   */   j$('input[id$=selectedDate2]').datepicker().datepicker("show");          
+    }
+    jwerty.key('enter',false);
+    
+    function confirmYearChange(){
+        var change = confim("Changing the year will cause all students to be removed from the group. Are you sure you want to change the year?");
+        if(change)
+            return true;
+        return false;
+    }
+    
+    function confirmImport(){
+        if(generated){
+            return true;
+        } else {
+            var change = confirm("You have not generated the csv document. Are you sure you want to move to import? All changes will be lost.");
+            if(change)
+                return true;
+            return false;
+        }
+    }
+    
+    function confirmGen(){
+        var change = confirm("You are about to generate assessments for the selected students. Are you sure you want to continue?");
+        if(change){
+            generated = true;
+            return true;
+        } else {
+            return false;
+        }
+    }
+    //Added by Harsh singh
+      var studentArray = new Array();
+     var counter=0;
+    
+    function selectAllStudents(cb, theClass){
+        var stidsstore='';
+        var data = j$('Table[ID$=srchstdtable]').dataTable();
+        allPages=data.fnGetNodes();
+        if(counter%2==0){
+            j$('input:checkbox', allPages).attr("checked", true); counter++;
+        }else{
+            j$('input:checkbox', allPages).attr("checked", false); counter++;
+        }   
+
+        j$.each(j$("Table[ID$=srchstdtable]").dataTable().fnGetNodes(), function () 
+            {   stidsstore=j$(this).find('td:eq(4)').text(); 
+             //console.log('stIDs  '+stidsstore)
+                if(studentArray.indexOf(stidsstore)==-1)
+                     studentArray.push(stidsstore);
+                else 
+                     studentArray.splice(studentArray.indexOf(stidsstore), 1);
+             //console.log(studentArray);
+        });
+    
+    }
+
+    function clearStudentArray(){
+        studentArray=[];
+    }
+
+    function getStudentArray(stId){
+        if(studentArray.indexOf(stId)==-1){
+            studentArray.push(stId);
+        }else{
+            studentArray.splice(studentArray.indexOf(stId), 1);  
+        } 
+    //    console.log(studentArray);          
+    } 
+    
+    function sendData(){
+        showStudentData(studentArray.toString());
+        studentArray=[];
+        return false;
+    }
+    //Added by harsh Singh
+    /*  function confirmExport(v)
+    {
+    var change = confirm("You can only Export 6000 records out of "+v);
+            if(change)
+              {  
+              exportExcelFile();
+              }
+            return false;
+        
+    }*/
+    
+</script>
+        <apex:form id="theform">
+        <apex:actionFunction name="showStudentData" action="{!getstdata}" rerender="messagePanel, GroupSearchPanel" onComplete="resetDataTables();">      
+         <apex:param name="studentString" value="p" assignTo="{!slctdStdId}" ></apex:param>
+        </apex:actionFunction>
+        <apex:actionFunction name="searchChangeJS" action="{!searchChange}"  rerender="messagePanel, GroupSearchPanel" onComplete="resetDataTables();"/>
+        <apex:actionFunction name="assessmentTypeIAChange" action="{!changeAssessmentTypeIA}" rerender="messagePanel, exportPanel, exportExisting" onComplete="resetDataTablesForPagination();"/>
+        <apex:actionFunction name="assessmentTypeChange" action="{!changeAssessmentType}" rerender="messagePanel, exportPanel" onComplete="resetDataTablesForPagination()"/>
+        <apex:actionFunction name="refreshJS" action="{!dummyRefresh}" reRender="GroupPanel, messagePanel"/>
+        <apex:outputPanel id="fullPage">
+            <apex:outputPanel id="messagePanel">
+                <apex:pageMessages />
+            </apex:outputPanel>
+            
+            <!-- Home Panel -->
+            <apex:outputPanel id="homePanel" rendered="{!mainPage}">
+                <apex:pageBlock title="Assessment Wizard">
+                    <div>
+                        <p style="float:left">Click "Import Assessments" to upload your completed Assessment Template.</p>
+                        <apex:commandButton value="Import Assessments" action="{!startImport}" styleclass="black_btn"/>
+                    </div>
+                    <div class="clear_fix">&nbsp;</div>
+                    <div>
+                        <p style="float:left">Click "Export Existing Assessments" to export assessments already created.</p>
+                        <apex:commandButton value="Export Existing Assessments" action="{!startExistingExport}" styleClass="black_btn" />
+                    </div>
+                    <div class="clear_fix">&nbsp;</div>
+                </apex:pageBlock>
+                
+                <!-- Start Group Panel -->
+                <apex:outputPanel id="GroupPanel">
+                    <apex:actionFunction action="{!changeYear}" name="changeYearJS" reRender="messagePanel, GroupPanel" immediate="true">
+                        <apex:param name="selectedYear" assignTo="{!selectedYear}" value="" />
+                    </apex:actionFunction>
+                    <apex:PageBlock id="groupBlock" Title="Target Population Search">
+                        <h3>Select Assessment Year</h3>
+                        <div class="section_content" style="margin-bottom:7px">
+                            <apex:selectList value="{!selectedYear}" multiselect="false" size="1" onchange="if({!studentList.size} != '0'){if(confirmYearChange()){changeYearJS(this.value);}}else{changeYearJS(this.value);}">
+                                <apex:selectOptions value="{!yearOptions}" />
+                            </apex:selectList>
+                        </div>
+                    <apex:outputPanel id="GroupSearchPanel">
+                        <h3>Select Search Type</h3>
+                        <div class="filter_form">
+                            <div class="form_fields">
+                                <apex:selectRadio value="{!searchType}" style="margin-left: auto; margin-right: auto; width:40%; font-weight:bold" onChange="searchChangeJS();">
+                                    <apex:selectOption itemValue="student" itemLabel="Search By Student" />
+                                    <apex:selectOption itemValue="section" itemLabel="Search By Section" itemDisabled="{!OR(pastMode, IF(OR(CONTAINS(possibleSchools,studentSearchInfo.school),studentSearchInfo.school='--None--'),false, true))}"/>
+                                </apex:selectRadio>
+                            </div>
+                            <div class="clear_fix">&nbsp;</div>
+                        </div>
+                        <!-- Selected Student Panel -->
+                        <apex:outputPanel rendered="{!IF(studentList.size > 0, true, false)}" id="studentResults">
+                            <br/>
+                            <h3>Selected Students</h3>
+                            <div class="section_content" >
+                                <input type="checkbox" style="margin:0 5px 0 0;" onclick="selectAll(this,'addedStudents')" />
+                                <apex:outputText style="font-weight:bold;" value="Select All? " />
+                                <br />
+                                <apex:PageBlockSection columns="1" collapsible="false" id="studentResultsSection">
+                                    <apex:datatable styleclass="tablesorter" title="Selected Students" value="{!studentList}" var="s" id="selectedStudents">
+                                        <apex:column headerValue="Remove?" >
+                                            <apex:inputCheckbox styleclass="addedStudents" value="{!s.selected}" />
+                                        </apex:column>
+                                        <apex:column headerValue="Student First Name" >
+                                            <apex:outputField value="{!s.student.Student_First_Name__c}" />
+                                        </apex:column>
+                                        <apex:column headerValue="Student Last Name" >
+                                            <apex:outputField value="{!s.student.Student_Last_Name__c}" />
+                                        </apex:column>
+                                        <apex:column headerValue="Grade" >
+                                            <apex:outputField value="{!s.student.Grade__c}" />
+                                        </apex:column>
+                                    </apex:datatable>
+                                    
+                                </apex:PageBlockSection>
+                                <apex:commandButton value="Next" action="{!generateAssessments}" rendered="{!IF(studentList.size > 0, true, false)}"
+                                    reRender="fullPage, exportPanel, messagePanel" styleclass="black_btn" onComplete="resetDataTables();"/>
+                                <apex:commandButton value="Remove Selected" action="{!removeStudents}" rendered="{!IF(studentList.size > 0, true, false)}"
+                                    reRender="GroupSearchPanel, messagePanel"  styleclass="black_btn" onComplete="  resetDataTables();"/>
+                                <div class="clear_fix" style="line-height: 1%">&nbsp;</div>
+                                
+                            </div>
+                        </apex:outputPanel>
+                        
+                        <!-- Search Input Panel -->
+                        <apex:outputPanel >
+                            <p></p>
+                            <h3 style="{!IF(searchType=='student', '', 'display:none')}">Student Search Information</h3>
+                            <h3 style="{!IF(searchType=='section', '', 'display:none')}">Section Search Information</h3>
+                            <div class="section_content">
+                                <apex:PageBlockSection rendered="{!IF(searchType=='student', true, false)}" collapsible="false">
+                                    <apex:inputField required="false" value="{!studentSearchInfo.student.Student_First_Name__c}" />
+                                    <apex:inputField value="{!studentSearchInfo.student.Student_Last_Name__c}" />
+                                    <apex:inputField value="{!studentSearchInfo.student.Grede_Multiselect__c}" />
+                                    <apex:inputField value="{!studentSearchInfo.student.Gender__c}" />
+                                    <apex:inputField value="{!studentSearchInfo.student.Student_Id__c}" />
+                                    <apex:selectList label="School" id="schoolSelect" value="{!studentSearchInfo.school}" multiselect="false" size="1" onChange="refreshJS();">
+                                        <apex:selectOptions value="{!studentSearchInfo.schools}" />
+                                    </apex:selectList>
+                                    <apex:selectList label="Indicator Area" id="IndicatorSelect" value="{!studentSearchInfo.indicatorArea}" multiselect="false" size="1" onChange="refreshJS();">
+                                        <apex:selectOptions value="{!studentSearchInfo.indicatorAreas}" />
+                                    </apex:selectList>
+                                    <apex:inputField value="{!studentSearchInfo.student.Local_Student_ID__c}" />     <!--Added by Harsh Singh -->                                   
+                                   <apex:pageBlockSectionItem >
+                                        <apex:outputLabel for="searchCalendar" value="Date of Birth" />
+                                        <apex:inputField id="searchCalendar" value="{!studentSearchInfo.student.Date_of_Birth__c}" />
+                                    </apex:pageBlockSectionItem>
+                                    <apex:inputCheckBox value="{!studentSearchInfo.student.IEP__c}" />
+                                    <apex:inputCheckBox value="{!studentSearchInfo.student.ELL__c}" />
+                                    <apex:inputCheckBox value="{!studentSearchInfo.student.Active__c}" style="pointer-events: none;"/>
+                                </apex:PageBlockSection>
+                                <apex:PageBlockSection collapsible="false" rendered="{!IF(searchType=='section', true, false)}">
+                                    <apex:inputField value="{!sectionSearchInfo.section.Name}" />
+                                    <apex:inputField label="Intervention Primary Staff" value="{!sectionSearchInfo.section.Staff__c}" />
+                                    <apex:inputField value="{!sectionSearchInfo.section.Program__c}" />
+                                    <!-- <apex:inputField label="Name of Course" value="{!sectionSearchInfo.course.Name}" /> -->
+                                    <apex:inputField value="{!sectionSearchInfo.section.Section_Nickname__c}" /><!--Added for T-493158 -->
+                                     <apex:selectList label="Intervention Section" id="InterventionSection" value="{!sectionSearchInfo.rcdType}" multiselect="false" size="1" onChange="refreshJS();">
+                                        <apex:selectOptions value="{!sectionSearchInfo.rcdTypes}" />
+                                    </apex:selectList>
+                                </apex:PageBlockSection>
+                                <apex:commandButton value="Search" action="{!groupSearch}"
+                                        reRender="GroupPanel, messagePanel" styleclass="black_btn" rendered="{!IF(searchType=='', false, true)}" onComplete="clearStudentArray(); resetDataTablesForPagination();"/>
+                                <div class="clear_fix" style="line-height: 1%">&nbsp;</div>
+                                
+                            </div>
+                        </apex:outputPanel>
+                        
+                        <!-- Student Search Results Panel -->
+                        <apex:outputPanel rendered="{!IF(studentSearchResults.size > 0 || sectionSearchResults.size > 0, true, false)}" id="resultsPanel">
+                            <h3 style="{!IF(studentSearchResults.size > 0, '', 'display:none')}">Student Search Results</h3>
+                            <h3 style="{!IF(sectionSearchResults.size > 0, '', 'display:none')}">Section Search Results</h3>
+                            
+                            <div class="section_content">
+                                <input type="checkbox" style="margin:0 5px 0 0;" onclick="selectAllStudents(this,'searchSelect')" />
+                                <apex:outputText style="font-weight:bold;" value="Select All? " />
+                                <br />
+                                <apex:pageBlockSection rendered="{!IF(studentSearchResults.size > 0, true, false)}" columns="1">
+                                    <apex:dataTable styleclass="tablesorter" title="Student Results" value="{!studentSearchresults}" var="s" ID="srchstdtable">                                   
+                                        <apex:column headerValue="Add?" >
+                                            <apex:inputCheckbox styleclass="searchSelect" value="{!s.selected}" onclick="getStudentArray('{!s.student.Student_Id__c}')"/>
+                                        </apex:column>
+                                        <apex:column headerValue="Student First Name" >
+                                            <apex:outputField value="{!s.student.Student_First_Name__c}" />
+                                        </apex:column>
+                                        <apex:column headerValue="Student Last Name" >
+                                            <apex:outputField value="{!s.student.Student_Last_Name__c}" />
+                                        </apex:column>
+                                        <apex:column headerValue="School" >
+                                            <apex:outputField value="{!s.student.School__c}" />
+                                        </apex:column>
+                                        <apex:column headerValue="Student ID" >
+                                            <apex:outputField value="{!s.student.Student_Id__c}" />
+                                        </apex:column>
+                                        <apex:column headerValue="Grade" >
+                                            <apex:outputField value="{!s.student.Grade__c}" />
+                                        </apex:column>
+                                    </apex:dataTable>
+                                </apex:pageBlockSection>
+                                <apex:pageBlockSection rendered="{!IF(sectionSearchResults.size > 0, true, false)}" columns="1">
+                                    <apex:dataTable styleclass="tablesorter" title="Section Results" value="{!sectionSearchresults}" var="s" ID="srchstdtable">
+                                        <apex:column headerValue="Add?" >
+                                            <apex:inputCheckbox styleclass="searchSelect" value="{!s.selected}" />
+                                        </apex:column>
+                                        <apex:column headerValue="Name" >
+                                            <apex:outputField value="{!s.section.Name}" />
+                                        </apex:column>
+                                        <apex:column headerValue="Course" >
+                                            <apex:outputField value="{!s.section.Course__r.Name}" />
+                                        </apex:column>
+                                                                            
+                                      </apex:dataTable>
+                                </apex:pageBlockSection>
+                                <div class="clear_fix" style="line-hight:1%">&nbsp;</div>
+                                <apex:commandButton value="Add Selected" onclick="sendData();return false;" rendered="{!IF(studentSearchResults.size > 0, true, false)}"
+                                    reRender="GroupSearchPanel, messagePanel" styleclass="black_btn" onComplete="resetDataTables();"/>
+                                <apex:commandButton value="Add Selected" action="{!addSections}" rendered="{!IF(sectionSearchResults.size > 0, true, false)}"
+                                    reRender="GroupSearchPanel, messagePanel" styleclass="black_btn" onComplete="resetDataTables();"/>
+                                <div class="clear_fix" style="line-hight:1%">&nbsp;</div>
+                            </div>
+                        </apex:outputPanel>
+                    </apex:outputPanel>
+                    </apex:PageBlock>
+                </apex:outputPanel>
+                <!-- End Group Panel -->
+            </apex:outputPanel>
+            <!-- End Main Panel -->
+            
+            <!--  Start Export Panel -->
+            <apex:outputPanel id="exportPanel" rendered="{!showAssessmentPane}">
+                <apex:pageBlock title="Assessment Wizard">
+                    <span style="font-weight:bold;">Select Indicator Area: &nbsp;</span>
+                    <div class="requiredInput">
+                        <div class="requiredBlock"></div>
+                        <apex:selectList value="{!typeIASelected}" multiselect="false" size="1" onChange="assessmentTypeIAChange();" style="min-width: 150px;">
+                            <apex:selectOptions value="{!typeIAOptions}" />
+                        </apex:selectList>
+                    </div>
+                    <p></p>
+
+                    <span style="font-weight:bold;">Select Assessment Type: &nbsp;</span>
+                    <div class="requiredInput">
+                        <div class="requiredBlock"></div>
+                        <apex:selectList value="{!selectedType}" multiselect="false" size="1" onChange="assessmentTypeChange();">
+                            <apex:selectOptions value="{!typeOptions}" />
+                        </apex:selectList>
+                    </div>
+                    <p></p>
+                    <apex:outputPanel >
+                        <!-- <h3>Assessment Information</h3>
+                        <apex:outputText style="font-weight:bold; float:right; margin:0 5px 0 0;" value="Select Show On Transcript?  " />
+                        <input type="checkbox" style="float:right; margin:0 5px 0 0;" onclick="selectAll(this,'transcript');" class="tcb" />
+                        <apex:outputText style="font-weight:bold; float:right; margin:0 5px 0 0;" value="Select Show On Report Card?  " />
+                        <input type="checkbox" style="float:right; margin:0 5px 0 0;" onclick="selectAll(this,'rp');" class="rccb"/>
+                        <apex:outputText style="font-weight:bold; float:right; margin:0 5px 0 0;" value="Select Save Year Over Year?  " />
+                        <input type="checkbox" style="float:right; margin:0 5px 0 0;" onclick="selectAll(this,'yoy');" class="yoycb"/>-->
+                        <div class="section_content">
+                            <apex:pageBlockSection columns="1">
+                                <apex:dataTable styleclass="tablesorter" title="Student List" value="{!newAssessments}" var="a">
+                                    <apex:column headerValue="Student Name" value="{!a.student.Name}" />
+                                    <apex:column headerValue="Save Year over Year?">
+                                        <apex:inputCheckbox styleclass="yoy" value="{!a.assessment.Year_Over_Year__c}" />
+                                    </apex:column>
+                                    <apex:column headerValue="Show On Report Card?" >
+                                        <apex:inputCheckbox styleclass="rp" value="{!a.assessment.Show_On_Report_Card__c}" />
+                                    </apex:column>
+                                    <apex:column headerValue="Show On Transcript?" >
+                                        <apex:inputCheckbox styleclass="transcript" value="{!a.assessment.Show_On_Transcript__c}" />
+                                    </apex:column>
+                                </apex:dataTable>
+                            </apex:pageBlockSection>
+                            <div class="clear_fix" style="line-height: 1%">&nbsp;</div>
+                            <apex:commandButton value="Back" action="{!goToMain}"
+                                    reRender="fullPage, messagePanel" styleclass="black_btn" onComplete="resetDataTablesForPagination();"/>
+                            <div class="clear_fix" style="line-height: 1%">&nbsp;</div>
+                        </div>
+                        <script>
+                            if('{!selectedPL.Year_Over_Year__c}' == 'true')
+                                j$('.yoycb').prop("checked", true);
+                            else
+                                j$('.yoycb').prop("checked", false);
+                            if('{!selectedPL.Show_On_Report_Card__c}' == 'true')
+                                j$('.rccb').prop("checked", true);
+                            else
+                                j$('.rccb').prop("checked", false);
+                            if('{!selectedPL.Show_On_Transcript__c}' == 'true')
+                                j$('.tcb').prop("checked", true);
+                            else
+                                j$('.tcb').prop("checked", false);
+                        </script>
+                    </apex:outputPanel>
+                    <apex:outputPanel >
+                        <h3>Finalize And Download Assessment Template</h3>
+                        <div class="section_content">
+                            <p style="float:left">Click here to download your Assessment template. Fill in all details with assessment results. Please do not alter an pre-populated fields.</p>
+                            <apex:commandLink value="Download Template" action="{!saveForExport}" styleclass="btn black_btn"  onClick="return confirmGen();"/>
+                            <div class="clear_fix" style="line-height: 1%">&nbsp;</div>
+                        </div>
+                    </apex:outputPanel>
+                    <apex:outputPanel >
+                        <h3>Import Completed Template</h3>
+                        <div class="section_content">
+                            <p style="float:left">Click "Import Assessments" to upload your completed Assessment Template.</p>
+                            <apex:commandButton value="Import Assessments" action="{!startImport}" styleclass="black_btn" onClick="return confirmImport();"/>
+                            <div class="clear_fix" style="line-height: 1%">&nbsp;</div>
+                        </div>
+                    </apex:outputPanel>
+                </apex:pageBlock>
+            </apex:outputPanel>
+        <apex:outputPanel id="exportExisting" rendered="{!showExport}">
+            <apex:pageBlock title="Export Existing Assessments">
+                <h3>Assessment Filter</h3>
+                <div class="section_content" style="margin-bottom: 0px;">
+                    <apex:pageBlockSection >
+                        <apex:pageBlockSectionItem >
+                            <div class="requiredInput">
+                                <div class="requiredBlock"></div>
+                                <span style="font-weight:bold;">Select Indicator Area: &nbsp;</span>
+                            </div>
+                            <apex:selectList value="{!typeIASelected}" multiselect="false" size="1" onChange="assessmentTypeIAChange();" style="min-width: 150px;">
+                                <apex:selectOptions value="{!typeIAOptions}" />
+                            </apex:selectList>
+                        </apex:pageBlockSectionItem>
+                        <apex:pageBlockSectionItem >
+                            <div class="requiredInput">
+                                <div class="requiredBlock"/>
+                                <span >Assessment Type&nbsp;</span><!--class="requiredDiv"-->
+                            </div>
+                            <apex:selectList value="{!selectedType}" multiselect="false" size="1" onChange="assessmentTypeChange();" id="assessmentPicklist" tabindex="1">
+                                <apex:selectOptions value="{!typeOptions}" />
+                            </apex:selectList>
+                        </apex:pageBlockSectionItem>
+                        <apex:pageBlockSectionItem >
+                            <span>School&nbsp;</span>
+                            <apex:selectList label="School" id="schoolSelect" value="{!studentSearchInfo.school}" multiselect="false" size="1">
+                                <apex:selectOptions value="{!studentSearchInfo.schools}" />
+                            </apex:selectList>
+                        </apex:pageBlockSectionItem>
+                        <apex:pageBlockSectionItem >
+                            <span>Section&nbsp;</span>
+                            <apex:inputField value="{!studentSearchInfo.student.Section__c}" />
+                        </apex:pageBlockSectionItem>
+                        <!--Added for T-493159 begin-->
+                         <apex:pageBlockSectionItem >
+                             <span>Student ID&nbsp;</span>
+                             <apex:inputField value="{!studentSearchInfo.student.Student_Id__c}" />
+                        </apex:pageBlockSectionItem>
+                         <apex:pageBlockSectionItem >
+                             <span>Local Student ID&nbsp;</span>
+                             <apex:inputField value="{!studentSearchInfo.student.Local_Student_ID__c}" />
+                        </apex:pageBlockSectionItem>
+                        <apex:pageBlockSectionItem >
+                            <span>Active&nbsp;</span>
+                            <apex:inputField value="{!studentSearchInfo.student.Active__c}" style="pointer-events: none;" />
+                        </apex:pageBlockSectionItem>
+                        <apex:pageBlockSectionItem >
+                             <span>Indicator Area&nbsp;</span>
+                        <apex:selectList id="IndicatorSelect" value="{!studentSearchInfo.indicatorArea}" multiselect="false" size="1" onChange="refreshJS();">
+                                        <apex:selectOptions value="{!studentSearchInfo.indicatorAreas}" />
+                        </apex:selectList>
+                        </apex:pageBlockSectionItem>
+                         <apex:pageBlockSectionItem helpText="{!$Label.Help_Text}">
+                             <span>Null Date Administer&nbsp;</span>
+                        <apex:inputCheckbox value="{!studentSearchInfo.nullDateAdminister}"/>
+                        </apex:pageBlockSectionItem>
+                        <apex:pageBlockSectionItem >
+                            <span>Grades&nbsp;</span>
+                            <apex:inputField value="{!gradeHolder.All_Grades__c}"/>
+                        </apex:pageBlockSectionItem>
+                        <!--Added for T-493159 end-->
+                        <apex:pageBlockSectionItem >
+                            <span>Start Date Administered Range&nbsp;</span>
+                           <apex:inputText value="{!startDate}" id="selectedDate1" onclick="datefix()"/>
+                        </apex:pageBlockSectionItem>
+                        <apex:pageBlockSectionItem >
+                            <span>End Date Administered Range&nbsp;</span>
+                            <apex:inputText value="{!endDate}" id="selectedDate2" onclick="datefix2()"/>
+                        </apex:pageBlockSectionItem>
+                        <apex:inputField value="{!studentSearchInfo.student.IEP__c}" />
+                        <apex:inputField value="{!studentSearchInfo.student.ELL__c}" />
+                    </apex:pageBlockSection>
+                    <div class="clear_fix" style="line-height: 1%">&nbsp;</div>
+                    <apex:commandButton value="Search" action="{!searchExisting}" onclick="showProgressBar('Searching....');" styleclass="black_btn" id="searchExistingButton" onComplete="resetDataTablesExisting(); hideProgressBar();"
+                            reRender="exportExisting,messagePanel"/>
+                    <apex:commandButton value="Back" action="{!goToMain}"
+                            reRender="fullPage, messagePanel" styleclass="black_btn" onComplete="resetDataTables();"/>
+                    <div class="clear_fix" style="line-height: 1%">&nbsp;</div>
+                </div>
+                
+                <apex:outputPanel rendered="{!IF(importwrapper.assessments.size > 0, true, false)}">
+                    <h3>Search Results</h3>
+                    <div class="section_content" style="margin-bottom: 0px;">
+                    <apex:pageBlockSection collapsible="false" columns="1">
+                        <apex:outputPanel style="margin-left:auto; margin-right:auto; width:900px;">
+                        <div id="dataDiv" style="margin-left:auto; margin-right:auto; width:900px;">
+                            <apex:dataTable id="dataTable" styleclass="tablesorterExisting" title="Student List" value="{!importwrapper.assessments}" var="wrapper">
+                                <apex:column headerValue="Student Name">
+                                    <apex:outputField value="{!wrapper['Student_Name__c']}"/>
+                                </apex:column>
+                                <apex:repeat value="{!importwrapper.displayLabels}" var="field">
+                                    <apex:column headerValue="{!field.labelName}" >
+                                        <apex:inputField value="{!wrapper[field.apiName]}" rendered="{!IF(field.fieldType != 'BOOLEAN', true, false)}"/>
+                                        <apex:inputCheckbox value="{!wrapper[field.apiName]}" rendered="{!IF(field.fieldType == 'BOOLEAN', true, false)}"/>
+                                    </apex:column>
+                                </apex:repeat>
+                            </apex:dataTable>   
+                        </div>
+                        </apex:outputPanel>
+                    </apex:pageBlockSection>
+                    <div class="clear_fix" style="line-height: 1%">&nbsp;</div>
+                    <apex:commandButton value="Save" action="{!saveExisting}" styleclass="black_btn" />
+                    <apex:commandButton value="Export To CSV" action="{!exportExisting2}"  styleclass="black_btn" />
+                    <!--<apex:commandButton value="Export To CSV" onclick="confirmExport('{!exportCount}') ;"  styleclass="black_btn" onComplete="resetDataTables();"/> -->   
+                    <apex:commandButton value="Cancel" action="{!goToMain}"
+                            reRender="fullPage, messagePanel" styleclass="black_btn" onComplete="resetDataTables();"/>
+                    <div class="clear_fix" style="line-height: 1%">&nbsp;</div>
+                </div>
+                </apex:outputPanel>                             
+            </apex:pageBlock>
+            <script>
+                if('{!IF(inputWrapper.assessments.size > 0, true, false)}' == 'true'){
+                    datefix();
+                    datefix2();
+                    var onload = false;
+                }
+            </script>
+            
+        </apex:outputPanel>
+        </apex:outputPanel>
+        <!--  End Full Panel -->
+    </apex:form>
+               <c:jQueryInit bDataTables="true" bLoadingPanel="false"/>       
+               <apex:includeScript value="{!URLFOR($Resource.jWerty, '/jWerty/jwerty.js')}" />
+</apex:page>

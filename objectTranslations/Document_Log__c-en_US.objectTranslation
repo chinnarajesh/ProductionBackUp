@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Document Log</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Document Logs</value>
+    </caseValues>
+    <fields>
+        <label><!-- Document Log --></label>
+        <name>Document_Log__c</name>
+        <relationshipLabel><!-- Document Logs --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Document Type --></label>
+        <name>Document_Type__c</name>
+        <picklistValues>
+            <masterLabel>Progress Report - Elementary School</masterLabel>
+            <translation><!-- Progress Report - Elementary School --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Progress Report - High School</masterLabel>
+            <translation><!-- Progress Report - High School --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Report Card - Elementary School</masterLabel>
+            <translation><!-- Report Card - Elementary School --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Report Card - High School</masterLabel>
+            <translation><!-- Report Card - High School --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Transcript</masterLabel>
+            <translation><!-- Transcript --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- This is the error encountered while generating the document. --></help>
+        <label><!-- Error Message --></label>
+        <name>Error_Message__c</name>
+    </fields>
+    <fields>
+        <label><!-- External Id --></label>
+        <name>External_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Log --></label>
+        <name>Log__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the initial query that was submitted to the system when the batch started. --></help>
+        <label><!-- Query --></label>
+        <name>Query__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reporting Period --></label>
+        <name>Reporting_Period_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Staff --></label>
+        <name>Staff__c</name>
+        <relationshipLabel><!-- Document Logs --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>Status__c</name>
+        <picklistValues>
+            <masterLabel>Aborted</masterLabel>
+            <translation><!-- Aborted --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Complete</masterLabel>
+            <translation><!-- Complete --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Complete - With Warnings</masterLabel>
+            <translation><!-- Complete - With Warnings --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Failed</masterLabel>
+            <translation><!-- Failed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>In Progress</masterLabel>
+            <translation><!-- In Progress --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>In Queue</masterLabel>
+            <translation><!-- In Queue --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>In Queue - With Warnings</masterLabel>
+            <translation><!-- In Queue - With Warnings --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Student Reporting Period --></label>
+        <name>Student_Reporting_Period__c</name>
+        <relationshipLabel><!-- Document Logs --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- The student the document was generated for. --></help>
+        <label><!-- Student --></label>
+        <name>Student__c</name>
+        <relationshipLabel><!-- Document Logs --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Was the document sent to an S3 server? --></help>
+        <label><!-- Transmitted to S3 --></label>
+        <name>Transmitted_to_S3__c</name>
+    </fields>
+    <layouts>
+        <layout>Document Log Batch</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Log Information --></label>
+            <section>Log Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Individual Report Card</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <label><!-- Batch --></label>
+        <name>Batch</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Report Card --></label>
+        <name>Report_Card</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Transcript --></label>
+        <name>Transcript</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

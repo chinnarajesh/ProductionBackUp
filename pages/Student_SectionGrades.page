@@ -1,0 +1,118 @@
+<apex:page standardController="Student__c" sidebar="false" showHeader="false"
+	extensions="Student_SectionGrades">
+	<c:admin />
+	<style type="text/css" media="all">
+
+#sgSnippet th {
+	text-align: left;
+	padding-bottom: 3px;
+	color: #093d62;
+	font-size: 12px;
+	border-bottom: 1px solid #eee;
+}
+
+
+
+#sgSnippet tr:nth-child(even) {
+	background-color: #E3F3FF;
+}
+.gpaRow {
+	background-color: blue;
+	font-style: italic;
+	font-weight:bold;
+}
+ 
+
+#sgSnippet td {
+	font-size: 12px;
+	width: 200px;
+}
+table {
+	color: #093d62; 
+	margin-left: 50px; 
+	vertical-align: top; 
+	width: 90%;"
+	border-spacing: 0px;
+}
+
+td{
+width: 200px; padding-top: 10px; font-size: 12px;text-align:left;
+}
+th{
+width: 200px; margin-left: 50px; font-size: 12px; font-weight: bold;
+}
+.number {
+display:none;
+}
+.headerRow{
+border-bottom: 1px solid grey; color: black;
+}
+.grade {
+	padding-top: 6px; width: 50px; margin-left: 25px; font-size: 14px;  padding-right: 20px;"
+}
+.section_content {
+	height:180px;
+	overflow:auto;
+}
+
+</style>
+	<center>
+		<div class="section_content">
+			<div id="sgSnippet"> 
+
+				<table style="border-spacing: 0px !important;">
+					<thead>
+						<tr class="headerRow"> 
+							<th></th>
+							<th>Course</th>
+							<th>Teacher</th>
+							<th>Scale</th>
+							<apex:repeat value="{!ReportingPeriodList}" var="rp">
+								<th>{!rp.Name__c}</th>
+							</apex:repeat>
+							<th>Final?</th>
+							<th>Final
+								Grade</th>
+							<th><img
+								onclick="j$('.letter').toggle(); j$('.number').toggle();"
+								src="/img/func_icons/util/ileUndo16.gif" />
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						<apex:repeat value="{!sectionGradeWrapperList}" var="sg">
+							<tr class="headerRow">
+								<td></td>
+								<td>{!sg.course.name}</td>
+								<td>{!sg.teacherName}</td>
+								<td>{!sg.scaleName}</td>
+								<apex:repeat value="{!sg.rpGrades}" var="grade">
+									<td class="grade letter">{!grade.Display_Grade_Formula__c}</td>
+									<td class="grade number">{!grade.Grade__c}</td>
+								</apex:repeat>
+								<td><apex:outputField value="{!sg.finalGrade.Final__c}"/></td>
+								<td class="grade letter">{!sg.finalGrade.Display_Final_Grade_Formula__c}</td>
+								<td class="grade number">{!sg.finalGrade.Final_Grade_Value__c}</td>
+							</tr>
+						</apex:repeat>
+						<tr class="gpaRow" style="background-color: #eee">
+								<td>GPA</td>
+								<td></td>
+								
+								<td></td> 
+								<td></td> 
+								<apex:repeat value="{!srpList}" var="srp">
+									<td class="grade">{!ROUND(srp.GPA__c,2)}</td>
+								</apex:repeat>
+								<td></td>
+								<td  class="grade">{!ROUND(currstudent.current_gpa__c,2)}</td>
+							</tr> 
+					</tbody>
+
+
+				</table>
+
+			</div>
+		</div>
+	</center>
+</apex:page>

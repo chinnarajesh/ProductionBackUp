@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Section__c$School__c</field>
+    </columns>
+    <columns>
+        <field>Section__c$Intervention_Primary_Staff__c</field>
+    </columns>
+    <columns>
+        <field>Section__c$Program__c</field>
+    </columns>
+    <columns>
+        <field>Section__c.Student_Section__r$Student_Id__c</field>
+    </columns>
+    <columns>
+        <field>Section__c.Student_Section__r$Student__c</field>
+    </columns>
+    <columns>
+        <field>Section__c.Student_Section__r$Local_Student_ID__c</field>
+    </columns>
+    <columns>
+        <field>Section__c.Student_Section__r.Enrollment_Tracking__r$Student_Section__c</field>
+    </columns>
+    <description>For use with Quarterly Impact Reports to collect Teacher/Student names.</description>
+    <filter>
+        <criteriaItems>
+            <column>Section__c$Program__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>contains</operator>
+            <value>Tutoring</value>
+        </criteriaItems>
+    </filter>
+    <format>Summary</format>
+    <name>Students in CP Sections</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Sections_with_Student_Section__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>Section__c$CreatedDate</dateColumn>
+        <interval>INTERVAL_CURFY</interval>
+    </timeFrameFilter>
+</Report>

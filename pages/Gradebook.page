@@ -1,0 +1,1169 @@
+<apex:page controller="GradebookController" tabstyle="Gradebook__tab" sidebar="false">
+
+	<!-- US3131 enable bDataTables -->	
+	<c:jQueryInit bDataTables="true" bClueTip="true"  bLoadingPanel="true"/>
+	<c:loadingPanel />
+	<c:gradebook_style />
+
+	<apex:includeScript value="{!URLFOR($Resource.Gradebook, '/js/FixedHeaderTable.js')}"/>
+	<apex:includeScript value="{!URLFOR($Resource.Gradebook, '/js/Mousewheel.js')}"/>
+	<apex:includeScript value="{!URLFOR($Resource.Gradebook, '/js/GradebookScripts.js')}"/>
+	
+	<apex:includeScript value="{!URLFOR($Resource.jWerty, '/jWerty/jwerty.js')}" />
+	<apex:includeScript value="{!URLFOR($Resource.Gradebook, '/js/Gradebook.js')}"/>
+	
+	<apex:stylesheet value="{!URLFOR($Resource.Gradebook, '/css/Gradebook.css')}"/>
+	<apex:stylesheet value="{!$Resource.New_Core_UX}"/> 
+	
+	<style>
+	#gradebook-results .gradebook input { width: 26px !important; }
+	.adv_reportLink { float: right; left: 320px; position: relative; top: 50px }	
+    td.studCol a.comment-icon{
+        display: inline;
+        position: static !important;
+        float: right;
+        margin: 8px 0 0 15px;
+       }
+
+       .helpOrb, .helpText{
+       		z-index: 1003;
+       }
+       
+       .fixedTable table{
+       		width:100%;
+       }       
+	</style>	
+	
+     &lt;!--[if IE]>
+     <style>
+         .fht-tbody table tbody tr td {
+             border-left:1px solid #eee;
+         }
+                                        
+         .fht-tbody table tbody tr td span.span-ie-border{
+              padding-top:8px;
+         }
+                    
+         .fht-tbody table tbody tr {
+               background:none !important;
+          }
+                    
+          #gradebook-results .gradebook thead {
+               border:none !important;
+          }
+                                        
+                    #gradebook-results .gradebook thead tr th a {
+                        border-left:1px solid #ccc;
+                        border-top:1px solid #ccc;
+                    }
+                    
+                    #gradebook-results .gradebook thead tr th a.apply-score {
+                        border:none;
+                    }
+                                        
+                    
+                    span.span-ie-border {
+                        border-top:1px solid #ccc;
+                        border-left:1px solid #ccc;
+                        display:block;
+                        width:100%;
+                        height:100%;
+                    }
+                    
+                    
+                    .header-left {
+                        border-top:1px solid #eee;
+                         display:block;
+                         padding:0 0 0 20px;
+                      }
+                                        
+                      #gradebook-results .gradebook thead tr th:first-child {
+                         padding:0;
+                      }
+                    
+				      .fixedTable table{
+				      		width:100%;
+				      }
+                </style>
+            &lt;![endif]--&gt;	
+	
+	<script>
+	//US2346
+	var comingFromSGComments = false;
+    var commentInputBox;
+    var holdEnteredGrade;    
+    var saveGradeArray = [];
+    var isAdvOptionsVisable = false;
+    	
+	function timeElement() {
+		var startDate = "";
+		var endDate = "";
+		this.setStartDate = setStartDate;
+		this.setEndDate = setEndDate;
+		this.getStartDate = getStartDate;
+		this.getEndDate = getEndDate;
+	
+		function setStartDate(sd) {
+			this.startDate = sd;
+		}
+		
+		function setEndDate(ed) {
+			this.endDate = ed;
+		}
+		
+		function getStartDate() {
+			return this.startDate;
+		}
+		
+		function getEndDate() {
+			return this.endDate;
+		}
+	}
+		
+	pageMap = {};
+	var map;
+	var mapValues;	
+		
+	//US2346 
+	function populateTimeElement(timeKey, timeValues) {   
+		//map = "{!timeMapKeySet}";
+	   	map = timeKey;
+	   	map = map.slice(1, map.length-1);
+		map = map.split(", ");	
+	
+	   	//mapValues = "{!timeMapValues}";
+	   	mapValues = timeValues;
+	   	mapValues = mapValues.slice(1, mapValues.length-1);
+		mapValues = mapValues.split(", ");   	
+	
+
+		
+		for(var i = 0; i < map.length; i++) {
+			var j = 2*i ;
+			t = new timeElement();
+			t.setStartDate(mapValues[j]);
+			t.setEndDate(mapValues[j+1]);
+			pageMap[map[i]] = t;
+		}
+	}
+	
+	//US2346
+	function newTimeJS(tID){
+		document.getElementById("{!$Component.theform.TFstartDate}").value = pageMap[tID].getStartDate();
+		document.getElementById("{!$Component.theform.TFendDate}").value = pageMap[tID].getEndDate();
+	}	
+	 function scrollVertical(){
+			var j$ = jQuery.noConflict();
+			var docHeight = j$(document).height();
+			var winHeight = j$(window).height();
+			j$('html,body').animate({scrollTop: 0}, 700);
+		} 
+			
+		function setFocusOnLoad() {}
+		jwerty.key('enter',false);//keep unexpected page submssions from pressing enter
+		window.onbeforeunload = function(){if(closepop==true){return "Please save your work!";}}
+		
+		j$(document).ready(function() { 
+			//7/30/12
+			populateTimeElement('{!timeMapKeySet}', '{!timeMapValues}');
+			//US3131
+			resetTables();
+		
+			//DE1235
+			var currentUrl = window.location.href;
+			if(currentUrl.indexOf('fromAssignment=1')!=-1)
+			{
+				goJS();
+			}
+		   
+			
+		});		
+		
+		
+				
+	function queryComment(s){
+		commentToggleId = j$(this).attr("Id");
+		gcommentid = j$(s).parent().find('.copydownupdate').val();
+        commentInputBox = j$(s).parent().find('.tabCol');
+        holdEnteredGrade= j$(s).parent().find('.tabCol').val();  		
+		Visualforce.remoting.Manager.invokeAction(
+																'{!$RemoteAction.GradebookController.fetchcomment}', 
+																gcommentid, handleCommentQuery);
+	}
+	
+	function excludeErrorResults(param) {
+		//DE2148
+        //US2681: updated to account for 'Include_In_Standard_Grade__c'		
+		var stringA = param.eeA;
+		var stringB = param.eeB;
+		var stringC = param.eeC;
+		var stringD = param.eeD;
+		var stringE = param.eeE;
+		//console.log('param: ' + param);
+		//console.log('checking: ' + checking);
+		
+		if(param.ee0 == 'true') {
+			confirm('In order to drop a grade you must have at least one other graded assignment for this section.');
+		}
+		else {
+		Visualforce.remoting.Manager.invokeAction(
+																'{!$RemoteAction.GradebookController.updatecomment_v3}', 
+																gcommentid, stringA, stringB, stringC, stringD, stringE, handleComments);
+		}		
+	}	
+	
+	function updatecomment(ctext, cpub, cval, cexcl, cincl){
+		var elementpass =j$(cpub).is(':checked');
+		var exclude =j$(cexcl).is(':checked');
+        var include =j$(cincl).is(':checked');	
+        cval = holdEnteredGrade;       
+        
+        //DE2909
+        saveGradeArray.push(gcommentid + ";" + cval + ";" + exclude);
+              	
+		Visualforce.remoting.Manager.invokeAction('{!$RemoteAction.GradebookController.excludeErrorMethod}', gcommentid, ctext, elementpass, cval, exclude, include, excludeErrorResults);
+		
+		//Visualforce.remoting.Manager.invokeAction(
+		//														'{!$RemoteAction.GradebookController.updatecomment_v2}', 
+		//														gcommentid, ctext, elementpass,cval,exclude, handleComments);
+	}
+	
+	function updatelistcheck(){
+		if(gradeArray.length>0){
+			stringlist = gradeArray.toString();
+			Visualforce.remoting.Manager.invokeAction(
+																'{!$RemoteAction.GradebookController.updategradelistcheck}', 
+																stringlist, handleUpdatesCheck2);
+		}
+		else{
+			alert ('Gradebook is up to date.  There are no changes to save.');
+			setTimeout('hideProgressBar()',1000);
+		}
+	}	 
+	
+	function updatelist(){
+		if(gradeArray.length>0){
+			stringlist = gradeArray.toString();
+			Visualforce.remoting.Manager.invokeAction(
+																'{!$RemoteAction.GradebookController.updategradelist2}', 
+																stringlist, handleUpdatesCheck);
+		}
+		else{
+			setTimeout('hideProgressBar()',1000);
+		}
+	}
+	
+	function lockAllGrades(){
+		updatelist();
+		j$('#gradebook-results .copydownupdate').each(function(i){lockArray.push(j$(this).attr('value'));});
+		locklist = lockArray.toString();
+		Visualforce.remoting.Manager.invokeAction(
+																'{!$RemoteAction.GradebookController.lockgrades}', 
+																locklist, handleLockUpdate);
+	}
+
+    function saveReturn() {
+    	if(saveGradeArray.length > 0) {
+	    	gradeArray = saveGradeArray; 
+			for(var i = 0; i < gradeArray.length; i++) {
+				//console.log('inside loop' ) ;
+				//console.log('gradeArray: ' + gradeArray[i]);
+				var temp = gradeArray[i].split(';');
+				//console.log(j$('#highlight_' + temp[0]).next().next());
+				j$('#highlight_' + temp[0]).next().attr('value', temp[1]);			
+			} 
+			saveGradeArray = [];
+			closepop = true;
+		}
+    }
+    
+    //US3131
+	function createModal() {
+		var defaultHeight = window.innerHeight*.6;
+		j$("#dialog-modal").dialog({
+				autoOpen: false,
+				minHeight: 300,
+				minWidth: 920,
+				height: defaultHeight,
+				maxHeight:900,
+				modal: true,
+				position:['center', window.innerHeight*.05],
+				open: function(event, ui) {
+					j$(this).parent().appendTo(j$("[id$='theform']"));
+					document.getElementById(j$('[id$=quickCreateAssignment]').attr('id')).style.display = 'inline';
+				},
+				close: function(event, ui) {
+					j$(this).parent().dialog('destroy');
+					document.getElementById(j$('[id$=quickCreateAssignment]').attr('id')).style.display = 'none';	
+				}
+			});
+	}
+
+	function openModal() {
+		j$("#dialog-modal").dialog("open");
+		setTimeout('hideProgressBar()',500);
+		//resetTables();
+	}
+	
+	function datefix() {
+		var rpID = document.getElementById('{!$Component.theform.timeid}').value;
+		j$(".datepicker").datepicker("destroy");
+		j$(".datepicker").datepicker({
+			changeMonth: true,
+			changeYear: true,
+			minDate: new Date(pageMap[rpID].getStartDate()),
+			maxDate: new Date(pageMap[rpID].getEndDate())
+		});
+	}
+
+	function selectAll(cb, theClass) {
+		var b = j$(cb).is(':checked'); 
+		j$('.'+theClass).each(function() {
+			j$(this).attr('checked', b); 
+		});
+	}
+
+	function resetTables() {
+		oTable = j$(".tablesorter").dataTable( {
+			"sScrollY": "200px",
+			"sScrollX": "100%",
+	        "bAutoWidth": false,
+	        "bDestroy": true,
+	        "bPaginate": false,
+	        "bJQueryUI": true, 
+	        "iDisplayLength": 1000,
+   		});
+		
+		j$(".tablesorter tr:odd").css("background-color", "#CFEEF8");
+		j$(".tablesorter tr:even").css("background-color", "#F3F3EC");			
+	}
+	</script>
+
+	<apex:outputpanel id="themsgs">
+			<apex:pageMessages />
+		<script>scrollVertical();</script>
+	</apex:outputpanel>
+	<div class="wrapper gradebook">
+	<apex:form id="theform">	
+	<div id="commentWrapper" class="commentWrapper" style="display:none;">
+
+			<div class="comment" id="comment" title="Add Comment">
+				<textarea class="commentText" id="commentText" style="width: 272px; height: 78px;"/>  
+				<br/>
+				<apex:outputText value="Publish Comment?"/>
+				<input id="commentPublish" type="checkbox" class="commentPublish"/>
+				<br/>
+				<input style="display:none;" type="text" class="enteredGrade"/>
+				<apex:outputText value="Exclude from Section Grade?"/>
+				<input id="exclude" type="checkbox" class="exclude"/>			
+                <br/>
+                 <br/>                
+                <!-- US2681 -->
+                <!-- note: need to modify handleCommentQuery within the static resource -->
+                <div class="optionalStandardGrade" id="optionalStandardGrade">
+                	<apex:outputText value="Include In Standard Grade?"/>
+                	<input id="include" type="checkbox" class="include"/>
+                </div>				
+				<br/>
+				<center>
+					<a onClick="saveGradeArray = gradeArray;
+								updatecomment(j$(this).parent().parent().find('.commentText').attr('value'),j$(this).parent().parent().find('.commentPublish'),j$(this).parent().parent().find('.enteredGrade').attr('value'),j$(this).parent().parent().find('.exclude'),j$(this).parent().parent().find('.include'));
+								   gradeArray = []; 
+								   closepop=false; 
+								   saveReturn();
+                                   ">		   
+						<input type="button" value="SAVE"/>
+					</a>
+				</center>
+			</div>
+		</div>  
+	<apex:actionFunction action="{!errorProcess}"  oncomplete="setTimeout('hideProgressBar()',300);" name="errorJS" rerender="themsgs">
+		<apex:param name="firstParam" assignTo="{!errorMsg}" value="" />
+	</apex:actionFunction>
+
+	<apex:outputPanel id="theBlockPanel"> 
+	   <apex:outputPanel id="topbuttonspanel">
+			<apex:outputPanel rendered="{!baseObj.activeSetup.Active__c}">
+			<!-- EE 10/2 removed because irrelevant, moving to output panel, changing order of buttons and layout for DE2330 -->
+			<!--<apex:variable value="{!baseObj.activeSetup.Active__c}" var="bo" rendered="{!baseObj.activeSetup.Active__c}">-->
+				<apex:commandButton rerender="thefilters" onclick="closepop=false; window.open('/apex/advanced_reports', '_self')" styleClass="blue_btn" value="View Advanced Analytics" rendered="{!addWizardDisplay}"/>
+				<apex:commandButton action="{!newAssignmentPage}" onclick="closepop=false;" title="Create a new Assignment for your section or a course library." value="Add Assignment" styleClass="blue_btn" rendered="{!addWizardDisplay}"/> 
+				<apex:commandButton rerender="thefilters" onclick="closepop=false; window.open('/apex/gradebook_createGroups')" title="Create a group of students within one of your sections to provide them specific assignments and grades" styleClass="blue_btn" value="Create Groups" rendered="{!addWizardDisplay}"/>
+				<!--<div class="adv_reportLink">-->
+				<!-- <a href="/apex/advanced_reports">View Gradebook Advanced Reports</a> -->
+				<!--</div>-->
+			<!--</apex:variable>-->
+			</apex:outputPanel>
+	   </apex:outputPanel>
+		<h3>Select Grades to View / Edit</h3>
+		<div class="filter_form">
+			<div class="form_fields">   
+				
+				<div>
+					<apex:outputText value="School ">&nbsp;</apex:outputText><br />
+					<apex:selectList value="{!schoolId}" multiselect="false" size="1"  onchange="refreshSchoolJS();"> 
+						<apex:selectOptions value="{!schoolOptions}"/>
+					</apex:selectList> 
+				</div> 
+				<apex:outputpanel id="schoolfilter">
+				<div> 
+					<apex:outputText value="Year ">&nbsp;</apex:outputText><br />
+					<apex:selectList value="{!yearId}" multiselect="false" size="1" onchange="refreshTermJS();"> 
+						<apex:selectOptions value="{!yearOptions}"/>
+					</apex:selectList> 
+				</div>  
+				<apex:outputpanel id="yearfilter">
+				 <div>Grading Period<br />
+				 <!-- //US2346 -->
+					<apex:selectList id="timeID" value="{!baseObj.selectedTimeId}" multiselect="false" size="1" onchange="newTimeJS(this.value);" >
+						<apex:selectOptions value="{!baseObj.reportingPeriodOptions}"/>
+					</apex:selectList>
+				</div>
+				<div style="width:400px"></div>
+				<div>
+					<apex:outputText value="Section ">&nbsp;</apex:outputText><br />
+					<!-- US2347 -->
+					<apex:selectList value="{!section}" multiselect="false" size="1" onchange="assignJS(); showProgressBar('Retrieving Section');">
+						<apex:selectOptions value="{!baseObj.sectionOptions}"/>
+					</apex:selectList> 
+				</div>
+				<div>
+					Assignment Type
+					<br />
+					<apex:selectList value="{!aType}" multiselect="false" size="1">
+						<apex:selectOptions value="{!aTypeList}"/>
+					</apex:selectList>
+				</div>
+				</apex:outputpanel>
+				<apex:outputpanel id="thefilters">
+					<div>
+						<apex:outputtext >
+							Start Date
+						</apex:outputtext>
+						<br/>
+						<!-- //US2346 -->
+						<apex:inputfield id="TFstartDate" value="{!timeFilter.Date_Start_Date__c}"/>
+					</div>
+					<div>
+						<apex:outputtext >
+							End Date
+						</apex:outputtext><br />
+						<!-- //US2346 -->
+						<apex:inputfield id="TFendDate" value="{!timeFilter.End_Date__c}"/>
+					</div>
+					<div style="float:left; white-space:nowrap;">
+					<div>
+						<apex:outputtext >
+							Select Student
+						</apex:outputtext><br />
+						<apex:selectList value="{!studentFilterID}" multiselect="false" size="1" rendered="true" >
+							<apex:selectOptions value="{!singleStudentSelect}"/>
+						</apex:selectList>
+					</div>
+				<div >
+						<apex:outputtext >
+							Select Assignment
+						</apex:outputtext><br />
+						<apex:selectList value="{!selectedAssignmentID}" multiselect="false" size="1" rendered="true" >
+							<apex:selectOptions value="{!singleAssignment}"/>
+						</apex:selectList>
+					</div> 
+					<!-- bottom_form_element class needed?<div class="bottom_form_element"> -->
+					<div>
+						<apex:variable value="{!gradebookObj.header}" var="h" rendered="{!bGlobalStandardsBased}">
+							<apex:outputtext >
+								Order
+							</apex:outputtext><br />
+							<apex:selectList value="{!standardDisplayString}" multiselect="false" size="1">
+								<apex:selectOptions value="{!displayToggle}"/>
+							</apex:selectList>
+						</apex:variable>
+					</div>
+					<!-- bottom_form_element class needed?<div class="bottom_form_element"> -->
+					<div>
+						<apex:variable value="{!gradebookObj.header}" var="h" rendered="{!gradeBookobj.studentWrapperList.size>0&&standardDisplay}">
+							<apex:outputtext >
+								Select Standard
+							</apex:outputtext><br/>
+							<apex:selectList value="{!selectedStandardID}" multiselect="false" size="1">
+								<apex:selectOptions value="{!singleStandard}"/>
+							</apex:selectList>
+						</apex:variable>
+					</div>
+					</div>
+				</apex:outputpanel>
+				</apex:outputpanel>
+				
+			</div><!-- END FORM FIELDS -->
+			<div class="Submit_btn_wrapper">
+				 <input type="button" class="btn drk_blue_btn" id="j_id0:theform:j_id61" name="j_id0:theform:j_id61" title="Click to submit and save your entered grades." onclick="if(closepop==true){
+																															if (confirm('You have changes! Click \'Cancel\' to return and Submit or click \'OK\' to continue without saving')){
+																																gradeArray = []; 
+																																closepop=false; 
+																																showProgressBar('Retrieving Grades'); 
+																																goJS();
+																															}
+																														}
+																														else{
+																															gradeArray = []; 
+																															closepop=false; 
+																															j$('#group').css('visibility','hidden');
+																															showProgressBar('Retrieving Grades');								  
+																																																													
+																															goJS();
+																														   
+																														}" value="RETRIEVE RESULTS"/>
+					
+			</div><!-- END SUBMIT_BTN_WRAPPER -->
+			<div class="clear_fix">&nbsp;</div>  
+		</div>
+			<apex:actionfunction action="{!reloadSchool}" name="refreshSchoolJS" rerender="schoolfilter,themsgs" onComplete="populateTimeElement('{!timeMapKeySet}', '{!timeMapValues}');"/>
+			<apex:actionfunction action="{!reloadYear}" name="refreshTermJS" rerender="yearfilter,thefilters,topbuttonspanel,bottombuttons,themsgs" onComplete="populateTimeElement('{!timeMapKeySet}', '{!timeMapValues}');"/>
+			<!-- US2347 -->
+			<apex:actionfunction action="{!reloadAssignments}" name="assignJS" rerender="thefilters, yearfilter" onComplete="newTimeJS(document.getElementById('{!$Component.theform.timeid}').value); setTimeout('hideProgressBar()',300);"/>
+			<!-- //US2346 not used anymore -->
+			<apex:actionfunction action="{!reloadTime}" name="timeJS" rerender="thefilters"/>
+				<div id="group" class="fixedTable" style="visibility:hidden">
+				<apex:variable value="{!gradebookObj.header}" var="h" rendered="{!gradebookObj.studentWrapperList.size>0}">
+			
+				
+				  <div class="table_top">
+                   <table style="width:100%;">
+                   <tr>
+                  	<td>
+                  		<!-- US3131 -->
+                  		<h3 style="margin: 55px 0 0 0; float:left; width:auto">{!gradeBookObj.sectionName} Grades</h3>
+                  		<h6 style="margin: 57px 0 0 10px; float:left;">
+                  			<apex:commandLink rendered="{!isCurrentYear}" style="cursor:pointer;" title="Click to add an assignment quickly." onClick="showProgressBar('Initializing Quick Create'); createModal();" action="{!initializeQuickCreateAssignment}" onComplete="openModal(); datefix(); resetTables();" rerender="themsgs, quickCreateAssignment"><img src="/img/feeds/follow12.png"/>New Assignment</apex:commandLink>
+                  		</h6>                  		
+                  	</td>
+                  	<td></td>
+                  </tr>
+                  <tr>
+                  	<td></td>
+                  	<td style="white-space:nowrap; float:right;">
+                  		 <apex:variable value="{!baseObj.activeSetup.Active__c}" var="bo" rendered="{!baseObj.activeSetup.Active__c}">
+                                <!-- US 1334: Link to Section grade Comments Page -->
+                                <a id="change-scale" style="cursor:pointer" onclick="toggleGrade();">Change Grading Scale</a> |
+                                <a id="sgComments" href="/apex/Gradebook_SG_Comments?fromAssignment=1&section={!section}&timeid={!baseObj.selectedTimeId}&studentID={!studentFilterId}&assignmentID={!selectedAssignmentID}&retURL=Gradebook">Section Grade Comments</a> |
+                                <a style="cursor:pointer" id="hideCommentText" onclick="toggleComments(false);">Show Comments/Drop Grades</a> | 
+                            </apex:variable>
+                            <apex:commandlink action="{!xls}" value="Export" />
+                  	</td>
+                  </tr>
+               
+                  </table>
+                  </div>
+				<script>
+				j$(document).ready(function() {					
+					var leftWidth = j$('#gradebook-results').css('width');
+					j$('#gradebook-results').css('left',leftWidth);	 
+					gradebookResultsLoad();
+					
+					//US 1334: on returning from Section grade Comments page, show bubbles  
+					var currentUrl = window.location.href;
+					if(currentUrl.indexOf('showComments=1')!=-1)
+					{
+						comingFromSGComments = true;
+						toggleComments(true);
+					}
+				});
+				
+				j$("#gradebook-results table tbody tr").click(function(){					
+				   j$(".row-highlight").removeClass('row-highlight');				   
+				   (j$(this).find("span")).each(function(){			  
+					  var e = j$(this);
+					  var studentID = e.attr('class');					  
+					  if(studentID != "letGrade" && studentID != "numGrade" && studentID != "span-ie-border" && studentID != undefined){                     			 
+							j$("." + studentID).each(function(){					   
+								var e = j$(this).closest("tr");
+								j$(e).addClass('row-highlight'); 
+							});
+					   }
+					});
+				});   
+				
+				j$(".gradebook-assignment").cluetip({
+					cluezIndex: 999,
+					local: true,
+					cursor: 'pointer', 
+					clickThrough: true
+				}); 
+
+				</script>
+				
+				
+				<!-- GRADEBOOK -->
+				<div id="gradebook-results" class="gradebook-results">
+				<table cellpadding="0" cellspacing="0" id="gradebookTable">
+				
+				<!-- GRADEBOOK THEAD -->
+					<thead>
+					
+						<!-- By Standards -->
+						<apex:variable value="{!gradebookObj.header}" var="h" rendered="{!gradebookObj.studentWrapperList.size>0&&standardDisplay}">
+							<tr class="header">
+								<th><span class="header-left">Standards</span></th>
+								<apex:repeat value="{!gradebookObj.header.standardWrapperList}" var="stand" id="standrepeat">
+									<th colspan="{!stand.gradeListSize}">
+							 			<apex:outputPanel rendered="{!stand.standard!=null}">
+											<a class="gradebook-assignment" rel="#{!stand.standard}{!stand.assignmentID}" title="{!stand.StandardName}" href="/{!stand.standard}" target="_blank">
+												{!stand.StandardName}
+											</a> 
+											<div id="{!stand.standard}{!stand.assignmentID}" style="display:none; border:0px red solid;">												   
+												<apex:outputtext value="Strand: {!stand.standard.Strand__r.Name}"/>
+												<br/>
+												<apex:outputtext value="Description: {!stand.standard.Long_Text__c}"/>
+										   	</div>							 
+										</apex:outputPanel>		 
+									</th>
+								</apex:repeat>
+							</tr>
+							<tr>
+								<th><span class="header-left">Assignment</span></th>
+								<apex:repeat value="{!gradeBookObj.header.standardWrapperList}" var="stand" id="standrepeat2">
+									<apex:repeat value="{!stand.gradeList}" var="grade" id="graderepeat">
+										<th class="secondChild {!grade.assignment__r.Color__c}" style="width:60px"> 
+										
+												<!--Tooltip-->										   
+											<a class="gradebook-assignment" href="/{!grade.Assignment__c}" title="{!grade.Assignment__r.Name}" target="_blank" rel="#{!grade.id}" >
+												{!grade.Assignment__r.Name_in_Gradebook__c}
+											</a>
+											<div id="{!grade.id}" style="display:none;">
+												<apex:outputtext value="Weight: {!ROUND(grade.Assignment__r.Weighting_Value__c,0)}"/>
+												<br/>
+												<apex:variable value="{!gradebookObj.header}" var="h2" rendered="{!IF(grade.Assignment__r.Possible_Points__c>0,true, false)}">
+													<apex:outputtext value="Points Possible: {!ROUND(grade.Assignment__r.Possible_Points__c,0)}"/>   
+													<br/>
+												</apex:variable>												
+												<apex:outputtext value="Grading Scale: {{!grade.Assignment__r.Picklist_Value__r.Name}" rendered="{!grade.Standard__c==null}"/>
+												<br/>
+												<apex:outputtext value="Grading Scale(standards): {!grade.Assignment__r.Standard_Scale__r.Name}" rendered="{!grade.Standard__c!=null}"/>
+												<!-- US 1240: Short Assignment Description on hover text -->
+												<br/> <br/>
+												<apex:outputText value="{!grade.Assignment__r.Description__c}"/>	  
+											</div>
+											
+										</th>
+									</apex:repeat>
+								</apex:repeat>
+							</tr>
+							<tr>
+							  <th><span class="header-left">Due Date</span></th>
+								 <apex:repeat value="{!gradebookObj.header.standardWrapperList}" var="stand" id="standrepeat3">
+								   <apex:repeat value="{!stand.gradeList}" var="grade" id="graderepeat2">
+									 <th>
+									 	<span class="span-ie-border">
+										 <apex:outputtext value="{0,date,MM/dd}">
+										 <apex:param value="{!grade.Assignment__r.Due_Date__c}"/>
+										 </apex:outputtext>
+										 </span>
+									 </th>
+									</apex:repeat>
+								 </apex:repeat>
+							</tr>
+							<apex:variable value="{!viewReadOnly}" var="vro" rendered="{!!viewReadOnly}">
+							<tr>					   
+							  <th><span class="header-left">Apply Grade</span></th>
+								<apex:repeat value="{!gradebookObj.header.standardWrapperList}" var="stand" id="autorow" rendered="{!!viewReadOnly}">
+									<apex:repeat value="{!stand.gradeList}" var="grade" id="graderepeat2">
+										<th>
+										<span class="span-ie-border">
+											<input type="text" id="copy_{!grade.id}" copycode="{!grade.Standard__c}{!grade.Assignment__c}"/>
+											<a id="copydown" class="apply-score" onclick="copydown(j$(this).prev('#copy_{!grade.id}'));"></a>														
+										</span>
+										</th>
+									</apex:repeat>
+								  </apex:repeat>							
+							</tr>			   
+							</apex:variable>
+						</apex:variable>
+						
+						<!-- By Assignments -->
+						<apex:variable value="{!gradebookObj.header}" var="h1" rendered="{!gradebookObj.studentWrapperList.size>0&&!standardDisplay}"> 
+							<tr>
+								<th><span class="header-left">Assignment</span></th>
+								<apex:repeat value="{!gradeBookObj.header.assignmentWrapperList}" var="assign" id="assignmentrepeat">
+									<th colspan="{!assign.gradeListSize}" class="{!assign.assignment.Color__c}"> 
+									
+											<!--Tooltip-->										   
+										<a class="gradebook-assignment" href="/{!assign.assignment.Id}" title="{!assign.assignment.Name}" target="_blank" rel="#{!assign.assignment.Id}" >
+											{!assign.assignment.Name_in_Gradebook__c}
+										</a>
+										<div id="{!assign.assignment.Id}" style="display:none;">
+											<apex:outputtext value="Weight: {!ROUND(assign.assignment.Weighting_Value__c,0)}"/>
+											<br/>
+											<apex:variable value="{!gradebookObj.header}" var="h2" rendered="{!IF(assign.assignment.Possible_Points__c>0,true, false)}">
+												<apex:outputtext value="Points Possible: {!ROUND(assign.assignment.Possible_Points__c,0)}"/>   
+												<br/>
+											</apex:variable>												
+											<apex:outputtext value="Grading Scale: {!assign.assignment.Picklist_Value__r.Name}" />
+											<br/>
+											<apex:outputtext value="Grading Scale(standards): {!assign.assignment.Standard_Scale__r.Name}" rendered="{!assign.assignment.Standard_Scale__c!=null}"/>
+											<!-- US 1240: Short Assignment Description on hover text -->
+											<br/>
+											<apex:outputText value="{!assign.assignment.Description__c}"/>	  
+										</div>
+									</th>
+								</apex:repeat>
+							</tr>
+							
+							<apex:variable value="{!gradebookObj.bHasStandards}" var="b" rendered="{!IF(standardDisplay||(gradebookObj.bHasStandards&&!standardDisplay), true, false)}">
+							<tr>  
+								<th><span class="header-left">Standards</span></th>				   
+								<apex:repeat value="{!gradebookObj.header.assignmentWrapperList}" var="assign" id="assignmentrepeat2">
+									<apex:repeat value="{!assign.gradeList}" var="grade" id="graderepeat2">
+										<th class="secondChild">
+										<span class="span-ie-border">
+											<apex:outputPanel rendered="{!grade.Standard__c!=null}">
+												<a class="gradebook-assignment" rel="#{!grade.Standard__c}{!grade.Assignment__c}" title="{!grade.Standard__r.Name}" href="/{!grade.Standard__c}" target="_blank">
+													{!grade.Standard__r.Name}
+												</a> 
+												<div id="{!grade.Standard__c}{!grade.Assignment__c}" style="display:none; border:0px red solid;">												   
+													<apex:outputtext value="Strand: {!grade.Standard__r.Strand__r.Name}"/>
+													  <br/>
+												<apex:outputtext value="Description: {!grade.Standard__r.Long_Text__c}"/>
+											   </div>							 
+											</apex:outputPanel>	 
+										</span>
+										</th>
+									</apex:repeat>
+								</apex:repeat>
+							</tr>
+							</apex:variable>
+							
+							<tr>
+							  <th><span class="header-left">Due Date</span></th>
+								 <apex:repeat value="{!gradebookObj.header.assignmentWrapperList}" var="assign" id="assignmentrepeat3">
+								   <apex:repeat value="{!assign.gradeList}" var="grade" id="graderepeat3">
+									 <th>
+									 <span class="span-ie-border">
+											 <apex:outputtext value="{0,date,MM/dd}">
+											 <apex:param value="{!grade.Assignment__r.Due_Date__c}"/>
+											 </apex:outputtext>
+										 </span>
+									 </th>
+									</apex:repeat>
+								 </apex:repeat>
+							</tr>
+							<apex:variable value="{!viewReadOnly}" var="vro" rendered="{!!viewReadOnly}">
+							<tr>					   
+							  <th><span class="header-left">Apply Grade</span></th>
+								<apex:repeat value="{!gradebookObj.header.assignmentWrapperList}" var="assign" id="autorow" rendered="{!!viewReadOnly}">
+									<apex:repeat value="{!assign.gradeList}" var="grade" id="graderepeat2">
+										<th>
+											<span class="span-ie-border">
+												<input type="text" id="copy_{!grade.id}" copycode="{!grade.Standard__c}{!grade.Assignment__c}"/>
+												<a id="copydown" class="apply-score" onclick="copydown(j$(this).prev('#copy_{!grade.id}'));"></a>														
+											</span><!-- /span-ie-border -->
+										</th>
+									</apex:repeat>
+								  </apex:repeat>							
+							</tr>			   
+							</apex:variable>
+						</apex:variable>			 
+					</thead>
+					
+				<!-- GRADEBOOK TBODY -->
+					<tbody>
+					   <apex:variable value="{!1}" var="rowNum" />
+						  <apex:repeat value="{!gradebookObj.studentWrapperList}" var="stud" id="studentrepeat2">
+							  <tr>
+								  <td class="studCol" style="vertical-align:middle;"><span class="{!stud.student.ID}"></span>
+									<apex:outputLink value="/{!stud.student.ID}" target="_blank">
+										{!stud.student.Name}
+									</apex:outputLink>
+								  <apex:outputText title="Attendance (T/A)" style="font-style: normal;font-size: 0.86em;" value=" ({!stud.tardySessions}/{!stud.absentSessions})" rendered="{!stud.totalSessions > 0}" />
+										  <div class="{!stud.sectGradeStyle} student-grade">
+											  <a style="display:none; background-position:{!IF(stud.sectionGrade.Comments_Next_Steps__c==null && stud.sectionGrade.Alternate_Lang_Comments__c==null,'-49px 0px','-33px -16px')};" class="comment-icon sgcomment-icon" href="/apex/Gradebook_SG_Comments?fromAssignment=1&section={!section}&timeid={!baseObj.selectedTimeId}&studentID={!studentFilterId}&assignmentID={!selectedAssignmentID}&retURL=Gradebook" title="{!stud.sectionGrade.Comments_Next_Steps__c}" tabindex="-1">
+											  </a>
+									<apex:outputLink value="/{!stud.sectionGrade.Id}" target="_blank">
+										<!-- DE2418/CASE3917 Salesforce has modified how the ROUND function worked at their end -->
+										 <apex:outputtext styleclass="numGrade" value="{!IF(stud.sectionGrade.Grade__c>=100, 100,ROUND(stud.sectionGrade.Grade__c,1))}"  />
+										<!-- <apex:outputtext styleclass="numGrade" value="{!IF(CEILING(stud.sectionGrade.Grade__c) - stud.sectionGrade.Grade__c > 0.5, FLOOR(stud.sectionGrade.Grade__c), CEILING(stud.sectionGrade.Grade__c))}"/> -->
+										<apex:outputtext styleclass="letGrade" value="{!stud.sectionGrade.Display_Grade_Formula__c}"  style="display: none;"/> 
+										<apex:image style="cursor:pointer;border:0px;" url="{!URLFOR($Resource.Gradebook, '/images/alert.png')}" rendered="{!stud.sectionGrade.Grade_Overridden__c}"/>
+										<!-- US 1335: show bubbles for section grade comments -->
+										<!-- <a style="display:none; background-position:{!IF(stud.sectionGrade.Comments_Next_Steps__c==null && stud.sectionGrade.Alternate_Lang_Comments__c==null,'-49px 0px','-33px -16px')};" class="comment-icon sgcomment-icon" href="/apex/Gradebook_SG_Comments?fromAssignment=1&section={!section}&timeid={!baseObj.selectedTimeId}&studentID={!studentFilterId}&assignmentID={!selectedAssignmentID}&retURL=Gradebook" title="{!stud.sectionGrade.Comments_Next_Steps__c}" tabindex="-1">
+										</a> -->
+									</apex:outputLink>
+									</div>
+									</td>
+									
+								  <!-- By Standards -->
+								  <apex:repeat value="{!stud.standardWrapperList}" var="stand" id="standrepeat" rendered="{!gradebookObj.studentWrapperList.size>0&&standardDisplay}">
+									  <apex:repeat value="{!stand.gradeList}" var="grade" id="graderepeat">
+										  <td align="center" nowrap="nowrap" copycode="{!grade.Standard__c}{!grade.Assignment__c}">
+											  <span class="span-ie-border">
+												  <input class="copydownupdate" value="{!grade.Id}" style="display:none" id="highlight_{!grade.id}"/>
+												  <apex:inputText value="{!grade.Entered_Grade__c}" styleClass="tabCol {!grade.exclude_From_Section_Grade__c} {!grade.Id}" size="2" rendered="{!!grade.Locked_for_Final__c && baseObj.activeSetup.Active__c && !viewReadOnly}" onchange="addtoupdatelist('{!grade.Id}',j$(this).val()); closepop=true;"/>
+												  <apex:outputText value="{!grade.Entered_Grade__c}" styleClass="{!grade.exclude_From_Section_Grade__c}" rendered="{!grade.Locked_for_Final__c || !baseObj.activeSetup.Active__c || viewReadOnly}"/>
+												  <a style="display:none; background-position:{!IF(grade.Comment__c==null,'-49px 0px','-33px -16px')};" class="comment-icon" href=""  id="{!grade.Id}" onclick="queryComment(this);return false;" tabindex="-1">
+	<!--
+													  <apex:image styleclass="bubble_b{!grade.Id}" style="cursor:pointer;border:0px;display:{!IF(grade.Comment__c==null,'inline','none')};" url="{!URLFOR($Resource.Gradebook, '/images/commentbubble.png')}"/>			   
+													  <apex:image styleclass="bubble_g{!grade.Id}" style="cursor:pointer;border:0px;display:{!IF(grade.Comment__c==null,'none','inline')};"  url="{!URLFOR($Resource.Gradebook, '/images/commentbubble_green.png')}"/>			 
+	-->
+												  </a>
+							 				  </span><!-- /span-ie-border -->
+											</td>
+									  </apex:repeat>
+								  </apex:repeat>	
+								  							  
+								  <!-- By Assignments -->
+								  <apex:repeat value="{!stud.assignmentWrapperList}" var="assign" id="assignmentrepeat3" rendered="{!gradebookObj.studentWrapperList.size>0&&!standardDisplay}">
+									  <apex:repeat value="{!assign.gradeList}" var="grade" id="graderepeat2">
+										  <td align="center" nowrap="nowrap" copycode="{!grade.Standard__c}{!grade.Assignment__c}">
+											  <span class="span-ie-border">
+											  <input class="copydownupdate" value="{!grade.Id}" style="display:none" id="highlight_{!grade.id}"/>
+											  <apex:inputText value="{!grade.Entered_Grade__c}" styleClass="tabCol {!grade.exclude_From_Section_Grade__c} {!grade.Id}" size="2" rendered="{!(!grade.Locked_for_Final__c && baseObj.activeSetup.Active__c && !viewReadOnly)}" onchange="addtoupdatelist('{!grade.Id}',j$(this).val()); closepop=true;"/>
+											  <apex:outputText value="{!grade.Entered_Grade__c}" styleClass="{!grade.exclude_From_Section_Grade__c}" rendered="{!(grade.Locked_for_Final__c || !baseObj.activeSetup.Active__c || viewReadOnly)}"/>
+											  <a style="display:none; background-position:{!IF(grade.Comment__c==null,'-49px 0px','-33px -16px')};" class="comment-icon" href=""  id="{!grade.Id}" onclick="queryComment(this);return false;" tabindex="-1">
+<!--
+												  <apex:image styleclass="bubble_b{!grade.Id}" style="cursor:pointer;border:0px;display:{!IF(grade.Comment__c==null,'inline','none')};" url="{!URLFOR($Resource.Gradebook, '/images/commentbubble.png')}"/>			   
+												  <apex:image styleclass="bubble_g{!grade.Id}" style="cursor:pointer;border:0px;display:{!IF(grade.Comment__c==null,'none','inline')};"  url="{!URLFOR($Resource.Gradebook, '/images/commentbubble_green.png')}"/>			 
+-->
+											  </a>   
+										  </span><!-- /span-ie-border -->
+										  </td>
+									  </apex:repeat>
+								  </apex:repeat>
+							  </tr>
+							<apex:variable var="rowNum" value="{!rowNum+1}"/>
+						  </apex:repeat>
+					</tbody>
+				</table>
+		</div>		 
+	</apex:variable>
+	</div>  <!-- END .gradebook_results_wrapper --> 
+	
+				
+				<!-- DE1723/DE1761 -->
+				<apex:outputPanel rendered="{!!viewReadOnly}">				
+					<apex:variable value="{!gradebookObj.header}" var="h2" rendered="{!IF(gradebookObj.studentWrapperList.size>0 && baseObj.activeSetup.Active__c,true,false) && !viewReadOnly}" > 
+						<input class="black_btn" style="margin-top:25px;" type="button" onclick="updatelistcheck(); scrollVertial();" value="Submit" title="Click to submit and save your entered grades." />
+					</apex:variable>
+				
+					<apex:variable value="{!gradebookObj.header}" var="h2" rendered="{!IF(gradebookObj.studentWrapperList.size>0 && baseObj.activeSetup.Active__c,true,false)}">
+						<input class="red_btn" style="margin-top:25px; float:left; cursor:pointer;" type="button"
+										onclick="closepop=false;  
+										if (confirm('Are you sure you want to lock your grades for this period?')){ 
+											showProgressBar('Processing...');
+											lockAllGrades();
+										}" 
+										value="Lock Grades" ></input>
+					</apex:variable>
+					 <div class="clear_fix">&nbsp;</div>
+				</apex:outputPanel>
+				
+				 <apex:variable value="{!section}" var="s" rendered="{!IF(gradebookObj.studentWrapperList.size>0 && baseObj.activeSetup.Active__c,true,false)}">
+				    <h3>Legend</h3> 
+                    <div class="filter_form">
+                    <center>
+                    <input data-text="hidden" style="height:20px;width:20px;" class="ontrack" />  greater than {!baseObj.dPassingGrade} &nbsp;
+                        <input data-text="hidden" style="height:20px;width:20px;" class="passing" /> {!baseObj.dFailingGrade} - {!baseObj.dPassingGrade} &nbsp;
+                        <input data-text="hidden" style="height:20px;width:20px;" class="failing" /> less than  {!baseObj.dFailingGrade}
+    				
+	                <div class="comment-legend">
+	                    <span class="comment-legend-no-comments">No Comments</span>
+	                    <span>|</span>
+	                    <span class="comment-legend-comments">Comments</span>
+	                </div>
+                	</center>
+                </div>
+				</apex:variable>
+				
+		</apex:outputPanel>
+
+ 		<!-- US3131 -->
+		<apex:actionFunction name="renderPointsFieldJS" action="{!renderPointsField}" rerender="quickMessages, quickBasic, advanceOptions" onBeforeDOMUpdate="isAdvOptionsVisable = j$('[id$=advanceOptions]').is(':visible');" onComplete="setTimeout('hideProgressBar()', 500); datefix(); if(!isAdvOptionsVisable)j$('[id$=advanceOptions]').hide();"/>
+		<apex:actionFunction name="rerenderNewQuickAssignmentJS" action="{!initializeQuickCreateAssignment}" onComplete="datefix(); resetTables(); j$('[id$=advanceOptions]').hide(); setTimeout('hideProgressBar()',500); " rerender="quickBasic, quickStandards, advanceOptions, submitButtons" />
+		
+		<div id="dialog-modal" title="Quick Create Assignment">
+			<apex:outputPanel id="quickCreateAssignment" style="display:none">
+			<apex:outputPanel id="quickCreateAssignmentInner" >
+				<script>j$('[id$=advanceOptions]').hide();</script>
+				<style>
+					.pbBody { padding-top:0px !important; } 
+				</style>
+					<apex:outputpanel id="quickMessages">
+			            <apex:pageMessages />
+			    </apex:outputpanel>
+				<h2>Basic Details</h2>
+				<apex:outputPanel id="quickBasic" >
+					<apex:pageBlock >	
+						<apex:pageBlockSection columns="2">
+							<!-- Place things in here -->
+							<apex:pageBlockSectionItem >
+								<apex:outputLabel value="Assignment Name" style="font-weight:bold" />
+								<apex:outputPanel layout="block" styleClass="requiredInput">
+									<apex:outputPanel layout="block" styleClass="requiredBlock"/>
+									<apex:inputText value="{!assignmentWrapper.assignmentName}">
+										<apex:actionSupport event="onchange" action="{!populateGradebookName}" rerender="advanceOptions" onBeforeDOMUpdate="isAdvOptionsVisable = j$('[id$=advanceOptions]').is(':visible');" onComplete="if(!isAdvOptionsVisable)j$('[id$=advanceOptions]').hide();"/>
+									</apex:inputText>
+								</apex:outputPanel>
+							</apex:pageBlockSectionItem>
+							<apex:pageBlockSectionItem >
+								<apex:outputLabel value="Course" style="font-weight:bold" />
+								<apex:outputText value="{!assignmentWrapper.courseName}" />
+							</apex:pageBlockSectionItem>
+							
+							<apex:pageBlockSectionItem >
+								<apex:outputLabel value="Assignment Type" style="font-weight:bold" />
+								<apex:outputPanel layout="block" styleClass="requiredInput">
+									<apex:outputPanel layout="block" styleClass="requiredBlock"/>								
+									<apex:selectList value="{!assignmentWrapper.assignmentType}" multiSelect="false" size="1">
+										<apex:selectOptions value="{!assignmentTypeOptions}" />
+										<apex:actionSupport event="onchange" action="{!setDefaultAssignmentWeighting}" rerender="quickMessages, defaultWeighting" />
+									</apex:selectList>
+								</apex:outputPanel>
+							</apex:pageBlockSectionItem>
+							
+							<apex:pageBlockSectionItem >
+								<apex:outputLabel value="Section" style="font-weight:bold" />
+								<apex:outputText value="{!gradeBookObj.sectionName}" />
+							</apex:pageBlockSectionItem>
+							
+							<apex:pageBlockSectionItem >
+								<apex:outputLabel value="Due Date" style="font-weight:bold" />
+								<apex:outputPanel layout="block" styleClass="requiredInput">
+									<apex:outputPanel layout="block" styleClass="requiredBlock"/>								
+									<apex:inputText id="dueDate" value="{!dueDate}" styleClass="datepicker" />
+								</apex:outputPanel>
+							</apex:pageBlockSectionItem>							
+							
+							<apex:pageBlockSectionItem >
+								<apex:outputLabel value="Reporting Period" style="font-weight:bold" />
+								<apex:outputText value="{!currentReportingPeriodName}" />
+							</apex:pageBlockSectionItem>
+							
+							<!-- testing -->
+							<apex:pageBlockSectionItem rendered="{!rGradeScale}">
+								<apex:outputLabel value="Grade Scale" style="font-weight:bold" />
+								<apex:outputPanel layout="block" styleClass="requiredInput">
+									<apex:outputPanel layout="block" styleClass="requiredBlock" rendered="{!rGradeScale}"/>								
+									<apex:selectList value="{!assignmentWrapper.gradeScale}" multiSelect="false" size="1" rendered="{!rGradeScale}" onChange="showProgressBar('Please Wait...'); renderPointsFieldJS();">
+										<apex:selectOption itemValue="" itemLabel="-Select One-"/>
+										<apex:selectOptions value="{!gradeScaleOptions}" />
+									</apex:selectList>
+								</apex:outputPanel>
+							</apex:pageBlockSectionItem>
+							<apex:pageBlockSectionItem rendered="{!!rGradeScale}">
+								<!-- substitution block to keep form -->
+							</apex:pageBlockSectionItem>								
+							
+
+							<apex:pageBlockSectionItem id="pointsField">
+								<apex:outputLabel value="Points" style="font-weight:bold" rendered="{!rPoints}"/>
+								<apex:outputPanel layout="block" styleClass="requiredInput" rendered="{!rPoints}">
+									<apex:outputPanel layout="block" styleClass="requiredBlock" rendered="{!rPoints}"/>									
+									<apex:inputText value="{!assignmentWrapper.assignmentPossiblePoints}" rendered="{!rPoints}"/>
+								</apex:outputPanel>
+							</apex:pageBlockSectionItem>
+							
+							<apex:pageBlockSectionItem rendered="{!!rPoints && rStandardScale}">
+								<!-- substitution block to keep form -->
+							</apex:pageBlockSectionItem>
+			
+							<apex:pageBlockSectionItem rendered="{!rStandardScale}">
+								<apex:outputLabel value="Standard Grade Scale" style="font-weight:bold" />
+								<apex:selectList value="{!assignmentWrapper.standardGradeScale}" multiSelect="false" size="1">
+									<apex:selectOption itemValue="" itemLabel="-Select One-"/>
+									<apex:selectOptions value="{!standardScaleOptions}" />
+								</apex:selectList>
+							</apex:pageBlockSectionItem>
+						</apex:pageBlockSection>		
+					</apex:pageBlock>
+				</apex:outputPanel>
+				
+				<apex:outputPanel id="quickStandards">
+					<apex:outputPanel rendered="{!rStandards}">
+						<h2>Standards</h2>
+						<apex:pageBlock rendered="{!rStandards}">
+							<apex:inputText value="{!searchFeature.SOSLsearch}" style="margin:0 2px 0 0;"/>
+							<apex:actionStatus id="searchStatus">
+								<apex:facet name="stop">
+									<apex:commandButton value="Search" style="margin:2px 2px 2px 0;" status="searchStatus" action="{!searchFeature.SOSLsearchMethod}" rerender="quickMessages, searchStandardResultsTable" onComplete="resetTables();"/>
+								</apex:facet>
+								<apex:facet name="start">
+									<apex:commandButton value="Searching" style="margin:2px 2px 2px 0;" status="searchStatus" disabled="true" rerender="quickMessages, searchStatus" rendered="true" />
+								</apex:facet>
+							</apex:actionStatus>
+									
+							<apex:outputPanel id="searchStandardResultsTable" >
+								<apex:dataTable styleClass="tablesorter" value="{!searchFeature.searchStandardResults}" var="ss" width="100%">
+									<apex:column >
+										<apex:facet name="header">Select All <input type="checkbox" style="margin:0 10px 0 0;" onclick="selectAll(this,'standardCb')" /></apex:facet>
+										<apex:inputCheckBox styleClass="standardCb" value="{!ss.selected}" />
+									</apex:column>
+									<!-- alternative -->
+									<apex:column >
+										<apex:facet name="header">Include in Standard Grade</apex:facet>
+										<apex:inputCheckBox value="{!ss.includeStandardGrade}" />
+									</apex:column>
+									<apex:column >
+										<apex:facet name="header">Attribute</apex:facet>
+										<apex:outputText value="{!ss.standard.Attribute__c}" />
+									</apex:column>
+									<apex:column >
+										<apex:facet name="header">Standard Name</apex:facet>
+										<apex:outputLink value="/{!ss.standard.ID}">{!ss.standard.Name}</apex:outputLink>
+									</apex:column>
+									<apex:column >
+										<apex:facet name="header">Strand</apex:facet>
+										<apex:outputLink value="/{!ss.standard.Strand__c}">{!ss.standard.Strand__r.Name}</apex:outputLink>
+									</apex:column>
+									<apex:column >
+										<apex:facet name="header">Description</apex:facet>
+										<apex:outputText value="{!ss.standard.Long_Text__c}" />
+									</apex:column>
+									<apex:column >
+										<apex:facet name="header">Level</apex:facet>
+										<apex:outputText value="{!ss.standard.Level__c}" />
+									</apex:column>					
+								</apex:dataTable>
+							</apex:outputPanel>
+						</apex:pageBlock>
+					</apex:outputPanel>
+				</apex:outputPanel>
+				
+				<a onclick="j$('[id$=advanceOptions]').toggle();"><h2><u>Advanced Details</u></h2></a>
+				<apex:outputPanel id="advanceOptions">				
+					<apex:pageBlock >
+								<div style="font-weight:bold; margin-bottom:4px; margin-top:4px; font-size:91%;" >Short Description
+									<span class="helpButton"  id="shortDesc-_help" style="z-index: 1000;">
+										<img src="/s.gif" class="helpOrb" />
+										<script type="text/javascript">
+											sfdcPage.setHelp('shortDesc','This description is limited to 255 characters.  This information will display in the Portal (if applicable) , PGV (if applicable), and in Gradebook as hover text over the assignment.');
+										</script>
+									</span>
+								</div>
+								<apex:inputTextArea value="{!assignmentWrapper.assignmentShortDescription}" id="assignmentDescription" onkeyup="
+																															var value = j$(this).val();
+										
+																															if(value.length>=255){
+																																alert('Sorry, but the system is currently limited to 255 characters for the short description field.');
+																																j$(this).val(value.substring(0,254));
+																															}
+																															"
+																															onblur="
+																															var value = j$(this).val();
+										
+																															if(value.length>=255){
+																																alert('Sorry, but the system is currently limited to 255 characters for the short description field.');
+																																j$(this).val(value.substring(0,254));
+																															}"
+																															style="height:50px; width:840px;"/>
+						<br></br>
+
+						<div style="font-weight:bold; margin-bottom:4px; margin-top:4px; font-size:91%;" >Long Description
+							<span class="helpButton"  id="identifier-_help">
+								<img src="/s.gif" class="helpOrb" />
+								<script type="text/javascript">
+									sfdcPage.setHelp('identifier','This description is limited to 32000 characters. This information will display in the Assignment Library and on the Assignment Details page.');
+								</script>
+							</span>
+						</div>
+						<apex:inputTextArea value="{!assignmentWrapper.assignmentLongDescription}" id="courseLongDesc" style="height:50px; width:840px;"/>
+						
+						<br></br>	
+						<apex:pageBlockSection columns="2">
+							<apex:pageBlockSectionItem helpText="{!$ObjectType.Assignment__c.fields.Name_in_Gradebook__c.inlineHelpText}">
+								<apex:outputLabel value="Name in Gradebook" style="font-weight:bold" />
+								<apex:inputText value="{!assignmentWrapper.gradebookName}" />
+							</apex:pageBlockSectionItem>
+							<apex:pageBlockSectionItem helpText="{!$ObjectType.Assignment__c.fields.Include_in_Final_Grade__c.inlineHelpText}">
+								<apex:outputLabel value="Include in final grade?" style="font-weight:bold" />
+								<apex:inputCheckBox value="{!assignmentWrapper.includeInFinalGrade}" /> 
+							</apex:pageBlockSectionItem>							
+							<apex:pageBlockSectionItem helpText="{!$ObjectType.Assignment__c.fields.Media_Name__c.inlineHelpText}">
+								<apex:outputLabel value="Media Name" style="font-weight:bold" />
+								<apex:inputText value="{!assignmentWrapper.mediaName}" />
+							</apex:pageBlockSectionItem>
+							<apex:pageBlockSectionItem helpText="{!$ObjectType.Assignment__c.fields.Media_Source__c.inlineHelpText}">
+								<apex:outputLabel value="Media Source" style="font-weight:bold" />
+								<apex:inputText value="{!assignmentWrapper.mediaSource}" />
+							</apex:pageBlockSectionItem>
+							<apex:pageBlockSectionItem helpText="{!$ObjectType.Assignment__c.fields.Color__c.inlineHelpText}">
+								<apex:outputLabel value="Color" style="font-weight:bold" />
+								<apex:selectList value="{!assignmentWrapper.color}" multiSelect="false" size="1">
+									<apex:selectOptions value="{!colorOptions}" />
+								</apex:selectList>
+							</apex:pageBlockSectionItem>
+							<apex:pageBlockSectionItem helpText="{!$ObjectType.Assignment__c.fields.Show_in_portal__c.inlineHelpText}">
+								<apex:outputLabel value="Show in Portal" style="font-weight:bold" />
+								<apex:inputCheckbox value="{!assignmentWrapper.showInPortal}" />
+							</apex:pageBlockSectionItem>							
+							<apex:pageBlockSectionItem rendered="{!rIntegers}" helpText="{!$ObjectType.Assignment__c.fields.Weighting_Value__c.inlineHelpText}">
+								<apex:outputLabel value="Weighting Value" style="font-weight:bold" />
+								<apex:selectList id="defaultWeighting" value="{!assignmentWrapper.assignmentWeighting}" multiSelect="false" size="1">
+									<apex:selectOptions value="{!integerAssignmentWeightingOptions}" />
+								</apex:selectList>
+							</apex:pageBlockSectionItem>
+							<apex:pageBlockSectionItem >
+								<apex:outputLabel value="Attach Assignment?" style="font-weight:bold" />
+								<apex:inputCheckBox value="{!assignmentWrapper.attachAssignment}" />
+							</apex:pageBlockSectionItem>
+						</apex:pageBlockSection>
+					</apex:pageBlock>
+				</apex:outputPanel>	
+				
+				<apex:outputPanel id="submitButtons" >
+					<apex:outputPanel >
+						<br></br>
+						<apex:commandButton styleClass="black_btn" value="Submit" action="{!submit}" onClick="showProgressBar('Submitting...')" 
+						onComplete="if({!closeQuickCreate}) {
+										goJS(); 
+										j$('#dialog-modal').dialog('close'); 
+										if({!assignmentWrapper.attachAssignment}) { 
+											if(window.location.href.indexOf('schoolforce')!=-1) {
+												window.open('https://{!JSENCODE(domain)}/apex/SchoolForce__Gradebook_AttachAssignment?id={!JSENCODE(assignmentWrapper.assignmentLibrary.ID)}&aName={!JSENCODE(assignmentWrapper.assignmentName)}&createNew=false&fromGradebook={!JSENCODE(fromGradebook)}&fromQuick=true','targetWindow','scrollbars=yes,resizable=yes,width=600,height=800');
+											}
+											else {
+												window.open('https://{!JSENCODE(domain)}/apex/Gradebook_AttachAssignment?id={!JSENCODE(assignmentWrapper.assignmentLibrary.ID)}&aName={!JSENCODE(assignmentWrapper.assignmentName)}&createNew=false&fromGradebook={!JSENCODE(fromGradebook)}&fromQuick=true','targetWindow','scrollbars=yes,resizable=yes,width=600,height=800');
+											}
+										}
+									} 
+									else{
+										setTimeout('hideProgressBar()', 500);
+									}" rerender="quickMessages, thefilters"/>
+						
+						<apex:commandButton styleClass="black_btn" value="Submit and New" action="{!submitAndNew}" onClick="showProgressBar('Submitting...')" 
+						onComplete="if({!quickCreateNew}) {
+										rerenderNewQuickAssignmentJS(); 
+										if({!assignmentWrapper.attachAssignment}) { 
+											if(window.location.href.indexOf('schoolforce')!=-1) {
+												window.open('https://{!JSENCODE(domain)}/apex/SchoolForce__Gradebook_AttachAssignment?id={!JSENCODE(assignmentWrapper.assignmentLibrary.ID)}&aName={!JSENCODE(assignmentWrapper.assignmentName)}&createNew=false&fromGradebook={!JSENCODE(fromGradebook)}&fromQuick=true','targetWindow','scrollbars=yes,resizable=yes,width=600,height=800');
+											}
+											else {
+												window.open('https://{!JSENCODE(domain)}/apex/Gradebook_AttachAssignment?id={!JSENCODE(assignmentWrapper.assignmentLibrary.ID)}&aName={!JSENCODE(assignmentWrapper.assignmentName)}&createNew=false&fromGradebook={!JSENCODE(fromGradebook)}&fromQuick=true','targetWindow','scrollbars=yes,resizable=yes,width=600,height=800');
+											}
+										}
+									} 
+									else{
+										setTimeout('hideProgressBar()', 500);
+									}" rerender="quickMessages, thefilters" />
+									
+						<apex:commandButton styleClass="black_btn" value="Cancel" onClick="j$('#dialog-modal').dialog('close');" immediate="true" rerender="themsgs"/>
+					</apex:outputPanel>
+				</apex:outputPanel>
+				
+			</apex:outputPanel>
+			</apex:outputPanel>
+		</div> 		
+
+<apex:actionFunction action="{!retrieveStudentGrades}" oncomplete="j$('.true').attr('title','This grade has been dropped from the section grade');j$('.true').css({'background-color':'red'}); setTimeout('hideProgressBar()',300); if(comingFromSGComments) {bShowComment = true; comingFromSGComments = false} else {bShowComment=false;} j$('#group').css('visibility','visible');" name="goJS" rerender="theBlockPanel,themsgs" /> 
+
+</apex:form>
+ <script>
+    
+   j$('body').keydown(function(event){
+     if (event.which == 13){
+         return false;
+     }
+     else {
+         return true;
+     }
+    });
+</script>
+</div>
+</apex:page>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <aggregates>
+        <calculatedFormula>Student_Section__c.Student__c.Count__c:SUM</calculatedFormula>
+        <datatype>number</datatype>
+        <developerName>FORMULA1</developerName>
+        <downGroupingContext>Program__c.Sections__r$School__c</downGroupingContext>
+        <isActive>true</isActive>
+        <isCrossBlock>false</isCrossBlock>
+        <masterLabel>School Unique Student Count</masterLabel>
+        <scale>0</scale>
+    </aggregates>
+    <aggregates>
+        <calculatedFormula>Student_Section__c.Student__c.Count__c:SUM</calculatedFormula>
+        <datatype>number</datatype>
+        <developerName>FORMULA3</developerName>
+        <downGroupingContext>Program__c$Name</downGroupingContext>
+        <isActive>true</isActive>
+        <isCrossBlock>false</isCrossBlock>
+        <masterLabel>Program Unique Student Count</masterLabel>
+        <scale>0</scale>
+    </aggregates>
+    <aggregates>
+        <calculatedFormula>Student_Section__c.Student__c.Count__c:SUM</calculatedFormula>
+        <datatype>number</datatype>
+        <developerName>FORMULA4</developerName>
+        <downGroupingContext>GRAND_SUMMARY</downGroupingContext>
+        <isActive>true</isActive>
+        <isCrossBlock>false</isCrossBlock>
+        <masterLabel>Total Unique Student Count</masterLabel>
+        <scale>0</scale>
+    </aggregates>
+    <columns>
+        <field>Program__c.Sections__r.Student_Section__r$Student_Name__c</field>
+    </columns>
+    <columns>
+        <field>Program__c.Sections__r$Name</field>
+    </columns>
+    <columns>
+        <field>Program__c.Sections__r$Location__c</field>
+    </columns>
+    <columns>
+        <field>Program__c.Sections__r.Student_Section__r$Name</field>
+    </columns>
+    <description>demonstrates the Power of One to attain unique counts various grouping levels</description>
+    <filter>
+        <criteriaItems>
+            <column>Program__c.Sections__r$Location__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>contains</operator>
+            <value>Rhode</value>
+        </criteriaItems>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Program__c.Sections__r$School__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Program__c$Name</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Program__c.Sections__r$Auto_Name__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Power of One Sample - CSD</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Programs_Sections_Students__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>false</showGrandTotal>
+    <showSubTotals>false</showSubTotals>
+    <timeFrameFilter>
+        <dateColumn>Program__c$CreatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

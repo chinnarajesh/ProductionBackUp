@@ -1,0 +1,74 @@
+<apex:page controller="Assessment_TypeWizard" tabstyle="Assesment__c">
+<c:jQueryInit bDataTables="true" bLoadingPanel="false"/>
+	<apex:includeScript value="{!URLFOR($Resource.jWerty, '/jWerty/jwerty.js')}" />
+	<apex:stylesheet value="{!$Resource.New_Core_UX}"/>
+	<script type="text/javascript">
+		var $ = jQuery.noConflict();
+		
+		function resetDataTables(){ 
+	    	$(".tablesorter").dataTable( {
+				"sScrollY": "200px",
+	            "bLengthChange": false,
+	            "bFilter": false,
+	            "bInfo": false,
+	            "aoColumnDefs": [{ "sWidth": "100px", "aTargets": [ 0 ]}],
+	            "bAutoWidth": false,
+	            "bSort" :true,
+	            "bDestroy": true,
+	            "bPaginate": false,
+	            "bScrollCollapse": true,
+	        	"bJQueryUI": true,
+	        	iDisplayLength : 25,
+	        	"asStripClasses": [ 'odd', 'even' ]
+	        });
+	        $(".tablesorter").removeClass(".tablesorter");
+	    }
+	    
+	    jwerty.key('enter',false);
+	    
+	    function confirmYearChange(){
+	    	var change = confim("Changing the year will cause all students to be removed from the group. Are you sure you want to change the year?");
+	    	if(change)
+	    		return true;
+	    	return false;
+	    }
+	</script>
+	<apex:form id="theform">
+		<apex:outputPanel id="outerPanel">
+			<apex:pageblock >
+				<apex:outputPanel id="innerPanel">
+					<h3>{!IF(assessmentType.Id == null, 'New Assessment Type', assessmentType.Name)}</h3>
+					<div class="section_content">
+						<apex:PageBlockSection columns="2" collapsible="false">
+							<apex:inputField value="{!assessmentType.Name}" label="Assessment Name"/>
+							<apex:inputField value="{!assessmentType.Indicator_Area__c}" label="Indicator Area"/>
+							<apex:inputField value="{!assessmentType.Show_On_Report_Card__c}" label="Show On Report Card?"/>
+							<apex:inputField value="{!assessmentType.Show_On_Transcript__c}" label="Show On Transcript?"/>
+							<apex:inputField value="{!assessmentType.Year_over_year__c}" label="Show Year Over Year?"/>
+						</apex:PageBlockSection>
+						<p></p>
+						<h3>Available Fields</h3>
+						<div class="section_content">
+							<apex:PageBlockSection columns="1" collapsible="false">
+								<apex:datatable styleclass="tablesorter" title="available Fields" value="{!assessmentFieldSet}" var="a">
+									<apex:column headerValue="Add?" >
+					                    <apex:inputCheckbox styleclass="courseCb" value="{!a.selected}" />
+					                </apex:column>
+					                <apex:column headerValue="Field Name">
+					                    {!a.labelName}
+					                </apex:column>
+								</apex:datatable>
+							</apex:PageBlockSection>
+						</div>
+						<apex:commandButton value="Cancel" action="{!cancel}" styleclass="black_btn"/>
+						<apex:commandButton value="Save" action="{!save}" styleclass="black_btn"/>
+						<div class="clear_fix">&nbsp;</div>
+					</div>
+				</apex:outputPanel>
+			</apex:pageblock>
+			<script>
+				resetDataTables();
+			</script>
+		</apex:outputPanel>
+	</apex:form>
+</apex:page>
