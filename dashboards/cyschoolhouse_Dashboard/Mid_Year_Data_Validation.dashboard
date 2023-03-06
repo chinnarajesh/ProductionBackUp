@@ -9,34 +9,37 @@
             <columnIndex>0</columnIndex>
             <dashboardComponent>
                 <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
-                <chartAxisRange>Auto</chartAxisRange>
-                <chartSummary>
-                    <axisBinding>y</axisBinding>
-                    <column>RowCount</column>
-                </chartSummary>
-                <componentType>Column</componentType>
-                <decimalPrecision>-1</decimalPrecision>
-                <displayUnits>Auto</displayUnits>
-                <drillEnabled>false</drillEnabled>
-                <drillToDetailEnabled>false</drillToDetailEnabled>
-                <enableHover>false</enableHover>
-                <expandOthers>false</expandOthers>
+                <componentType>FlexTable</componentType>
+                <flexComponentProperties>
+                    <decimalPrecision>-1</decimalPrecision>
+                    <flexTableColumn>
+                        <reportColumn>Setup__c.School__c.Site__c</reportColumn>
+                        <showSubTotal>false</showSubTotal>
+                        <showTotal>false</showTotal>
+                        <type>detail</type>
+                    </flexTableColumn>
+                    <flexTableColumn>
+                        <reportColumn>Setup__c.School__c.Name</reportColumn>
+                        <showSubTotal>false</showSubTotal>
+                        <showTotal>false</showTotal>
+                        <type>detail</type>
+                    </flexTableColumn>
+                    <flexTableSortInfo>
+                        <sortColumn>Setup__c.School__c.Site__c</sortColumn>
+                        <sortOrder>1</sortOrder>
+                    </flexTableSortInfo>
+                    <hideChatterPhotos>true</hideChatterPhotos>
+                </flexComponentProperties>
                 <footer>https://cityyear.sharepoint.com/sites/impactanalyticscommunity/SitePages/Data-Validation-Guide.aspx#%E2%98%90-confirm-cy-schoolforce-setup-is-complete-for-each-school</footer>
-                <groupingColumn>Setup__c$School__c.Site__c</groupingColumn>
                 <groupingSortProperties>
                     <groupingSorts>
                         <groupingLevel>g1</groupingLevel>
                         <inheritedReportGroupingSort>r</inheritedReportGroupingSort>
                     </groupingSorts>
                 </groupingSortProperties>
-                <header>Complete the CY SchoolForce Setup process for these schools</header>
-                <legendPosition>Bottom</legendPosition>
+                <header>Complete CY SchoolForce Setup process for these schools</header>
                 <report>cyschoolhouse_Validation_Reports/Incomplete_CY_SchoolForce_Setup_Schools</report>
-                <showPercentage>false</showPercentage>
-                <showValues>false</showValues>
-                <sortBy>RowLabelAscending</sortBy>
                 <title>Should be blank</title>
-                <useReportChart>false</useReportChart>
             </dashboardComponent>
             <rowIndex>0</rowIndex>
             <rowSpan>8</rowSpan>
@@ -104,7 +107,7 @@
                         <inheritedReportGroupingSort>r</inheritedReportGroupingSort>
                     </groupingSorts>
                 </groupingSortProperties>
-                <header>Check that these intervention sessions are accurately showing how long they were</header>
+                <header>Very short sessions - fix if they&apos;re inaccurate</header>
                 <legendPosition>Bottom</legendPosition>
                 <report>cyschoolhouse_Validation_Reports/Low_Intervention_Session_Length</report>
                 <showPercentage>false</showPercentage>
@@ -119,6 +122,159 @@
         <dashboardGridComponents>
             <colSpan>4</colSpan>
             <columnIndex>0</columnIndex>
+            <dashboardComponent>
+                <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
+                <chartAxisRange>Auto</chartAxisRange>
+                <chartSummary>
+                    <axisBinding>y</axisBinding>
+                    <column>RowCount</column>
+                </chartSummary>
+                <componentType>BarGrouped</componentType>
+                <decimalPrecision>-1</decimalPrecision>
+                <displayUnits>Auto</displayUnits>
+                <drillEnabled>false</drillEnabled>
+                <drillToDetailEnabled>false</drillToDetailEnabled>
+                <enableHover>false</enableHover>
+                <expandOthers>false</expandOthers>
+                <footer>https://cityyear.sharepoint.com/sites/impactanalyticscommunity/SitePages/Data-Validation-Guide.aspx#%E2%98%90-confirm-focus-list-student-totals-match-your-expectations</footer>
+                <groupingColumn>Account$Name</groupingColumn>
+                <groupingColumn>Account.Sections__r$Indicator_Area__c</groupingColumn>
+                <groupingSortProperties>
+                    <groupingSorts>
+                        <groupingLevel>g1</groupingLevel>
+                        <sortOrder>a</sortOrder>
+                    </groupingSorts>
+                    <groupingSorts>
+                        <groupingLevel>g2</groupingLevel>
+                        <sortOrder>a</sortOrder>
+                    </groupingSorts>
+                </groupingSortProperties>
+                <header>Check if any students enrolled in sections need indicator area assignments</header>
+                <legendPosition>Right</legendPosition>
+                <report>cyschoolhouse_Validation_Reports/IA_Assignment_Check_TEST</report>
+                <showPercentage>false</showPercentage>
+                <showValues>true</showValues>
+                <sortBy>RowLabelAscending</sortBy>
+                <title>May or may not be blank</title>
+                <useReportChart>false</useReportChart>
+            </dashboardComponent>
+            <rowIndex>8</rowIndex>
+            <rowSpan>16</rowSpan>
+        </dashboardGridComponents>
+        <dashboardGridComponents>
+            <colSpan>4</colSpan>
+            <columnIndex>4</columnIndex>
+            <dashboardComponent>
+                <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
+                <chartAxisRange>Auto</chartAxisRange>
+                <chartSummary>
+                    <axisBinding>y</axisBinding>
+                    <column>RowCount</column>
+                </chartSummary>
+                <componentType>Column</componentType>
+                <decimalPrecision>-1</decimalPrecision>
+                <displayUnits>Auto</displayUnits>
+                <drillEnabled>false</drillEnabled>
+                <drillToDetailEnabled>false</drillToDetailEnabled>
+                <enableHover>false</enableHover>
+                <expandOthers>false</expandOthers>
+                <footer>https://cityyear.sharepoint.com/sites/impactanalyticscommunity/SitePages/Data-Validation-Guide.aspx#%E2%98%90-check-for-section-enrollment-or-exit-dates-that-may-not-reflect-reality</footer>
+                <groupingColumn>Account$Name</groupingColumn>
+                <groupingSortProperties>
+                    <groupingSorts>
+                        <groupingLevel>g1</groupingLevel>
+                        <inheritedReportGroupingSort>r</inheritedReportGroupingSort>
+                    </groupingSorts>
+                </groupingSortProperties>
+                <header>Fix inaccurate student enrollment dates</header>
+                <legendPosition>Bottom</legendPosition>
+                <report>cyschoolhouse_Validation_Reports/Weird_Dates</report>
+                <showPercentage>false</showPercentage>
+                <showValues>false</showValues>
+                <sortBy>RowLabelAscending</sortBy>
+                <title>Should be blank</title>
+                <useReportChart>false</useReportChart>
+            </dashboardComponent>
+            <rowIndex>8</rowIndex>
+            <rowSpan>8</rowSpan>
+        </dashboardGridComponents>
+        <dashboardGridComponents>
+            <colSpan>4</colSpan>
+            <columnIndex>8</columnIndex>
+            <dashboardComponent>
+                <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
+                <chartAxisRange>Auto</chartAxisRange>
+                <chartSummary>
+                    <axisBinding>y</axisBinding>
+                    <column>RowCount</column>
+                </chartSummary>
+                <componentType>Column</componentType>
+                <decimalPrecision>-1</decimalPrecision>
+                <displayUnits>Auto</displayUnits>
+                <drillEnabled>false</drillEnabled>
+                <drillToDetailEnabled>false</drillToDetailEnabled>
+                <enableHover>false</enableHover>
+                <expandOthers>false</expandOthers>
+                <footer>https://cityyear.sharepoint.com/sites/impactanalyticscommunity/SitePages/Data-Validation-Guide.aspx#%E2%98%90-check-for-data-entry-errors-in-amount-of-time-logged-in-intervention-sessions</footer>
+                <groupingColumn>Section__c.Student_Section__r$School__c</groupingColumn>
+                <groupingSortProperties>
+                    <groupingSorts>
+                        <groupingLevel>g1</groupingLevel>
+                        <inheritedReportGroupingSort>r</inheritedReportGroupingSort>
+                    </groupingSorts>
+                </groupingSortProperties>
+                <header>Very long sessions - fix if they&apos;re inaccurate</header>
+                <legendPosition>Bottom</legendPosition>
+                <report>cyschoolhouse_Validation_Reports/High_Intervention_Session_Lengths</report>
+                <showPercentage>false</showPercentage>
+                <showValues>false</showValues>
+                <sortBy>RowLabelAscending</sortBy>
+                <title>May or may not be blank</title>
+                <useReportChart>false</useReportChart>
+            </dashboardComponent>
+            <rowIndex>8</rowIndex>
+            <rowSpan>8</rowSpan>
+        </dashboardGridComponents>
+        <dashboardGridComponents>
+            <colSpan>4</colSpan>
+            <columnIndex>4</columnIndex>
+            <dashboardComponent>
+                <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
+                <chartAxisRange>Auto</chartAxisRange>
+                <chartSummary>
+                    <axisBinding>y</axisBinding>
+                    <column>RowCount</column>
+                </chartSummary>
+                <componentType>Column</componentType>
+                <decimalPrecision>-1</decimalPrecision>
+                <displayUnits>Auto</displayUnits>
+                <drillEnabled>false</drillEnabled>
+                <drillToDetailEnabled>false</drillToDetailEnabled>
+                <enableHover>false</enableHover>
+                <expandOthers>false</expandOthers>
+                <footer>https://cityyear.sharepoint.com/sites/impactanalyticscommunity/SitePages/Data-Validation-Guide.aspx#%E2%98%90-check-for-intervention-sessions-with-an-intervention-session-date-error</footer>
+                <groupingColumn>Section__c.Student_Section__r$School__c</groupingColumn>
+                <groupingSortProperties>
+                    <groupingSorts>
+                        <groupingLevel>g1</groupingLevel>
+                        <inheritedReportGroupingSort>r</inheritedReportGroupingSort>
+                    </groupingSorts>
+                </groupingSortProperties>
+                <header>Fix inaccurate intervention session dates</header>
+                <legendPosition>Bottom</legendPosition>
+                <report>cyschoolhouse_Validation_Reports/Weird_Intervention_Session_Dates</report>
+                <showPercentage>false</showPercentage>
+                <showValues>false</showValues>
+                <sortBy>RowLabelAscending</sortBy>
+                <title>Should be blank</title>
+                <useReportChart>false</useReportChart>
+            </dashboardComponent>
+            <rowIndex>16</rowIndex>
+            <rowSpan>8</rowSpan>
+        </dashboardGridComponents>
+        <dashboardGridComponents>
+            <colSpan>4</colSpan>
+            <columnIndex>8</columnIndex>
             <dashboardComponent>
                 <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
                 <componentType>FlexTable</componentType>
@@ -166,117 +322,6 @@
                 <report>cyschoolhouse_Validation_Reports/DESSA_records_deleted_in_SEL_Evo_VdE</report>
                 <title>Should be blank</title>
             </dashboardComponent>
-            <rowIndex>8</rowIndex>
-            <rowSpan>8</rowSpan>
-        </dashboardGridComponents>
-        <dashboardGridComponents>
-            <colSpan>4</colSpan>
-            <columnIndex>4</columnIndex>
-            <dashboardComponent>
-                <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
-                <chartAxisRange>Auto</chartAxisRange>
-                <chartSummary>
-                    <axisBinding>y</axisBinding>
-                    <column>RowCount</column>
-                </chartSummary>
-                <componentType>Column</componentType>
-                <decimalPrecision>-1</decimalPrecision>
-                <displayUnits>Auto</displayUnits>
-                <drillEnabled>false</drillEnabled>
-                <drillToDetailEnabled>false</drillToDetailEnabled>
-                <enableHover>false</enableHover>
-                <expandOthers>false</expandOthers>
-                <footer>https://cityyear.sharepoint.com/sites/impactanalyticscommunity/SitePages/Data-Validation-Guide.aspx#%E2%98%90-check-for-section-enrollment-or-exit-dates-that-may-not-reflect-reality</footer>
-                <groupingColumn>Account$Name</groupingColumn>
-                <groupingSortProperties>
-                    <groupingSorts>
-                        <groupingLevel>g1</groupingLevel>
-                        <inheritedReportGroupingSort>r</inheritedReportGroupingSort>
-                    </groupingSorts>
-                </groupingSortProperties>
-                <header>Check that these section enrollment dates are accurate</header>
-                <legendPosition>Bottom</legendPosition>
-                <report>cyschoolhouse_Validation_Reports/Weird_Dates</report>
-                <showPercentage>false</showPercentage>
-                <showValues>false</showValues>
-                <sortBy>RowLabelAscending</sortBy>
-                <title>Should be blank</title>
-                <useReportChart>false</useReportChart>
-            </dashboardComponent>
-            <rowIndex>8</rowIndex>
-            <rowSpan>8</rowSpan>
-        </dashboardGridComponents>
-        <dashboardGridComponents>
-            <colSpan>4</colSpan>
-            <columnIndex>8</columnIndex>
-            <dashboardComponent>
-                <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
-                <chartAxisRange>Auto</chartAxisRange>
-                <chartSummary>
-                    <axisBinding>y</axisBinding>
-                    <column>RowCount</column>
-                </chartSummary>
-                <componentType>Column</componentType>
-                <decimalPrecision>-1</decimalPrecision>
-                <displayUnits>Auto</displayUnits>
-                <drillEnabled>false</drillEnabled>
-                <drillToDetailEnabled>false</drillToDetailEnabled>
-                <enableHover>false</enableHover>
-                <expandOthers>false</expandOthers>
-                <footer>https://cityyear.sharepoint.com/sites/impactanalyticscommunity/SitePages/Data-Validation-Guide.aspx#%E2%98%90-check-for-data-entry-errors-in-amount-of-time-logged-in-intervention-sessions</footer>
-                <groupingColumn>Section__c.Student_Section__r$School__c</groupingColumn>
-                <groupingSortProperties>
-                    <groupingSorts>
-                        <groupingLevel>g1</groupingLevel>
-                        <inheritedReportGroupingSort>r</inheritedReportGroupingSort>
-                    </groupingSorts>
-                </groupingSortProperties>
-                <header>Check that these intervention sessions are accurately showing how long they were</header>
-                <legendPosition>Bottom</legendPosition>
-                <report>cyschoolhouse_Validation_Reports/High_Intervention_Session_Lengths</report>
-                <showPercentage>false</showPercentage>
-                <showValues>false</showValues>
-                <sortBy>RowLabelAscending</sortBy>
-                <title>May or may not be blank</title>
-                <useReportChart>false</useReportChart>
-            </dashboardComponent>
-            <rowIndex>8</rowIndex>
-            <rowSpan>8</rowSpan>
-        </dashboardGridComponents>
-        <dashboardGridComponents>
-            <colSpan>4</colSpan>
-            <columnIndex>4</columnIndex>
-            <dashboardComponent>
-                <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
-                <chartAxisRange>Auto</chartAxisRange>
-                <chartSummary>
-                    <axisBinding>y</axisBinding>
-                    <column>RowCount</column>
-                </chartSummary>
-                <componentType>Column</componentType>
-                <decimalPrecision>-1</decimalPrecision>
-                <displayUnits>Auto</displayUnits>
-                <drillEnabled>false</drillEnabled>
-                <drillToDetailEnabled>false</drillToDetailEnabled>
-                <enableHover>false</enableHover>
-                <expandOthers>false</expandOthers>
-                <footer>https://cityyear.sharepoint.com/sites/impactanalyticscommunity/SitePages/Data-Validation-Guide.aspx#%E2%98%90-check-for-intervention-sessions-with-an-intervention-session-date-error</footer>
-                <groupingColumn>Section__c.Student_Section__r$School__c</groupingColumn>
-                <groupingSortProperties>
-                    <groupingSorts>
-                        <groupingLevel>g1</groupingLevel>
-                        <inheritedReportGroupingSort>r</inheritedReportGroupingSort>
-                    </groupingSorts>
-                </groupingSortProperties>
-                <header>Check that these intervention session dates are accurate</header>
-                <legendPosition>Bottom</legendPosition>
-                <report>cyschoolhouse_Validation_Reports/Weird_Intervention_Session_Dates</report>
-                <showPercentage>false</showPercentage>
-                <showValues>false</showValues>
-                <sortBy>RowLabelAscending</sortBy>
-                <title>Should be blank</title>
-                <useReportChart>false</useReportChart>
-            </dashboardComponent>
             <rowIndex>16</rowIndex>
             <rowSpan>8</rowSpan>
         </dashboardGridComponents>
@@ -286,7 +331,7 @@
     <dashboardType>MyTeamUser</dashboardType>
     <description>Click to run the report. If it&apos;s empty, you aren&apos;t affected by the errors for which this dashboard checks.</description>
     <isGridLayout>true</isGridLayout>
-    <runningUser>juturi.rajesh@jaxconsult.com.cyschorgb</runningUser>
+    <runningUser>cchin@cityyear.org.cyschorgb</runningUser>
     <textColor>#000000</textColor>
     <title>Mid-Year Data Validation</title>
     <titleColor>#000000</titleColor>

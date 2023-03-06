@@ -1763,6 +1763,11 @@
             <field>Raw_Grade__c</field>
             <table>Student__c.Grades__r</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>X18_digit_Grade_ID__c</field>
+            <table>Student__c.Grades__r</table>
+        </columns>
         <masterLabel>Grades</masterLabel>
     </sections>
 </ReportType>

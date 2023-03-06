@@ -632,6 +632,10 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- ELA FAST --></label>
+        <name>ELA_FAST__c</name>
+    </fields>
+    <fields>
         <label><!-- Emotion control --></label>
         <name>Emotion_control__c</name>
         <picklistValues>
@@ -1223,6 +1227,10 @@
             <masterLabel>Yes</masterLabel>
             <translation><!-- Yes --></translation>
         </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Math FAST --></label>
+        <name>Math_FAST__c</name>
     </fields>
     <fields>
         <label><!-- Math Percent Correct --></label>
@@ -1841,16 +1849,16 @@
         <label><!-- Progress Measure --></label>
         <name>Progress_Measure__c</name>
         <picklistValues>
-            <masterLabel>Accelerated</masterLabel>
-            <translation><!-- Accelerated --></translation>
+            <masterLabel>0</masterLabel>
+            <translation><!-- 0 --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Expected</masterLabel>
-            <translation><!-- Expected --></translation>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Limited</masterLabel>
-            <translation><!-- Limited --></translation>
+            <masterLabel>2</masterLabel>
+            <translation><!-- 2 --></translation>
         </picklistValues>
     </fields>
     <fields>
@@ -3152,6 +3160,10 @@
         <name>EADMS_MATH_student_Target_score_100</name>
     </validationRules>
     <validationRules>
+        <errorMessage><!-- ELA Fast must be within the range of 0 to 800. --></errorMessage>
+        <name>ELA_FAST</name>
+    </validationRules>
+    <validationRules>
         <errorMessage><!-- Scaled Score must be within the range of 0 to 300. --></errorMessage>
         <name>EasyCBM_ELA_scale_score_300</name>
     </validationRules>
@@ -3166,6 +3178,22 @@
     <validationRules>
         <errorMessage><!-- Scaled Score must be within the range of 0 to 300. --></errorMessage>
         <name>EasyCBM_Math_scale_score_300</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Scaled Score must be within the range of 100 to 500. --></errorMessage>
+        <name>FAST_ELA</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The range for this field must be between 1 and 5. --></errorMessage>
+        <name>FAST_ELA_level_code</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Scaled Score must be within the range of 100 to 500. --></errorMessage>
+        <name>FAST_Math</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The range for this field must be between 1 and 5. --></errorMessage>
+        <name>FAST_Math_level_code</name>
     </validationRules>
     <validationRules>
         <errorMessage><!-- Scaled Score must be within the range of 0 to 500. --></errorMessage>
@@ -3288,6 +3316,10 @@
         <name>Interger_Rule_Student_Target_Score</name>
     </validationRules>
     <validationRules>
+        <errorMessage><!-- Math Fast must be within the range of 0 to 800. --></errorMessage>
+        <name>Math_FAST</name>
+    </validationRules>
+    <validationRules>
         <errorMessage><!-- Scaled Score must be within the range of 0 to 300. --></errorMessage>
         <name>NWEA_ELA_Scale_score_300</name>
     </validationRules>
@@ -3332,6 +3364,10 @@
         <name>Raw_score_validation</name>
     </validationRules>
     <validationRules>
+        <errorMessage><!-- Student Target Score must be within the range of 0 to 2. --></errorMessage>
+        <name>STAAR_ELA_Student_target_score</name>
+    </validationRules>
+    <validationRules>
         <errorMessage><!-- Scaled Score must be within the range of 0 to 2500. --></errorMessage>
         <name>STAAR_ELA_scale_score_2500</name>
     </validationRules>
@@ -3342,6 +3378,10 @@
     <validationRules>
         <errorMessage><!-- Scaled Score must be within the range of 0 to 2500. --></errorMessage>
         <name>STAAR_MATH_scale_score_2500</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Student Target Score must be within the range of 0 to 2. --></errorMessage>
+        <name>STAAR_math_Student_target_score</name>
     </validationRules>
     <validationRules>
         <errorMessage><!-- The Smarter Balanced Assessment Score Range is between 2000 - 3000. --></errorMessage>
@@ -3630,5 +3670,13 @@
     <validationRules>
         <errorMessage><!-- The range for this field must be between 1 and 4. --></errorMessage>
         <name>level_code_smarter_balanced</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The range for this field must be between 1 and 4. --></errorMessage>
+        <name>level_code_smarter_balanced_ELA</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The range for this field must be between 1 and 4. --></errorMessage>
+        <name>level_code_smarter_balanced_Math</name>
     </validationRules>
 </CustomObjectTranslation>

@@ -156,8 +156,9 @@
                         <apex:outputpanel id="StudentPanel">
                             <script type="text/javascript">
                                 j$(function () {
-                                    j$('#StudentsTable').tsort();
-                                    j$('.iatable').dataTable({
+                                    //j$('#StudentsTable').tsort();
+                                    var oTable = j$('.iatable').dataTable({
+                                        "aaSorting": [[1, 'asc']],
                                         "sPaginationType": "full_numbers",
                                         "iDisplayLength": 50,
                                         "bInfo": true,
@@ -165,8 +166,12 @@
                                         "asStripeClasses": ['table_row1'],
                                         "sDom": '<"top"lfip>rt<"bottom"ip<"clear">'
                                     });
-                                     
-                                });
+                                                     
+                                      
+                                });                          
+                               
+                                
+                                                   
                             </script>
                             <apex:pageBlock >
                                 <div  class="select-all-checkbox">
@@ -184,6 +189,7 @@
                                     <th class="type-string">Indicator Area</th>
                                     <th class="type-string">Assigned Programs</th>
                                     <th class="type-date">Date</th>
+                                    
                                     </thead>
                                     <tbody>
                                     <apex:repeat value="{!StudentsFiltered}" var="s">
@@ -196,6 +202,8 @@
                                             <td style="min-width: 75px;">
                                                 <apex:outputLink value="/{!s.student.Id}" target="_blank">{!s.student.Student_Id__c}</apex:outputLink>
                                             </td>
+                                            
+                                            
                                             <td>
                                                 <apex:outputLink value="/{!s.student.Id}" target="_blank">{!s.student.Local_Student_ID__c}</apex:outputLink>
                                             </td>
@@ -210,6 +218,7 @@
                                                                 onMouseDown="event.stopPropagation(); return false;"/>
                                                 </div>
                                             </td>
+                                            
                                         </tr>
                                     </apex:repeat>
                                     </tbody>

@@ -677,6 +677,11 @@
             <field>Unique_Student_Section__c</field>
             <table>Section__c.Student_Section__r</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Student__c.X18_digit_ID__c</field>
+            <table>Section__c.Student_Section__r</table>
+        </columns>
         <masterLabel>Student</masterLabel>
     </sections>
     <sections>

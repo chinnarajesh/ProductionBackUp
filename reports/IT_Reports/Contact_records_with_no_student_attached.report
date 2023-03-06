@@ -7,9 +7,6 @@
         <field>Contact$ID__c</field>
     </columns>
     <columns>
-        <field>Contact$CreatedBy</field>
-    </columns>
-    <columns>
         <field>Contact.Students__r$Id</field>
     </columns>
     <columns>
@@ -52,6 +49,11 @@
         <field>Contact.Students__r$School_Name__c</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Contact$CreatedBy</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
     <name>Contact records with no student attached</name>
     <params>
         <name>co</name>
@@ -59,7 +61,7 @@
     </params>
     <reportType>Contacts_and_Students__c</reportType>
     <scope>organization</scope>
-    <showDetails>true</showDetails>
+    <showDetails>false</showDetails>
     <showGrandTotal>true</showGrandTotal>
     <showSubTotals>true</showSubTotals>
     <timeFrameFilter>

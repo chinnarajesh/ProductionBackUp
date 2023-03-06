@@ -42,7 +42,7 @@
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
             <operator>notEqual</operator>
-            <value>SchoolForce Portal Profile,cyschoolhouse: Corps Edition Profile,Sales Insights Integration User</value>
+            <value>SchoolForce Portal Profile,cyschoolhouse: Corps Edition Profile,Sales Insights Integration User,Cyschoolhouse surveys Profile</value>
         </criteriaItems>
     </filter>
     <format>Summary</format>

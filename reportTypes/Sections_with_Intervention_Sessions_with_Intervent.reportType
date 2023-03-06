@@ -884,7 +884,7 @@
             <table>Section__c.Intervention_Sessions__r.Intervention_Session_Results__r</table>
         </columns>
         <columns>
-            <checkedByDefault>false</checkedByDefault>
+            <checkedByDefault>true</checkedByDefault>
             <field>Student__c.Math__c</field>
             <table>Section__c.Intervention_Sessions__r.Intervention_Session_Results__r</table>
         </columns>

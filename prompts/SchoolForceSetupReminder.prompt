@@ -33,9 +33,9 @@
                 <rightValue>Admin</rightValue>
             </criteria>
             <criteria>
-                <leftValue>{!$User.Profile.Key}</leftValue>
+                <leftValue>{!$User.Profile.Id}</leftValue>
                 <operator>EQUAL</operator>
-                <rightValue>custom_tier 1 administrators</rightValue>
+                <rightValue>00e1R000001CcY4QAK</rightValue>
             </criteria>
             <criteria>
                 <leftValue>{!$User.Profile.Key}</leftValue>

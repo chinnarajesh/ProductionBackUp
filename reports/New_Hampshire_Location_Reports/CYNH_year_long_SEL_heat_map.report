@@ -32,10 +32,25 @@
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
             <operator>equals</operator>
-            <value>behavior</value>
+            <value>SEL/SED</value>
         </criteriaItems>
     </filter>
     <format>Matrix</format>
+    <formattingRules>
+        <aggregate>Sum</aggregate>
+        <columnName>Section__c.Intervention_Sessions__r.Intervention_Session_Results__r$Amount_of_Time__c</columnName>
+        <values>
+            <backgroundColor>#FFFFFF</backgroundColor>
+            <rangeUpperBound>30.0</rangeUpperBound>
+        </values>
+        <values>
+            <backgroundColor>#C2C254</backgroundColor>
+            <rangeUpperBound>45.0</rangeUpperBound>
+        </values>
+        <values>
+            <backgroundColor>#54C254</backgroundColor>
+        </values>
+    </formattingRules>
     <groupingsAcross>
         <dateGranularity>Week</dateGranularity>
         <field>Section__c.Intervention_Sessions__r.Intervention_Session_Results__r$Intervention_Session_Date__c</field>

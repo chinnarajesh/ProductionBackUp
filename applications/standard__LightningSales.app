@@ -9,6 +9,7 @@
     <label>Sales</label>
     <navType>Standard</navType>
     <tabs>standard-home</tabs>
+    <tabs>standard-WaveHomeLightning</tabs>
     <tabs>standard-Opportunity</tabs>
     <tabs>standard-Quote</tabs>
     <tabs>standard-Lead</tabs>
@@ -28,4 +29,5 @@
     <tabs>Curriculum__c</tabs>
     <tabs>LLI__c</tabs>
     <uiType>Lightning</uiType>
+    <utilityBar>LightningSales_UtilityBar</utilityBar>
 </CustomApplication>

@@ -157,7 +157,7 @@
         <type>CustomApplication</type>
     </appMenuItems>
     <appMenuItems>
-        <name>SchoolForce_Lightning</name>
+        <name>SchoolForce_Lightning_site_admin</name>
         <type>CustomApplication</type>
     </appMenuItems>
     <appMenuItems>
@@ -179,5 +179,13 @@
     <appMenuItems>
         <name>OIQ_Integration</name>
         <type>ConnectedApp</type>
+    </appMenuItems>
+    <appMenuItems>
+        <name>cySchoolhouse_School_Admins</name>
+        <type>CustomApplication</type>
+    </appMenuItems>
+    <appMenuItems>
+        <name>Schoolhouse_Admin_Lightning_Console</name>
+        <type>CustomApplication</type>
     </appMenuItems>
 </AppMenu>

@@ -403,20 +403,18 @@ public with sharing class WeeklyDosageController {
 
     public void saveNewSessions(){
       timerOn();
+       String flag='proceed false';
        Boolean primarySkillIsEmpty;
         Set<Integer> daysToSave = new Set<Integer>();
         Map<Integer, Intervention_Session__c> sessionsToSave = new Map<Integer, Intervention_Session__c>();
         for(DayWrapper day: tableHeaders){
-          System.debug('Skills_Covered'+day.session.Skills_Covered_for_the_Session__c);
-          System.debug('Skill_Primary__c'+day.session.Skill_Primary__c);
-          System.debug('primarySkill'+day.primarySkill);
-          system.debug('isDisabled'+day.isDisabled);
-          system.debug('positionIdentifer'+day.positionIdentifer);
+          
+          System.debug('day##'+day.day);
+          System.debug('day.isProceed===='+day.isProceed);
              primarySkillIsEmpty = String.isBlank(day.primarySkill);
             
             if( day.day <= System.today() && day.isDisabled==false && day.isProceed==true && (!primarySkillIsEmpty ||
                (primarySkillIsEmpty&& day.session.All_avenues__c !='' ))){
-               
                 day.session.Skills_Covered_for_the_Session__c = day.selectedSkills;
                 day.session.Skill_Primary__c = !primarySkillIsEmpty ? day.primarySkill: null;
                 
@@ -427,9 +425,20 @@ public with sharing class WeeklyDosageController {
                 }
                 day.isError = day.isProceed;
                 sessionsToSave.put(day.positionIdentifer, day.session.clone(true, false));
+                flag='proceed true';
             }
             
+             if(day.day <= System.today() && day.isProceed==false && flag =='proceed false'){
+                 flag='data not mapped';
+             }
+            
+             if(day.day > System.today() &&  day.isProceed==true){
+                flag='true';
+            }
+            System.debug('sessionsToSave##'+sessionsToSave);
+            
         }
+       
         Savepoint sp = Database.setSavepoint();
         try{
             upsert sessionsToSave.values();
@@ -453,24 +462,37 @@ public with sharing class WeeklyDosageController {
                 if((amountOfTime != null && amountOfTime != rw.amount)
                         && (isrID != null || daysToSave.contains(i+1))){
                     if(isrID == null){
+                        System.debug('allAvunes Options');
                         Intervention_Session__c session = sessionsTosave.get(i+1);
                         rw.isr.Intervention_Session__c = session.ID;
                         //added to update skills to Intervention Session Result
                         rw.isr.SkillsCovered__c = session.Skills_Covered_for_the_Session__c;
                     }
+                   
                     tableHeaders[i].isError = false;
                     resultsToSave.put(key, rw.isr.clone(true, false));
-                }else if(!daysToSave.contains(i+1) && !rw.isDisabled){
-                    if(amountOfTime != null && isrID == null){
+                }
+                
+                else if(!daysToSave.contains(i+1) && !rw.isDisabled){
+                     
+                      if(amountOfTime != null && isrID == null){
+                        //System.debug('Not selected Allavunues Options');
                         tableHeaders[i].isError = true;
                         hasBadResults = true;
-                        //CYUtil.errorMessage('In order to save, click on the blue bubble by the date and enter the skills covered.');
+                        if(flag=='data not mapped'){
+                            CYUtil.errorMessage('Please confirm whether service happened In-Person Service or Virtual Service by clicking on the blue speech bubble next to a date column.');
+                         }
+                        if(flag=='true'){
                         CYUtil.errorMessage('Cannot enter time for a date in the future.');
+                       }
                         //CYUtil.errorMessage('You have entered time for '+currentWeek.addDays(i).format()+' but have not populated the skills covered. Please enter the skills covered.');
                          loadSessionData();
                    }
-                    
                 }
+                //System.debug('daysToSave##'+daysToSave);
+                //System.debug('rw.isDisabled##'+rw.isDisabled);
+                //System.debug('amountOfTime##'+amountOfTime);
+                //System.debug('isrID##'+isrID);
             }
         }
 
@@ -517,6 +539,7 @@ public with sharing class WeeklyDosageController {
         }
         
         CYUtil.successMessage('All changes have been saved successfully.');
+
         loadSessionData();
         
     }

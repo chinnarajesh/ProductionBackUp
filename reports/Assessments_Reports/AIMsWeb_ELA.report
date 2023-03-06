@@ -7,6 +7,12 @@
         <field>Assesment__c$Id</field>
     </columns>
     <columns>
+        <field>Assesment__c$Student__c.Local_Student_ID__c</field>
+    </columns>
+    <columns>
+        <field>Assesment__c$Student__c.Id</field>
+    </columns>
+    <columns>
         <field>Assesment__c$Student_Name__c</field>
     </columns>
     <columns>
@@ -22,13 +28,24 @@
         <field>Assesment__c$DRA_Oral_Reading__c</field>
     </columns>
     <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>Assesment__c$Oral_Reading_Fluency_Student_Target_Scor__c</field>
+    </columns>
+    <columns>
         <field>Assesment__c$Maze__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>Assesment__c$Maze_Student_Target_Score__c</field>
     </columns>
     <columns>
         <field>Assesment__c$Percentile__c</field>
     </columns>
     <columns>
         <field>Assesment__c$Testing_Grade_Level__c</field>
+    </columns>
+    <columns>
+        <field>Assesment__c$Student__c.Student_ID_Auto_Number__c</field>
     </columns>
     <filter>
         <criteriaItems>
@@ -42,17 +59,12 @@
     <format>Summary</format>
     <groupingsDown>
         <dateGranularity>Day</dateGranularity>
-        <field>Assesment__c$Location__c</field>
-        <sortOrder>Asc</sortOrder>
-    </groupingsDown>
-    <groupingsDown>
-        <dateGranularity>Day</dateGranularity>
         <field>Assesment__c$School__c</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
     <groupingsDown>
         <dateGranularity>Day</dateGranularity>
-        <field>Assesment__c$Student_Id__c</field>
+        <field>Assesment__c$Student_Grade__c</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
     <name>AIMsWeb - ELA</name>

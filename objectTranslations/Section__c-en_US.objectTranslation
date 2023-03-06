@@ -348,6 +348,10 @@
         <name>Failing__c</name>
     </fields>
     <fields>
+        <label><!-- First words --></label>
+        <name>First_words__c</name>
+    </fields>
+    <fields>
         <help><!-- Select the grade level of the course, if desired. SchoolForce uses the All Grades list box to determine the grade level(s) for which the section is available. You can use the Grade Level drop-down list on reports. --></help>
         <label><!-- Grade Level --></label>
         <name>Grade_Level__c</name>

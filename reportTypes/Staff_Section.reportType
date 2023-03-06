@@ -201,6 +201,16 @@
             <field>Staff__c.Is_Active__c</field>
             <table>Staff_Section__c</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Section__c.Program__c</field>
+            <table>Staff_Section__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Section__c.Program__c.Name</field>
+            <table>Staff_Section__c</table>
+        </columns>
         <masterLabel>Staff/Section</masterLabel>
     </sections>
 </ReportType>

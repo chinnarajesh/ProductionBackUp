@@ -11,7 +11,7 @@
         <chartType>VerticalColumn</chartType>
         <enableHoverLabels>false</enableHoverLabels>
         <expandOthers>true</expandOthers>
-        <groupingColumn>Assesment__c$School__c</groupingColumn>
+        <groupingColumn>Assesment__c$Location__c</groupingColumn>
         <location>CHART_BOTTOM</location>
         <showAxisLabels>true</showAxisLabels>
         <showPercentage>false</showPercentage>
@@ -208,9 +208,6 @@
         <field>Assesment__c$Support_need__c</field>
     </columns>
     <columns>
-        <field>Assesment__c$Pre_mid_post_on_the_roster__c</field>
-    </columns>
-    <columns>
         <field>Assesment__c$Rating_ID__c</field>
     </columns>
     <columns>
@@ -224,6 +221,9 @@
     </columns>
     <columns>
         <field>Assesment__c$HSA_Deleted_Reason__c</field>
+    </columns>
+    <columns>
+        <field>Assesment__c$School__c</field>
     </columns>
     <description>Shows data from the Holistic Student Assessment, which is a student self-report tool.</description>
     <filter>
@@ -241,6 +241,13 @@
             <operator>notEqual</operator>
             <value>CY Test School</value>
         </criteriaItems>
+        <criteriaItems>
+            <column>Assesment__c$Pre_mid_post_on_the_roster__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>1,5</value>
+        </criteriaItems>
     </filter>
     <format>Matrix</format>
     <groupingsAcross>
@@ -255,7 +262,7 @@
     </groupingsDown>
     <groupingsDown>
         <dateGranularity>Day</dateGranularity>
-        <field>Assesment__c$School__c</field>
+        <field>Assesment__c$Pre_mid_post_on_the_roster__c</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
     <name>HSA (Holistic Student Assessment) Data</name>

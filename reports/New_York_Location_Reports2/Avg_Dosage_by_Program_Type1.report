@@ -75,6 +75,13 @@ TIP: Use to check if there are students who need to be exited before completing 
             <operator>contains</operator>
             <value>Tutoring: Literacy,Tutoring: Math,Check In Check Out</value>
         </criteriaItems>
+        <criteriaItems>
+            <column>Account.Sections__r.Student_Section__r$Dosage_to_Date__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>greaterThan</operator>
+            <value>0</value>
+        </criteriaItems>
     </filter>
     <format>Summary</format>
     <groupingsDown>
@@ -94,7 +101,7 @@ TIP: Use to check if there are students who need to be exited before completing 
     </params>
     <reportType>Accounts_with_Sections_with_Student_Section__c</reportType>
     <scope>organization</scope>
-    <showDetails>false</showDetails>
+    <showDetails>true</showDetails>
     <showGrandTotal>false</showGrandTotal>
     <showSubTotals>false</showSubTotals>
     <timeFrameFilter>

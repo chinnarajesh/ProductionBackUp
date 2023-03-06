@@ -169,6 +169,10 @@
         <label><!-- Weighting Value --></label>
         <name>Weighting_Value__c</name>
     </fields>
+    <fields>
+        <label><!-- 18 digit Assignment ID --></label>
+        <name>X18_digit_Assignment_ID__c</name>
+    </fields>
     <layouts>
         <layout>Assignment Layout</layout>
         <sections>

@@ -185,7 +185,10 @@
     </miniLayout>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>OBJECT_ID</fields>
         <fields>Is_Master__c</fields>
+        <fields>Split_School__c</fields>
+        <fields>Reporting_Period__c</fields>
         <relatedList>Schedule_Template__c.Setup__c</relatedList>
     </relatedLists>
     <relatedLists>

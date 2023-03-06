@@ -1085,7 +1085,7 @@
         <inlineHelpText>Indicates whether or not this Student record is active. If checked, then this is the current Student record. If unchecked, this is an old Student record.</inlineHelpText>
         <label>Active</label>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
@@ -1353,7 +1353,7 @@
         <externalId>false</externalId>
         <label>Attendance FL Eligible</label>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
@@ -1410,7 +1410,7 @@
         <required>false</required>
         <scale>0</scale>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
@@ -1584,7 +1584,7 @@
         <required>false</required>
         <scale>0</scale>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
@@ -3082,7 +3082,7 @@ SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE( District_External_ID_Creator__c ,&q
         <externalId>false</externalId>
         <label>ELA FL Eligible</label>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
@@ -3095,7 +3095,7 @@ SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE( District_External_ID_Creator__c ,&q
         <required>false</required>
         <scale>0</scale>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
@@ -3720,7 +3720,7 @@ SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE( District_External_ID_Creator__c ,&q
         <label>Exit Date</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>DateTime</type>
     </fields>
@@ -4060,7 +4060,7 @@ SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE( District_External_ID_Creator__c ,&q
         <externalId>false</externalId>
         <label>FL Eligible</label>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
@@ -4685,7 +4685,7 @@ text in the Alt Lang Comments field displays for Section Comments and Overall Co
         <externalId>false</externalId>
         <label>IES Consent Accepted</label>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>true</trackHistory>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
@@ -4695,7 +4695,7 @@ text in the Alt Lang Comments field displays for Section Comments and Overall Co
         <label>IES Consent Form File Name</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>true</trackHistory>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>TextArea</type>
     </fields>
@@ -4705,7 +4705,7 @@ text in the Alt Lang Comments field displays for Section Comments and Overall Co
         <externalId>false</externalId>
         <label>IES Consent Rejected</label>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>true</trackHistory>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
@@ -4715,7 +4715,7 @@ text in the Alt Lang Comments field displays for Section Comments and Overall Co
         <externalId>false</externalId>
         <label>IES Incentive Given</label>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>true</trackHistory>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
@@ -4725,7 +4725,7 @@ text in the Alt Lang Comments field displays for Section Comments and Overall Co
         <externalId>false</externalId>
         <label>IES Study Consent Form Received</label>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>true</trackHistory>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
@@ -4735,7 +4735,7 @@ text in the Alt Lang Comments field displays for Section Comments and Overall Co
         <externalId>false</externalId>
         <label>IES Study Consent Form Returned</label>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>true</trackHistory>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
@@ -4745,7 +4745,7 @@ text in the Alt Lang Comments field displays for Section Comments and Overall Co
         <label>IES Study Participant</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>true</trackHistory>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
         <valueSet>
@@ -4973,7 +4973,7 @@ false)))))))))))))))))))))))</formula>
         <length>100</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
@@ -5028,17 +5028,13 @@ false)))))))))))))))))))))))</formula>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
         <valueSet>
+            <restricted>true</restricted>
             <valueSetDefinition>
                 <sorted>false</sorted>
                 <value>
-                    <fullName>Free</fullName>
+                    <fullName>Free/Reduced</fullName>
                     <default>false</default>
-                    <label>Free</label>
-                </value>
-                <value>
-                    <fullName>Reduced</fullName>
-                    <default>false</default>
-                    <label>Reduced</label>
+                    <label>Free/Reduced</label>
                 </value>
                 <value>
                     <fullName>Paid</fullName>
@@ -5046,9 +5042,21 @@ false)))))))))))))))))))))))</formula>
                     <label>Paid</label>
                 </value>
                 <value>
-                    <fullName>None</fullName>
+                    <fullName>Unknown</fullName>
                     <default>false</default>
-                    <label>None</label>
+                    <label>Unknown</label>
+                </value>
+                <value>
+                    <fullName>Reduced</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Reduced</label>
+                </value>
+                <value>
+                    <fullName>ukwn</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>ukwn</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -5059,7 +5067,7 @@ false)))))))))))))))))))))))</formula>
         <externalId>false</externalId>
         <label>Math FL Eligible</label>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
@@ -5072,7 +5080,7 @@ false)))))))))))))))))))))))</formula>
         <required>false</required>
         <scale>0</scale>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
@@ -6853,7 +6861,7 @@ false)))))))))))))))))))))))</formula>
         <externalId>false</externalId>
         <label>SEL/SED FL Eligible</label>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
@@ -7742,7 +7750,7 @@ false)))))))))))))))))))))))</formula>
         <label>Student Exit Reason</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
         <valueSet>
@@ -7758,7 +7766,7 @@ false)))))))))))))))))))))))</formula>
         <length>100</length>
         <required>true</required>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
@@ -7781,7 +7789,7 @@ false)))))))))))))))))))))))</formula>
         <length>100</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
@@ -7794,7 +7802,7 @@ false)))))))))))))))))))))))</formula>
         <length>100</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
@@ -8650,10 +8658,21 @@ false)))))))))))))))))))))))</formula>
     <nameField>
         <label>Student Name</label>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <type>Text</type>
     </nameField>
     <pluralLabel>Students</pluralLabel>
+    <profileSearchLayouts>
+        <fields>NAME</fields>
+        <fields>Grade__c</fields>
+        <fields>School_Name__c</fields>
+        <fields>Local_Student_ID__c</fields>
+        <fields>Student_ID_Auto_Number__c</fields>
+        <fields>Active__c</fields>
+        <fields>Individual__c</fields>
+        <fields>Individual_Reference_Id__c</fields>
+        <profileName>System Administrator</profileName>
+    </profileSearchLayouts>
     <searchLayouts>
         <customTabListAdditionalFields>Grade__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>Gender__c</customTabListAdditionalFields>
@@ -8672,8 +8691,8 @@ false)))))))))))))))))))))))</formula>
         <searchFilterFields>School_Name__c</searchFilterFields>
         <searchFilterFields>Grade__c</searchFilterFields>
         <searchResultsAdditionalFields>Grade__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>Gender__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>School_Name__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Local_Student_ID__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Student_ID_Auto_Number__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Active__c</searchResultsAdditionalFields>
     </searchLayouts>
@@ -8703,6 +8722,13 @@ ISCHANGED(Local_Student_ID__c))</errorConditionFormula>
         <errorConditionFormula>AND(ISCHANGED(Active__c), Active__c=false, OR(ISBLANK(Exit_Date__c), ISBLANK(TEXT(Student_Exit_Reason__c))))</errorConditionFormula>
         <errorDisplayField>Active__c</errorDisplayField>
         <errorMessage>Please select Exit Date and Exit Reason</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>No_future_birthdates</fullName>
+        <active>true</active>
+        <errorConditionFormula>Date_of_Birth__c  &gt; TODAY()</errorConditionFormula>
+        <errorDisplayField>Date_of_Birth__c</errorDisplayField>
+        <errorMessage>Date of Birth can not be in the future</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>Non_Negative_Service_Hours</fullName>

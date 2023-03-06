@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Setup__c$Id</field>
+    </columns>
+    <columns>
+        <field>Setup__c$Name</field>
+    </columns>
+    <columns>
+        <field>Setup__c$ActivateRelated__c</field>
+    </columns>
+    <columns>
+        <field>Setup__c$Published__c</field>
+    </columns>
+    <columns>
+        <field>Setup__c$School__c</field>
+    </columns>
+    <columns>
+        <field>Setup__c$Passing_Grade_Threshold__c</field>
+    </columns>
+    <columns>
+        <field>Setup__c$Grade_Span__c</field>
+    </columns>
+    <description>This will show that all schools have been saved w/gradebook module and gradespan</description>
+    <filter>
+        <criteriaItems>
+            <column>Setup__c$Grade_Span__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value></value>
+        </criteriaItems>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Setup__c$School__c.Site__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Missing Setup by Location/school</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Setups_with_Account_Site__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <sortColumn>Setup__c$ActivateRelated__c</sortColumn>
+    <sortOrder>Asc</sortOrder>
+    <timeFrameFilter>
+        <dateColumn>Setup__c$CreatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

@@ -5,10 +5,10 @@
     <enableNativeBrowserForAuthOnAndroid>false</enableNativeBrowserForAuthOnAndroid>
     <enableNativeBrowserForAuthOnIos>false</enableNativeBrowserForAuthOnIos>
     <myDomainName>cyschoolhouseb</myDomainName>
-    <myDomainSuffix>MySalesforceLimited</myDomainSuffix>
+    <myDomainSuffix>MySalesforce</myDomainSuffix>
     <redirectPriorMyDomain>true</redirectPriorMyDomain>
     <use3rdPartyCookieBlockingCompatibleHostnames>true</use3rdPartyCookieBlockingCompatibleHostnames>
     <useEdge>false</useEdge>
-    <useStabilizedMyDomainHostnames>false</useStabilizedMyDomainHostnames>
+    <useStabilizedMyDomainHostnames>true</useStabilizedMyDomainHostnames>
     <useStabilizedSandboxMyDomainHostnames>true</useStabilizedSandboxMyDomainHostnames>
 </MyDomainSettings>

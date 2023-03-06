@@ -12,6 +12,7 @@
 public class TestctlAddTimeFlow_dev {
 	public static User u;
 	public static Contact c;
+	private static Skill__c skill;
 
 	@testSetup
 	public static void setupData(){
@@ -103,6 +104,7 @@ public class TestctlAddTimeFlow_dev {
 		List<Section__c> mysections;
 		PageReference pageRefSection = Page.pageSectionList;
 		Test.setCurrentPage(pageRefSection);
+		Test.setCurrentPage(Page.CY_AddWeeklyTime);
 
 		Test.startTest();
 
@@ -160,12 +162,33 @@ public class TestctlAddTimeFlow_dev {
 			System.debug('Mysection 1: ' + mysections[0].Id + mysections[0].Name);
 			controller.sectionID = mysections[0].Id;
 			controller.getSessionList();
+			////////
+			controller.changeSection();
+			controller.resultsData[0].dosages[0].isr.Amount_Of_Time__c = 5;
+			//controller.tableHeaders[0].primarySkill = skill.Id;
+			//controller.tableHeaders[0].selectedSkills = 'Self-Awareness: Identifying strengths and weaknesses';
+			controller.tableHeaders[0].isProceed=true;
+			controller.tableHeaders[0].session.All_avenues__c = 'In-Person Service';
+			//controller.selectedFields.add(new SelectOption('Self-Awareness: Identifying strengths and weaknesses','Self-Awareness: Identifying strengths and weaknesses'));
+
+			controller.saveNewSessions();
+			//controller.toggleSortDirection();
+			controller.weekEndHolder.Date__c = system.today().addDays(-7);
+			controller.changeWeek();
+			System.assertEquals(system.today().addDays(-7).toStartOfWeek(), controller.currentWeek);
+			controller.lastWeek();
+			System.assertEquals(system.today().addDays(-14).toStartOfWeek(), controller.currentWeek);
+			controller.nextWeek();
+			System.assertEquals(system.today().addDays(-7).toStartOfWeek(), controller.currentWeek);
+			////////
 
 			PageReference pageRefSectionStudents = controller.doSectionStudents();
 			List<ctlAddTimeFlow_dev.StudentWrapper> mystudents = new List<ctlAddTimeFlow_dev.StudentWrapper>();
 
 			PageReference pageRefSectionStudentsCancel = controller.doStudentsCancel();
 			System.assertEquals('/apex/cy_sections', pageRefSectionStudentsCancel.getURL());
+			/////
+            Pagereference pagecancelReport = controller.gototheReportchart();
 
 			controller.studentsInSection.get(0).selected = true;
 			mystudents = controller.studentsInSection;
@@ -176,9 +199,15 @@ public class TestctlAddTimeFlow_dev {
 			controller.slctdStdId = String.valueOf(theTestStudents.get(0).Id) + ',' + String.valueOf(theTestStudents.get(1).Id);
 			PageReference pageRefAddTime = controller.doStudentsAddTime();
 			System.assertEquals('/apex/cy_addtime', pageRefAddTime.getURL());
+			///////
+            Pagereference pageRefCystudent = controller.StudentReportChart();
+			controller.showPopwindow=false;	
+			Pagereference newpageReference = controller.cancelPopUp();
+			Pagereference secindpagerference =controller.ContactNamepassing();
+			//System.assertEquals('/apex/cy_students', pageRefCystudent.getURL());
 
 			controller.currentSession = new Intervention_Session__c();
-      controller.currentSession.Date__c = Date.today();
+            controller.currentSession.Date__c = Date.today();
 			controller.currentSession.Section__c = mysections[0].Id;
 			controller.currentSession.Comments__c = 'Test Session Comment.';
 			controller.sessionDosage = 10;
@@ -188,6 +217,11 @@ public class TestctlAddTimeFlow_dev {
 
 			pageRefAddTime = controller.doStudentsAddTime();
 			System.assertEquals('/apex/cy_addtime', pageRefAddTime.getURL());
+			///////////
+            pageRefCystudent = controller.StudentReportChart();
+			controller.getReportWrapper();
+			controller.getStudentReport();
+			//System.assertEquals('/apex/cy_students', pageRefCystudent.getURL());
 
 			controller.primaryField = controller.avaliableFields[0].getValue();
 			controller.selectedFields = new List<SelectOption>();
@@ -250,6 +284,7 @@ public class TestctlAddTimeFlow_dev {
 			System.assertEquals('/apex/cy_students', pageRefSectionStudents2.getURL());
 
 			controller.doDeleteStudentFromSession();
+			controller.search();
 		}//System.RunAs
 		Test.stopTest();
 	}
@@ -386,7 +421,18 @@ public class TestctlAddTimeFlow_dev {
 				End_Date__c = null
 			);
 			controller.searchSession();
-
+			controller.searchstudentName ='rajesh juturi';
+			controller.sect = new Section__c(
+				Start_Date__c = Date.today(),
+				End_Date__c = null
+			);
+            controller.searchSession();
+			controller.searchstudentName ='rajesh juturi';
+			controller.sect = new Section__c(
+				Start_Date__c = null,
+				End_Date__c = Date.today().addDays(10)
+			);
+			controller.searchSession();
 		Test.stopTest();
   	}
    

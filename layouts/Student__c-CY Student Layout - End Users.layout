@@ -387,10 +387,7 @@
     <relatedLists>
         <fields>NAME</fields>
         <fields>Date_Administered__c</fields>
-        <fields>Lexile_Score__c</fields>
-        <fields>Quantile_Score__c</fields>
         <fields>Type__c</fields>
-        <fields>Assessment_Results__c</fields>
         <fields>Rating_ID__c</fields>
         <relatedList>Assesment__c.Student__c</relatedList>
     </relatedLists>

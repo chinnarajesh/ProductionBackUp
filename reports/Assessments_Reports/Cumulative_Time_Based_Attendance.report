@@ -64,24 +64,32 @@
         <field>Assesment__c$Student_Id__c</field>
     </columns>
     <columns>
+        <field>Assesment__c$Student__c.Local_Student_ID__c</field>
+    </columns>
+    <columns>
+        <field>Assesment__c$Student__c.Id</field>
+    </columns>
+    <columns>
         <field>Assesment__c$Id</field>
     </columns>
     <columns>
-        <field>BucketField_62396997</field>
-    </columns>
-    <columns>
+        <aggregateTypes>Average</aggregateTypes>
         <field>Assesment__c$Days_Enrolled__c</field>
     </columns>
     <columns>
-        <field>Assesment__c$Number_of_Absences__c</field>
-    </columns>
-    <columns>
-        <field>Assesment__c$Number_of_Excused_Absences__c</field>
-    </columns>
-    <columns>
+        <aggregateTypes>Average</aggregateTypes>
         <field>Assesment__c$Number_of_Tardies__c</field>
     </columns>
     <columns>
+        <aggregateTypes>Average</aggregateTypes>
+        <field>Assesment__c$Number_of_Absences__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Average</aggregateTypes>
+        <field>Assesment__c$Number_of_Excused_Absences__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Average</aggregateTypes>
         <field>Assesment__c$Number_of_Unexcused_Absences__c</field>
     </columns>
     <columns>
@@ -96,30 +104,13 @@
             <operator>equals</operator>
             <value>Cumulative Time Based Attendance Tracker - ATTENDANCE</value>
         </criteriaItems>
-        <criteriaItems>
-            <column>BucketField_62396997</column>
-            <columnToColumn>false</columnToColumn>
-            <isUnlocked>false</isUnlocked>
-            <operator>equals</operator>
-            <value>Valid</value>
-        </criteriaItems>
     </filter>
     <format>Matrix</format>
-    <groupingsAcross>
-        <dateGranularity>Day</dateGranularity>
-        <field>Assesment__c$Type__c</field>
-        <sortOrder>Asc</sortOrder>
-    </groupingsAcross>
     <groupingsAcross>
         <dateGranularity>Month</dateGranularity>
         <field>Assesment__c$Date_Administered__c</field>
         <sortOrder>Asc</sortOrder>
     </groupingsAcross>
-    <groupingsDown>
-        <dateGranularity>Day</dateGranularity>
-        <field>Assesment__c$Location__c</field>
-        <sortOrder>Asc</sortOrder>
-    </groupingsDown>
     <groupingsDown>
         <dateGranularity>Day</dateGranularity>
         <field>Assesment__c$School__c</field>

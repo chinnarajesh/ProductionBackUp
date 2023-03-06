@@ -38,7 +38,7 @@
             <groupingColumn>Assesment__c$Goal_directed_Behavior_Description__c</groupingColumn>
             <groupingSortProperties/>
             <legendPosition>Bottom</legendPosition>
-            <report>CY_HQ_EVAL/GDB_Monthly_Growth_and_Change</report>
+            <report>CYHQ/GDB_Monthly_Growth_and_Change</report>
             <showPercentage>false</showPercentage>
             <showValues>false</showValues>
             <sortBy>RowLabelAscending</sortBy>
@@ -75,7 +75,7 @@
             <indicatorHighColor>#54C254</indicatorHighColor>
             <indicatorLowColor>#C25454</indicatorLowColor>
             <indicatorMiddleColor>#C2C254</indicatorMiddleColor>
-            <report>CY_HQ_EVAL/GDB_Monthly_Growth_and_Change</report>
+            <report>CYHQ/GDB_Monthly_Growth_and_Change</report>
             <showPicturesOnTables>false</showPicturesOnTables>
         </components>
     </leftSection>
@@ -105,7 +105,7 @@
             <groupingColumn>Assesment__c$Decision_Making_Description__c</groupingColumn>
             <groupingSortProperties/>
             <legendPosition>Bottom</legendPosition>
-            <report>CY_HQ_EVAL/DM_Monthly_Growth_and_Change</report>
+            <report>CYHQ/DM_Monthly_Growth_and_Change</report>
             <showPercentage>false</showPercentage>
             <showValues>false</showValues>
             <sortBy>RowLabelAscending</sortBy>
@@ -142,7 +142,7 @@
             <indicatorHighColor>#54C254</indicatorHighColor>
             <indicatorLowColor>#C25454</indicatorLowColor>
             <indicatorMiddleColor>#C2C254</indicatorMiddleColor>
-            <report>CY_HQ_EVAL/DM_Monthly_Growth_and_Change</report>
+            <report>CYHQ/DM_Monthly_Growth_and_Change</report>
             <showPicturesOnTables>false</showPicturesOnTables>
         </components>
     </middleSection>
@@ -172,7 +172,7 @@
             <groupingColumn>Assesment__c$Optimistic_Thinking_Description__c</groupingColumn>
             <groupingSortProperties/>
             <legendPosition>Bottom</legendPosition>
-            <report>CY_HQ_EVAL/OT_Monthly_Growth_and_Change</report>
+            <report>CYHQ/OT_Monthly_Growth_and_Change</report>
             <showPercentage>false</showPercentage>
             <showValues>false</showValues>
             <sortBy>RowLabelAscending</sortBy>
@@ -209,7 +209,7 @@
             <indicatorHighColor>#54C254</indicatorHighColor>
             <indicatorLowColor>#C25454</indicatorLowColor>
             <indicatorMiddleColor>#C2C254</indicatorMiddleColor>
-            <report>CY_HQ_EVAL/OT_Monthly_Growth_and_Change</report>
+            <report>CYHQ/OT_Monthly_Growth_and_Change</report>
             <showPicturesOnTables>false</showPicturesOnTables>
         </components>
     </rightSection>

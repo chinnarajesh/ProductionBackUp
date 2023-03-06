@@ -94,7 +94,7 @@
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
             <operator>equals</operator>
-            <value>Cilayna Parris</value>
+            <value>Esperanza Bauman</value>
         </criteriaItems>
         <criteriaItems>
             <column>Program__c.Sections__r.Student_Section__r$Active__c</column>

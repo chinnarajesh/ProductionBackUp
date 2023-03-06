@@ -7,6 +7,15 @@
         <field>Assesment__c$Id</field>
     </columns>
     <columns>
+        <field>Assesment__c$Student__c.Id</field>
+    </columns>
+    <columns>
+        <field>Assesment__c$Student__c.Local_Student_ID__c</field>
+    </columns>
+    <columns>
+        <field>Assesment__c$Student__c.Student_ID_Auto_Number__c</field>
+    </columns>
+    <columns>
         <field>Assesment__c$Date_Administered__c</field>
     </columns>
     <columns>

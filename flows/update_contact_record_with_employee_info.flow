@@ -75,7 +75,7 @@
                 <processMetadataValues>
                     <name>rightHandSideLabel</name>
                     <value>
-                        <stringValue>Okta User - Okta Intergrations user</stringValue>
+                        <stringValue>Okta User - Okta User</stringValue>
                     </value>
                 </processMetadataValues>
                 <processMetadataValues>
@@ -87,7 +87,7 @@
                 <leftValueReference>myVariable_current.CreatedById</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
-                    <stringValue>0052L0000045rIFQAY</stringValue>
+                    <stringValue>0051R00000HuRWNQA3</stringValue>
                 </rightValue>
             </conditions>
             <connector>
@@ -96,7 +96,7 @@
             <label>employee id is added from user record</label>
         </rules>
     </decisions>
-    <interviewLabel>update_contact_record_with_employee_info-6_InterviewLabel</interviewLabel>
+    <interviewLabel>update_contact_record_with_employee_info-7_InterviewLabel</interviewLabel>
     <label>update contact record with employee info</label>
     <processMetadataValues>
         <name>ObjectType</name>

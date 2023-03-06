@@ -2,17 +2,23 @@
 <Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
     <alerts>
         <fullName>School_setup_School_was_marked_as_SDS</fullName>
-        <ccEmails>juturi.rajesh@jaxconsult.com</ccEmails>
         <description>School setup: School was marked as SDS</description>
         <protected>false</protected>
+        <recipients>
+            <recipient>App_System_Administrators</recipient>
+            <type>group</type>
+        </recipients>
         <senderType>CurrentUser</senderType>
         <template>unfiled$public/School_setup_School_was_marked_as_SDS</template>
     </alerts>
     <alerts>
         <fullName>School_setup_School_was_marked_as_Split</fullName>
-        <ccEmails>juturi.rajesh@jaxconsult.com</ccEmails>
         <description>School setup: School was marked as Split</description>
         <protected>false</protected>
+        <recipients>
+            <recipient>App_System_Administrators</recipient>
+            <type>group</type>
+        </recipients>
         <senderType>CurrentUser</senderType>
         <template>unfiled$public/School_setup_School_was_marked_as_Split</template>
     </alerts>

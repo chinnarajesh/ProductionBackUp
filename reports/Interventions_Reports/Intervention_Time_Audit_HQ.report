@@ -25,11 +25,35 @@
         <field>Section__c.Intervention_Sessions__r.Intervention_Session_Results__r$Related_Student_s_Name__c</field>
     </columns>
     <columns>
+        <field>Section__c.Intervention_Sessions__r.Intervention_Session_Results__r$Intervention_Session_Date__c</field>
+    </columns>
+    <columns>
         <aggregateTypes>Sum</aggregateTypes>
         <field>Section__c.Intervention_Sessions__r.Intervention_Session_Results__r$Amount_of_Time__c</field>
     </columns>
     <columns>
-        <field>Section__c.Intervention_Sessions__r.Intervention_Session_Results__r$Intervention_Session_Date__c</field>
+        <field>Section__c.Intervention_Sessions__r$Session_Type__c</field>
+    </columns>
+    <columns>
+        <field>Section__c.Intervention_Sessions__r$Session_Format__c</field>
+    </columns>
+    <columns>
+        <field>Section__c.Intervention_Sessions__r$Site_Details__c</field>
+    </columns>
+    <columns>
+        <field>Section__c.Intervention_Sessions__r$All_avenues__c</field>
+    </columns>
+    <columns>
+        <field>Section__c.Intervention_Sessions__r$Skill_Primary__c</field>
+    </columns>
+    <columns>
+        <field>Section__c.Intervention_Sessions__r$Skills_Covered_for_the_Session__c</field>
+    </columns>
+    <columns>
+        <field>Section__c.Intervention_Sessions__r.Intervention_Session_Results__r$Exit_Ticket__c</field>
+    </columns>
+    <columns>
+        <field>Section__c.Intervention_Sessions__r$Comments__c</field>
     </columns>
     <columns>
         <field>Section__c.Intervention_Sessions__r.Intervention_Session_Results__r$Name</field>
@@ -42,21 +66,6 @@
     </columns>
     <columns>
         <field>Section__c.Intervention_Sessions__r$Id</field>
-    </columns>
-    <columns>
-        <field>Section__c.Intervention_Sessions__r$Comments__c</field>
-    </columns>
-    <columns>
-        <field>Section__c.Intervention_Sessions__r$Session_Type__c</field>
-    </columns>
-    <columns>
-        <field>Section__c.Intervention_Sessions__r$Session_Format__c</field>
-    </columns>
-    <columns>
-        <field>Section__c.Intervention_Sessions__r$Site_Details__c</field>
-    </columns>
-    <columns>
-        <field>Section__c.Intervention_Sessions__r$Tutoring_Model__c</field>
     </columns>
     <description>Lists all of the intervention session results at your site. You can use this to help you identify questionable data.</description>
     <format>Tabular</format>

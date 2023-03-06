@@ -4,6 +4,9 @@
         <field>Account.Sections__r.Student_Section__r$Location__c</field>
     </columns>
     <columns>
+        <field>Account.Sections__r$Name</field>
+    </columns>
+    <columns>
         <field>Account.Sections__r$Indicator_Area__c</field>
     </columns>
     <columns>
@@ -52,8 +55,8 @@
             <column>Account.Sections__r$Start_Date__c</column>
             <columnToColumn>false</columnToColumn>
             <isUnlocked>false</isUnlocked>
-            <operator>lessThan</operator>
-            <value>7/1/2021</value>
+            <operator>lessOrEqual</operator>
+            <value>LAST_FISCAL_YEAR</value>
         </criteriaItems>
         <criteriaItems>
             <column>Account.Sections__r$Start_Date__c</column>
@@ -66,15 +69,15 @@
             <column>Account.Sections__r$End_Date__c</column>
             <columnToColumn>false</columnToColumn>
             <isUnlocked>false</isUnlocked>
-            <operator>lessThan</operator>
-            <value>7/1/2021</value>
+            <operator>lessOrEqual</operator>
+            <value>LAST_FISCAL_YEAR</value>
         </criteriaItems>
         <criteriaItems>
             <column>Account.Sections__r$End_Date__c</column>
             <columnToColumn>false</columnToColumn>
             <isUnlocked>false</isUnlocked>
             <operator>greaterThan</operator>
-            <value>6/30/2022</value>
+            <value>THIS_FISCAL_YEAR</value>
         </criteriaItems>
         <criteriaItems>
             <column>Account.Sections__r$End_Date__c</column>

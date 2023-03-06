@@ -4,8 +4,11 @@
     <decisions>
         <name>Markets</name>
         <label>Markets</label>
-        <locationX>176</locationX>
+        <locationX>314</locationX>
         <locationY>311</locationY>
+        <defaultConnector>
+            <targetReference>Market_3_update</targetReference>
+        </defaultConnector>
         <defaultConnectorLabel>Market 3</defaultConnectorLabel>
         <rules>
             <name>Market_1</name>
@@ -73,6 +76,9 @@
                     <stringValue>Washington, D.C.</stringValue>
                 </rightValue>
             </conditions>
+            <connector>
+                <targetReference>Market_1_Update</targetReference>
+            </connector>
             <label>Market 1</label>
         </rules>
         <rules>
@@ -148,6 +154,9 @@
                     <stringValue>Tulsa</stringValue>
                 </rightValue>
             </conditions>
+            <connector>
+                <targetReference>Market_2_update</targetReference>
+            </connector>
             <label>Market 2</label>
         </rules>
     </decisions>
@@ -172,8 +181,253 @@
         </value>
     </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
-    <start>
+    <recordUpdates>
+        <name>Market_1_Update</name>
+        <label>Market 1 update</label>
         <locationX>50</locationX>
+        <locationY>431</locationY>
+        <filterLogic>or</filterLogic>
+        <filters>
+            <field>Site__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Boston</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Site__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Chicago</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Site__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Dallas</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Site__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Los Angeles</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Site__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>New York City</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Site__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Philadelphia</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Site__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>San Jose/Silicon Valley</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Site__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Seattle/King County</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Site__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Washington, D.C.</stringValue>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Markets__c</field>
+            <value>
+                <stringValue>Market 1</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Market_2_update</name>
+        <label>Market 2 update</label>
+        <locationX>314</locationX>
+        <locationY>431</locationY>
+        <filterLogic>or</filterLogic>
+        <filters>
+            <field>Site__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Cleveland</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Site__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Columbus</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Site__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Denver</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Site__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Detroit</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Site__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Kansas City</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Site__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Memphis</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Site__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Miami</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Site__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Milwaukee</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Site__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>San Antonio</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Site__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Tulsa</stringValue>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Markets__c</field>
+            <value>
+                <stringValue>Market 2</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Market_3_update</name>
+        <label>Market 3 update</label>
+        <locationX>578</locationX>
+        <locationY>431</locationY>
+        <filterLogic>or</filterLogic>
+        <filters>
+            <field>Site__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Baton Rouge</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Site__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Buffalo</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Site__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Columbia</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Site__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Jacksonville</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Site__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Little Rock</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Site__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>New Hampshire</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Site__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>New Orleans</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Site__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Orlando</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Site__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Providence</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Site__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Sacramento</stringValue>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Markets__c</field>
+            <value>
+                <stringValue>Market 3</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>188</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>Markets</targetReference>
@@ -182,5 +436,5 @@
         <recordTriggerType>CreateAndUpdate</recordTriggerType>
         <triggerType>RecordBeforeSave</triggerType>
     </start>
-    <status>Draft</status>
+    <status>Active</status>
 </Flow>

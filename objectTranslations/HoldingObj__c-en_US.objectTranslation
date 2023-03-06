@@ -115,6 +115,10 @@
         <name>Local_Student_ID__c</name>
     </fields>
     <fields>
+        <label><!-- Lunch Status --></label>
+        <name>Lunch_Status__c</name>
+    </fields>
+    <fields>
         <label><!-- Network Code --></label>
         <name>Network_Code__c</name>
     </fields>

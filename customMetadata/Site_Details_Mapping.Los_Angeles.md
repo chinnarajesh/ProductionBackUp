@@ -8,6 +8,6 @@
     </values>
     <values>
         <field>Values__c</field>
-        <value xsi:type="xsd:string">Academic Coaching = AC; Planned Academic Coaching = PAC; Socio-Emotional Development = SED; Planned Socio-Emotional Development = PSED</value>
+        <value xsi:type="xsd:string">Academic Coaching = AC;Planned Academic Coaching = PAC;Socio-Emotional Development = SED;Planned Socio-Emotional Development = PSED</value>
     </values>
 </CustomMetadata>

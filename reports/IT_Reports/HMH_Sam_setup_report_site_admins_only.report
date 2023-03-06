@@ -55,9 +55,9 @@
         <criteriaItems>
             <column>User*User$Site__c</column>
             <columnToColumn>false</columnToColumn>
-            <isUnlocked>false</isUnlocked>
+            <isUnlocked>true</isUnlocked>
             <operator>equals</operator>
-            <value>Boston,Chicago,Little Rock,New York City,Sacramento</value>
+            <value>New York City</value>
         </criteriaItems>
     </filter>
     <format>Summary</format>

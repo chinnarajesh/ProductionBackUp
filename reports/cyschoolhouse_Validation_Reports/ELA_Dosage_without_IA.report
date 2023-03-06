@@ -28,13 +28,13 @@
             <axisBinding>y</axisBinding>
             <column>RowCount</column>
         </chartSummaries>
-        <chartType>HorizontalBarStacked</chartType>
+        <chartType>HorizontalBarGrouped</chartType>
         <enableHoverLabels>false</enableHoverLabels>
         <expandOthers>true</expandOthers>
         <groupingColumn>Account$Name</groupingColumn>
         <legendPosition>Right</legendPosition>
         <location>CHART_TOP</location>
-        <secondaryGroupingColumn>BucketField_53034447</secondaryGroupingColumn>
+        <secondaryGroupingColumn>Account.Sections__r$Intervention_Primary_Staff__c</secondaryGroupingColumn>
         <showAxisLabels>true</showAxisLabels>
         <showPercentage>false</showPercentage>
         <showTotal>false</showTotal>
@@ -43,7 +43,7 @@
         <summaryAxisRange>Auto</summaryAxisRange>
         <textColor>#000000</textColor>
         <textSize>12</textSize>
-        <title>ELA Tutoring Dosage with Non-IA Students</title>
+        <title>Students with literacy time with no IA</title>
         <titleColor>#000000</titleColor>
         <titleSize>18</titleSize>
     </chart>
@@ -63,7 +63,7 @@
     <columns>
         <field>Account.Sections__r$Auto_Name__c</field>
     </columns>
-    <description>ELA tutoring dosage for students without an ELA IA assigned.</description>
+    <description>ELA/literacy tutoring time logged for students without an ELA indicator area assignment.</description>
     <filter>
         <criteriaItems>
             <column>Account.Sections__r$Program__c</column>
@@ -77,7 +77,7 @@
             <columnToColumn>false</columnToColumn>
             <isUnlocked>false</isUnlocked>
             <operator>contains</operator>
-            <value>,In School,Extended Learning</value>
+            <value>In School,Extended Learning</value>
         </criteriaItems>
         <criteriaItems>
             <column>Account.Sections__r.Student_Section__r$Location__c</column>
@@ -93,24 +93,26 @@
             <operator>equals</operator>
             <value>0</value>
         </criteriaItems>
+        <criteriaItems>
+            <column>Account.Sections__r.Student_Section__r$Dosage_to_Date__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>greaterThan</operator>
+            <value>0</value>
+        </criteriaItems>
     </filter>
-    <format>Matrix</format>
-    <groupingsAcross>
-        <dateGranularity>Day</dateGranularity>
-        <field>BucketField_53034447</field>
-        <sortOrder>Asc</sortOrder>
-    </groupingsAcross>
-    <groupingsDown>
-        <dateGranularity>Day</dateGranularity>
-        <field>Account.Sections__r$Location__c</field>
-        <sortOrder>Asc</sortOrder>
-    </groupingsDown>
+    <format>Summary</format>
     <groupingsDown>
         <dateGranularity>Day</dateGranularity>
         <field>Account$Name</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
-    <name>ELA Dosage without IA</name>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Account.Sections__r$Intervention_Primary_Staff__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>ELA/Literacy Time Logged without IA</name>
     <params>
         <name>co</name>
         <value>1</value>

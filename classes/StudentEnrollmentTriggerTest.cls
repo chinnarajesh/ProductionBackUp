@@ -50,6 +50,18 @@ public class StudentEnrollmentTriggerTest {
         section.Time__c=timeone.id;
         insert section;
         
+        Section__c section2 = new Section__c();
+        section2.Name='test school section Math2';
+        section2.School__c=acc.id;
+        section2.Available_Grade_Levels__c='5';
+        section2.Reference_Id__c='test school section Math2'+acc.name;
+        section2.RecordTypeId=Schema.SObjectType.Section__c.getRecordTypeInfosByName().get('Schedule Group').getRecordTypeId();
+        section2.Period__c='Math';
+        section2.Active__c=true;
+        section2.Reporting_Period__c=timeone.id;
+        section2.Time__c=timeone.id;
+        insert section2;
+
         Contact con = new Contact();
         con.FirstName='peter';
         con.LastName='parkar';
@@ -66,6 +78,7 @@ public class StudentEnrollmentTriggerTest {
         insert setup;
         
         Test.startTest();
+        core_triggerUtils.contactTrigger=true;
         Student__c student = new Student__c();
         student.Student_First_Name__c='peter';
         student.Student_Last_Name__c='pet';
@@ -79,9 +92,31 @@ public class StudentEnrollmentTriggerTest {
         student.Setup__c=setup.id;
         student.Entry_Date__c=system.today();
         student.Local_Student_ID__c='082402M901';
-        student.Reference_Id__c='CY-642952_Courtney Test School_2022-2023';
+        //student.Reference_Id__c='CY-642952_Courtney Test School_2022-2023';
         student.Student_Id__c='7345637465';
+        student.Title_1_Status__c='Free';
+        student.State__c='TN';
+        student.Ward__c='1';
+        student.Residence_After_Exiting_School__c='	Armed services';
+        //student.Primary_Schedule_Group__c=sec.id;
         insert student;
+        Map<Id,Student__c> StudentMap = new Map<Id,Student__c>();
+        StudentMap.put(student.id,student);
+        CT_Student_Utils.processBeforeDelete(StudentMap);
+        CT_Student_Utils.getStudentSetupMap(StudentMap);
+        List<Student__c> StudentList = new List<Student__c>();
+        StudentList.add(student);
+        CT_Student_Utils.getStudentSetupMap(StudentList);
+        CT_Student_Utils.populateFieldsOnUpdate(StudentList,StudentMap);
+        List<Enrollment_Tracking__c> newset = new List<Enrollment_Tracking__c>();
+        date dateToCheck=System.today();
+        CT_Student_Utils.checkEnrollmentTracking(newset, dateToCheck);
+        core_triggerUtils.contactTrigger=false;
+        student.Primary_Schedule_Group__c=section2.id;
+        update student;
+        Map<Id,Student__c> StudentMap2 = new Map<Id,Student__c>();
+        StudentMap2.put(student.id,student);
+        CT_Student_Utils.scheduleGroup_onUpdate(StudentMap2,StudentMap);
         Test.stopTest();
     }
     

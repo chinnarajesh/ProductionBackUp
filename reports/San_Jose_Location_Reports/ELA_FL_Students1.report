@@ -18,6 +18,9 @@
     <columns>
         <field>Account.Sections__r.Student_Section__r$Enrollment_End_Date__c</field>
     </columns>
+    <columns>
+        <field>Account$Name</field>
+    </columns>
     <filter>
         <criteriaItems>
             <column>Account.Sections__r.Student_Section__r$Active__c</column>
@@ -35,11 +38,6 @@
         </criteriaItems>
     </filter>
     <format>Summary</format>
-    <groupingsDown>
-        <dateGranularity>Day</dateGranularity>
-        <field>Account$Name</field>
-        <sortOrder>Asc</sortOrder>
-    </groupingsDown>
     <groupingsDown>
         <dateGranularity>Day</dateGranularity>
         <field>Account.Sections__r$Auto_Name__c</field>

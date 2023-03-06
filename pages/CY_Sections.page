@@ -1,57 +1,149 @@
 <apex:page docType="html-5.0" showHeader="false" sidebar="false" standardStylesheets="false" applyHtmlTag="false" applyBodyTag="false" controller="ctlAddTimeFlow_dev">
-	<title>Home</title>
+    <title>Home</title>
+        <!--<apex:includescript value="//code.jquery.com/jquery-1.11.1.min.js"/>
+        <apex:includescript value="//cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"/>
+        <apex:stylesheet value="//cdn.datatables.net/1.10.4/css/jquery.dataTables.css"/>-->
+    <apex:composition template="CY_Template">
+        <apex:define name="body">
 
-	<apex:composition template="CY_Template">
-		<apex:define name="body">
+            <apex:form styleClass="container-bs reset-xs" id="apform">
+                <div class="box data">
+                    <div class="box-content">
+                        <apex:outputPanel id="mySection">
+                            <apex:pageMessages id="theSections" />
 
-			<apex:form styleClass="container-bs reset-xs">
-				<div class="box data">
-					<div class="box-content">
-						<apex:outputPanel id="mySection">
-							<apex:pageMessages id="theSections" />
+                            <table class="table data-table responsive table-striped cy-table" id="tablesorter">
+                                <thead>
+                                    <tr>
+                                        <th>Section Name</th>
+                                        <th>Section Nickname</th>
 
-							<table class="table data-table responsive table-striped cy-table">
-								<thead>
-									<tr>
-										<th>Section Name</th>
-										<th>Section Nickname</th>
-										<th class="desktop">In School / ELT</th>
-									</tr>
-								</thead>
-								<tbody>
-									<apex:repeat var="s" value="{!secList}">
-									<tr>
-										<td>
-											<apex:commandLink value="{!s.Name}" action="{!doSectionStudents}" rendered="{!s.Active__c}">
-												<apex:param name="sectionID" value="{!s.Id}" assignTo="{!sectionID}" />
-												<apex:param name="sectionName" value="{!s.Name}" assignTo="{!sectionName}" />
-												<apex:param name="sectionELT" value="{!s.In_After_School__c}" assignTo="{!sectionELT}" />
-												<apex:param name="sectionNickName" value="{!s.Section_Nickname__c}" assignTo="{!sectionNickName}" />
-												<apex:param name="sectionNameEscaped" value="{!s.Name}" assignTo="{!sectionNameEscaped}" />
-											</apex:commandLink>
-											<apex:outputField value="{!s.Name}" rendered="{!NOT(s.Active__c)}" />
-										</td>
-										<td>{!s.Section_Nickname__c}</td>
-										<td>{!s.In_After_School__c}</td>
-									</tr>
-									</apex:repeat>
-								</tbody>
-							</table>
-						</apex:outputPanel>
-					</div>
-				</div>
-			</apex:form>
-		</apex:define>
-	</apex:composition>
-	
-	<script type="text/javascript">
-		$(document).ready(function() {
-			$('.data-table').DataTable({
-				responsive: {
-					details: true
-				}
-			});
-		});
-	</script>
+                                        <th class="desktop">In School / ELT</th>
+                                        <th>first name</th>
+                                        
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <apex:repeat var="s" value="{!secList}" >
+                                    <tr>
+                                        <!--<td>
+                                        <a href="#">
+                                            <strong onClick="someFunction('{!s.Id}', '{!s.Name}','{!s.In_After_School__c}','{!s.Section_Nickname__c}','{!s.Name}');">{!s.Name} </strong></a>
+                                        </td>-->
+                                         <!--<td>
+                                            <apex:outputLink value="/https://cyschoolhouseb--devfull.sandbox.my.site.com/TargetSite/ce/cy_sections{!s.Name}" onClick="someFunction();" rendered="{!s.Active__c}" >
+                                                {!s.Name}
+                                                
+                                            </apex:outputLink>
+                                        </td>-->
+                                        
+                                        <td >
+                                            <apex:commandLink value="{!s.name}" action="{!doSectionStudents}" rendered="{!s.Active__c}" >
+                                                <apex:param name="sectionID" value="{!s.Id}" assignTo="{!sectionID}" />
+                                                <apex:param name="sectionName" value="{!s.name}" assignTo="{!sectionName}"/>
+                                                <apex:param name="sectionELT" value="{!s.In_After_School__c}" assignTo="{!sectionELT}" />
+                                                <apex:param name="sectionNickName" value="{!s.Section_Nickname__c}" assignTo="{!sectionNickName}" />
+                                                <apex:param name="sectionNameEscaped" value="{!s.name}" assignTo="{!sectionNameEscaped}" />
+                                            </apex:commandLink>
+                                            <apex:outputField value="{!s.name}" rendered="{!NOT(s.Active__c)}" />
+                                        </td>
+                                        <td>{!s.Section_Nickname__c}</td>
+                                        <td>{!s.In_After_School__c}</td>
+                                        <td>{!s.Account_Program__r.name}</td>
+                                    </tr>
+                                    </apex:repeat>
+                                </tbody>
+                            </table>
+                        </apex:outputPanel>
+                    </div>
+                </div>
+                <apex:actionFunction name="someFunction1" action="{!doSectionStudents}" >
+                    <apex:param name="sectionID" value="{}" assignTo="{!sectionID}" />
+                    <apex:param name="sectionName" value="{}" assignTo="{!sectionName}"/>
+                    <apex:param name="sectionELT" value="{}" assignTo="{!sectionELT}" />
+                    <apex:param name="sectionNickName" value="{}" assignTo="{!sectionNickName}" />
+                    <apex:param name="sectionNameEscaped" value="{}" assignTo="{!sectionNameEscaped}" />
+                    
+                </apex:actionFunction>
+                
+            </apex:form>
+        </apex:define>
+    </apex:composition>
+    <script>
+        
+     function someFunction( id,  name,  inafterschool,  sectionnick,  sectionname){
+        //var newvalue =id.value;
+        //alert('newvalue'+id);
+        //doSectionStudents();
+        console.log('===id=='+id);
+        console.log('===name=='+name);
+        console.log('===inafterschool=='+inafterschool);
+        console.log('===sectionnick=='+sectionnick);
+        console.log('===sectionname=='+sectionname);
+        
+        someFunction1(id,name,inafterschool,sectionnick,sectionname);
+    }
+    </script>
+    
+    <script type="text/javascript">
+    //j$ = jQuery.noConflict(); 
+    
+    /*function someFunction(string id,string name,string inafterschool,string sectionnick,string sectionname){
+        //var newvalue =id.value;
+        alert('newvalue');
+        doSectionStudents(id,name,inafterschool,sectionnick,sectionname);
+    }*/
+   
+
+    
+        $(document).ready(function() {
+            //var ctrl = document.getElementById('apexdata');
+            //console.log('section data##'+JSON.stringify(ctrl));
+            //alert('alert'+ctrl);
+            $('#tablesorter').DataTable({
+
+                
+                columnDefs: [{
+    targets: [0],
+    orderData: [3],
+    type: "string"
+  }],
+
+  'columns' : [
+        null,
+        null,
+         null,
+        //hide the fourth column
+        {'visible' : false }
+    ]
+
+
+
+                //responsive: {
+                    //details: true
+                //}
+                //'order' : [[0, 'asc']],
+            });
+        //var dt = $('#tablesorter').DataTable();
+//hide the second and third columns
+//dt.columns([3]).visible(false);
+           // $( "a" ).each(function( i) {
+           //     var at = $("a")[i];
+           //     at.replace ? $.trim( at.replace( /<.*?>/g, "" ).toLowerCase() ) : at+''
+           //   });
+            //conole.log('====='+$.fn.dataTable.ext.type.order['html-pre']);
+            /*$.fn.dataTable.ext.type.order['html-pre'] = function ( a ) {
+        console.log('print===='+a);
+    return !a ?
+        '' :
+        a.replace ?
+            $.trim( a.replace( /<.*?>/g, "" ).toLowerCase() ) :
+            a+'';
+    };*/
+        
+            //$("table").tablesorter({debug: true});
+         });
+    
+    </script>
 
 </apex:page>

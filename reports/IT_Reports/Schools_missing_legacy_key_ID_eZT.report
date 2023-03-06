@@ -39,6 +39,13 @@
             <operator>equals</operator>
             <value></value>
         </criteriaItems>
+        <criteriaItems>
+            <column>ACCOUNT.NAME</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>notEqual</operator>
+            <value>CY - Another Anytown School,CY - Anytown School,CY - Test School</value>
+        </criteriaItems>
     </filter>
     <format>Summary</format>
     <groupingsDown>

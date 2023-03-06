@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Report xmlns="http://soap.sforce.com/2006/04/metadata">
     <columns>
-        <field>Contact.Students__r$Location__c</field>
-    </columns>
-    <columns>
         <field>Contact.Students__r$Contact_Id__c</field>
     </columns>
     <columns>
@@ -24,6 +21,11 @@
     <format>Summary</format>
     <groupingsDown>
         <dateGranularity>Day</dateGranularity>
+        <field>Contact.Students__r$Location__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
         <field>Contact.Students__r$School_Name__c</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
@@ -34,7 +36,7 @@
     </params>
     <reportType>Contacts_and_Students_per_location_and_school__c</reportType>
     <scope>organization</scope>
-    <showDetails>true</showDetails>
+    <showDetails>false</showDetails>
     <showGrandTotal>false</showGrandTotal>
     <showSubTotals>false</showSubTotals>
     <timeFrameFilter>
