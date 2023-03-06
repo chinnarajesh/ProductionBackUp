@@ -157,7 +157,7 @@
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
-    <externalSharingModel>ReadWrite</externalSharingModel>
+    <externalSharingModel>Private</externalSharingModel>
     <fieldSets>
         <fullName>Assignment_Types_Picklist_Value_Template</fullName>
         <description>CSV Loader v2</description>
@@ -1443,6 +1443,7 @@
         <columns>Indicator_Area__c</columns>
         <columns>NAME</columns>
         <columns>Fieldset__c</columns>
+        <columns>X18_character_salesforce_ID__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>RECORDTYPE</field>
@@ -5967,6 +5968,10 @@
         <lookupDialogsAdditionalFields>Setup__c</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>Internal_Code__c</lookupDialogsAdditionalFields>
         <searchFilterFields>NAME</searchFilterFields>
+        <searchResultsAdditionalFields>RECORDTYPE</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Indicator_Area__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Fieldset__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>X18_character_salesforce_ID__c</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>

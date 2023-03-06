@@ -59,6 +59,9 @@
     <columns>
         <field>Section__c.Student_Section__r$Student__c.Student_ID_Auto_Number__c</field>
     </columns>
+    <columns>
+        <field>Section__c.Student_Section__r$Section_Exit_Reason__c</field>
+    </columns>
     <description>This report lists all the students grouped by section, school and location.  This sum formulas display the total dosage for each section, school and location</description>
     <filter>
         <criteriaItems>
@@ -66,7 +69,7 @@
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
             <operator>equals</operator>
-            <value>In School</value>
+            <value>In School,Extended Learning</value>
         </criteriaItems>
     </filter>
     <format>Tabular</format>

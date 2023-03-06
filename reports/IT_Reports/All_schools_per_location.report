@@ -27,6 +27,12 @@
     <columns>
         <field>Account.Markets__c</field>
     </columns>
+    <columns>
+        <field>LAST_UPDATE</field>
+    </columns>
+    <columns>
+        <field>LAST_UPDATE_BY</field>
+    </columns>
     <filter>
         <criteriaItems>
             <column>RECORDTYPE</column>

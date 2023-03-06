@@ -4,28 +4,42 @@
         <field>Assesment__c$Student__c</field>
     </columns>
     <columns>
+        <field>Assesment__c$Student__c.Local_Student_ID__c</field>
+    </columns>
+    <columns>
         <field>Assesment__c$Student_Id__c</field>
     </columns>
     <columns>
-        <field>Assesment__c$Id</field>
+        <field>Assesment__c$Student_Grade__c</field>
     </columns>
     <columns>
-        <field>Assesment__c$Number_of_In_School_Suspensions__c</field>
-    </columns>
-    <columns>
+        <aggregateTypes>Average</aggregateTypes>
         <field>Assesment__c$Number_of_Office_Referrals__c</field>
     </columns>
     <columns>
-        <field>Assesment__c$Number_of_Out_of_School_Suspensions__c</field>
-    </columns>
-    <columns>
-        <field>Assesment__c$Number_of_Suspensions__c</field>
-    </columns>
-    <columns>
+        <aggregateTypes>Average</aggregateTypes>
         <field>Assesment__c$Number_of_Detentions__c</field>
     </columns>
     <columns>
+        <aggregateTypes>Average</aggregateTypes>
+        <field>Assesment__c$Number_of_Suspensions__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Average</aggregateTypes>
+        <field>Assesment__c$Number_of_In_School_Suspensions__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Average</aggregateTypes>
+        <field>Assesment__c$Number_of_Out_of_School_Suspensions__c</field>
+    </columns>
+    <columns>
         <field>Assesment__c$Time_Period__c</field>
+    </columns>
+    <columns>
+        <field>Assesment__c$Student__c.Id</field>
+    </columns>
+    <columns>
+        <field>Assesment__c$Id</field>
     </columns>
     <filter>
         <criteriaItems>
@@ -33,7 +47,7 @@
             <columnToColumn>false</columnToColumn>
             <isUnlocked>false</isUnlocked>
             <operator>equals</operator>
-            <value>Reporting Period Time Based Behavior Tracker - BEHAVIOR</value>
+            <value>Reporting Period Time Based SEL/SED Tracker - BEHAVIOR</value>
         </criteriaItems>
     </filter>
     <format>Matrix</format>
@@ -49,15 +63,10 @@
     </groupingsAcross>
     <groupingsDown>
         <dateGranularity>Day</dateGranularity>
-        <field>Assesment__c$Location__c</field>
-        <sortOrder>Asc</sortOrder>
-    </groupingsDown>
-    <groupingsDown>
-        <dateGranularity>Day</dateGranularity>
         <field>Assesment__c$School__c</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
-    <name>Reporting Period Time Based Behavior</name>
+    <name>Reporting Period Time Based SEL/SED</name>
     <params>
         <name>co</name>
         <value>1</value>

@@ -45,6 +45,13 @@
             <section>Custom Links</section>
         </sections>
     </layouts>
+    <layouts>
+        <layout>Indicator Area/Student Sys Admin Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
     <startsWith>Consonant</startsWith>
     <validationRules>
         <errorMessage><!-- You do not have access to change the IA Effective Date. Please submit a Service Desk case if you need the IA Effective Date to be changed. --></errorMessage>

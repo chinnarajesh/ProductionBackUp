@@ -8,6 +8,6 @@
     </values>
     <values>
         <field>Values__c</field>
-        <value xsi:type="xsd:string">Planned; Unplanned</value>
+        <value xsi:type="xsd:string">SEL Component;No SEL</value>
     </values>
 </CustomMetadata>

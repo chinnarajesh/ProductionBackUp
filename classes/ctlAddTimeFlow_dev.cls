@@ -3,7 +3,9 @@
 */
 
 public without sharing class ctlAddTimeFlow_dev {
-
+    public static final String SEPARATOR = ', ';
+    public static final String SEPKEY = '#';
+    private Map<ID, Section__c> sectionMap;
     public Section__c sect  { get;set; }//Added by Harsh Singh
     public Student_Section__c ss {get;set;}//Added by Harsh Singh
     public List<SessionList> searchResults{get;set;}//Added by Harsh Singh
@@ -12,8 +14,14 @@ public without sharing class ctlAddTimeFlow_dev {
     public Boolean srchop{get;set;}
     public Integer sessionDosage{get; set;} //BGR Declare variable to capture default session time
     public Boolean showTutoringModel{get;set;}
-   
-    
+    public Boolean ShowStudentReport{get;set;}
+    public Boolean showstudentButton{get;set;}
+    public Boolean mainReportchat{get;set;}
+    public Boolean titledisplay{get;set;}
+    public Boolean showpopup{get;set;}
+    public String                   primarySkill                {get; set; } 
+    public string studentName {get;set;}
+    public boolean showPopwindow {get;set;}
     /**
     *    Wrapper Classes
     */
@@ -37,7 +45,7 @@ public without sharing class ctlAddTimeFlow_dev {
         public String studentList{get;set;}
         public String exitTicket{get;set;}
         public String Timevalue {get;set;}
-        Public String Primaryskill {get;set;}
+        //Public String Primaryskill {get;set;}
     }
     /**/
      
@@ -47,6 +55,7 @@ public without sharing class ctlAddTimeFlow_dev {
     */
 
     public ctlAddTimeFlow_dev(){
+        setupWeekValues(Date.today());
         studentsInSection = new List<StudentWrapper>();
         showCalDatePicker = true; // show the calendar popup on the pageAddTime by default
         sect=new Section__c(); 
@@ -60,6 +69,9 @@ public without sharing class ctlAddTimeFlow_dev {
         studentsInCurriculumDeleted = new List<Curriculum__c>();
         
         initAllAvenues();
+        initAvaliableFields();
+        initSelectedFields();
+        showPopwindow=false;
        
     }
    
@@ -150,10 +162,11 @@ public without sharing class ctlAddTimeFlow_dev {
     }
     
     // Utilized in pageSectionList VFP to display the list of sections available to add students and time to
-    public List<Section__c> getSecList() {     
+    public List<Section__c> getSecList() { 
+        String firstword ;    
         try {
             String[] currUserIDs = getCurrentUserIDs();
-            List<Section__c> allMySections = [SELECT Id, Name, In_After_School__c, Section_Nickname__c, Active__c
+            List<Section__c> allMySections = [SELECT Id,name,In_After_School__c,Section_Nickname__c,School__c,Active__c,First_words__c,Account_Program__r.name
                 FROM Section__c 
                 WHERE RecordType.DeveloperName IN ('Intervention_Section','Curriculum')
                     AND SkipDosage__c = false 
@@ -162,11 +175,16 @@ public without sharing class ctlAddTimeFlow_dev {
                         AND Section__r.Active__c = true
                         AND Is_Active__c = true
                     )
-                ORDER BY Name
+                ORDER BY Name Asc 
 //                LIMIT :blockSize
 //                OFFSET :index
             ];
             system.debug('HSB 1 - ' + allMySections);
+            for(Section__c se:allMySections){
+                se.Account_Program__r.name=se.Account_Program__r.name.remove('/');
+                se.Account_Program__r.name=se.Account_Program__r.name.deleteWhitespace();
+                se.Account_Program__r.name=se.Account_Program__r.name.replace(':','');
+            }
             
             totalRecs = allMySections == null? 0: allMySections.size();
             system.debug('KY ----- Total # of Sections ' + totalRecs);
@@ -186,7 +204,8 @@ public without sharing class ctlAddTimeFlow_dev {
     // in pageSectionStudents VFP
     public PageReference doSectionStudents() {
         findEnrolledStudentsForSection();
-    
+        showstudentButton=true;
+        mainReportchat=true;
         //Logic to add the report to the page
         List<Profile> prfil=[SELECT Name FROM Profile where UserLicenseId in 
                                     (SELECT Id FROM UserLicense where name ='Customer Community')];
@@ -213,6 +232,36 @@ public without sharing class ctlAddTimeFlow_dev {
 
         return currentSection.In_After_School__c=='Curriculum'? Page.CY_StudentCurriculums: Page.CY_Students;
     }
+    ///////////////// Rajesh juturi added //////////////////////
+    public string searchstudentName {set;get;}
+    public string studentSectionName {set;get;}
+    public string studentId          {set;get;}
+    public List<Student_Section__c> results {get; set;}
+    //public List<Student_Section__c> studentResult {set;get;}
+    
+    
+    public void search() {
+        System.debug('contactname++'+searchstudentName);
+         String NewStudentName = '%'+searchstudentName+'%';
+         System.debug('new section+++'+sectionID);
+        showPopwindow=true;
+     results = [SELECT Student_Name__c, Student_Id__c,Student__r.School_Name__c,Student_Grade__c,Student__c FROM Student_Section__c WHERE Section__c =:sectionID and Student_Name__c LIKE :NewStudentName];
+        System.debug('new data+++'+results);
+    }
+    public PageReference cancelPopUp() {
+        showPopwindow=false;
+        
+        return null;
+    }
+    
+    public PageReference ContactNamepassing(){
+        System.debug('contactname2**'+studentSectionName);
+        System.debug('studentId%%%'+studentId);
+        searchstudentName=studentSectionName;
+        showPopwindow=false;
+        return null;
+    }
+    ////////////////// ended by Rajesh juturi //////////////////////
 
     /**
     *    Page Local Actions
@@ -300,7 +349,7 @@ public without sharing class ctlAddTimeFlow_dev {
             checkState='';
             ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR,'Please Select the Students')); 
             return Page.CY_Students;
-       }
+        }
        
         //initialize multiselect picklist values
         if(!isLoadPreviousSkills){
@@ -314,28 +363,80 @@ public without sharing class ctlAddTimeFlow_dev {
         initSelectedFields();
         initAllAvenues();
         initSiteDetails();
+        changeSection();
         
         return Page.CY_AddTime;
     }
+    /// Added by juturi rajesh  *************///
+    public PageReference addweeklyTime(){
+        
+        if(!isLoadPreviousSkills){
+            studentSelectedSkills = '';
+            primaryField = '';
+        }
+
+        initAvaliableFields();
+        initSelectedFields();
+        initAllAvenues();
+        initSiteDetails();
+        changeSection();
+
+        return page.CY_AddWeeklyTime;
+
+    }
+    Set<string> studentIdSet = new Set<string>();
+    public Pagereference StudentReportChart(){
+        if(String.isBlank(slctdStdId)){
+            checkState='';
+            ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR,'Please Select the Students')); 
+            ShowStudentReport=true;
+            showReport=true;
+            showstudentButton=true;
+            mainReportchat=true;
+            return Page.CY_Students;
+       }
+        ShowReport=false;
+        ShowStudentReport=false;
+        mainReportchat=false;
+        showstudentButton=false;
+        titledisplay=true;
+        System.debug('*******selected ID'+slctdStdId); 
+        studentIdSet = String.isNotBlank(slctdStdId)? new Set<String>(slctdStdId.split(',')): new Set<String>();
+        System.debug('StudentIdset****'+studentIdSet);
+        
+         return Page.CY_Students;
+    }
+    //// edded by juturi rajesh *******************/////////////
 
     /**
     *    Navigation Action: From Section Detail/Enrolled Students ---> Session List
     */
     // Navigation action from the pageSectionStudents VFP to show the list of intervention sessions where time has been tracked
     public PageReference doShowSessions() {
+        showPopwindow=false;
+        searchstudentName=null;
+        currentSection = new Section__c();
+        currentSection =[select id,name,School__c,Start_Date__c,End_Date__c from Section__c where id =: sectionID];
         sect.Start_Date__c = null;
         sect.End_Date__c = null;
         sect.Intervention_Primary_Staff__c = null;
+        //ss =[select id,name,Student__c from Student_Section__c where Section__c =: sectionID];
         ss.Student__c = null;
         searchResults=null;
+        System.debug('sectSchool***'+sect.School__c);
         sect.School__c = currentSection.School__c;
         isLoadPreviousSkills = false;
+        System.debug('curentSchool^^^'+currentSection.School__c);
         return Page.CY_Session;//Added by Harsh Singh on 10 th May 2016
         /*PageReference pg = new PageReference('/apex/CY_Session');
         pg.setRedirect(true);
         return pg;*/
     }
     public PageReference backToSession(){
+        currentSection = new Section__c();
+        currentSection =[select id,name,School__c,Start_Date__c,End_Date__c from Section__c where id =: sectionID];
+        System.debug('curentSchool^^^'+currentSection.School__c);
+        System.debug('sectSchool***'+sect.School__c);
         sect.School__c = currentSection.School__c;
         return Page.CY_Session;
     }
@@ -346,8 +447,23 @@ public without sharing class ctlAddTimeFlow_dev {
     // Navigation action on the cancel buttons of pageSectionStudent VFP - sends user back to the list of sections
     public PageReference doStudentsCancel() {
         isLoadPreviousSkills = false;
-        showCalDatePicker = true;
+        //showCalDatePicker = true;
+        ShowStudentReport=true;
         return Page.CY_Sections;
+    }
+    public Pagereference gototheReportchart(){
+        ShowStudentReport=true;
+        showReport=true;
+        showstudentButton=true;
+        mainReportchat=true;
+        titledisplay=false;
+        return Page.CY_Students;
+    }
+    public PageReference Openpopup(){
+        System.debug('show popUp');
+        showpopup=true;
+        return Page.CY_AddTime;
+
     }
     
     /**
@@ -433,7 +549,7 @@ public without sharing class ctlAddTimeFlow_dev {
             for(Intervention_Session__c inter : interv){
                 intervIds.add(inter.ID);
             }
-            
+            System.debug('Student***'+ss.Student__c);
             for(Intervention_Session_Result__c st : [SELECT Id,
                     Related_Student_s_Name__c,
                     Intervention_Session__c,Exit_Ticket__c,Amount_of_Time__c,Primary_Skill__c
@@ -467,16 +583,16 @@ public without sharing class ctlAddTimeFlow_dev {
                  {
                      studenttimeMap.put(st.Intervention_Session__c,string.valueOf(st.Amount_of_Time__c));
                  }
-                 if(st.Primary_Skill__c != null && st.Primary_Skill__c !=''){
-                 If(primaryskillMap.containsKey(st.Intervention_Session__c)){
-                    string Primaryskill = String.valueOf(st.Primary_Skill__c);
-                    string sectionprimarySkill = primaryskillMap.get(st.Intervention_Session__c)+','+Primaryskill;
-                    primaryskillMap.put(st.Intervention_Session__c,sectionprimarySkill);
-                 }
-                 else{
-                 primaryskillMap.put(st.Intervention_Session__c,st.Primary_Skill__c);
-                 }
-                 }
+                //  if(st.Primary_Skill__c != null && st.Primary_Skill__c !=''){
+                //  If(primaryskillMap.containsKey(st.Intervention_Session__c)){
+                //     string Primaryskill = String.valueOf(st.Primary_Skill__c);
+                //     string sectionprimarySkill = primaryskillMap.get(st.Intervention_Session__c)+','+Primaryskill;
+                //     primaryskillMap.put(st.Intervention_Session__c,sectionprimarySkill);
+                //  }
+                //  else{
+                //  primaryskillMap.put(st.Intervention_Session__c,st.Primary_Skill__c);
+                //  }
+                //  }
                 
              }
      
@@ -551,7 +667,41 @@ public without sharing class ctlAddTimeFlow_dev {
     
     //logic for Search Criteria by Harsh Singh
     public void searchSession(){
+        ss.Student__c=null;
+        results=null;
+        System.debug('search resulrt');
         System.debug('@@@@@@@@'+'Insearch Section'+sectionID);
+        System.debug('studentId===='+studentId);
+        System.debug('new Student++'+searchstudentName);
+        String NewStudentName = '%'+searchstudentName+'%';
+        if(String.isBlank(searchstudentName)){
+            studentId=null;
+        }
+        if(!String.isBlank(searchstudentName)){
+            results = [SELECT Student_Name__c, Student_Id__c,Student__r.School_Name__c,Student_Grade__c,Student__c FROM Student_Section__c WHERE Section__c =:sectionID and Student_Name__c LIKE :NewStudentName];
+        }
+        if(!String.isBlank(searchstudentName) && results.isEmpty()){
+            ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 'Student cannot be found in this session.'));
+            studentId=null;
+        }
+        System.debug('data result'+results);
+        if(!String.isBlank(searchstudentName) && studentId ==null){
+            for(Student_Section__c sec : results){
+                if(sec.Student_Name__c != null){
+                    ss.Student__c=sec.Student__C;
+                  }
+                  else{
+                    ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 'Student cannot be found in this session.'));
+                  }
+            }
+        }
+        else{
+            ss.Student__c=studentId;
+        }
+        // if(!String.isBlank(searchstudentName) && ss.Student__c == null){
+        //     ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 'Student cannot be found in this session.'));
+        // }
+        System.debug('studentname+++'+ss.Student__c);
         try {
             searchResults=new   List<SessionList>();
             Map<Id, String> stsectionmap=new  Map<Id, String>();
@@ -565,6 +715,8 @@ public without sharing class ctlAddTimeFlow_dev {
             Student__c student;
             Date strtDAte=Date.valueOf(sect.Start_Date__c);
             Date endDate=Date.valueOf(sect.End_Date__c);
+            System.debug('sect.Start_Date__c++'+sect.Start_Date__c);
+            System.debug('sect.End_Date__c+++'+sect.End_Date__c);
             Boolean exss=False;
             ApexPages.Message message=null;
 
@@ -621,37 +773,55 @@ public without sharing class ctlAddTimeFlow_dev {
                     else{
                      searchTimeMap.put(st.Intervention_Session__c,string.valueOf(st.Amount_of_Time__c));
                     }
-                    if(st.Primary_Skill__c != null && st.Primary_Skill__c !=''){
-                    if(searchPrimaryMap.containsKey(st.Intervention_Session__c)){
-                    string Primaryskill = String.valueOf(st.Primary_Skill__c);
-                    string searchPrimarySkill = searchPrimaryMap.get(st.Intervention_Session__c)+','+Primaryskill;
-                    searchPrimaryMap.put(st.Intervention_Session__c,searchPrimarySkill);
-                    }
-                    else{
-                    searchPrimaryMap.put(st.Intervention_Session__c,st.Primary_Skill__c);
-                    }
-                    }
+                    // if(st.Primary_Skill__c != null && st.Primary_Skill__c !=''){
+                    // if(searchPrimaryMap.containsKey(st.Intervention_Session__c)){
+                    // string Primaryskill = String.valueOf(st.Primary_Skill__c);
+                    // string searchPrimarySkill = searchPrimaryMap.get(st.Intervention_Session__c)+','+Primaryskill;
+                    // searchPrimaryMap.put(st.Intervention_Session__c,searchPrimarySkill);
+                    // }
+                    // else{
+                    // searchPrimaryMap.put(st.Intervention_Session__c,st.Primary_Skill__c);
+                    // }
+                    // }
                 }
             }
             //Logic to filter Student Name
             //Retrieve Student name from student
             if(ss.Student__c!=null){
+                System.debug('StudentId++'+ss.Student__c);
                 student=[Select Name from Student__C where ID=:ss.Student__c] ;
+                System.debug('studentName**'+student.name);
             }
             if(interv!=null){
                 for(Intervention_Session__c iter : interv){
                     SessionList slt=new SessionList();
                     if( stsectionmap.containsKey(iter.ID)==true && searchTimeMap.containsKey(iter.ID) || searchExitMap.containsKey(iter.ID)){
+                        System.debug('ItrId'+iter.id);
+                        System.debug('stsectionmap++'+stsectionmap);
                         slt.intervSection=iter;
                         slt.studentList=stsectionmap.get(iter.ID);
                         slt.Timevalue=findmax(searchTimeMap.get(iter.ID));
                         slt.exitticket=searchExitMap.get(iter.ID);
+                        //searchResults.add(slt);
                     }
+                    System.debug('searchResults***'+searchResults);
                     if(ss.Student__c!=null){
+                        System.debug('StudentList++'+slt.studentList);
                         if( slt.studentList.contains(student.Name)){
                             searchResults.add(slt);
                         }
-                    }else if(ss.Student__c==null){
+                     }//else if(ss.Student__c==null){
+                    //     System.debug('blankdata###');
+                    //     searchResults.add(slt);
+                    // }
+                    else if(String.isBlank(searchstudentName) && strtDAte !=null){
+                        searchResults.add(slt);
+                    }
+                     else if(String.isBlank(searchstudentName) && endDate !=null){
+                        searchResults.add(slt);
+                    }
+                    else if(String.isBlank(searchstudentName) && sect.Intervention_Primary_Staff__c!=null){
+                        System.debug('Intervention_Primary_Staff__c not equal to null');
                         searchResults.add(slt);
                     }
                     /*if(searchExitMap.containsKey(iter.ID)){
@@ -669,10 +839,12 @@ public without sharing class ctlAddTimeFlow_dev {
                     */
                 }
             }
-            if(searchResults.size()==0){
-                if(message==null){
-                    message = new ApexPages.Message(ApexPages.Severity.info,System.Label.Empty_Search_Reult);
-                    ApexPages.addMessage(message);
+            if(String.isBlank(searchstudentName)){
+                if(searchResults.size()==0){
+                    if(message==null){
+                        message = new ApexPages.Message(ApexPages.Severity.info,System.Label.Empty_Search_Reult);
+                        ApexPages.addMessage(message);
+                    }
                 }
             }
             System.debug('@@@ searchResults: '+searchResults.size());
@@ -682,6 +854,7 @@ public without sharing class ctlAddTimeFlow_dev {
         } catch (QueryException e) {
             ApexPages.addMessages(e);
         }
+        
     }
 
     /**
@@ -729,6 +902,9 @@ public without sharing class ctlAddTimeFlow_dev {
     *    Navigation Action: From Session List ---> Section/Students
     */
     public PageReference doSessionListCancel() {
+        ss.Student__c=null;
+        results=null;
+        studentId=null;
         showCalDatePicker = true;
         updateSessionID = null;
         findEnrolledStudentsForSection();
@@ -772,6 +948,7 @@ public without sharing class ctlAddTimeFlow_dev {
     //
 
     public PageReference doSessionSubmit() {
+        //timerOn();
         System.debug('KY---currentSession.Date__c ' + currentSession.Date__c);
         System.debug('@@@ studentSelectedSkills: '+studentSelectedSkills);
         System.debug('@@@ Selected Fields => ' + selectedFieldsitem);
@@ -818,12 +995,15 @@ public without sharing class ctlAddTimeFlow_dev {
         }
 
         // check to ensure the date of the intervention is within the start and end date for this intervention
+       
+
         if (currentSession.Date__c == null || currentSession.Date__c < currentSection.Start_Date__c ||
                 currentSession.Date__c > currentSection.End_Date__c) {
             system.debug('KY---Invalid Session Date ' );
             currentSession.Date__c.addError('Date should be within the start and end of the section.');
             return Page.CY_AddTime;
         }
+
         // cannot be a date in the future
         if (currentSession.Date__c > Date.today()) {
             system.debug('KY---Invalid Date ' );
@@ -913,7 +1093,7 @@ public without sharing class ctlAddTimeFlow_dev {
         studentsInSession = null;
         studentsDeleted = null;
         isLoadPreviousSkills = false;
-
+        //setupWeekValues(Date.today());
         return Page.CY_Students;
     }
 
@@ -1156,6 +1336,8 @@ public without sharing class ctlAddTimeFlow_dev {
     public void initAvaliableFields(){
         avaliableFields = new List<SelectOption>();
         allPrimaryFields = new List<SelectOption>();
+        //allPrimaryFields.add(new SelectOption('', ''));
+        //avaliableFields.add(new SelectOption('',''));
         List<Section__c> sectionList = new List<Section__c>([SELECT Account_Program__r.Name
         FROM Section__c WHERE Id = :sectionID]);
         System.debug('Section List>>'+sectionList);
@@ -1400,34 +1582,499 @@ public without sharing class ctlAddTimeFlow_dev {
         }
         return reportlist;
     }
-    public static List<Data> getChartData() {
-        List<Data> data = new List<Data>();
-        data.add(new Data('Jan', 30, 90, 55));
-        data.add(new Data('Feb', 44, 15, 65));
-        data.add(new Data('Mar', 25, 32, 75));
-        data.add(new Data('Apr', 74, 28, 85));
-        data.add(new Data('May', 65, 51, 95));
-        data.add(new Data('Jun', 33, 45, 99));
-        data.add(new Data('Jul', 92, 82, 30));
-        data.add(new Data('Aug', 87, 73, 45));
-        data.add(new Data('Sep', 34, 65, 55));
-        data.add(new Data('Oct', 78, 66, 56));
-        data.add(new Data('Nov', 80, 67, 53));
-        data.add(new Data('Dec', 17, 70, 70));
-        return data;
+    public class StudentReport{
+        public Decimal AmountOfTime{set;get;}
+        public string studentName{set;get;}
+        public string intersessionDate {set;get;}
     }
-    
-    // Wrapper class
-    public class Data {
-        public String name { get; set; }
-        public Integer data1 { get; set; }
-        public Integer data2 { get; set; }
-        public Integer data3 { get; set; }
-        public Data(String name, Integer data1, Integer data2, Integer data3) {
-            this.name = name;
-            this.data1 = data1;
-            this.data2 = data2;
-            this.data3 = data3;
+    public List<StudentReport> getStudentReport(){
+         return getStudentReportItems();
+    }
+    Public List<StudentReport> getStudentReportItems(){
+        List<StudentReport> studentReportList = new List<StudentReport>();
+        List<Student_Section__c> studentLists =[select id,name,Dosage_to_Date__c,Student__r.name from Student_Section__c where Section__c =: sectionID and Student__c IN: studentIdSet];
+        System.debug('studentList###'+studentLists);
+        Set<Id> studentSectionId = new Set<Id>();
+
+        for(Student_Section__c se:studentLists){
+            studentSectionId.add(se.id);
+        }
+        List<AggregateResult> intersesseionList =[select Intervention_Session_Date__c,SUM(Amount_of_Time__c) amounttime FROM Intervention_Session_Result__c where Student_Section__c IN: studentSectionId GROUP BY Intervention_Session_Date__c ORDER BY Intervention_Session_Date__c];
+        set<Date> newdate = new set<Date>();
+        Decimal amount;
+        Map<date,Decimal> mapdateMaxdate = new Map<date,Decimal>();
+
+        // for(AggregateResult result:intersesseionList){
+        //     Date dt =Date.valueOf(result.get('MaxDate'));
+        //     amount=Integer.valueOf(result.get('amounttime'));
+
+        //    if(mapdateMaxdate.containsKey(dt)){
+        //        amount=amount+mapdateMaxdate.get(dt);
+        //    }
+        //    mapdateMaxdate.put(dt,amount);
+        // }
+        for(AggregateResult result:intersesseionList){
+            Date dt =Date.valueOf(result.get('Intervention_Session_Date__c'));
+            Integer day = dt.Day(); 
+            Integer month = dt.Month(); 
+            Integer year = dt.Year(); 
+            
+            StudentReport wrapper = new StudentReport();
+             //wrapper.AmountOfTime=mapdateMaxdate.get(dt);
+             wrapper.AmountOfTime=Integer.valueOf(result.get('amounttime'));
+             wrapper.intersessionDate=month + '/' + day ;
+             studentReportList.add(wrapper);
+             System.debug('reportlist'+studentReportList);
+            
+        }
+        System.debug('reportlist****'+studentReportList);
+        return studentReportList;
+    }
+    /////*****************/////
+    public transient static final String BEFORESTART = 'Cannot enter time for a date that falls before the section start date.';
+    public transient static final String AFTEREND = 'Cannot enter time for a date that falls after the section end date.';
+    public transient static final String FUTURE = 'Cannot enter time for a date in the future.';
+   
+    public List<SessionResultsWrapper> resultsData                  {get;set;}
+    public Date currentWeek                                         {get;set;}
+    private List<Student_Section__c> studentSections;
+    public List<DayWrapper> tableHeaders                            {get;set;}
+    private Map<Integer, DayWrapper> tableHeaderMap;
+    public Intervention_Session__c weekEndHolder        {get;set;}
+    public String                   allAvenuesSelected          {get; set; }
+    public String                   sessionTypeSelected         {get; set; }
+    public String                   sessionFormatSelected       {get; set; }
+    public Boolean showSiteDetails                              {get; set; }
+    public String                   siteDetailsSelected         {get; set; }
+    public string                   Exitticket                  {get;set;} 
+    public boolean timer                                        {get; set;}      
+    private void setupWeekValues(Date dayInWeek){
+        System.debug('dayInweek***'+dayInWeek);
+        currentWeek = dayInWeek.toStartOfWeek();
+        System.debug('currentWeek###'+currentWeek);
+        weekEndHolder = new Intervention_Session__c(Date__c=currentWeek.addDays(6));
+
+        tableHeaders = new List<DayWrapper>();
+        tableHeaderMap = new Map<Integer, DayWrapper>();
+        //added for multiselect picklist
+        //initializePicklist();
+        for(Integer i=0;i<7;i++){
+            Date dayOfWeek = currentWeek.addDays(i);
+            String formattedDate = DateTime.newInstance(dayOfWeek.year(), dayOfWeek.month(), dayOfWeek.day()).format('EEE (MM/d/yyy)').toUpperCase();
+            DayWrapper day = new DayWrapper(currentWeek.addDays(i),formattedDate,getDayTitle(dayOfWeek),i+1);
+            tableHeaders.add(day);
+            tableHeaderMap.put(day.positionIdentifer, day);
         }
     }
+    public void changeWeek(){
+        System.debug('changeWeek');
+        if(weekEndHolder.Date__c!=null){
+            currentWeek = weekEndHolder.Date__c.toStartOfWeek();
+            loadSessionData();
+        } else {
+            CYUtil.errorMessage('Please select a week to view.');
+        }
+    }
+
+    public void lastWeek(){
+        System.debug('Lastweek++');
+        if(weekEndHolder.Date__c != null){
+            weekEndHolder.Date__c = weekEndHolder.Date__c.addDays(-7);
+        }
+        changeWeek();
+    }
+
+    public void nextWeek() {
+        if(weekEndHolder.Date__c != null){
+            weekEndHolder.Date__c = weekEndHolder.Date__c.addDays(7);
+        }
+        
+        changeWeek();
+    }
+    public void toggleSortDirection(){
+        List<SessionResultsWrapper> holder = new List<SessionResultsWrapper>();
+        for(Integer i=resultsData.size()-1;i>=0;i--){
+            holder.add(resultsData[i]);
+        }
+        resultsData = holder;
+    }
+
+    private String getDayTitle(Date day){
+        if(String.isBlank(sectionID)){
+            if(day>Date.today()){
+                return FUTURE;
+            }
+        } else {
+            Section__c section = sectionMap.get(sectionID);
+            if(day>Date.today()){
+                return FUTURE;
+            } else if(day > section.End_Date__c){
+                return AFTEREND;
+            } else if(day < section.Start_Date__c){
+                return BEFORESTART;
+            }
+        }
+        return null;
+    }
+    public void changeSection(){
+        System.debug('newSection###'+sectionID);
+        sectionMap = new Map<ID, Section__c>();
+         for(Section__c section:[select id,name,Auto_Name__c,Account_Program__r.Name,End_Date__c,Start_Date__c,Intervention_Primary_Staff__c from Section__c where Id =: sectionID]){
+            System.debug('SectionId^^^'+section.Id);
+            sectionMap.put(section.id,section);
+         }
+        System.debug('sectionMap@@@'+sectionMap);
+        resultsData = new List<SessionResultsWrapper>();
+        if(!String.isBlank(sectionID) && sectionID != 'none'){
+            currentSection = sectionMap.get(sectionID);
+            //added to get skills
+            initializePicklist();
+            //load data
+            loadSessionData();
+            showTutoringModel = currentSection.Auto_Name__c.contains('Tutoring: Math') || currentSection.Auto_Name__c.contains('Tutoring: Literacy');
+            showSiteDetails = siteDetailsOptions != null && siteDetailsOptions.size() > 0;
+        }
+    }
+    public void loadSessionData(){
+     
+        if(String.isBlank(sectionID) || sectionID == 'none'){
+            return;
+        }
+        resultsData = new List<SessionResultsWrapper>();
+        setupWeekValues(currentWeek);
+        loadStudentSections();
+        Intervention_Session_Result__c[] results = getSessionData();
+        processWeeklyData(results);
+
+        //update the table list so we disable the rows that have data already.
+        for(Integer i=0;i<tableHeaders.size();i++){
+            tableHeaders[i] = tableHeaderMap.get(tableHeaders[i].positionIdentifer);
+        }
+    }
+    private void processWeeklyData(Intervention_Session_Result__c[] results){
+        //Don't like this, but I have to be able to detect any session result before I process any of them.
+        Set<String> skillsAvailable = new Set<String>();
+        for(SelectOption skill : avaliableFields){
+            skillsAvailable.add(skill.getLabel());
+        }
+        //populate default dayinfo
+        for(DayWrapper dayInfo: tableHeaderMap.values()){
+            dayInfo.primarySkill = null;
+            dayInfo.selectedSkills = '';
+            dayInfo.availableSkills = String.join(new List<String>(skillsAvailable), SEPARATOR);
+        }
+
+        Map<Integer,Map<String, List<Intervention_Session_Result__c>>> studentDailyResults = new Map<Integer,Map<String, List<Intervention_Session_Result__c>>>();
+        for(Intervention_Session_Result__c ar:results){
+            Integer daysFromStart = currentweek.daysBetween(ar.Intervention_Session__r.Date__c);
+            if(!studentDailyResults.containsKey(daysFromStart)){
+                studentDailyResults.put(daysFromStart, new Map<String, List<Intervention_Session_Result__c>>());
+            }
+            if(!studentDailyResults.get(daysFromStart).containsKey((String)ar.Student_Section__r.Student__c)){
+                studentDailyResults.get(daysFromStart).put((String)ar.Student_Section__r.Student__c, new List<Intervention_Session_Result__c>());
+            }
+            studentDailyResults.get(daysFromStart).get((String)ar.Student_Section__r.Student__c).add(ar);
+        }
+        for(Student_Section__c ss: studentSections){
+            ID studentID = ss.Student__c;
+            ISRWrapper[] dosages = new ISRWrapper[7];
+            for(Integer i=0;i<7;i++){
+                DayWrapper dayInfo = tableHeaderMap.get(i+1);
+                List<Intervention_Session_Result__c> isrs = (studentDailyResults.containsKey(i) && studentDailyResults.get(i).containsKey(studentID))?
+                    studentDailyResults.get(i).get(studentID): new List<Intervention_Session_Result__c>();
+                Decimal amount = 0;
+                for(Intervention_Session_Result__c isr: isrs){
+                    amount += isr.Amount_of_Time__c>=0? isr.Amount_of_Time__c: 0;
+                }
+                Intervention_Session_Result__c isr = isrs.size()==1? isrs.get(0):
+                    new Intervention_Session_Result__c(Student_Section__c = ss.ID, Amount_of_Time__c = isrs.size()==0? null: amount);
+                dayInfo.session = isrs.size()==1? isr.Intervention_Session__r: dayInfo.session;
+                dayInfo.primarySkill = isrs.size()==1? isr.Intervention_Session__r.Skill_Primary__c: dayInfo.primarySkill;
+                dayInfo.selectedSkills = isrs.size()==1? isr.Intervention_Session__r.Skills_Covered_for_the_Session__c: dayInfo.selectedSkills;
+                dayInfo.selectedSkills = String.isNotBlank(dayInfo.selectedSkills)? dayInfo.selectedSkills: '';
+                List<String> skillsSelected = dayInfo.selectedSkills.split(SEPARATOR);
+                Set<String> skillsAvailables = skillsAvailable.clone();
+                skillsAvailables.removeAll(skillsSelected);
+                dayInfo.availableSkills = String.join(new List<String>(skillsAvailables), SEPARATOR);
+                dayInfo.isDisabled = isrs.size()>1;//studentDailyResults.containsKey(i) || String.isNotBlank(dayInfo.title);//disable dossage
+                dosages[i] = new ISRWrapper(
+                    isr,
+                    dayInfo.isDisabled,//true,
+                    dayInfo.title,
+                    dayInfo.day.format(),
+                    isrs.size()==0? null: amount//amount
+                );
+            }
+
+            SessionResultsWrapper holder = new SessionResultsWrapper(ss.Student_Name__c,ss.Student__c,ss.ID);
+            holder.dosages = dosages;
+            resultsData.add(holder);
+        }
+    }
+   
+    private void loadStudentSections(){
+        studentSections=
+            [select id, Student_Name__c, Student__c, Section__r.Auto_Name__c
+            from Student_Section__c
+            where Active__c = true
+            and Student__r.Active__c = true
+            and Section__c =: sectionID
+            order by Student_Name__c, Student__c];
+    }
+    private Intervention_Session_Result__c[] getSessionData(){
+        return [select Id, Amount_of_Time__c, Student_Section__c,Exit_Ticket__c,
+                    Student_Section__r.Student__r.Name,
+                    Student_Section__r.Student__c,
+                    Intervention_Session__r.Id,
+                    Intervention_Session__r.Date__c,
+                    Intervention_Session__r.Skill_Primary__c,
+                    Intervention_Session__r.Skills_Covered_for_the_Session__c,
+                    Intervention_Session__r.Comments__c,
+                    Intervention_Session__r.All_avenues__c,
+                    Intervention_Session__r.Tutoring_Model__c,
+                    Intervention_Session__r.Session_Type__c,
+                    Intervention_Session__r.Session_Format__c,
+                    Intervention_Session__r.Site_Details__c
+                from Intervention_Session_Result__c
+                where Intervention_Session__r.Section__c =: sectionID
+                and Student_Section__c IN: studentSections
+                and Intervention_Session__r.Date__c>=:currentWeek
+                and Intervention_Session__r.Date__c<=:currentWeek.addDays(6)
+                //group by Intervention_Session__r.Date__c,
+                //      Student_Section__r.Student__c,
+                //      Student_Section__r.Student__r.Name
+                order by Student_Section__r.Student__r.Name, 
+                        Student_Section__r.Student__c,
+                        Intervention_Session__r.Date__c];
+    }   
+
+     //Wrapper classes
+
+     public class SessionResultsWrapper{
+        public List<ISRWrapper> dosages {get;set;}
+        public String studentId         {get;set;}
+        public String studentName       {get;set;}
+
+        private String studentSectionID;
+
+        public SessionResultsWrapper(String studentName, String studentID, ID studentSectionID){
+            this.studentName = studentName;
+            this.studentID = studentID;
+            this.studentSectionId = studentSectionID;
+            this.dosages = new ISRWrapper[7];
+        }
+    }
+
+    public class DayWrapper{
+        public Integer      positionIdentifer                   {get;set;}
+        public Date         day                                 {get;set;}
+        public String       displayHeader                       {get;set;}
+        public String       title                               {get;set;}
+        public Boolean      isDisabled                          {get;set;}
+        public Intervention_Session__c session                  {get;set;}
+        public String       availableSkills                     {get;set;}
+        public String       selectedSkills                      {get;set;}
+        public String       primarySkill                        {get;set;}
+        public String       tutoringModel                       {get;set;}
+        public String       sessionType                         {get;set;}
+        public String       sessionFormat                       {get;set;}
+        public String       siteDetails                         {get;set;}
+        public Boolean      isProceed                           {get;set;}
+        public Boolean      isError                             {get;set;}
+
+        public DayWrapper(Date dayOfWeek, String displayHeader, String title, Integer positionIdentifer){
+            this.day = dayOfWeek;
+            this.displayHeader = displayHeader;
+            this.title = title;
+            this.isDisabled = title!=null;
+            this.positionIdentifer = positionIdentifer;
+            this.primarySkill = null;
+            this.isProceed = false;
+            this.isError = false;
+            session = new Intervention_Session__c(Date__c = dayOfWeek);
+            //this.availableSkills = availableSkills;
+            //this.selectedSkills = selectedSkills;
+        }
+    }
+
+    public class ISRWrapper{
+        public Intervention_Session_Result__c   isr                 {get;set;}
+        public Boolean                          isDisabled          {get;set;}
+        public String                           title               {get;set;}
+        public String                           dateString          {get;set;}
+        public Decimal                          amount              {get;set;}
+
+        public ISRWrapper(Intervention_Session_Result__c isr, Boolean isDisabled, String msg, String dateString, Decimal amount){
+            this.isr = isr;
+            this.isDisabled = isDisabled;
+            this.title = msg;
+            this.dateString = dateString;
+            this.amount = amount;
+        }
+    }
+    public void saveNewSessions(){
+        timerOn();
+         String flag='proceed false';
+         System.debug('Exitticket++'+Exitticket);
+         Boolean primarySkillIsEmpty;
+          Set<Integer> daysToSave = new Set<Integer>();
+          Map<Integer, Intervention_Session__c> sessionsToSave = new Map<Integer, Intervention_Session__c>();
+          for(DayWrapper day: tableHeaders){
+            
+            System.debug('day##'+day.day);
+            System.debug('day.isProceed===='+day.isProceed);
+               primarySkillIsEmpty = String.isBlank(day.primarySkill);
+              
+              if( day.day <= System.today() && day.isDisabled==false && day.isProceed==true && (!primarySkillIsEmpty ||
+                 (primarySkillIsEmpty&& day.session.All_avenues__c !='' ))){
+                  day.session.Skills_Covered_for_the_Session__c = day.selectedSkills;
+                  day.session.Skill_Primary__c = !primarySkillIsEmpty ? day.primarySkill: null;
+                  
+                  daysToSave.add(day.positionIdentifer);
+                  if(day.session.ID == null && sectionMap!=null && sectionMap.containsKey(sectionID)){ //this fixes issues because an error was thrown later on.
+                      day.session.Session_Time_Completed_For__c = sectionMap.get(sectionID).Intervention_Primary_Staff__c;
+                      day.session.Section__c = sectionID;
+                  }
+                  day.isError = day.isProceed;
+                  sessionsToSave.put(day.positionIdentifer, day.session.clone(true, false));
+                  flag='proceed true';
+              }
+              
+               if(day.day <= System.today() && day.isProceed==false && flag =='proceed false'){
+                   flag='data not mapped';
+               }
+              
+               if(day.day > System.today() &&  day.isProceed==true){
+                  flag='true';
+              }
+              System.debug('sessionsToSave##'+sessionsToSave);
+              
+          }
+         
+          Savepoint sp = Database.setSavepoint();
+          try{
+              upsert sessionsToSave.values();
+          } catch(System.DMLException e){
+              for(Integer i=0; i<e.getNumDml(); i++){
+                  CYUtil.errorMessage(e.getDmlMessage(i));
+              }           
+              CYUtil.errorMessage('There was an error while trying to save your sessions. Please check your data and try again.');
+              return;
+          }
+  
+          Map<String, Intervention_Session_Result__c> resultsToSave = new Map<String, Intervention_Session_Result__c>();
+          Boolean hasBadResults = false;
+          for(SessionResultsWrapper srw: resultsData){
+            System.debug('update++');
+              for(Integer i=0;i<7;i++){
+                  String key = srw.studentId+SEPKEY+i;
+                  ISRWrapper rw = srw.dosages[i];
+                  Decimal amountOfTime = rw.isr.Amount_of_Time__c;
+                  Id isrID = rw.isr.Id;
+                  System.debug('isrID###'+isrID);
+                  if((amountOfTime != null && amountOfTime != rw.amount)
+                          && (isrID != null || daysToSave.contains(i+1))){
+                            System.debug('update##');
+                      if(isrID == null){
+                          System.debug('allAvunes Options');
+                          Intervention_Session__c session = sessionsTosave.get(i+1);
+                          rw.isr.Intervention_Session__c = session.ID;
+                          //added to update skills to Intervention Session Result
+                          rw.isr.SkillsCovered__c = session.Skills_Covered_for_the_Session__c;
+                          rw.isr.Exit_Ticket__c=Exitticket;
+                      }
+                      rw.isr.Exit_Ticket__c=Exitticket;
+                      tableHeaders[i].isError = false;
+                      resultsToSave.put(key, rw.isr.clone(true, false));
+                  }
+                  
+                  else if(!daysToSave.contains(i+1) && !rw.isDisabled){
+                       
+                        if(amountOfTime != null && isrID == null){
+                          //System.debug('Not selected Allavunues Options');
+                          tableHeaders[i].isError = true;
+                          hasBadResults = true;
+                          if(flag=='data not mapped'){
+                              CYUtil.errorMessage('Please confirm whether service happened In-Person Service or Virtual Service by clicking on the blue speech bubble next to a date column.');
+                              //ApexPages.addMessage(new apexPages.Message(apexPages.Severity.ERROR, '\nPlease confirm whether service happened In-Person Service or Virtual Service by clicking on the blue speech bubble next to a date column.'));
+                            }
+                          if(flag=='true'){
+                          CYUtil.errorMessage('Cannot enter time for a date in the future.');
+                         }
+                          //CYUtil.errorMessage('You have entered time for '+currentWeek.addDays(i).format()+' but have not populated the skills covered. Please enter the skills covered.');
+                           loadSessionData();
+                     }
+                  }
+                  //System.debug('daysToSave##'+daysToSave);
+                  //System.debug('rw.isDisabled##'+rw.isDisabled);
+                  //System.debug('amountOfTime##'+amountOfTime);
+                  //System.debug('isrID##'+isrID);
+              }
+          }
+  
+          Boolean hasNoSessions = sessionsToSave.isEmpty();
+          Boolean hasNoResults = resultsToSave.isEmpty();
+          for(DayWrapper day: tableHeaders){
+              hasNoResults = hasNoResults || day.isError;
+          }
+          system.debug('hasBadResults'+hasBadResults);
+          system.debug('hasNoResults'+hasNoResults);
+          //if(hasNoSessions && hasNoResults){
+          //   CYUtil.errorMessage('In order to save, click on the blue bubble by the date and enter the skills covered.');
+          //   CYUtil.errorMessage('Please select primary skill.');
+          //}
+          //if(hasNoResults){ 
+          //CYUtil.errorMessage('Please enter time.'); 
+          //}
+          if(hasBadResults ){
+              Database.rollback(sp);
+              return;
+          }
+  
+          try{
+              upsert resultsToSave.values();
+          } catch(System.DMLException e){
+              Database.rollback(sp);
+              for(Integer i=0; i<e.getNumDml(); i++){
+                  CYUtil.errorMessage(e.getDmlMessage(i));
+              }           
+              CYUtil.errorMessage('There was an error while trying to save your sessions. Please check your data and try again.');
+              return;
+          }
+          //populate id from cloned objects
+          for(Integer pos: sessionsToSave.keySet()){//update id
+              tableHeaderMap.get(pos).session.Id = sessionsToSave.get(pos).Id;
+          }           
+          for(SessionResultsWrapper srw: resultsData){//update ids
+            System.debug('result record');
+              for(Integer i=0;i<7;i++){
+                  String key = srw.studentId+SEPKEY+i;
+                  if(resultsToSave.containsKey(key)){
+                      srw.dosages[i].isr.Id = resultsToSave.get(key).Id;
+                      srw.dosages[i].isr.Exit_Ticket__c=Exitticket;
+                  }
+              }
+          }
+          
+          CYUtil.successMessage('All changes have been saved successfully.');
+  
+          loadSessionData();
+          
+      }
+      public void clearMessage(){
+        ApexPages.getMessages().clear();
+
+    }
+
+    public void timerOn(){
+        timer = true;
+    }
+
+    public void timerOff(){
+        timer = false;
+    }
+    
+    /////////**************//////
+   
+ 
 }

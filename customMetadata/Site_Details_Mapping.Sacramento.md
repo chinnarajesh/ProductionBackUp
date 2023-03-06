@@ -8,6 +8,6 @@
     </values>
     <values>
         <field>Values__c</field>
-        <value xsi:type="xsd:string">SEL activity included in this session; SEL activity not included in this session</value>
+        <value xsi:type="xsd:string">SEL activity included in this session;SEL activity not included in this session</value>
     </values>
 </CustomMetadata>

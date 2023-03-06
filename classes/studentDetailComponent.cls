@@ -45,6 +45,7 @@ public with sharing class studentDetailComponent{
     public SelectOption[]           allPrimaryFields            {get; set; }
     public List<Skill__c>           skillList                   {get; set; }
     public List<SelectOption>       allAvenuesOptions           {get; set; }
+    public List<SelectOption>       siteDetailsOptions          {get; set; }
 
     public studentDetailComponent(){
         studentID = ApexPages.currentPage().getParameters().get('studentID');
@@ -310,5 +311,9 @@ public with sharing class studentDetailComponent{
 
     public void initAllAvenues(){
         allAvenuesOptions = ISTool.getAllAvenues();
+        siteDetailsOptions = ISTool.getSiteDetailsOptions();
+        System.debug('allAvenuesOptions##'+allAvenuesOptions);
+        System.debug('siteDetailsOptions##'+siteDetailsOptions);
     }
+    
 }

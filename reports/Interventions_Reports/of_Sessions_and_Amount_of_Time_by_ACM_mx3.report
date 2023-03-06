@@ -5,9 +5,6 @@
         <field>Section__c.Intervention_Sessions__r.Intervention_Session_Results__r$Amount_of_Time__c</field>
     </columns>
     <columns>
-        <field>Section__c.Intervention_Sessions__r$Date__c</field>
-    </columns>
-    <columns>
         <field>Section__c$Name</field>
     </columns>
     <columns>

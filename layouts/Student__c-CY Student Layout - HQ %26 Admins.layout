@@ -110,6 +110,14 @@
                 <behavior>Readonly</behavior>
                 <field>District_External_ID_Creator__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Lunch_Status__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Contact_Student_Id__c</field>
+            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
     </layoutSections>
@@ -118,32 +126,6 @@
         <detailHeading>true</detailHeading>
         <editHeading>true</editHeading>
         <label>Studies</label>
-        <layoutColumns>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>IES_Study_Participant__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>IES_Study_Consent_Form_Returned__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>IES_Consent_Form_File_Name__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>IES_Consent_Accepted__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>IES_Incentive_Given__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>IES_Consent_Rejected__c</field>
-            </layoutItems>
-        </layoutColumns>
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -157,6 +139,8 @@
                 <behavior>Edit</behavior>
                 <field>Math_FL_Eligible__c</field>
             </layoutItems>
+        </layoutColumns>
+        <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Attendance_FL_Eligible__c</field>
@@ -164,14 +148,6 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>SEL_Behavior_FL_Eligible__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Bell_Study_Participant_FY18__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Bell_Study_Participant_FY19__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -184,23 +160,10 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Attendance_Starting_Strong__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>College_Bootcamp__c</field>
-            </layoutItems>
-        </layoutColumns>
-        <layoutColumns>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>Holistic_Student_Assessment__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>HS_College_Career_Support__c</field>
-            </layoutItems>
         </layoutColumns>
+        <layoutColumns/>
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>
     <layoutSections>
@@ -337,14 +300,14 @@
     <platformActionList>
         <actionListContext>Record</actionListContext>
         <platformActionListItems>
-            <actionName>FeedItem.PollPost</actionName>
-            <actionType>QuickAction</actionType>
-            <sortOrder>1</sortOrder>
-        </platformActionListItems>
-        <platformActionListItems>
             <actionName>FeedItem.TextPost</actionName>
             <actionType>QuickAction</actionType>
             <sortOrder>0</sortOrder>
+        </platformActionListItems>
+        <platformActionListItems>
+            <actionName>FeedItem.PollPost</actionName>
+            <actionType>QuickAction</actionType>
+            <sortOrder>1</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
             <actionName>View_Interventions_Data</actionName>
@@ -440,6 +403,8 @@
         <fields>Assignment__c</fields>
         <fields>Course__c</fields>
         <fields>Entered_Grade__c</fields>
+        <fields>Due_Date__c</fields>
+        <fields>Reporting_Period_Name__c</fields>
         <relatedList>Grade__c.Student__c</relatedList>
     </relatedLists>
     <relatedLists>
@@ -447,10 +412,7 @@
         <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
         <fields>Date_Administered__c</fields>
-        <fields>Lexile_Score__c</fields>
-        <fields>Quantile_Score__c</fields>
         <fields>Type__c</fields>
-        <fields>Assessment_Results__c</fields>
         <fields>Rating_ID__c</fields>
         <relatedList>Assesment__c.Student__c</relatedList>
     </relatedLists>

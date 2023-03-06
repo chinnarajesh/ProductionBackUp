@@ -197,7 +197,7 @@
         <label>Reference ID</label>
         <length>255</length>
         <required>false</required>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>true</unique>
@@ -244,7 +244,11 @@
         <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Indicator Area/Student</pluralLabel>
-    <searchLayouts/>
+    <searchLayouts>
+        <searchResultsAdditionalFields>Indicator_Area__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Student__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>IA_Effective_Date__c</searchResultsAdditionalFields>
+    </searchLayouts>
     <sharingModel>ControlledByParent</sharingModel>
     <validationRules>
         <fullName>Valid_IA_Effective_Date</fullName>

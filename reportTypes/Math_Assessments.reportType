@@ -636,6 +636,16 @@
             <field>Level_Code__c</field>
             <table>Assesment__c</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>ELA_FAST__c</field>
+            <table>Assesment__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Math_FAST__c</field>
+            <table>Assesment__c</table>
+        </columns>
         <masterLabel>Assessments</masterLabel>
     </sections>
 </ReportType>

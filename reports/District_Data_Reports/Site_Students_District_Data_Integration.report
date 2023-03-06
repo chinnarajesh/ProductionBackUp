@@ -34,13 +34,6 @@
             <operator>equals</operator>
             <value>CY Integration</value>
         </criteriaItems>
-        <criteriaItems>
-            <column>Student__c$Location__c</column>
-            <columnToColumn>false</columnToColumn>
-            <isUnlocked>true</isUnlocked>
-            <operator>contains</operator>
-            <value>Providence</value>
-        </criteriaItems>
     </filter>
     <format>Tabular</format>
     <name>Students Created by SDS</name>

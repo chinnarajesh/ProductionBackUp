@@ -43,8 +43,8 @@
             <column>Account.Sections__r.Student_Section__r$Intervention_Enrollment_Start_Date__c</column>
             <columnToColumn>false</columnToColumn>
             <isUnlocked>false</isUnlocked>
-            <operator>lessThan</operator>
-            <value>7/1/2021 12:00 AM</value>
+            <operator>lessOrEqual</operator>
+            <value>LAST_FISCAL_YEAR</value>
         </criteriaItems>
         <criteriaItems>
             <column>Account.Sections__r.Student_Section__r$Intervention_Enrollment_Start_Date__c</column>
@@ -64,8 +64,8 @@
             <column>Account.Sections__r.Student_Section__r$Enrollment_End_Date__c</column>
             <columnToColumn>false</columnToColumn>
             <isUnlocked>false</isUnlocked>
-            <operator>lessThan</operator>
-            <value>7/1/2021 12:00 AM</value>
+            <operator>lessOrEqual</operator>
+            <value>LAST_FISCAL_YEAR</value>
         </criteriaItems>
         <criteriaItems>
             <column>Account.Sections__r$RecordType</column>

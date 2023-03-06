@@ -16,6 +16,40 @@
                 margin-right: 10px;
             }
         }
+        .table{
+            width: 50%;
+        }
+        .table tbody tr
+        {
+            color:green;
+        }
+        .customPopup{
+    background-color: lightgrey;
+    border-style: solid;
+    border-radius: 10px;
+    border-width: 1px;
+    left: 55%;
+    position: fixed;
+    padding: 5px;
+    box-shadow: 0px 3px 7px rgba(1, 1, 1, 5);
+    background: #fff;
+    width: 600px;
+    margin-left: -200px;
+    top: 205px;
+    max-width: 700px;
+}
+.customPopup .close{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    transition: all 200ms;
+    font-size: 20px;
+    text-decoration: none;
+    color: #333;
+}
+.customPopup .close:hover{
+    color: red;
+}
     </style>
 
             <apex:form styleClass="container-bs reset-xs">
@@ -38,9 +72,13 @@
 
                                 <table>
                                 <tr><td>
-                                    <div class="form-group">
+                                    <div class="form-group" style="">
                                         <label for="student-name">Student Name</label>
-                                        <apex:inputField value="{!ss.Student__c}" styleClass="form-control input-sm" taborderhint="1"  />
+                                        <!-- <apex:inputField value="{!ss.Student__c}" styleClass="form-control input-sm" taborderhint="1" /> -->
+                                        <div style="display: flex;">
+                                        <apex:inputText value="{!searchstudentName}" styleClass="form-control input-sm"/>
+                                            <apex:image url="{!$Resource.searchIcon}" style="width: 28px;margin-left: 5px;margin-top: 2px;" onclick="StudentSerach2()" />
+                                        </div>
                                     </div><!-- /.form-group -->
                                     </td>
                                     <td>
@@ -54,7 +92,7 @@
                                     </td>
                                     <td>
                                     <div>
-                                    <apex:commandButton value="Search" status="actStatusId" action="{!searchSession}" styleClass="btn-bs btn-primary" tabindex="41" reRender="rend" oncomplete="resetDatatable()" />
+                                    <apex:commandButton value="Search" status="actStatusId" action="{!searchSession}" styleClass="btn-bs btn-primary" tabindex="41" reRender="rend" oncomplete="resetDatatable()" onclick="studentsearch()"/>
                                        <apex:actionStatus id="actStatusId" >
                                             <apex:facet name="start" >
                                               <img src="/img/loading.gif" />                    
@@ -85,7 +123,7 @@
 
                         <apex:outputPanel id="rend">
                             <apex:outputPanel rendered="{!IF(searchResults==null, false, true)}">
-                                <table class="table" id="sctnList1">
+                                <table class="table" id="sctnList1" style="width: 50%">
                                     <thead>
                                         <tr>
                                             <th>Session ID</th>
@@ -242,6 +280,42 @@
 
                     </div><!-- /.box-content -->
                 </div><!-- /.box data session-list -->
+                <apex:outputPanel rendered="{!IF(showPopwindow==true, true, false)}">
+                    <apex:outputPanel styleClass="customPopup" layout="block" id="firstpopup">
+                        <div class="controls">
+                            <apex:commandButton action="{!cancelPopUp}"   value="Cancel" style="margin-left: 31pc;"/>
+                        </div>
+                    <br></br>
+                                          <table Class="table data-table" id="tablesorter">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Student Name</th>
+                                                            <th>Student Id</th>
+                                                            <th>School Name</th>
+                                                            <th>Grade</th>
+                                                        </tr>
+                                                    </thead>
+                                                     <tbody>
+                                                        <apex:repeat var="s" value="{!results}" >
+                                                        <tr>
+                                                            <td >
+                                                                <apex:commandLink value="{!s.Student_Name__c}" action="{!ContactNamepassing}" >
+                                                                    <apex:param name="contactname2" value="{!s.Student_Name__c}" assignTo="{!studentSectionName}" />
+                                                                    <apex:param name="StudentId2" value="{!s.Student__c}" assignTo="{!studentId}"/>
+                                                                </apex:commandLink>
+                                                            </td>
+                                                            <td>{!s.Student_Id__c}</td>
+                                                            <td>{!s.Student__r.School_Name__c}</td>
+                                                            <td>{!s.Student_Grade__c}</td>
+                                                        </tr>
+                                                        </apex:repeat>
+                                                    </tbody>
+                                                </table>
+                       
+                         </apex:outputPanel>
+                     </apex:outputPanel>
+                <apex:actionFunction name="studentsearch" action="{!searchSession}"></apex:actionFunction>
+                <apex:actionFunction name="StudentSerach2" action="{!search}"/>
 
             </apex:form>
         </apex:define>
@@ -252,7 +326,7 @@
         // jwerty.key('enter', false);
         j$ = jQuery.noConflict();
         j$(document).ready(function() {
-
+           console.log( 'after');
             var contactTable1 = j$('[id$="sctnList"]').DataTable({
                 "sScrollY": "500px",
                 "bLengthChange": true,
@@ -277,7 +351,7 @@
             return false;
         });
 
-        function resetDatatable() {
+        j$(document).ready(function() {
             var contactTable = j$('[id$="sctnList1"]').DataTable({
                 "sScrollY": "500px",
                 "bLengthChange": true,
@@ -300,6 +374,33 @@
                 "asStripClasses": ['odd', 'even'],
                 
             });
-        }
+        });
+        //function enterstudent(){
+         //   console.log('newdata'+document.getElementedById('.studentname').value());
+        //}
+        j$(document).ready(function() {
+            var contactTable = j$('[id$="tablesorter"]').DataTable({
+                "sScrollY": "500px",
+                "bLengthChange": true,
+                "scrollX": true,
+                "bFilter": true,
+                "bInfo": false,
+                "aoColumnDefs": [{
+                    "sWidth": "30%",
+                    "aTargets": [0]
+                }],
+                "bAutoWidth": true,
+                "bSort": true,
+                "bDestroy": true,
+                "bScrollAutoCss": true,
+                "bPaginate": true,
+                "bScrollCollapse": true,
+                "bJQueryUI": true,
+                "bSaveState": true,
+                iDisplayLength: 10,
+                "asStripClasses": ['odd', 'even'],
+                
+            });
+        });
     </script>
 </apex:page>

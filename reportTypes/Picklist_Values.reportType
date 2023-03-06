@@ -191,6 +191,11 @@
             <field>Year_over_year__c</field>
             <table>Picklist_Value__c</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>X18_character_salesforce_ID__c</field>
+            <table>Picklist_Value__c</table>
+        </columns>
         <masterLabel>Picklist Values</masterLabel>
     </sections>
 </ReportType>

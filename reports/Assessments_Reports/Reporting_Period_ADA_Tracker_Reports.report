@@ -4,9 +4,6 @@
         <field>Assesment__c$Type__c</field>
     </columns>
     <columns>
-        <field>Assesment__c$Id</field>
-    </columns>
-    <columns>
         <field>Assesment__c$Student_Id__c</field>
     </columns>
     <columns>
@@ -25,7 +22,17 @@
         <field>Assesment__c$Date_Administered__c</field>
     </columns>
     <columns>
+        <aggregateTypes>Average</aggregateTypes>
         <field>Assesment__c$Average_Daily_Attendance__c</field>
+    </columns>
+    <columns>
+        <field>Assesment__c$Time_Period__c</field>
+    </columns>
+    <columns>
+        <field>Assesment__c$Id</field>
+    </columns>
+    <columns>
+        <field>Assesment__c$Student__c.Id</field>
     </columns>
     <filter>
         <criteriaItems>
@@ -37,11 +44,6 @@
         </criteriaItems>
     </filter>
     <format>Summary</format>
-    <groupingsDown>
-        <dateGranularity>Day</dateGranularity>
-        <field>Assesment__c$Location__c</field>
-        <sortOrder>Asc</sortOrder>
-    </groupingsDown>
     <groupingsDown>
         <dateGranularity>Day</dateGranularity>
         <field>Assesment__c$School__c</field>

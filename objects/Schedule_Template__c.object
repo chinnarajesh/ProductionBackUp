@@ -141,7 +141,15 @@
         <type>Default</type>
     </actionOverrides>
     <allowInChatterGroups>false</allowInChatterGroups>
-    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <compactLayoutAssignment>schedule_template</compactLayoutAssignment>
+    <compactLayouts>
+        <fullName>schedule_template</fullName>
+        <fields>Name</fields>
+        <fields>Split_School__c</fields>
+        <fields>Setup__c</fields>
+        <fields>Reporting_Period__c</fields>
+        <label>schedule template</label>
+    </compactLayouts>
     <deploymentStatus>Deployed</deploymentStatus>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
@@ -153,7 +161,7 @@
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
-    <externalSharingModel>ReadWrite</externalSharingModel>
+    <externalSharingModel>Private</externalSharingModel>
     <fields>
         <fullName>Color__c</fullName>
         <description>Hex # that represents the color of the template</description>
@@ -311,7 +319,16 @@
         <type>Text</type>
     </nameField>
     <pluralLabel>Schedule Templates</pluralLabel>
-    <searchLayouts/>
+    <profileSearchLayouts>
+        <fields>NAME</fields>
+        <fields>OBJECT_ID</fields>
+        <fields>Split_School__c</fields>
+        <fields>Reporting_Period__c</fields>
+        <profileName>System Administrator</profileName>
+    </profileSearchLayouts>
+    <searchLayouts>
+        <searchResultsAdditionalFields>OBJECT_ID</searchResultsAdditionalFields>
+    </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>

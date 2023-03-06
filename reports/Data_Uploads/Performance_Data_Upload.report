@@ -37,7 +37,10 @@
         <field>Account.Students__r.Grades__r$Numeric_Course_Grade__c</field>
     </columns>
     <columns>
-        <field>Account.Students__r.Grades__r$Id</field>
+        <field>Account.Students__r.Grades__r$Raw_Grade__c</field>
+    </columns>
+    <columns>
+        <field>Account.Students__r.Grades__r$X18_digit_Grade_ID__c</field>
     </columns>
     <description>Use this report as a template to submit grades for upload to cyschoolhouse.</description>
     <format>Tabular</format>

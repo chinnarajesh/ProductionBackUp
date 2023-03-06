@@ -103,7 +103,7 @@ public with sharing class IndicatorAreasController {
         if(String.isNotBlank(selectedGrade) && selectedGrade != 'all'){
             query += 'and Grade__c = \''+String.escapeSingleQuotes(selectedGrade)+'\' ';
         }
-        query += 'order by student_last_name__c, student_first_name__c asc';
+        query += 'order by student_first_name__c  asc';
         
         List<Student__c> students = (schoolFilterParam != '--None--')? Database.query(query): new List<Student__c>();
 

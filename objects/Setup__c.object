@@ -154,7 +154,7 @@
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
-    <externalSharingModel>Read</externalSharingModel>
+    <externalSharingModel>Private</externalSharingModel>
     <fieldSets>
         <fullName>Editable_Options</fullName>
         <description>Setup Wizard</description>
@@ -3182,6 +3182,7 @@ If Unchecked, school schedule is based on periods, enabling Period Templates &am
         <customTabListAdditionalFields>Passing_Grade_Threshold__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>Standards_Based_Grading__c</customTabListAdditionalFields>
         <searchFilterFields>NAME</searchFilterFields>
+        <searchResultsAdditionalFields>OBJECT_ID</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>Read</sharingModel>
     <visibility>Public</visibility>

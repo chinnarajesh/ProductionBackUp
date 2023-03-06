@@ -56,6 +56,13 @@
             <operator>notEqual</operator>
             <value>Impact Director,Impact Coach,Learning Director</value>
         </criteriaItems>
+        <criteriaItems>
+            <column>User*User$Site__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>New York City,Sacramento</value>
+        </criteriaItems>
     </filter>
     <format>Summary</format>
     <groupingsDown>
@@ -70,7 +77,7 @@
     </params>
     <reportType>Staff_Contact_USER__c</reportType>
     <scope>organization</scope>
-    <showDetails>true</showDetails>
+    <showDetails>false</showDetails>
     <showGrandTotal>true</showGrandTotal>
     <showSubTotals>true</showSubTotals>
     <timeFrameFilter>

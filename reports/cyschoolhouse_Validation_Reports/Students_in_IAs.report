@@ -4,6 +4,9 @@
         <field>Student__c$Contact_Id__c</field>
     </columns>
     <columns>
+        <field>Student__c$X18_digit_ID__c</field>
+    </columns>
+    <columns>
         <field>Student__c$Id</field>
     </columns>
     <columns>
@@ -23,6 +26,12 @@
     </columns>
     <columns>
         <field>Student__c$Ethnicity__c</field>
+    </columns>
+    <columns>
+        <field>Student__c$ELL__c</field>
+    </columns>
+    <columns>
+        <field>Student__c$Lunch_Status__c</field>
     </columns>
     <columns>
         <field>Student__c$Date_of_Birth__c</field>

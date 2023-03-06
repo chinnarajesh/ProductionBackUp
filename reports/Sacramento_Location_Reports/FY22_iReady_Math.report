@@ -27,32 +27,18 @@
             <value>Edit values in upper range band and customize the band name</value>
         </values>
     </buckets>
-    <chart>
-        <backgroundColor1>#FFFFFF</backgroundColor1>
-        <backgroundColor2>#FFFFFF</backgroundColor2>
-        <backgroundFadeDir>Diagonal</backgroundFadeDir>
-        <chartSummaries>
-            <axisBinding>y</axisBinding>
-            <column>RowCount</column>
-        </chartSummaries>
-        <chartType>Pie</chartType>
-        <enableHoverLabels>false</enableHoverLabels>
-        <expandOthers>false</expandOthers>
-        <groupingColumn>Assesment__c$School__c</groupingColumn>
-        <legendPosition>Right</legendPosition>
-        <location>CHART_BOTTOM</location>
-        <showAxisLabels>true</showAxisLabels>
-        <showPercentage>true</showPercentage>
-        <showTotal>false</showTotal>
-        <showValues>false</showValues>
-        <size>Medium</size>
-        <summaryAxisRange>Auto</summaryAxisRange>
-        <textColor>#000000</textColor>
-        <textSize>12</textSize>
-        <title>Distribution Across 0 to 1000 Bands</title>
-        <titleColor>#000000</titleColor>
-        <titleSize>18</titleSize>
-    </chart>
+    <columns>
+        <field>Assesment__c$School__c</field>
+    </columns>
+    <columns>
+        <field>Assesment__c$Student_Id__c</field>
+    </columns>
+    <columns>
+        <field>Assesment__c$Student__c</field>
+    </columns>
+    <columns>
+        <field>Assesment__c$Student_Grade__c</field>
+    </columns>
     <columns>
         <field>Assesment__c$Assessment_Name__c</field>
     </columns>
@@ -60,31 +46,13 @@
         <field>Assesment__c$Date_Administered__c</field>
     </columns>
     <columns>
-        <field>Assesment__c$Student_Id__c</field>
-    </columns>
-    <columns>
-        <field>Assesment__c$Student_Name__c</field>
-    </columns>
-    <columns>
-        <field>Assesment__c$Student_Grade__c</field>
-    </columns>
-    <columns>
-        <field>Assesment__c$Testing_Grade_Level__c</field>
-    </columns>
-    <columns>
-        <field>BucketField_841505</field>
-    </columns>
-    <columns>
-        <field>Assesment__c$Quantile_Score__c</field>
-    </columns>
-    <columns>
-        <field>Assesment__c$Quantile_Student_Target_Score__c</field>
-    </columns>
-    <columns>
         <field>Assesment__c$Scale_Score__c</field>
     </columns>
     <columns>
         <field>Assesment__c$Student_Target_Score__c</field>
+    </columns>
+    <columns>
+        <field>Assesment__c$Testing_Grade_Level__c</field>
     </columns>
     <filter>
         <criteriaItems>
@@ -94,14 +62,16 @@
             <operator>equals</operator>
             <value>iReady - Math</value>
         </criteriaItems>
+        <criteriaItems>
+            <column>Assesment__c$Date_Administered__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>greaterThan</operator>
+            <value>11/15/2022</value>
+        </criteriaItems>
     </filter>
-    <format>Summary</format>
-    <groupingsDown>
-        <dateGranularity>Day</dateGranularity>
-        <field>Assesment__c$School__c</field>
-        <sortOrder>Asc</sortOrder>
-    </groupingsDown>
-    <name>FY22_iReady - Math</name>
+    <format>Tabular</format>
+    <name>SAC_FY23_iReady - Math</name>
     <params>
         <name>co</name>
         <value>1</value>
@@ -111,8 +81,6 @@
     <showDetails>true</showDetails>
     <showGrandTotal>true</showGrandTotal>
     <showSubTotals>true</showSubTotals>
-    <sortColumn>Assesment__c$Student_Name__c</sortColumn>
-    <sortOrder>Asc</sortOrder>
     <timeFrameFilter>
         <dateColumn>Assesment__c$CreatedDate</dateColumn>
         <interval>INTERVAL_CUSTOM</interval>

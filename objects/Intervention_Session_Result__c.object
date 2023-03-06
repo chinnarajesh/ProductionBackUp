@@ -163,7 +163,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>0</scale>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
@@ -174,7 +174,7 @@
         <label>Exit Ticket</label>
         <length>255</length>
         <required>false</required>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
@@ -430,9 +430,10 @@ MOD( Intervention_Session_Date__c - DATE( 1900, 1, 7 ), 7 ),
         <lookupDialogsAdditionalFields>Related_Student_s_Name__c</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>Amount_of_Time__c</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>Section_Name__c</lookupDialogsAdditionalFields>
-        <searchResultsAdditionalFields>Amount_of_Time__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>Related_Student_s_Name__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Section_Name__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Related_Student_s_Name__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Amount_of_Time__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Intervention_Session_Date__c</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>ControlledByParent</sharingModel>
     <validationRules>

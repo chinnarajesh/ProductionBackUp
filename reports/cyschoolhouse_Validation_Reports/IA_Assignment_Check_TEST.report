@@ -23,6 +23,9 @@
         <field>Account.Sections__r.Student_Section__r$Local_Student_ID__c</field>
     </columns>
     <columns>
+        <field>Account.Sections__r.Student_Section__r$Student_Id__c</field>
+    </columns>
+    <columns>
         <field>Account.Sections__r$Auto_Name__c</field>
     </columns>
     <columns>
@@ -57,14 +60,7 @@
     </columns>
     <description>Report lists all students with dosage enrolled into an EWI related section, but who do NOT have the related indicator area assigned.  (Note: Report will not show students with indicator area assignments, but are NOT enrolled in related section.)</description>
     <filter>
-        <booleanFilter>1 AND 2 AND 11 AND ((3 AND 4) OR (5 AND 6) OR (7 AND 8) OR (9 AND 10))</booleanFilter>
-        <criteriaItems>
-            <column>Account.Sections__r$Program__c</column>
-            <columnToColumn>false</columnToColumn>
-            <isUnlocked>false</isUnlocked>
-            <operator>contains</operator>
-            <value>,literacy,math,attendance,behavior,50 acts,heroes,starfish,homework,enrichment</value>
-        </criteriaItems>
+        <booleanFilter>1 AND 10 AND 11 AND ((2 AND 3) OR (4 AND 5) OR (6 AND 7) OR (8 AND 9))</booleanFilter>
         <criteriaItems>
             <column>Account.Sections__r$In_After_School__c</column>
             <columnToColumn>false</columnToColumn>
@@ -119,7 +115,7 @@
             <columnToColumn>false</columnToColumn>
             <isUnlocked>false</isUnlocked>
             <operator>contains</operator>
-            <value>behavior</value>
+            <value>SEL/SED</value>
         </criteriaItems>
         <criteriaItems>
             <column>Account.Sections__r.Student_Section__r$Student__c.Behavior__c</column>
@@ -135,6 +131,13 @@
             <operator>greaterThan</operator>
             <value>0</value>
         </criteriaItems>
+        <criteriaItems>
+            <column>Account.Sections__r$Indicator_Area__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>false</isUnlocked>
+            <operator>notEqual</operator>
+            <value>non-specific IA</value>
+        </criteriaItems>
     </filter>
     <format>Summary</format>
     <groupingsDown>
@@ -144,12 +147,12 @@
     </groupingsDown>
     <groupingsDown>
         <dateGranularity>Day</dateGranularity>
-        <field>Account.Sections__r.Student_Section__r$Student_Id__c</field>
+        <field>Account.Sections__r$Indicator_Area__c</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
     <groupingsDown>
         <dateGranularity>Day</dateGranularity>
-        <field>Account.Sections__r$Indicator_Area__c</field>
+        <field>Account.Sections__r$Intervention_Primary_Staff__c</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
     <name>IA-Assignment Check</name>

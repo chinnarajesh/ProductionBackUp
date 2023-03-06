@@ -24,9 +24,6 @@
     <columns>
         <field>Account$Site__c</field>
     </columns>
-    <columns>
-        <field>Account$CreatedDate</field>
-    </columns>
     <filter>
         <criteriaItems>
             <column>Account$Name</column>
@@ -45,6 +42,10 @@
     </filter>
     <format>Summary</format>
     <groupingsDown>
+        <field>Account$CreatedDate</field>
+        <sortOrder>Desc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
         <dateGranularity>Day</dateGranularity>
         <field>Account.AccountTerritory2Associations$Name</field>
         <sortOrder>Asc</sortOrder>
@@ -56,7 +57,7 @@
     </params>
     <reportType>Accouts_by_territory__c</reportType>
     <scope>organization</scope>
-    <showDetails>true</showDetails>
+    <showDetails>false</showDetails>
     <showGrandTotal>true</showGrandTotal>
     <showSubTotals>true</showSubTotals>
     <sortColumn>Account$Name</sortColumn>

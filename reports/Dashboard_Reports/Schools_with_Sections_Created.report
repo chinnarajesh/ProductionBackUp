@@ -48,14 +48,16 @@
             <value>shawn,adamsville</value>
         </criteriaItems>
     </filter>
-    <format>Summary</format>
+    <format>Matrix</format>
+    <groupingsAcross>
+        <dateGranularity>Day</dateGranularity>
+        <field>Section__c$Program__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsAcross>
     <groupingsDown>
-        <aggregateType>RowCount</aggregateType>
         <dateGranularity>Day</dateGranularity>
         <field>Section__c$School__c.Site__c</field>
-        <sortByName>RowCount</sortByName>
         <sortOrder>Asc</sortOrder>
-        <sortType>Aggregate</sortType>
     </groupingsDown>
     <groupingsDown>
         <dateGranularity>Day</dateGranularity>

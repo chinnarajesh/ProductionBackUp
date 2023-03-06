@@ -7,6 +7,12 @@
         <field>Assesment__c$Id</field>
     </columns>
     <columns>
+        <field>Assesment__c$Student__c.Id</field>
+    </columns>
+    <columns>
+        <field>Assesment__c$Student__c.Local_Student_ID__c</field>
+    </columns>
+    <columns>
         <field>Assesment__c$Student__c.Student_ID_Auto_Number__c</field>
     </columns>
     <columns>
@@ -34,11 +40,6 @@
         </criteriaItems>
     </filter>
     <format>Summary</format>
-    <groupingsDown>
-        <dateGranularity>Day</dateGranularity>
-        <field>Assesment__c$Location__c</field>
-        <sortOrder>Asc</sortOrder>
-    </groupingsDown>
     <groupingsDown>
         <dateGranularity>Day</dateGranularity>
         <field>Assesment__c$School__c</field>

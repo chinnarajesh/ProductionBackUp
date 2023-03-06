@@ -19,7 +19,7 @@
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
             <operator>notEqual</operator>
-            <value>Anytown School,Another Anytown School,CY Test School,Individuals</value>
+            <value>CY - Anytown School,CY - Another Anytown School,CY - Test School,Individuals</value>
         </criteriaItems>
     </filter>
     <format>Tabular</format>

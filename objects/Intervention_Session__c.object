@@ -160,7 +160,7 @@
         <externalId>false</externalId>
         <label>All avenues</label>
         <required>true</required>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
         <valueSet>
@@ -186,7 +186,7 @@
         <inlineHelpText>Are there any additional comments for this Intervention Session?</inlineHelpText>
         <label>Add&apos;l Comments for Session</label>
         <required>false</required>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>TextArea</type>
     </fields>
@@ -196,7 +196,7 @@
         <inlineHelpText>What was the date that this Intervention Session took place?</inlineHelpText>
         <label>Date</label>
         <required>false</required>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
     </fields>
@@ -246,7 +246,7 @@
         <externalId>false</externalId>
         <label>Session Format</label>
         <required>false</required>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
         <valueSet>
@@ -276,7 +276,7 @@
         <relationshipLabel>Intervention Sessions</relationshipLabel>
         <relationshipName>Intervention_Sessions</relationshipName>
         <required>true</required>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
@@ -285,7 +285,7 @@
         <externalId>false</externalId>
         <label>Session Type</label>
         <required>false</required>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
         <valueSet>
@@ -311,7 +311,7 @@
         <label>Site Details</label>
         <length>255</length>
         <required>false</required>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
@@ -325,7 +325,7 @@
         <relationshipLabel>Intervention Sessions</relationshipLabel>
         <relationshipName>Intervention_Sessions</relationshipName>
         <required>false</required>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
@@ -335,7 +335,7 @@
         <inlineHelpText>What specific skills were covered in this Intervention Session?</inlineHelpText>
         <label>Other Skills</label>
         <length>2000</length>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>LongTextArea</type>
         <visibleLines>3</visibleLines>
@@ -346,7 +346,7 @@
         <inlineHelpText>What specific skills were covered in this Intervention Session?</inlineHelpText>
         <label>Skills Covered for the Session</label>
         <required>false</required>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>TextArea</type>
     </fields>
@@ -430,7 +430,6 @@
         <searchResultsAdditionalFields>Date__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Section__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Session_Time_Completed_For__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>Skills__c</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>ControlledByParent</sharingModel>
     <validationRules>

@@ -55,9 +55,6 @@
         <field>Assesment__c$Student__c.Behavior__c</field>
     </columns>
     <columns>
-        <field>Assesment__c$Date_Administered__c</field>
-    </columns>
-    <columns>
         <field>Assesment__c$Average_Daily_Attendance__c</field>
     </columns>
     <columns>
@@ -80,8 +77,7 @@
         <sortOrder>Asc</sortOrder>
     </groupingsAcross>
     <groupingsAcross>
-        <dateGranularity>Day</dateGranularity>
-        <field>BucketField_41998627</field>
+        <field>Assesment__c$Date_Administered__c</field>
         <sortOrder>Asc</sortOrder>
     </groupingsAcross>
     <groupingsDown>

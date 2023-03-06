@@ -1480,6 +1480,11 @@
             <field>Unique_Assignment__c</field>
             <table>Account.Sections__r.Assignments__r</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>X18_digit_Assignment_ID__c</field>
+            <table>Account.Sections__r.Assignments__r</table>
+        </columns>
         <masterLabel>Assignments</masterLabel>
     </sections>
 </ReportType>

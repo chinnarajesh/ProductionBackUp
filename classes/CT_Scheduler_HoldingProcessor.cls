@@ -48,13 +48,13 @@ global without sharing class CT_Scheduler_HoldingProcessor implements Database.B
     }
 
     public static string processQueryForPropagator(string mode, Setup__c cSetup, String schoolDbn){
-        String queryToProcess = 'SELECT First_Name__c,Last_Name__c,Class_Id__c,Class_Name__c,Grade_Level__c,Reference_Id__c,';
+        String queryToProcess = 'SELECT First_Name__c,Last_Name__c,Class_Id__c,Class_Name__c,Grade_Level__c,Reference_Id__c,Lunch_Status__c,';
         queryToProcess += 'School_Dbn__c,Propagated__c,Password__c,Email__c,Source_System__c,Course_Name__c,Period__c,Record_Attendance__c,';
         queryToProcess += 'Daily_Attendance__c,Phone__c,Address__c,City__c,State__c,Zip__c,Age__c,Sex__c,Reporting_Period_Id__c,';
         queryToProcess += 'Room__c,School_Year__c,Local_Student_ID__c,'+String.join(mode=='Staff'? FIELDSSTAFF: FIELDSSTUDENT, ',');
         queryToProcess += ' FROM HoldingObj__c';
         queryToProcess += ' WHERE Type__c = \''+mode+'\'';
-
+        System.debug('queryToProcess##'+queryToProcess);
         if(cSetup!=null){
             queryToProcess+=' AND School_Dbn__c =\''+String.escapeSingleQuotes(cSetup.School__r.Reference_Id__c)+'\''; //If based on setup pass in School DBN or Reference ID
             System.debug('\n\n cSetup.school.Reference_Id__c => ' + cSetup.School__r.Reference_Id__c + '\n');

@@ -7,36 +7,45 @@
         <field>Assesment__c$Id</field>
     </columns>
     <columns>
+        <field>Assesment__c$Student_Id__c</field>
+    </columns>
+    <columns>
+        <field>Assesment__c$Student__c.Local_Student_ID__c</field>
+    </columns>
+    <columns>
+        <field>Assesment__c$Student__c.Id</field>
+    </columns>
+    <columns>
         <field>Assesment__c$Student_Name__c</field>
     </columns>
     <columns>
         <field>Assesment__c$Date_Administered__c</field>
     </columns>
     <columns>
-        <aggregateTypes>Sum</aggregateTypes>
+        <aggregateTypes>Average</aggregateTypes>
         <field>Assesment__c$Maximum_Score__c</field>
     </columns>
     <columns>
-        <aggregateTypes>Sum</aggregateTypes>
+        <aggregateTypes>Average</aggregateTypes>
         <field>Assesment__c$Percent_Correct__c</field>
     </columns>
     <columns>
-        <aggregateTypes>Sum</aggregateTypes>
+        <aggregateTypes>Average</aggregateTypes>
         <field>Assesment__c$Raw_Score__c</field>
     </columns>
     <columns>
         <field>Assesment__c$Reading_Percent_Correct__c</field>
     </columns>
     <columns>
-        <aggregateTypes>Sum</aggregateTypes>
+        <aggregateTypes>Average</aggregateTypes>
         <field>Assesment__c$Scale_Score__c</field>
     </columns>
     <columns>
-        <aggregateTypes>Sum</aggregateTypes>
+        <aggregateTypes>Average</aggregateTypes>
         <field>Assesment__c$Student_Growth_Percentile__c</field>
     </columns>
     <columns>
-        <aggregateTypes>Sum</aggregateTypes>
+        <aggregateTypes>Average</aggregateTypes>
         <field>Assesment__c$Student_Growth_Percentile_Target_Score__c</field>
     </columns>
     <columns>
@@ -60,11 +69,6 @@
     <groupingsDown>
         <dateGranularity>Day</dateGranularity>
         <field>Assesment__c$School__c</field>
-        <sortOrder>Asc</sortOrder>
-    </groupingsDown>
-    <groupingsDown>
-        <dateGranularity>Day</dateGranularity>
-        <field>Assesment__c$Student_Id__c</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
     <name>ACT Aspire - ELA</name>

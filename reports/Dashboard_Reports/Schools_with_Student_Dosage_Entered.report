@@ -9,11 +9,13 @@
             <axisBinding>y</axisBinding>
             <column>Section__c.Student_Section__r$Dosage_to_Date__c</column>
         </chartSummaries>
-        <chartType>VerticalColumn</chartType>
+        <chartType>HorizontalBarGrouped</chartType>
         <enableHoverLabels>false</enableHoverLabels>
         <expandOthers>true</expandOthers>
         <groupingColumn>Section__c.Student_Section__r$School__c</groupingColumn>
+        <legendPosition>Right</legendPosition>
         <location>CHART_TOP</location>
+        <secondaryGroupingColumn>Section__c$Program__c</secondaryGroupingColumn>
         <showAxisLabels>true</showAxisLabels>
         <showPercentage>false</showPercentage>
         <showTotal>false</showTotal>
@@ -28,6 +30,9 @@
     </chart>
     <columns>
         <field>Section__c.Student_Section__r$Student_Name__c</field>
+    </columns>
+    <columns>
+        <field>Section__c.Student_Section__r$Section__c</field>
     </columns>
     <columns>
         <field>Section__c.Student_Section__r$Intervention_Enrollment_Start_Date__c</field>
@@ -47,13 +52,6 @@
             <operator>equals</operator>
             <value>Section__c.Intervention_Section</value>
         </criteriaItems>
-        <criteriaItems>
-            <column>Section__c$School__c</column>
-            <columnToColumn>false</columnToColumn>
-            <isUnlocked>false</isUnlocked>
-            <operator>notContain</operator>
-            <value>shawns,adamsville</value>
-        </criteriaItems>
     </filter>
     <format>Summary</format>
     <groupingsDown>
@@ -68,7 +66,7 @@
     </groupingsDown>
     <groupingsDown>
         <dateGranularity>Day</dateGranularity>
-        <field>Section__c$Name</field>
+        <field>Section__c$Program__c</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
     <name>Schools with Student Dosage Entered</name>

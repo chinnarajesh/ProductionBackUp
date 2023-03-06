@@ -452,8 +452,10 @@ IF(INCLUDES( Section__r.All_Grades__c , &quot;PK&quot;), &quot;PK&quot;, NULL)</
         <excludedStandardButtons>New</excludedStandardButtons>
         <excludedStandardButtons>ChangeOwner</excludedStandardButtons>
         <lookupDialogsAdditionalFields>Staff__c</lookupDialogsAdditionalFields>
+        <searchResultsAdditionalFields>Section__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Staff__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Is_Active__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Intervention_Primary_Staff__c</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>ControlledByParent</sharingModel>
     <visibility>Public</visibility>

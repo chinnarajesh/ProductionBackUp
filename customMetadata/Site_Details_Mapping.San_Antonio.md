@@ -8,6 +8,6 @@
     </values>
     <values>
         <field>Values__c</field>
-        <value xsi:type="xsd:string">RJ: Welcome Ritual; RJ: Engaging Practice; RJ: Optimistic Closure; RJ: Other Practice Implemented; RJ: Multiple Practices</value>
+        <value xsi:type="xsd:string">RJ: Welcome Ritual;RJ: Engaging Practice;RJ: Optimistic Closure;RJ: Other Practice Implemented;RJ: Multiple Practices</value>
     </values>
 </CustomMetadata>

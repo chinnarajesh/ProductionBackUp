@@ -1,5 +1,17 @@
 <apex:page docType="html-5.0" showHeader="false" sidebar="false" standardStylesheets="false" applyHtmlTag="false" applyBodyTag="false" controller="ctlAddTimeFlow_dev">
     <html dir="ltr" lang="en-US" >
+        <style type="text/css">
+            input[type="checkbox"]:checked {
+                accent-color: #00a4b3;
+            }
+            @media screen and (min-device-width: 280px) and (max-device-width: 1180px) { 
+            /* STYLES HERE */
+            .buttonDiv{
+                display: none;
+            }
+            }
+            
+        </style>
         <head>
             <meta charset="utf-8" />
             <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -43,30 +55,40 @@
                             </div>
                         </div><!-- /.title -->
                         <div class="controls">
-                            <apex:commandLink styleClass="btn-bs btn-blank" action="{!doStudentsCancel}"><span class="icon-arrow_back"></span>Go Back</apex:commandLink>
-                            <apex:commandButton styleClass="btn-bs btn-default push-left" action="{!doShowSessions}" value="History" />
-                            <apex:commandLink styleClass="btn-bs btn-primary" action="{!doStudentsAddTime}" onclick="sendData()"><span class="icon-plus"></span>Add Time</apex:commandLink>
+                            <apex:outputPanel id="hideButton" styleClass="hidden-xs" rendered="{!IF(mainReportchat==true, true, false)}">
+                            <apex:commandLink style="color: #F9A12D;" styleClass="btn-bs btn-blank" action="{!doStudentsCancel}"><span class="icon-arrow_back"></span>Go Back</apex:commandLink>
+                        </apex:outputPanel>
+                           <apex:outputPanel id="newButton" styleClass="hidden-xs" rendered="{!IF(showstudentButton==false, true, false)}">
+                           <apex:commandLink style="color: #F9A12D;" styleClass="btn-bs btn-blank" action="{!gototheReportchart}"><span class="icon-arrow_back"></span>Go Back</apex:commandLink>
+                        </apex:outputPanel>
+                           <apex:commandButton styleClass="btn-bs btn-default push-left" action="{!doShowSessions}" value="History" />
+                            <apex:commandLink style="background-color: #00a4b3;border-color: #00a4b3;margin-right: 10px;" styleClass="btn-bs btn-primary" action="{!doStudentsAddTime}" onclick="sendData()"><span class="icon-plus"></span>Add Time</apex:commandLink>
+                            <div class="buttonDiv">
+                            <apex:commandLink style="background-color: #00a4b3;border-color: #00a4b3;margin-right: 10px;" styleClass="btn-bs btn-primary" action="{!addweeklyTime}" onclick="sendData()">Add Weekly Time</apex:commandLink>
+                            </div>
+                            <apex:commandLink style="background-color: #00a4b3;border-color: #00a4b3;" styleClass="btn-bs btn-primary" action="{!StudentReportChart}" onclick="sendData()">Refresh Graph</apex:commandLink>
                         </div><!-- /.controls -->
                     </div>
                     <div class="box-content">
               
-                       <apex:outputPanel id="mySection1" styleClass="hidden-xs" rendered="{!IF(showReport==true, true, false)}">
-                            <div style="width:100%;margin:auto;height:40%">
+                       <apex:outputPanel id="mySection1"  styleClass="hidden-xs" rendered="{!IF(showReport==true, true, false)}">
+                            <div style="width:100%;margin:auto;height:40%" class="Showreport">
                                
                <!--<analytics:reportChart reportId="{!reportID}" showRefreshButton="true" cacheResults="false" filter="{column:'Section__c.Name', operator: 'equals', value: '{!sectionNameEscaped}'}" />-->
-                    
-             
-               <apex:outputLink value="https://cyneworg-cyschoolhouse.force.com/ce/{!reportID}" target="_black">
-               <apex:pageBlock title="Corps Edition Report">
+                 
+               <apex:outputLink value="https://cyneworg-cyschoolhouse.force.com/ce/{!reportID}"  target="_black">
+               
+               <apex:pageBlock >
+              <h2 style="font-size: 1.5em; color: #F9A12D;">Corps Edition Report</h2>
                <apex:panelGroup >
                     <apex:chart name="ReportWrapper"
                                 data="{!ReportWrapper}"
-                                width="90%" height="500" theme="Red">
+                                width="90%" height="500" >
                             
-                        <apex:legend position="top" />
+                        <!-- <apex:legend position="top" /> -->
 
                         <apex:axis type="Numeric" position="left" grid="true"                              
-                                   title="Sum of Amount of Time(in minutes) per section" 
+                                   title="Sum of Session Time (in mins)"
                                    fields="AmountOftime"
                                    steps="10">
                             <apex:chartLabel />
@@ -77,16 +99,50 @@
                                    fields="intersessiondate">
                             <apex:chartLabel />
                         </apex:axis>
-                <apex:lineSeries axis="left" highlight="true" markerFill="#8E35EF"  markerSize="4" markerType="circle" xField="intersessiondate" yField="AmountOftime"></apex:lineSeries>
+                <apex:lineSeries axis="left" highlight="true" strokeColor="#00a4b3"  markerSize="4" markerType="circle" xField="intersessiondate" yField="AmountOftime"></apex:lineSeries>
                                             
                     </apex:chart>
                 </apex:panelGroup>
              </apex:pageBlock>
                 </apex:outputLink>
                            </div>
-                           
                         </apex:outputPanel>
-                           
+               <!-- Added by juturi Displaying student report chart--> 
+               <apex:outputPanel id="studentreportchart" styleClass="hidden-xs" rendered="{!IF(ShowStudentReport==false, true, false)}">
+                <div style="width:100%;margin:auto;height:40%">
+                <apex:pageBlock >
+                    <apex:outputPanel id="pagetitle" styleClass="hidden-xs" rendered="{!IF(titledisplay==true, true, false)}">
+                        <h2 style="font-size: 1.5em; color: #F9A12D;">Student Report Chart</h2>
+                    </apex:outputPanel>
+                    <apex:panelGroup >
+                        <apex:chart name="StudentReport"
+                                    data="{!StudentReport}"
+                                    width="90%" height="500" >
+                                
+                            <!-- <apex:legend position="top" /> -->
+    
+                            <apex:axis type="Numeric" position="left" grid="true"                              
+                                       title="Sum of Session Time (in mins)" 
+                                       fields="AmountOfTime"
+                                       steps="10">
+                                <apex:chartLabel />
+                            </apex:axis>
+    
+                            <apex:axis type="Category" position="bottom" grid="true"
+                                       title="Intervention Session Date"
+                                       fields="intersessionDate">
+                                <apex:chartLabel />
+                            </apex:axis>
+                    <apex:lineSeries axis="left" highlight="true" strokeColor="#00a4b3"  markerSize="4" markerType="circle" xField="intersessionDate" yField="AmountOfTime" ></apex:lineSeries>
+                             <!-- <apex:barSeries orientation="vertical" axis="left"
+                xField="studentName" yField="amountOftime"/>                      -->
+                        </apex:chart>
+                    </apex:panelGroup>
+                </apex:pageBlock>
+
+                </div>
+                </apex:outputPanel>      
+               <!--endded by juturi   -->            
                         <table class="table data-table responsive table-striped cy-table" id="srchstdtable">
                             <thead>
                                 <tr>
@@ -105,7 +161,7 @@
                                 <apex:repeat var="e" value="{!studentsInSection}">
                                 <tr id="{!e.stuSecRec.Student__c}" studentId="{!e.stuSecRec.Student__c}"><!-- class="parent"  -->
                                    <td class="details-control">
-                                        <apex:inputCheckbox value="{!e.selected}" id="inputId" onclick="getStudentArray(this, '{!e.stuSecRec.Student__c}')" html-studentId="{!e.stuSecRec.Student__c}" disabled="{!NOT(e.stuSecRec.Active__c)}" tabindex="1" />
+                                        <apex:inputCheckbox value="{!e.selected}" id="inputId" onclick="getStudentArray(this, '{!e.stuSecRec.Student__c}')" html-studentId="{!e.stuSecRec.Student__c}" disabled="{!NOT(e.stuSecRec.Active__c)}" tabindex="1" style="background:#00a4b3;color:#00a4b3;" />
                                    </td>
                                     <td id='stIDs{!e.stuSecRec.Student__c}'>{!e.stuSecRec.Student_Name__c}</td>
                                     <td>{!e.stuSecRec.Dosage_to_Date__c}.0</td>
@@ -123,6 +179,9 @@
                         </table>
                     </div>
                 </div>
+                <apex:actionFunction action="{!changeSection}" name="changeSectionJS" rerender="messages,StudentPanel, dailySessionRender, sessionDataModal, test1" oncomplete="hasChanges=false;"/>
+                <apex:actionFunction name="doPrevWeek" action="{!lastWeek}" rerender="messages,StudentPanel,dailySessionRender" oncomplete="hasChanges=false;"/>
+
             </apex:form>
         </apex:define>
     <script type="text/javascript">

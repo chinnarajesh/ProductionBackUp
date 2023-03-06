@@ -2293,20 +2293,16 @@ text in the Alt Lang Comments field displays for Section Comments and Overall Co
         <label><!-- Lunch Status --></label>
         <name>Lunch_Status__c</name>
         <picklistValues>
-            <masterLabel>Free</masterLabel>
-            <translation><!-- Free --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>None</masterLabel>
-            <translation><!-- None --></translation>
+            <masterLabel>Free/Reduced</masterLabel>
+            <translation><!-- Free/Reduced --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Paid</masterLabel>
             <translation><!-- Paid --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Reduced</masterLabel>
-            <translation><!-- Reduced --></translation>
+            <masterLabel>Unknown</masterLabel>
+            <translation><!-- Unknown --></translation>
         </picklistValues>
     </fields>
     <fields>
@@ -4545,6 +4541,10 @@ text in the Alt Lang Comments field displays for Section Comments and Overall Co
     <validationRules>
         <errorMessage><!-- Please select Exit Date and Exit Reason --></errorMessage>
         <name>Exit_Date_and_Reason</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Date of Birth can not be in the future --></errorMessage>
+        <name>No_future_birthdates</name>
     </validationRules>
     <validationRules>
         <errorMessage><!-- Service Hours To Date must be non-negative. --></errorMessage>

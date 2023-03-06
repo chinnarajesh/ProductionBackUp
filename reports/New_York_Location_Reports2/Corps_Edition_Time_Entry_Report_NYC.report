@@ -85,7 +85,7 @@
     </params>
     <reportType>Sections_with_Intervention_Sessions_with_Intervention_Session_Results__c</reportType>
     <scope>organization</scope>
-    <showDetails>true</showDetails>
+    <showDetails>false</showDetails>
     <showGrandTotal>true</showGrandTotal>
     <showSubTotals>false</showSubTotals>
     <timeFrameFilter>

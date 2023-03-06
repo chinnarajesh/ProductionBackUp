@@ -51,10 +51,17 @@
         <field>Assesment__c$Student__c</field>
     </columns>
     <columns>
+        <field>Assesment__c$Student__c.Local_Student_ID__c</field>
+    </columns>
+    <columns>
         <field>Assesment__c$Student_Id__c</field>
     </columns>
     <columns>
         <field>Assesment__c$Time_Period__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>Assesment__c$Number_of_Office_Referrals__c</field>
     </columns>
     <columns>
         <aggregateTypes>Sum</aggregateTypes>
@@ -73,11 +80,10 @@
         <field>Assesment__c$Number_of_Out_of_School_Suspensions__c</field>
     </columns>
     <columns>
-        <aggregateTypes>Sum</aggregateTypes>
-        <field>Assesment__c$Number_of_Office_Referrals__c</field>
+        <field>Assesment__c$Id</field>
     </columns>
     <columns>
-        <field>Assesment__c$Id</field>
+        <field>Assesment__c$Student__c.Id</field>
     </columns>
     <description>The data in this report cannot be used for summative reporting like AmeriCorps reporting. Use this just for progress monitoring. Review number of detentions, number of suspensions, number of office referrals.</description>
     <filter>
@@ -86,7 +92,7 @@
             <columnToColumn>false</columnToColumn>
             <isUnlocked>false</isUnlocked>
             <operator>equals</operator>
-            <value>Weekly Time Based Behavior Tracker - BEHAVIOR</value>
+            <value>Weekly Time Based SEL/SED Tracker - BEHAVIOR</value>
         </criteriaItems>
     </filter>
     <format>Matrix</format>
@@ -102,15 +108,10 @@
     </groupingsAcross>
     <groupingsDown>
         <dateGranularity>Day</dateGranularity>
-        <field>Assesment__c$Location__c</field>
-        <sortOrder>Asc</sortOrder>
-    </groupingsDown>
-    <groupingsDown>
-        <dateGranularity>Day</dateGranularity>
         <field>Assesment__c$School__c</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
-    <name>Weekly Time Based Behavior Tracker</name>
+    <name>Weekly Time Based SEL/SED Tracker</name>
     <params>
         <name>co</name>
         <value>1</value>

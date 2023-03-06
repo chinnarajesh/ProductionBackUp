@@ -223,6 +223,10 @@
         <name>Weighted_Grade_Value__c</name>
     </fields>
     <fields>
+        <label><!-- 18 digit Grade ID --></label>
+        <name>X18_digit_Grade_ID__c</name>
+    </fields>
+    <fields>
         <label><!-- Exclude From Section Grade --></label>
         <name>exclude_From_Section_Grade__c</name>
     </fields>

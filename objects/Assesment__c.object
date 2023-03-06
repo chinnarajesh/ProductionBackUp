@@ -1539,6 +1539,18 @@
         </valueSet>
     </fields>
     <fields>
+        <fullName>ELA_FAST__c</fullName>
+        <externalId>false</externalId>
+        <label>ELA FAST</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Emotion_control__c</fullName>
         <externalId>false</externalId>
         <label>Emotion control</label>
@@ -2799,6 +2811,18 @@
         </valueSet>
     </fields>
     <fields>
+        <fullName>Math_FAST__c</fullName>
+        <externalId>false</externalId>
+        <label>Math FAST</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Math_Percent_Correct__c</fullName>
         <externalId>false</externalId>
         <label>Math Percent Correct</label>
@@ -3829,19 +3853,37 @@
             <valueSetDefinition>
                 <sorted>false</sorted>
                 <value>
-                    <fullName>Limited</fullName>
+                    <fullName>0</fullName>
                     <default>false</default>
-                    <label>Limited</label>
+                    <label>0</label>
                 </value>
                 <value>
-                    <fullName>Expected</fullName>
+                    <fullName>1</fullName>
                     <default>false</default>
-                    <label>Expected</label>
+                    <label>1</label>
+                </value>
+                <value>
+                    <fullName>2</fullName>
+                    <default>false</default>
+                    <label>2</label>
                 </value>
                 <value>
                     <fullName>Accelerated</fullName>
                     <default>false</default>
+                    <isActive>false</isActive>
                     <label>Accelerated</label>
+                </value>
+                <value>
+                    <fullName>Expected</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Expected</label>
+                </value>
+                <value>
+                    <fullName>Limited</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Limited</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -7127,6 +7169,13 @@ Student_Target_Score__c &gt; 100))</errorConditionFormula>
         <errorMessage>Student Target Score must be within the range of 0 to 100.</errorMessage>
     </validationRules>
     <validationRules>
+        <fullName>ELA_FAST</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(Assessment_Name__c = &quot;Florida Assessment of Student Thinking - ELA&quot;,OR(ELA_FAST__c &lt; 0,
+ELA_FAST__c &gt; 800))</errorConditionFormula>
+        <errorMessage>ELA Fast must be within the range of 0 to 800.</errorMessage>
+    </validationRules>
+    <validationRules>
         <fullName>EasyCBM_ELA_scale_score_300</fullName>
         <active>true</active>
         <errorConditionFormula>AND(Assessment_Name__c = &quot;EasyCBM - ELA&quot;, 
@@ -7161,6 +7210,42 @@ OR(Scale_Score__c &lt; 0,
 Scale_Score__c &gt; 300))</errorConditionFormula>
         <errorDisplayField>Scale_Score__c</errorDisplayField>
         <errorMessage>Scaled Score must be within the range of 0 to 300.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>FAST_ELA</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(Assessment_Name__c = &quot;Florida Assessment of Student Thinking - ELA&quot;, 
+OR(Scale_Score__c &lt; 100, 
+Scale_Score__c &gt; 500))</errorConditionFormula>
+        <errorDisplayField>Scale_Score__c</errorDisplayField>
+        <errorMessage>Scaled Score must be within the range of 100 to 500.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>FAST_ELA_level_code</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(Assessment_Name__c = &quot;Florida Assessment of Student Thinking - ELA&quot;,
+OR(Level_Code__c &lt; 1, 
+Level_Code__c &gt; 5))</errorConditionFormula>
+        <errorDisplayField>Level_Code__c</errorDisplayField>
+        <errorMessage>The range for this field must be between 1 and 5.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>FAST_Math</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(Assessment_Name__c = &quot;Florida Assessment of Student Thinking - Math&quot;, 
+OR(Scale_Score__c &lt; 100, 
+Scale_Score__c &gt; 500))</errorConditionFormula>
+        <errorDisplayField>Scale_Score__c</errorDisplayField>
+        <errorMessage>Scaled Score must be within the range of 100 to 500.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>FAST_Math_level_code</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(Assessment_Name__c = &quot;Florida Assessment of Student Thinking - Math&quot;,
+OR(Level_Code__c &lt; 1, 
+Level_Code__c &gt; 5))</errorConditionFormula>
+        <errorDisplayField>Level_Code__c</errorDisplayField>
+        <errorMessage>The range for this field must be between 1 and 5.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>Fastbridge_aMath_MATH_500</fullName>
@@ -7384,6 +7469,13 @@ Student_Target_Score__c &gt; 500))</errorConditionFormula>
         <errorMessage>This field must be an integer.</errorMessage>
     </validationRules>
     <validationRules>
+        <fullName>Math_FAST</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(Assessment_Name__c = &quot;Florida Assessment of Student Thinking - Math&quot;,OR(Math_FAST__c &lt; 0,
+Math_FAST__c &gt; 800))</errorConditionFormula>
+        <errorMessage>Math Fast must be within the range of 0 to 800.</errorMessage>
+    </validationRules>
+    <validationRules>
         <fullName>NWEA_ELA_Scale_score_300</fullName>
         <active>true</active>
         <errorConditionFormula>AND(Assessment_Name__c = &quot;NWEA - ELA&quot;, 
@@ -7479,6 +7571,15 @@ Student_Target_Score__c &gt; 100))</errorConditionFormula>
         <errorMessage>Raw Score must be within a 0 - 30 range</errorMessage>
     </validationRules>
     <validationRules>
+        <fullName>STAAR_ELA_Student_target_score</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(Assessment_Name__c = &quot;STAAR Reading - ELA&quot;, 
+OR(Student_Target_Score__c &lt; 0, 
+Student_Target_Score__c &gt; 2))</errorConditionFormula>
+        <errorDisplayField>Student_Target_Score__c</errorDisplayField>
+        <errorMessage>Student Target Score must be within the range of 0 to 2.</errorMessage>
+    </validationRules>
+    <validationRules>
         <fullName>STAAR_ELA_scale_score_2500</fullName>
         <active>true</active>
         <errorConditionFormula>AND(Assessment_Name__c = &quot;STAAR Reading - ELA&quot;, 
@@ -7504,6 +7605,15 @@ OR(Scale_Score__c &lt; 0,
 Scale_Score__c &gt; 2500))</errorConditionFormula>
         <errorDisplayField>Scale_Score__c</errorDisplayField>
         <errorMessage>Scaled Score must be within the range of 0 to 2500.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>STAAR_math_Student_target_score</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(Assessment_Name__c = &quot;STAAR Mathematics - MATH&quot;, 
+OR(Student_Target_Score__c &lt; 0, 
+Student_Target_Score__c &gt; 2))</errorConditionFormula>
+        <errorDisplayField>Student_Target_Score__c</errorDisplayField>
+        <errorMessage>Student Target Score must be within the range of 0 to 2.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>Scale_Score_Smarter_Balanced_ELA</fullName>
@@ -8257,6 +8367,26 @@ Trust_z_score__c &gt; 3.000
  Level_Code__c &lt; 1, 
 Level_Code__c &gt; 4
  )</errorConditionFormula>
+        <errorDisplayField>Level_Code__c</errorDisplayField>
+        <errorMessage>The range for this field must be between 1 and 4.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>level_code_smarter_balanced_ELA</fullName>
+        <active>true</active>
+        <description>this field was created for the smarter balance assessment</description>
+        <errorConditionFormula>AND(Assessment_Name__c = &quot;Smarter Balanced - ELA&quot;,
+OR(Level_Code__c &lt; 1, 
+Level_Code__c &gt; 4))</errorConditionFormula>
+        <errorDisplayField>Level_Code__c</errorDisplayField>
+        <errorMessage>The range for this field must be between 1 and 4.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>level_code_smarter_balanced_Math</fullName>
+        <active>true</active>
+        <description>this field was created for the smarter balance assessment</description>
+        <errorConditionFormula>AND(Assessment_Name__c = &quot;Smarter Balanced - Math&quot;,
+OR(Level_Code__c &lt; 1, 
+Level_Code__c &gt; 4))</errorConditionFormula>
         <errorDisplayField>Level_Code__c</errorDisplayField>
         <errorMessage>The range for this field must be between 1 and 4.</errorMessage>
     </validationRules>

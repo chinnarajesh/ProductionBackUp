@@ -153,7 +153,7 @@
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
-    <externalSharingModel>ReadWrite</externalSharingModel>
+    <externalSharingModel>Private</externalSharingModel>
     <fields>
         <fullName>Attribute__c</fullName>
         <description>School has option of editing Attributes for their school.  Default picklist values are aligned to the Common Core of (Major, Minor, Anchor, Supporting, Additional).  Each school could modify these picklists values as needed, and upload their standards with specific Attributes.  If a school decides not to have any values, the default option of “All” will be presented.  The Attribute Field is visible on the “Create Assignment” page as a searchable field when initially searching for standards (you can see this now).  It will also be visible in the pop up box when selecting standards to grade.  Lastly, this field is available in the Advanced Analytics as a searchable field.</description>

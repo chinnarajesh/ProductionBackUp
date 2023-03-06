@@ -93,7 +93,7 @@
             <columnToColumn>false</columnToColumn>
             <isUnlocked>true</isUnlocked>
             <operator>equals</operator>
-            <value>Cilayna Parris</value>
+            <value>Esperanza Bauman</value>
         </criteriaItems>
         <criteriaItems>
             <column>Account.Sections__r$Program__c</column>

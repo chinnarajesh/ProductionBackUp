@@ -10,37 +10,49 @@
         <field>Assesment__c$Student__c.Local_Student_ID__c</field>
     </columns>
     <columns>
+        <aggregateTypes>Sum</aggregateTypes>
         <field>Assesment__c$Student__c.ELA_Literacy__c</field>
     </columns>
     <columns>
+        <aggregateTypes>Sum</aggregateTypes>
         <field>Assesment__c$Student__c.Math__c</field>
     </columns>
     <columns>
+        <aggregateTypes>Sum</aggregateTypes>
         <field>Assesment__c$Student__c.Attendance__c</field>
     </columns>
     <columns>
+        <aggregateTypes>Sum</aggregateTypes>
         <field>Assesment__c$Student__c.Behavior__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Average</aggregateTypes>
+        <field>Assesment__c$Days_Enrolled__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Average</aggregateTypes>
+        <field>Assesment__c$Number_of_Tardies__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Average</aggregateTypes>
+        <field>Assesment__c$Number_of_Absences__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Average</aggregateTypes>
+        <field>Assesment__c$Number_of_Excused_Absences__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Average</aggregateTypes>
+        <field>Assesment__c$Number_of_Unexcused_Absences__c</field>
+    </columns>
+    <columns>
+        <field>Assesment__c$Time_Period__c</field>
     </columns>
     <columns>
         <field>Assesment__c$Id</field>
     </columns>
     <columns>
-        <field>Assesment__c$Days_Enrolled__c</field>
-    </columns>
-    <columns>
-        <field>Assesment__c$Number_of_Absences__c</field>
-    </columns>
-    <columns>
-        <field>Assesment__c$Number_of_Excused_Absences__c</field>
-    </columns>
-    <columns>
-        <field>Assesment__c$Number_of_Unexcused_Absences__c</field>
-    </columns>
-    <columns>
-        <field>Assesment__c$Number_of_Tardies__c</field>
-    </columns>
-    <columns>
-        <field>Assesment__c$Time_Period__c</field>
+        <field>Assesment__c$Student__c.Id</field>
     </columns>
     <description>Shows time based attendance trackers for cumulative and reporting period data. Contains absences, days enrolled, and more.</description>
     <filter>
@@ -63,11 +75,6 @@
         <field>Assesment__c$Date_Administered__c</field>
         <sortOrder>Asc</sortOrder>
     </groupingsAcross>
-    <groupingsDown>
-        <dateGranularity>Day</dateGranularity>
-        <field>Assesment__c$Location__c</field>
-        <sortOrder>Asc</sortOrder>
-    </groupingsDown>
     <groupingsDown>
         <dateGranularity>Day</dateGranularity>
         <field>Assesment__c$School__c</field>

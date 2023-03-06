@@ -6,6 +6,9 @@
     <columns>
         <field>Account.Sections__r$Name</field>
     </columns>
+    <columns>
+        <field>Account.Sections__r$In_After_School__c</field>
+    </columns>
     <description>This is a list of all created sections by location and school with record IDs</description>
     <format>Summary</format>
     <groupingsDown>
@@ -25,7 +28,7 @@
     </params>
     <reportType>Accounts_with_Sections_with_Intervention_Sessions__c</reportType>
     <scope>organization</scope>
-    <showDetails>true</showDetails>
+    <showDetails>false</showDetails>
     <showGrandTotal>true</showGrandTotal>
     <showSubTotals>true</showSubTotals>
     <sortColumn>Account.Sections__r$Name</sortColumn>

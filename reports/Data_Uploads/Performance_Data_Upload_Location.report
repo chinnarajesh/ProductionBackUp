@@ -37,7 +37,7 @@
         <field>Account.Students__r.Grades__r$Raw_Grade__c</field>
     </columns>
     <columns>
-        <field>Account.Students__r.Grades__r$Id</field>
+        <field>Account.Students__r.Grades__r$X18_digit_Grade_ID__c</field>
     </columns>
     <description>This report allows you to maximize the use of Gradebook and have a template to update grades - export and upload into service desk</description>
     <format>Summary</format>

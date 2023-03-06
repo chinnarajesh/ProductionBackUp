@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SamlSsoConfig xmlns="http://soap.sforce.com/2006/04/metadata">
+    <identityLocation>SubjectNameId</identityLocation>
+    <identityMapping>Username</identityMapping>
+    <issuer>exk1pd3nppuou3yTC0h8</issuer>
+    <loginUrl>https://cityyear.okta.com/app/salesforce/exk1pd3nppuou3yTC0h8/sso/saml</loginUrl>
+    <logoutUrl>https://cityyear.okta.com</logoutUrl>
+    <name>FY23TL</name>
+    <oauthTokenEndpoint>https://cyschoolhouseb.my.salesforce.com/services/oauth2/token?so=00D36000000jJ3t</oauthTokenEndpoint>
+    <redirectBinding>false</redirectBinding>
+    <requestSignatureMethod>1</requestSignatureMethod>
+    <requestSigningCertId>0P11R0000029wj5</requestSigningCertId>
+    <salesforceLoginUrl>https://cyschoolhouseb.my.salesforce.com?so=00D36000000jJ3t</salesforceLoginUrl>
+    <samlEntityId>https://saml.salesforce.com</samlEntityId>
+    <samlVersion>SAML2_0</samlVersion>
+    <useConfigRequestMethod>true</useConfigRequestMethod>
+    <userProvisioning>false</userProvisioning>
+    <validationCert>MIIDoDCCAoigAwIBAgIGAYJcomfNMA0GCSqGSIb3DQEBCwUAMIGQMQswCQYDVQQGEwJVUzETMBEGA1UECAwKQ2FsaWZvcm5pYTEWMBQGA1UEBwwNU2FuIEZyYW5jaXNjbzENMAsGA1UECgwET2t0YTEUMBIGA1UECwwLU1NPUHJvdmlkZXIxETAPBgNVBAMMCGNpdHl5ZWFyMRwwGgYJKoZIhvcNAQkBFg1pbmZvQG9rdGEuY29tMB4XDTIyMDgwMjAzMzc0M1oXDTMyMDgwMjAzMzg0M1owgZAxCzAJBgNVBAYTAlVTMRMwEQYDVQQIDApDYWxpZm9ybmlhMRYwFAYDVQQHDA1TYW4gRnJhbmNpc2NvMQ0wCwYDVQQKDARPa3RhMRQwEgYDVQQLDAtTU09Qcm92aWRlcjERMA8GA1UEAwwIY2l0eXllYXIxHDAaBgkqhkiG9w0BCQEWDWluZm9Ab2t0YS5jb20wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDJ8p9wabJHdIL1QTO74bJKw3f7A8DXlzbel4H/U/GU5zqoKRWxQGcXMtoDaHqav/FkY9F1RkmIt3SrHEzBPb4v2DwzCUuMoROjSBff8JDFGH/EX0LfWAxouDYaMsRRIzuyXS804MA8HwcQK5mz12EI4BOYQhoPBfX1CP3SnQGm4Aswr+UzPV9CZMevPwVI6lP34mUiiSlPN9LqLqlAy/yw3+q7ywAqYI4+wJwpaIRYKNLjYYLrmAvvkuM3zEb87XgLEDliQFAeeXabLUD+H4p06uY551ipkWOuXYs5wjt+fdc3J/RGmhXe6WhOZv28VqtMqTlw12JWUEQPZshZPnNXAgMBAAEwDQYJKoZIhvcNAQELBQADggEBAHYnD2zXiGIY2tz2uNpAkR4ZFEvCZobnTiWo7/BzJjHrmmGRx5Vc3h/PPsQIcHngGy4SCMX5YEQ94DpczPN/bwebZPbiROBVdWETYg28Mx/7kSna+FbN6NX6aA9kk6ID+692txtlsSYJQN5K2rL1GgkKO/csacjUBK3LpZNl3/n26oEqIk3e31EFtCDVMt3err4Y8jl1aSGvYTPp6amK1+QeLjeTqU7//tRmseigJhsSKWf29lcv6qEx20wnt40aoqsWhyKyyApGQDi/ZwzBi9Doe2dptOtoqYNFtYKYjf/CAfVE1QvTkT4WbXMKZOaNOlzWzZYnCexAjMX7viuR8r4=</validationCert>
+</SamlSsoConfig>

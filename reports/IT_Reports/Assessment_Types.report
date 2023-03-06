@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Report xmlns="http://soap.sforce.com/2006/04/metadata">
     <columns>
-        <field>Picklist_Value__c$Id</field>
+        <field>Picklist_Value__c$X18_character_salesforce_ID__c</field>
     </columns>
     <columns>
         <field>Picklist_Value__c$Name</field>

@@ -42,6 +42,9 @@
         <field>Assesment__c$Student__c</field>
     </columns>
     <columns>
+        <field>Assesment__c$Student__c.Local_Student_ID__c</field>
+    </columns>
+    <columns>
         <field>Assesment__c$Student_First_Name__c</field>
     </columns>
     <columns>
@@ -106,6 +109,9 @@
     </columns>
     <columns>
         <field>Assesment__c$Name</field>
+    </columns>
+    <columns>
+        <field>Assesment__c$Student__c.Id</field>
     </columns>
     <filter>
         <criteriaItems>
