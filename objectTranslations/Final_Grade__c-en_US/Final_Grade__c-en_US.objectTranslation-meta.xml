@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Final Grade</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Final Grades</value>
+    </caseValues>
+    <layouts>
+        <layout>Copy of Final Grade Layout_admin</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Course Grade Layout</layout>
+        <sections>
+            <label><!-- Current Grade --></label>
+            <section>Current Grade</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Final Grade --></label>
+            <section>Final Grade</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Final Grade Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- Unweighted GPA cannot be greater than 10 or less than 0. --></errorMessage>
+        <name>Unweighted_GPA_is_in_range</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The weighted GPA cannot be greater than 10 or less than 0. --></errorMessage>
+        <name>Weighted_GPA_is_within_range</name>
+    </validationRules>
+</CustomObjectTranslation>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SF_PG_Relationship__c</fullName>
+    <description>SF Value for PG Relationship</description>
+    <externalId>false</externalId>
+    <inlineHelpText>SF Value for PG Relationship</inlineHelpText>
+    <label>SF P/G Relationship</label>
+    <length>50</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

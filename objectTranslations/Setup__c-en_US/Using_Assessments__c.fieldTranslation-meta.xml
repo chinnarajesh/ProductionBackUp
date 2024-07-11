@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- This checkbox indicates whether this school is using the Assessments module for this school year. --></help>
+    <label><!-- Using Assessments --></label>
+    <name>Using_Assessments__c</name>
+</CustomFieldTranslation>

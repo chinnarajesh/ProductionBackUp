@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Google_Calendar__c</fullName>
+    <externalId>false</externalId>
+    <formula>HYPERLINK(&quot;https://www.google.com/calendar/embed?src=&quot;&amp; Calendar_Id__c &amp; &quot;&quot;,   &quot;Google Calendar&quot;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Google Calendar</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

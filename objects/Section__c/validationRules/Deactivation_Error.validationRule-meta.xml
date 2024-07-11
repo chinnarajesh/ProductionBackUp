@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Deactivation_Error</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(Section_RT__c &lt;&gt; &apos;Unpublished&apos;,
+OR(AND( Active__c , OR(NOT(TEXT( Section_Exit_Reason__c) =&quot;&quot;),NOT(ISBLANK( Section_Exit_Date__c )))), 
+
+AND(NOT(ISNEW()),Active__c = false, OR(TEXT( Section_Exit_Reason__c) =&quot;&quot;,ISBLANK( Section_Exit_Date__c )))))</errorConditionFormula>
+    <errorMessage>Deactivation error: either Active with exit date/reason or inactive without exit date/reason</errorMessage>
+</ValidationRule>

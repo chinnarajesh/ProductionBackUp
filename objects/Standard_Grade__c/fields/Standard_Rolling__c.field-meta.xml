@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Standard_Rolling__c</fullName>
+    <formula>Student__r.Setup__r.Rolling_Standard_Grade__c</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>If selected, the standard grade includes the assignment grades from the first through the current reporting period (e.g., the Q3 grade is calculated from the Q1-Q3 grades). Otherwise, the standard grade includes only the grades from the reporting period.</inlineHelpText>
+    <label>Standard Rolling?</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

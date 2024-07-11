@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Status --></label>
+    <name>Incident_Status__c</name>
+    <picklistValues>
+        <masterLabel>Awaiting Add&apos;l Info</masterLabel>
+        <translation><!-- Awaiting Add&apos;l Info --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Awaiting Admin Decision</masterLabel>
+        <translation><!-- Awaiting Admin Decision --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Closed</masterLabel>
+        <translation><!-- Closed --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Draft</masterLabel>
+        <translation><!-- Draft --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Open</masterLabel>
+        <translation><!-- Open --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

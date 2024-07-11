@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All_Honors_Courses</fullName>
+    <columns>NAME</columns>
+    <columns>Course_Number__c</columns>
+    <columns>Subject_Area__c</columns>
+    <columns>Credits__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Honors_Course__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <label>All Honors Courses</label>
+</ListView>

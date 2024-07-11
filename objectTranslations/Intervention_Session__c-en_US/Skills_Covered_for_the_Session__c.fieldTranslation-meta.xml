@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- What specific skills were covered in this Intervention Session? --></help>
+    <label><!-- Other Skills --></label>
+    <name>Skills_Covered_for_the_Session__c</name>
+</CustomFieldTranslation>

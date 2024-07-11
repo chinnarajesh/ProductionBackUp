@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Flag to determine if a missed HW is considered Late or Missing --></help>
+    <label><!-- Late or Missing --></label>
+    <name>Late_or_Missing__c</name>
+</CustomFieldTranslation>

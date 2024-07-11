@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>schedule_template</fullName>
+    <fields>Name</fields>
+    <fields>Split_School__c</fields>
+    <fields>Setup__c</fields>
+    <fields>Reporting_Period__c</fields>
+    <label>schedule template</label>
+</CompactLayout>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Non_Negative_Service_Hours</fullName>
+    <active>false</active>
+    <description>Service Hours To Date must be non-negative.</description>
+    <errorConditionFormula>Service_Hours_YTD__c &lt; 0</errorConditionFormula>
+    <errorDisplayField>Service_Hours_YTD__c</errorDisplayField>
+    <errorMessage>Service Hours To Date must be non-negative.</errorMessage>
+</ValidationRule>

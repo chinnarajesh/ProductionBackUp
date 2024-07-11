@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Select if the course has a final exam grade for each reporting period. If selected, SchoolForce automatically adds a default weighting for the final reporting periods on the Configure Course Reporting Period Weightings screen when you save the course. --></help>
+    <label><!-- Has Final Grade --></label>
+    <name>Has_Final_Grade__c</name>
+</CustomFieldTranslation>

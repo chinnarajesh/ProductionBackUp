@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- This determines if grades marked as &quot;Semester Grades&quot; show up on progress reports/report cards --></help>
+    <label><!-- Show Semester Grades On Report Cards --></label>
+    <name>Show_Semester_Grades_On_Report_Cards__c</name>
+</CustomFieldTranslation>

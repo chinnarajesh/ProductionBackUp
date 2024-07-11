@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Rolling_Standard_Grade__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Controls whether standard grade calculations will carry over from reporting period to reporting period or are independently calculated.</description>
+    <inlineHelpText>Select if you want a standard grade to include the assignment grades from the first through the current reporting period (e.g., a specific standard in Q3 is calculated using the grades from Q1-Q3).</inlineHelpText>
+    <label>Rolling Standard Grade?</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

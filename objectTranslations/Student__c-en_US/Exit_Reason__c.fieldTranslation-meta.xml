@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Displays the reason the student was withdrawn/exited from the school. SchoolForce updates this field when a student is withdrawn through the Section Wizard. --></help>
+    <label><!-- Exit Code --></label>
+    <name>Exit_Reason__c</name>
+    <picklistValues>
+        <masterLabel>A student who transferred to a private school (affiliated with and operated by a non-governmental, religious group or organization) that is located in another state.</masterLabel>
+        <translation><!-- A student who transferred to a private school (affiliated with and operated by a non-governmental, religious group or organization) that is located in another state. --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Completed a state-recognized vocational education program</masterLabel>
+        <translation><!-- Completed a state-recognized vocational education program --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Completed grade 12, but did not meet all graduation requirements</masterLabel>
+        <translation><!-- Completed grade 12, but did not meet all graduation requirements --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Completed school with other credentials</masterLabel>
+        <translation><!-- Completed school with other credentials --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Completed with a state-recognized equivalency certificate</masterLabel>
+        <translation><!-- Completed with a state-recognized equivalency certificate --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>DE (Death)</masterLabel>
+        <translation><!-- DE (Death) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>DE (Dissatisfaction with Education)</masterLabel>
+        <translation><!-- DE (Dissatisfaction with Education) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>DL (Dissatisfaction with Location)</masterLabel>
+        <translation><!-- DL (Dissatisfaction with Location) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>DS (Dissatisfaction with Staff)</masterLabel>
+        <translation><!-- DS (Dissatisfaction with Staff) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Died or is permanently incapacitated</masterLabel>
+        <translation><!-- Died or is permanently incapacitated --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Discontinued schooling</masterLabel>
+        <translation><!-- Discontinued schooling --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>EX (Expulsion)</masterLabel>
+        <translation><!-- EX (Expulsion) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Enrolled in a foreign exchange program, eligible to return</masterLabel>
+        <translation><!-- Enrolled in a foreign exchange program, eligible to return --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Enrolled in a postsecondary early admission program, eligible to return</masterLabel>
+        <translation><!-- Enrolled in a postsecondary early admission program, eligible to return --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Enrolled in an  adult education or training program</masterLabel>
+        <translation><!-- Enrolled in an  adult education or training program --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Exited</masterLabel>
+        <translation><!-- Exited --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Expelled or involuntarily withdrawn</masterLabel>
+        <translation><!-- Expelled or involuntarily withdrawn --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Graduated with regular, advanced, International Baccalaureate, or other type of diploma</masterLabel>
+        <translation><!-- Graduated with regular, advanced, International Baccalaureate, or other type of diploma --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Matriculation to another school</masterLabel>
+        <translation><!-- Matriculation to another school --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>NI (No Information)</masterLabel>
+        <translation><!-- NI (No Information) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Not enrolled, eligible to return</masterLabel>
+        <translation><!-- Not enrolled, eligible to return --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Not enrolled, unknown status</masterLabel>
+        <translation><!-- Not enrolled, unknown status --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Reached maximum age for services</masterLabel>
+        <translation><!-- Reached maximum age for services --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Student is in a charter school managed by the same local education agency</masterLabel>
+        <translation><!-- Student is in a charter school managed by the same local education agency --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Student is in a different public school in the same local education agency</masterLabel>
+        <translation><!-- Student is in a different public school in the same local education agency --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Student is in the same local education agency and receiving education services, but is not assigned to a particular school</masterLabel>
+        <translation><!-- Student is in the same local education agency and receiving education services, but is not assigned to a particular school --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>TC (Transfer to Closer School)</masterLabel>
+        <translation><!-- TC (Transfer to Closer School) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>TO (Transfer Out Of State)</masterLabel>
+        <translation><!-- TO (Transfer Out Of State) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>TS (Transfer in State)</masterLabel>
+        <translation><!-- TS (Transfer in State) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>TSI (Transfer to Special Interest School)</masterLabel>
+        <translation><!-- TSI (Transfer to Special Interest School) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>TSS (Transfer to Siblings School)</masterLabel>
+        <translation><!-- TSS (Transfer to Siblings School) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>TSS (Transfer to Silings School)</masterLabel>
+        <translation><!-- TSS (Transfer to Silings School) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Transferred to a private, non-religiously-affiliated school in a different state</masterLabel>
+        <translation><!-- Transferred to a private, non-religiously-affiliated school in a different state --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Transferred to a private, non-religiously-affiliated school in the same local education agency</masterLabel>
+        <translation><!-- Transferred to a private, non-religiously-affiliated school in the same local education agency --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Transferred to a private, non-religiously-affiliated school in the same state</masterLabel>
+        <translation><!-- Transferred to a private, non-religiously-affiliated school in the same state --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Transferred to a private, religiously-affiliated school in the same local education agency</masterLabel>
+        <translation><!-- Transferred to a private, religiously-affiliated school in the same local education agency --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Transferred to a private, religiously-affiliated school in the same state</masterLabel>
+        <translation><!-- Transferred to a private, religiously-affiliated school in the same state --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Transferred to a private, religiouslyaffiliated school in a different state</masterLabel>
+        <translation><!-- Transferred to a private, religiouslyaffiliated school in a different state --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Transferred to a public school in a different local education agency in the same state</masterLabel>
+        <translation><!-- Transferred to a public school in a different local education agency in the same state --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Transferred to a public school in a different state</masterLabel>
+        <translation><!-- Transferred to a public school in a different state --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Transferred to an institution</masterLabel>
+        <translation><!-- Transferred to an institution --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Transferred to home schooling</masterLabel>
+        <translation><!-- Transferred to home schooling --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Withdrawn due to illness</masterLabel>
+        <translation><!-- Withdrawn due to illness --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Withdrawn from school, under the age for compulsory attendance; eligible to return</masterLabel>
+        <translation><!-- Withdrawn from school, under the age for compulsory attendance; eligible to return --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

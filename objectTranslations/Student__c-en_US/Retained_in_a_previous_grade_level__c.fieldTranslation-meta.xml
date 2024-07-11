@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Displays whether or not the student was retained in the previous grade level. When mass printing report cards, you can use this field to narrow down your search results. --></help>
+    <label><!-- Retained in a previous grade level? --></label>
+    <name>Retained_in_a_previous_grade_level__c</name>
+</CustomFieldTranslation>

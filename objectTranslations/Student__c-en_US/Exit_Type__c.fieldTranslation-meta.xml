@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Displays the student&apos;s exit type. The values in this field are determined by your school. You can use this field for reporting purposes. --></help>
+    <label><!-- Exit Type --></label>
+    <name>Exit_Type__c</name>
+    <picklistValues>
+        <masterLabel>D</masterLabel>
+        <translation><!-- D --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>T</masterLabel>
+        <translation><!-- T --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>W</masterLabel>
+        <translation><!-- W --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

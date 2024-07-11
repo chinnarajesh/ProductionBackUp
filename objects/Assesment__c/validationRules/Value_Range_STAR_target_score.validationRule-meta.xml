@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Value_Range_STAR_target_score</fullName>
+    <active>true</active>
+    <errorConditionFormula>OR
+( 
+ STAR_GLE_Student_Target_Score__c &lt; 0, 
+STAR_GLE_Student_Target_Score__c &gt; 12.9 
+ )</errorConditionFormula>
+    <errorDisplayField>STAR_GLE_Student_Target_Score__c</errorDisplayField>
+    <errorMessage>STAR Grade Level Equivalent Student Target Score must be within a 0 - 12.9 range.</errorMessage>
+</ValidationRule>

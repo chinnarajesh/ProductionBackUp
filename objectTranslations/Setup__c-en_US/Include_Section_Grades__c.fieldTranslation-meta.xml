@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- This toggles the display of section grades on report cards and progress reports --></help>
+    <label><!-- Include Section Grades --></label>
+    <name>Include_Section_Grades__c</name>
+</CustomFieldTranslation>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Long text description of the standard that displays in the hover over in the Gradebook and on Portal/PGV. Max of 32,000 characters to describe the Standard. --></help>
+    <label><!-- Long Text --></label>
+    <name>Long_Text__c</name>
+</CustomFieldTranslation>

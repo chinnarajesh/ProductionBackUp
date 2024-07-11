@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Standard_Legend_3_Spanish__c</fullName>
+    <inlineHelpText>What is the title that should display in Spanish for a Standard Level 3? (ie: Proficient) This will display on Report Cards and Progress Reports if user selects &quot;Show Standards&quot; on the &quot;Generate Student Documents&quot; page.</inlineHelpText>
+    <label>Standard Title 3 Spanish</label>
+    <length>32768</length>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>LongTextArea</type>
+    <visibleLines>3</visibleLines>
+</CustomField>

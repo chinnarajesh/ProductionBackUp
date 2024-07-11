@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Time at which the incident occurred. --></help>
+    <label><!-- Context-Time --></label>
+    <name>Context_Time__c</name>
+    <picklistValues>
+        <masterLabel>After Hours Event</masterLabel>
+        <translation><!-- After Hours Event --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>After School</masterLabel>
+        <translation><!-- After School --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Arrival</masterLabel>
+        <translation><!-- Arrival --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Before School</masterLabel>
+        <translation><!-- Before School --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Class-Indep/Group Work</masterLabel>
+        <translation><!-- Class-Indep/Group Work --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Class-Lesson/Meeting</masterLabel>
+        <translation><!-- Class-Lesson/Meeting --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Class-Other</masterLabel>
+        <translation><!-- Class-Other --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Class-Transition</masterLabel>
+        <translation><!-- Class-Transition --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Community Circle/All School Meeting</masterLabel>
+        <translation><!-- Community Circle/All School Meeting --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Dismissal</masterLabel>
+        <translation><!-- Dismissal --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Evening Event</masterLabel>
+        <translation><!-- Evening Event --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Fieldwork</masterLabel>
+        <translation><!-- Fieldwork --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Lunch</masterLabel>
+        <translation><!-- Lunch --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Other</masterLabel>
+        <translation><!-- Other --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Pull Out</masterLabel>
+        <translation><!-- Pull Out --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Recess</masterLabel>
+        <translation><!-- Recess --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Room/Hall Transition</masterLabel>
+        <translation><!-- Room/Hall Transition --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Special Block</masterLabel>
+        <translation><!-- Special Block --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Special Class</masterLabel>
+        <translation><!-- Special Class --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Transition In Hall/Stairs</masterLabel>
+        <translation><!-- Transition In Hall/Stairs --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Transition In Room</masterLabel>
+        <translation><!-- Transition In Room --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Transition In/Out Building</masterLabel>
+        <translation><!-- Transition In/Out Building --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

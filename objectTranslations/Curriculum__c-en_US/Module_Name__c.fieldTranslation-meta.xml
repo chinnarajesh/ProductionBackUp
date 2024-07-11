@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Module Name --></label>
+    <name>Module_Name__c</name>
+    <picklistValues>
+        <masterLabel>Addition &amp; Subtraction: Module A</masterLabel>
+        <translation><!-- Addition &amp; Subtraction: Module A --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Addition &amp; Subtraction: Module B</masterLabel>
+        <translation><!-- Addition &amp; Subtraction: Module B --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Addition &amp; Subtraction: Module C</masterLabel>
+        <translation><!-- Addition &amp; Subtraction: Module C --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Addition &amp; Subtraction: Number Core</masterLabel>
+        <translation><!-- Addition &amp; Subtraction: Number Core --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Division: Module A</masterLabel>
+        <translation><!-- Division: Module A --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Division: Module B</masterLabel>
+        <translation><!-- Division: Module B --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Division: Module C</masterLabel>
+        <translation><!-- Division: Module C --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Fractions: Module A</masterLabel>
+        <translation><!-- Fractions: Module A --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Fractions: Module B</masterLabel>
+        <translation><!-- Fractions: Module B --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Fractions: Module C</masterLabel>
+        <translation><!-- Fractions: Module C --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Multiplication: Module A</masterLabel>
+        <translation><!-- Multiplication: Module A --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Multiplication: Module B</masterLabel>
+        <translation><!-- Multiplication: Module B --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Multiplication: Module C</masterLabel>
+        <translation><!-- Multiplication: Module C --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Unit 10: Develop Fraction Number Sense</masterLabel>
+        <translation><!-- Unit 10: Develop Fraction Number Sense --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Unit 1: Build a Foundation for Multiplication</masterLabel>
+        <translation><!-- Unit 1: Build a Foundation for Multiplication --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Unit 2: Develop Multiplication Number Sense</masterLabel>
+        <translation><!-- Unit 2: Develop Multiplication Number Sense --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Unit 3: Use Place-Value Strategies to Multiply</masterLabel>
+        <translation><!-- Unit 3: Use Place-Value Strategies to Multiply --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Unit 4: Connect Multiplication and Division</masterLabel>
+        <translation><!-- Unit 4: Connect Multiplication and Division --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Unit 5: Use Place Value Strategies to Divide</masterLabel>
+        <translation><!-- Unit 5: Use Place Value Strategies to Divide --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Unit 6: Develop Understanding of Fractions</masterLabel>
+        <translation><!-- Unit 6: Develop Understanding of Fractions --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Unit 7: Reason with Fractions</masterLabel>
+        <translation><!-- Unit 7: Reason with Fractions --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Unit 8: Extend Fraction Concepts and Comparing Strategies</masterLabel>
+        <translation><!-- Unit 8: Extend Fraction Concepts and Comparing Strategies --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Unit 9: Build on Equivalence to Estimate, Compare, Add, and Subtract</masterLabel>
+        <translation><!-- Unit 9: Build on Equivalence to Estimate, Compare, Add, and Subtract --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

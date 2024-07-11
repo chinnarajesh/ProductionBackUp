@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Student_Setup_Year_End_Date__c</fullName>
+    <formula>Student__r.Setup__r.Year__r.End_Date__c</formula>
+    <label>Student Setup Year End Date</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

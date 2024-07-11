@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Cannot_change_existing_School_Program</fullName>
+    <active>true</active>
+    <errorConditionFormula>Account_Program__r.Program__c &lt;&gt;  Program__c</errorConditionFormula>
+    <errorMessage>You may not change the School Program field. If you want to create a new section, please go to the Section tab and create &quot;New.&quot;</errorMessage>
+</ValidationRule>

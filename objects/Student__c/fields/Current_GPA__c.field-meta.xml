@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Current_GPA__c</fullName>
+    <description>GPA calculations take place in nightly job and stored in this field to display current progress.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Displays the real-time calculation of the GPA that includes grades from assignments in the courses a student is currently enrolled in as well as the courses a student has completed.</inlineHelpText>
+    <label>Current GPA</label>
+    <precision>6</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

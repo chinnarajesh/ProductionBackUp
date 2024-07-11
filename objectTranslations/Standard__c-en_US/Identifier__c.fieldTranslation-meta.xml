@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Specific standard or strand Identifier; for example 1.ELA.L.1a.  This is displayed when searching for Standards when creating an Assignment --></help>
+    <label><!-- Identifier --></label>
+    <name>Identifier__c</name>
+</CustomFieldTranslation>

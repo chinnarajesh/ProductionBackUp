@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Class_Organization__c</fullName>
+    <description>The structure in which class instruction is arranged.</description>
+    <inlineHelpText>The structure in which class instruction is arranged.</inlineHelpText>
+    <label>Class Organization</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Pull-Out Class</fullName>
+                <default>false</default>
+                <label>Pull-Out Class</label>
+            </value>
+            <value>
+                <fullName>Self-Contained Class (Special Education)</fullName>
+                <default>false</default>
+                <label>Self-Contained Class (Special Education)</label>
+            </value>
+            <value>
+                <fullName>Departmentalized Instruction</fullName>
+                <default>false</default>
+                <label>Departmentalized Instruction</label>
+            </value>
+            <value>
+                <fullName>Self-Contained Class</fullName>
+                <default>false</default>
+                <label>Self-Contained Class</label>
+            </value>
+            <value>
+                <fullName>Elementary Enrichment Class</fullName>
+                <default>false</default>
+                <label>Elementary Enrichment Class</label>
+            </value>
+            <value>
+                <fullName>Team-Taught Class</fullName>
+                <default>false</default>
+                <label>Team-Taught Class</label>
+            </value>
+            <value>
+                <fullName>Ability Group Class</fullName>
+                <default>false</default>
+                <label>Ability Group Class</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

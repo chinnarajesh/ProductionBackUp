@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Displays the real-time calculation of the number of days a student has been enrolled for the current school year. To use this field, you must schedule the Days Students Enrolled batch to run nightly. --></help>
+    <label><!-- # of Days Enrolled --></label>
+    <name>Days_Enrolled__c</name>
+</CustomFieldTranslation>

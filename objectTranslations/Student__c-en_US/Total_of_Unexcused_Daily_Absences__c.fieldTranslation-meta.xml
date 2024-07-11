@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Displays the student&apos;s total number of unexcused absences recorded for daily attendance. --></help>
+    <label><!-- Total # of Unexcused Daily Absences --></label>
+    <name>Total_of_Unexcused_Daily_Absences__c</name>
+</CustomFieldTranslation>

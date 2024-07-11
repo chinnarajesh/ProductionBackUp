@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Period set --></label>
+    <name>Period_set__c</name>
+    <relationshipLabel><!-- Period templates --></relationshipLabel>
+</CustomFieldTranslation>

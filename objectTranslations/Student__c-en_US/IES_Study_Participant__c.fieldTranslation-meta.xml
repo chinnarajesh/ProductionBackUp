@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- IES Study Participant --></label>
+    <name>IES_Study_Participant__c</name>
+    <picklistValues>
+        <masterLabel>Control Group</masterLabel>
+        <translation><!-- Control Group --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Joined Treatment</masterLabel>
+        <translation><!-- Joined Treatment --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Opt Out</masterLabel>
+        <translation><!-- Opt Out --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Treatment Group</masterLabel>
+        <translation><!-- Treatment Group --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

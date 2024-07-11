@@ -1,0 +1,26 @@
+.session-detail {
+	.form-group {
+		padding:0 $gap;
+	}
+
+	.table-group {
+		padding:0 $gap $gap;
+		> table {
+			margin-bottom:0
+		}
+	}
+	.section-heading {
+		padding:0 $gap $gap-sm;
+		display:flex;
+		align-items:center;
+		justify-content:space-between;
+		.title {
+			margin-right:$gap-md;
+			> h3 {
+				margin:0;
+				padding:0;
+				font-size:18px;
+			}
+		}
+	}
+}

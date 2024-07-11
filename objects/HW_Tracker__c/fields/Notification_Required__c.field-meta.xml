@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Notification_Required__c</fullName>
+    <description>Checks if HW Assignment Record requires notification today</description>
+    <externalId>false</externalId>
+    <formula>IF(
+AND (
+Responsibility_Center__c = TODAY(),
+Due_Date__c = TODAY(),
+TEXT(Picklist_Value__r.Internal_Code__c) = &quot;sf_missing&quot;
+),
+&quot;Yes&quot;,
+&quot;No&quot;
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>First Notification Required?</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

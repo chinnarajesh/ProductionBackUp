@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Reporting_Period__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>Usually the only reporting period; could be the first if the section spans multiple reporting periods.</description>
+    <label>Reporting Period</label>
+    <referenceTo>Time_Element__c</referenceTo>
+    <relationshipLabel>Sections (First Reporting Period)</relationshipLabel>
+    <relationshipName>Sections1</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

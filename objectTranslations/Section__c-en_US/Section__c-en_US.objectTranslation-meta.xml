@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Section</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Sections</value>
+    </caseValues>
+    <fieldSets>
+        <label><!-- Mass Scheduler Grid --></label>
+        <name>Mass_Scheduler_Grid</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Schedule Groups Template --></label>
+        <name>Schedule_Groups_Template</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Scheduler Grid --></label>
+        <name>Scheduler_Grid</name>
+    </fieldSets>
+    <layouts>
+        <layout>Admin Section</layout>
+        <sections>
+            <label><!-- Class Information --></label>
+            <section>Class Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Curriculum</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Details --></label>
+            <section>Details</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Curriculum - CM</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Notes &amp; Comments --></label>
+            <section>Notes &amp; Comments</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Curriculum - End User</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Notes &amp; Comments --></label>
+            <section>Notes &amp; Comments</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Curriculum - HQ &amp; Admins</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Notes &amp; Comments --></label>
+            <section>Notes &amp; Comments</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Curriculum - Sys Admin</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Notes &amp; Comments --></label>
+            <section>Notes &amp; Comments</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Intervention Sections</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Details --></label>
+            <section>Details</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Intervention Sections - CM</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Notes &amp; Comments --></label>
+            <section>Notes &amp; Comments</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Intervention Sections - End User</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Notes &amp; Comments --></label>
+            <section>Notes &amp; Comments</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Intervention Sections - HQ &amp; Admins</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Notes &amp; Comments --></label>
+            <section>Notes &amp; Comments</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Intervention Sections - Sys Admin</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Notes &amp; Comments --></label>
+            <section>Notes &amp; Comments</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Non Admin Section Layout</layout>
+        <sections>
+            <label><!-- Attendance Detail --></label>
+            <section>Attendance Detail</section>
+        </sections>
+        <sections>
+            <label><!-- Class Information --></label>
+            <section>Class Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Grading Detail --></label>
+            <section>Grading Detail</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Non-Admin Section</layout>
+        <sections>
+            <label><!-- Attendance Detail --></label>
+            <section>Attendance Detail</section>
+        </sections>
+        <sections>
+            <label><!-- Class Information --></label>
+            <section>Class Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Grading Detail --></label>
+            <section>Grading Detail</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Schedule Group Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Section Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Unpublished Layout</layout>
+        <sections>
+            <label><!-- Attendance Detail --></label>
+            <section>Attendance Detail</section>
+        </sections>
+        <sections>
+            <label><!-- Class Information --></label>
+            <section>Class Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Grading Detail --></label>
+            <section>Grading Detail</section>
+        </sections>
+        <sections>
+            <label><!-- Homework Details --></label>
+            <section>Homework Details</section>
+        </sections>
+        <sections>
+            <label><!-- Strands and Standards --></label>
+            <section>Strands and Standards</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <label><!-- Curriculum --></label>
+        <name>Curriculum</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Used for custom gradebook groups --></description>
+        <label><!-- Gradebook Group --></label>
+        <name>Gradebook_Group</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Intervention Section --></label>
+        <name>Intervention_Section</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Sections that have been Published and are Viewable by Standard Users --></description>
+        <label><!-- Published --></label>
+        <name>Published</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Groups of Students Used for Scheduling Purposes --></description>
+        <label><!-- Schedule Group --></label>
+        <name>Schedule_Group</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Unpublished Sections Used for Scheduler --></description>
+        <label><!-- Unpublished --></label>
+        <name>Unpublished</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- You may not change the School Program field. If you want to create a new section, please go to the Section tab and create &quot;New.&quot; --></errorMessage>
+        <name>Cannot_change_existing_School_Program</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Deactivation error: either Active with exit date/reason or inactive without exit date/reason --></errorMessage>
+        <name>Deactivation_Error</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Exit date can&apos;t be in future --></errorMessage>
+        <name>Exit_Date_cant_be_in_future</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please select Exit Reason --></errorMessage>
+        <name>Exit_reason_is_required</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Section_Exit_Date is required. --></errorMessage>
+        <name>Section_Exit_Date</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Section Start Date cannot be greater than the End Date. --></errorMessage>
+        <name>Section_Start_End_Date</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Section name can&apos;t be modified. --></errorMessage>
+        <name>Section_name_cannot_be_changed</name>
+    </validationRules>
+    <webLinks>
+        <label><!-- Clone --></label>
+        <name>Clone</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Section_Curriculum_Data --></label>
+        <name>Section_Curriculum_Data</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Section_Intervention_Data --></label>
+        <name>Section_Intervention_Data</name>
+    </webLinks>
+</CustomObjectTranslation>

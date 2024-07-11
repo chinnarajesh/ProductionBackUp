@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>School_Grade_Span_Last_Modified__c</fullName>
+    <description>To keep track of the individual who last modified, the time, and the date.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Last user to modify and the time.</inlineHelpText>
+    <label>School Grade Span Last Modified</label>
+    <length>255</length>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- What is the final value for this grade? --></help>
+    <label><!-- Grade Value --></label>
+    <name>Grade_Value__c</name>
+</CustomFieldTranslation>

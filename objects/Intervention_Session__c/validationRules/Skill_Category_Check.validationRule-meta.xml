@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Skill_Category_Check</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND( NOT(ISBLANK(Skill_Primary__c)), IF(Section__r.Account_Program__r.Program__r.Name == &apos;Tutoring: Math&apos;, TEXT(Skill_Primary__r.Category__c) &lt;&gt; &apos;Math&apos;, 
+IF(Section__r.Account_Program__r.Program__r.Name == &apos;Tutoring: Literacy&apos;, TEXT(Skill_Primary__r.Category__c) &lt;&gt; &apos;Literacy&apos;,
+TEXT(Skill_Primary__r.Category__c) &lt;&gt; &apos;SEL/Behavior and Attendance Interventions&apos;)))</errorConditionFormula>
+    <errorDisplayField>Skill_Primary__c</errorDisplayField>
+    <errorMessage>Skill category should be match</errorMessage>
+</ValidationRule>

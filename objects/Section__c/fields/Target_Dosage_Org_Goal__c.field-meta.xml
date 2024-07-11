@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Target_Dosage_Org_Goal__c</fullName>
+    <externalId>false</externalId>
+    <formula>Program__r.Overall_Target_Dosage__c</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>This number is the Program&apos;s Target Dosage and is the recommended dosage.  You can modify this section&apos;s goal in the &quot;Target Dosage Section Goal (in mins)&quot; field.</inlineHelpText>
+    <label>Target Dosage - Org Goal (in mins)</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

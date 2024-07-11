@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Check this to display Standard or Strand grades on Progress Reports/Report Cards --></help>
+    <label><!-- Show Standard Grades --></label>
+    <name>Show_Standard_Grades__c</name>
+</CustomFieldTranslation>

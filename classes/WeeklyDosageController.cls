@@ -228,7 +228,7 @@ public with sharing class WeeklyDosageController {
     }
 
     private List<Staff_Section__c> getStaffSectionsForStaff(ID staffID){
-        return [SELECT Section__c, Section__r.Name, Section__r.Account_Program__r.Name,
+        return [SELECT Section__c, Section__r.Name, Section__r.Account_Program__r.Name,Section__r.Location__c,
                     Section__r.End_Date__c, Section__r.Start_Date__c,
                     Section__r.Intervention_Primary_Staff__c, Section__r.Auto_Name__c
                 FROM Staff_Section__c
@@ -260,6 +260,10 @@ public with sharing class WeeklyDosageController {
         resultsData = new List<SessionResultsWrapper>();
         if(!String.isBlank(selectedSection) && selectedSection != 'none'){
             currentSection = sectionMap.get(selectedSection);
+            //getting the section location
+            ISTool.sectionLocation=sectionMap.get(selectedSection).Location__c;
+            siteDetailsOptions = new List<SelectOption>();
+            siteDetailsOptions = ISTool.getSiteDetailsOptions();
             //added to get skills
             initializePicklist();
             //load data
@@ -352,6 +356,7 @@ public with sharing class WeeklyDosageController {
             dayInfo.selectedSkills = '';
             dayInfo.availableSkills = String.join(new List<String>(skillsAvailable), SEPARATOR);
         }
+        List<Section__c> secList = [select id,name,Start_Date__c,End_Date__c from Section__c where id=: selectedSection];
 
         Map<Integer,Map<String, List<Intervention_Session_Result__c>>> studentDailyResults = new Map<Integer,Map<String, List<Intervention_Session_Result__c>>>();
         for(Intervention_Session_Result__c ar:results){
@@ -369,6 +374,7 @@ public with sharing class WeeklyDosageController {
             ISRWrapper[] dosages = new ISRWrapper[7];
             for(Integer i=0;i<7;i++){
                 DayWrapper dayInfo = tableHeaderMap.get(i+1);
+                //System.debug('datevalue+++'+dayInfo.day);
                 List<Intervention_Session_Result__c> isrs = (studentDailyResults.containsKey(i) && studentDailyResults.get(i).containsKey(studentID))?
                     studentDailyResults.get(i).get(studentID): new List<Intervention_Session_Result__c>();
                 Decimal amount = 0;
@@ -385,7 +391,18 @@ public with sharing class WeeklyDosageController {
                 Set<String> skillsAvailables = skillsAvailable.clone();
                 skillsAvailables.removeAll(skillsSelected);
                 dayInfo.availableSkills = String.join(new List<String>(skillsAvailables), SEPARATOR);
-                dayInfo.isDisabled = isrs.size()>1;//studentDailyResults.containsKey(i) || String.isNotBlank(dayInfo.title);//disable dossage
+                //dayInfo.isDisabled = isrs.size()>1;//studentDailyResults.containsKey(i) || String.isNotBlank(dayInfo.title);//disable dossage
+                if(dayInfo.day > System.today()){
+                    //dayInfo.isDisabled=false;
+                }
+                else if(dayInfo.day > secList[0].End_Date__c && System.today()> secList[0].End_Date__c){
+                   
+                }
+                else if(dayInfo.day <= System.today()){
+                    system.debug('Amountvalue++'+amount);
+                    dayInfo.isDisabled=isrs.size()>1;
+                }
+               
                 dosages[i] = new ISRWrapper(
                     isr,
                     dayInfo.isDisabled,//true,
@@ -400,10 +417,12 @@ public with sharing class WeeklyDosageController {
             resultsData.add(holder);
         }
     }
-
     public void saveNewSessions(){
       timerOn();
        String flag='proceed false';
+       String proceddFlag ='proceed true';
+       Boolean emptyCheck =false;
+       Boolean loadCheck =false;
        Boolean primarySkillIsEmpty;
         Set<Integer> daysToSave = new Set<Integer>();
         Map<Integer, Intervention_Session__c> sessionsToSave = new Map<Integer, Intervention_Session__c>();
@@ -414,7 +433,8 @@ public with sharing class WeeklyDosageController {
              primarySkillIsEmpty = String.isBlank(day.primarySkill);
             
             if( day.day <= System.today() && day.isDisabled==false && day.isProceed==true && (!primarySkillIsEmpty ||
-               (primarySkillIsEmpty&& day.session.All_avenues__c !='' ))){
+               (primarySkillIsEmpty ))){
+                emptyCheck=true;
                 day.session.Skills_Covered_for_the_Session__c = day.selectedSkills;
                 day.session.Skill_Primary__c = !primarySkillIsEmpty ? day.primarySkill: null;
                 
@@ -431,6 +451,10 @@ public with sharing class WeeklyDosageController {
              if(day.day <= System.today() && day.isProceed==false && flag =='proceed false'){
                  flag='data not mapped';
              }
+             if(day.day <= System.today() && day.isProceed==false ){
+                System.debug('test false++++');
+                proceddFlag='proceed false';
+             }
             
              if(day.day > System.today() &&  day.isProceed==true){
                 flag='true';
@@ -440,13 +464,44 @@ public with sharing class WeeklyDosageController {
         }
        
         Savepoint sp = Database.setSavepoint();
+
+        Date dateset ;
+        Boolean amountnullcheck=true;
+        Boolean amountnotnullcheck=false;
+        for(DayWrapper day: tableHeaders){
+          if(day.isProceed == true){
+            dateset=day.day;
+            String entrydate = dateset.month()+ '/' + dateset.day()+ '/' + dateset.year() ;
+            for(SessionResultsWrapper srw: resultsData){
+              for(Integer i=0;i<7;i++){
+                  ISRWrapper rw = srw.dosages[i];
+                  if(rw.dateString == entrydate ){
+                     //rw.isr.Exit_Ticket__c=exiteMap.get(entrydate);
+                      if(rw.isr.Amount_of_Time__c ==null){
+                          amountnullcheck=false;
+                      }
+                      else {
+                          amountnotnullcheck=true;
+                      }
+                  }
+              }
+            }
+           }
+         }
         try{
-            upsert sessionsToSave.values();
+            if(amountnotnullcheck != true && amountnullcheck ==false){
+                CYUtil.errorMessage('Please enter the amount of time in student columns');
+            }else {
+                System.debug('save condition check');
+                upsert sessionsToSave.values();
+            }
+            //upsert sessionsToSave.values();
         } catch(System.DMLException e){
             for(Integer i=0; i<e.getNumDml(); i++){
                 CYUtil.errorMessage(e.getDmlMessage(i));
             }           
             CYUtil.errorMessage('There was an error while trying to save your sessions. Please check your data and try again.');
+            loadSessionData();
             return;
         }
 
@@ -479,14 +534,22 @@ public with sharing class WeeklyDosageController {
                         //System.debug('Not selected Allavunues Options');
                         tableHeaders[i].isError = true;
                         hasBadResults = true;
-                        if(flag=='data not mapped'){
-                            CYUtil.errorMessage('Please confirm whether service happened In-Person Service or Virtual Service by clicking on the blue speech bubble next to a date column.');
-                         }
+                         if(flag=='data not mapped'){
+                             loadCheck=true;
+                             CYUtil.errorMessage('Before clicking on the Submit time button ,Please confirm by clicking on the blue speech bubble next to a date column.');
+                          }
+                          if(proceddFlag=='proceed false'){
+                            loadCheck=true;
+                            CYUtil.errorMessage('Before clicking on the Submit time button ,Please confirm by clicking on the blue speech bubble next to a date column.');
+                          }
                         if(flag=='true'){
                         CYUtil.errorMessage('Cannot enter time for a date in the future.');
                        }
                         //CYUtil.errorMessage('You have entered time for '+currentWeek.addDays(i).format()+' but have not populated the skills covered. Please enter the skills covered.');
-                         loadSessionData();
+                         if(loadCheck !=true){
+                            loadSessionData();
+                         }
+                        //loadSessionData();
                    }
                 }
                 //System.debug('daysToSave##'+daysToSave);
@@ -523,6 +586,7 @@ public with sharing class WeeklyDosageController {
                 CYUtil.errorMessage(e.getDmlMessage(i));
             }           
             CYUtil.errorMessage('There was an error while trying to save your sessions. Please check your data and try again.');
+            
             return;
         }
         //populate id from cloned objects
@@ -537,8 +601,16 @@ public with sharing class WeeklyDosageController {
                 }
             }
         }
-        
-        CYUtil.successMessage('All changes have been saved successfully.');
+        if(amountnotnullcheck != true && amountnullcheck ==false ){
+            // CYUtil.errorMessage('Please Enter the Amount of time');
+           }
+        else if(emptyCheck ==false){
+            CYUtil.errorMessage('Please enter the amount of time in student columns');
+            }
+           else {
+             CYUtil.successMessage('All changes have been saved successfully.');
+           }
+        //CYUtil.successMessage('All changes have been saved successfully.');
 
         loadSessionData();
         

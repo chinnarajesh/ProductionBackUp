@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Holistic_Student_Assessment__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Pilot the Holistic Student Assessment (HSA) for focus list students across all indicator areas to round out City Year&apos;s youth development approach, complementing the use of the DESSA and Clover.  
+
+This pilot will provide sites with a more holistic understanding of focus list students, with the goal of using data on student voice to inform learning environments and student engagement strategies.</description>
+    <label>Holistic Student Assessment</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

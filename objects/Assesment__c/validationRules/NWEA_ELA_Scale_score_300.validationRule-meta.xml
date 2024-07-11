@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>NWEA_ELA_Scale_score_300</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(Assessment_Name__c = &quot;NWEA - ELA&quot;, 
+OR(Scale_Score__c &lt; 0, 
+Scale_Score__c &gt; 300))</errorConditionFormula>
+    <errorDisplayField>Scale_Score__c</errorDisplayField>
+    <errorMessage>Scaled Score must be within the range of 0 to 300.</errorMessage>
+</ValidationRule>

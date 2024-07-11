@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Class_Pace__c</fullName>
+    <label>Class Pace</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Controlled Pace</fullName>
+                <default>false</default>
+                <label>Controlled Pace</label>
+            </value>
+            <value>
+                <fullName>Self-paced</fullName>
+                <default>false</default>
+                <label>Self-paced</label>
+            </value>
+            <value>
+                <fullName>Combination of self-paced and control paced</fullName>
+                <default>false</default>
+                <label>Combination of self-paced and control paced</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

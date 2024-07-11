@@ -12,11 +12,13 @@ public with sharing class ModalAddIaStudentsCtrl {
 
     public void startAddIAToStudents(){
         Id cidIA = section.Program__r.Indicator_Area__r.Id;
+        if(studentSections !=null){
         for(StudentInfoWrapper siw: studentSections){
-            if(siw.areaIDs.containsKey(cidIA)) {
+            if(siw.areaIDs !=null && siw.areaIDs.containsKey(cidIA)) {
                 siw.dtIA = siw.areaIDs.get(cidIA).IA_Effective_Date__c;
             }
         }
+       }
     }
 
     public void saveIAToStudents(){
@@ -24,6 +26,9 @@ public with sharing class ModalAddIaStudentsCtrl {
         changesIAS = new Map<String, Indicator_Area_Student__c>();
 
         List<StudentInfoWrapper> lstStudentSections = new List<StudentInfoWrapper>();
+        if(studentSections ==null){
+            CyUtil.errorMessage('Please select a student to Indicator Area.'); return;
+        }
         for(StudentInfoWrapper sew: studentSections){
             if(sew.selected){
                 lstStudentSections.add(sew);

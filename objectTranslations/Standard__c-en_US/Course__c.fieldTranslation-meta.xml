@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Not required.  A standard can be associated with 1 course (only 1, not many).  The Course is not visible when searching for standards in the Gradebook. --></help>
+    <label><!-- Course --></label>
+    <name>Course__c</name>
+    <relationshipLabel><!-- Standards --></relationshipLabel>
+</CustomFieldTranslation>

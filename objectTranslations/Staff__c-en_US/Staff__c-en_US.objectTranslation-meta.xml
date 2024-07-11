@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Staff</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Staff</value>
+    </caseValues>
+    <layouts>
+        <layout>Admin Staff Layout</layout>
+        <sections>
+            <label><!-- Contact Information --></label>
+            <section>Contact Information</section>
+        </sections>
+        <sections>
+            <label><!-- Credentials --></label>
+            <section>Credentials</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Demographics --></label>
+            <section>Demographics</section>
+        </sections>
+        <sections>
+            <label><!-- Education --></label>
+            <section>Education</section>
+        </sections>
+        <sections>
+            <label><!-- Map --></label>
+            <section>Map</section>
+        </sections>
+        <sections>
+            <label><!-- School Information --></label>
+            <section>School Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>CY Staff Layout</layout>
+        <sections>
+            <label><!-- Contact Information --></label>
+            <section>Contact Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Map --></label>
+            <section>Map</section>
+        </sections>
+        <sections>
+            <label><!-- Section Assignments --></label>
+            <section>Section Assignments</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>CY Staff Layout - End User</layout>
+        <sections>
+            <label><!-- Contact Information --></label>
+            <section>Contact Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Emergency Contact Information --></label>
+            <section>Emergency Contact Information</section>
+        </sections>
+        <sections>
+            <label><!-- Map --></label>
+            <section>Map</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>CY Staff Layout - Sys Admin</layout>
+        <sections>
+            <label><!-- ACM Level Pilot Programs --></label>
+            <section>ACM Level Pilot Programs</section>
+        </sections>
+        <sections>
+            <label><!-- Contact Information --></label>
+            <section>Contact Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Map --></label>
+            <section>Map</section>
+        </sections>
+        <sections>
+            <label><!-- Section Assignments --></label>
+            <section>Section Assignments</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Non Admin Staff Layout</layout>
+        <sections>
+            <label><!-- Contact Information --></label>
+            <section>Contact Information</section>
+        </sections>
+        <sections>
+            <label><!-- Credentials --></label>
+            <section>Credentials</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Demographics --></label>
+            <section>Demographics</section>
+        </sections>
+        <sections>
+            <label><!-- Education --></label>
+            <section>Education</section>
+        </sections>
+        <sections>
+            <label><!-- Map --></label>
+            <section>Map</section>
+        </sections>
+        <sections>
+            <label><!-- School Information --></label>
+            <section>School Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Staff Layout</layout>
+        <sections>
+            <label><!-- Contact Information --></label>
+            <section>Contact Information</section>
+        </sections>
+        <sections>
+            <label><!-- Credentials --></label>
+            <section>Credentials</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Demographics --></label>
+            <section>Demographics</section>
+        </sections>
+        <sections>
+            <label><!-- Education --></label>
+            <section>Education</section>
+        </sections>
+        <sections>
+            <label><!-- Map --></label>
+            <section>Map</section>
+        </sections>
+        <sections>
+            <label><!-- School Information --></label>
+            <section>School Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Teacher Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <quickActions>
+        <label><!-- New Staff --></label>
+        <name>New_Staff</name>
+    </quickActions>
+    <startsWith>Consonant</startsWith>
+    <webLinks>
+        <label><!-- Print_Schedule --></label>
+        <name>Print_Schedule</name>
+    </webLinks>
+</CustomObjectTranslation>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Medal__c</fullName>
+    <label>Medal</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Blue/Silver</fullName>
+                <default>false</default>
+                <label>Blue/Silver</label>
+            </value>
+            <value>
+                <fullName>Red/Silver</fullName>
+                <default>false</default>
+                <label>Red/Silver</label>
+            </value>
+            <value>
+                <fullName>Striped/Gold</fullName>
+                <default>false</default>
+                <label>Striped/Gold</label>
+            </value>
+            <value>
+                <fullName>Striped/Silver</fullName>
+                <default>false</default>
+                <label>Striped/Silver</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

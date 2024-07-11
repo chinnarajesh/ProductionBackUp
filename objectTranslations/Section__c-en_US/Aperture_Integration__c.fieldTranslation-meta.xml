@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- If this box is checked your section will be integrated with the Aperture system, if it is unchecked it will NOT be integrated with the Aperture system. --></help>
+    <label><!-- Aperture Integration --></label>
+    <name>Aperture_Integration__c</name>
+</CustomFieldTranslation>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- What is the title that should display in Spanish for a Standard Level 1? (ie: Area of Concern) This will display on Report Cards and Progress Reports if user selects &quot;Show Standards&quot; on the &quot;Generate Student Documents&quot; page. --></help>
+    <label><!-- Standard Title 1 Spanish --></label>
+    <name>Standard_Legend_1_Spanish__c</name>
+</CustomFieldTranslation>

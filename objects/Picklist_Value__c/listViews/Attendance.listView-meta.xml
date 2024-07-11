@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Attendance</fullName>
+    <columns>Type__c</columns>
+    <columns>NAME</columns>
+    <columns>Display_Code__c</columns>
+    <columns>Setup__c</columns>
+    <columns>Set_as_Default__c</columns>
+    <columns>Is_Early_Departure__c</columns>
+    <columns>Is_Tardy__c</columns>
+    <columns>Is_Unexcused__c</columns>
+    <columns>Is_Suspension__c</columns>
+    <columns>Category__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Picklist_Value__c.Attendance</value>
+    </filters>
+    <label>Attendance</label>
+</ListView>

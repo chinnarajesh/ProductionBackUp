@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Exclude from Honor Roll --></label>
+    <name>Exclude_from_Honor_Roll__c</name>
+</CustomFieldTranslation>

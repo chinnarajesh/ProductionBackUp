@@ -1,0 +1,623 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Behavior_Type__c</fullName>
+    <label>Behavior Type</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Behavior_Category_Input__c</controllingField>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>T1 - Noncompliance with an approved dress code</fullName>
+                <default>false</default>
+                <label>T1 - Noncompliance with an approved dress code</label>
+            </value>
+            <value>
+                <fullName>T1 - Attending class without required class materials or assigned work</fullName>
+                <default>false</default>
+                <label>T1 - Attending class without required class materials or assigned work</label>
+            </value>
+            <value>
+                <fullName>T1 - Off-task behaviors that demonstrate disengagement from classroom learning</fullName>
+                <default>false</default>
+                <label>T1 - Off-task behaviors that demonstrate disengagement from classroom learning</label>
+            </value>
+            <value>
+                <fullName>T1 - Refusal to comply w/ instr. / class / school rules w/o arguing, talking back, or walking away</fullName>
+                <default>false</default>
+                <label>T1 - Refusal to comply w/ instr. / class / school rules w/o arguing, talking back, or walking away</label>
+            </value>
+            <value>
+                <fullName>T2 - Refusal to comply w/ instr. or rules &amp; arguing, talking back, or walking away</fullName>
+                <default>false</default>
+                <label>T2 - Refusal to comply w/ instr. or rules &amp; arguing, talking back, or walking away</label>
+            </value>
+            <value>
+                <fullName>T1 - Unexcused tardiness for class or school</fullName>
+                <default>false</default>
+                <label>T1 - Unexcused tardiness for class or school</label>
+            </value>
+            <value>
+                <fullName>T2 - Unauthorized presence in hallway during class time</fullName>
+                <default>false</default>
+                <label>T2 - Unauthorized presence in hallway during class time</label>
+            </value>
+            <value>
+                <fullName>T2 - Leaving classroom or group without permission</fullName>
+                <default>false</default>
+                <label>T2 - Leaving classroom or group without permission</label>
+            </value>
+            <value>
+                <fullName>T2 - Unexcused absence from class</fullName>
+                <default>false</default>
+                <label>T2 - Unexcused absence from class</label>
+            </value>
+            <value>
+                <fullName>T2 - Unexcused absence from school</fullName>
+                <default>false</default>
+                <label>T2 - Unexcused absence from school</label>
+            </value>
+            <value>
+                <fullName>T2 - Unauthorized use of portable electronic devices during school hours</fullName>
+                <default>false</default>
+                <label>T2 - Unauthorized use of portable electronic devices during school hours</label>
+            </value>
+            <value>
+                <fullName>T2 - Intentional misuse of school equipment/supplies/facilities</fullName>
+                <default>false</default>
+                <label>T2 - Intentional misuse of school equipment/supplies/facilities</label>
+            </value>
+            <value>
+                <fullName>T2 - Using computer/office equipment without permission</fullName>
+                <default>false</default>
+                <label>T2 - Using computer/office equipment without permission</label>
+            </value>
+            <value>
+                <fullName>T3 - Throwing objects that may cause injury or damage property</fullName>
+                <default>false</default>
+                <label>T3 - Throwing objects that may cause injury or damage property</label>
+            </value>
+            <value>
+                <fullName>T4 - Causing serious disruption/damage to school&apos;s computer system, electronic files, or network</fullName>
+                <default>false</default>
+                <label>T4 - Causing serious disruption/damage to school&apos;s computer system, electronic files, or network</label>
+            </value>
+            <value>
+                <fullName>T4 - Intentional vandalism or destruction of property under $500</fullName>
+                <default>false</default>
+                <label>T4 - Intentional vandalism or destruction of property under $500</label>
+            </value>
+            <value>
+                <fullName>T4 - Intentional vandalism or destruction of property over $500</fullName>
+                <default>false</default>
+                <label>T4 - Intentional vandalism or destruction of property over $500</label>
+            </value>
+            <value>
+                <fullName>T3 - Engaging in behavior that demonstrates gang/neighborhood crew affiliation (displaying clothing or gestures associated with gangs)</fullName>
+                <default>false</default>
+                <label>T3 - Engaging in behavior that demonstrates gang/neighborhood crew affiliation (displaying clothing or gestures associated with gangs)</label>
+            </value>
+            <value>
+                <fullName>T4 - Retaliation for reporting harassment and sexual harassment</fullName>
+                <default>false</default>
+                <label>T4 - Retaliation for reporting harassment and sexual harassment</label>
+            </value>
+            <value>
+                <fullName>T1 - Any behavior not specifically enumerated in any other tier that is disrespectful or causes minor disruption to the academic environment but does not involved damage to school property or harm to self or others</fullName>
+                <default>false</default>
+                <label>T1 - Any behavior not specifically enumerated in any other tier that is disrespectful or causes minor disruption to the academic environment but does not involved damage to school property or harm to self or others</label>
+            </value>
+            <value>
+                <fullName>T2 - Any behavior not specifically enumerated in any other tier that causes disruption to the academic environment, involves damage to school property, or may cause minor harm to self or others</fullName>
+                <default>false</default>
+                <label>T2 - Any behavior not specifically enumerated in any other tier that causes disruption to the academic environment, involves damage to school property, or may cause minor harm to self or others</label>
+            </value>
+            <value>
+                <fullName>T3 - Any behavior not specifically enumerated in any other tier that causes significant disruption to the academic environment or causes harm to self or others</fullName>
+                <default>false</default>
+                <label>T3 - Any behavior not specifically enumerated in any other tier that causes significant disruption to the academic environment or causes harm to self or others</label>
+            </value>
+            <value>
+                <fullName>T4 - Any behavior not specifically enumerated in any other tier that causes disruption to the school operation, destroys school property, or causes significant harm to self or others</fullName>
+                <default>false</default>
+                <label>T4 - Any behavior not specifically enumerated in any other tier that causes disruption to the school operation, destroys school property, or causes significant harm to self or others</label>
+            </value>
+            <value>
+                <fullName>T2 - Documented pattern of persistent Tier 1 behavior</fullName>
+                <default>false</default>
+                <label>T2 - Documented pattern of persistent Tier 1 behavior</label>
+            </value>
+            <value>
+                <fullName>T3 - Documented pattern of persistent Tier 2 behavior</fullName>
+                <default>false</default>
+                <label>T3 - Documented pattern of persistent Tier 2 behavior</label>
+            </value>
+            <value>
+                <fullName>T4 - Documented pattern of persistent Tier 3 behavior</fullName>
+                <default>false</default>
+                <label>T4 - Documented pattern of persistent Tier 3 behavior</label>
+            </value>
+            <value>
+                <fullName>T5 - Documented pattern of persistent Tier 4 behavior</fullName>
+                <default>false</default>
+                <label>T5 - Documented pattern of persistent Tier 4 behavior</label>
+            </value>
+            <value>
+                <fullName>T5 - Possession of a weapon</fullName>
+                <default>false</default>
+                <label>T5 - Possession of a weapon</label>
+            </value>
+            <value>
+                <fullName>T5 - Use, threatened use, or transfer of any weapon</fullName>
+                <default>false</default>
+                <label>T5 - Use, threatened use, or transfer of any weapon</label>
+            </value>
+            <value>
+                <fullName>T5 - Possession of fireworks or explosives</fullName>
+                <default>false</default>
+                <label>T5 - Possession of fireworks or explosives</label>
+            </value>
+            <value>
+                <fullName>T5 - Using an article that is not normally considered a weapon to injure another individual</fullName>
+                <default>false</default>
+                <label>T5 - Using an article that is not normally considered a weapon to injure another individual</label>
+            </value>
+            <value>
+                <fullName>T5 - Use, possession, or bringing to school a loaded or unloaded firearm</fullName>
+                <default>false</default>
+                <label>T5 - Use, possession, or bringing to school a loaded or unloaded firearm</label>
+            </value>
+            <value>
+                <fullName>T3 - Unauthorized possession, use, or distribution of over-the-counter medication</fullName>
+                <default>false</default>
+                <label>T3 - Unauthorized possession, use, or distribution of over-the-counter medication</label>
+            </value>
+            <value>
+                <fullName>T5 - Possession of drug paraphernalia or controlled substance</fullName>
+                <default>false</default>
+                <label>T5 - Possession of drug paraphernalia or controlled substance</label>
+            </value>
+            <value>
+                <fullName>T5 - Possession or distribution of alcohol</fullName>
+                <default>false</default>
+                <label>T5 - Possession or distribution of alcohol</label>
+            </value>
+            <value>
+                <fullName>T5 - Selling or distribution of marijuana, prescription drugs, controlled dangerous substances, imitation controlled substances, inhalants, other intoxicants, controlled or drug paraphernalia</fullName>
+                <default>false</default>
+                <label>T5 - Selling or distribution of marijuana, prescription drugs, controlled dangerous substances, imitation controlled substances, inhalants, other intoxicants, controlled or drug paraphernalia</label>
+            </value>
+            <value>
+                <fullName>T3 - Gambling</fullName>
+                <default>false</default>
+                <label>T3 - Gambling</label>
+            </value>
+            <value>
+                <fullName>T5 - Commission or attempted commission of any act of sexual assault or sexual aggression</fullName>
+                <default>false</default>
+                <label>T5 - Commission or attempted commission of any act of sexual assault or sexual aggression</label>
+            </value>
+            <value>
+                <fullName>T2 - Lying with intent to mislead</fullName>
+                <default>false</default>
+                <label>T2 - Lying with intent to mislead</label>
+            </value>
+            <value>
+                <fullName>T3 - Academic Dishonesty</fullName>
+                <default>false</default>
+                <label>T3 - Academic Dishonesty</label>
+            </value>
+            <value>
+                <fullName>T3 - Forgery</fullName>
+                <default>false</default>
+                <label>T3 - Forgery</label>
+            </value>
+            <value>
+                <fullName>T4 - Tampering with or altering an official school record or document</fullName>
+                <default>false</default>
+                <label>T4 - Tampering with or altering an official school record or document</label>
+            </value>
+            <value>
+                <fullName>T3 - Impulsive theft that does not involve going into personal belongings (taking food, community property, etc.)</fullName>
+                <default>false</default>
+                <label>T3 - Impulsive theft that does not involve going into personal belongings (taking food, community property, etc.)</label>
+            </value>
+            <value>
+                <fullName>T4 - Planned theft that involves going into personal belonging or space</fullName>
+                <default>false</default>
+                <label>T4 - Planned theft that involves going into personal belonging or space</label>
+            </value>
+            <value>
+                <fullName>T5 - Theft or attempted theft using force, coercion, intimidation, or threat of violence</fullName>
+                <default>false</default>
+                <label>T5 - Theft or attempted theft using force, coercion, intimidation, or threat of violence</label>
+            </value>
+            <value>
+                <fullName>T1 - Excessive noise in the classroom, hall, or building</fullName>
+                <default>false</default>
+                <label>T1 - Excessive noise in the classroom, hall, or building</label>
+            </value>
+            <value>
+                <fullName>T1 - Behaviors that disrupt or interfere with classroom teaching and learning</fullName>
+                <default>false</default>
+                <label>T1 - Behaviors that disrupt or interfere with classroom teaching and learning</label>
+            </value>
+            <value>
+                <fullName>T4 - Interfering with school authorities or participating in a major disruption of the school&apos;s operations (outbursts / loss of control)</fullName>
+                <default>false</default>
+                <label>T4 - Interfering with school authorities or participating in a major disruption of the school&apos;s operations (outbursts / loss of control)</label>
+            </value>
+            <value>
+                <fullName>T1 - Communication or tone and language that is not respectful (including teasing, rolling eyes, swearing, etc.)</fullName>
+                <default>false</default>
+                <label>T1 - Communication or tone and language that is not respectful (including teasing, rolling eyes, swearing, etc.)</label>
+            </value>
+            <value>
+                <fullName>T2 - Directing profanity or offensive gestures toward others</fullName>
+                <default>false</default>
+                <label>T2 - Directing profanity or offensive gestures toward others</label>
+            </value>
+            <value>
+                <fullName>T3 - Posting or distributing material or lit that is disrespectful, demeaning, humiliating, or damaging to students and/or staff</fullName>
+                <default>false</default>
+                <label>T3 - Posting or distributing material or lit that is disrespectful, demeaning, humiliating, or damaging to students and/or staff</label>
+            </value>
+            <value>
+                <fullName>T4 - Using obscene, seriously offensive, or abusive language or gestures</fullName>
+                <default>false</default>
+                <label>T4 - Using obscene, seriously offensive, or abusive language or gestures</label>
+            </value>
+            <value>
+                <fullName>T4 - Sexual harassment</fullName>
+                <default>false</default>
+                <label>T4 - Sexual harassment</label>
+            </value>
+            <value>
+                <fullName>T1 - Any (Tier 1) behavior or other conduct not specifically enumerated in any other tier that is disrespectful or causes minor disruptions to the academic environment</fullName>
+                <default>false</default>
+                <label>T1 - Any (Tier 1) behavior or other conduct not specifically enumerated in any other tier that is disrespectful or causes minor disruptions to the academic environment</label>
+            </value>
+            <value>
+                <fullName>T3 - Verbal, written, or physical threat to person or property (including intimidating gestures/postures)</fullName>
+                <default>false</default>
+                <label>T3 - Verbal, written, or physical threat to person or property (including intimidating gestures/postures)</label>
+            </value>
+            <value>
+                <fullName>T3 - Hazing</fullName>
+                <default>false</default>
+                <label>T3 - Hazing</label>
+            </value>
+            <value>
+                <fullName>T5 - Using an article that is not normally considered a weapon to intimidate or threaten another individual</fullName>
+                <default>false</default>
+                <label>T5 - Using an article that is not normally considered a weapon to intimidate or threaten another individual</label>
+            </value>
+            <value>
+                <fullName>T5 - Planned assault/physical attack on student or staff where there is or has the potential for substantial harm</fullName>
+                <default>false</default>
+                <label>T5 - Planned assault/physical attack on student or staff where there is or has the potential for substantial harm</label>
+            </value>
+            <value>
+                <fullName>T4 - Pushing, hitting, or fighting where there is no physical harm or weapon used</fullName>
+                <default>false</default>
+                <label>T4 - Pushing, hitting, or fighting where there is no physical harm or weapon used</label>
+            </value>
+            <value>
+                <fullName>T5 - Pushing, hitting, or fighting which results in a serious physical injury</fullName>
+                <default>false</default>
+                <label>T5 - Pushing, hitting, or fighting which results in a serious physical injury</label>
+            </value>
+            <value>
+                <fullName>T5 - Participating in group fight which has been planned, causes major disruption to school day or results in substantial bodily injury</fullName>
+                <default>false</default>
+                <label>T5 - Participating in group fight which has been planned, causes major disruption to school day or results in substantial bodily injury</label>
+            </value>
+            <value>
+                <fullName>T4 - Possession of tools or instruments which school administrators deem could be used as weapons</fullName>
+                <default>false</default>
+                <label>T4 - Possession of tools or instruments which school administrators deem could be used as weapons</label>
+            </value>
+            <value>
+                <fullName>T5 - Arson, Bio-hazard, Bomb threat</fullName>
+                <default>false</default>
+                <label>T5 - Arson, Bio-hazard, Bomb threat</label>
+            </value>
+            <value>
+                <fullName>T1 - Inappropriate displays of affection</fullName>
+                <default>false</default>
+                <label>T1 - Inappropriate displays of affection</label>
+            </value>
+            <value>
+                <fullName>T1 - Running in the classroom, hall, or building</fullName>
+                <default>false</default>
+                <label>T1 - Running in the classroom, hall, or building</label>
+            </value>
+            <value>
+                <fullName>T2 - Inappropriate physical contact between students that may not be physically harmful (tickling, bothering, etc.)</fullName>
+                <default>false</default>
+                <label>T2 - Inappropriate physical contact between students that may not be physically harmful (tickling, bothering, etc.)</label>
+            </value>
+            <value>
+                <fullName>T3 - Engaging in behavior that may cause harm to self or others (rough-housing, running in street, etc.)</fullName>
+                <default>false</default>
+                <label>T3 - Engaging in behavior that may cause harm to self or others (rough-housing, running in street, etc.)</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <valueName>T3 - Engaging in behavior that demonstrates gang/neighborhood crew affiliation (displaying clothing or gestures associated with gangs)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <valueName>T4 - Retaliation for reporting harassment and sexual harassment</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <valueName>T1 - Any behavior not specifically enumerated in any other tier that is disrespectful or causes minor disruption to the academic environment but does not involved damage to school property or harm to self or others</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <valueName>T2 - Any behavior not specifically enumerated in any other tier that causes disruption to the academic environment, involves damage to school property, or may cause minor harm to self or others</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <valueName>T3 - Any behavior not specifically enumerated in any other tier that causes significant disruption to the academic environment or causes harm to self or others</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <valueName>T4 - Any behavior not specifically enumerated in any other tier that causes disruption to the school operation, destroys school property, or causes significant harm to self or others</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <valueName>T2 - Documented pattern of persistent Tier 1 behavior</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <valueName>T3 - Documented pattern of persistent Tier 2 behavior</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <valueName>T4 - Documented pattern of persistent Tier 3 behavior</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <valueName>T5 - Documented pattern of persistent Tier 4 behavior</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <valueName>T3 - Gambling</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Non-compliant / Not Participating / Not Prepared</controllingFieldValue>
+            <valueName>T1 - Noncompliance with an approved dress code</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Non-compliant / Not Participating / Not Prepared</controllingFieldValue>
+            <valueName>T1 - Attending class without required class materials or assigned work</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Non-compliant / Not Participating / Not Prepared</controllingFieldValue>
+            <valueName>T1 - Off-task behaviors that demonstrate disengagement from classroom learning</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Non-compliant / Not Participating / Not Prepared</controllingFieldValue>
+            <valueName>T1 - Refusal to comply w/ instr. / class / school rules w/o arguing, talking back, or walking away</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Non-compliant / Not Participating / Not Prepared</controllingFieldValue>
+            <controllingFieldValue>Disruptive / Disrespectful</controllingFieldValue>
+            <valueName>T2 - Refusal to comply w/ instr. or rules &amp; arguing, talking back, or walking away</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Not In Class or With Group / Truancy</controllingFieldValue>
+            <valueName>T1 - Unexcused tardiness for class or school</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Not In Class or With Group / Truancy</controllingFieldValue>
+            <valueName>T2 - Unauthorized presence in hallway during class time</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Not In Class or With Group / Truancy</controllingFieldValue>
+            <valueName>T2 - Leaving classroom or group without permission</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Not In Class or With Group / Truancy</controllingFieldValue>
+            <valueName>T2 - Unexcused absence from class</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Not In Class or With Group / Truancy</controllingFieldValue>
+            <valueName>T2 - Unexcused absence from school</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Misusing Materials / Damaging Property</controllingFieldValue>
+            <valueName>T2 - Unauthorized use of portable electronic devices during school hours</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Misusing Materials / Damaging Property</controllingFieldValue>
+            <valueName>T2 - Intentional misuse of school equipment/supplies/facilities</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Misusing Materials / Damaging Property</controllingFieldValue>
+            <valueName>T2 - Using computer/office equipment without permission</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Misusing Materials / Damaging Property</controllingFieldValue>
+            <controllingFieldValue>Inappropriate Physical Contact / Unsafe Behavior</controllingFieldValue>
+            <valueName>T3 - Throwing objects that may cause injury or damage property</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Misusing Materials / Damaging Property</controllingFieldValue>
+            <valueName>T4 - Causing serious disruption/damage to school&apos;s computer system, electronic files, or network</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Misusing Materials / Damaging Property</controllingFieldValue>
+            <valueName>T4 - Intentional vandalism or destruction of property under $500</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Misusing Materials / Damaging Property</controllingFieldValue>
+            <valueName>T4 - Intentional vandalism or destruction of property over $500</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Misusing Materials / Damaging Property</controllingFieldValue>
+            <valueName>T5 - Arson, Bio-hazard, Bomb threat</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Inappropriate Physical Contact / Unsafe Behavior</controllingFieldValue>
+            <controllingFieldValue>Having / Using Potential or Real Weapon</controllingFieldValue>
+            <valueName>T5 - Possession of fireworks or explosives</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Inappropriate Physical Contact / Unsafe Behavior</controllingFieldValue>
+            <valueName>T5 - Commission or attempted commission of any act of sexual assault or sexual aggression</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Inappropriate Physical Contact / Unsafe Behavior</controllingFieldValue>
+            <valueName>T1 - Inappropriate displays of affection</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Inappropriate Physical Contact / Unsafe Behavior</controllingFieldValue>
+            <valueName>T1 - Running in the classroom, hall, or building</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Inappropriate Physical Contact / Unsafe Behavior</controllingFieldValue>
+            <valueName>T2 - Inappropriate physical contact between students that may not be physically harmful (tickling, bothering, etc.)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Inappropriate Physical Contact / Unsafe Behavior</controllingFieldValue>
+            <valueName>T3 - Engaging in behavior that may cause harm to self or others (rough-housing, running in street, etc.)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Lying / Cheating / Stealing</controllingFieldValue>
+            <valueName>T2 - Lying with intent to mislead</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Lying / Cheating / Stealing</controllingFieldValue>
+            <valueName>T3 - Academic Dishonesty</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Lying / Cheating / Stealing</controllingFieldValue>
+            <valueName>T3 - Forgery</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Lying / Cheating / Stealing</controllingFieldValue>
+            <valueName>T4 - Tampering with or altering an official school record or document</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Lying / Cheating / Stealing</controllingFieldValue>
+            <valueName>T3 - Impulsive theft that does not involve going into personal belongings (taking food, community property, etc.)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Lying / Cheating / Stealing</controllingFieldValue>
+            <valueName>T4 - Planned theft that involves going into personal belonging or space</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Lying / Cheating / Stealing</controllingFieldValue>
+            <valueName>T5 - Theft or attempted theft using force, coercion, intimidation, or threat of violence</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Disruptive / Disrespectful</controllingFieldValue>
+            <valueName>T1 - Excessive noise in the classroom, hall, or building</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Disruptive / Disrespectful</controllingFieldValue>
+            <valueName>T1 - Behaviors that disrupt or interfere with classroom teaching and learning</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Disruptive / Disrespectful</controllingFieldValue>
+            <valueName>T4 - Interfering with school authorities or participating in a major disruption of the school&apos;s operations (outbursts / loss of control)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Disruptive / Disrespectful</controllingFieldValue>
+            <valueName>T1 - Communication or tone and language that is not respectful (including teasing, rolling eyes, swearing, etc.)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Disruptive / Disrespectful</controllingFieldValue>
+            <valueName>T2 - Directing profanity or offensive gestures toward others</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Disruptive / Disrespectful</controllingFieldValue>
+            <valueName>T3 - Posting or distributing material or lit that is disrespectful, demeaning, humiliating, or damaging to students and/or staff</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Disruptive / Disrespectful</controllingFieldValue>
+            <valueName>T4 - Using obscene, seriously offensive, or abusive language or gestures</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Disruptive / Disrespectful</controllingFieldValue>
+            <valueName>T4 - Sexual harassment</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Disruptive / Disrespectful</controllingFieldValue>
+            <valueName>T1 - Any (Tier 1) behavior or other conduct not specifically enumerated in any other tier that is disrespectful or causes minor disruptions to the academic environment</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Bullying / Threatening / Planning Harm</controllingFieldValue>
+            <valueName>T3 - Verbal, written, or physical threat to person or property (including intimidating gestures/postures)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Bullying / Threatening / Planning Harm</controllingFieldValue>
+            <valueName>T3 - Hazing</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Bullying / Threatening / Planning Harm</controllingFieldValue>
+            <controllingFieldValue>Fighting</controllingFieldValue>
+            <controllingFieldValue>Having / Using Potential or Real Weapon</controllingFieldValue>
+            <valueName>T5 - Using an article that is not normally considered a weapon to intimidate or threaten another individual</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Bullying / Threatening / Planning Harm</controllingFieldValue>
+            <valueName>T5 - Planned assault/physical attack on student or staff where there is or has the potential for substantial harm</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Fighting</controllingFieldValue>
+            <valueName>T4 - Pushing, hitting, or fighting where there is no physical harm or weapon used</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Fighting</controllingFieldValue>
+            <valueName>T5 - Pushing, hitting, or fighting which results in a serious physical injury</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Fighting</controllingFieldValue>
+            <valueName>T5 - Participating in group fight which has been planned, causes major disruption to school day or results in substantial bodily injury</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Having / Using Potential or Real Weapon</controllingFieldValue>
+            <valueName>T5 - Possession of a weapon</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Having / Using Potential or Real Weapon</controllingFieldValue>
+            <valueName>T5 - Use, threatened use, or transfer of any weapon</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Having / Using Potential or Real Weapon</controllingFieldValue>
+            <valueName>T5 - Using an article that is not normally considered a weapon to injure another individual</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Having / Using Potential or Real Weapon</controllingFieldValue>
+            <valueName>T5 - Use, possession, or bringing to school a loaded or unloaded firearm</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Having / Using Potential or Real Weapon</controllingFieldValue>
+            <valueName>T4 - Possession of tools or instruments which school administrators deem could be used as weapons</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Drugs / Alcohol</controllingFieldValue>
+            <valueName>T3 - Unauthorized possession, use, or distribution of over-the-counter medication</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Drugs / Alcohol</controllingFieldValue>
+            <valueName>T5 - Possession of drug paraphernalia or controlled substance</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Drugs / Alcohol</controllingFieldValue>
+            <valueName>T5 - Possession or distribution of alcohol</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Drugs / Alcohol</controllingFieldValue>
+            <valueName>T5 - Selling or distribution of marijuana, prescription drugs, controlled dangerous substances, imitation controlled substances, inhalants, other intoxicants, controlled or drug paraphernalia</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

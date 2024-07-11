@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- The Registrar will appear on the Transcript. Please enter the name exactly as you want it to appear on the transcript, &quot;Mr. Bob Smith&quot; or &quot;Bob Smith.&quot; --></help>
+    <label><!-- Registrar --></label>
+    <name>Registrar__c</name>
+</CustomFieldTranslation>

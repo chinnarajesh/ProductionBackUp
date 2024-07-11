@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Report_Card_Created__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>boolean reflecting if a report card is both current and created for a student for the related reporting period</description>
+    <label>Report Card Created</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Parental_Situation__c</fullName>
+    <inlineHelpText>Displays the parental situation for the student (e.g., single parent household, two parent household). This field is not used by SchoolForce, but you can use it for reporting purposes.</inlineHelpText>
+    <label>Parental Situation</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Single Parent Household</fullName>
+                <default>false</default>
+                <label>Single Parent Household</label>
+            </value>
+            <value>
+                <fullName>Two Parent Household</fullName>
+                <default>false</default>
+                <label>Two Parent Household</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

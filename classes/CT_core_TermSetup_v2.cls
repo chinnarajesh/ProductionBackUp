@@ -288,6 +288,7 @@ public with sharing  class CT_core_TermSetup_v2 {
             bConfigureTerm = true;
             bShowTerms = false;
             selectedTermWrapper = new cTermWrapper(null, selectedYear);
+            selectedTermWrapper.term.Name__c=cSetup.school.Name;
             system.debug('~~~~~ selectedTermWrapper.term '+selectedTermWrapper.term);
         }
         catch(Exception e){
@@ -395,6 +396,7 @@ public with sharing  class CT_core_TermSetup_v2 {
             insertLogsException(e, 'An error occurred while initializing the reporting periods', cSetup.setup.id, selectedTermWrapper.term.id, 'error init reporting period');
         } 
     }
+   
 //    public void insertLogsExceptionInInitReportingPeriod(Exception e){
 //        CT_SetupWizard_Utils.addMessage(apexpages.severity.ERROR, 'An error occurred while initializing the reporting periods');
 //        Global_Error__c ge = CT_Error_Handling.handleError('Setup, '+cSetup.setup.id+'; Term, '+selectedTermWrapper.term.id, 'Core (Term)', 'error init reporting period', e);
@@ -693,7 +695,7 @@ public with sharing  class CT_core_TermSetup_v2 {
                 this.term = new Time_Element__c(Picklist_Value__r=  CT_core_SoqlUtils.getPlStringValues('Time', null).get('Term') );
                 this.cQasw = new cQuickAddSchedWrapper(null); 
                 this.term.Date_Start_Date__c= year.Date_Start_Date__c;
-                this.term.End_Date__c = year.End_Date__c;
+                //this.term.End_Date__c = year.End_Date__c;
 
             }
             else {
@@ -715,6 +717,8 @@ public with sharing  class CT_core_TermSetup_v2 {
         public List <Time_Element__c>           timeElementList{get;set;}
         public List <SelectOption>              reportingPeriodOptionList {get;set;}
         public List <String>                    periodNames {get;set;}
+        public string Entername  {get;set;}  
+        public string EnterStartDate {get;set;}            
         public Map<String, Integer> termWithPeriodsQuantityMap = new Map<String, Integer> {
                 'Semester' => 2,
                 'Trimester' => 3,
@@ -776,7 +780,7 @@ public with sharing  class CT_core_TermSetup_v2 {
                                 Reporting_Period__c = true,
                                 Days_of_week__c = ParentTe.days_of_week__c,
                                 Name__c = periodNames[i] + ' ' + i,
-                                End_Date__c = ParentTe.End_Date__c,
+                                //End_Date__c = ParentTe.End_Date__c,
                                 Name_On_Report_Card__c = abbreviatedMap.get(periodNames[i]) + i));
                     }
                 }
@@ -795,6 +799,13 @@ public with sharing  class CT_core_TermSetup_v2 {
                 timeElementList[1].Name__c = timeElementList[1].Name__c.substring(0,8);
                 timeElementList[1].Name_On_Report_Card__c = timeElementList[1].Name_On_Report_Card__c.substring(0,3);
             }
+
+            //// added by rajesh juturi
+            this.Entername=EnterName;
+            this.EnterStartDate=EnterStartDate;
+            System.debug('EnterName '+Entername);
+            System.debug('EnterStartDate '+EnterStartDate);
+            //// ended by rajesh juturi
         }
     }
 

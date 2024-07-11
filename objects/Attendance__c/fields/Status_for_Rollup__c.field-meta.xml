@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Status_for_Rollup__c</fullName>
+    <externalId>false</externalId>
+    <inlineHelpText>This field is a modified copy of the Status field and was created to allow for numeric rollups on the Student record (e.g., Total # of Unexcused Daily Absences).</inlineHelpText>
+    <label>Status for Rollup</label>
+    <length>100</length>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Homework_Based__c</fullName>
+    <defaultValue>false</defaultValue>
+    <inlineHelpText>Select if you want the sections created from this course to display in the Homework module.</inlineHelpText>
+    <label>Homework Based</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

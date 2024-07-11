@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Imported from legacy PowerSchool race data.  If you update this field, SchoolForce updates the corresponding field on the Contact record. --></help>
+    <label><!-- Race PowerSchool Import --></label>
+    <name>Race_PowerSchool_Import__c</name>
+</CustomFieldTranslation>

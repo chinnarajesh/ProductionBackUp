@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Show_Normalizations_on_Report_Cards__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Show Final Grade Normalization legend on Report Cards and Progress Reports?</description>
+    <inlineHelpText>Show Final Grade Normalization legend on Report Cards and Progress Reports?</inlineHelpText>
+    <label>Show Grade Scales On Report Cards?</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

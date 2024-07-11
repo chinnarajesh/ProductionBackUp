@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Select if staff members will take daily attendance in this section. The section will display in the All Day grid and you will not be able to add it to a specific period in your schedule. You must also select the Record Attendance check box. --></help>
+    <label><!-- Daily Attendance? --></label>
+    <name>Daily_Attendance__c</name>
+</CustomFieldTranslation>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Student CY-ID --></label>
+    <name>Student_CY_ID_del__c</name>
+    <relationshipLabel><!-- Curricula (Student CY-ID) --></relationshipLabel>
+</CustomFieldTranslation>

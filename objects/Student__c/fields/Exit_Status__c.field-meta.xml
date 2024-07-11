@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Exit_Status__c</fullName>
+    <description>An indication as to whether an instance of student exit/withdrawal is considered to be of a permanent or temporary nature.</description>
+    <inlineHelpText>Displays the student&apos;s exit status. The values in this field are determined by your school. You can use this field for reporting purposes.</inlineHelpText>
+    <label>Exit Status</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Permanent Exit/Withdrawal</fullName>
+                <default>false</default>
+                <label>Permanent Exit/Withdrawal</label>
+            </value>
+            <value>
+                <fullName>Temporary Exit/Withdrawal</fullName>
+                <default>false</default>
+                <label>Temporary Exit/Withdrawal</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

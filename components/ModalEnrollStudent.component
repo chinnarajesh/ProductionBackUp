@@ -26,7 +26,7 @@
                 <span class="section-header">Available Students</span>
                 <apex:outputPanel id="availStudents">
                     <div class="field">
-                        <apex:selectList value="{!selectedSectionFilter}" onchange="loadAvailableStudentsJS();"
+                        <apex:selectList style="width: 98% !important;" value="{!selectedSectionFilter}" onchange="loadAvailableStudentsJS();"
                                          multiselect="false" size="1">
                             <apex:selectOptions value="{!sectionFilters}"/>
                         </apex:selectList>
@@ -39,13 +39,22 @@
                             <apex:selectOptions value="{!gradeFilters}"/>
                         </apex:selectList>
                         <br/>
-                        <input name="filterBox" placeholder="Search by Name"
+                         <!-- <apex:inputText value="{!searchstring}" >
+                         <apex:actionSupport event="onkeypress" action="{!loadAvailableStudents}"  rerender="availStudents, messages" status="loadingStatus">
+                        <apex:param name="paramValue" value="Forstudent"  assignTo="{!SearchAcc}"/>
+                        </apex:actionSupport> 
+                        </apex:inputText>  -->
+                        <div style="display: flex;">
+                        <apex:inputText value="{!searchstring}"  id="StudentName" style="margin-top: 3px;margin-left: 5px;width:34vh;" html-placeholder="Search by Name or CY-Id or Local Id"/>
+                        <apex:image url="{!$Resource.searchIcon}" style="width: 28px;margin-left: 5px;margin-top: 5px;" onclick="StudentSerach2()" /> 
+                        </div>
+                        <!-- <input name="filterBox" placeholder="Search by Name or CY-Id or Local Id"
                                onkeyup="filterName(this,'availableStudents')" type="text" size="50"
-                               style="margin-left:5px"/>
+                               style="margin-left:5px;width: 221px;"/> -->
                         <br/>
                         <input type="checkBox" id="availCheck" onchange="highlightAllRows('availableStudents',this)"
                                style="margin-left:5px">Select All</input>
-                        <apex:actionStatus startText="	Loading..." id="loadingStatus"
+                        <apex:actionStatus startText="  Loading..." id="loadingStatus"
                                            startStyle="float:right;margin-right:20px"/>
                         <div>
                             <apex:repeat value="{!alphabeticPagination.SerchAlphabet}" var="nn">
@@ -90,7 +99,7 @@
                             </table>
                         </div>
                     </apex:pageBlock>
-                    <div id="enrollTotalRecords"> Total Records Found: {!alphabeticPagination.sizee}</div>
+                    <div id="enrollTotalRecords"> Total Records Shown: {!alphabeticPagination.sizee}</div>
                     <script type="text/javascript">
                         var sze = '{!alphabeticPagination.sizee}';
                         sz = parseInt(sze);
@@ -172,4 +181,6 @@
     <apex:actionFunction name="enrollStudentsJS" action="{!enrollStudents}"
                          onComplete="isSaving=false; checkDisabled(); reloadPage();"
                          rerender="bothTables,studentTable,enrollDatePanel, messages"/>
+    <apex:actionFunction name="StudentSerach2" action="{!loadAvailableStudents}" rerender="availStudents, messages" status="loadingStatus"/>
+
 </apex:component>

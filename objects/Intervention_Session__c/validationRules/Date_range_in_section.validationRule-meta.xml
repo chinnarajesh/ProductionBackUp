@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Date_range_in_section</fullName>
+    <active>true</active>
+    <errorConditionFormula>OR( Date__c &lt; Section__r.Start_Date__c, Date__c &gt; Section__r.End_Date__c )</errorConditionFormula>
+    <errorDisplayField>Date__c</errorDisplayField>
+    <errorMessage>Date should be within the start and end of the section.</errorMessage>
+</ValidationRule>

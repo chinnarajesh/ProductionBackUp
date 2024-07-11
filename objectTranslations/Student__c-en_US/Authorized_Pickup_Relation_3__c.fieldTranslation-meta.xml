@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Displays the relationship to the student of the person listed in the Authorized Pickup 3 field. --></help>
+    <label><!-- Authorized Pickup Relation 3 --></label>
+    <name>Authorized_Pickup_Relation_3__c</name>
+</CustomFieldTranslation>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Non_Present_Daily_Attendance__c</fullName>
+    <description>This field is the total number of daily attendance records that are not &quot;Present&quot; for a student.</description>
+    <inlineHelpText>Displays the student&apos;s total number of Attendance records where the Daily check box is selected and the value in the Status field is not &quot;Present&quot;.</inlineHelpText>
+    <label>Non-Present Daily Attendance</label>
+    <summaryFilterItems>
+        <field>Attendance__c.Daily__c</field>
+        <operation>equals</operation>
+        <value>True</value>
+    </summaryFilterItems>
+    <summaryFilterItems>
+        <field>Attendance__c.Status_for_Rollup__c</field>
+        <operation>contains</operation>
+        <value>Absence, Suspension, Out</value>
+    </summaryFilterItems>
+    <summaryForeignKey>Attendance__c.Student__c</summaryForeignKey>
+    <summaryOperation>count</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

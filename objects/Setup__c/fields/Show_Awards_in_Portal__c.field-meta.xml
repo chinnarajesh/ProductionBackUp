@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Show_Awards_in_Portal__c</fullName>
+    <defaultValue>false</defaultValue>
+    <inlineHelpText>This will display awards given to a student.</inlineHelpText>
+    <label>Show Awards in Portal</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

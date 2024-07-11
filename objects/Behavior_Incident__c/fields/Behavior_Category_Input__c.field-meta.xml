@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Behavior_Category_Input__c</fullName>
+    <label>Behavior Category</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Non-compliant / Not Participating / Not Prepared</fullName>
+                <default>false</default>
+                <label>Non-compliant / Not Participating / Not Prepared</label>
+            </value>
+            <value>
+                <fullName>Not In Class or With Group / Truancy</fullName>
+                <default>false</default>
+                <label>Not In Class or With Group / Truancy</label>
+            </value>
+            <value>
+                <fullName>Misusing Materials / Damaging Property</fullName>
+                <default>false</default>
+                <label>Misusing Materials / Damaging Property</label>
+            </value>
+            <value>
+                <fullName>Inappropriate Physical Contact / Unsafe Behavior</fullName>
+                <default>false</default>
+                <label>Inappropriate Physical Contact / Unsafe Behavior</label>
+            </value>
+            <value>
+                <fullName>Lying / Cheating / Stealing</fullName>
+                <default>false</default>
+                <label>Lying / Cheating / Stealing</label>
+            </value>
+            <value>
+                <fullName>Disruptive / Disrespectful</fullName>
+                <default>false</default>
+                <label>Disruptive / Disrespectful</label>
+            </value>
+            <value>
+                <fullName>Bullying / Threatening / Planning Harm</fullName>
+                <default>false</default>
+                <label>Bullying / Threatening / Planning Harm</label>
+            </value>
+            <value>
+                <fullName>Fighting</fullName>
+                <default>false</default>
+                <label>Fighting</label>
+            </value>
+            <value>
+                <fullName>Having / Using Potential or Real Weapon</fullName>
+                <default>false</default>
+                <label>Having / Using Potential or Real Weapon</label>
+            </value>
+            <value>
+                <fullName>Drugs / Alcohol</fullName>
+                <default>false</default>
+                <label>Drugs / Alcohol</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+            <value>
+                <fullName>Positive Behaviors</fullName>
+                <default>false</default>
+                <label>Positive Behaviors</label>
+            </value>
+            <value>
+                <fullName>Medical</fullName>
+                <default>false</default>
+                <label>Medical</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

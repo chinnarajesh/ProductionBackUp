@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Grade</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Grades</value>
+    </caseValues>
+    <layouts>
+        <layout>Grade Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Standards/Strands --></label>
+            <section>Standards/Strands</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Grade Layout_admin</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- Entered grade cannot be greater than 1. --></errorMessage>
+        <name>Preventing_values_greater_than_1</name>
+    </validationRules>
+</CustomObjectTranslation>

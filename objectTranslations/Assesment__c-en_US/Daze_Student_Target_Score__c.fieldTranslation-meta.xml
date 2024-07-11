@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- A task that measures how well a student understands a passage they read silently --></help>
+    <label><!-- Daze Student Target Score --></label>
+    <name>Daze_Student_Target_Score__c</name>
+</CustomFieldTranslation>

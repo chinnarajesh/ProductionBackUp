@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- The Media Name will display in the Student/Parent Portal.  The name will appear under &quot;Now Playing&quot; in the Media Center, found in Current Assignments. The Media Name will also display on the Assignment page in SchoolForce. --></help>
+    <label><!-- Media Name --></label>
+    <name>Media_Name__c</name>
+</CustomFieldTranslation>

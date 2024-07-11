@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Select the default number of reporting periods over which the sections in this course will meet. If the number of reporting periods for this course is variable, you can define additional reporting period durations by clicking Edit Grade Weightings. --></help>
+    <label><!-- Number of Reporting Periods --></label>
+    <name>Number_of_Reporting_Periods__c</name>
+</CustomFieldTranslation>

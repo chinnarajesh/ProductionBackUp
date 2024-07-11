@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>NCES_Status__c</fullName>
+    <description>This field is a specific status for NCES standards for reporting.</description>
+    <inlineHelpText>Do not use this field; it is no longer used by SchoolForce.</inlineHelpText>
+    <label>NCES Status *Retired*</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Status__c</controllingField>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Present- Disciplinary action, receiving instruction</fullName>
+                <default>false</default>
+                <label>Present- Disciplinary action, receiving instruction</label>
+            </value>
+            <value>
+                <fullName>Present- In School, regular instructional program</fullName>
+                <default>false</default>
+                <label>Present- In School, regular instructional program</label>
+            </value>
+            <value>
+                <fullName>Present- Nontraditional school setting, regular instructiona program</fullName>
+                <default>false</default>
+                <label>Present- Nontraditional school setting, regular instructiona program</label>
+            </value>
+            <value>
+                <fullName>Present- Out of school, regular instructional program activity</fullName>
+                <default>false</default>
+                <label>Present- Out of school, regular instructional program activity</label>
+            </value>
+            <value>
+                <fullName>Present- Out of school, school-approved extracurricular or cocurricular activity</fullName>
+                <default>false</default>
+                <label>Present- Out of school, school-approved extracurricular or cocurricular activity</label>
+            </value>
+            <value>
+                <fullName>Absent- Disciplinary action, not receiving instruction</fullName>
+                <default>false</default>
+                <label>Absent- Disciplinary action, not receiving instruction</label>
+            </value>
+            <value>
+                <fullName>Absent- Family activity</fullName>
+                <default>false</default>
+                <label>Absent- Family activity</label>
+            </value>
+            <value>
+                <fullName>Absent- Family emergency or bereavement</fullName>
+                <default>false</default>
+                <label>Absent- Family emergency or bereavement</label>
+            </value>
+            <value>
+                <fullName>Absent- illness, injury, health treatment, or examination</fullName>
+                <default>false</default>
+                <label>Absent- illness, injury, health treatment, or examination</label>
+            </value>
+            <value>
+                <fullName>Absent- Legal or judicial requirement</fullName>
+                <default>false</default>
+                <label>Absent- Legal or judicial requirement</label>
+            </value>
+            <value>
+                <fullName>Absent- Noninstructional activity recognized by state or school</fullName>
+                <default>false</default>
+                <label>Absent- Noninstructional activity recognized by state or school</label>
+            </value>
+            <value>
+                <fullName>Absent- Religious obsesrvation</fullName>
+                <default>false</default>
+                <label>Absent- Religious obsesrvation</label>
+            </value>
+            <value>
+                <fullName>Absent- Situation unknown</fullName>
+                <default>false</default>
+                <label>Absent- Situation unknown</label>
+            </value>
+            <value>
+                <fullName>Absent- Student employment</fullName>
+                <default>false</default>
+                <label>Absent- Student employment</label>
+            </value>
+            <value>
+                <fullName>Absent- Student is skipping school</fullName>
+                <default>false</default>
+                <label>Absent- Student is skipping school</label>
+            </value>
+            <value>
+                <fullName>Absent- Transportation not available</fullName>
+                <default>false</default>
+                <label>Absent- Transportation not available</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Present</controllingFieldValue>
+            <valueName>Present- Disciplinary action, receiving instruction</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Present</controllingFieldValue>
+            <valueName>Present- In School, regular instructional program</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Present</controllingFieldValue>
+            <valueName>Present- Nontraditional school setting, regular instructiona program</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Present</controllingFieldValue>
+            <valueName>Present- Out of school, regular instructional program activity</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Present</controllingFieldValue>
+            <valueName>Present- Out of school, school-approved extracurricular or cocurricular activity</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Unexcused Absence</controllingFieldValue>
+            <controllingFieldValue>Excused Absence</controllingFieldValue>
+            <valueName>Absent- Disciplinary action, not receiving instruction</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Unexcused Absence</controllingFieldValue>
+            <controllingFieldValue>Excused Absence</controllingFieldValue>
+            <valueName>Absent- Family activity</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Unexcused Absence</controllingFieldValue>
+            <controllingFieldValue>Excused Absence</controllingFieldValue>
+            <valueName>Absent- Family emergency or bereavement</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Unexcused Absence</controllingFieldValue>
+            <controllingFieldValue>Excused Absence</controllingFieldValue>
+            <valueName>Absent- illness, injury, health treatment, or examination</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Unexcused Absence</controllingFieldValue>
+            <controllingFieldValue>Excused Absence</controllingFieldValue>
+            <valueName>Absent- Legal or judicial requirement</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Unexcused Absence</controllingFieldValue>
+            <controllingFieldValue>Excused Absence</controllingFieldValue>
+            <valueName>Absent- Noninstructional activity recognized by state or school</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Unexcused Absence</controllingFieldValue>
+            <controllingFieldValue>Excused Absence</controllingFieldValue>
+            <valueName>Absent- Religious obsesrvation</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Unexcused Absence</controllingFieldValue>
+            <controllingFieldValue>Excused Absence</controllingFieldValue>
+            <valueName>Absent- Situation unknown</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Unexcused Absence</controllingFieldValue>
+            <controllingFieldValue>Excused Absence</controllingFieldValue>
+            <valueName>Absent- Student employment</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Unexcused Absence</controllingFieldValue>
+            <controllingFieldValue>Excused Absence</controllingFieldValue>
+            <valueName>Absent- Student is skipping school</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Unexcused Absence</controllingFieldValue>
+            <controllingFieldValue>Excused Absence</controllingFieldValue>
+            <valueName>Absent- Transportation not available</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

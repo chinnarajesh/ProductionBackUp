@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Displays whether or not this Student record is archived. SchoolForce archives Student records in the Process Data Step of the EOY Wizard. You should never manually update this field. --></help>
+    <label><!-- Archived --></label>
+    <name>Archived__c</name>
+</CustomFieldTranslation>

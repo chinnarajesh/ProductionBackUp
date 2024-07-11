@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Enter the subject of the incident. (Example: Student running in hallway) --></help>
+    <label><!-- Title --></label>
+    <name>Incident_Title__c</name>
+</CustomFieldTranslation>

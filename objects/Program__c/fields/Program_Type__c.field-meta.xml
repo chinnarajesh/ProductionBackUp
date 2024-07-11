@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Program_Type__c</fullName>
+    <label>Program Type</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Assessment</fullName>
+                <default>false</default>
+                <label>Assessment</label>
+            </value>
+            <value>
+                <fullName>Curriculum</fullName>
+                <default>false</default>
+                <label>Curriculum</label>
+            </value>
+            <value>
+                <fullName>Intervention</fullName>
+                <default>false</default>
+                <label>Intervention</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

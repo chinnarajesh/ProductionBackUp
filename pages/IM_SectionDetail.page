@@ -85,7 +85,7 @@
         #studentsInSection th {
             word-wrap: break-word;
             text-overflow: ellipsis;
-            max-width: 57px;
+            max-width: 62px;
             overflow: hidden;
             white-space: normal;
         }
@@ -93,11 +93,16 @@
         #lean_overlay {
             pointer-events: none;
         }
+        .inactive-row {
+        background-color: #ddd; 
+        opacity: 0.5;
+    }
     </style>
     <script>
         var CITY = CITY || {};  // global variable as root namespace
         var addedValues = [];
         var newvalue;
+         
         j$(document).ready(function () {
             checkDisabled();
             // get the section start and end dates
@@ -132,6 +137,10 @@
             //KC: Adjust window height on load
             resetWindowSize();
         });
+        ///
+        
+        ///
+      
 
         function openStackedModal(openLinkID, modalID) {
             var openingModalIndex = j$(modalID).css('z-index');
@@ -319,10 +328,13 @@
         }
 
         function reloadPage() {
-            setTimeout(window.location.reload(), 3000);
+            console.log('test log');
+            var delay = 10000;
+            setTimeout(window.location.reload(), delay);
         }
 
         function reloadPageAfterSaveTime() {
+            console.log('test log 2');
             var delay = 3000;
             setTimeout(function(){window.location.reload();},delay);
         }
@@ -565,6 +577,103 @@
             var val = inputBox.value;
             j$("input[id$='exitTicketEntry']").val(val);
         }
+
+        ////addedby juturi rajesh
+      
+
+           var finalStudents ="";
+           var checkedIds = [];
+           var selectedIds = "";
+           var selectedcheckIds ="";
+     
+           var uncheckedStudentList="";
+
+        function allSelectedFunction(){
+           // console.log('test console');
+           showProgressBar('Please wait.');
+            //finalSelectedListActionJS();
+            setTimeout('hideProgressBar()',3000);
+            finalSelectedListActionJS()
+        }
+        function showingProgressBar(){
+            showProgressBar('Please wait.');
+            //finalSelectedListActionJS();
+            setTimeout('hideProgressBar()',2000);
+        }
+        function studentSearchProgessbar(){
+            showProgressBar('Please wait.');
+            setTimeout('hideProgressBar()',4000);
+            var val='';
+            j$("input[id$='StudentName']").val(val);
+        }
+        function FinalAddtimeEvent(){
+            showProgressBar('Please wait.');
+            setTimeout('hideProgressBar()',7000);
+            finalSelectedListActionJS(finalStudents,uncheckedStudentList);
+            setTimeout(function() {
+                startAddTimeJS();
+                }, 5000);
+
+        }
+
+
+        function showConfirmAndHideDownload(obj,selectedId) {
+            //finalSelectedListActionJS();
+            var checkFlag =true;
+           console.log('obj++ '+obj.checked);
+          
+            if(obj.checked ==false){
+                uncheckedStudentList+=selectedId;
+            }
+            console.log('uncheckedStudentList++'+uncheckedStudentList)
+
+            var flag =true
+            var checkboxes = document.querySelectorAll("input[type='checkbox']:checked");
+            console.log('checkboxes++ '+checkbox);
+            console.log('selectedId '+selectedId);
+            if(typeof selectedId ==='undefined'){
+                console.log('check undefined');
+                checkFlag=false;
+            }
+        
+            if(checkFlag==true){
+            for (var i = 0; i < checkboxes.length; i++) {
+                  var checkbox = checkboxes[i];
+                  console.log('checkboxes '+checkbox);
+                  //var studentId =  checkbox.closest("tr").id; 
+               if(obj.checked ==true){
+               if(!checkedIds.includes(selectedId)){
+                console.log('duplicate check');
+                  checkedIds.push(selectedId);
+                  flag=false;
+                  }
+                }
+               }
+            }
+               if(flag==true && typeof selectedId !=='undefined'){
+               var uncheckedIds = [];
+               //var uncheckedboxes = document.querySelectorAll("input[type='checkbox']");
+               uncheckedIds.push(selectedId);
+
+               uncheckedIds.forEach(function(uncheckedId) {
+                console.log('uncheckedId '+uncheckedId);
+               var index = checkedIds.indexOf(uncheckedId);
+               console.log('index'+index);
+               if (index !== -1) {
+               checkedIds.splice(index, 1);
+                }
+              });
+            }
+            finalStudents='';
+            console.log('finalStudents 111 '+finalStudents);
+            checkedIds.forEach(function(filterstudentsetId) {
+                finalStudents+=filterstudentsetId;
+              });
+
+            console.log('finalStudents 222 '+finalStudents);
+        }
+        ////
+      
         
     </script>
 
@@ -599,7 +708,16 @@
                             <a href="#add-curricula" id="curricula_modal" rel="leanModal"></a>
                             <a href="#add-ia-students" id="ia_modal" rel="leanModal"></a>
                         </div>
-
+                        <div >
+                        <div style="margin-right: 99vh;">
+                            <!-- <span>Search :<input name="filterBox" placeholder="Search by Name or CY-Id or Local Id" 
+                                onkeyup="filterNameSectioDetailPage(this,'studentsInSection')" type="text" size="50"
+                                style="margin-left:5px;width: 221px;"/></span> -->
+                           <span>Search :<apex:inputText value="{!searchstring}"  id="StudentName" style="margin-left:5px;width: 221px;" html-placeholder="Search by Name or CY-Id or Local Id"/> </span>
+                           <apex:image url="{!$Resource.searchIcon}" 
+                           style="width: 28px;margin-left: 36vh;margin-bottom: 11px;margin-top: -53px;margin-right:-18px" onclick="NewSearchString();studentSearchProgessbar();" />
+                        
+                        </div></div>
                         <input id="addButton" type="button" class="drk_blue_btn"
                                onClick="showProgressBar('Please wait.'); startEnrollStudentsJS();"
                                value="Enroll Student(s)"/>
@@ -607,7 +725,7 @@
                                onclick="showProgressBar('Please wait.');startWithdrawStudentsJS();"
                                value="Withdraw Student(s)"/>
                         <input id="timeButton" type="button" class="drk_blue_btn"
-                               onclick="showProgressBar('Please wait.'); startAddTimeJS();" value="Add Time"/>
+                               onclick="FinalAddtimeEvent();" value="Add Time"/>
                         <input id="addСurriculaButton" type="button" class="drk_blue_btn"
                                onclick="showProgressBar('Please wait.');startAddСurriculaJS();" value="Add Сurricula"/>
                         <input id="edittimeButton" type="button" class="drk_blue_btn"
@@ -617,15 +735,59 @@
                                value="Add To Indicator Area"/>
                     </div>
                     <apex:outputPanel id="studentTable">
+                        <div style="width: 100%;display: flex !important;">
+                            <div style="width: 50%;">
+                            <apex:outputText >Showing {!showingRecords} to {!increaseCount} of {!totalRecs} entries </apex:outputText>
+                           </div>
+                            <!-- <apex:outputText> Selected entries {!selectedStudentCount}</apex:outputText> -->
+                          <div style="position: relative;width: 50%;padding-left: 20vw;">
+                          <apex:commandButton style="margin-right: 20px;" onclick="FirstPage()" value="First" rerender="details" disabled="{!prev}"/>
+
+                          <apex:commandButton style="margin-right: 65px;" value="Previous" rerender="details" onclick="previous()" disabled="{!prev}"/>
+        
+                          <apex:commandButton style="margin-right: 10px;" value="Next" rerender="details" onclick="next()" disabled="{!nxt}"/>
+                          <apex:commandButton value="Last" reRender="details" onclick="LastPage()" disabled="{!nxt}"/>
+                          </div>
+                        </div>
                         <script>
                             j$(function () {
                                 j$('#studentsInSection').tsort();
                             });
+                             /////
+        //   j$(document).ready(function() {
+        //     //alert('total records');
+        //                        // hideLoading();
+        //     var contactTable = j$('[id$="studentsInSection"]').DataTable({
+        //         //"sScrollY": "500px",
+        //         "bLengthChange": true,
+        //         //"scrollX": true,
+        //         //"bFilter": true,
+        //         "bInfo": true,
+        //         "aoColumnDefs": [{
+        //             "sWidth": "30%",
+        //             "aTargets": [0]
+        //         }],
+        //         "bAutoWidth": true,
+        //         //"bSort": true,
+        //         "bDestroy": true,
+        //         //"bScrollAutoCss": true,
+        //         "bPaginate": true,
+        //         "bScrollCollapse": true,
+        //         //"bJQueryUI": true,
+        //         "bSaveState": true,
+        //         "sPaginationType": "full_numbers",
+        //         iDisplayLength: 10,
+        //         "asStripeClasses": ['table_row1'],
+        //         "sDom": '<"top"lfip>rt<"bottom"ip<"clear">'
+                
+        //     });
+        // });
+        /////
                         </script>
-                        <table id="studentsInSection">
+                        <table  id="studentsInSection">
                             <thead style="cursor:pointer">
                             <th style="display:none;">StudentID</th>
-                            <th><input type="checkbox" onChange="toggleAllChecks(this,'studentsInSection')"/></th>
+                            <th><input type="checkbox" onChange="toggleAllChecks(this,'studentsInSection');" /></th>
                             <th class="type-string">Student</th>
                             <th class="type-string">CY-ID</th>
                             <th class="type-string">Local ID</th>
@@ -640,10 +802,10 @@
                             </thead>
                             <tbody>
                             <apex:repeat value="{!studentSections}" var="s">
-                                <tr>
+                                <tr >
                                     <td style="display:none;">{!s.studentSection.Student__c}</td>
-                                    <td>
-                                        <apex:inputCheckbox value="{!s.selected}"/>
+                                    <td >
+                                        <apex:inputCheckbox value="{!s.selected}" id="inputId" onClick="showConfirmAndHideDownload(this,'{!s.studentSection.Student__c};');" disabled="{!NOT(s.studentSection.Active__c)}"/>
                                     </td>
                                     <td><a href="/{!s.studentSection.ID}"
                                            target="_blank">{!s.studentSection.Student_Name__c}</a></td>
@@ -672,6 +834,20 @@
                             </apex:repeat>
                             </tbody>
                         </table>
+                        <div style="width: 100%;display: flex !important;">
+                            <div style="width: 50%;">
+                            <apex:outputText >Showing {!showingRecords} to {!increaseCount} of {!totalRecs} entries </apex:outputText>
+                           </div>
+                            <!-- <apex:outputText> Selected entries {!selectedStudentCount}</apex:outputText> -->
+                          <div style="position: relative;width: 50%;padding-left: 20vw;">
+                          <apex:commandButton style="margin-right: 20px;" onclick="FirstPage()" value="First" rerender="details" disabled="{!prev}"/>
+
+                          <apex:commandButton style="margin-right: 65px;" value="Previous" rerender="details" onclick="previous()" disabled="{!prev}"/>
+        
+                          <apex:commandButton style="margin-right: 10px;" value="Next" rerender="details" onclick="next()" disabled="{!nxt}"/>
+                          <apex:commandButton value="Last" reRender="details" onclick="LastPage()" disabled="{!nxt}"/>
+                          </div>
+                        </div>
                     </apex:outputPanel>
                 </div>
 
@@ -702,18 +878,26 @@
                         <label style="margin-left:10px;">Date:</label>
                         <apex:inputField id="filterDate" value="{!sessionFilter.Date__c}" style="margin-left:10px;"
                                          onChange="filterSessionsJS();"/>
+                        <label style="margin-left:10px;">Search:</label>
+                        <input name="filterBox" placeholder="Search by Name or CY-Id or Local Id"
+                               onkeyup="historyFilterSection(this,'IntervwntionSessions')" type="text" size="50"
+                               style="margin-left:5px;width: 221px;"/>
+
                     </apex:outputPanel>
 
                     <apex:outputPanel id="editSessionsList" style="overflow-y:scroll;border: 1px solid #ccc;"
                                       layout="block">
-                        <table class="fullWidthTable" style="margin-bottom:0;border:0;">
+                        <table id="IntervwntionSessions" class="fullWidthTable" style="margin-bottom:0;border:0;" >
                             <thead>
-                            <th></th>
+                            <th ></th>
                             <th>Corps Member</th>
                             <th>Session ID</th>
                             <th id="date-header">Date</th>
                             <th>Primary Skill</th>
                             <th>Last Modified Date</th>
+                            <th style="display:none;">Student Name</th>
+                            <th style="display:none;">CY-ID</th>
+                            <th style="display:none;">Local ID</th>
                             </thead>
                             <tbody>
                             <apex:repeat value="{!sessions}" var="sessionWrapper">
@@ -742,6 +926,16 @@
                                     <td>
                                         <apex:outputField value="{!sessionWrapper.session.LastModifiedDate}"/>
                                     </td>
+                                    <td style="display:none;">
+                                        <apex:outputText value="{!sessionWrapper.studentList}"></apex:outputText>
+                                        <!-- <apex:outputField value="{!studentList}"/> -->
+                                    </td>
+                                    <td style="display:none;">
+                                        <apex:outputText value="{!sessionWrapper.studentCYIdList}"></apex:outputText>
+                                    </td>
+                                    <td style="display:none;">
+                                        <apex:outputText value="{!sessionWrapper.studentLocalIdList}"></apex:outputText>
+                                    </td>
                                 </tr>
                             </apex:repeat>
                             </tbody>
@@ -750,13 +944,13 @@
                 </div>
 
                 <!-- Add Session Modal -->
-                <c:ModalAddSession recSection="{!section}" lstStudentSections="{!studentSections}"/>
+                <c:ModalAddSession recSection="{!section}" lstStudentSections="{!finalstudentSections}"/>
 
                 <!-- Add Curricula Modal -->
                 <c:ModalAddCurricula recSection="{!section}" lstStudentSections="{!studentSections}"/>
 
                 <!-- Add IA Students Modal -->
-                <c:ModalAddIaStudents recSection="{!section}" lstStudentSections="{!studentSections}"/>
+                <c:ModalAddIaStudents recSection="{!section}" lstStudentSections="{!finalstudentSections}"/>
 
                 <!-- Error Modal -->
                 <div id="err_select" class="modal_window" style="width:300px;height:125px">
@@ -782,7 +976,7 @@
         <apex:actionFunction name="startWithdrawStudentsJS" action="{!startWithdrawStudents}" status="loadExit"
                              oncomplete="openWithdrawModal();" rerender="exitTable,exitDatePanel,messages"/>
         <apex:actionFunction name="withdrawStudentsJS" action="{!withdrawStudents}"
-                             onComplete="close_modal('#exit-student'); isSaving=false; checkDisabled();"
+                             onComplete="close_modal('#exit-student'); isSaving=false; checkDisabled();reloadPageAfterSaveTime();"
                              rerender="studentTable,availStudents,messages"/>
         <apex:actionFunction name="startEditTimeJS" action="{!startEditTime}"
                              onComplete="if(j$('.errorM3','.primaryErrorPanel').size() == 0){clearFilterDate();openModal('#edit_time_modal');recalculateModalSize();}"
@@ -791,10 +985,24 @@
         <apex:actionFunction name="filterSessionsJS" action="{!filterSessions}"
                              reRender="editSessionsList, editModalMessages"/>
 
+        <apex:actionFunction name="FirstPage" action="{!FirstPage}" rerender="studentTable,availStudents"/>
+        <apex:actionFunction name="previous" action="{!previous}" rerender="studentTable,availStudents"/>
+        <apex:actionFunction name="next" action="{!next}" rerender="studentTable,availStudents"/>
+        <apex:actionFunction name="LastPage" action="{!LastPage}" rerender="studentTable,availStudents"/>
+        <apex:actionFunction name="finalSelectedListActionJS" action="{!finalSelectedListAction}" rerender="details">
+            <apex:param name="a" value="" assignTo="{!selectStudentParam}"/>
+            <apex:param name="c" value="" assignTo="{!Unselectedsstudents}"/>
+        </apex:actionFunction>
+
+        <apex:actionFunction name="NewSearchString" action="{!StudentSerach2}" rerender="studentTable,availStudents" status="loadingStatus"/>
+
+
         <!--        <apex:actionFunction name="loadAvailableStudentsJS" action="{!loadAvailableStudents}"-->
         <!--                             rerender="availStudents, messages" status="loadingStatus"/>-->
 
         <!--        <apex:actionFunction name="displayStudentJS" action="{!displayStudent}" rerender="messages,bothTables" status="loadingStatus"/>-->
+
+
 
 
     </apex:Form>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All_My_Students</fullName>
+    <columns>NAME</columns>
+    <columns>School__c</columns>
+    <columns>Schedule_Group__c</columns>
+    <columns>Student_First_Name__c</columns>
+    <columns>Student_Last_Name__c</columns>
+    <columns>Gender__c</columns>
+    <columns>Grade__c</columns>
+    <columns>Student_Id__c</columns>
+    <columns>Local_Student_ID__c</columns>
+    <columns>School_Year__c</columns>
+    <columns>Attendance_Time_Lost__c</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>CREATEDBY_USER</columns>
+    <columns>LAST_UPDATE</columns>
+    <columns>UPDATEDBY_USER</columns>
+    <filterScope>Everything</filterScope>
+    <label>All My Students</label>
+</ListView>

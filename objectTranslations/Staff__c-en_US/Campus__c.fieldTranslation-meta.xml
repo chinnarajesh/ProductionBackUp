@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Campus --></label>
+    <name>Campus__c</name>
+    <picklistValues>
+        <masterLabel>Base School</masterLabel>
+        <translation><!-- Base School --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Campus</masterLabel>
+        <translation><!-- Campus --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>DC-Georgia Ave</masterLabel>
+        <translation><!-- DC-Georgia Ave --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Kansas</masterLabel>
+        <translation><!-- Kansas --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Organization</masterLabel>
+        <translation><!-- Organization --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

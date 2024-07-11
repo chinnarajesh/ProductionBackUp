@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Value_Range_Days_Enrolled</fullName>
+    <active>true</active>
+    <errorConditionFormula>OR( 
+Days_Enrolled__c &lt; 0, 
+Days_Enrolled__c &gt; 200 
+)</errorConditionFormula>
+    <errorDisplayField>Days_Enrolled__c</errorDisplayField>
+    <errorMessage>Days Enrolled must be within a 0 - 200 range.</errorMessage>
+</ValidationRule>

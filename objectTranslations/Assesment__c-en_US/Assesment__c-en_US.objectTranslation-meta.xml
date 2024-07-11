@@ -1,0 +1,603 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Assessment</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Assessments</value>
+    </caseValues>
+    <layouts>
+        <layout>Assesments Layout</layout>
+        <sections>
+            <label><!-- Assessment Scores --></label>
+            <section>Assessment Scores</section>
+        </sections>
+        <sections>
+            <label><!-- Attendance Values --></label>
+            <section>Attendance Values</section>
+        </sections>
+        <sections>
+            <label><!-- Behavior Values --></label>
+            <section>Behavior Values</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- DESSA Composite Scores --></label>
+            <section>DESSA Composite Scores</section>
+        </sections>
+        <sections>
+            <label><!-- Star --></label>
+            <section>Star</section>
+        </sections>
+    </layouts>
+    <startsWith>Vowel</startsWith>
+    <validationRules>
+        <errorMessage><!-- Average Daily Attendance requires values between 0.000 and 1.000 --></errorMessage>
+        <name>ADA_decimal</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Scaled Score must be within the range of 0 to 100. --></errorMessage>
+        <name>Amplify_MATH_scale_score_100</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Student Target Score must be within the range of 0 to 100. --></errorMessage>
+        <name>Amplify_MATH_student_Target_score_100</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Student Target Score must be within the range of 0 to 1000. --></errorMessage>
+        <name>DIBELS_ELA</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Student Target Score must be within the range of 0 to 100. --></errorMessage>
+        <name>EADMS_ELA_Student_Target_score_100</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Scaled Score must be within the range of 0 to 100. --></errorMessage>
+        <name>EADMS_ELA_scale_score_100</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Scaled Score must be within the range of 0 to 100. --></errorMessage>
+        <name>EADMS_MATH_scale_score_100</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Student Target Score must be within the range of 0 to 100. --></errorMessage>
+        <name>EADMS_MATH_student_Target_score_100</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- ELA Fast must be within the range of 0 to 800. --></errorMessage>
+        <name>ELA_FAST</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Scaled Score must be within the range of 0 to 300. --></errorMessage>
+        <name>EasyCBM_ELA_scale_score_300</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Student Target Score must be within the range of 0 to 300. --></errorMessage>
+        <name>EasyCBM_ELA_student_target_score_300</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Student Target Score must be within the range of 0 to 300. --></errorMessage>
+        <name>EasyCBM_MATH_student_target_score_300</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Scaled Score must be within the range of 0 to 300. --></errorMessage>
+        <name>EasyCBM_Math_scale_score_300</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Scaled Score must be within the range of 100 to 500. --></errorMessage>
+        <name>FAST_ELA</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The range for this field must be between 1 and 5. --></errorMessage>
+        <name>FAST_ELA_level_code</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Scaled Score must be within the range of 100 to 500. --></errorMessage>
+        <name>FAST_Math</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The range for this field must be between 1 and 5. --></errorMessage>
+        <name>FAST_Math_level_code</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Scaled Score must be within the range of 0 to 500. --></errorMessage>
+        <name>Fastbridge_aMath_MATH_500</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Scaled Score must be within the range of 0 to 500. --></errorMessage>
+        <name>Fastbridge_aMath_MATH_scale_score_500</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Student Target Score must be within the range of 0 to 500. --></errorMessage>
+        <name>Fastbridge_aMath_MATH_target_500</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Scaled Score must be within the range of 0 to 500. --></errorMessage>
+        <name>Fastbridge_aReading_ELA_scale_score_500</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Student Target Score must be within the range of 0 to 500. --></errorMessage>
+        <name>Fastbridge_aReading_ELA_target_500</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- This field must be an integer. --></errorMessage>
+        <name>Integer_Rule_AIMS_ELA_Scale</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- This field must be an integer. --></errorMessage>
+        <name>Integer_Rule_AIMS_ELA_Student</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- This field must be an integer. --></errorMessage>
+        <name>Integer_Rule_AIMS_Math_Scale</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- This field must be an integer. --></errorMessage>
+        <name>Integer_Rule_AIMS_Math_Student</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- This field must be an integer. --></errorMessage>
+        <name>Integer_Rule_DIBELS</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- This field must be an integer. --></errorMessage>
+        <name>Integer_Rule_DIBELS_target_score</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- This field must be an integer. --></errorMessage>
+        <name>Integer_Rule_DRA</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- This field must be an integer. --></errorMessage>
+        <name>Integer_Rule_DRA_target_score</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- This field must be an integer. --></errorMessage>
+        <name>Integer_Rule_Days_Enrolled</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- This field must be an integer. --></errorMessage>
+        <name>Integer_Rule_Detentions</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- This field must be an integer. --></errorMessage>
+        <name>Integer_Rule_ISIP_Overall_Reading</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- This field must be an integer. --></errorMessage>
+        <name>Integer_Rule_ISIP_Overall_Target_score</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- This field must be an integer. --></errorMessage>
+        <name>Integer_Rule_ISS</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- This field must be an integer. --></errorMessage>
+        <name>Integer_Rule_Lexia_Step_Number</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- This field must be an integer. --></errorMessage>
+        <name>Integer_Rule_Lexia_Step_Number_target</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- This field must be an integer. --></errorMessage>
+        <name>Integer_Rule_Lexile</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- This field must be an integer. --></errorMessage>
+        <name>Integer_Rule_Lexile_Target</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- This field must be an integer. --></errorMessage>
+        <name>Integer_Rule_OSS</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- This field must be an integer. --></errorMessage>
+        <name>Integer_Rule_Office_Referrals</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- This field must be an integer. --></errorMessage>
+        <name>Integer_Rule_Quantile</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- This field must be an integer. --></errorMessage>
+        <name>Integer_Rule_Quantile_Target</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- This field must be an integer. --></errorMessage>
+        <name>Integer_Rule_Scale_Score</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- This field must be an integer. --></errorMessage>
+        <name>Integer_Rule_Suspensions</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- This field must be an interger --></errorMessage>
+        <name>Interger_Rule_Scale_Score</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- This field must be an integer. --></errorMessage>
+        <name>Interger_Rule_Student_Target_Score</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Math Fast must be within the range of 0 to 800. --></errorMessage>
+        <name>Math_FAST</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Scaled Score must be within the range of 0 to 300. --></errorMessage>
+        <name>NWEA_ELA_Scale_score_300</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Student Target Score must be within the range of 0 to 300. --></errorMessage>
+        <name>NWEA_ELA_student_target_Score_300</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Scaled Score must be within the range of 0 to 300. --></errorMessage>
+        <name>NWEA_Math_Scale_score_300</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Student Target Score must be within the range of 0 to 300. --></errorMessage>
+        <name>NWEA_Math_student_target_Score_300</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Date administered cannot be in the future. --></errorMessage>
+        <name>No_future_dates</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Scaled Score must be within the range of 0 to 100. --></errorMessage>
+        <name>Orlando_Common_ELA_scale_score_100</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Student Target Score must be within the range of 0 to 100. --></errorMessage>
+        <name>Orlando_Common_ELA_target_score_100</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Scaled Score must be within the range of 0 to 100. --></errorMessage>
+        <name>Orlando_Common_MATH_scale_score_100</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Student Target Score must be within the range of 0 to 100. --></errorMessage>
+        <name>Orlando_Common_MATH_target_score_100</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Raw Score Target must be within the range of 0 - 30 --></errorMessage>
+        <name>Raw_Target_Score_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Raw Score must be within a 0 - 30 range --></errorMessage>
+        <name>Raw_score_validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Student Target Score must be within the range of 0 to 2. --></errorMessage>
+        <name>STAAR_ELA_Student_target_score</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Scaled Score must be within the range of 0 to 2500. --></errorMessage>
+        <name>STAAR_ELA_scale_score_2500</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Quantile Score must be within the range of -1300 to 1600. --></errorMessage>
+        <name>STAAR_MATH_Quantile_score</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Scaled Score must be within the range of 0 to 2500. --></errorMessage>
+        <name>STAAR_MATH_scale_score_2500</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Student Target Score must be within the range of 0 to 2. --></errorMessage>
+        <name>STAAR_math_Student_target_score</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The Smarter Balanced Assessment Score Range is between 2000 - 3000. --></errorMessage>
+        <name>Scale_Score_Smarter_Balanced_ELA</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The Smarter Balanced Assessment Score Range is between 2000 - 3000. --></errorMessage>
+        <name>Scale_Score_Smarter_Balanced_Math</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Scaled Score must be within the range of 2000 to 3000. --></errorMessage>
+        <name>Smarter_ELA_Scale_Score</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Scaled Score must be within the range of 2000 to 3000. --></errorMessage>
+        <name>Smarter_Math_Scale_Score</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Scaled Score must be within the range of 0 to 1400. --></errorMessage>
+        <name>Star_Math_MATH_scale_score_1400</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Student Target Score must be within the range of 0 to 1400. --></errorMessage>
+        <name>Star_Math_MATH_student_target_score_1400</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Scaled Score must be within the range of 0 to 1400. --></errorMessage>
+        <name>Star_Reading_ELA_scale_score_1400</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Student Target Score must be within the range of 0 to 1400. --></errorMessage>
+        <name>Star_Reading_ELA_target_score_1400</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Student Growth Percentile Target Score must be within a 0 - 99 range. --></errorMessage>
+        <name>Valid_Student_Growth_Percent_Tar_Scor</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Student Growth Percentile Equivalent Score must be within a 0 - 99 range. --></errorMessage>
+        <name>Validation_range_Student_Growth_Percent</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- AIMSweb ELA Scale Score must be within a 0 - 400 range. --></errorMessage>
+        <name>Value_Range_AIMS_ELA_Scale</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- AIMSweb ELA Student Target Score must be within a 0 - 400 range. --></errorMessage>
+        <name>Value_Range_AIMS_ELA_Student</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- AIMSweb Math Scale Score must be within a 0 - 100 range. --></errorMessage>
+        <name>Value_Range_AIMS_MATH_Scale</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- AIMSweb Math Student Target Score must be within a 0 - 100 range. --></errorMessage>
+        <name>Value_Range_AIMS_MATH_Student</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Score must be within -3.000 to 3.000 range --></errorMessage>
+        <name>Value_Range_Academic_motivation_z_score</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Score must be within -3.000 to 3.000 range --></errorMessage>
+        <name>Value_Range_Action_orientation_z_score</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Score must be within -3.000 to 3.000 range --></errorMessage>
+        <name>Value_Range_Assertiveness_z_score</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Score must be within -3.000 to 3.000 range --></errorMessage>
+        <name>Value_Range_Critical_thinking_z_score</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- DIBELS Grade Level Equivalent Score must be within a 0 - 1000 range. --></errorMessage>
+        <name>Value_Range_DIBELS</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- DIBELS Grade Level Equivalent Student Target Score must be within a 0 - 1000 range. --></errorMessage>
+        <name>Value_Range_DIBELS_target_score</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- DRA Grade Level Equivalent Score must be within a 0 - 80 range. --></errorMessage>
+        <name>Value_Range_DRA</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- DRA Grade Level Equivalent Student Target Score must be within a 0 - 80 range. --></errorMessage>
+        <name>Value_Range_DRA_target_score</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Days Enrolled must be within a 0 - 200 range. --></errorMessage>
+        <name>Value_Range_Days_Enrolled</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Number of Detentions must be within a 0 - 200 range. --></errorMessage>
+        <name>Value_Range_Detentions</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Score must be within -3.000 to 3.000 range --></errorMessage>
+        <name>Value_Range_Emotion_control_z_score</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Score must be within -3.000 to 3.000 range --></errorMessage>
+        <name>Value_Range_Empathy_z_score</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- ISIP Overall Reading Ability Score must be within -5000 to 5000 range --></errorMessage>
+        <name>Value_Range_ISIP_Overall_Reading_Ability</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- ISIP Overall Reading Ability Target Score must be within -5000 to 5000 range --></errorMessage>
+        <name>Value_Range_ISIP_Overall_Reading_Target</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Number of In-School Suspensions must be within a 0 - 200 range. --></errorMessage>
+        <name>Value_Range_ISS</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Score must be within -3.000 to 3.000 range --></errorMessage>
+        <name>Value_Range_Learning_interest_z_score</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Score must be within 1 to 4 range --></errorMessage>
+        <name>Value_Range_Level_Code</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Lexia Step Number must be within a 0 - 30 range. --></errorMessage>
+        <name>Value_Range_Lexia_Step_Number</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Lexia Step Number Target Score must be within a 0 - 30 range. --></errorMessage>
+        <name>Value_Range_Lexia_Step_Number_target</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Lexile Score must be within  - 2000 to 2000 range. --></errorMessage>
+        <name>Value_Range_Lexile</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Number of Excused Absences must be within a 0 - 200 range. --></errorMessage>
+        <name>Value_Range_Number_of_Absences</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Number of Excused Absences must be within a 0 - 200 range. --></errorMessage>
+        <name>Value_Range_Number_of_Excused_Absences</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Number of Tardies must be within a 0 - 200 range. --></errorMessage>
+        <name>Value_Range_Number_of_Tardies</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Number of Unexcused Absences must be within a 0 - 200 range. --></errorMessage>
+        <name>Value_Range_Number_of_Unexcused_Absences</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Number of Out-of-School Suspensions must be within a 0 - 200 range. --></errorMessage>
+        <name>Value_Range_OSS</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Number of Office Referrals must be within a 0 - 200 range. --></errorMessage>
+        <name>Value_Range_Office_Referrals</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Score must be within -3.000 to 3.000 range --></errorMessage>
+        <name>Value_Range_Optimism_z_score</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Score must be within -3.000 to 3.000 range --></errorMessage>
+        <name>Value_Range_Perseverance_z_score</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Quantile Score must be within  - 2000 to 2000 range. --></errorMessage>
+        <name>Value_Range_Quantile</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Quantile Student Target Score must be within  - 2000 to 2000 range. --></errorMessage>
+        <name>Value_Range_Quantile_Target</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Score must be within 1.00 to 5.00 range --></errorMessage>
+        <name>Value_Range_RSC_Mean_Academic_Motivation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Score must be within 1.00 to 5.00 range --></errorMessage>
+        <name>Value_Range_RSC_Mean_Action_Orientation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Score must be within 1.00 to 5.00 range --></errorMessage>
+        <name>Value_Range_RSC_Mean_Adults</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Score must be within 1.00 to 5.00 range --></errorMessage>
+        <name>Value_Range_RSC_Mean_Assertiveness</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Score must be within 1.00 to 5.00 range --></errorMessage>
+        <name>Value_Range_RSC_Mean_Critical_Thinking</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Score must be within 1.00 to 5.00 range --></errorMessage>
+        <name>Value_Range_RSC_Mean_Emotion_Control</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Score must be within 1.00 to 5.00 range --></errorMessage>
+        <name>Value_Range_RSC_Mean_Empathy</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Score must be within 1.00 to 5.00 range --></errorMessage>
+        <name>Value_Range_RSC_Mean_Learning_Interest</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Score must be within 1.00 to 5.00 range --></errorMessage>
+        <name>Value_Range_RSC_Mean_Optimism</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Score must be within 1.00 to 5.00 range --></errorMessage>
+        <name>Value_Range_RSC_Mean_Peers</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Score must be within 1.00 to 5.00 range --></errorMessage>
+        <name>Value_Range_RSC_Mean_Perseverance</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Score must be within 1.00 to 5.00 range --></errorMessage>
+        <name>Value_Range_RSC_Mean_Reflection</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Score must be within 1.00 to 5.00 range --></errorMessage>
+        <name>Value_Range_RSC_Mean_School_Bonding</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Score must be within 1.00 to 5.00 range --></errorMessage>
+        <name>Value_Range_RSC_Mean_Trust</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Score must be within -3.000 to 3.000 range --></errorMessage>
+        <name>Value_Range_Reflection_z_score</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Score must be within -3.000 to 3.000 range --></errorMessage>
+        <name>Value_Range_Relationships_with_adults_z</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Score must be within -3.000 to 3.000 range --></errorMessage>
+        <name>Value_Range_Relationships_with_peers_z</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- STAR Grade Level Equivalent Score must be within a 0 - 12.9 range. --></errorMessage>
+        <name>Value_Range_STAR</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- STAR Grade Level Equivalent Student Target Score must be within a 0 - 12.9 range. --></errorMessage>
+        <name>Value_Range_STAR_target_score</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Scaled Score must be within a 0 - 1850 range. --></errorMessage>
+        <name>Value_Range_Scale_Score</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Score must be within -3.000 to 3.000 range --></errorMessage>
+        <name>Value_Range_School_bonding_z_score</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Student Target Score must be within a 0 - 1850 range. --></errorMessage>
+        <name>Value_Range_Student_Target_Score</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Score must be within 0 to 14 range --></errorMessage>
+        <name>Value_Range_Sum_of_challenge_indicators</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Score must be within 0 to 14 range --></errorMessage>
+        <name>Value_Range_Sum_of_strength_indicators</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Number of Suspensions must be within a 0 - 200 range. --></errorMessage>
+        <name>Value_Range_Suspensions</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Score must be within -3.000 to 3.000 range --></errorMessage>
+        <name>Value_Range_Trust_z_score</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Scaled Score must be within the range of 0 to 1400. --></errorMessage>
+        <name>iReady_ELA_scale_score_1400</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Student Target Score must be within the range of 0 to 1400. --></errorMessage>
+        <name>iReady_ELA_student_target_score_1400</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Scaled Score must be within the range of 0 to 1850. --></errorMessage>
+        <name>iReady_MATH_scale_score_1850</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Student Target Score must be within the range of 0 to 1850. --></errorMessage>
+        <name>iReady_MATH_student_target_score_1850</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The range for this field must be between 1 and 4. --></errorMessage>
+        <name>level_code_smarter_balanced</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The range for this field must be between 1 and 4. --></errorMessage>
+        <name>level_code_smarter_balanced_ELA</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The range for this field must be between 1 and 4. --></errorMessage>
+        <name>level_code_smarter_balanced_Math</name>
+    </validationRules>
+</CustomObjectTranslation>

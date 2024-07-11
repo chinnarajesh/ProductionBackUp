@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Preventing_values_greater_than_1</fullName>
+    <active>true</active>
+    <errorConditionFormula>IF(AND(
+Course__c = &quot;a0PE000000GmoFe&quot;,
+Grading_Type__c = &quot;a0sc0000002kbBt&quot;), 
+IF((VALUE(Entered_Grade__c ))&gt; 1,true,false), false)</errorConditionFormula>
+    <errorMessage>Entered grade cannot be greater than 1.</errorMessage>
+</ValidationRule>

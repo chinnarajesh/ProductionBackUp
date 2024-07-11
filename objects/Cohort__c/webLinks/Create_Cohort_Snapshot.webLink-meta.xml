@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Create_Cohort_Snapshot</fullName>
+    <availability>online</availability>
+    <description>Press this button in the beginning of a school year to generate a cohort snapshot summaries for all schools.</description>
+    <displayType>massActionButton</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>Create Cohort Snapshot</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <requireRowSelection>true</requireRowSelection>
+    <url>{!REQUIRESCRIPT(&quot;/soap/ajax/10.0/connection.js&quot;)}
+{!REQUIRESCRIPT(&quot;/soap/ajax/10.0/apex.js&quot;)}
+
+var message = sforce.apex.execute(&quot;Batch_CohortSnapshot&quot;, &quot;runCohortBatch&quot;, {});
+
+if(message == &apos;success&apos;) {
+    window.alert(&quot;Batch_CohortSnapshot are running.&quot;);
+}
+else if(message == &apos;error&apos;) {
+    window.alert(&quot;There was an error when attempting to run the Batch_CohortSnapshot.&quot;);
+}</url>
+</WebLink>

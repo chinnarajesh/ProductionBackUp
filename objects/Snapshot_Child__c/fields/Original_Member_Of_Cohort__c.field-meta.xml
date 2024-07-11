@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Original_Member_Of_Cohort__c</fullName>
+    <defaultValue>false</defaultValue>
+    <label>Original Member Of Cohort</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

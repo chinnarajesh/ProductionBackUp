@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Indicates whether or not the student has Limited English Proficiency (LEP), which means the student is unable to communicate effectively in English and may have difficulty speaking or reading English. --></help>
+    <label><!-- LEP Flag --></label>
+    <name>Lep_Flag__c</name>
+</CustomFieldTranslation>

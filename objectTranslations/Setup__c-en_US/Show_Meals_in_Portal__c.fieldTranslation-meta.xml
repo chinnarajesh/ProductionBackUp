@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Show Meal Balance on Portal? --></help>
+    <label><!-- Show Meals in Portal --></label>
+    <name>Show_Meals_in_Portal__c</name>
+</CustomFieldTranslation>

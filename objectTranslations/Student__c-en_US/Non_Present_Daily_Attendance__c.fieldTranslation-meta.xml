@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Displays the student&apos;s total number of Attendance records where the Daily check box is selected and the value in the Status field is not &quot;Present&quot;. --></help>
+    <label><!-- Non-Present Daily Attendance --></label>
+    <name>Non_Present_Daily_Attendance__c</name>
+</CustomFieldTranslation>

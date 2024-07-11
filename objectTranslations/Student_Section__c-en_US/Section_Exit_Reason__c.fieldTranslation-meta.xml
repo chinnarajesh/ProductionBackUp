@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Section Exit Reason --></label>
+    <name>Section_Exit_Reason__c</name>
+    <picklistValues>
+        <masterLabel>ACM no longer available</masterLabel>
+        <translation><!-- ACM no longer available --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Accidental Enrollment</masterLabel>
+        <translation><!-- Accidental Enrollment --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Deactivated by trigger.</masterLabel>
+        <translation><!-- Deactivated by trigger. --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>School Year ended</masterLabel>
+        <translation><!-- School Year ended --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Student no longer available</masterLabel>
+        <translation><!-- Student no longer available --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

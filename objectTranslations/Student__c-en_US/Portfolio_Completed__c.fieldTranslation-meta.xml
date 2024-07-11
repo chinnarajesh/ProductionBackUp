@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Indicates whether or not the student has completed their portfolio.  This can be a requirement for high school graduation. --></help>
+    <label><!-- Portfolio Completed? --></label>
+    <name>Portfolio_Completed__c</name>
+</CustomFieldTranslation>

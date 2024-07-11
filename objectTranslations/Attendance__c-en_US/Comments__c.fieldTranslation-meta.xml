@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Comments regarding attendance entered via the Attendance tab or Attendance Wizard. This field can also be updated on the Attendance record. --></help>
+    <label><!-- Comments --></label>
+    <name>Comments__c</name>
+</CustomFieldTranslation>

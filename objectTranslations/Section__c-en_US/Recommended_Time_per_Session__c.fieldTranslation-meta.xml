@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Recommended amount of time (in min) that each meeting, or session, of this Intervention should take. For example, if Program A is most effective with instructional segments of 20 minutes each then 20 minutes is the Recommended Time per Session. --></help>
+    <label><!-- Recommended Time per Session (in mins) --></label>
+    <name>Recommended_Time_per_Session__c</name>
+</CustomFieldTranslation>

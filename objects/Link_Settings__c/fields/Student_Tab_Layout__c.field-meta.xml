@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Student_Tab_Layout__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Check this field if the associated profile should have the custom tabbed based student layout.</description>
+    <inlineHelpText>Check this field if the associated profile should have the custom tabbed based student layout.</inlineHelpText>
+    <label>Student Tab Layout</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

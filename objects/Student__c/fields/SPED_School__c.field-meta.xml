@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SPED_School__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>If student is special education select applicable special education school</description>
+    <inlineHelpText>If the student is in special education, this field displays the special education school the student attends. This field can be used for reporting purposes.</inlineHelpText>
+    <label>Special Education School</label>
+    <lookupFilter>
+        <active>true</active>
+        <filterItems>
+            <field>Picklist_Value__c.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>SPED</value>
+        </filterItems>
+        <isOptional>false</isOptional>
+    </lookupFilter>
+    <referenceTo>Picklist_Value__c</referenceTo>
+    <relationshipLabel>SPED School</relationshipLabel>
+    <relationshipName>Students</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

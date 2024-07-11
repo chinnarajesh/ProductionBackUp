@@ -98,13 +98,13 @@
                         <apex:inputField value="{!selectedSession.session.Comments__c}" />
                     </div>
                     <div style="margin-left:-620px;width: max-content;" >
-                        <div class="requiredInput" style="margin-top: 10px; display: inline-block">
+                        <!-- <div class="requiredInput" style="margin-top: 10px; display: inline-block">
                             <div class="requiredBlock"></div>
                             <label><strong>In-Person Service or Virtual Service:</strong></label>
                             <apex:selectList size="1" value="{!selectedSession.session.All_avenues__c}" id="allAvenuesID" >
                                 <apex:selectOptions value="{!allAvenuesOptions}"/>
                             </apex:selectList>
-                        </div>
+                        </div> -->
                         <div style="margin-left: 15px; display: inline-block;">
                             <label><strong>Session Type:</strong></label>
                             <apex:inputField value="{!selectedSession.session.Session_Type__c}">
@@ -120,7 +120,7 @@
                             <apex:inputField value="{!selectedSession.session.Session_Format__c}">
                             </apex:inputField>
                         </div>
-                        <div style="{!IF(!(siteDetailsOptions.size > 0), "display:none", "margin-left: 15px; display: inline-block;")}">
+                        <div style="{!IF(!(siteDetailsOptions.size !=null), "display:none", "margin-left: 15px; display: inline-block;")}">
                             <label><strong>Site Details:</strong></label>
                             <apex:selectList size="1" value="{!selectedSession.session.Site_Details__c}" id="siteDetailsID" >
                                 <apex:selectOptions value="{!siteDetailsOptions}"/>
@@ -205,6 +205,14 @@
 
 
     <apex:actionFunction name="startAddTimeJS" action="{!startAddTime}" onComplete="checkDisabled(); if(j$('.errorM3','.primaryErrorPanel').size() == 0){openModal('#time_modal');resetWindowSize();}" status="loadTime" rerender="timePanel, timeDetails, addTimeInfo, messages, addModalMessages"/>
+
+    <!-- added by juturi rajesh-->
+    <!-- <apex:actionFunction action="{!confirmSelectedStudents}" name="selectStudents" rerender="messages,buttons" oncomplete="hasChanges=false;">
+        <apex:param name="a" value="" assignTo="{!selectStudentParam}"/>
+        <apex:param name="c" value="" assignTo="{!Unselectedsstudents}"/>
+    </apex:actionFunction> -->
+    <!-- endded by juturi rajesh-->
+
     <apex:actionFunction name="saveTimeJS" action="{!saveTime}" onComplete="if(j$('.errorM3','.primaryErrorPanel').size() == 0){close_modal('#add-session-time');close_modal('#edit-session-time');}isSaving=false; checkDisabled(); reloadPageAfterSaveTime();" rerender="studentTable,timeDetails, messages, addModalMessages"/>
     <apex:actionFunction name="loadSessionJS" action="{!loadSession}" oncomplete="if(j$('.errorM3','.primaryErrorPanel').size() == 0){openStackedModal('#time_modal','#add-session-time');}" rerender="timePanel, timeDetails, messages, addTimeInfo, addModalMessages">
         <apex:param value="" assignTo="{!selectedSessionID}" name="selectedSessionID"/>
@@ -215,4 +223,6 @@
     <apex:actionFunction name="removeStudentFromSessionJS" action="{!removeStudentFromSession}" rerender="timePanel, messages">
         <apex:param value="" assignTo="{!studentSectionIDToRemove}" name="ssID"/>
     </apex:actionFunction>
+
+
 </apex:component>

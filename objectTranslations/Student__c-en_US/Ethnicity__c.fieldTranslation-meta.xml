@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Displays the student&apos;s ethnic background. You can use this field for reporting purposes. --></help>
+    <label><!-- Ethnicity --></label>
+    <name>Ethnicity__c</name>
+    <picklistValues>
+        <masterLabel>Hispanic / Latino</masterLabel>
+        <translation><!-- Hispanic / Latino --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Non-Hispanic / Latino</masterLabel>
+        <translation><!-- Non-Hispanic / Latino --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

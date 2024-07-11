@@ -104,13 +104,13 @@
                 j$("#dosageErrorSpan").hide();
             }
 
-            var allAvenues = j$("select[id$='allAvenuesID'] option:selected").text();
-            if(allAvenues=='None'){
-                j$("#serviceErrorSpan").show();
-                isError = true;
-            }else{
-                j$("#serviceErrorSpan").hide();
-            }
+            // var allAvenues = j$("select[id$='allAvenuesID'] option:selected").text();
+            // if(allAvenues=='None'){
+            //     j$("#serviceErrorSpan").show();
+            //     isError = true;
+            // }else{
+            //     j$("#serviceErrorSpan").hide();
+            // }
 
             var primaryOptions = j$('.primaryOptions');
 //          if(j$('.primaryOptions')[0].selectedIndex == 0){
@@ -357,13 +357,13 @@
                         </apex:outputPanel>
                         <apex:outputPanel >
                            <div style="display:flex;">
-                            <div class="requiredInput" style="margin-bottom: 10px;">
+                            <!-- <div class="requiredInput" style="margin-bottom: 10px;">
                                 <div class="requiredBlock"></div>
                                 <div style="width:168%;"><label><strong>In-Person Service or Virtual Service:</strong></label></div>
                                 <apex:selectList size="1" value="{!sessionHolder.All_avenues__c}" id="allAvenuesID" >
                                     <apex:selectOptions value="{!allAvenuesOptions}"/>
                                 </apex:selectList>
-                            </div>
+                            </div> -->
                               <div style="position: relative;left: 98px;top: 0px;">
                                  <label><strong>Session Type:</strong></label>
                                  <apex:inputField value="{!sessionHolder.Session_Type__c}">

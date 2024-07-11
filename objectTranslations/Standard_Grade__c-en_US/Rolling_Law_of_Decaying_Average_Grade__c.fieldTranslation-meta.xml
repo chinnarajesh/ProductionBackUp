@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- the most recent grade has the highest weight across reporting periods.  Most recent is deteremined by due date of the assignment.  The School Admin decides what the weight is for the most recent grade (ie most recent grade is 65% weighted) --></help>
+    <label><!-- Rolling Law of Decaying Average Grade --></label>
+    <name>Rolling_Law_of_Decaying_Average_Grade__c</name>
+</CustomFieldTranslation>

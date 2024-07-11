@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- An adult who saw the incident, interacted with the student after the incident, or knows something about the incident. --></help>
+    <label><!-- Other Adult Involved1 --></label>
+    <name>Other_Adult_Involved_1__c</name>
+    <relationshipLabel><!-- Behavior (Other Adult Involved1) --></relationshipLabel>
+</CustomFieldTranslation>

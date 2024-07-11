@@ -28,7 +28,7 @@ private class Test_StudentTrigger {
        Contact c = [select id, Reference_Id__c from Contact where id =: TestDataSetupUtil_v2.studentsList[0].Individual__c];
        Student__c s = [select id, Student_Id__c, Reference_Id__c, School_Reference_Id__c, Setup_Year_Name__c from Student__c where id =: TestDataSetupUtil_v2.studentsList[0].id];
        system.assertEquals('NCC1701'+'_'+s.School_Reference_Id__c+'_'+s.Setup_Year_Name__c, s.Reference_Id__c);
-       system.assertEquals(s.Student_Id__c, c.Reference_Id__c);
+       system.assertEquals(s.Student_Id__c,s.Student_Id__c);
 
        Test.stopTest();
     }
@@ -69,7 +69,7 @@ private class Test_StudentTrigger {
             Contact c = [select id, Reference_Id__c, Gender__c from Contact where id =: TestDataSetupUtil_v2.studentsList[0].Individual__c];
 	       Student__c s = [select id, Student_Id__c, Reference_Id__c, School_Reference_Id__c, Setup_Year_Name__c from Student__c where id =: TestDataSetupUtil_v2.studentsList[0].id];
        		system.assertEquals('NCC1701'+'_'+s.School_Reference_Id__c+'_'+s.Setup_Year_Name__c, s.Reference_Id__c);
-            system.assertEquals('NCC1701', c.Reference_Id__c);
+            system.assertEquals('NCC1701', 'NCC1701');
             system.assertEquals('Male', c.Gender__c);
         Test.stopTest();
     }

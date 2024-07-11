@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Displays the relationship to this student of the contact listed in the Emergency Contact #2 Name field. --></help>
+    <label><!-- Econtact #2 Relationship to Student --></label>
+    <name>Econtact_2_Relationship_to_Student__c</name>
+    <picklistValues>
+        <masterLabel>Aunt</masterLabel>
+        <translation><!-- Aunt --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Brother</masterLabel>
+        <translation><!-- Brother --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Father</masterLabel>
+        <translation><!-- Father --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Friend</masterLabel>
+        <translation><!-- Friend --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Grandfather</masterLabel>
+        <translation><!-- Grandfather --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Grandmother</masterLabel>
+        <translation><!-- Grandmother --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Guardian</masterLabel>
+        <translation><!-- Guardian --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Mother</masterLabel>
+        <translation><!-- Mother --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Neighbor</masterLabel>
+        <translation><!-- Neighbor --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Other</masterLabel>
+        <translation><!-- Other --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Sister</masterLabel>
+        <translation><!-- Sister --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Uncle</masterLabel>
+        <translation><!-- Uncle --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

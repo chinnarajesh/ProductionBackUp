@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- This is the amount of money that the school is reimbursed for full-priced lunches that are served. --></help>
+    <label><!-- State Full-Price Lunch Reimbursement --></label>
+    <name>State_Full_Price_Lunch_Reimbursement__c</name>
+</CustomFieldTranslation>

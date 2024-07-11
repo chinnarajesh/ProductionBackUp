@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- This will be checked when snapshots are successfully created for the year. --></help>
+    <label><!-- School Snapshots Completed --></label>
+    <name>School_Snapshots_Completed__c</name>
+</CustomFieldTranslation>

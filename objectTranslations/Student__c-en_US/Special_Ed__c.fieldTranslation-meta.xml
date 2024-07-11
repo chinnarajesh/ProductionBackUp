@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Indicates whether or not the student requires special education. When mass printing report cards, you can use this field to narrow down your search results. --></help>
+    <label><!-- Special Ed --></label>
+    <name>Special_Ed__c</name>
+</CustomFieldTranslation>

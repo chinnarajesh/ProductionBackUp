@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Daze_Student_Target_Score__c</fullName>
+    <description>A task that measures how well a student understands a passage they read silently</description>
+    <externalId>false</externalId>
+    <inlineHelpText>A task that measures how well a student understands a passage they read silently</inlineHelpText>
+    <label>Daze Student Target Score</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>3</scale>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

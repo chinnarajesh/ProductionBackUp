@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Room_Type__c</fullName>
+    <inlineHelpText>Select the type of room in which this course should be scheduled. You can use this field for reporting purposes.</inlineHelpText>
+    <label>Room Type</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Art Room</fullName>
+                <default>true</default>
+                <label>Art Room</label>
+            </value>
+            <value>
+                <fullName>Auditorium</fullName>
+                <default>false</default>
+                <label>Auditorium</label>
+            </value>
+            <value>
+                <fullName>Band/Orchestra Room</fullName>
+                <default>false</default>
+                <label>Band/Orchestra Room</label>
+            </value>
+            <value>
+                <fullName>Classroom</fullName>
+                <default>false</default>
+                <label>Classroom</label>
+            </value>
+            <value>
+                <fullName>Clinic</fullName>
+                <default>false</default>
+                <label>Clinic</label>
+            </value>
+            <value>
+                <fullName>Computer Lab</fullName>
+                <default>false</default>
+                <label>Computer Lab</label>
+            </value>
+            <value>
+                <fullName>Gymnasium</fullName>
+                <default>false</default>
+                <label>Gymnasium</label>
+            </value>
+            <value>
+                <fullName>Home Economics Classroom</fullName>
+                <default>false</default>
+                <label>Home Economics Classroom</label>
+            </value>
+            <value>
+                <fullName>Library</fullName>
+                <default>false</default>
+                <label>Library</label>
+            </value>
+            <value>
+                <fullName>Lunchroom</fullName>
+                <default>false</default>
+                <label>Lunchroom</label>
+            </value>
+            <value>
+                <fullName>Music Room</fullName>
+                <default>false</default>
+                <label>Music Room</label>
+            </value>
+            <value>
+                <fullName>Nurse&apos;s Office</fullName>
+                <default>false</default>
+                <label>Nurse&apos;s Office</label>
+            </value>
+            <value>
+                <fullName>Playground</fullName>
+                <default>false</default>
+                <label>Playground</label>
+            </value>
+            <value>
+                <fullName>Science Lab</fullName>
+                <default>false</default>
+                <label>Science Lab</label>
+            </value>
+            <value>
+                <fullName>Teacher&apos;s Lounge</fullName>
+                <default>false</default>
+                <label>Teacher&apos;s Lounge</label>
+            </value>
+            <value>
+                <fullName>Workshop</fullName>
+                <default>false</default>
+                <label>Workshop</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

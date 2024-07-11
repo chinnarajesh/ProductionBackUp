@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Set this check box for the default value for Attendance (usually Present) --></help>
+    <label><!-- Set as Default --></label>
+    <name>Set_as_Default__c</name>
+</CustomFieldTranslation>

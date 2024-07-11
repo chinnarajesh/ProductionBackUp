@@ -33,6 +33,18 @@
     var tabelwidth = 'firstload';
     
     function resetDataTables(){ 
+        var val='';
+        j$("input[id$='LocalstudentId']").val(val);
+        j$("input[id$='studentfirstName']").val(val);
+        j$("select[id$='gradeId']").val(val);
+        j$("select[id$='schoolSelect']").val(val);
+        j$("select[id$='genderId']").val(val);
+        j$("input[id$='studentId']").val(val);
+        j$("input[id$='studentLastName']").val(val);
+        j$("select[id$='IndicatorSelect']").val(val);
+        j$("input[id$='searchCalendar']").val(val);
+        //document.getElementById('{!$Component.GroupSearchPanel.gradeId}').value = '';
+        
         j$(".tablesorter").dataTable( {
             "sScrollY": "200px",
             "bLengthChange": true,
@@ -180,6 +192,20 @@
     function sendData(){
         showStudentData(studentArray.toString());
         studentArray=[];
+
+        var val='';
+        j$("input[id$='LocalstudentId']").val(val);
+        j$("input[id$='studentfirstName']").val(val);
+        //j$("select[id$='gradeId']").val(val);
+        j$("input[id$='schoolSelect']").val(val);
+        j$("select[id$='genderId']").val(val);
+        j$("input[id$='studentId']").val(val);
+        j$("input[id$='studentLastName']").val(val);
+        j$("select[id$='IndicatorSelect']").val(val);
+        j$("input[id$='searchCalendar']").val(val);
+
+        var gradvalue =j$("select[id$='gradeId']").val();
+        console.log('gradvalue+++'+gradvalue);
         return false;
     }
     //Added by harsh Singh
@@ -287,18 +313,18 @@
                             <h3 style="{!IF(searchType=='section', '', 'display:none')}">Section Search Information</h3>
                             <div class="section_content">
                                 <apex:PageBlockSection rendered="{!IF(searchType=='student', true, false)}" collapsible="false">
-                                    <apex:inputField required="false" value="{!studentSearchInfo.student.Student_First_Name__c}" />
-                                    <apex:inputField value="{!studentSearchInfo.student.Student_Last_Name__c}" />
-                                    <apex:inputField value="{!studentSearchInfo.student.Grede_Multiselect__c}" />
-                                    <apex:inputField value="{!studentSearchInfo.student.Gender__c}" />
-                                    <apex:inputField value="{!studentSearchInfo.student.Student_Id__c}" />
+                                    <apex:inputField required="false" value="{!studentSearchInfo.student.Student_First_Name__c}" id="studentfirstName"/>
+                                    <apex:inputField value="{!studentSearchInfo.student.Student_Last_Name__c}" id="studentLastName"/>
+                                    <apex:inputField value="{!studentSearchInfo.student.Grede_Multiselect__c}" id="gradeId"/>
+                                    <apex:inputField value="{!studentSearchInfo.student.Gender__c}" id="genderId"/>
+                                    <apex:inputField value="{!studentSearchInfo.student.Student_Id__c}" id="studentId"/>
                                     <apex:selectList label="School" id="schoolSelect" value="{!studentSearchInfo.school}" multiselect="false" size="1" onChange="refreshJS();">
                                         <apex:selectOptions value="{!studentSearchInfo.schools}" />
                                     </apex:selectList>
                                     <apex:selectList label="Indicator Area" id="IndicatorSelect" value="{!studentSearchInfo.indicatorArea}" multiselect="false" size="1" onChange="refreshJS();">
                                         <apex:selectOptions value="{!studentSearchInfo.indicatorAreas}" />
                                     </apex:selectList>
-                                    <apex:inputField value="{!studentSearchInfo.student.Local_Student_ID__c}" />     <!--Added by Harsh Singh -->                                   
+                                    <apex:inputField value="{!studentSearchInfo.student.Local_Student_ID__c}" id="LocalstudentId"/>     <!--Added by Harsh Singh -->                                   
                                    <apex:pageBlockSectionItem >
                                         <apex:outputLabel for="searchCalendar" value="Date of Birth" />
                                         <apex:inputField id="searchCalendar" value="{!studentSearchInfo.student.Date_of_Birth__c}" />
@@ -370,7 +396,7 @@
                                       </apex:dataTable>
                                 </apex:pageBlockSection>
                                 <div class="clear_fix" style="line-hight:1%">&nbsp;</div>
-                                <apex:commandButton value="Add Selected" onclick="sendData();return false;" rendered="{!IF(studentSearchResults.size > 0, true, false)}"
+                                <apex:commandButton value="Add Selected" onclick="sendData();return false;"  rendered="{!IF(studentSearchResults.size > 0, true, false)}"
                                     reRender="GroupSearchPanel, messagePanel" styleclass="black_btn" onComplete="resetDataTables();"/>
                                 <apex:commandButton value="Add Selected" action="{!addSections}" rendered="{!IF(sectionSearchResults.size > 0, true, false)}"
                                     reRender="GroupSearchPanel, messagePanel" styleclass="black_btn" onComplete="resetDataTables();"/>
@@ -505,7 +531,7 @@
                         </apex:pageBlockSectionItem>
                          <apex:pageBlockSectionItem >
                              <span>Local Student ID&nbsp;</span>
-                             <apex:inputField value="{!studentSearchInfo.student.Local_Student_ID__c}" />
+                             <apex:inputField value="{!studentSearchInfo.student.Local_Student_ID__c}"/>
                         </apex:pageBlockSectionItem>
                         <apex:pageBlockSectionItem >
                             <span>Active&nbsp;</span>

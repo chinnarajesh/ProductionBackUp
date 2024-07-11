@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Edit_Assignment_Standards</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <linkType>url</linkType>
+    <masterLabel>Edit Assignment Standards</masterLabel>
+    <openType>replace</openType>
+    <protected>false</protected>
+    <url>\apex\Gradebook_EditAssignStandards?fromAssignment=3&amp;section={!Assignment__c.SectionId__c}&amp;assignmentID={!Assignment__c.Id}&amp;returl=/{!Assignment__c.Id}</url>
+</WebLink>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Do not use this field; it is no longer used by SchoolForce. --></help>
+    <label><!-- NCES Status *Retired* --></label>
+    <name>NCES_Status__c</name>
+    <picklistValues>
+        <masterLabel>Absent- Disciplinary action, not receiving instruction</masterLabel>
+        <translation><!-- Absent- Disciplinary action, not receiving instruction --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Absent- Family activity</masterLabel>
+        <translation><!-- Absent- Family activity --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Absent- Family emergency or bereavement</masterLabel>
+        <translation><!-- Absent- Family emergency or bereavement --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Absent- Legal or judicial requirement</masterLabel>
+        <translation><!-- Absent- Legal or judicial requirement --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Absent- Noninstructional activity recognized by state or school</masterLabel>
+        <translation><!-- Absent- Noninstructional activity recognized by state or school --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Absent- Religious obsesrvation</masterLabel>
+        <translation><!-- Absent- Religious obsesrvation --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Absent- Situation unknown</masterLabel>
+        <translation><!-- Absent- Situation unknown --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Absent- Student employment</masterLabel>
+        <translation><!-- Absent- Student employment --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Absent- Student is skipping school</masterLabel>
+        <translation><!-- Absent- Student is skipping school --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Absent- Transportation not available</masterLabel>
+        <translation><!-- Absent- Transportation not available --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Absent- illness, injury, health treatment, or examination</masterLabel>
+        <translation><!-- Absent- illness, injury, health treatment, or examination --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Present- Disciplinary action, receiving instruction</masterLabel>
+        <translation><!-- Present- Disciplinary action, receiving instruction --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Present- In School, regular instructional program</masterLabel>
+        <translation><!-- Present- In School, regular instructional program --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Present- Nontraditional school setting, regular instructiona program</masterLabel>
+        <translation><!-- Present- Nontraditional school setting, regular instructiona program --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Present- Out of school, regular instructional program activity</masterLabel>
+        <translation><!-- Present- Out of school, regular instructional program activity --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Present- Out of school, school-approved extracurricular or cocurricular activity</masterLabel>
+        <translation><!-- Present- Out of school, school-approved extracurricular or cocurricular activity --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

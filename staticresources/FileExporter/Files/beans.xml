@@ -1,0 +1,321 @@
+<beans>
+<!-- Export Attachment.Body-->
+	<bean id="Attachment.Body"
+		class="com.salesforce.dataloader.process.ProcessRunner"
+		singleton="false">
+		<description></description>
+		<property name="name" value="Attachment"/>
+		<property name="configOverrideMap">
+			<map>
+				<entry key="sfdc.debugMessages" value="false"/>
+				<entry key="sfdc.username" value="&userName;"/>
+				<entry key="sfdc.password" value="&encryptedPassword;"/>
+				<entry key="sfdc.endpoint" value="&endpoint;"/>
+				<entry key="sfdc.proxyHost" value="&proxyHost;"/>
+				<entry key="sfdc.proxyPort" value="&proxyPort;"/>
+				<entry key="sfdc.proxyUsername" value="&proxyUsername;"/>
+				<entry key="sfdc.proxyPassword" value="&encryptedProxyPassword;"/>
+				<entry key="sfdc.loadBatchSize" value="1"/>
+				<entry key="sfdc.insertNulls" value="false"/>
+				<entry key="sfdc.truncateFields" value="false"/>
+				<entry key="sfdc.useBulkApi" value="false"/>
+				<entry key="process.operation" value="extract"/>
+				<entry key="sfdc.extractionSOQL" value="SELECT Id, Body FROM Attachment ORDER BY Id"/>
+				<entry key="dataAccess.name" value="&dir;\CSVs\Attachment.Body.csv"/>
+				<entry key="dataAccess.type" value="csvWrite"/>
+				<entry key="sfdc.entity" value="Attachment"/>
+				<entry key="process.statusOutputDirectory" value="&dir;"/>
+			</map>
+		</property>
+	</bean>
+<!-- Export Attachment.Name-->
+	<bean id="Attachment.Name"
+		class="com.salesforce.dataloader.process.ProcessRunner"
+		singleton="false">
+		<description></description>
+		<property name="name" value="Attachment"/>
+		<property name="configOverrideMap">
+			<map>
+				<entry key="sfdc.debugMessages" value="false"/>
+				<entry key="sfdc.username" value="&userName;"/>
+				<entry key="sfdc.password" value="&encryptedPassword;"/>
+				<entry key="sfdc.endpoint" value="&endpoint;"/>
+				<entry key="sfdc.proxyHost" value="&proxyHost;"/>
+				<entry key="sfdc.proxyPort" value="&proxyPort;"/>
+				<entry key="sfdc.proxyUsername" value="&proxyUsername;"/>
+				<entry key="sfdc.proxyPassword" value="&encryptedProxyPassword;"/>
+				<entry key="sfdc.loadBatchSize" value="200"/>
+				<entry key="sfdc.insertNulls" value="false"/>
+				<entry key="sfdc.truncateFields" value="false"/>
+				<entry key="sfdc.useBulkApi" value="false"/>
+				<entry key="process.operation" value="extract"/>
+				<entry key="sfdc.extractionSOQL" value="SELECT Id, Name FROM Attachment ORDER BY Id"/>
+				<entry key="dataAccess.name" value="&dir;\CSVs\Attachment.Name.csv"/>
+				<entry key="dataAccess.type" value="csvWrite"/>
+				<entry key="sfdc.entity" value="Attachment"/>
+				<entry key="process.statusOutputDirectory" value="&dir;"/>
+			</map>
+		</property>
+	</bean>
+<!-- Export Attachment.ParentId-->
+	<bean id="Attachment.ParentId"
+		class="com.salesforce.dataloader.process.ProcessRunner"
+		singleton="false">
+		<description></description>
+		<property name="name" value="Attachment"/>
+		<property name="configOverrideMap">
+			<map>
+				<entry key="sfdc.debugMessages" value="false"/>
+				<entry key="sfdc.username" value="&userName;"/>
+				<entry key="sfdc.password" value="&encryptedPassword;"/>
+				<entry key="sfdc.endpoint" value="&endpoint;"/>
+				<entry key="sfdc.proxyHost" value="&proxyHost;"/>
+				<entry key="sfdc.proxyPort" value="&proxyPort;"/>
+				<entry key="sfdc.proxyUsername" value="&proxyUsername;"/>
+				<entry key="sfdc.proxyPassword" value="&encryptedProxyPassword;"/>
+				<entry key="sfdc.loadBatchSize" value="200"/>
+				<entry key="sfdc.insertNulls" value="false"/>
+				<entry key="sfdc.truncateFields" value="false"/>
+				<entry key="sfdc.useBulkApi" value="false"/>
+				<entry key="process.operation" value="extract"/>
+				<entry key="sfdc.extractionSOQL" value="SELECT Id, ParentId FROM Attachment ORDER BY Id"/>
+				<entry key="dataAccess.name" value="&dir;\CSVs\Attachment.ParentId.csv"/>
+				<entry key="dataAccess.type" value="csvWrite"/>
+				<entry key="sfdc.entity" value="Attachment"/>
+				<entry key="process.statusOutputDirectory" value="&dir;"/>
+			</map>
+		</property>
+	</bean>
+<!-- Export ContentVersion.FileType-->
+	<bean id="ContentVersion.FileType"
+		class="com.salesforce.dataloader.process.ProcessRunner"
+		singleton="false">
+		<description></description>
+		<property name="name" value="ContentVersion"/>
+		<property name="configOverrideMap">
+			<map>
+				<entry key="sfdc.debugMessages" value="false"/>
+				<entry key="sfdc.username" value="&userName;"/>
+				<entry key="sfdc.password" value="&encryptedPassword;"/>
+				<entry key="sfdc.endpoint" value="&endpoint;"/>
+				<entry key="sfdc.proxyHost" value="&proxyHost;"/>
+				<entry key="sfdc.proxyPort" value="&proxyPort;"/>
+				<entry key="sfdc.proxyUsername" value="&proxyUsername;"/>
+				<entry key="sfdc.proxyPassword" value="&encryptedProxyPassword;"/>
+				<entry key="sfdc.loadBatchSize" value="200"/>
+				<entry key="sfdc.insertNulls" value="false"/>
+				<entry key="sfdc.truncateFields" value="false"/>
+				<entry key="sfdc.useBulkApi" value="false"/>
+				<entry key="process.operation" value="extract"/>
+				<entry key="sfdc.extractionSOQL" value="SELECT Id, FileType FROM ContentVersion WHERE FileType!='LINK' AND FileType!='PACK' ORDER BY Id"/>
+				<entry key="dataAccess.name" value="&dir;\CSVs\ContentVersion.FileType.csv"/>
+				<entry key="dataAccess.type" value="csvWrite"/>
+				<entry key="sfdc.entity" value="ContentVersion"/>
+				<entry key="process.statusOutputDirectory" value="&dir;"/>
+			</map>
+		</property>
+	</bean>
+<!-- Export ContentVersion.FirstPublishLocationId-->
+	<bean id="ContentVersion.FirstPublishLocationId"
+		class="com.salesforce.dataloader.process.ProcessRunner"
+		singleton="false">
+		<description></description>
+		<property name="name" value="ContentVersion"/>
+		<property name="configOverrideMap">
+			<map>
+				<entry key="sfdc.debugMessages" value="false"/>
+				<entry key="sfdc.username" value="&userName;"/>
+				<entry key="sfdc.password" value="&encryptedPassword;"/>
+				<entry key="sfdc.endpoint" value="&endpoint;"/>
+				<entry key="sfdc.proxyHost" value="&proxyHost;"/>
+				<entry key="sfdc.proxyPort" value="&proxyPort;"/>
+				<entry key="sfdc.proxyUsername" value="&proxyUsername;"/>
+				<entry key="sfdc.proxyPassword" value="&encryptedProxyPassword;"/>
+				<entry key="sfdc.loadBatchSize" value="1"/>
+				<entry key="sfdc.insertNulls" value="false"/>
+				<entry key="sfdc.truncateFields" value="false"/>
+				<entry key="sfdc.useBulkApi" value="false"/>
+				<entry key="process.operation" value="extract"/>
+				<entry key="sfdc.extractionSOQL" value="SELECT Id, FirstPublishLocationId FROM ContentVersion WHERE FileType!='LINK' AND FileType!='PACK' ORDER BY Id"/>
+				<entry key="dataAccess.name" value="&dir;\CSVs\ContentVersion.FirstPublishLocationId.csv"/>
+				<entry key="dataAccess.type" value="csvWrite"/>
+				<entry key="sfdc.entity" value="ContentVersion"/>
+				<entry key="process.statusOutputDirectory" value="&dir;"/>
+			</map>
+		</property>
+	</bean>
+<!-- Export ContentVersion.Title-->
+	<bean id="ContentVersion.Title"
+		class="com.salesforce.dataloader.process.ProcessRunner"
+		singleton="false">
+		<description></description>
+		<property name="name" value="ContentVersion"/>
+		<property name="configOverrideMap">
+			<map>
+				<entry key="sfdc.debugMessages" value="false"/>
+				<entry key="sfdc.username" value="&userName;"/>
+				<entry key="sfdc.password" value="&encryptedPassword;"/>
+				<entry key="sfdc.endpoint" value="&endpoint;"/>
+				<entry key="sfdc.proxyHost" value="&proxyHost;"/>
+				<entry key="sfdc.proxyPort" value="&proxyPort;"/>
+				<entry key="sfdc.proxyUsername" value="&proxyUsername;"/>
+				<entry key="sfdc.proxyPassword" value="&encryptedProxyPassword;"/>
+				<entry key="sfdc.loadBatchSize" value="200"/>
+				<entry key="sfdc.insertNulls" value="false"/>
+				<entry key="sfdc.truncateFields" value="false"/>
+				<entry key="sfdc.useBulkApi" value="false"/>
+				<entry key="process.operation" value="extract"/>
+				<entry key="sfdc.extractionSOQL" value="SELECT Id, Title FROM ContentVersion WHERE FileType!='LINK' AND FileType!='PACK' ORDER BY Id"/>
+				<entry key="dataAccess.name" value="&dir;\CSVs\ContentVersion.Title.csv"/>
+				<entry key="dataAccess.type" value="csvWrite"/>
+				<entry key="sfdc.entity" value="ContentVersion"/>
+				<entry key="process.statusOutputDirectory" value="&dir;"/>
+			</map>
+		</property>
+	</bean>
+<!-- Export ContentVersion.VersionData-->
+	<bean id="ContentVersion.VersionData"
+		class="com.salesforce.dataloader.process.ProcessRunner"
+		singleton="false">
+		<description></description>
+		<property name="name" value="ContentVersion"/>
+		<property name="configOverrideMap">
+			<map>
+				<entry key="sfdc.debugMessages" value="false"/>
+				<entry key="sfdc.username" value="&userName;"/>
+				<entry key="sfdc.password" value="&encryptedPassword;"/>
+				<entry key="sfdc.endpoint" value="&endpoint;"/>
+				<entry key="sfdc.proxyHost" value="&proxyHost;"/>
+				<entry key="sfdc.proxyPort" value="&proxyPort;"/>
+				<entry key="sfdc.proxyUsername" value="&proxyUsername;"/>
+				<entry key="sfdc.proxyPassword" value="&encryptedProxyPassword;"/>
+				<entry key="sfdc.loadBatchSize" value="1"/>
+				<entry key="sfdc.insertNulls" value="false"/>
+				<entry key="sfdc.truncateFields" value="false"/>
+				<entry key="sfdc.useBulkApi" value="false"/>
+				<entry key="process.operation" value="extract"/>
+				<entry key="sfdc.extractionSOQL" value="SELECT Id, VersionData FROM ContentVersion WHERE FileType!='LINK' AND FileType!='PACK' ORDER BY Id"/>
+				<entry key="dataAccess.name" value="&dir;\CSVs\ContentVersion.VersionData.csv"/>
+				<entry key="dataAccess.type" value="csvWrite"/>
+				<entry key="sfdc.entity" value="ContentVersion"/>
+				<entry key="process.statusOutputDirectory" value="&dir;"/>
+			</map>
+		</property>
+	</bean>
+<!-- Export Document.Body-->
+	<bean id="Document.Body"
+		class="com.salesforce.dataloader.process.ProcessRunner"
+		singleton="false">
+		<description></description>
+		<property name="name" value="Document"/>
+		<property name="configOverrideMap">
+			<map>
+				<entry key="sfdc.debugMessages" value="false"/>
+				<entry key="sfdc.username" value="&userName;"/>
+				<entry key="sfdc.password" value="&encryptedPassword;"/>
+				<entry key="sfdc.endpoint" value="&endpoint;"/>
+				<entry key="sfdc.proxyHost" value="&proxyHost;"/>
+				<entry key="sfdc.proxyPort" value="&proxyPort;"/>
+				<entry key="sfdc.proxyUsername" value="&proxyUsername;"/>
+				<entry key="sfdc.proxyPassword" value="&encryptedProxyPassword;"/>
+				<entry key="sfdc.loadBatchSize" value="1"/>
+				<entry key="sfdc.insertNulls" value="false"/>
+				<entry key="sfdc.truncateFields" value="false"/>
+				<entry key="sfdc.useBulkApi" value="false"/>
+				<entry key="process.operation" value="extract"/>
+				<entry key="sfdc.extractionSOQL" value="SELECT Id, Body FROM Document WHERE ContentType!='' ORDER BY Id"/>
+				<entry key="dataAccess.name" value="&dir;\CSVs\Document.Body.csv"/>
+				<entry key="dataAccess.type" value="csvWrite"/>
+				<entry key="sfdc.entity" value="Document"/>
+				<entry key="process.statusOutputDirectory" value="&dir;"/>
+			</map>
+		</property>
+	</bean>
+<!-- Export Document.FolderId-->
+	<bean id="Document.FolderId"
+		class="com.salesforce.dataloader.process.ProcessRunner"
+		singleton="false">
+		<description></description>
+		<property name="name" value="Document"/>
+		<property name="configOverrideMap">
+			<map>
+				<entry key="sfdc.debugMessages" value="false"/>
+				<entry key="sfdc.username" value="&userName;"/>
+				<entry key="sfdc.password" value="&encryptedPassword;"/>
+				<entry key="sfdc.endpoint" value="&endpoint;"/>
+				<entry key="sfdc.proxyHost" value="&proxyHost;"/>
+				<entry key="sfdc.proxyPort" value="&proxyPort;"/>
+				<entry key="sfdc.proxyUsername" value="&proxyUsername;"/>
+				<entry key="sfdc.proxyPassword" value="&encryptedProxyPassword;"/>
+				<entry key="sfdc.loadBatchSize" value="1"/>
+				<entry key="sfdc.insertNulls" value="false"/>
+				<entry key="sfdc.truncateFields" value="false"/>
+				<entry key="sfdc.useBulkApi" value="false"/>
+				<entry key="process.operation" value="extract"/>
+				<entry key="sfdc.extractionSOQL" value="SELECT Id, FolderId FROM Document WHERE ContentType!='' ORDER BY Id"/>
+				<entry key="dataAccess.name" value="&dir;\CSVs\Document.FolderId.csv"/>
+				<entry key="dataAccess.type" value="csvWrite"/>
+				<entry key="sfdc.entity" value="Document"/>
+				<entry key="process.statusOutputDirectory" value="&dir;"/>
+			</map>
+		</property>
+	</bean>
+<!-- Export Document.Name-->
+	<bean id="Document.Name"
+		class="com.salesforce.dataloader.process.ProcessRunner"
+		singleton="false">
+		<description></description>
+		<property name="name" value="Document"/>
+		<property name="configOverrideMap">
+			<map>
+				<entry key="sfdc.debugMessages" value="false"/>
+				<entry key="sfdc.username" value="&userName;"/>
+				<entry key="sfdc.password" value="&encryptedPassword;"/>
+				<entry key="sfdc.endpoint" value="&endpoint;"/>
+				<entry key="sfdc.proxyHost" value="&proxyHost;"/>
+				<entry key="sfdc.proxyPort" value="&proxyPort;"/>
+				<entry key="sfdc.proxyUsername" value="&proxyUsername;"/>
+				<entry key="sfdc.proxyPassword" value="&encryptedProxyPassword;"/>
+				<entry key="sfdc.loadBatchSize" value="200"/>
+				<entry key="sfdc.insertNulls" value="false"/>
+				<entry key="sfdc.truncateFields" value="false"/>
+				<entry key="sfdc.useBulkApi" value="false"/>
+				<entry key="process.operation" value="extract"/>
+				<entry key="sfdc.extractionSOQL" value="SELECT Id, Name FROM Document WHERE ContentType!='' ORDER BY Id"/>
+				<entry key="dataAccess.name" value="&dir;\CSVs\Document.Name.csv"/>
+				<entry key="dataAccess.type" value="csvWrite"/>
+				<entry key="sfdc.entity" value="Document"/>
+				<entry key="process.statusOutputDirectory" value="&dir;"/>
+			</map>
+		</property>
+	</bean>
+<!-- Export Document.Type-->
+	<bean id="Document.Type"
+		class="com.salesforce.dataloader.process.ProcessRunner"
+		singleton="false">
+		<description></description>
+		<property name="name" value="Document"/>
+		<property name="configOverrideMap">
+			<map>
+				<entry key="sfdc.debugMessages" value="false"/>
+				<entry key="sfdc.username" value="&userName;"/>
+				<entry key="sfdc.password" value="&encryptedPassword;"/>
+				<entry key="sfdc.endpoint" value="&endpoint;"/>
+				<entry key="sfdc.proxyHost" value="&proxyHost;"/>
+				<entry key="sfdc.proxyPort" value="&proxyPort;"/>
+				<entry key="sfdc.proxyUsername" value="&proxyUsername;"/>
+				<entry key="sfdc.proxyPassword" value="&encryptedProxyPassword;"/>
+				<entry key="sfdc.loadBatchSize" value="200"/>
+				<entry key="sfdc.insertNulls" value="false"/>
+				<entry key="sfdc.truncateFields" value="false"/>
+				<entry key="sfdc.useBulkApi" value="false"/>
+				<entry key="process.operation" value="extract"/>
+				<entry key="sfdc.extractionSOQL" value="SELECT Id, Type FROM Document WHERE ContentType!='' ORDER BY Id"/>
+				<entry key="dataAccess.name" value="&dir;\CSVs\Document.Type.csv"/>
+				<entry key="dataAccess.type" value="csvWrite"/>
+				<entry key="sfdc.entity" value="Document"/>
+				<entry key="process.statusOutputDirectory" value="&dir;"/>
+			</map>
+		</property>
+	</bean>
+</beans>

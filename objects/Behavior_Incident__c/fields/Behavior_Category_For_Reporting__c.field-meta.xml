@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Behavior_Category_For_Reporting__c</fullName>
+    <label>Behavior Category For Reporting</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Behavior_Type__c</controllingField>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Respecting Community</fullName>
+                <default>false</default>
+                <label>Respecting Community</label>
+            </value>
+            <value>
+                <fullName>Respecting Others</fullName>
+                <default>false</default>
+                <label>Respecting Others</label>
+            </value>
+            <value>
+                <fullName>Respecting Self</fullName>
+                <default>false</default>
+                <label>Respecting Self</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>T2 - Unexcused absence from school</controllingFieldValue>
+            <controllingFieldValue>T2 - Unauthorized use of portable electronic devices during school hours</controllingFieldValue>
+            <controllingFieldValue>T3 - Engaging in behavior that demonstrates gang/neighborhood crew affiliation (displaying clothing or gestures associated with gangs)</controllingFieldValue>
+            <controllingFieldValue>T1 - Attending class without required class materials or assigned work</controllingFieldValue>
+            <controllingFieldValue>T1 - Off-task behaviors that demonstrate disengagement from classroom learning</controllingFieldValue>
+            <controllingFieldValue>T1 - Unexcused tardiness for class or school</controllingFieldValue>
+            <controllingFieldValue>T2 - Unauthorized presence in hallway during class time</controllingFieldValue>
+            <controllingFieldValue>T2 - Leaving classroom or group without permission</controllingFieldValue>
+            <controllingFieldValue>T2 - Unexcused absence from class</controllingFieldValue>
+            <controllingFieldValue>T1 - Any behavior not specifically enumerated in any other tier that is disrespectful or causes minor disruption to the academic environment but does not involved damage to school property or harm to self or others</controllingFieldValue>
+            <controllingFieldValue>T2 - Any behavior not specifically enumerated in any other tier that causes disruption to the academic environment, involves damage to school property, or may cause minor harm to self or others</controllingFieldValue>
+            <controllingFieldValue>T1 - Running in the classroom, hall, or building</controllingFieldValue>
+            <controllingFieldValue>T3 - Any behavior not specifically enumerated in any other tier that causes significant disruption to the academic environment or causes harm to self or others</controllingFieldValue>
+            <controllingFieldValue>T4 - Any behavior not specifically enumerated in any other tier that causes disruption to the school operation, destroys school property, or causes significant harm to self or others</controllingFieldValue>
+            <controllingFieldValue>T3 - Engaging in behavior that may cause harm to self or others (rough-housing, running in street, etc.)</controllingFieldValue>
+            <controllingFieldValue>T2 - Documented pattern of persistent Tier 1 behavior</controllingFieldValue>
+            <controllingFieldValue>T3 - Documented pattern of persistent Tier 2 behavior</controllingFieldValue>
+            <controllingFieldValue>T4 - Documented pattern of persistent Tier 3 behavior</controllingFieldValue>
+            <controllingFieldValue>T5 - Documented pattern of persistent Tier 4 behavior</controllingFieldValue>
+            <controllingFieldValue>T3 - Unauthorized possession, use, or distribution of over-the-counter medication</controllingFieldValue>
+            <controllingFieldValue>T5 - Possession of drug paraphernalia or controlled substance</controllingFieldValue>
+            <controllingFieldValue>T5 - Possession or distribution of alcohol</controllingFieldValue>
+            <controllingFieldValue>T3 - Gambling</controllingFieldValue>
+            <controllingFieldValue>T3 - Academic Dishonesty</controllingFieldValue>
+            <controllingFieldValue>T3 - Forgery</controllingFieldValue>
+            <controllingFieldValue>T4 - Tampering with or altering an official school record or document</controllingFieldValue>
+            <valueName>Respecting Self</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

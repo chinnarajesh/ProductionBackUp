@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Min_of_enrollment__c</fullName>
+    <description>Minimum # of enrollment</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Enter the minimum number of students that should be enrolled in this course. You can use this field for reporting purposes.</inlineHelpText>
+    <label>Min # of enrollment</label>
+    <length>2</length>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

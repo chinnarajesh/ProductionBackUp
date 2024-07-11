@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Two Year Old Purged Objects --></label>
+    <name>Two_Year_Old_Purged_Objects__c</name>
+</CustomFieldTranslation>

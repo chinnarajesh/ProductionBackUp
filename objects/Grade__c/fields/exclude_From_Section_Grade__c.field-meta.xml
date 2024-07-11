@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>exclude_From_Section_Grade__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Simple flag that keeps the assignment from being used in the calculation of the section grade</description>
+    <label>Exclude From Section Grade</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

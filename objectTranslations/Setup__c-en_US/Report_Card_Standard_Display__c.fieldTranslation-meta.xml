@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Report Card Standard Display --></label>
+    <name>Report_Card_Standard_Display__c</name>
+    <picklistValues>
+        <masterLabel>Standards</masterLabel>
+        <translation><!-- Standards --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Strands</masterLabel>
+        <translation><!-- Strands --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Prompt xmlns="http://soap.sforce.com/2006/04/metadata">
+    <masterLabel>cyschoolhouse is closing for school admins</masterLabel>
+    <promptVersions>
+        <actionButtonLabel>Who is my analytics point</actionButtonLabel>
+        <actionButtonLink>https://cityyear.sharepoint.com/sites/impactanalyticscommunity/Community%20Member%20Photos/Forms/Current.aspx</actionButtonLink>
+        <body>&lt;p&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;cyschoolhouse closes to site users on June 23. Please contact your site’s analytics point if you think you may need an extension.&amp;nbsp;&lt;/span&gt;&lt;/p&gt;</body>
+        <delayDays>6</delayDays>
+        <description>letting school admins that cyscchoolhouse is closing and the date that its closing</description>
+        <displayType>DockedComposer</displayType>
+        <endDate>2023-06-23</endDate>
+        <header>cyschoolhouse is closing soon!</header>
+        <isPublished>true</isPublished>
+        <masterLabel>cyschoolhouse is closing for school admins</masterLabel>
+        <publishedDate>2023-06-05</publishedDate>
+        <shouldDisplayActionButton>true</shouldDisplayActionButton>
+        <shouldIgnoreGlobalDelay>true</shouldIgnoreGlobalDelay>
+        <startDate>2023-06-05</startDate>
+        <targetPageKey1>home</targetPageKey1>
+        <targetPageType>standard__namedPage</targetPageType>
+        <themeColor>Theme1</themeColor>
+        <themeSaturation>Dark</themeSaturation>
+        <timesToDisplay>3</timesToDisplay>
+        <title>cyschoolhouse is closing soon!</title>
+        <uiFormulaRule>
+            <booleanFilter>1 OR 2</booleanFilter>
+            <criteria>
+                <leftValue>{!$User.Profile.Key}</leftValue>
+                <operator>EQUAL</operator>
+                <rightValue>Admin</rightValue>
+            </criteria>
+            <criteria>
+                <leftValue>{!$User.Profile.Key}</leftValue>
+                <operator>EQUAL</operator>
+                <rightValue>custom_school administrator</rightValue>
+            </criteria>
+        </uiFormulaRule>
+        <userAccess>Everyone</userAccess>
+        <userProfileAccess>SpecificProfiles</userProfileAccess>
+        <versionNumber>1</versionNumber>
+    </promptVersions>
+</Prompt>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>School_Selections_Completed__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>In the setup wizard, schools must make selections indicating their preferences for the school year.  This field indicates whether these selections have been completed.</description>
+    <label>School Selections Completed</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

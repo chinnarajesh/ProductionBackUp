@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Sectional_Attendance_Time_Lost__c</fullName>
+    <description>roll-up count of all time lost due to sectional attendance</description>
+    <inlineHelpText>Displays the time lost (in minutes) for sectional attendance. SchoolForce calculates this by adding the value in the Time Lost Rollup field from all Attendance records in which the Daily check box is not selected.</inlineHelpText>
+    <label>Sectional Attendance Time Lost</label>
+    <summarizedField>Attendance__c.Time_Lost_Rollup__c</summarizedField>
+    <summaryFilterItems>
+        <field>Attendance__c.Daily__c</field>
+        <operation>equals</operation>
+        <value>False</value>
+    </summaryFilterItems>
+    <summaryForeignKey>Attendance__c.Student__c</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

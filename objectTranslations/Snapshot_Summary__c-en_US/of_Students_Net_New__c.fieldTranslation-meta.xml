@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Students added to the cohort who were not original members. --></help>
+    <label><!-- # of Students Net New --></label>
+    <name>of_Students_Net_New__c</name>
+</CustomFieldTranslation>

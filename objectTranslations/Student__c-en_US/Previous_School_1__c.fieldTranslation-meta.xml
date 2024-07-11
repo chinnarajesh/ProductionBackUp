@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Defines the name of the school the student previously attended.  If you update this field, SchoolForce updates the corresponding field on the Contact record. --></help>
+    <label><!-- Previous School 1 --></label>
+    <name>Previous_School_1__c</name>
+</CustomFieldTranslation>

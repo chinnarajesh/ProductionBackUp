@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Section Grade</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Section Grades</value>
+    </caseValues>
+    <layouts>
+        <layout>Section Grade Layout</layout>
+        <sections>
+            <label><!-- Comments for Report Card --></label>
+            <section>Comments for Report Card</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Section Grade Layout3</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Section Grade Layout_admin</layout>
+        <sections>
+            <label><!-- Comments --></label>
+            <section>Comments</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <description><!-- Differentiate between quarter-based and semester-based sectional grades. --></description>
+        <label><!-- Quarter --></label>
+        <name>Quarter</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Semester --></label>
+        <name>Semester</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

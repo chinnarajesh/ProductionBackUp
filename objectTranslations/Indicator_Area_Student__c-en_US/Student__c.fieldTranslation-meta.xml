@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- This field joins the Indicator Area/Student record to the correct Student --></help>
+    <label><!-- Student --></label>
+    <name>Student__c</name>
+    <relationshipLabel><!-- Indicator Area/Student --></relationshipLabel>
+</CustomFieldTranslation>

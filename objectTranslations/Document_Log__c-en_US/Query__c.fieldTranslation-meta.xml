@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- This is the initial query that was submitted to the system when the batch started. --></help>
+    <label><!-- Query --></label>
+    <name>Query__c</name>
+</CustomFieldTranslation>

@@ -45,7 +45,8 @@ public without sharing class ctlAddTimeFlow_dev {
         public String studentList{get;set;}
         public String exitTicket{get;set;}
         public String Timevalue {get;set;}
-        //Public String Primaryskill {get;set;}
+        public String Primaryskill {get;set;}
+        public String otherskill {get;set;}
     }
     /**/
      
@@ -416,7 +417,7 @@ public without sharing class ctlAddTimeFlow_dev {
         showPopwindow=false;
         searchstudentName=null;
         currentSection = new Section__c();
-        currentSection =[select id,name,School__c,Start_Date__c,End_Date__c from Section__c where id =: sectionID];
+        currentSection =[select id,name,School__c,Start_Date__c,End_Date__c,Auto_Name__c from Section__c where id =: sectionID];
         sect.Start_Date__c = null;
         sect.End_Date__c = null;
         sect.Intervention_Primary_Staff__c = null;
@@ -434,7 +435,7 @@ public without sharing class ctlAddTimeFlow_dev {
     }
     public PageReference backToSession(){
         currentSection = new Section__c();
-        currentSection =[select id,name,School__c,Start_Date__c,End_Date__c from Section__c where id =: sectionID];
+        currentSection =[select id,name,School__c,Start_Date__c,End_Date__c,Auto_Name__c from Section__c where id =: sectionID];
         System.debug('curentSchool^^^'+currentSection.School__c);
         System.debug('sectSchool***'+sect.School__c);
         sect.School__c = currentSection.School__c;
@@ -542,7 +543,7 @@ public without sharing class ctlAddTimeFlow_dev {
                     Session_Type__c,Session_Format__c,Site_Details__c,Section__r.Time__c,All_avenues__c,Tutoring_Model__c,Skill_Primary__r.name
             FROM Intervention_Session__c
             WHERE Section__c = :sectionID
-            ORDER BY Date__c desc, LastModifiedDate DESC
+            ORDER BY Date__c DESC 
                     /* LIMIT :blockSize
                      OFFSET :index*/
             ];
@@ -595,15 +596,19 @@ public without sharing class ctlAddTimeFlow_dev {
                 //  }
                 
              }
-     
+            Map<Id,Skill__c> skillmap = new Map<Id,Skill__c>();
+            for(Skill__c skillList : [select id,name from Skill__c]){
+                skillmap.put(skillList.Id,skillList);
+            }
             for(Intervention_Session__c iter : interv){
                 SessionList slt=new SessionList();
-                 
                 if(stsectionmap.containsKey(iter.ID) && studenttimeMap.containsKey(iter.ID)){
                     slt.intervSection=iter;
                     slt.studentList=stsectionmap.get(iter.ID);
                     slt.Timevalue=findmax(studenttimeMap.get(iter.ID));
-                   
+                    if(iter.Skill_Primary__c !=null){
+                        slt.Primaryskill=skillmap.get(iter.Skill_Primary__c).name;
+                    }
                     sessList.add(slt);
                    }
                 //if(stsectionExitMap.containsKey(iter.ID)){
@@ -666,13 +671,13 @@ public without sharing class ctlAddTimeFlow_dev {
        }
     
     //logic for Search Criteria by Harsh Singh
-    public void searchSession(){
+    public PageReference searchSession(){
         ss.Student__c=null;
         results=null;
-        System.debug('search resulrt');
-        System.debug('@@@@@@@@'+'Insearch Section'+sectionID);
-        System.debug('studentId===='+studentId);
-        System.debug('new Student++'+searchstudentName);
+        // System.debug('search resulrt');
+        // System.debug('@@@@@@@@'+'Insearch Section'+sectionID);
+        // System.debug('studentId===='+studentId);
+        // System.debug('new Student++'+searchstudentName);
         String NewStudentName = '%'+searchstudentName+'%';
         if(String.isBlank(searchstudentName)){
             studentId=null;
@@ -683,6 +688,8 @@ public without sharing class ctlAddTimeFlow_dev {
         if(!String.isBlank(searchstudentName) && results.isEmpty()){
             ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 'Student cannot be found in this session.'));
             studentId=null;
+            searchResults=null;
+            return Page.CY_Session;
         }
         System.debug('data result'+results);
         if(!String.isBlank(searchstudentName) && studentId ==null){
@@ -701,22 +708,19 @@ public without sharing class ctlAddTimeFlow_dev {
         // if(!String.isBlank(searchstudentName) && ss.Student__c == null){
         //     ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 'Student cannot be found in this session.'));
         // }
-        System.debug('studentname+++'+ss.Student__c);
         try {
             searchResults=new   List<SessionList>();
             Map<Id, String> stsectionmap=new  Map<Id, String>();
             Map<Id,String> searchExitMap = new Map<Id,String>();
             Map<Id,String> searchTimeMap = new Map<Id,String>();
             Map<Id,String> searchPrimaryMap = new Map<Id,String>();
-            String querySession=' SELECT Id,Name,LastModifiedDate, Date__c,  Session_Time_Completed_For__r.Name, Section__c,Section__r.Name,Comments__c,Skill_Primary__c,Skills_Covered_for_the_Session__c,Session_Format__c,Site_Details__c,Session_Type__c,Tutoring_Model__c,All_avenues__c,Skill_Primary__r.name  FROM Intervention_Session__c  WHERE Section__c = :sectionID';
+            String querySession=' SELECT Id,Name,LastModifiedDate, Date__c,  Session_Time_Completed_For__r.Name, Section__c,Section__r.Name,Comments__c,Skill_Primary__c,Skills_Covered_for_the_Session__c,Session_Format__c,Site_Details__c,Session_Type__c,Tutoring_Model__c,All_avenues__c,Skill_Primary__r.name  FROM Intervention_Session__c  WHERE Section__c = :sectionID ';
             String queryStSection='SELECT Student__r.Name , Section__c  FROM Student_Section__c where Section__c= :sectionID';
             List<Intervention_Session__c> interv;
             Set<ID> intervIds=new Set<ID>();
             Student__c student;
             Date strtDAte=Date.valueOf(sect.Start_Date__c);
             Date endDate=Date.valueOf(sect.End_Date__c);
-            System.debug('sect.Start_Date__c++'+sect.Start_Date__c);
-            System.debug('sect.End_Date__c+++'+sect.End_Date__c);
             Boolean exss=False;
             ApexPages.Message message=null;
 
@@ -738,7 +742,7 @@ public without sharing class ctlAddTimeFlow_dev {
                     querySession+=' AND Date__c>=:strtDAte';
                 }
             }
-
+            querySession+=' ORDER BY LastModifiedDate DESC';
             System.debug('sectionQuery'+querySession);
             interv =Database.query(querySession);
             for(Intervention_Session__c inter : interv){
@@ -788,25 +792,26 @@ public without sharing class ctlAddTimeFlow_dev {
             //Logic to filter Student Name
             //Retrieve Student name from student
             if(ss.Student__c!=null){
-                System.debug('StudentId++'+ss.Student__c);
                 student=[Select Name from Student__C where ID=:ss.Student__c] ;
-                System.debug('studentName**'+student.name);
+            }
+            Map<Id,Skill__c> skillmap = new Map<Id,Skill__c>();
+            for(Skill__c skillList : [select id,name from Skill__c]){
+                skillmap.put(skillList.Id,skillList);
             }
             if(interv!=null){
                 for(Intervention_Session__c iter : interv){
                     SessionList slt=new SessionList();
                     if( stsectionmap.containsKey(iter.ID)==true && searchTimeMap.containsKey(iter.ID) || searchExitMap.containsKey(iter.ID)){
-                        System.debug('ItrId'+iter.id);
-                        System.debug('stsectionmap++'+stsectionmap);
                         slt.intervSection=iter;
                         slt.studentList=stsectionmap.get(iter.ID);
                         slt.Timevalue=findmax(searchTimeMap.get(iter.ID));
                         slt.exitticket=searchExitMap.get(iter.ID);
+                        if(iter.Skill_Primary__c !=null){
+                        slt.Primaryskill=skillmap.get(iter.Skill_Primary__c).name;
+                        }
                         //searchResults.add(slt);
                     }
-                    System.debug('searchResults***'+searchResults);
                     if(ss.Student__c!=null){
-                        System.debug('StudentList++'+slt.studentList);
                         if( slt.studentList.contains(student.Name)){
                             searchResults.add(slt);
                         }
@@ -844,17 +849,24 @@ public without sharing class ctlAddTimeFlow_dev {
                     if(message==null){
                         message = new ApexPages.Message(ApexPages.Severity.info,System.Label.Empty_Search_Reult);
                         ApexPages.addMessage(message);
+                        searchResults=null;
                     }
                 }
             }
-            System.debug('@@@ searchResults: '+searchResults.size());
+            //System.debug('@@@ searchResults: '+searchResults.size());
             totalRecs = [select count() from Intervention_Session__c WHERE Section__c = :sectionID] ;
             system.debug('KY---Total ' + totalRecs);
 
         } catch (QueryException e) {
+            searchstudentName=null;
             ApexPages.addMessages(e);
+            
         }
-        
+        searchstudentName=null;
+        sect.Start_Date__c = null;
+        sect.End_Date__c = null;
+        sect.Intervention_Primary_Staff__c = null;
+        return null;
     }
 
     /**
@@ -984,9 +996,10 @@ public without sharing class ctlAddTimeFlow_dev {
                     toBeRemoved.add(theSelectedSkill);
                 }
             }
+            System.debug('theSelectedSkills++'+theSelectedSkills);
             // Removing invalid skills.
             theSelectedSkills.removeAll(toBeRemoved);
-
+            System.debug('removed++'+theSelectedSkills);
             //if(theSelectedSkills.size() == 0) {
             //    ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, Label.CommunityAddTimeInvalidSkillsErrorMessageText ));
             //    return Page.CY_AddTime;
@@ -1011,12 +1024,12 @@ public without sharing class ctlAddTimeFlow_dev {
             return Page.CY_AddTime;
         }
         // Cannot have blank skills
-        if(String.isBlank(currentSession.All_avenues__c)){
-            system.debug('KY---Blank Skills ' );
-            //currentSession.All_avenues__c.addError('Service is required.');
-            ApexPages.addMessage(new apexPages.Message(apexPages.Severity.ERROR, '\nPlease select whether you provided the service In-Person Service or Virtual Service.'));
-            return Page.CY_AddTime;
-        }
+        // if(String.isBlank(currentSession.All_avenues__c)){
+        //     system.debug('KY---Blank Skills ' );
+        //     //currentSession.All_avenues__c.addError('Service is required.');
+        //     ApexPages.addMessage(new apexPages.Message(apexPages.Severity.ERROR, '\nPlease select whether you provided the service In-Person Service or Virtual Service.'));
+        //     return Page.CY_AddTime;
+        // }
         //if(String.isBlank(currentSession.Skill_Primary__c) && currentSession.All_avenues__c=='In-Person Service'){
         //    system.debug('KY---Blank Skills ' );
         //    currentSession.Skill_Primary__c.addError('Primary Skill is required.');
@@ -1380,6 +1393,7 @@ public without sharing class ctlAddTimeFlow_dev {
     }
 
     public void initSiteDetails(){
+        System.debug('sectionID =='+sectionID);
         siteDetailsOptions = new List<SelectOption>();
         siteDetailsOptions = ISTool.getSiteDetailsOptions();
 
@@ -1557,22 +1571,29 @@ public without sharing class ctlAddTimeFlow_dev {
     }
     public List<ReportWrapper> getReportWrapperItems(){
         List<ReportWrapper> reportlist = new List<ReportWrapper>();
-        //List<Intervention_Session_Result__c> intersesseionList2 =[select id,name,Student__r.name,Amount_of_Time__c,Related_Student_s_Name__c,Intervention_Session_Date__c,Student_Section__r.Dosage_to_Date__c from Intervention_Session_Result__c where Student_Section__r.Section__c =: sectionID and Student_Section__r.Active__c =True and Amount_of_Time__c > 0 ORDER BY Intervention_Session_Date__c Asc ];
-        List<AggregateResult> intersesseionList =[select Intervention_Session_Date__c,SUM(Amount_of_Time__c) amounttime from Intervention_Session_Result__c where Intervention_Session__r.Section__c =:sectionID and Student_Section__r.active__c = true  group BY Intervention_Session_Date__c,Student__r.name ORDER BY Intervention_Session_Date__c Asc ];
-        //Set<date> newdate = new Set<date>();
+        List<AggregateResult> intersesseionList =[select Intervention_Session_Date__c,SUM(Amount_of_Time__c) amounttime from Intervention_Session_Result__c where Intervention_Session__r.Section__c =:sectionID and Student_Section__r.active__c = true  group BY Intervention_Session_Date__c ORDER BY Intervention_Session_Date__c Asc ];
            
-        //for(Intervention_Session_Result__c intsess:intersesseionList2){
           for(AggregateResult agg :intersesseionList){
               Date dt =Date.valueOf(agg.get('Intervention_Session_Date__c'));
-            //if(!newdate.contains(newdate){
-            //newdate.add(intsess.Intervention_Session_Date__c);
-            //Date dt = intsess.Intervention_Session_Date__c;
+            
             Integer day = dt.Day(); //get day
             Integer month = dt.Month(); //get month
             Integer year = dt.Year(); //get year
-            
+
+            DateTime myDateTime = DateTime.newInstance(dt.year(), dt.month(), dt.day(), 0, 0, 0);
+            // Get the day of the week as a full name
+            //String dayOfWeek = myDateTime.format('EEEE');
+            //System.debug('Day of the Week (Full Name): ' + dayOfWeek); //like ==Wednesday
+
+            String dayOfWeekAbbrev = myDateTime.format('EEE');
+            //System.debug('Day of the Week (Abbreviated): ' + dayOfWeekAbbrev);//like ==Wed
+
+            String monthName = myDateTime.format('MMMM'); // Full month name (e.g., "April")
+
             ReportWrapper wrapper = new ReportWrapper();
-            wrapper.intersessiondate=month + '/' + day ;
+            //wrapper.intersessiondate=month + '/' + day ;
+            //wrapper.intersessiondate=dayOfWeekAbbrev+'/'+day + '/' + month ;
+            wrapper.intersessiondate=dayOfWeekAbbrev + ', ' + monthName + ' ' + day + ', ' + year;
             wrapper.AmountOftime =Integer.valueOf(agg.get('amounttime'));
             reportlist.add(wrapper);
             
@@ -1618,11 +1639,16 @@ public without sharing class ctlAddTimeFlow_dev {
             Integer day = dt.Day(); 
             Integer month = dt.Month(); 
             Integer year = dt.Year(); 
+
+            DateTime myDateTime = DateTime.newInstance(dt.year(), dt.month(), dt.day(), 0, 0, 0);
+            String dayOfWeekAbbrev = myDateTime.format('EEE');
+            String monthName = myDateTime.format('MMMM'); // Full month name (e.g., "April")
             
             StudentReport wrapper = new StudentReport();
              //wrapper.AmountOfTime=mapdateMaxdate.get(dt);
              wrapper.AmountOfTime=Integer.valueOf(result.get('amounttime'));
-             wrapper.intersessionDate=month + '/' + day ;
+             //wrapper.intersessionDate=month + '/' + day ;
+             wrapper.intersessionDate=dayOfWeekAbbrev + ', ' + monthName + ' ' + day + ', ' + year;
              studentReportList.add(wrapper);
              System.debug('reportlist'+studentReportList);
             
@@ -1763,6 +1789,7 @@ public without sharing class ctlAddTimeFlow_dev {
             dayInfo.selectedSkills = '';
             dayInfo.availableSkills = String.join(new List<String>(skillsAvailable), SEPARATOR);
         }
+        List<Section__c> secList = [select id,name,Start_Date__c,End_Date__c from Section__c where id=: sectionID];
 
         Map<Integer,Map<String, List<Intervention_Session_Result__c>>> studentDailyResults = new Map<Integer,Map<String, List<Intervention_Session_Result__c>>>();
         for(Intervention_Session_Result__c ar:results){
@@ -1796,7 +1823,17 @@ public without sharing class ctlAddTimeFlow_dev {
                 Set<String> skillsAvailables = skillsAvailable.clone();
                 skillsAvailables.removeAll(skillsSelected);
                 dayInfo.availableSkills = String.join(new List<String>(skillsAvailables), SEPARATOR);
-                dayInfo.isDisabled = isrs.size()>1;//studentDailyResults.containsKey(i) || String.isNotBlank(dayInfo.title);//disable dossage
+                dayInfo.newExiteticket=isrs.size()==1?isr.Exit_Ticket__c:dayInfo.newExiteticket;
+                //dayInfo.isDisabled = isrs.size()>1;//studentDailyResults.containsKey(i) || String.isNotBlank(dayInfo.title);//disable dossage
+                if(dayInfo.day > System.today()){
+                    //dayInfo.isDisabled=false;
+                }
+                else if(dayInfo.day > secList[0].End_Date__c && System.today()> secList[0].End_Date__c){
+                   
+                }
+                else if(dayInfo.day <= System.today()){
+                    dayInfo.isDisabled=isrs.size()>1;
+                }
                 dosages[i] = new ISRWrapper(
                     isr,
                     dayInfo.isDisabled,//true,
@@ -1881,6 +1918,7 @@ public without sharing class ctlAddTimeFlow_dev {
         public String       siteDetails                         {get;set;}
         public Boolean      isProceed                           {get;set;}
         public Boolean      isError                             {get;set;}
+        public string       newExiteticket                      {get;set;}
 
         public DayWrapper(Date dayOfWeek, String displayHeader, String title, Integer positionIdentifer){
             this.day = dayOfWeek;
@@ -1891,6 +1929,7 @@ public without sharing class ctlAddTimeFlow_dev {
             this.primarySkill = null;
             this.isProceed = false;
             this.isError = false;
+            this.newExiteticket=newExiteticket;
             session = new Intervention_Session__c(Date__c = dayOfWeek);
             //this.availableSkills = availableSkills;
             //this.selectedSkills = selectedSkills;
@@ -1915,18 +1954,28 @@ public without sharing class ctlAddTimeFlow_dev {
     public void saveNewSessions(){
         timerOn();
          String flag='proceed false';
-         System.debug('Exitticket++'+Exitticket);
+         String proceddFlag ='proceed true';
+         Boolean emptyCheck =false;
+         Boolean loadCheck =false;
+         //System.debug('Exitticket++'+Exitticket);
+         date newdate;
          Boolean primarySkillIsEmpty;
+         Date dateset2 ;
           Set<Integer> daysToSave = new Set<Integer>();
           Map<Integer, Intervention_Session__c> sessionsToSave = new Map<Integer, Intervention_Session__c>();
+          Map<string,string> exiteMap = new Map<string,string>();
           for(DayWrapper day: tableHeaders){
-            
+            System.debug('ExiteTicket++'+day.newExiteticket);
             System.debug('day##'+day.day);
             System.debug('day.isProceed===='+day.isProceed);
                primarySkillIsEmpty = String.isBlank(day.primarySkill);
               
               if( day.day <= System.today() && day.isDisabled==false && day.isProceed==true && (!primarySkillIsEmpty ||
-                 (primarySkillIsEmpty&& day.session.All_avenues__c !='' ))){
+                 (primarySkillIsEmpty))){
+                    emptyCheck=true;
+                    dateset2=day.day;
+                    String entrydate = dateset2.month()+ '/' + dateset2.day()+ '/' + dateset2.year() ;
+                    exiteMap.put(entrydate,day.newExiteticket);
                   day.session.Skills_Covered_for_the_Session__c = day.selectedSkills;
                   day.session.Skill_Primary__c = !primarySkillIsEmpty ? day.primarySkill: null;
                   
@@ -1943,6 +1992,9 @@ public without sharing class ctlAddTimeFlow_dev {
                if(day.day <= System.today() && day.isProceed==false && flag =='proceed false'){
                    flag='data not mapped';
                }
+               if(day.day <= System.today() && day.isProceed==false ){
+                proceddFlag='proceed false';
+               }
               
                if(day.day > System.today() &&  day.isProceed==true){
                   flag='true';
@@ -1952,8 +2004,38 @@ public without sharing class ctlAddTimeFlow_dev {
           }
          
           Savepoint sp = Database.setSavepoint();
+          //////////
+          Date dateset ;
+          Boolean amountnullcheck=true;
+          Boolean amountnotnullcheck=false;
+          for(DayWrapper day: tableHeaders){
+            if(day.isProceed == true){
+              dateset=day.day;
+              String entrydate = dateset.month()+ '/' + dateset.day()+ '/' + dateset.year() ;
+              for(SessionResultsWrapper srw: resultsData){
+                for(Integer i=0;i<7;i++){
+                    ISRWrapper rw = srw.dosages[i];
+                    if(rw.dateString == entrydate ){
+                       rw.isr.Exit_Ticket__c=exiteMap.get(entrydate);
+                        if(rw.isr.Amount_of_Time__c ==null){
+                            amountnullcheck=false;
+                        }
+                        else {
+                            amountnotnullcheck=true;
+                        }
+                    }
+                }
+              }
+             }
+           }
+          ///////////
           try{
-              upsert sessionsToSave.values();
+            if(amountnotnullcheck != true && amountnullcheck ==false){
+                CYUtil.errorMessage('Please enter the amount of time in student columns');
+            }else {
+                upsert sessionsToSave.values();
+            }
+              //upsert sessionsToSave.values();
           } catch(System.DMLException e){
               for(Integer i=0; i<e.getNumDml(); i++){
                   CYUtil.errorMessage(e.getDmlMessage(i));
@@ -1965,25 +2047,20 @@ public without sharing class ctlAddTimeFlow_dev {
           Map<String, Intervention_Session_Result__c> resultsToSave = new Map<String, Intervention_Session_Result__c>();
           Boolean hasBadResults = false;
           for(SessionResultsWrapper srw: resultsData){
-            System.debug('update++');
+            //System.debug('update++');
               for(Integer i=0;i<7;i++){
                   String key = srw.studentId+SEPKEY+i;
                   ISRWrapper rw = srw.dosages[i];
                   Decimal amountOfTime = rw.isr.Amount_of_Time__c;
                   Id isrID = rw.isr.Id;
-                  System.debug('isrID###'+isrID);
-                  if((amountOfTime != null && amountOfTime != rw.amount)
+                  if((amountOfTime != null)
                           && (isrID != null || daysToSave.contains(i+1))){
-                            System.debug('update##');
                       if(isrID == null){
-                          System.debug('allAvunes Options');
                           Intervention_Session__c session = sessionsTosave.get(i+1);
                           rw.isr.Intervention_Session__c = session.ID;
                           //added to update skills to Intervention Session Result
                           rw.isr.SkillsCovered__c = session.Skills_Covered_for_the_Session__c;
-                          rw.isr.Exit_Ticket__c=Exitticket;
                       }
-                      rw.isr.Exit_Ticket__c=Exitticket;
                       tableHeaders[i].isError = false;
                       resultsToSave.put(key, rw.isr.clone(true, false));
                   }
@@ -1995,14 +2072,21 @@ public without sharing class ctlAddTimeFlow_dev {
                           tableHeaders[i].isError = true;
                           hasBadResults = true;
                           if(flag=='data not mapped'){
-                              CYUtil.errorMessage('Please confirm whether service happened In-Person Service or Virtual Service by clicking on the blue speech bubble next to a date column.');
-                              //ApexPages.addMessage(new apexPages.Message(apexPages.Severity.ERROR, '\nPlease confirm whether service happened In-Person Service or Virtual Service by clicking on the blue speech bubble next to a date column.'));
-                            }
+                            loadCheck=true;
+                            CYUtil.errorMessage('Before clicking on the Submit time button ,Please confirm by clicking on the blue speech bubble next to a date column.');
+                         }
+                         if(proceddFlag=='proceed false'){
+                            loadCheck=true;
+                            CYUtil.errorMessage('Before clicking on the Submit time button ,Please confirm by clicking on the blue speech bubble next to a date column.');
+                          }
                           if(flag=='true'){
                           CYUtil.errorMessage('Cannot enter time for a date in the future.');
                          }
                           //CYUtil.errorMessage('You have entered time for '+currentWeek.addDays(i).format()+' but have not populated the skills covered. Please enter the skills covered.');
-                           loadSessionData();
+                           if(loadCheck !=true){
+                            loadSessionData();
+                           }
+                          //loadSessionData();
                      }
                   }
                   //System.debug('daysToSave##'+daysToSave);
@@ -2033,6 +2117,7 @@ public without sharing class ctlAddTimeFlow_dev {
   
           try{
               upsert resultsToSave.values();
+              System.debug('resultsToSave++'+resultsToSave.values());
           } catch(System.DMLException e){
               Database.rollback(sp);
               for(Integer i=0; i<e.getNumDml(); i++){
@@ -2051,13 +2136,19 @@ public without sharing class ctlAddTimeFlow_dev {
                   String key = srw.studentId+SEPKEY+i;
                   if(resultsToSave.containsKey(key)){
                       srw.dosages[i].isr.Id = resultsToSave.get(key).Id;
-                      srw.dosages[i].isr.Exit_Ticket__c=Exitticket;
+                      //srw.dosages[i].isr.Exit_Ticket__c=Exitticket;
                   }
               }
           }
-          
-          CYUtil.successMessage('All changes have been saved successfully.');
-  
+          if(amountnotnullcheck != true && amountnullcheck ==false ){
+           // CYUtil.errorMessage('Please Enter the Amount of time');
+          }
+          else if(emptyCheck ==false){
+            CYUtil.errorMessage('Please enter the amount of time in student columns');
+            }
+          else {
+            CYUtil.successMessage('All changes have been saved successfully.');
+          }
           loadSessionData();
           
       }

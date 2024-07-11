@@ -1,0 +1,35 @@
+.session-list {
+	.flex-row {
+
+		margin-bottom:0;
+		flex-wrap:wrap;
+	}
+	.filter-group {
+		padding:$gap;
+		.flex-row {
+			.form-group {
+				@media (max-width:$screen-sm-min) {
+					min-width:0;
+
+				}
+			}
+		}
+		.btn-bs {
+			@media (min-width:$screen-md) {
+				margin-top:24px;
+			}
+		}
+	}
+	.lookupInput {
+		display: flex;
+		position:relative;
+		a.form-control {
+			width:30px;
+			background:none;
+			position:absolute;
+			right:10px;
+			border:0;
+			box-shadow:none;
+		}
+	}
+}

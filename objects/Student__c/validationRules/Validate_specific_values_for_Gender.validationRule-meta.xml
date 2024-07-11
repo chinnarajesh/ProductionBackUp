@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Validate_specific_values_for_Gender</fullName>
+    <active>false</active>
+    <errorConditionFormula>NOT(OR(ISPICKVAL(Gender__c, &quot;Male&quot;),ISPICKVAL(Gender__c, &quot;Female&quot;),ISPICKVAL(Gender__c, &quot;Gender Neutral&quot;)))</errorConditionFormula>
+    <errorMessage>Gender values are limited to Male, Female or Gender Neutral</errorMessage>
+</ValidationRule>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- When did this take place? --></label>
+    <name>When_did_this_take_place__c</name>
+    <picklistValues>
+        <masterLabel>Afterschool</masterLabel>
+        <translation><!-- Afterschool --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Before school</masterLabel>
+        <translation><!-- Before school --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>During the school day (in-school)</masterLabel>
+        <translation><!-- During the school day (in-school) --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

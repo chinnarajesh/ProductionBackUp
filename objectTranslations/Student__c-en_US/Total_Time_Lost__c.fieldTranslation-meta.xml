@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Displays the student&apos;s total combined instructional time lost (in minutes), which sums the attendance and behavior time lost. --></help>
+    <label><!-- Total Time Lost --></label>
+    <name>Total_Time_Lost__c</name>
+</CustomFieldTranslation>

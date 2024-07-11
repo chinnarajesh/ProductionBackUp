@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Calculation_Type__c</fullName>
+    <description>Choose a calculation type for standard based grading.</description>
+    <inlineHelpText>Select a calculation type for standard-based grading. This must be selected if using standards - based grading.</inlineHelpText>
+    <label>Calculation Type</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Mean</fullName>
+                <default>false</default>
+                <label>Mean</label>
+            </value>
+            <value>
+                <fullName>Power Law</fullName>
+                <default>false</default>
+                <label>Power Law</label>
+            </value>
+            <value>
+                <fullName>Highest</fullName>
+                <default>false</default>
+                <label>Highest</label>
+            </value>
+            <value>
+                <fullName>Most Recent</fullName>
+                <default>false</default>
+                <label>Most Recent</label>
+            </value>
+            <value>
+                <fullName>Law of Decaying Average</fullName>
+                <default>false</default>
+                <label>Law of Decaying Average</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

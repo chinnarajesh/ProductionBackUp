@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>EOY Progress</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>EOY Progresses</value>
+    </caseValues>
+    <layouts>
+        <layout>EOY Progress Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>School Progress Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Setup Wizard Progress Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <label><!-- EOY --></label>
+        <name>EOY</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Setup Wizard --></label>
+        <name>Setup_Wizard</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

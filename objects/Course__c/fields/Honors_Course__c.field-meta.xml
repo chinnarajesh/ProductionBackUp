@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Honors_Course__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Students successfully completing this course will receive honor&apos;s credit.</description>
+    <inlineHelpText>Students successfully completing this course will receive honor&apos;s credit.</inlineHelpText>
+    <label>Honors Course</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

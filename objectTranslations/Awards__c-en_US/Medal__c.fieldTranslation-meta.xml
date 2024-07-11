@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Medal --></label>
+    <name>Medal__c</name>
+    <picklistValues>
+        <masterLabel>Blue/Silver</masterLabel>
+        <translation><!-- Blue/Silver --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Red/Silver</masterLabel>
+        <translation><!-- Red/Silver --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Striped/Gold</masterLabel>
+        <translation><!-- Striped/Gold --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Striped/Silver</masterLabel>
+        <translation><!-- Striped/Silver --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

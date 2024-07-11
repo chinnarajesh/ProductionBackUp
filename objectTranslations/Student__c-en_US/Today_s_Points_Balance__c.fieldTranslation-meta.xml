@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Displays the sum of the student&apos;s points. The Points module uses this field. --></help>
+    <label><!-- Today&apos;s Points Balance --></label>
+    <name>Today_s_Points_Balance__c</name>
+</CustomFieldTranslation>

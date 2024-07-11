@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Indicates the situation under which the student entered the school. If you update this field, SchoolForce updates the corresponding field on the Contact record. --></help>
+    <label><!-- Entry Code --></label>
+    <name>Entry_Type__c</name>
+    <picklistValues>
+        <masterLabel>Original entry into a United States school</masterLabel>
+        <translation><!-- Original entry into a United States school --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Original entry into a United States school from a foreign country with an interruption in schooling</masterLabel>
+        <translation><!-- Original entry into a United States school from a foreign country with an interruption in schooling --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Original entry into a United States school from a foreign country with no interruption in schooling</masterLabel>
+        <translation><!-- Original entry into a United States school from a foreign country with no interruption in schooling --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Other</masterLabel>
+        <translation><!-- Other --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Re-entry after a voluntary withdrawal</masterLabel>
+        <translation><!-- Re-entry after a voluntary withdrawal --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Re-entry after an involuntary withdrawal</masterLabel>
+        <translation><!-- Re-entry after an involuntary withdrawal --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Re-entry from the same school with no interruption of schooling</masterLabel>
+        <translation><!-- Re-entry from the same school with no interruption of schooling --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Transfer from a charter school</masterLabel>
+        <translation><!-- Transfer from a charter school --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Transfer from a private, non-religiously-affiliated school in a different local education agency in the same state</masterLabel>
+        <translation><!-- Transfer from a private, non-religiously-affiliated school in a different local education agency in the same state --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Transfer from a private, non-religiously-affiliated school in a different state</masterLabel>
+        <translation><!-- Transfer from a private, non-religiously-affiliated school in a different state --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Transfer from a private, non-religiously-affiliated school in the same local education agency</masterLabel>
+        <translation><!-- Transfer from a private, non-religiously-affiliated school in the same local education agency --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Transfer from a private, religiously-affiliated school in a different local education agency in the same state</masterLabel>
+        <translation><!-- Transfer from a private, religiously-affiliated school in a different local education agency in the same state --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Transfer from a private, religiously-affiliated school in a different state</masterLabel>
+        <translation><!-- Transfer from a private, religiously-affiliated school in a different state --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Transfer from a private, religiously-affiliated school in the same local education agency</masterLabel>
+        <translation><!-- Transfer from a private, religiously-affiliated school in the same local education agency --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Transfer from a public school in a different local education agency in the same state</masterLabel>
+        <translation><!-- Transfer from a public school in a different local education agency in the same state --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Transfer from a public school in a different state</masterLabel>
+        <translation><!-- Transfer from a public school in a different state --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Transfer from a public school in the same local education agency</masterLabel>
+        <translation><!-- Transfer from a public school in the same local education agency --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Transfer from a school outside of the country</masterLabel>
+        <translation><!-- Transfer from a school outside of the country --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Transfer from an institution</masterLabel>
+        <translation><!-- Transfer from an institution --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Transfer from home schooling</masterLabel>
+        <translation><!-- Transfer from home schooling --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- This formula field displays the student&apos;s grade level and can be used in reports. This field is pulled from the Student record. --></help>
+    <label><!-- Student&apos;s Grade --></label>
+    <name>Student_s_Grade__c</name>
+</CustomFieldTranslation>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Curriculum_Framework__c</fullName>
+    <description>An indication of the standard curriculum used for this course.</description>
+    <inlineHelpText>An indication of the standard curriculum used for this course.</inlineHelpText>
+    <label>Curriculum Framework</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>State Curriculum Framework</fullName>
+                <default>false</default>
+                <label>State Curriculum Framework</label>
+            </value>
+            <value>
+                <fullName>LEA Curriculum Framework</fullName>
+                <default>false</default>
+                <label>LEA Curriculum Framework</label>
+            </value>
+            <value>
+                <fullName>School Curriculum Framework</fullName>
+                <default>false</default>
+                <label>School Curriculum Framework</label>
+            </value>
+            <value>
+                <fullName>Private, Religious Curriculum</fullName>
+                <default>false</default>
+                <label>Private, Religious Curriculum</label>
+            </value>
+            <value>
+                <fullName>National Curriculum Standard</fullName>
+                <default>false</default>
+                <label>National Curriculum Standard</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

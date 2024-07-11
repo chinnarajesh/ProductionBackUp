@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Raw_score_validation</fullName>
+    <active>true</active>
+    <errorConditionFormula>or
+(Raw_Score__c&lt;0, Raw_Score__c&gt;30)</errorConditionFormula>
+    <errorDisplayField>Raw_Score__c</errorDisplayField>
+    <errorMessage>Raw Score must be within a 0 - 30 range</errorMessage>
+</ValidationRule>

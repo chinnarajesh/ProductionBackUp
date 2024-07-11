@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Session_Time_Completed_For__c</fullName>
+    <deleteConstraint>Restrict</deleteConstraint>
+    <inlineHelpText>Who was the staff member that led the Intervention Section? This field allows a user to enter Session time on behalf of another user.</inlineHelpText>
+    <label>Session Time Completed For</label>
+    <referenceTo>Staff__c</referenceTo>
+    <relationshipLabel>Intervention Sessions</relationshipLabel>
+    <relationshipName>Intervention_Sessions</relationshipName>
+    <required>true</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

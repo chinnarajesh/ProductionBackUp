@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Displays the career-to-date Unweighted GPA, which includes the Final Unweighted GPA from every year the student has attended the school (including transferred courses). The value in this field also displays on transcripts in the Unweighted GPA field. --></help>
+    <label><!-- GPA To Date --></label>
+    <name>GPA_To_Date__c</name>
+</CustomFieldTranslation>

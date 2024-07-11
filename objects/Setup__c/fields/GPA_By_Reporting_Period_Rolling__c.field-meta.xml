@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>GPA_By_Reporting_Period_Rolling__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Controls whether calculations in GPA batch carry over from Reporting period to reporting period or are independently calculated.</description>
+    <inlineHelpText>If this checkbox is checked grades from previous reporting periods will be factored into student&apos;s GPA for current reporting period.  IE for Q2 GPA, Section Grades from Q1 &amp; Q2 will factor into calculations.</inlineHelpText>
+    <label>Rolling GPA?</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

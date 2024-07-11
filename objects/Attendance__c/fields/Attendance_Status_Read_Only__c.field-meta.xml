@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Attendance_Status_Read_Only__c</fullName>
+    <externalId>false</externalId>
+    <formula>Picklist_Value__r.Name</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>This field is an exact copy of the Status field and was created for use in Student record rollups. This field is used for Student/Parent Portal calculations. This field can be used in reports.</inlineHelpText>
+    <label>Attendance Status Read Only</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

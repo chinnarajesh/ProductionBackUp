@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Kim_Test</fullName>
+    <columns>NAME</columns>
+    <columns>School__c</columns>
+    <columns>Active__c</columns>
+    <columns>Year_Start__c</columns>
+    <columns>Year_End__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Year__c</field>
+        <operation>equals</operation>
+        <value>T-001555</value>
+    </filters>
+    <label>Kim Test</label>
+</ListView>

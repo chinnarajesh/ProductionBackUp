@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Displays the home phone number for the contact listed in the Emergency Contact #1 Name field. --></help>
+    <label><!-- EContact #1 Home Phone --></label>
+    <name>EContact_1_Home_Phone__c</name>
+</CustomFieldTranslation>

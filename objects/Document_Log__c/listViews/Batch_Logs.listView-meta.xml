@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Batch_Logs</fullName>
+    <columns>NAME</columns>
+    <columns>Status__c</columns>
+    <columns>Transmitted_to_S3__c</columns>
+    <columns>CREATEDBY_USER</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Document_Log__c.Batch</value>
+    </filters>
+    <label>Batch Logs</label>
+</ListView>

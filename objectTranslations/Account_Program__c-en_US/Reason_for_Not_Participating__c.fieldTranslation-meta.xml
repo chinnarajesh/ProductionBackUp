@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- If applicable, what is the reason this School is not participating in the Program? --></help>
+    <label><!-- Reason for Not Participating --></label>
+    <name>Reason_for_Not_Participating__c</name>
+</CustomFieldTranslation>

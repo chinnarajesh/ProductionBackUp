@@ -19,6 +19,40 @@
         }
 
         getValueFromTermList();
+         
+        //// added by juturi rajesh
+
+        function EnterDateValue(name) {
+
+             var nameInputs = document.getElementsByClassName('name-field');
+             var startDateInputs = document.getElementsByClassName('start-date');
+             var endDateInputs = document.getElementsByClassName('end-date');
+             var count =0;
+             for (var i = 0; i < nameInputs.length; i++) {
+                if(nameInputs[i].value == name){
+                    count--;
+                    var startDateInput = startDateInputs[i].value;
+                    var endDateInput = endDateInputs[count];
+                    //console.log('endDateInputId++ '+endDateInputId);
+                    var startDate = new Date(startDateInput);
+                    var endDate = new Date(startDate);
+                    endDate.setDate(startDate.getDate() - 1);
+                    endDateInput.value  = formatDateMMDDYYYY(endDate);
+                    //j$("input[id$='endDateInputId']").val(endDateInput);
+                }
+                count++;               
+             }
+        }
+        function formatDateMMDDYYYY(date) {
+           let day = date.getDate();
+           let month = date.getMonth() + 1; // Months are zero-based
+           let year = date.getFullYear();
+           return month + '/' + day + '/' + year;
+          }
+
+        ////
+
+
     </script>
     <style>
         .section_content a{
@@ -308,20 +342,22 @@
                     <apex:outputPanel rendered="{!bConfigureRp}">
                         <apex:pageMessages />
                         <h3>Create/Edit Reporting Period</h3>
+                        <!-- <apex:variable value="{!5}" var="index" /> -->
                         <apex:pageBlock >
-                            <apex:pageBlockTable value="{!reportingPeriodElement.timeElementList}" var="timeElement">
+                            <apex:pageBlockTable value="{!reportingPeriodElement.timeElementList}" var="timeElement" >
+                                <apex:variable value="{!5}" var="index" />
                                 <div class="section_content" style="max-width:865px;"><!-- Added the min width to fix the buttons from wrapping badly-->
                                     <apex:column ><apex:facet name="header">Name</apex:facet>
-                                        <apex:inputField required="true" value="{!timeElement.Name__c}"/>
+                                        <apex:inputField required="true" value="{!timeElement.Name__c}"  styleClass="name-field" html-disabled="true"/>
                                     </apex:column>
                                     <apex:column ><apex:facet name="header">Start Date</apex:facet>
-                                        <apex:inputField required="true" value="{!timeElement.Date_Start_Date__c}"/>
+                                        <apex:inputField required="true" value="{!timeElement.Date_Start_Date__c}" onchange="EnterDateValue('{!timeElement.Name__c}')" styleClass="start-date"/>
                                     </apex:column>
                                     <apex:column ><apex:facet name="header">End Date</apex:facet>
-                                        <apex:inputField required="true" value="{!timeElement.End_Date__c}"/>
+                                        <apex:inputField required="true" value="{!timeElement.End_Date__c}" styleClass="end-date"/>
                                     </apex:column>
                                     <apex:column ><apex:facet name="header" >Name on Report Card</apex:facet>
-                                        <apex:inputField required="true" value="{!timeElement.Name_On_Report_Card__c}"/>
+                                        <apex:inputField required="true" value="{!timeElement.Name_On_Report_Card__c}" html-disabled="true"/>
                                     </apex:column>
                                 </div>
                             </apex:pageBlockTable>
@@ -343,7 +379,7 @@
                             <apex:pageBlockTable value="{!reportingPeriodElementEdit.timeElementList}" var="timeElement">
                                 <div class="section_content" style="max-width:865px;"><!-- Added the min width to fix the buttons from wrapping badly-->
                                     <apex:column ><apex:facet name="header">Name</apex:facet>
-                                        <apex:inputField required="true" value="{!timeElement.Name__c}"/>
+                                        <apex:inputField required="true" value="{!timeElement.Name__c}" html-disabled="true"/>
                                     </apex:column>
                                     <apex:column ><apex:facet name="header">Start Date</apex:facet>
                                         <apex:inputField required="true" value="{!timeElement.Date_Start_Date__c}"/>
@@ -352,7 +388,7 @@
                                         <apex:inputField required="true" value="{!timeElement.End_Date__c}"/>
                                     </apex:column>
                                     <apex:column ><apex:facet name="header" >Name on Report Card</apex:facet>
-                                        <apex:inputField required="true" value="{!timeElement.Name_On_Report_Card__c}"/>
+                                        <apex:inputField required="true" value="{!timeElement.Name_On_Report_Card__c}" html-disabled="true"/>
                                     </apex:column>
                                 </div>
                             </apex:pageBlockTable>
@@ -373,5 +409,6 @@
         <apex:actionFunction name="nextWithSaveJs" action="{!saveSetup}" rerender="error" onComplete="nextJs();"/>
         <apex:actionFunction action="{!cancelTermDetails}" name="cancelTermDetailsJs" reRender="termEntry,termPanel,resetPanel" immediate="true" />
         <apex:actionFunction action="{!cancelAddReportingPeriod}" name="cancelReportingPeriodJs" reRender="resetPanel,rpTable,editRpPanel" immediate="true" />
+       
     </apex:form>
 </apex:page>

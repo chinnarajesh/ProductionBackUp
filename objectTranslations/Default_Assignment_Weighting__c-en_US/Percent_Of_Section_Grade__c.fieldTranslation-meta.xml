@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- The weighted percentage of this assignment type that will be used for the section grade - provided this functionality is selected on the course --></help>
+    <label><!-- Percent Of Section Grade --></label>
+    <name>Percent_Of_Section_Grade__c</name>
+</CustomFieldTranslation>

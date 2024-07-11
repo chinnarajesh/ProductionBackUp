@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Program_Name__c</fullName>
+    <fieldManageability>DeveloperControlled</fieldManageability>
+    <label>Program Name</label>
+    <required>true</required>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Tutoring: Math (SEAD)</fullName>
+                <default>true</default>
+                <label>Tutoring: Math (SEAD)</label>
+            </value>
+            <value>
+                <fullName>Tutoring: Literacy (SEAD)</fullName>
+                <default>false</default>
+                <label>Tutoring: Literacy (SEAD)</label>
+            </value>
+            <value>
+                <fullName>DESSA &amp; DESSA HSE</fullName>
+                <default>false</default>
+                <label>DESSA &amp; DESSA HSE</label>
+            </value>
+            <value>
+                <fullName>Attendance Check In Check Out</fullName>
+                <default>false</default>
+                <label>Attendance Check In Check Out</label>
+            </value>
+            <value>
+                <fullName>Coaching: Attendance</fullName>
+                <default>false</default>
+                <label>Coaching: Attendance</label>
+            </value>
+            <value>
+                <fullName>Coaching: SEL/SED</fullName>
+                <default>false</default>
+                <label>Coaching: SEL/SED</label>
+            </value>
+            <value>
+                <fullName>Extended Day Programming and Enrichment</fullName>
+                <default>false</default>
+                <label>Extended Day Programming and Enrichment</label>
+            </value>
+            <value>
+                <fullName>SEL/SED Check In Check Out</fullName>
+                <default>false</default>
+                <label>SEL/SED Check In Check Out</label>
+            </value>
+            <value>
+                <fullName>Homework Assistance</fullName>
+                <default>false</default>
+                <label>Homework Assistance</label>
+            </value>
+            <value>
+                <fullName>50 Acts of Greatness</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>50 Acts of Greatness</label>
+            </value>
+            <value>
+                <fullName>50 Acts of Leadership</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>50 Acts of Leadership</label>
+            </value>
+            <value>
+                <fullName>Afterschool Heroes</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Afterschool Heroes</label>
+            </value>
+            <value>
+                <fullName>Coaching: Behavior (Local)</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Coaching: Behavior (Local)</label>
+            </value>
+            <value>
+                <fullName>Homework Assistance/Power Hour</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Homework Assistance/Power Hour</label>
+            </value>
+            <value>
+                <fullName>Math Inventory</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Math Inventory</label>
+            </value>
+            <value>
+                <fullName>Reading Inventory</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Reading Inventory</label>
+            </value>
+            <value>
+                <fullName>SEL Check In Check Out</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>SEL Check In Check Out</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

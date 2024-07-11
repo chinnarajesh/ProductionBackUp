@@ -12,6 +12,7 @@
             color: rgb(84, 84, 84);
             cursor: default;
             margin:1px;
+            margin-left: 16px;
         }
 /*      .fakeTextArea:hover{
             border:2px solid blue;
@@ -100,7 +101,7 @@
                 //$("#btnSubmit").hide();
                 j$(pTime).css('background-color', 'red');
                 CITY.errorStudentTable[new CITY.errorMarker(pTime.id)] = pTime.id;
-                j$(pTime).siblings('img').hide();
+                //j$(pTime).siblings('img').hide();
             } else {                 
                 j$(pTime).css('background-color', 'white');
                 
@@ -160,7 +161,7 @@
             var val = inputBox.value;
             
             if(validatebelowtime(val) != false){
-              $("input[id$='timeEntry']").val(); 
+              j$("input[id$='timeEntry']").val(); 
             }
         }
         
@@ -188,6 +189,7 @@
         }
         
         function openModal(dataPosition){
+            //sectiondatecheck();
             j$('#loadedPos','#sessionDataModal').val(dataPosition);
             j$('.leftList option').remove();
             j$('.rightList option').remove();
@@ -229,6 +231,7 @@
         }
 
         function storeSessionChanges(){
+            
             var isError = false;
 
             var allAvenues = j$("select[id$='allAvenuesID'] option:selected").text();
@@ -379,18 +382,22 @@
                         <apex:outputPanel rendered="{!dayOfWeek.isDisabled}">
                         <!--<div class="requiredInput">
                           <div class="requiredBlock"></div>-->
-                            <input type="text" size="2" onchange="" title="{!dayOfWeek.title}" disabled="true"/>
+                           <div>
                             <img src="{!URLFOR($Resource.Style_Bundle, 'images/arrow-down.png')}" title="Add Time to Column"/>
+                            <input type="text" size="2" onchange="" title="{!dayOfWeek.title}" disabled="true"/>
                             <img src="{!URLFOR($Resource.Style_Bundle, 'images/comment.png')}" title="Edit Details for Session"/>
+                           </div>
                             <!--</div>-->
                         </apex:outputPanel>
                         <apex:outputPanel rendered="{!NOT(dayOfWeek.isDisabled)}">
-                        <div class="requiredInput">
-                          <div class="requiredBlock"></div>
-                            <input type="text" size="2" onchange="changeDosage(this);" title="{!dayOfWeek.title}" id="populateTime{!dayOfWeek.positionIdentifer}"/>
-                            <img src="{!URLFOR($Resource.Style_Bundle, 'images/arrow-down.png')}" onclick="populateDown('populateTime{!dayOfWeek.positionIdentifer}');openModal({!dayOfWeek.positionIdentifer});" title="Add Time to Column"/>
-                            <img src="{!URLFOR($Resource.Style_Bundle, 'images/comment.png')}" onclick="openModal({!dayOfWeek.positionIdentifer})" title="Edit Details for Session"/>
-                       </div>
+                           <div style="display:flex;">
+                            <img style="margin-right: 7px;height: 16px;width: 12px;" src="{!URLFOR($Resource.Style_Bundle, 'images/arrow-down.png')}" onclick="populateDown('populateTime{!dayOfWeek.positionIdentifer}');openModal({!dayOfWeek.positionIdentifer});" title="Add Time to Column"/>
+                            <div class="requiredInput">
+                              <div class="requiredBlock"></div>
+                                <input type="text" size="2" onchange="changeDosage(this);" title="{!dayOfWeek.title}" id="populateTime{!dayOfWeek.positionIdentifer}" styleClass="checkdate{!dayOfWeek.day}"/>
+                                <img src="{!URLFOR($Resource.Style_Bundle, 'images/comment.png')}" onclick="openModal({!dayOfWeek.positionIdentifer})" title="Edit Details for Session"/>
+                           </div>
+                           </div>
                         </apex:outputPanel>
                     </th>
                 </apex:repeat>
@@ -406,7 +413,7 @@
                                     <!-- onClick="openStudentDetail('{!student.studentId}','{!selectedSection}','{!sessionPlaceHolder.dateString}');" -->
                                 </apex:outputPanel>
                                 <apex:outputPanel rendered="{!NOT(sessionPlaceHolder.isDisabled)}">
-                                    <apex:inputField style="width:30px;" onchange="changeDosage(this);" value="{!sessionPlaceHolder.isr.Amount_of_Time__c}"  id="timeEntry"/>
+                                    <apex:inputField style="width:30px;margin-left: 20px;" onchange="changeDosage(this);" value="{!sessionPlaceHolder.isr.Amount_of_Time__c}"  id="timeEntry"/>
                                 </apex:outputPanel>
                             </td>  
                         </apex:repeat>   
@@ -465,13 +472,13 @@
         <div class="content">
             <div style="width: max-content; display: inline-flex;">
                 <input type="hidden" id="loadedPos"/>
-                <div class="requiredInput" style="margin-bottom: 10px;">
+                <!-- <div class="requiredInput" style="margin-bottom: 10px;">
                     <div class="requiredBlock"></div>
                     <label><strong>In-Person Service or Virtual Service:</strong></label>
                     <apex:selectList size="1" value="{!allAvenuesSelected}" id="allAvenuesID" >
                         <apex:selectOptions value="{!allAvenuesOptions}"/>
                     </apex:selectList>
-                </div>
+                </div> -->
                 <div style="margin-left: 15px; display: inline-block;">
                     <label><strong>Session Type:</strong></label>
                     <apex:selectList size="1" value="{!sessionTypeSelected}" id="sessionTypeId" >
@@ -516,7 +523,7 @@
         </div>
         
         <div id="options">
-            <input type="button" class="black_btn" value="Proceed" onclick="storeSessionChanges();" />
+            <input type="button" class="black_btn" value="Proceed" onclick="storeSessionChanges();"  />
             <input type="button" class="grey_btn" value="Cancel" onclick="close_modal('#sessionDataModal');"/>
         </div>
         

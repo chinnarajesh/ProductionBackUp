@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Select to indicate that the student is attending summer school. You can use this field to generate reports on students who are attending summer school. --></help>
+    <label><!-- Attending Summer School? --></label>
+    <name>Attending_Summer_School__c</name>
+</CustomFieldTranslation>

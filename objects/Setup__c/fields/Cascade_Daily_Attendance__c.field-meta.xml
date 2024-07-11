@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Cascade_Daily_Attendance__c</fullName>
+    <defaultValue>false</defaultValue>
+    <inlineHelpText>If this field is checked and Sectional Attendance is enabled; entries made from Daily Attendance submission will cascade to sectional attendance records from the same day</inlineHelpText>
+    <label>Cascade Daily Attendance</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

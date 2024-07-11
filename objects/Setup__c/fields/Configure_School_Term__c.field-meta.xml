@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Configure_School_Term__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(  Term__c  !=&apos;&apos;, HYPERLINK(&apos;/apex/core_TermSetup_v2?setupId=&apos;+ Id ,  Term__r.Name__c , &quot;_top&quot;) , 
+HYPERLINK(&apos;/apex/core_TermSetup_v2?setupId=&apos;+ Id , IMAGE(&apos;/img/feeds/follow12.png&apos;, &apos;Add&apos;),&quot;_top&quot;))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Configure School Term</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

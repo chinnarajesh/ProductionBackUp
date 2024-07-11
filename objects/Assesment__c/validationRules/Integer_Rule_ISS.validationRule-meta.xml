@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Integer_Rule_ISS</fullName>
+    <active>true</active>
+    <errorConditionFormula>Number_of_In_School_Suspensions__c &lt;&gt; FLOOR(Number_of_In_School_Suspensions__c)</errorConditionFormula>
+    <errorDisplayField>Number_of_In_School_Suspensions__c</errorDisplayField>
+    <errorMessage>This field must be an integer.</errorMessage>
+</ValidationRule>

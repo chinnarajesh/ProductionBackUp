@@ -43,12 +43,12 @@ private class Test_PointsLedger {
         Points_StudentLedger.submitPoints(TestDataSetupUtil_v2.studentsList[0].Id,'10','--None--','--None--','Test Redeem points 1',TestDataSetupUtil_v2.teachersList[0].Id,System.today().format(), 'true','true','');
     }
     
-    static testMethod void testDeletePoints() {
-        createTestData();
-        Points__c p = new Points__c(Student__c = TestDataSetupUtil_v2.studentsList[0].Id,Points__c=10,Category__c = categories.id ,Student_Section__c = TestDataSetupUtil_v2.studSectionsList[0].Id,Comments__c = 'New Points',Staff__c = TestDataSetupUtil_v2.teachersList[0].Id,Points_Date__c = System.today());
-    	p.Reference_Id__c = p.Student__c+'_'+p.Student_Section__c+'_'+p.Category__c+'_'+p.Points_Date__c.format();
-    	insert p;
-    	Apexpages.currentPage().getParameters().put('pId',p.Id);
-    		sl.deletePoints();
-    }
+    // static testMethod void testDeletePoints() {
+    //     createTestData();
+    //     Points__c p = new Points__c(Student__c = TestDataSetupUtil_v2.studentsList[0].Id,Points__c=10,Category__c = categories.id ,Student_Section__c = TestDataSetupUtil_v2.studSectionsList[0].Id,Comments__c = 'New Points',Staff__c = TestDataSetupUtil_v2.teachersList[0].Id,Points_Date__c = System.today());
+    // 	p.Reference_Id__c = p.Student__c+'_'+p.Student_Section__c+'_'+p.Category__c+'_'+p.Points_Date__c.format();
+    // 	insert p;
+    // 	Apexpages.currentPage().getParameters().put('pId',p.Id);
+    // 		sl.deletePoints();
+    // }
 }

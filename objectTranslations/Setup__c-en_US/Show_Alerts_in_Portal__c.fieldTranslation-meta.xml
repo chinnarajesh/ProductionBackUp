@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- This will display alerts related to a school, section, or individual student in the Portal. --></help>
+    <label><!-- Show Alerts in Portal --></label>
+    <name>Show_Alerts_in_Portal__c</name>
+</CustomFieldTranslation>

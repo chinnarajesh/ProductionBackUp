@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Exit_Date_and_Reason</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(ISCHANGED(Active__c), Active__c=false, OR(ISBLANK(Exit_Date__c), ISBLANK(TEXT(Student_Exit_Reason__c))))</errorConditionFormula>
+    <errorDisplayField>Active__c</errorDisplayField>
+    <errorMessage>Please select Exit Date and Exit Reason</errorMessage>
+</ValidationRule>

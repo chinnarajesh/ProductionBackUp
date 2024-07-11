@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- This will display a student&apos;s daily and sectional attendance details in the Portal (including absences, tardies, and total time lost). --></help>
+    <label><!-- Show Attendance in Portal --></label>
+    <name>Show_Attendance_in_Portal__c</name>
+</CustomFieldTranslation>

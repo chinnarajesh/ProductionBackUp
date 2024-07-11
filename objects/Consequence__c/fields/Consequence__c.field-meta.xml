@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Consequence__c</fullName>
+    <label>Consequence</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Awaiting Admin Decision</fullName>
+                <default>false</default>
+                <label>Awaiting Admin Decision</label>
+            </value>
+            <value>
+                <fullName>Buddy Classroom/Reflection Room</fullName>
+                <default>false</default>
+                <label>Buddy Classroom/Reflection Room</label>
+            </value>
+            <value>
+                <fullName>Conference with Administrator</fullName>
+                <default>false</default>
+                <label>Conference with Administrator</label>
+            </value>
+            <value>
+                <fullName>Conference with BCC</fullName>
+                <default>false</default>
+                <label>Conference with BCC</label>
+            </value>
+            <value>
+                <fullName>Fieldwork Restriction</fullName>
+                <default>false</default>
+                <label>Fieldwork Restriction</label>
+            </value>
+            <value>
+                <fullName>Lose Free Time (Choice Time)</fullName>
+                <default>false</default>
+                <label>Lose Free Time (Choice Time)</label>
+            </value>
+            <value>
+                <fullName>Lose Free Time (Recess)</fullName>
+                <default>false</default>
+                <label>Lose Free Time (Recess)</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+            <value>
+                <fullName>Other Loss of Privilege</fullName>
+                <default>false</default>
+                <label>Other Loss of Privilege</label>
+            </value>
+            <value>
+                <fullName>Other Time Away</fullName>
+                <default>false</default>
+                <label>Other Time Away</label>
+            </value>
+            <value>
+                <fullName>Refocus Center (Time after school)</fullName>
+                <default>false</default>
+                <label>Refocus Center (Time after school)</label>
+            </value>
+            <value>
+                <fullName>Saturday Detention</fullName>
+                <default>false</default>
+                <label>Saturday Detention</label>
+            </value>
+            <value>
+                <fullName>Service (Break It Fix it)</fullName>
+                <default>false</default>
+                <label>Service (Break It Fix it)</label>
+            </value>
+            <value>
+                <fullName>Silent Lunch</fullName>
+                <default>false</default>
+                <label>Silent Lunch</label>
+            </value>
+            <value>
+                <fullName>Student Sent Home (Not Suspended)</fullName>
+                <default>false</default>
+                <label>Student Sent Home (Not Suspended)</label>
+            </value>
+            <value>
+                <fullName>Suspendable (Waived)</fullName>
+                <default>false</default>
+                <label>Suspendable (Waived)</label>
+            </value>
+            <value>
+                <fullName>Suspension (In School)</fullName>
+                <default>false</default>
+                <label>Suspension (In School)</label>
+            </value>
+            <value>
+                <fullName>Suspension (Out of School)</fullName>
+                <default>false</default>
+                <label>Suspension (Out of School)</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

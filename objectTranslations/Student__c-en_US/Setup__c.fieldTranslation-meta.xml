@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Displays the Setup record associated to this Student record. The Setup record defines the settings for the school in a specific school year. --></help>
+    <label><!-- Setup --></label>
+    <name>Setup__c</name>
+    <relationshipLabel><!-- Students --></relationshipLabel>
+</CustomFieldTranslation>

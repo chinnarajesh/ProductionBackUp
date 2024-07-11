@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Displays the admission code assigned to the student. --></help>
+    <label><!-- Admission Code --></label>
+    <name>Admission_Code__c</name>
+    <picklistValues>
+        <masterLabel>Assessment for Special Education.</masterLabel>
+        <translation><!-- Assessment for Special Education. --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Entry from other LEA.</masterLabel>
+        <translation><!-- Entry from other LEA. --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>New - From Outside DC.</masterLabel>
+        <translation><!-- New - From Outside DC. --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>New - From Private DC School.</masterLabel>
+        <translation><!-- New - From Private DC School. --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>New - No prior school experience.</masterLabel>
+        <translation><!-- New - No prior school experience. --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Re-Admitted After Withdrawal.</masterLabel>
+        <translation><!-- Re-Admitted After Withdrawal. --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Re-Admitted in same school.</masterLabel>
+        <translation><!-- Re-Admitted in same school. --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Scheduling Purposes only</masterLabel>
+        <translation><!-- Scheduling Purposes only --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Transfer Within LEA.</masterLabel>
+        <translation><!-- Transfer Within LEA. --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

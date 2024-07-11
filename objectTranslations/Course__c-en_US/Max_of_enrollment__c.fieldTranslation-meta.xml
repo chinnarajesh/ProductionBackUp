@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Enter the maximum number of students that can be enrolled in this course. You can use this field for reporting purposes. --></help>
+    <label><!-- Max # of enrollment --></label>
+    <name>Max_of_enrollment__c</name>
+</CustomFieldTranslation>

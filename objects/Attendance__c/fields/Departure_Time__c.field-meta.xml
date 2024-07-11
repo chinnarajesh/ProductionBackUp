@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Departure_Time__c</fullName>
+    <description>The time the student departs from class if it is an early departure.</description>
+    <inlineHelpText>Displays the date and time the student departed from class. This value is used to calculate the time lost displayed in the Instructional Time Lost field.</inlineHelpText>
+    <label>Departure Time</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>DateTime</type>
+</CustomField>

@@ -46,6 +46,7 @@
             }
 
             function highlightSelected(selected) {
+                console.log('selected++'+selected);
                 var table = document.getElementById("StudentsTable");
                 for (let i = 1; i < table.rows.length; i++) {
                     if (selected.indexOf(table.rows[i].id) > -1) {
@@ -56,10 +57,28 @@
                             checkedIds+= studId;
                         }
                         highlightRow(table.rows[i]);
+                        console.log('checkedIds++'+checkedIds)
                     }
                 }
             }
-
+            var flag =false;
+            function checkidcatorArea(){
+                flag=true;
+            }
+            function checkidsNull(){
+                if(flag ==true){
+                    checkedIds='';
+                    flag=false;
+                    var checkboxes = document.querySelectorAll('.content-column input[type="checkbox"]');
+                    checkboxes.forEach(function(checkbox) {
+                    checkbox.checked = false;
+                  });
+                }
+            }
+            function clearSelection() {
+           
+            }
+           
             function addAllToCheckedIds() {
                 if (checkedIds && checkedIds.length > 0) {
                     checkedIds = '';
@@ -72,10 +91,28 @@
             }
 
             function changeDate(elem) {
+                console.log('check box++'+checkedIds);
+                var dataTable = j$('.iatable').dataTable();
+                  dataTable.fnFilter('');
+
+                var idArray = checkedIds.split(';');
+                if (idArray[idArray.length - 1] === '') {
+                          idArray.pop();
+                }
                j$('#StudentsTable tr').filter(':has(:checkbox:checked)').each(function(element) {
-                    j$tr = j$(this);
-                    let rowId = this.id;
-                    j$("#StudentsTable tr[id=" + rowId +"] td#dtIA>div input").val(elem.val());
+                   j$tr = j$(this);
+                   let rowId = this.id;
+                   console.log('rowId++'+rowId);
+                   j$("#StudentsTable tr[id=" + rowId +"] td#dtIA>div input").val(elem.val());
+                //    let rowId;
+                //    for (var i = 0; i < idArray.length; i++) {
+                //        rowId = idArray[i];
+                //          console.log('rowId***'+rowId);
+                //        j$("#StudentsTable tr[id=" + rowId + "] td#dtIA>div input").val(elem.val());
+                //     }
+                //     //j$("#StudentsTable tr[id=" + rowId + "] td#dtIA>div input").val(elem.val());
+                //     console.log('rowId+++'+rowId);
+                     
                 });
             }
         </script>
@@ -166,8 +203,6 @@
                                         "asStripeClasses": ['table_row1'],
                                         "sDom": '<"top"lfip>rt<"bottom"ip<"clear">'
                                     });
-                                                     
-                                      
                                 });                          
                                
                                 
@@ -235,7 +270,7 @@
 
                 <div class="content">
                     <input type="button" class="black_btn" value="Save"
-                           onclick="if(!isSaving){ isSaving=true; saveChanges(); } else { alert('Save already in progress.  Please wait.'); }"/>
+                           onclick="if(!isSaving){ isSaving=true; saveChanges(); checkidsNull();} else { alert('Save already in progress.  Please wait.'); }"/>
                     <input type="button" class="grey_btn" value="Cancel" onclick="resetPage()"/>
                 </div>
                 <!-- / content -->
@@ -286,7 +321,7 @@
                         <div id="content">
                             <center>
                                 <input type="button" class="black_btn" value="Add"
-                                       onclick="if(!isSaving){ isSaving=true; updateStudents(); } else { alert('Students are being added to Indicator Areas.  Please wait.'); }"/>
+                                       onclick="if(!isSaving){ isSaving=true; updateStudents(); checkidcatorArea();} else { alert('Students are being added to Indicator Areas.  Please wait.'); }"/>
                                 <input type="button" class="grey_btn" value="Cancel"
                                        onclick="close_modal('#studentModal')"/>
                             </center>

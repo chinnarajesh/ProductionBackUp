@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Interventions_Sections_no_students</fullName>
+    <columns>NAME</columns>
+    <columns>In_After_School__c</columns>
+    <columns>Active__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Section__c.Intervention_Section</value>
+    </filters>
+    <filters>
+        <field>of_Students__c</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <label>Interventions Sections without Students</label>
+</ListView>

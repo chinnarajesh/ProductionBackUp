@@ -1,0 +1,12 @@
+Network Code,*REQ* Student ID,*REQ* First Name,*REQ* Last Name,*REQ* Grade,*REQ* DOB,*REQ* Sex,Ethnic Code,Disability Flag,ELL,Admission Date,Email Address,Address,Address Line 2,City,State,Zip,Phone
+,111112222,SHAWNA ,JOHNSTON,3,3/11/2001,F,,,,,,,,,,,
+,111113333,LAURISSA,JURADO,3,4/11/2001,F,,,,,,,,,,,
+,111114444,MELANIE,KRAFT,3,5/11/2001,F,,,,,,,,,,,
+,111115555,MICHELLE,HAFELE,3,6/11/2001,F,,,,,,,,,,,
+,111116666,PATRICK ,JAGLA,3,7/11/2001,M,,,,,,,,,,,
+,111117777,JEREMY ,HUDSON,3,8/11/2001,M,,,,,,,,,,,
+,111118888,ASHTON,SCACCIA,3,9/11/2001,M,,,,,,,,,,,
+,111119999,TODD,ROMANIW,3,10/11/2001,M,,,,,,,,,,,
+,111222000,AMANDA,ORR,1,11/21/2004,F,,,,1/1/2012,,,,,,,
+,111222111,CAROL,NAPOLI,1,6/2/2004,F,,,,,,,,,,,
+,111222333,AMIE,BOND,1,1/24/2004,F,,,,,,,,,,,

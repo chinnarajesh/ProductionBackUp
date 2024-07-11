@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Tutoring_Model__c</fullName>
+    <label>Tutoring Model</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Catch Up</fullName>
+                <default>false</default>
+                <label>Catch Up</label>
+            </value>
+            <value>
+                <fullName>Keep Up</fullName>
+                <default>false</default>
+                <label>Keep Up</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

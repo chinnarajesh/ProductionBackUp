@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Intent_to_Return_Following_Year__c</fullName>
+    <defaultValue>true</defaultValue>
+    <inlineHelpText>Indicates whether or not the student intends to return to their current school for the following year. This field is updated by the EOY Wizard and you can also manually update it.</inlineHelpText>
+    <label>Intent to Return Following Year?</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

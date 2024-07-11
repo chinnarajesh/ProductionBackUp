@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Displays the career-to-date weighted GPA. The value in this field displays in the Weighted GPA field on transcripts and the Cumulative Weighted GPA field on progress reports and report cards. --></help>
+    <label><!-- Weighted GPA To Date --></label>
+    <name>Weighted_GPA_To_Date__c</name>
+</CustomFieldTranslation>

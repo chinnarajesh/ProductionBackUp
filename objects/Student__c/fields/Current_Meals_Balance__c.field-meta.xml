@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Current_Meals_Balance__c</fullName>
+    <description>This is the current balance for the student&apos;s meals account. Additional money can be added by adding a credit transaction.</description>
+    <inlineHelpText>Displays the current balance for the student&apos;s meals account if your school uses the Meals module. You can add additional money by adding a credit transaction in the Meals related list.</inlineHelpText>
+    <label>Current Meals Balance</label>
+    <summarizedField>Meal_Transaction__c.Transaction_Amount_Rollup__c</summarizedField>
+    <summaryFilterItems>
+        <field>Meal_Transaction__c.Void__c</field>
+        <operation>equals</operation>
+        <value>False</value>
+    </summaryFilterItems>
+    <summaryForeignKey>Meal_Transaction__c.Student__c</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

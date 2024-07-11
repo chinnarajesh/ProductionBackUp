@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- What was City Year&apos;s involvement? --></label>
+    <name>What_was_City_Year_s_involvement__c</name>
+    <picklistValues>
+        <masterLabel>Led this event or initiative (Design, Plan, Coordinate, Execute)</masterLabel>
+        <translation><!-- Led this event or initiative (Design, Plan, Coordinate, Execute) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Provide support for this event or initiative (Plug into a preexisting event or initiative)</masterLabel>
+        <translation><!-- Provide support for this event or initiative (Plug into a preexisting event or initiative) --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

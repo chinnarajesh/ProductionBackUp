@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Rolling_Law_of_Decaying_Average_Grade__c</fullName>
+    <externalId>false</externalId>
+    <inlineHelpText>the most recent grade has the highest weight across reporting periods.  Most recent is deteremined by due date of the assignment.  The School Admin decides what the weight is for the most recent grade (ie most recent grade is 65% weighted)</inlineHelpText>
+    <label>Rolling Law of Decaying Average Grade</label>
+    <precision>6</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

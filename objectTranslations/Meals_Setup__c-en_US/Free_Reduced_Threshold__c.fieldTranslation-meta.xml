@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- This is the threshold percentage for students that are eligible for free or reduced meals.  If the actual percentage is above this threshold all students get free breakfast. --></help>
+    <label><!-- Free/Reduced Threshold --></label>
+    <name>Free_Reduced_Threshold__c</name>
+</CustomFieldTranslation>

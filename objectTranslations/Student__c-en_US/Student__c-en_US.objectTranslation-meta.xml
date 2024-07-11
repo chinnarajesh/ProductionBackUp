@@ -1,0 +1,478 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Student</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Students</value>
+    </caseValues>
+    <fieldSets>
+        <label><!-- Detail Academics History --></label>
+        <name>Detail_Academics_History</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Detail Academics Information --></label>
+        <name>Detail_Academics_Information</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Detail Academics MOU --></label>
+        <name>Detail_Academics_MOU</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Detail Academics Reading --></label>
+        <name>Detail_Academics_Reading</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Detail Attendance Schedule --></label>
+        <name>Detail_Attendance_Schedule</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Detail Authorized Pickup --></label>
+        <name>Detail_Authorized_Pickup</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Detail Behavior Profile --></label>
+        <name>Detail_Behavior_Profile</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Detail Contact Authorizations --></label>
+        <name>Detail_Contact_Authorizations</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Detail Contact Emergency --></label>
+        <name>Detail_Contact_Emergency</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Detail Contact Info --></label>
+        <name>Detail_Contact_Info</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Detail ELL Information --></label>
+        <name>Detail_ELL_Information</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Detail Header --></label>
+        <name>Detail_Header</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Detail Profile Additional --></label>
+        <name>Detail_Profile_Additional</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Detail Profile Demo --></label>
+        <name>Detail_Profile_Demo</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Detail Profile Meals --></label>
+        <name>Detail_Profile_Meals</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Detail Profile Special Ed --></label>
+        <name>Detail_Profile_Special_Ed</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Detail Profile Student Information --></label>
+        <name>Detail_Profile_Student_Information</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Detail Transportation --></label>
+        <name>Detail_Transportation</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Detail YoY Information --></label>
+        <name>Detail_YoY_Information</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Student Services --></label>
+        <name>Student_Services</name>
+    </fieldSets>
+    <layouts>
+        <layout>Admin Student Layout</layout>
+        <sections>
+            <label><!-- Academic Information --></label>
+            <section>Academic Information</section>
+        </sections>
+        <sections>
+            <label><!-- Behavior Profile --></label>
+            <section>Behavior Profile</section>
+        </sections>
+        <sections>
+            <label><!-- Contact Information --></label>
+            <section>Contact Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Demographics --></label>
+            <section>Demographics</section>
+        </sections>
+        <sections>
+            <label><!-- Educational History --></label>
+            <section>Educational History</section>
+        </sections>
+        <sections>
+            <label><!-- Emergency Contact Information --></label>
+            <section>Emergency Contact Information</section>
+        </sections>
+        <sections>
+            <label><!-- English Langauge Learner Information --></label>
+            <section>English Langauge Learner Information</section>
+        </sections>
+        <sections>
+            <label><!-- Special Education Information --></label>
+            <section>Special Education Information</section>
+        </sections>
+        <sections>
+            <label><!-- Student Location --></label>
+            <section>Student Location</section>
+        </sections>
+        <sections>
+            <label><!-- Student Services --></label>
+            <section>Student Services</section>
+        </sections>
+        <sections>
+            <label><!-- Year over Year Information --></label>
+            <section>Year over Year Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>CY Student Layout - End Users</layout>
+        <sections>
+            <label><!-- Additional Information --></label>
+            <section>Additional Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Emergency Contact Information --></label>
+            <section>Emergency Contact Information</section>
+        </sections>
+        <sections>
+            <label><!-- Indicator Area Information --></label>
+            <section>Indicator Area Information</section>
+        </sections>
+        <sections>
+            <label><!-- New Section --></label>
+            <section>New Section</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>CY Student Layout - HQ &amp; Admins</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Indicator Area Information --></label>
+            <section>Indicator Area Information</section>
+        </sections>
+        <sections>
+            <label><!-- New Section --></label>
+            <section>New Section</section>
+        </sections>
+        <sections>
+            <label><!-- Student Pilot Programs --></label>
+            <section>Student Pilot Programs</section>
+        </sections>
+        <sections>
+            <label><!-- Studies --></label>
+            <section>Studies</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Copy of Student Layout- Chesapeake</layout>
+        <sections>
+            <label><!-- Academic Information --></label>
+            <section>Academic Information</section>
+        </sections>
+        <sections>
+            <label><!-- Behavior Profile --></label>
+            <section>Behavior Profile</section>
+        </sections>
+        <sections>
+            <label><!-- Contact Information --></label>
+            <section>Contact Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Demographics --></label>
+            <section>Demographics</section>
+        </sections>
+        <sections>
+            <label><!-- Educational History --></label>
+            <section>Educational History</section>
+        </sections>
+        <sections>
+            <label><!-- Emergency Contact Information --></label>
+            <section>Emergency Contact Information</section>
+        </sections>
+        <sections>
+            <label><!-- English Langauge Learner Information --></label>
+            <section>English Langauge Learner Information</section>
+        </sections>
+        <sections>
+            <label><!-- Special Education Information --></label>
+            <section>Special Education Information</section>
+        </sections>
+        <sections>
+            <label><!-- Student Location --></label>
+            <section>Student Location</section>
+        </sections>
+        <sections>
+            <label><!-- Student Services --></label>
+            <section>Student Services</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>IM Student Layout - Admin</layout>
+        <sections>
+            <label><!-- Additional Information --></label>
+            <section>Additional Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>IM Student Layout - End Users</layout>
+        <sections>
+            <label><!-- Additional Information --></label>
+            <section>Additional Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Non Admin Student Layout</layout>
+        <sections>
+            <label><!-- Academic Information --></label>
+            <section>Academic Information</section>
+        </sections>
+        <sections>
+            <label><!-- Behavior Profile --></label>
+            <section>Behavior Profile</section>
+        </sections>
+        <sections>
+            <label><!-- Contact Information --></label>
+            <section>Contact Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Demographics --></label>
+            <section>Demographics</section>
+        </sections>
+        <sections>
+            <label><!-- Educational History --></label>
+            <section>Educational History</section>
+        </sections>
+        <sections>
+            <label><!-- Emergency Contact Information --></label>
+            <section>Emergency Contact Information</section>
+        </sections>
+        <sections>
+            <label><!-- English Language Learner Information --></label>
+            <section>English Language Learner Information</section>
+        </sections>
+        <sections>
+            <label><!-- Special Education Information --></label>
+            <section>Special Education Information</section>
+        </sections>
+        <sections>
+            <label><!-- Student Services --></label>
+            <section>Student Services</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Non Admin Student Layout_SO</layout>
+        <sections>
+            <label><!-- Academic Information --></label>
+            <section>Academic Information</section>
+        </sections>
+        <sections>
+            <label><!-- Authorizations --></label>
+            <section>Authorizations</section>
+        </sections>
+        <sections>
+            <label><!-- Authorized Pickup Information --></label>
+            <section>Authorized Pickup Information</section>
+        </sections>
+        <sections>
+            <label><!-- Behavior Profile --></label>
+            <section>Behavior Profile</section>
+        </sections>
+        <sections>
+            <label><!-- Contact Information --></label>
+            <section>Contact Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Demographics --></label>
+            <section>Demographics</section>
+        </sections>
+        <sections>
+            <label><!-- Educational History --></label>
+            <section>Educational History</section>
+        </sections>
+        <sections>
+            <label><!-- Emergency Contact Information --></label>
+            <section>Emergency Contact Information</section>
+        </sections>
+        <sections>
+            <label><!-- English Language Learner Information --></label>
+            <section>English Language Learner Information</section>
+        </sections>
+        <sections>
+            <label><!-- Reading Level --></label>
+            <section>Reading Level</section>
+        </sections>
+        <sections>
+            <label><!-- Special Education Information --></label>
+            <section>Special Education Information</section>
+        </sections>
+        <sections>
+            <label><!-- Student Services --></label>
+            <section>Student Services</section>
+        </sections>
+        <sections>
+            <label><!-- Transportation --></label>
+            <section>Transportation</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Student Layout</layout>
+        <sections>
+            <label><!-- Academic Information --></label>
+            <section>Academic Information</section>
+        </sections>
+        <sections>
+            <label><!-- Behavior Profile --></label>
+            <section>Behavior Profile</section>
+        </sections>
+        <sections>
+            <label><!-- Contact Information --></label>
+            <section>Contact Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Demographics --></label>
+            <section>Demographics</section>
+        </sections>
+        <sections>
+            <label><!-- Educational History --></label>
+            <section>Educational History</section>
+        </sections>
+        <sections>
+            <label><!-- Emergency Contact Information --></label>
+            <section>Emergency Contact Information</section>
+        </sections>
+        <sections>
+            <label><!-- English Langauge Learner Information --></label>
+            <section>English Langauge Learner Information</section>
+        </sections>
+        <sections>
+            <label><!-- Location Information --></label>
+            <section>Location Information</section>
+        </sections>
+        <sections>
+            <label><!-- Special Education Information --></label>
+            <section>Special Education Information</section>
+        </sections>
+        <sections>
+            <label><!-- Student Services --></label>
+            <section>Student Services</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Sys Admin Student Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Indicator Area Information --></label>
+            <section>Indicator Area Information</section>
+        </sections>
+        <sections>
+            <label><!-- New Section --></label>
+            <section>New Section</section>
+        </sections>
+        <sections>
+            <label><!-- Student Pilot Programs --></label>
+            <section>Student Pilot Programs</section>
+        </sections>
+        <sections>
+            <label><!-- Studies --></label>
+            <section>Studies</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- Corps Members can only edit Strengths and Hobbies for their Students.  If you need to have another field edited please contact your School Admin. --></errorMessage>
+        <name>CMs_cannot_update_all_student_info</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please select Exit Date and Exit Reason --></errorMessage>
+        <name>Exit_Date_and_Reason</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Date of Birth can not be in the future --></errorMessage>
+        <name>No_future_birthdates</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Service Hours To Date must be non-negative. --></errorMessage>
+        <name>Non_Negative_Service_Hours</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Only SysAdmin can change Student&apos;s School! --></errorMessage>
+        <name>Only_SysAdmin_can_change_Student_School</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Gender values are limited to Male, Female or Gender Neutral --></errorMessage>
+        <name>Validate_specific_values_for_Gender</name>
+    </validationRules>
+    <webLinks>
+        <label><!-- Get_Picture --></label>
+        <name>Get_Picture</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Grade_Details --></label>
+        <name>Grade_Details</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Print_Schedule --></label>
+        <name>Print_Schedule</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Report_Card --></label>
+        <name>Report_Card</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- View_Interventions_Data --></label>
+        <name>View_Interventions_Data</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- View_Points --></label>
+        <name>View_Points</name>
+    </webLinks>
+</CustomObjectTranslation>

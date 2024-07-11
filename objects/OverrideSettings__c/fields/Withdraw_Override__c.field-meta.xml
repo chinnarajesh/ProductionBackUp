@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Withdraw_Override__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Whether this profile can override a section grade with &quot;W&quot;</description>
+    <inlineHelpText>does this profile/user have permissions to override a section grade with &quot;W&quot;?</inlineHelpText>
+    <label>Withdraw Override</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

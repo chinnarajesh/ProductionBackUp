@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Admission_Status__c</fullName>
+    <inlineHelpText>Displays the admission status assigned to the student.</inlineHelpText>
+    <label>Admission Status</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Regular Student</fullName>
+                <default>false</default>
+                <label>Regular Student</label>
+            </value>
+            <value>
+                <fullName>Probationary Student (Academic)</fullName>
+                <default>false</default>
+                <label>Probationary Student (Academic)</label>
+            </value>
+            <value>
+                <fullName>Probationary Student (Attendance)</fullName>
+                <default>false</default>
+                <label>Probationary Student (Attendance)</label>
+            </value>
+            <value>
+                <fullName>Probationary Student (Behavioral)</fullName>
+                <default>false</default>
+                <label>Probationary Student (Behavioral)</label>
+            </value>
+            <value>
+                <fullName>Probationary Student (Other)</fullName>
+                <default>false</default>
+                <label>Probationary Student (Other)</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

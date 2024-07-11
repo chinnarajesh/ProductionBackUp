@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- The highest standard grade the student ever received on this standard across reporting periods. --></help>
+    <label><!-- Rolling Highest Grade --></label>
+    <name>Rolling_Highest_Grade__c</name>
+</CustomFieldTranslation>

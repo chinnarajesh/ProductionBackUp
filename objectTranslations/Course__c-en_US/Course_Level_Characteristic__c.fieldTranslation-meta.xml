@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- An indication of the general nature and difficulty of instruction provided throughout a course. --></help>
+    <label><!-- Course Level Characteristic --></label>
+    <name>Course_Level_Characteristic__c</name>
+    <picklistValues>
+        <masterLabel>Accepted as a High School Equivalent</masterLabel>
+        <translation><!-- Accepted as a High School Equivalent --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Advanced Placement Course</masterLabel>
+        <translation><!-- Advanced Placement Course --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Basic Course</masterLabel>
+        <translation><!-- Basic Course --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>College-Level Course</masterLabel>
+        <translation><!-- College-Level Course --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>English Language Learner (ELL) Course</masterLabel>
+        <translation><!-- English Language Learner (ELL) Course --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>General Course</masterLabel>
+        <translation><!-- General Course --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Gifted and Talented Course</masterLabel>
+        <translation><!-- Gifted and Talented Course --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Honors Level Course</masterLabel>
+        <translation><!-- Honors Level Course --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>International Baccalaureate Course</masterLabel>
+        <translation><!-- International Baccalaureate Course --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Other</masterLabel>
+        <translation><!-- Other --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Remedial Course</masterLabel>
+        <translation><!-- Remedial Course --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Students with Disabilities Course</masterLabel>
+        <translation><!-- Students with Disabilities Course --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Untracked Course</masterLabel>
+        <translation><!-- Untracked Course --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

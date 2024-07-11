@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Goal progress --></label>
+    <name>Goal_progress__c</name>
+    <picklistValues>
+        <masterLabel>Attained</masterLabel>
+        <translation><!-- Attained --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Goal set</masterLabel>
+        <translation><!-- Goal set --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Made Progress</masterLabel>
+        <translation><!-- Made Progress --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Stayed the same</masterLabel>
+        <translation><!-- Stayed the same --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

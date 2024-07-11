@@ -1,0 +1,2 @@
+// Dynamic copyright
+$('.copyright-year').html(new Date().getFullYear());

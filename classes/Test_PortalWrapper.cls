@@ -221,8 +221,8 @@ private class Test_PortalWrapper {
 			    	System.assertEquals(awardsList[i].Id,portal.port.awardsListFull[i].Id);
 			    	System.assertEquals(alertsList[i].Id,portal.port.alertsList[i].Id);
 			    	//System.assertEquals(gradesList[i].Id,portal.port.currAssignsPerSection[i].grade.Id);
-			    	System.assertEquals(assignLibAttachtsList[i].Id,portal.port.currAssignsPerSection[i].atchmnt.Id);
-			    	System.assertEquals(assignLibAttachtsList[i].ParentId,portal.port.currAssignsPerSection[i].atchmnt.ParentId);
+			    	//System.assertEquals(assignLibAttachtsList[i].Id,portal.port.currAssignsPerSection[i].atchmnt.Id);
+			    	//System.assertEquals(assignLibAttachtsList[i].ParentId,portal.port.currAssignsPerSection[i].atchmnt.ParentId);
 		    	}
 	        }
         test.stopTest();

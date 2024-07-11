@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>College_Bootcamp__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Teams will provide 1-on-1 and/or small group support to 11th &amp; 12th grade students in all things college readiness including application completion, essay writing, financial aid applications, and test preparation.</description>
+    <label>College Bootcamp</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

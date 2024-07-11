@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Weapon Type --></label>
+    <name>Weapon_Type__c</name>
+    <picklistValues>
+        <masterLabel>Airguns (BB or Pellet)</masterLabel>
+        <translation><!-- Airguns (BB or Pellet) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Biological Agent</masterLabel>
+        <translation><!-- Biological Agent --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Bomb</masterLabel>
+        <translation><!-- Bomb --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Chemical Agent</masterLabel>
+        <translation><!-- Chemical Agent --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Handguns (Include Zip Guns And Pistols)</masterLabel>
+        <translation><!-- Handguns (Include Zip Guns And Pistols) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Knife (Blade Longer Than 2 Inches)</masterLabel>
+        <translation><!-- Knife (Blade Longer Than 2 Inches) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Other Firearms (Not Handguns, Rifles or Shotgun)</masterLabel>
+        <translation><!-- Other Firearms (Not Handguns, Rifles or Shotgun) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Other Weapon</masterLabel>
+        <translation><!-- Other Weapon --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Rifle Or Shotgun</masterLabel>
+        <translation><!-- Rifle Or Shotgun --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Unknown Weapon</masterLabel>
+        <translation><!-- Unknown Weapon --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

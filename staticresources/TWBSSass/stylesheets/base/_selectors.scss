@@ -1,0 +1,50 @@
+html {
+	position:relative;
+	min-height:100%;
+	box-sizing: border-box;
+}
+body {
+	font-smooth:always;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	margin:0;
+	font-family:$font-regular;
+	font-size:14px;
+	@media (min-width:$screen-sm) {
+		background:$page-bg;
+	}
+}
+
+a {
+	cursor:pointer;
+	transition:all 0.15s ease;
+	text-decoration:none;
+	color:$brand-primary;
+	&:hover {
+		text-decoration:underline;
+		color:darken($brand-primary,10%);
+	}
+}
+
+label {}
+
+hr {
+	border:0;
+	height:1px;
+	background:$border-default;
+	margin:2rem 0;
+}
+
+*, *:before, *:after {
+	box-sizing: inherit;
+}
+
+ul li, ol li {
+	margin: 0;
+	padding: 0;
+}
+
+td {
+	font-family:inherit;
+}

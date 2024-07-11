@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Credit_Hours__c</fullName>
+    <externalId>false</externalId>
+    <inlineHelpText>Enter the number of credit hours students earn upon completion of this course. SchoolForce uses the credit hours to calculate weighted and unweighted GPAs.</inlineHelpText>
+    <label>Credit Hours</label>
+    <precision>7</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

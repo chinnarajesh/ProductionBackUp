@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Customizable option to categorize standards.  Defaults align with Common Core and are visible on the &quot;Create Assignment&quot; page when selecting standards to grade and in the Gradebook Advanced Analytics as a searchable field. --></help>
+    <label><!-- Attribute --></label>
+    <name>Attribute__c</name>
+    <picklistValues>
+        <masterLabel>Additional</masterLabel>
+        <translation><!-- Additional --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Anchor</masterLabel>
+        <translation><!-- Anchor --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Major</masterLabel>
+        <translation><!-- Major --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Minor</masterLabel>
+        <translation><!-- Minor --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Supporting</masterLabel>
+        <translation><!-- Supporting --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

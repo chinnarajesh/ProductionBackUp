@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Goal_progress__c</fullName>
+    <label>Goal progress</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Attained</fullName>
+                <default>false</default>
+                <label>Attained</label>
+            </value>
+            <value>
+                <fullName>Made Progress</fullName>
+                <default>false</default>
+                <label>Made Progress</label>
+            </value>
+            <value>
+                <fullName>Goal set</fullName>
+                <default>false</default>
+                <label>Goal set</label>
+            </value>
+            <value>
+                <fullName>Stayed the same</fullName>
+                <default>false</default>
+                <label>Stayed the same</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

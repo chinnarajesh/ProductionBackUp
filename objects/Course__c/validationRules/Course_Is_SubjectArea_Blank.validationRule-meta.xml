@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Course_Is_SubjectArea_Blank</fullName>
+    <active>false</active>
+    <errorConditionFormula>ISBLANK( Subject_Area_Lookup__c  )</errorConditionFormula>
+    <errorDisplayField>Subject_Area_Lookup__c</errorDisplayField>
+    <errorMessage>Subject Area cannot be blank.</errorMessage>
+</ValidationRule>

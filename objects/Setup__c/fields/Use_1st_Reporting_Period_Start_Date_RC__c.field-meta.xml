@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Use_1st_Reporting_Period_Start_Date_RC__c</fullName>
+    <defaultValue>false</defaultValue>
+    <inlineHelpText>Use the first reporting period&apos;s start date instead of the current reporting period&apos;s start date.</inlineHelpText>
+    <label>Use 1st Reporting Period Start Date</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

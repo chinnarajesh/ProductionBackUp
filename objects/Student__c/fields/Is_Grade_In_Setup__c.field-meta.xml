@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Is_Grade_In_Setup__c</fullName>
+    <formula>IF(TEXT(Grade__c)==&apos;PS&apos; &amp;&amp; INCLUDES( Setup__r.Grade_Span__c, &quot;PS&quot;),true,
+IF(TEXT(Grade__c)==&apos;PK&apos; &amp;&amp; INCLUDES( Setup__r.Grade_Span__c, &quot;PK&quot;),true,
+IF(TEXT(Grade__c)==&apos;K&apos; &amp;&amp; INCLUDES( Setup__r.Grade_Span__c, &quot;K&quot;),true,
+IF(TEXT(Grade__c)==&apos;PK-3&apos; &amp;&amp; INCLUDES( Setup__r.Grade_Span__c, &quot;PK-3&quot;),true,
+IF(TEXT(Grade__c)==&apos;PK-4&apos; &amp;&amp; INCLUDES( Setup__r.Grade_Span__c, &quot;PK-4&quot;),true,
+IF(TEXT(Grade__c)==&apos;PK Pre-K&apos; &amp;&amp; INCLUDES( Setup__r.Grade_Span__c, &quot;PK Pre-K&quot;),true,
+IF(TEXT(Grade__c)==&apos;Kindergarten/Preschool&apos; &amp;&amp; INCLUDES( Setup__r.Grade_Span__c, &quot;Kindergarten/Preschool&quot;),true,
+IF(TEXT(Grade__c)==&apos;KG Kindergarten&apos; &amp;&amp; INCLUDES( Setup__r.Grade_Span__c, &quot;KG Kindergarten&quot;),true,
+IF(TEXT(Grade__c)==&apos;PG Postgraduate/Adult&apos; &amp;&amp; INCLUDES( Setup__r.Grade_Span__c, &quot;PG Postgraduate/Adult&quot;),true,
+IF(TEXT(Grade__c)==&apos;Kindergarten&apos; &amp;&amp; INCLUDES( Setup__r.Grade_Span__c, &quot;Kindergarten&quot;),true,
+IF(TEXT(Grade__c)==&apos;1&apos; &amp;&amp; INCLUDES( Setup__r.Grade_Span__c, &quot;1&quot;),true,
+IF(TEXT(Grade__c)==&apos;2&apos; &amp;&amp; INCLUDES( Setup__r.Grade_Span__c, &quot;2&quot;),true,
+IF(TEXT(Grade__c)==&apos;3&apos; &amp;&amp; INCLUDES( Setup__r.Grade_Span__c, &quot;3&quot;),true,
+IF(TEXT(Grade__c)==&apos;4&apos; &amp;&amp; INCLUDES( Setup__r.Grade_Span__c, &quot;4&quot;),true,
+IF(TEXT(Grade__c)==&apos;5&apos; &amp;&amp; INCLUDES( Setup__r.Grade_Span__c, &quot;5&quot;),true,
+IF(TEXT(Grade__c)==&apos;6&apos; &amp;&amp; INCLUDES( Setup__r.Grade_Span__c, &quot;6&quot;),true,
+IF(TEXT(Grade__c)==&apos;7&apos; &amp;&amp; INCLUDES( Setup__r.Grade_Span__c, &quot;7&quot;),true,
+IF(TEXT(Grade__c)==&apos;8&apos; &amp;&amp; INCLUDES( Setup__r.Grade_Span__c, &quot;8&quot;),true,
+IF(TEXT(Grade__c)==&apos;9&apos; &amp;&amp; INCLUDES( Setup__r.Grade_Span__c, &quot;9&quot;),true,
+IF(TEXT(Grade__c)==&apos;10&apos; &amp;&amp; INCLUDES( Setup__r.Grade_Span__c, &quot;10&quot;),true,
+IF(TEXT(Grade__c)==&apos;11&apos; &amp;&amp; INCLUDES( Setup__r.Grade_Span__c, &quot;11&quot;),true,
+IF(TEXT(Grade__c)==&apos;12&apos; &amp;&amp; INCLUDES( Setup__r.Grade_Span__c, &quot;12&quot;),true,
+IF(TEXT(Grade__c)==&apos;UN Ungraded&apos; &amp;&amp; INCLUDES( Setup__r.Grade_Span__c, &quot;UN Ungraded&quot;),true,
+false)))))))))))))))))))))))</formula>
+    <label>Is Grade In Setup</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

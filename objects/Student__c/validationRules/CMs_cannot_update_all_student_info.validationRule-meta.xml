@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CMs_cannot_update_all_student_info</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+($Profile.Id =&apos;00eE0000000e3RV&apos;),
+ISCHANGED(Student_First_Name__c),
+ISCHANGED(Student_Last_Name__c),
+ISCHANGED(School_Year__c), 
+ISCHANGED(Race__c), 
+ISCHANGED(Grade__c), 
+ISCHANGED(Student__c),
+ISCHANGED(School__c),
+ISCHANGED(Gender__c),
+ISCHANGED(Ethnicity__c), 
+ISCHANGED(Hispanic__c),
+ISCHANGED(Lunch_Status__c),
+ISCHANGED(Local_Student_ID__c))</errorConditionFormula>
+    <errorMessage>Corps Members can only edit Strengths and Hobbies for their Students.  If you need to have another field edited please contact your School Admin.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Value_Range_Suspensions</fullName>
+    <active>true</active>
+    <errorConditionFormula>OR( 
+Number_of_Suspensions__c &lt; 0, Number_of_Suspensions__c &gt; 200 
+)</errorConditionFormula>
+    <errorDisplayField>Number_of_Suspensions__c</errorDisplayField>
+    <errorMessage>Number of Suspensions must be within a 0 - 200 range.</errorMessage>
+</ValidationRule>

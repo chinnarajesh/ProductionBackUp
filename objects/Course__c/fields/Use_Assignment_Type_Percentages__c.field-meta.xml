@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Use_Assignment_Type_Percentages__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>This determines if section grades are graded using % weighted assignment types. Ex: Test = 50% HW = 30% Classwork = 20%</description>
+    <inlineHelpText>Select if you want SchoolForce to weigh the assignment types using a percentage. For example, you can designate Homework as worth 30% of a student&apos;s section grade.</inlineHelpText>
+    <label>Use Assignment Type Percentages</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

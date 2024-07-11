@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Dosage to Date calculated in hours --></help>
+    <label><!-- Dosage to Date (hrs) --></label>
+    <name>Dosage_to_Date_hrs__c</name>
+</CustomFieldTranslation>

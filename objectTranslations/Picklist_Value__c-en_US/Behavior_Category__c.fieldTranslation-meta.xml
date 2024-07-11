@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Behavior Category --></label>
+    <name>Behavior_Category__c</name>
+    <picklistValues>
+        <masterLabel>Bullying / Threatening / Planning Harm</masterLabel>
+        <translation><!-- Bullying / Threatening / Planning Harm --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Disruptive / Disrespectful</masterLabel>
+        <translation><!-- Disruptive / Disrespectful --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Drugs / Alcohol</masterLabel>
+        <translation><!-- Drugs / Alcohol --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Fighting</masterLabel>
+        <translation><!-- Fighting --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Having / Using Potential or Real Weapon</masterLabel>
+        <translation><!-- Having / Using Potential or Real Weapon --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Inappropriate Contact / Unsafe Behavior</masterLabel>
+        <translation><!-- Inappropriate Contact / Unsafe Behavior --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Lying / Cheating / Stealing</masterLabel>
+        <translation><!-- Lying / Cheating / Stealing --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Medical</masterLabel>
+        <translation><!-- Medical --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Misusing Materials / Damaging Property</masterLabel>
+        <translation><!-- Misusing Materials / Damaging Property --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Neutral #1</masterLabel>
+        <translation><!-- Neutral #1 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Neutral #2</masterLabel>
+        <translation><!-- Neutral #2 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Non-compliant / Not Prepared</masterLabel>
+        <translation><!-- Non-compliant / Not Prepared --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Not In Class or With Group / Truancy</masterLabel>
+        <translation><!-- Not In Class or With Group / Truancy --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Other</masterLabel>
+        <translation><!-- Other --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Positive #1</masterLabel>
+        <translation><!-- Positive #1 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Positive #2</masterLabel>
+        <translation><!-- Positive #2 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Positive Behaviors</masterLabel>
+        <translation><!-- Positive Behaviors --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

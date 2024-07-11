@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Students</fullName>
+    <columns>Type__c</columns>
+    <columns>Student_Id__c</columns>
+    <columns>First_Name__c</columns>
+    <columns>Last_Name__c</columns>
+    <columns>School_Dbn__c</columns>
+    <columns>School_Year__c</columns>
+    <columns>Class_Id__c</columns>
+    <columns>Reporting_Period_Id__c</columns>
+    <columns>Grade_Level__c</columns>
+    <columns>Error_Message__c</columns>
+    <columns>Propagated__c</columns>
+    <columns>Network_Code__c</columns>
+    <columns>NAME</columns>
+    <columns>Section_Propagated__c</columns>
+    <columns>Student_Propagated__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Type__c</field>
+        <operation>contains</operation>
+        <value>Section</value>
+    </filters>
+    <label>Denver Student/Sections</label>
+    <sharedTo>
+        <role>Denver_Site_Admin</role>
+    </sharedTo>
+</ListView>

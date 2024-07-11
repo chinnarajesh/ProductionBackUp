@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Module_Assignments__c</fullName>
+    <label>Module Assignments</label>
+    <required>true</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Module_Name__c</controllingField>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Beginning of Module Assessment</fullName>
+                <default>false</default>
+                <label>Beginning of Module Assessment</label>
+            </value>
+            <value>
+                <fullName>SWYK: Lesson 5</fullName>
+                <default>false</default>
+                <label>SWYK: Lesson 5</label>
+            </value>
+            <value>
+                <fullName>SWYK: Lesson 10</fullName>
+                <default>false</default>
+                <label>SWYK: Lesson 10</label>
+            </value>
+            <value>
+                <fullName>SWYK: Lesson 15</fullName>
+                <default>false</default>
+                <label>SWYK: Lesson 15</label>
+            </value>
+            <value>
+                <fullName>SWYK: Lesson 20</fullName>
+                <default>false</default>
+                <label>SWYK: Lesson 20</label>
+            </value>
+            <value>
+                <fullName>SWYK: Lesson 25</fullName>
+                <default>false</default>
+                <label>SWYK: Lesson 25</label>
+            </value>
+            <value>
+                <fullName>SWYK: Lesson 30</fullName>
+                <default>false</default>
+                <label>SWYK: Lesson 30</label>
+            </value>
+            <value>
+                <fullName>End of Module Assessment</fullName>
+                <default>false</default>
+                <label>End of Module Assessment</label>
+            </value>
+            <value>
+                <fullName>End</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>End</label>
+            </value>
+            <value>
+                <fullName>LLI Assignment 1</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>LLI Assignment 1</label>
+            </value>
+            <value>
+                <fullName>LLI Assignment 2</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>LLI Assignment 2</label>
+            </value>
+            <value>
+                <fullName>LLI Assignment 3</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>LLI Assignment 3</label>
+            </value>
+            <value>
+                <fullName>SWYK 1</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>SWYK 1</label>
+            </value>
+            <value>
+                <fullName>SWYK 2</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>SWYK 2</label>
+            </value>
+            <value>
+                <fullName>SWYK 3</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>SWYK 3</label>
+            </value>
+            <value>
+                <fullName>SWYK 4</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>SWYK 4</label>
+            </value>
+            <value>
+                <fullName>SWYK 5</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>SWYK 5</label>
+            </value>
+            <value>
+                <fullName>SWYK 6</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>SWYK 6</label>
+            </value>
+            <value>
+                <fullName>Start</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Start</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Addition &amp; Subtraction: Module C</controllingFieldValue>
+            <controllingFieldValue>Unit 2: Develop Multiplication Number Sense</controllingFieldValue>
+            <controllingFieldValue>Multiplication: Module A</controllingFieldValue>
+            <controllingFieldValue>Unit 3: Use Place-Value Strategies to Multiply</controllingFieldValue>
+            <controllingFieldValue>Multiplication: Module B</controllingFieldValue>
+            <controllingFieldValue>Unit 4: Connect Multiplication and Division</controllingFieldValue>
+            <controllingFieldValue>Multiplication: Module C</controllingFieldValue>
+            <controllingFieldValue>Unit 5: Use Place Value Strategies to Divide</controllingFieldValue>
+            <controllingFieldValue>Division: Module A</controllingFieldValue>
+            <controllingFieldValue>Unit 6: Develop Understanding of Fractions</controllingFieldValue>
+            <controllingFieldValue>Division: Module B</controllingFieldValue>
+            <controllingFieldValue>Unit 7: Reason with Fractions</controllingFieldValue>
+            <controllingFieldValue>Division: Module C</controllingFieldValue>
+            <controllingFieldValue>Unit 8: Extend Fraction Concepts and Comparing Strategies</controllingFieldValue>
+            <controllingFieldValue>Fractions: Module A</controllingFieldValue>
+            <controllingFieldValue>Unit 9: Build on Equivalence to Estimate, Compare, Add, and Subtract</controllingFieldValue>
+            <controllingFieldValue>Fractions: Module B</controllingFieldValue>
+            <controllingFieldValue>Addition &amp; Subtraction: Number Core</controllingFieldValue>
+            <controllingFieldValue>Addition &amp; Subtraction: Module A</controllingFieldValue>
+            <controllingFieldValue>Unit 10: Develop Fraction Number Sense</controllingFieldValue>
+            <controllingFieldValue>Fractions: Module C</controllingFieldValue>
+            <controllingFieldValue>Addition &amp; Subtraction: Module B</controllingFieldValue>
+            <controllingFieldValue>Unit 1: Build a Foundation for Multiplication</controllingFieldValue>
+            <valueName>Beginning of Module Assessment</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Addition &amp; Subtraction: Module C</controllingFieldValue>
+            <controllingFieldValue>Unit 2: Develop Multiplication Number Sense</controllingFieldValue>
+            <controllingFieldValue>Multiplication: Module A</controllingFieldValue>
+            <controllingFieldValue>Unit 3: Use Place-Value Strategies to Multiply</controllingFieldValue>
+            <controllingFieldValue>Multiplication: Module B</controllingFieldValue>
+            <controllingFieldValue>Unit 4: Connect Multiplication and Division</controllingFieldValue>
+            <controllingFieldValue>Multiplication: Module C</controllingFieldValue>
+            <controllingFieldValue>Unit 5: Use Place Value Strategies to Divide</controllingFieldValue>
+            <controllingFieldValue>Division: Module A</controllingFieldValue>
+            <controllingFieldValue>Unit 6: Develop Understanding of Fractions</controllingFieldValue>
+            <controllingFieldValue>Division: Module B</controllingFieldValue>
+            <controllingFieldValue>Unit 7: Reason with Fractions</controllingFieldValue>
+            <controllingFieldValue>Division: Module C</controllingFieldValue>
+            <controllingFieldValue>Unit 8: Extend Fraction Concepts and Comparing Strategies</controllingFieldValue>
+            <controllingFieldValue>Fractions: Module A</controllingFieldValue>
+            <controllingFieldValue>Unit 9: Build on Equivalence to Estimate, Compare, Add, and Subtract</controllingFieldValue>
+            <controllingFieldValue>Fractions: Module B</controllingFieldValue>
+            <controllingFieldValue>Addition &amp; Subtraction: Number Core</controllingFieldValue>
+            <controllingFieldValue>Addition &amp; Subtraction: Module A</controllingFieldValue>
+            <controllingFieldValue>Unit 10: Develop Fraction Number Sense</controllingFieldValue>
+            <controllingFieldValue>Fractions: Module C</controllingFieldValue>
+            <controllingFieldValue>Addition &amp; Subtraction: Module B</controllingFieldValue>
+            <controllingFieldValue>Unit 1: Build a Foundation for Multiplication</controllingFieldValue>
+            <valueName>SWYK: Lesson 5</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Addition &amp; Subtraction: Module C</controllingFieldValue>
+            <controllingFieldValue>Unit 2: Develop Multiplication Number Sense</controllingFieldValue>
+            <controllingFieldValue>Multiplication: Module A</controllingFieldValue>
+            <controllingFieldValue>Unit 3: Use Place-Value Strategies to Multiply</controllingFieldValue>
+            <controllingFieldValue>Multiplication: Module B</controllingFieldValue>
+            <controllingFieldValue>Unit 4: Connect Multiplication and Division</controllingFieldValue>
+            <controllingFieldValue>Multiplication: Module C</controllingFieldValue>
+            <controllingFieldValue>Unit 5: Use Place Value Strategies to Divide</controllingFieldValue>
+            <controllingFieldValue>Division: Module A</controllingFieldValue>
+            <controllingFieldValue>Unit 6: Develop Understanding of Fractions</controllingFieldValue>
+            <controllingFieldValue>Division: Module B</controllingFieldValue>
+            <controllingFieldValue>Unit 7: Reason with Fractions</controllingFieldValue>
+            <controllingFieldValue>Division: Module C</controllingFieldValue>
+            <controllingFieldValue>Unit 8: Extend Fraction Concepts and Comparing Strategies</controllingFieldValue>
+            <controllingFieldValue>Fractions: Module A</controllingFieldValue>
+            <controllingFieldValue>Unit 9: Build on Equivalence to Estimate, Compare, Add, and Subtract</controllingFieldValue>
+            <controllingFieldValue>Fractions: Module B</controllingFieldValue>
+            <controllingFieldValue>Addition &amp; Subtraction: Number Core</controllingFieldValue>
+            <controllingFieldValue>Addition &amp; Subtraction: Module A</controllingFieldValue>
+            <controllingFieldValue>Unit 10: Develop Fraction Number Sense</controllingFieldValue>
+            <controllingFieldValue>Fractions: Module C</controllingFieldValue>
+            <controllingFieldValue>Addition &amp; Subtraction: Module B</controllingFieldValue>
+            <controllingFieldValue>Unit 1: Build a Foundation for Multiplication</controllingFieldValue>
+            <valueName>SWYK: Lesson 10</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Addition &amp; Subtraction: Module C</controllingFieldValue>
+            <controllingFieldValue>Unit 2: Develop Multiplication Number Sense</controllingFieldValue>
+            <controllingFieldValue>Multiplication: Module A</controllingFieldValue>
+            <controllingFieldValue>Unit 3: Use Place-Value Strategies to Multiply</controllingFieldValue>
+            <controllingFieldValue>Multiplication: Module B</controllingFieldValue>
+            <controllingFieldValue>Unit 4: Connect Multiplication and Division</controllingFieldValue>
+            <controllingFieldValue>Multiplication: Module C</controllingFieldValue>
+            <controllingFieldValue>Unit 5: Use Place Value Strategies to Divide</controllingFieldValue>
+            <controllingFieldValue>Division: Module A</controllingFieldValue>
+            <controllingFieldValue>Unit 6: Develop Understanding of Fractions</controllingFieldValue>
+            <controllingFieldValue>Division: Module B</controllingFieldValue>
+            <controllingFieldValue>Unit 7: Reason with Fractions</controllingFieldValue>
+            <controllingFieldValue>Division: Module C</controllingFieldValue>
+            <controllingFieldValue>Unit 8: Extend Fraction Concepts and Comparing Strategies</controllingFieldValue>
+            <controllingFieldValue>Fractions: Module A</controllingFieldValue>
+            <controllingFieldValue>Unit 9: Build on Equivalence to Estimate, Compare, Add, and Subtract</controllingFieldValue>
+            <controllingFieldValue>Fractions: Module B</controllingFieldValue>
+            <controllingFieldValue>Addition &amp; Subtraction: Number Core</controllingFieldValue>
+            <controllingFieldValue>Addition &amp; Subtraction: Module A</controllingFieldValue>
+            <controllingFieldValue>Unit 10: Develop Fraction Number Sense</controllingFieldValue>
+            <controllingFieldValue>Fractions: Module C</controllingFieldValue>
+            <controllingFieldValue>Addition &amp; Subtraction: Module B</controllingFieldValue>
+            <controllingFieldValue>Unit 1: Build a Foundation for Multiplication</controllingFieldValue>
+            <valueName>SWYK: Lesson 15</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Addition &amp; Subtraction: Module C</controllingFieldValue>
+            <controllingFieldValue>Unit 2: Develop Multiplication Number Sense</controllingFieldValue>
+            <controllingFieldValue>Multiplication: Module A</controllingFieldValue>
+            <controllingFieldValue>Unit 3: Use Place-Value Strategies to Multiply</controllingFieldValue>
+            <controllingFieldValue>Multiplication: Module B</controllingFieldValue>
+            <controllingFieldValue>Unit 4: Connect Multiplication and Division</controllingFieldValue>
+            <controllingFieldValue>Multiplication: Module C</controllingFieldValue>
+            <controllingFieldValue>Unit 5: Use Place Value Strategies to Divide</controllingFieldValue>
+            <controllingFieldValue>Division: Module A</controllingFieldValue>
+            <controllingFieldValue>Unit 6: Develop Understanding of Fractions</controllingFieldValue>
+            <controllingFieldValue>Division: Module B</controllingFieldValue>
+            <controllingFieldValue>Unit 7: Reason with Fractions</controllingFieldValue>
+            <controllingFieldValue>Division: Module C</controllingFieldValue>
+            <controllingFieldValue>Unit 8: Extend Fraction Concepts and Comparing Strategies</controllingFieldValue>
+            <controllingFieldValue>Fractions: Module A</controllingFieldValue>
+            <controllingFieldValue>Unit 9: Build on Equivalence to Estimate, Compare, Add, and Subtract</controllingFieldValue>
+            <controllingFieldValue>Fractions: Module B</controllingFieldValue>
+            <controllingFieldValue>Addition &amp; Subtraction: Number Core</controllingFieldValue>
+            <controllingFieldValue>Addition &amp; Subtraction: Module A</controllingFieldValue>
+            <controllingFieldValue>Unit 10: Develop Fraction Number Sense</controllingFieldValue>
+            <controllingFieldValue>Fractions: Module C</controllingFieldValue>
+            <controllingFieldValue>Addition &amp; Subtraction: Module B</controllingFieldValue>
+            <controllingFieldValue>Unit 1: Build a Foundation for Multiplication</controllingFieldValue>
+            <valueName>SWYK: Lesson 20</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Addition &amp; Subtraction: Module C</controllingFieldValue>
+            <controllingFieldValue>Unit 2: Develop Multiplication Number Sense</controllingFieldValue>
+            <controllingFieldValue>Multiplication: Module A</controllingFieldValue>
+            <controllingFieldValue>Unit 3: Use Place-Value Strategies to Multiply</controllingFieldValue>
+            <controllingFieldValue>Multiplication: Module B</controllingFieldValue>
+            <controllingFieldValue>Unit 4: Connect Multiplication and Division</controllingFieldValue>
+            <controllingFieldValue>Multiplication: Module C</controllingFieldValue>
+            <controllingFieldValue>Unit 5: Use Place Value Strategies to Divide</controllingFieldValue>
+            <controllingFieldValue>Division: Module A</controllingFieldValue>
+            <controllingFieldValue>Unit 6: Develop Understanding of Fractions</controllingFieldValue>
+            <controllingFieldValue>Division: Module B</controllingFieldValue>
+            <controllingFieldValue>Unit 7: Reason with Fractions</controllingFieldValue>
+            <controllingFieldValue>Division: Module C</controllingFieldValue>
+            <controllingFieldValue>Unit 8: Extend Fraction Concepts and Comparing Strategies</controllingFieldValue>
+            <controllingFieldValue>Fractions: Module A</controllingFieldValue>
+            <controllingFieldValue>Unit 9: Build on Equivalence to Estimate, Compare, Add, and Subtract</controllingFieldValue>
+            <controllingFieldValue>Fractions: Module B</controllingFieldValue>
+            <controllingFieldValue>Addition &amp; Subtraction: Number Core</controllingFieldValue>
+            <controllingFieldValue>Addition &amp; Subtraction: Module A</controllingFieldValue>
+            <controllingFieldValue>Unit 10: Develop Fraction Number Sense</controllingFieldValue>
+            <controllingFieldValue>Fractions: Module C</controllingFieldValue>
+            <controllingFieldValue>Addition &amp; Subtraction: Module B</controllingFieldValue>
+            <controllingFieldValue>Unit 1: Build a Foundation for Multiplication</controllingFieldValue>
+            <valueName>SWYK: Lesson 25</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Addition &amp; Subtraction: Module C</controllingFieldValue>
+            <controllingFieldValue>Unit 2: Develop Multiplication Number Sense</controllingFieldValue>
+            <controllingFieldValue>Multiplication: Module A</controllingFieldValue>
+            <controllingFieldValue>Unit 3: Use Place-Value Strategies to Multiply</controllingFieldValue>
+            <controllingFieldValue>Multiplication: Module B</controllingFieldValue>
+            <controllingFieldValue>Unit 4: Connect Multiplication and Division</controllingFieldValue>
+            <controllingFieldValue>Multiplication: Module C</controllingFieldValue>
+            <controllingFieldValue>Unit 5: Use Place Value Strategies to Divide</controllingFieldValue>
+            <controllingFieldValue>Division: Module A</controllingFieldValue>
+            <controllingFieldValue>Unit 6: Develop Understanding of Fractions</controllingFieldValue>
+            <controllingFieldValue>Division: Module B</controllingFieldValue>
+            <controllingFieldValue>Unit 7: Reason with Fractions</controllingFieldValue>
+            <controllingFieldValue>Division: Module C</controllingFieldValue>
+            <controllingFieldValue>Unit 8: Extend Fraction Concepts and Comparing Strategies</controllingFieldValue>
+            <controllingFieldValue>Fractions: Module A</controllingFieldValue>
+            <controllingFieldValue>Unit 9: Build on Equivalence to Estimate, Compare, Add, and Subtract</controllingFieldValue>
+            <controllingFieldValue>Fractions: Module B</controllingFieldValue>
+            <controllingFieldValue>Addition &amp; Subtraction: Number Core</controllingFieldValue>
+            <controllingFieldValue>Addition &amp; Subtraction: Module A</controllingFieldValue>
+            <controllingFieldValue>Unit 10: Develop Fraction Number Sense</controllingFieldValue>
+            <controllingFieldValue>Fractions: Module C</controllingFieldValue>
+            <controllingFieldValue>Addition &amp; Subtraction: Module B</controllingFieldValue>
+            <controllingFieldValue>Unit 1: Build a Foundation for Multiplication</controllingFieldValue>
+            <valueName>SWYK: Lesson 30</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Addition &amp; Subtraction: Module C</controllingFieldValue>
+            <controllingFieldValue>Unit 2: Develop Multiplication Number Sense</controllingFieldValue>
+            <controllingFieldValue>Multiplication: Module A</controllingFieldValue>
+            <controllingFieldValue>Unit 3: Use Place-Value Strategies to Multiply</controllingFieldValue>
+            <controllingFieldValue>Multiplication: Module B</controllingFieldValue>
+            <controllingFieldValue>Unit 4: Connect Multiplication and Division</controllingFieldValue>
+            <controllingFieldValue>Multiplication: Module C</controllingFieldValue>
+            <controllingFieldValue>Unit 5: Use Place Value Strategies to Divide</controllingFieldValue>
+            <controllingFieldValue>Division: Module A</controllingFieldValue>
+            <controllingFieldValue>Unit 6: Develop Understanding of Fractions</controllingFieldValue>
+            <controllingFieldValue>Division: Module B</controllingFieldValue>
+            <controllingFieldValue>Unit 7: Reason with Fractions</controllingFieldValue>
+            <controllingFieldValue>Division: Module C</controllingFieldValue>
+            <controllingFieldValue>Unit 8: Extend Fraction Concepts and Comparing Strategies</controllingFieldValue>
+            <controllingFieldValue>Fractions: Module A</controllingFieldValue>
+            <controllingFieldValue>Unit 9: Build on Equivalence to Estimate, Compare, Add, and Subtract</controllingFieldValue>
+            <controllingFieldValue>Fractions: Module B</controllingFieldValue>
+            <controllingFieldValue>Addition &amp; Subtraction: Number Core</controllingFieldValue>
+            <controllingFieldValue>Addition &amp; Subtraction: Module A</controllingFieldValue>
+            <controllingFieldValue>Unit 10: Develop Fraction Number Sense</controllingFieldValue>
+            <controllingFieldValue>Fractions: Module C</controllingFieldValue>
+            <controllingFieldValue>Addition &amp; Subtraction: Module B</controllingFieldValue>
+            <controllingFieldValue>Unit 1: Build a Foundation for Multiplication</controllingFieldValue>
+            <valueName>End of Module Assessment</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

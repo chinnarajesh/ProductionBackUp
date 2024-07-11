@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- A CEEB code is a standardized ID number that is assigned to a high school, college, or university.  CEEB codes are issued by the Educational Testing Service (ETS). --></help>
+    <label><!-- CEEB Code --></label>
+    <name>CEEB_Code__c</name>
+</CustomFieldTranslation>

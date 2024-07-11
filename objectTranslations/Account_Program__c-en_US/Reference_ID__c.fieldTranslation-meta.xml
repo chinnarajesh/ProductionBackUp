@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- This ID is used to prevent duplicate Account/Program records. It should not be changed. --></help>
+    <label><!-- Reference ID --></label>
+    <name>Reference_ID__c</name>
+</CustomFieldTranslation>

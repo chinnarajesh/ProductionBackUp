@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Initiative</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Initiatives</value>
+    </caseValues>
+    <layouts>
+        <layout>City Year Led</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Community Led</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <label><!-- City Year Led --></label>
+        <name>City_Year_Led</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Community Led --></label>
+        <name>Community_Led</name>
+    </recordTypes>
+    <startsWith>Vowel</startsWith>
+</CustomObjectTranslation>

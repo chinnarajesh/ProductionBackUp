@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- If you would like, you can add a Section Nickname. --></help>
+    <label><!-- Section Nickname --></label>
+    <name>Section_Nickname__c</name>
+</CustomFieldTranslation>

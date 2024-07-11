@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Value_Range_RSC_Mean_Optimism</fullName>
+    <active>true</active>
+    <errorConditionFormula>OR
+(
+RSC_Mean_Optimism__c &lt; 1.000,
+RSC_Mean_Optimism__c &gt; 5.000
+)</errorConditionFormula>
+    <errorDisplayField>RSC_Mean_Optimism__c</errorDisplayField>
+    <errorMessage>Score must be within 1.00 to 5.00 range</errorMessage>
+</ValidationRule>

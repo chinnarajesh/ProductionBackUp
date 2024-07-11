@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- In School/ Extended Learning --></label>
+    <name>In_After_School__c</name>
+    <picklistValues>
+        <masterLabel>Extended Learning</masterLabel>
+        <translation><!-- Extended Learning --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>In School</masterLabel>
+        <translation><!-- In School --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>In School + ELT</masterLabel>
+        <translation><!-- In School + ELT --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>None</masterLabel>
+        <translation><!-- None --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Basic_or_Remedial_Courses</fullName>
+    <columns>NAME</columns>
+    <columns>Course_Number__c</columns>
+    <columns>Secondary_Course_Subject_Area__c</columns>
+    <columns>Secondary_Course_Level__c</columns>
+    <columns>Credits__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Secondary_Course_Level__c</field>
+        <operation>equals</operation>
+        <value>B - Basic or Remedial</value>
+    </filters>
+    <label>Basic or Remedial Courses</label>
+</ListView>

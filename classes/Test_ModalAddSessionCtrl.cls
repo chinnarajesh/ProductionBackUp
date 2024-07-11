@@ -38,7 +38,7 @@ private class Test_ModalAddSessionCtrl {
         Section__c sectionwithRelatedList =
         [SELECT Id, Name, Start_Date__c, Program__c, Intervention_Primary_Staff__c, End_Date__c,
                 School__c, Active__c, School__r.Name, Time__r.Name__c, Program__r.Indicator_Area__r.Id,
-                Program__r.Indicator_Area__r.Name, RecordTypeID, RecordType.Name, Account_Program__r.Name,
+                Program__r.Indicator_Area__r.Name, RecordTypeID, RecordType.Name, Account_Program__r.Name,Location__c,
                 In_After_School__c, Auto_Name__c,
         (SELECT Active__c, Student__c, Student__r.Id, Student__r.Name, Student_Name__c, Student_Grade__c,
                 Section__c, Dosage_to_Date__c, Intervention_Enrollment_Start_Date__c,

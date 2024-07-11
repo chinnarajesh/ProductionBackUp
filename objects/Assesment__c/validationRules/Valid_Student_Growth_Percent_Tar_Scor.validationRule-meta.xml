@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Valid_Student_Growth_Percent_Tar_Scor</fullName>
+    <active>true</active>
+    <errorConditionFormula>OR 
+( 
+Student_Growth_Percentile_Target_Score__c &lt; 0, 
+Student_Growth_Percentile_Target_Score__c &gt; 99 
+)</errorConditionFormula>
+    <errorDisplayField>Student_Growth_Percentile_Target_Score__c</errorDisplayField>
+    <errorMessage>Student Growth Percentile Target Score must be within a 0 - 99 range.</errorMessage>
+</ValidationRule>

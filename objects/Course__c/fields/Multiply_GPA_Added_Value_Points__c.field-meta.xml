@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Multiply_GPA_Added_Value_Points__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Users can choose to multiply instead of adding to the GPA weight.</description>
+    <inlineHelpText>Select if this is a course that uses value-added points for weighted GPA grading and you want SchoolForce to multiply the value added points to calculate the weighted GPA. If you do not select this check box, SchoolForce adds the value added points.</inlineHelpText>
+    <label>Multiply GPA Added Value Points</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

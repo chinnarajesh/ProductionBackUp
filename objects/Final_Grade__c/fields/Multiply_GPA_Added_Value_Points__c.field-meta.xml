@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Multiply_GPA_Added_Value_Points__c</fullName>
+    <formula>Course__r.Multiply_GPA_Added_Value_Points__c</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Multiply GPA Added Value Points</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- The type of credits or units of value awarded for the completion of a course. --></help>
+    <label><!-- Credit Type Earned --></label>
+    <name>Credit_Type_Earned__c</name>
+    <picklistValues>
+        <masterLabel>Carnegie Unit</masterLabel>
+        <translation><!-- Carnegie Unit --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Intersession Hour Credit</masterLabel>
+        <translation><!-- Intersession Hour Credit --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Long Session Hour Credit</masterLabel>
+        <translation><!-- Long Session Hour Credit --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Mini-Term Hour Credit</masterLabel>
+        <translation><!-- Mini-Term Hour Credit --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Quarter Hour Credit</masterLabel>
+        <translation><!-- Quarter Hour Credit --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Quinmester Hour Credit</masterLabel>
+        <translation><!-- Quinmester Hour Credit --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Semester Hour Credit</masterLabel>
+        <translation><!-- Semester Hour Credit --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Summer Term Hour Credit</masterLabel>
+        <translation><!-- Summer Term Hour Credit --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Trimester Hour Credit</masterLabel>
+        <translation><!-- Trimester Hour Credit --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

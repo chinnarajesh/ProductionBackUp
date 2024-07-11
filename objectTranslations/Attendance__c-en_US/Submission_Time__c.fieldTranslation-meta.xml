@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Displays the date and time from the Created By field. It can be used in reports. --></help>
+    <label><!-- Submission Time --></label>
+    <name>Submission_Time__c</name>
+</CustomFieldTranslation>

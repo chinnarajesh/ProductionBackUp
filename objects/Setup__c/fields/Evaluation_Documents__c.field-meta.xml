@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Evaluation_Documents__c</fullName>
+    <description>This controls what is allowed to be selected in the document generation page</description>
+    <inlineHelpText>Which documents should this setup be using?</inlineHelpText>
+    <label>Evaluation Documents</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Report Card - High School</fullName>
+                <default>false</default>
+                <label>Report Card - High School</label>
+            </value>
+            <value>
+                <fullName>Report Card - Elementary School</fullName>
+                <default>false</default>
+                <label>Report Card - Elementary School</label>
+            </value>
+            <value>
+                <fullName>Progress Report - High School</fullName>
+                <default>false</default>
+                <label>Progress Report - High School</label>
+            </value>
+            <value>
+                <fullName>Progress Report - Elementary School</fullName>
+                <default>false</default>
+                <label>Progress Report - Elementary School</label>
+            </value>
+            <value>
+                <fullName>Transcript</fullName>
+                <default>false</default>
+                <label>Transcript</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>5</visibleLines>
+</CustomField>

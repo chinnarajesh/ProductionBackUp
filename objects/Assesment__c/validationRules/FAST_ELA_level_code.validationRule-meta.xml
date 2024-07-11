@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FAST_ELA_level_code</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(Assessment_Name__c = &quot;Florida Assessment of Student Thinking - ELA&quot;,
+OR(Level_Code__c &lt; 1, 
+Level_Code__c &gt; 5))</errorConditionFormula>
+    <errorDisplayField>Level_Code__c</errorDisplayField>
+    <errorMessage>The range for this field must be between 1 and 5.</errorMessage>
+</ValidationRule>

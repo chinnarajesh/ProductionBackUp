@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Select the grade scale this course will use to calculate grades. --></help>
+    <label><!-- Grade Scale --></label>
+    <lookupFilter>
+        <errorMessage><!-- Grade Scale field must be of Record Type Grade Scale --></errorMessage>
+    </lookupFilter>
+    <name>Grade_Scale_Lookup__c</name>
+    <relationshipLabel><!-- Courses --></relationshipLabel>
+</CustomFieldTranslation>

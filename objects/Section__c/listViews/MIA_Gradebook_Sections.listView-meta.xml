@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>MIA_Gradebook_Sections</fullName>
+    <columns>Location__c</columns>
+    <columns>Course__c</columns>
+    <columns>NAME</columns>
+    <columns>Year_Name__c</columns>
+    <columns>School__c</columns>
+    <columns>of_Students__c</columns>
+    <columns>Active__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Section__c.Published,Section__c.Unpublished,Section__c.Schedule_Group,Section__c.Gradebook_Group</value>
+    </filters>
+    <filters>
+        <field>Active__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <filters>
+        <field>Location__c</field>
+        <operation>equals</operation>
+        <value>Miami</value>
+    </filters>
+    <label>Miami Gradebook Sections</label>
+    <sharedTo>
+        <role>Admin</role>
+        <role>CY_HQ</role>
+        <role>Miami_Site_Admin</role>
+        <role>Miami_Site_User</role>
+    </sharedTo>
+</ListView>

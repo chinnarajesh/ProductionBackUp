@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Setup</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Setup</value>
+    </caseValues>
+    <fieldSets>
+        <label><!-- Editable Options --></label>
+        <name>Editable_Options</name>
+    </fieldSets>
+    <layouts>
+        <layout>Non Admin Page Layout</layout>
+        <sections>
+            <label><!-- Configurable Values --></label>
+            <section>Configurable Values</section>
+        </sections>
+        <sections>
+            <label><!-- Configuration Links --></label>
+            <section>Configuration Links</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Setup Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>System Admin Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Gradebook Configuration --></label>
+            <section>Gradebook Configuration</section>
+        </sections>
+        <sections>
+            <label><!-- Scheduler Configuration --></label>
+            <section>Scheduler Configuration</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <description><!-- For Published Setups - Not Editable --></description>
+        <label><!-- Published --></label>
+        <name>Published</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Default Setup Record prior to when Setup is published. --></description>
+        <label><!-- Unpublished --></label>
+        <name>Unpublished</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+    <webLinks>
+        <label><!-- Publish --></label>
+        <name>Publish</name>
+    </webLinks>
+</CustomObjectTranslation>

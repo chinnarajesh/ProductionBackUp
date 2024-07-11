@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Displays the date and time the student arrived to class. This value is used to calculate the time lost displayed in the Instructional Time Lost field. --></help>
+    <label><!-- Arrival Time --></label>
+    <name>Arrival_Time__c</name>
+</CustomFieldTranslation>

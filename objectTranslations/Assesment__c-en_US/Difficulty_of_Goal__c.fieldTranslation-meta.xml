@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Difficulty of Goal --></label>
+    <name>Difficulty_of_Goal__c</name>
+    <picklistValues>
+        <masterLabel>Advanced</masterLabel>
+        <translation><!-- Advanced --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Basic</masterLabel>
+        <translation><!-- Basic --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Intermediate</masterLabel>
+        <translation><!-- Intermediate --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

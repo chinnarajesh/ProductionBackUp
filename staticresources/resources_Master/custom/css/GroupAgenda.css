@@ -1,0 +1,78 @@
+.headerStyle{
+padding: 0;
+color: white;
+background-color: #1797C0
+}
+.agendaRow	{
+		text-align:left;
+		width:600px;
+		font-size: 9pt;
+		vAlign:top;
+		display:block;
+		postition:absolute;
+}
+
+.agendaTimeRow	{
+		text-align:center;
+		width:45px;
+		height:26px;
+		font-size: 9pt;
+		vAlign:top;
+		
+}
+
+.alldayClass{
+		text-align:center;
+		width:35px;
+		height:26px;
+		font-size: 9pt;
+		vAlign:top;
+		background-color:#1797C0;
+}
+
+.allDayHeader{
+		text-align:center;
+		height:26px;
+		font-size: 11pt;
+		color: white;
+		vAlign:top;
+		background-color:#1797C0;
+		border-color:red;
+		
+
+}
+
+
+
+.ui-widget-content {
+    border: 0px solid #AAA !important;
+}
+.ui-widget-header {
+    background-color: white !important; border:0px solid #fff;
+    border: 0px solid #67B2CE !important;
+}
+
+
+
+ .ui-tabs-nav {
+	border-width: 0px 0px 1px 0px;
+	border-radius: 0px;
+	-moz-border-radius: 0px;
+	-webkit-border-radius: 0px;
+}
+ .ui-widget-header {
+border: 0px;
+background: white;
+color: #222/*{fcHeader}*/;
+font-weight: bold;
+}
+
+
+ 
+
+
+ .ui-state-active a   
+{
+background: -webkit-gradient(linear, left top, left bottom, from(#e6f3f7), to(#cbe9f0));
+background: -moz-linear-gradient(top, #e6f3f7, #cbe9f0);
+}

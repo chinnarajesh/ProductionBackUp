@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Optional field that displays on Standard Record. Not available when searching for standards to grade. --></help>
+    <label><!-- Department --></label>
+    <name>Department__c</name>
+    <relationshipLabel><!-- Standards (Department) --></relationshipLabel>
+</CustomFieldTranslation>

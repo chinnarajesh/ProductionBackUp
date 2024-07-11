@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>level_code_smarter_balanced</fullName>
+    <active>true</active>
+    <description>this field was created for the smarter balance assessment</description>
+    <errorConditionFormula>OR
+( 
+ Level_Code__c &lt; 1, 
+Level_Code__c &gt; 4
+ )</errorConditionFormula>
+    <errorDisplayField>Level_Code__c</errorDisplayField>
+    <errorMessage>The range for this field must be between 1 and 4.</errorMessage>
+</ValidationRule>

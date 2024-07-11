@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Math_Courses</fullName>
+    <columns>NAME</columns>
+    <columns>Course_Number__c</columns>
+    <columns>Subject_Area__c</columns>
+    <columns>Credits__c</columns>
+    <columns>Course_Level_Characteristic__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Department__c</field>
+        <operation>equals</operation>
+        <value>Math</value>
+    </filters>
+    <label>Math Courses</label>
+</ListView>

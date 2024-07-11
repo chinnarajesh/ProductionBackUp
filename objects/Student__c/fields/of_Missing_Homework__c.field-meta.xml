@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>of_Missing_Homework__c</fullName>
+    <description>System generated tally of number of missing homework assignments for the particular student</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Displays the student&apos;s total number of missing homework assignments if your school uses the Homework module.</inlineHelpText>
+    <label># of Missing Homework</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

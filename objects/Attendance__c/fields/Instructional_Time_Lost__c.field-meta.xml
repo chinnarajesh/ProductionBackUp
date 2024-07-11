@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Instructional_Time_Lost__c</fullName>
+    <description>This formula is the total instructional time lost for a student who arrives late, leaves early, or both.</description>
+    <externalId>false</externalId>
+    <formula>IF(
+OR(
+ TEXT(Picklist_Value__r.Category__c ) = &apos;Absent&apos;,
+ Picklist_Value__r.Is_Suspension__c
+),
+
+(Session__r.End_DateTime__c - Session__r.Start_DateTime__c)*1440,
+
+(IF(ISBLANK(Arrival_Time__c),0,(Arrival_Time__c - Session__r.Start_DateTime__c)) + IF(ISBLANK(Departure_Time__c), 0, ( Session__r.End_DateTime__c - Departure_Time__c)))*1440)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>This field is an exact copy of the Instructional Time Lost field. It is used to calculate the following fields on the Student record: Daily Attendance Time Lost and Sectional Attendance Time Lost.</inlineHelpText>
+    <label>Instructional Time Lost</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

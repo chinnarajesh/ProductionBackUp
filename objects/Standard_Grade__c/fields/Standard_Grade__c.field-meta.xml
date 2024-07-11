@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Standard_Grade__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(NOT(ISNULL(Grade_Override__c)), Grade_Override__c,
+
+IF(AND(ISPICKVAL(Student__r.Setup__r.Calculation_Type__c,  &quot;Mean&quot;), Student__r.Setup__r.Rolling_Standard_Grade__c == FALSE), Mean_Grade__c, 
+
+IF(AND(ISPICKVAL(Student__r.Setup__r.Calculation_Type__c, &quot;Highest&quot;), Student__r.Setup__r.Rolling_Standard_Grade__c == FALSE), Highest_Grade__c, 
+
+IF(AND(ISPICKVAL(Student__r.Setup__r.Calculation_Type__c, &quot;Most Recent&quot;), Student__r.Setup__r.Rolling_Standard_Grade__c == FALSE), Most_Recent_Grade__c, 
+ 
+IF(AND(ISPICKVAL(Student__r.Setup__r.Calculation_Type__c, &quot;Power Law&quot;), Student__r.Setup__r.Rolling_Standard_Grade__c == FALSE), Power_Law_Grade__c, 
+
+IF(AND(ISPICKVAL(Student__r.Setup__r.Calculation_Type__c, &quot;Law of Decaying Average&quot;), Student__r.Setup__r.Rolling_Standard_Grade__c == FALSE), Law_of_Decaying_Average_Grade__c, 
+
+IF(AND(ISPICKVAL(Student__r.Setup__r.Calculation_Type__c,  &quot;Mean&quot;), Student__r.Setup__r.Rolling_Standard_Grade__c == TRUE), Rolling_Mean_Grade__c, 
+
+IF(AND(ISPICKVAL(Student__r.Setup__r.Calculation_Type__c, &quot;Highest&quot;), Student__r.Setup__r.Rolling_Standard_Grade__c == TRUE), Rolling_Highest_Grade__c, 
+
+IF(AND(ISPICKVAL(Student__r.Setup__r.Calculation_Type__c, &quot;Most Recent&quot;), Student__r.Setup__r.Rolling_Standard_Grade__c == TRUE), Rolling_Most_Recent_Grade__c, 
+ 
+IF(AND(ISPICKVAL(Student__r.Setup__r.Calculation_Type__c, &quot;Power Law&quot;), Student__r.Setup__r.Rolling_Standard_Grade__c == TRUE), Rolling_Power_Law_Grade__c, 
+
+IF(AND(ISPICKVAL(Student__r.Setup__r.Calculation_Type__c, &quot;Law of Decaying Average&quot;), Student__r.Setup__r.Rolling_Standard_Grade__c == TRUE), Rolling_Law_of_Decaying_Average_Grade__c, 
+
+Weighted_Average_Grade__c
+
+)))))))))))</formula>
+    <inlineHelpText>What is the formal standard grade based on the school&apos;s selected standard calculation type? This is a year to date calculation; it is not based on reporting periods.</inlineHelpText>
+    <label>Grade</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

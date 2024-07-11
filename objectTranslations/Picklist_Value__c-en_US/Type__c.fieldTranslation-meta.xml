@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Type --></label>
+    <name>Type__c</name>
+    <picklistValues>
+        <masterLabel>Assignment</masterLabel>
+        <translation><!-- Assignment --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Attendance</masterLabel>
+        <translation><!-- Attendance --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Behavior Consequence</masterLabel>
+        <translation><!-- Behavior Consequence --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Behavior Type</masterLabel>
+        <translation><!-- Behavior Type --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Grade Scale</masterLabel>
+        <translation><!-- Grade Scale --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Homework</masterLabel>
+        <translation><!-- Homework --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Time</masterLabel>
+        <translation><!-- Time --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

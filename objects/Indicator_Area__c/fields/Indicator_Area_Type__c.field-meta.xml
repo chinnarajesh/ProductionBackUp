@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Indicator_Area_Type__c</fullName>
+    <inlineHelpText>This field categorizes Indicator Areas for reporting purposes.  These are the highest level of Intervention Categories, similar to Subjects.  Admins may modify the values in Setup.</inlineHelpText>
+    <label>Indicator Area Type</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Attendance</fullName>
+                <default>false</default>
+                <label>Attendance</label>
+            </value>
+            <value>
+                <fullName>ELA/Literacy</fullName>
+                <default>false</default>
+                <label>ELA/Literacy</label>
+            </value>
+            <value>
+                <fullName>Math</fullName>
+                <default>false</default>
+                <label>Math</label>
+            </value>
+            <value>
+                <fullName>SEL/SED</fullName>
+                <default>false</default>
+                <label>SEL/SED</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Parental_Notification_Required__c</fullName>
+    <label>Parental Notification Required</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Send Notification</fullName>
+                <default>false</default>
+                <label>Send Notification</label>
+            </value>
+            <value>
+                <fullName>Notification Sent</fullName>
+                <default>false</default>
+                <label>Notification Sent</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

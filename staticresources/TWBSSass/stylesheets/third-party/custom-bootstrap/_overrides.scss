@@ -1,0 +1,24 @@
+.dataTables_paginate {
+	.pagination {
+		display: flex;
+		justify-content: flex-end;
+		@media (max-width:$screen-sm-min) {
+			justify-content:center;
+			margin:40px 0;
+		}
+		> li {
+			display:block;
+			+ li {margin-left:$gap-sm;}
+			> a {
+				border-radius:0;
+				border-width:2px;
+				font-size:11px;
+				font-weight:bold;
+			}
+		}
+	}
+}
+
+.cy-table > tbody > tr > td {
+	vertical-align:middle;
+}

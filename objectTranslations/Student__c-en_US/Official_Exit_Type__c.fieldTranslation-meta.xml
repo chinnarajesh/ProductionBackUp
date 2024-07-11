@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Do not use this field; it is no longer used by SchoolForce. Use the Exit Type field instead. --></help>
+    <label><!-- Official Exit Type*Retired* --></label>
+    <name>Official_Exit_Type__c</name>
+    <picklistValues>
+        <masterLabel>EX (Expulsion)</masterLabel>
+        <translation><!-- EX (Expulsion) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>NI (No Information)</masterLabel>
+        <translation><!-- NI (No Information) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>NI (No Show)</masterLabel>
+        <translation><!-- NI (No Show) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>TO (Transfer Out of State)</masterLabel>
+        <translation><!-- TO (Transfer Out of State) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>TS (Transfer In State - Non-Public)</masterLabel>
+        <translation><!-- TS (Transfer In State - Non-Public) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>TS (Transfer In State - Other LEA)</masterLabel>
+        <translation><!-- TS (Transfer In State - Other LEA) --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

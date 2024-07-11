@@ -10,7 +10,13 @@
                 display: none;
             }
             }
-            
+            .gobackbutton{
+                display: inline !important;
+            }
+            .buttonGraout {
+            background-color: rgb(12, 7, 7); /* gray out the button */
+            color: rgb(42, 13, 182); /* change the text color to red */
+             }
         </style>
         <head>
             <meta charset="utf-8" />
@@ -55,12 +61,14 @@
                             </div>
                         </div><!-- /.title -->
                         <div class="controls">
-                            <apex:outputPanel id="hideButton" styleClass="hidden-xs" rendered="{!IF(mainReportchat==true, true, false)}">
-                            <apex:commandLink style="color: #F9A12D;" styleClass="btn-bs btn-blank" action="{!doStudentsCancel}"><span class="icon-arrow_back"></span>Go Back</apex:commandLink>
-                        </apex:outputPanel>
-                           <apex:outputPanel id="newButton" styleClass="hidden-xs" rendered="{!IF(showstudentButton==false, true, false)}">
-                           <apex:commandLink style="color: #F9A12D;" styleClass="btn-bs btn-blank" action="{!gototheReportchart}"><span class="icon-arrow_back"></span>Go Back</apex:commandLink>
-                        </apex:outputPanel>
+                            <!-- <apex:outputPanel id="hideButton" styleClass="hidden-xs" rendered="{!IF(mainReportchat==true, true, false)}"> -->
+                                <!-- <div class="gobackbutton"> -->
+                            <apex:commandLink style="color: #F9A12D;" styleClass="btn-bs btn-blank" action="{!doStudentsCancel}" rendered="{!IF(mainReportchat==true, true, false)}"><span class="icon-arrow_back " ></span>Go Back</apex:commandLink>
+                              <!-- </div> -->
+                        <!-- </apex:outputPanel> -->
+                           <!-- <apex:outputPanel id="newButton" styleClass="hidden-xs" rendered="{!IF(showstudentButton==false, true, false)}">-->
+                           <apex:commandLink style="color: #F9A12D;" styleClass="btn-bs btn-blank" action="{!gototheReportchart}" rendered="{!IF(showstudentButton==false, true, false)}"><span class="icon-arrow_back"></span>Go Back</apex:commandLink>
+                        <!--</apex:outputPanel> -->
                            <apex:commandButton styleClass="btn-bs btn-default push-left" action="{!doShowSessions}" value="History" />
                             <apex:commandLink style="background-color: #00a4b3;border-color: #00a4b3;margin-right: 10px;" styleClass="btn-bs btn-primary" action="{!doStudentsAddTime}" onclick="sendData()"><span class="icon-plus"></span>Add Time</apex:commandLink>
                             <div class="buttonDiv">
@@ -72,7 +80,7 @@
                     <div class="box-content">
               
                        <apex:outputPanel id="mySection1"  styleClass="hidden-xs" rendered="{!IF(showReport==true, true, false)}">
-                            <div style="width:100%;margin:auto;height:40%" class="Showreport">
+                            <div style="width:100%;margin:auto;height:40%;margin-left: 30px;" class="Showreport">
                                
                <!--<analytics:reportChart reportId="{!reportID}" showRefreshButton="true" cacheResults="false" filter="{column:'Section__c.Name', operator: 'equals', value: '{!sectionNameEscaped}'}" />-->
                  
@@ -109,7 +117,7 @@
                         </apex:outputPanel>
                <!-- Added by juturi Displaying student report chart--> 
                <apex:outputPanel id="studentreportchart" styleClass="hidden-xs" rendered="{!IF(ShowStudentReport==false, true, false)}">
-                <div style="width:100%;margin:auto;height:40%">
+                <div style="width:100%;margin:auto;height:40%;margin-left: 30px;">
                 <apex:pageBlock >
                     <apex:outputPanel id="pagetitle" styleClass="hidden-xs" rendered="{!IF(titledisplay==true, true, false)}">
                         <h2 style="font-size: 1.5em; color: #F9A12D;">Student Report Chart</h2>
@@ -225,6 +233,31 @@
             });
 
             setStudentArray();
+            //contactTable.draw();
+            ///
+            function updateNextButtonState() {
+            console.log('test next button');
+        var pageInfo = contactTable.page.info();
+        var nextButton = j$('.dataTables_paginate .next');
+        var nextButtonAnchor =j$('#srchstdtable_next a');
+        // Check if on the last page
+        if (pageInfo.page === (pageInfo.pages - 1)) {
+            // Gray out the Next button and disable it
+          console.log('condition check');
+          nextButtonAnchor.css('background-color', '#b4b2b2');
+          nextButtonAnchor.addClass('buttonGraout').css('pointer-events', 'none');
+        } else {
+            // Enable the Next button
+            nextButtonAnchor.removeClass('buttonGraout').css('pointer-events', 'auto');
+        }
+        }
+
+    // Initial update
+   updateNextButtonState();
+
+    // Update when the page changes
+    contactTable.on('draw', updateNextButtonState);
+            ///
         });
 
         //Added By Harsh Singh Begin
@@ -306,7 +339,7 @@
 
             }
         }
-
     //Added By Harsh Singh End
+   
     </script>
 </apex:page>

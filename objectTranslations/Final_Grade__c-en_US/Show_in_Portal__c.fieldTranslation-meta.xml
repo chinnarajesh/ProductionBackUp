@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- This field determines whether or not to display the final grade in the student portal --></help>
+    <label><!-- Show in Portal --></label>
+    <name>Show_in_Portal__c</name>
+</CustomFieldTranslation>

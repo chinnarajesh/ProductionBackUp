@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Do not use this field; it is no longer used by SchoolForce. To enter the actual graduation date, update the Actual Graduation Date field on the Contact record. --></help>
+    <label><!-- Actual graduation date*Retired* --></label>
+    <name>Actual_graduation_date__c</name>
+</CustomFieldTranslation>

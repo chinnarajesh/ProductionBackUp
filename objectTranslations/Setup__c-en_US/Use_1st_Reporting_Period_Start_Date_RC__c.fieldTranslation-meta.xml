@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Use the first reporting period&apos;s start date instead of the current reporting period&apos;s start date. --></help>
+    <label><!-- Use 1st Reporting Period Start Date --></label>
+    <name>Use_1st_Reporting_Period_Start_Date_RC__c</name>
+</CustomFieldTranslation>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Select the type of course. For example, the type of course may include options such as honors, AP, international baccalaureate. You can use this field for reporting purposes as well as for cohort requirements. --></help>
+    <label><!-- Type --></label>
+    <name>Type__c</name>
+    <picklistValues>
+        <masterLabel>AP</masterLabel>
+        <translation><!-- AP --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Credit/No Credit</masterLabel>
+        <translation><!-- Credit/No Credit --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Honors</masterLabel>
+        <translation><!-- Honors --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>IB</masterLabel>
+        <translation><!-- IB --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Points</masterLabel>
+        <translation><!-- Points --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Remedial</masterLabel>
+        <translation><!-- Remedial --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Standard</masterLabel>
+        <translation><!-- Standard --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

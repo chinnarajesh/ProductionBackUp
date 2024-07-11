@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Lexile scores measure the difficulty of a reading passage and the reading level of the reader on the same scale --></help>
+    <label><!-- Lexile Score --></label>
+    <name>Lexile_Score__c</name>
+</CustomFieldTranslation>

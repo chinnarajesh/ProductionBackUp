@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Enter a description of the course. You can use this field for reporting purposes. --></help>
+    <label><!-- Course Description --></label>
+    <name>Course_Notes__c</name>
+</CustomFieldTranslation>

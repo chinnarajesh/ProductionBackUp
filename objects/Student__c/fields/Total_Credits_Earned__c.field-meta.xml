@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Total_Credits_Earned__c</fullName>
+    <inlineHelpText>Displays the student&apos;s cumulative total of the attempted credits for the current school year. SchoolForce calculates this value by adding the values in the Course Credits field for each course in which the student is enrolled.</inlineHelpText>
+    <label>Total Credits Attempted</label>
+    <summarizedField>Final_Grade__c.Course_Credits__c</summarizedField>
+    <summaryFilterItems>
+        <field>Final_Grade__c.Exclude_Course_from_GPA__c</field>
+        <operation>notEqual</operation>
+        <value>True</value>
+    </summaryFilterItems>
+    <summaryFilterItems>
+        <field>Final_Grade__c.Final__c</field>
+        <operation>equals</operation>
+        <value>True</value>
+    </summaryFilterItems>
+    <summaryFilterItems>
+        <field>Final_Grade__c.Unweighted_GPA__c</field>
+        <operation>notEqual</operation>
+        <value></value>
+    </summaryFilterItems>
+    <summaryForeignKey>Final_Grade__c.Student__c</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

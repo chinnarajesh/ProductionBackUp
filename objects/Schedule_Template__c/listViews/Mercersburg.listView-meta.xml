@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Mercersburg</fullName>
+    <columns>NAME</columns>
+    <columns>Reporting_Period__c</columns>
+    <columns>Setup__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Setup__c</field>
+        <operation>equals</operation>
+        <value>S-563</value>
+    </filters>
+    <label>Mercersburg</label>
+</ListView>

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- CreateSections --></label>
+    <name>CreateSections__c</name>
+    <picklistValues>
+        <masterLabel>50 Acts of Greatness &amp; Extended Learning</masterLabel>
+        <translation><!-- 50 Acts of Greatness &amp; Extended Learning --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>50 Acts of Greatness &amp; In School</masterLabel>
+        <translation><!-- 50 Acts of Greatness &amp; In School --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>50 Acts of Greatness &amp; In School + ELT</masterLabel>
+        <translation><!-- 50 Acts of Greatness &amp; In School + ELT --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>50 Acts of Leadership &amp; Extended Learning</masterLabel>
+        <translation><!-- 50 Acts of Leadership &amp; Extended Learning --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>50 Acts of Leadership &amp; In School</masterLabel>
+        <translation><!-- 50 Acts of Leadership &amp; In School --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>50 Acts of Leadership &amp; In School + ELT</masterLabel>
+        <translation><!-- 50 Acts of Leadership &amp; In School + ELT --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Attendance Check In Check Out &amp; Extended Learning</masterLabel>
+        <translation><!-- Attendance Check In Check Out &amp; Extended Learning --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Attendance Check In Check Out &amp; In School</masterLabel>
+        <translation><!-- Attendance Check In Check Out &amp; In School --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Attendance Check In Check Out &amp; In School + ELT</masterLabel>
+        <translation><!-- Attendance Check In Check Out &amp; In School + ELT --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Coaching: Attendance &amp; Extended Learning</masterLabel>
+        <translation><!-- Coaching: Attendance &amp; Extended Learning --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Coaching: Attendance &amp; In School</masterLabel>
+        <translation><!-- Coaching: Attendance &amp; In School --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Coaching: Attendance &amp; In School + ELT</masterLabel>
+        <translation><!-- Coaching: Attendance &amp; In School + ELT --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Coaching: SEL/SED (Local) &amp; Extended Learning</masterLabel>
+        <translation><!-- Coaching: SEL/SED (Local) &amp; Extended Learning --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Coaching: SEL/SED (Local) &amp; In School</masterLabel>
+        <translation><!-- Coaching: SEL/SED (Local) &amp; In School --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Coaching: SEL/SED (Local) &amp; In School + ELT</masterLabel>
+        <translation><!-- Coaching: SEL/SED (Local) &amp; In School + ELT --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>DESSA &amp; In School</masterLabel>
+        <translation><!-- DESSA &amp; In School --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>DESSA &amp; In School + ELT</masterLabel>
+        <translation><!-- DESSA &amp; In School + ELT --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Enrichment &amp; Extended Learning</masterLabel>
+        <translation><!-- Enrichment &amp; Extended Learning --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Enrichment &amp; In School</masterLabel>
+        <translation><!-- Enrichment &amp; In School --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Enrichment &amp; In School + ELT</masterLabel>
+        <translation><!-- Enrichment &amp; In School + ELT --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Homework Assistance &amp; Extended Learning</masterLabel>
+        <translation><!-- Homework Assistance &amp; Extended Learning --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Homework Assistance &amp; In School</masterLabel>
+        <translation><!-- Homework Assistance &amp; In School --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Homework Assistance &amp; In School + ELT</masterLabel>
+        <translation><!-- Homework Assistance &amp; In School + ELT --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Math Inventory &amp; In School</masterLabel>
+        <translation><!-- Math Inventory &amp; In School --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Math Inventory &amp; In School + ELT</masterLabel>
+        <translation><!-- Math Inventory &amp; In School + ELT --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Reading Inventory &amp; In School</masterLabel>
+        <translation><!-- Reading Inventory &amp; In School --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Reading Inventory &amp; In School + ELT</masterLabel>
+        <translation><!-- Reading Inventory &amp; In School + ELT --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SEL/SED Check In Check Out &amp; Extended Learning</masterLabel>
+        <translation><!-- SEL/SED Check In Check Out &amp; Extended Learning --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SEL/SED Check In Check Out &amp; In School</masterLabel>
+        <translation><!-- SEL/SED Check In Check Out &amp; In School --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SEL/SED Check In Check Out &amp; In School + ELT</masterLabel>
+        <translation><!-- SEL/SED Check In Check Out &amp; In School + ELT --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Tutoring: Literacy &amp; Extended Learning</masterLabel>
+        <translation><!-- Tutoring: Literacy &amp; Extended Learning --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Tutoring: Literacy &amp; In School</masterLabel>
+        <translation><!-- Tutoring: Literacy &amp; In School --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Tutoring: Literacy &amp; In School + ELT</masterLabel>
+        <translation><!-- Tutoring: Literacy &amp; In School + ELT --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Tutoring: Math &amp; Extended Learning</masterLabel>
+        <translation><!-- Tutoring: Math &amp; Extended Learning --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Tutoring: Math &amp; In School</masterLabel>
+        <translation><!-- Tutoring: Math &amp; In School --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Tutoring: Math &amp; In School + ELT</masterLabel>
+        <translation><!-- Tutoring: Math &amp; In School + ELT --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

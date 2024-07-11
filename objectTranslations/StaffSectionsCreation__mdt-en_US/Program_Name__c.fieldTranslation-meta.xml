@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Program Name --></label>
+    <name>Program_Name__c</name>
+    <picklistValues>
+        <masterLabel>Attendance Check In Check Out</masterLabel>
+        <translation><!-- Attendance Check In Check Out --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Coaching: Attendance</masterLabel>
+        <translation><!-- Coaching: Attendance --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Coaching: SEL/SED</masterLabel>
+        <translation><!-- Coaching: SEL/SED --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>DESSA &amp; DESSA HSE</masterLabel>
+        <translation><!-- DESSA &amp; DESSA HSE --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Extended Day Programming and Enrichment</masterLabel>
+        <translation><!-- Extended Day Programming and Enrichment --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Homework Assistance</masterLabel>
+        <translation><!-- Homework Assistance --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SEL/SED Check In Check Out</masterLabel>
+        <translation><!-- SEL/SED Check In Check Out --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Tutoring: Literacy (SEAD)</masterLabel>
+        <translation><!-- Tutoring: Literacy (SEAD) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Tutoring: Math (SEAD)</masterLabel>
+        <translation><!-- Tutoring: Math (SEAD) --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

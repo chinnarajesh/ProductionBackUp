@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Consequence_Category__c</fullName>
+    <externalId>false</externalId>
+    <formula>CASE( Consequence__c , 
+&quot;Suspension (Out of School)&quot;, &quot;Time Away&quot;, 
+&quot;Suspension (In School)&quot;, &quot;Time Away&quot;, 
+&quot;Student Sent Home (Not Suspended)&quot;, &quot;Time Away&quot;, 
+&quot;Conference with Administrator&quot;, &quot;Time Away&quot;, 
+&quot;Conference with BCC&quot;, &quot;Time Away&quot;, 
+&quot;Buddy Classroom/Reflection Room&quot;, &quot;Time Away&quot;, 
+&quot;Other Time Away&quot;, &quot;Time Away&quot;, 
+&quot;Saturday Detention&quot;,  &quot;Loss of Privilege&quot;, 
+&quot;Refocus Center (Time after school)&quot;, &quot;Loss of Privilege&quot;, 
+&quot;Fieldwork Restriction&quot;, &quot;Loss of Privilege&quot;, 
+&quot;Lose Free Time (Recess)&quot;, &quot;Loss of Privilege&quot;, 
+&quot;Lose Free Time (Choice Time)&quot;, &quot;Loss of Privilege&quot;, 
+&quot;Silent Lunch&quot;,  &quot;Loss of Privilege&quot;, 
+&quot;Other Loss of Privilege&quot;, &quot;Loss of Privilege&quot;, 
+&quot;Suspendable (Waived)&quot;,  &quot;Other&quot;, 
+&quot;Service (Break It Fix it)&quot;, &quot;Other&quot;, 
+&quot;Other&quot;, &quot;Other&quot;, &quot;&quot;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Consequence Category</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

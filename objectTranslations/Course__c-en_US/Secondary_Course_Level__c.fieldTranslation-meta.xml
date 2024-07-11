@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- An indication of the general nature and difficulty of instruction provided throughout a course. --></help>
+    <label><!-- Secondary Course Level --></label>
+    <name>Secondary_Course_Level__c</name>
+    <picklistValues>
+        <masterLabel>B - Basic or Remedial</masterLabel>
+        <translation><!-- B - Basic or Remedial --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>E - Enriched or Advanced</masterLabel>
+        <translation><!-- E - Enriched or Advanced --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>G - General or Regular</masterLabel>
+        <translation><!-- G - General or Regular --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>H - Honors</masterLabel>
+        <translation><!-- H - Honors --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

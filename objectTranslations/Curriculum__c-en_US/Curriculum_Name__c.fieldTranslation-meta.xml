@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Curriculum Name --></label>
+    <name>Curriculum_Name__c</name>
+    <picklistValues>
+        <masterLabel>Do The Math</masterLabel>
+        <translation><!-- Do The Math --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Do the Math Now!</masterLabel>
+        <translation><!-- Do the Math Now! --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

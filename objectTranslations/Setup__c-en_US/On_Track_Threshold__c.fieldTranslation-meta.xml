@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Select a grade (0-100 scale) that this school defines as &quot;On Track&quot; or &quot;Green.&quot; Any section grades that are above this number will display in the Gradebook UI as Green.  Any number that falls between this  and the Passing Grade threshold will be yellow. --></help>
+    <label><!-- On Track Threshold --></label>
+    <name>On_Track_Threshold__c</name>
+</CustomFieldTranslation>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Days_Enrolled__c</fullName>
+    <description>Number of days student is enrolled in school for the given time period</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Number of days student is enrolled in school for the given time period</inlineHelpText>
+    <label>Days Enrolled</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>1</scale>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

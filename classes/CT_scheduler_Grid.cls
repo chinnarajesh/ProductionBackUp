@@ -433,6 +433,8 @@ global with sharing  class CT_scheduler_Grid {
     public void saveSectionMass(){
         selectedStaffFilterMass.clear(); 
         selectedStaffFilterMass.addAll(massStaffMultiSelector.rightvalues.keySet());
+        System.debug('selectedStaffFilterMass++'+selectedStaffFilterMass);
+        List<Staff_Section__c> staffsectionList = new List<Staff_Section__c>();
         List<Section_ReportingPeriod__c> secRepPeriodList = new List<Section_ReportingPeriod__c>();
         List<Section__c> sections = new List<Section__c>();
         List<Scheduled_Section__c> scheduledSections = new List<Scheduled_Section__c>();
@@ -492,6 +494,7 @@ global with sharing  class CT_scheduler_Grid {
                         tempSection.Number_of_Periods__c = '4';
                     }
                     sections.add(tempSection);
+
                 }
             }
             if(sErrorMessages.isEmpty()) {
@@ -499,12 +502,27 @@ global with sharing  class CT_scheduler_Grid {
                 upsert sections Reference_Id__c;
                 CT_Section_Utils.isForceCreateSectionRPs = false;
             }
-
+            Set<Id> staffIdSet = new Set<Id>(selectedStaffFilterMass);
+            Map<Id,Staff_Section__c> staffSectionMap = new Map<Id,Staff_Section__c>();
+            for(Staff_Section__c ssList : [select id,name,Section__c,Staff__c from Staff_Section__c where Staff__c IN: staffIdSet]){
+                staffSectionMap.put(ssList.Section__c,ssList);
+            }
             List<Id> sectionsIds = new List<Id>();
             for (Section__c section : sections) {
                 sectionsIds.add(section.Id);
+            if(!staffSectionMap.containsKey(section.Id)){
+              for(string st : selectedStaffFilterMass){
+                Staff_Section__c staffSec = new Staff_Section__c();
+				staffSec.Intervention_Primary_Staff__c = true;
+				staffSec.Staff__c = st;
+				staffSec.Section__c = section.Id;
+				staffsectionList.add(staffSec);
+              }
             }
-
+            }
+            if(staffsectionList.size()>0){
+              upsert staffsectionList;
+            }
             Map<String, Period__c> mapPeriods = new Map<String, Period__c>();
             for (Period__c period : periodList) {
                 mapPeriods.put(period.Key__c, period);

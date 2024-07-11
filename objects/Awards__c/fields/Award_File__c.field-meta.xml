@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Award_File__c</fullName>
+    <externalId>false</externalId>
+    <formula>CASE(  Award_Type_Detail__c , 
+&quot;Bronze&quot;, &quot;cup_Bronze.png&quot;, 
+&quot;Silver&quot;, &quot;cup_Silver.png&quot;, 
+&quot;Gold&quot;, &quot;cup_Gold.png&quot;, 
+&quot;Silver &amp; Blue&quot;, &quot;medal_BlueSilver.png&quot;, 
+&quot;Silver &amp; Red&quot;, &quot;medal_RedSilver.png&quot;, 
+&quot;Gold Striped&quot;, &quot;medal_StripeGold.png&quot;, 
+&quot;Silver Striped&quot;, &quot;medal_RedSilver.png&quot;, 
+&quot;Blue&quot;, &quot;ribbon_Blue.png&quot;, 
+&quot;Red&quot;, &quot;ribbon_Red.png&quot;, 
+&quot;Stripe&quot;, &quot;ribbon_Stripe.png&quot; , 
+&quot;Medal_BlueSilver.png&quot; 
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Award File</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

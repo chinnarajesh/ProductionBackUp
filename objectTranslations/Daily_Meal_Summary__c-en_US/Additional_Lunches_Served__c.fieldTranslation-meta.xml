@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- This is the number of additional lunches served that day. --></help>
+    <label><!-- Additional Lunches Served --></label>
+    <name>Additional_Lunches_Served__c</name>
+</CustomFieldTranslation>

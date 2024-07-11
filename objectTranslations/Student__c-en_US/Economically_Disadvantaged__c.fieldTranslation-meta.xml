@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Indicates whether or not a student is economically disadvantaged. This field is not used by SchoolForce, but you can use it for reporting purposes. --></help>
+    <label><!-- Economically Disadvantaged --></label>
+    <name>Economically_Disadvantaged__c</name>
+</CustomFieldTranslation>

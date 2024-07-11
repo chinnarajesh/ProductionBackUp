@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- What does this school define as Strand Mastery? This applies to SO schools only that calculate Strand grades and is used for reporting. --></help>
+    <label><!-- Strand Grade Mastery % --></label>
+    <name>Strand_Grade_Mastery_Percentage__c</name>
+</CustomFieldTranslation>

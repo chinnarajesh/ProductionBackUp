@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Immigrant_Program_Participant__c</fullName>
+    <defaultValue>false</defaultValue>
+    <inlineHelpText>Indicates whether or not a student is an Immigrant Program Participant.  If you update this field, SchoolForce updates the corresponding field on the Contact record.</inlineHelpText>
+    <label>Immigrant Program Participant</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

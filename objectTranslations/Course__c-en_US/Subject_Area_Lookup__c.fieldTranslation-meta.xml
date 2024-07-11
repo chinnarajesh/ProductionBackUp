@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Select the applicable subject area for this course. You can use the subject area for reporting purposes as well as for cohort requirements. --></help>
+    <label><!-- Subject Area Lookup --></label>
+    <name>Subject_Area_Lookup__c</name>
+    <relationshipLabel><!-- Courses (Subject Area Lookup) --></relationshipLabel>
+</CustomFieldTranslation>

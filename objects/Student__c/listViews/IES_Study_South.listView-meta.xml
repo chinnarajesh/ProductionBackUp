@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>IES_Study_South</fullName>
+    <booleanFilter>(1 OR 2 OR 3 OR 4  OR 5 OR 6 OR 7 OR 8 OR 9) AND 10</booleanFilter>
+    <columns>Local_Student_ID__c</columns>
+    <columns>NAME</columns>
+    <columns>School_Name__c</columns>
+    <columns>IES_Study_Consent_Form_Returned__c</columns>
+    <columns>IES_Consent_Accepted__c</columns>
+    <columns>IES_Incentive_Given__c</columns>
+    <columns>FL_Eligible__c</columns>
+    <columns>Attendance_FL_Eligible__c</columns>
+    <columns>ELA_FL_Eligible__c</columns>
+    <columns>Math_FL_Eligible__c</columns>
+    <columns>SEL_Behavior_FL_Eligible__c</columns>
+    <columns>IES_Study_Participant__c</columns>
+    <columns>Location__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>School__c</field>
+        <operation>equals</operation>
+        <value>Jean Ribault Middle School</value>
+    </filters>
+    <filters>
+        <field>School__c</field>
+        <operation>equals</operation>
+        <value>Highlands Middle School</value>
+    </filters>
+    <filters>
+        <field>School__c</field>
+        <operation>equals</operation>
+        <value>Matthew Gilbert Middle School</value>
+    </filters>
+    <filters>
+        <field>School__c</field>
+        <operation>equals</operation>
+        <value>Meadowbrook Middle School</value>
+    </filters>
+    <filters>
+        <field>School__c</field>
+        <operation>equals</operation>
+        <value>Walker Middle School</value>
+    </filters>
+    <filters>
+        <field>School__c</field>
+        <operation>equals</operation>
+        <value>Memorial Middle School</value>
+    </filters>
+    <filters>
+        <field>School__c</field>
+        <operation>equals</operation>
+        <value>Northwestern Middle School</value>
+    </filters>
+    <filters>
+        <field>School__c</field>
+        <operation>equals</operation>
+        <value>The Leadership Schools at Eugene Butler Middle School</value>
+    </filters>
+    <filters>
+        <field>School__c</field>
+        <operation>equals</operation>
+        <value>Isaac Newton Middle School</value>
+    </filters>
+    <filters>
+        <field>Grade__c</field>
+        <operation>equals</operation>
+        <value>6</value>
+    </filters>
+    <label>IES Study - South Region</label>
+</ListView>

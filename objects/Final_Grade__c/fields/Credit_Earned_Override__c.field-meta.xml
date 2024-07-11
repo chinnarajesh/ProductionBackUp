@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Credit_Earned_Override__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Used to override the passing grade threshold logic, gives credit earned always when checked.</description>
+    <inlineHelpText>Check this field only when Student is earning credit hours despite grade being lower than the passing grade threshold.</inlineHelpText>
+    <label>Credit Earned Override</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

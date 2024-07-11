@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Intervention Section name related to this Intervention Session Result --></help>
+    <label><!-- Section Name --></label>
+    <name>Section_Name__c</name>
+</CustomFieldTranslation>

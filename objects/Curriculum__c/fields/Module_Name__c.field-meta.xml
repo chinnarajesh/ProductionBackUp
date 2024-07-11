@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Module_Name__c</fullName>
+    <label>Module Name</label>
+    <required>true</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Curriculum_Name__c</controllingField>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Addition &amp; Subtraction: Number Core</fullName>
+                <default>false</default>
+                <label>Addition &amp; Subtraction: Number Core</label>
+            </value>
+            <value>
+                <fullName>Addition &amp; Subtraction: Module A</fullName>
+                <default>false</default>
+                <label>Addition &amp; Subtraction: Module A</label>
+            </value>
+            <value>
+                <fullName>Addition &amp; Subtraction: Module B</fullName>
+                <default>false</default>
+                <label>Addition &amp; Subtraction: Module B</label>
+            </value>
+            <value>
+                <fullName>Addition &amp; Subtraction: Module C</fullName>
+                <default>false</default>
+                <label>Addition &amp; Subtraction: Module C</label>
+            </value>
+            <value>
+                <fullName>Multiplication: Module A</fullName>
+                <default>false</default>
+                <label>Multiplication: Module A</label>
+            </value>
+            <value>
+                <fullName>Multiplication: Module B</fullName>
+                <default>false</default>
+                <label>Multiplication: Module B</label>
+            </value>
+            <value>
+                <fullName>Multiplication: Module C</fullName>
+                <default>false</default>
+                <label>Multiplication: Module C</label>
+            </value>
+            <value>
+                <fullName>Division: Module A</fullName>
+                <default>false</default>
+                <label>Division: Module A</label>
+            </value>
+            <value>
+                <fullName>Division: Module B</fullName>
+                <default>false</default>
+                <label>Division: Module B</label>
+            </value>
+            <value>
+                <fullName>Division: Module C</fullName>
+                <default>false</default>
+                <label>Division: Module C</label>
+            </value>
+            <value>
+                <fullName>Fractions: Module A</fullName>
+                <default>false</default>
+                <label>Fractions: Module A</label>
+            </value>
+            <value>
+                <fullName>Fractions: Module B</fullName>
+                <default>false</default>
+                <label>Fractions: Module B</label>
+            </value>
+            <value>
+                <fullName>Fractions: Module C</fullName>
+                <default>false</default>
+                <label>Fractions: Module C</label>
+            </value>
+            <value>
+                <fullName>Unit 1: Build a Foundation for Multiplication</fullName>
+                <default>false</default>
+                <label>Unit 1: Build a Foundation for Multiplication</label>
+            </value>
+            <value>
+                <fullName>Unit 2: Develop Multiplication Number Sense</fullName>
+                <default>false</default>
+                <label>Unit 2: Develop Multiplication Number Sense</label>
+            </value>
+            <value>
+                <fullName>Unit 3: Use Place-Value Strategies to Multiply</fullName>
+                <default>false</default>
+                <label>Unit 3: Use Place-Value Strategies to Multiply</label>
+            </value>
+            <value>
+                <fullName>Unit 4: Connect Multiplication and Division</fullName>
+                <default>false</default>
+                <label>Unit 4: Connect Multiplication and Division</label>
+            </value>
+            <value>
+                <fullName>Unit 5: Use Place Value Strategies to Divide</fullName>
+                <default>false</default>
+                <label>Unit 5: Use Place Value Strategies to Divide</label>
+            </value>
+            <value>
+                <fullName>Unit 6: Develop Understanding of Fractions</fullName>
+                <default>false</default>
+                <label>Unit 6: Develop Understanding of Fractions</label>
+            </value>
+            <value>
+                <fullName>Unit 7: Reason with Fractions</fullName>
+                <default>false</default>
+                <label>Unit 7: Reason with Fractions</label>
+            </value>
+            <value>
+                <fullName>Unit 8: Extend Fraction Concepts and Comparing Strategies</fullName>
+                <default>false</default>
+                <label>Unit 8: Extend Fraction Concepts and Comparing Strategies</label>
+            </value>
+            <value>
+                <fullName>Unit 9: Build on Equivalence to Estimate, Compare, Add, and Subtract</fullName>
+                <default>false</default>
+                <label>Unit 9: Build on Equivalence to Estimate, Compare, Add, and Subtract</label>
+            </value>
+            <value>
+                <fullName>Unit 10: Develop Fraction Number Sense</fullName>
+                <default>false</default>
+                <label>Unit 10: Develop Fraction Number Sense</label>
+            </value>
+            <value>
+                <fullName>LLI 1</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>LLI 1</label>
+            </value>
+            <value>
+                <fullName>LLI 2</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>LLI 2</label>
+            </value>
+            <value>
+                <fullName>LLI 3</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>LLI 3</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Do The Math</controllingFieldValue>
+            <valueName>Addition &amp; Subtraction: Number Core</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Do The Math</controllingFieldValue>
+            <valueName>Addition &amp; Subtraction: Module A</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Do The Math</controllingFieldValue>
+            <valueName>Addition &amp; Subtraction: Module B</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Do The Math</controllingFieldValue>
+            <valueName>Addition &amp; Subtraction: Module C</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Do The Math</controllingFieldValue>
+            <valueName>Multiplication: Module A</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Do The Math</controllingFieldValue>
+            <valueName>Multiplication: Module B</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Do The Math</controllingFieldValue>
+            <valueName>Multiplication: Module C</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Do The Math</controllingFieldValue>
+            <valueName>Division: Module A</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Do The Math</controllingFieldValue>
+            <valueName>Division: Module B</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Do The Math</controllingFieldValue>
+            <valueName>Division: Module C</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Do The Math</controllingFieldValue>
+            <valueName>Fractions: Module A</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Do The Math</controllingFieldValue>
+            <valueName>Fractions: Module B</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Do The Math</controllingFieldValue>
+            <valueName>Fractions: Module C</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Do the Math Now!</controllingFieldValue>
+            <valueName>Unit 1: Build a Foundation for Multiplication</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Do the Math Now!</controllingFieldValue>
+            <valueName>Unit 2: Develop Multiplication Number Sense</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Do the Math Now!</controllingFieldValue>
+            <valueName>Unit 3: Use Place-Value Strategies to Multiply</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Do the Math Now!</controllingFieldValue>
+            <valueName>Unit 4: Connect Multiplication and Division</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Do the Math Now!</controllingFieldValue>
+            <valueName>Unit 5: Use Place Value Strategies to Divide</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Do the Math Now!</controllingFieldValue>
+            <valueName>Unit 6: Develop Understanding of Fractions</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Do the Math Now!</controllingFieldValue>
+            <valueName>Unit 7: Reason with Fractions</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Do the Math Now!</controllingFieldValue>
+            <valueName>Unit 8: Extend Fraction Concepts and Comparing Strategies</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Do the Math Now!</controllingFieldValue>
+            <valueName>Unit 9: Build on Equivalence to Estimate, Compare, Add, and Subtract</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Do the Math Now!</controllingFieldValue>
+            <valueName>Unit 10: Develop Fraction Number Sense</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Reason --></label>
+    <name>Reason__c</name>
+    <picklistValues>
+        <masterLabel>100% attendance this week</masterLabel>
+        <translation><!-- 100% attendance this week --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Completed extra credit</masterLabel>
+        <translation><!-- Completed extra credit --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Great participation</masterLabel>
+        <translation><!-- Great participation --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Helped out another student</masterLabel>
+        <translation><!-- Helped out another student --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Helped teacher with task</masterLabel>
+        <translation><!-- Helped teacher with task --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Showed significant improvement</masterLabel>
+        <translation><!-- Showed significant improvement --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Was extra nice to a classmate</masterLabel>
+        <translation><!-- Was extra nice to a classmate --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

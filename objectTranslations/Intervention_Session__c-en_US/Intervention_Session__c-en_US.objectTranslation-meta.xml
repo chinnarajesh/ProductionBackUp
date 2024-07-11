@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Intervention Session</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Intervention Sessions</value>
+    </caseValues>
+    <layouts>
+        <layout>Intervention Session Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Intervention Session Layout - Admin</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- New Section --></label>
+            <section>New Section</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- Date should be within the start and end of the section. --></errorMessage>
+        <name>Date_range_in_section</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Date can&apos;t be empty --></errorMessage>
+        <name>Date_required</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- This program does not allow dosage to be logged --></errorMessage>
+        <name>Dosage_denied</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Skill category should be match --></errorMessage>
+        <name>Skill_Category_Check</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- This is a curriculum section and is unable to add dosage. --></errorMessage>
+        <name>Validation_Curriculum</name>
+    </validationRules>
+</CustomObjectTranslation>

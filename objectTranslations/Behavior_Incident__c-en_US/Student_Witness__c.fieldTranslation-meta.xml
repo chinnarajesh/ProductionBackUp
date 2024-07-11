@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- A student who witnessed the incident. --></help>
+    <label><!-- Student Witness --></label>
+    <name>Student_Witness__c</name>
+    <relationshipLabel><!-- Behavior --></relationshipLabel>
+</CustomFieldTranslation>

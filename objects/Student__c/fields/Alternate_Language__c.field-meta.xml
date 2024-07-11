@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Alternate_Language__c</fullName>
+    <defaultValue>false</defaultValue>
+    <inlineHelpText>Indicates whether or not the student speaks a language other than English.</inlineHelpText>
+    <label>Alternate Language</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

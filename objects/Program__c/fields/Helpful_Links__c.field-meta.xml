@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Helpful_Links__c</fullName>
+    <inlineHelpText>Set of instructive or helpful links to end users who will be administering this Program. These links could be to a website, YouTube video, etc.</inlineHelpText>
+    <label>Helpful Links</label>
+    <length>32768</length>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Html</type>
+    <visibleLines>25</visibleLines>
+</CustomField>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- The Intervention Section&apos;s Primary Staff member. Many staff members can be associated with an Intervention Section, but only one is the primary staff member. --></help>
+    <label><!-- Intervention Primary Staff --></label>
+    <name>Intervention_Primary_Staff__c</name>
+</CustomFieldTranslation>

@@ -1,0 +1,163 @@
+.navbar-default {
+	background:$red;
+	color:white;
+	border:0;
+	border-radius:0;
+	//border-top:5px solid $orange;
+	margin-bottom:0;
+	//.container-bs {
+	//	display:flex;
+	//}
+	.navbar-nav {
+		margin:0 -10px;
+	}
+	.navbar-toggle {
+		border-color:transparent;
+	}
+	.container-bs {
+		@media (min-width:$screen-sm) {
+			display:flex;
+			align-items:center;
+			justify-content:space-between;
+			.navbar-header {float:none}
+			.navbar-brand {
+				display: block;
+				height:auto;
+				float:none;
+			}
+			.navbar-collapse {
+				margin-left:auto;
+			}
+		}
+	}
+	.navbar-collapse {
+		@media (max-width:$screen-sm-min) {
+			background:$red-pale;
+		}
+		.navbar-nav > li > a {
+			color:white;
+		}
+	}
+	.navbar-nav > li {
+		> a {
+			font-weight: 500;
+			&.logout {
+				color:white;
+			}
+			&:hover,&:focus {
+				@media (max-width:$screen-sm-min) {
+					background:$red;
+				}
+			}
+		}
+		&.active > a,
+		&.active > a:hover,
+		&.active > a:focus {
+			@media (max-width:$screen-sm-min) {
+				background:$red;
+				color:white;
+			}
+		}
+	}
+	//.navbar-collapse {
+	//	margin-left:auto;
+	//}
+	//.navbar-header {
+	//	display: flex;
+	//	align-items: center;
+	//	width:100%;
+	//	margin:0;
+	//}
+	//.navbar-nav {
+	//	margin-top:0;
+	//	margin-bottom:0;
+	//}
+	//.navbar-toggle {
+	//	margin:$gap-sm 0;
+	//	order: 2;
+	//	margin-left: auto;
+	//	float:none;
+	//}
+	.navbar-toggle {
+		margin:$gap-sm;
+	}
+	.logo {
+		//display: flex;
+		//align-items: center;
+		// padding:0 $gap-sm 0 0;
+		//max-width:280px;
+		@media (max-width:$screen-sm-min) {
+			padding:8px 0 0 $gap-sm;
+			display: block;
+			height: 100%;
+		}
+		img {
+			//height:60px;
+			@media (max-width:$screen-sm-min) {
+				height:36px;
+			}
+		}
+	}
+	.logout {
+		color:white;
+	}
+}
+
+
+
+
+
+
+
+
+
+.container-bs {
+	.user {
+		@media (min-width:$screen-sm) {
+			padding:$gap 0;
+		}
+		@media (min-width:$screen-sm) {
+			padding-left:$gap-md;
+		}
+	}
+}
+
+.user {
+	font-weight:500;
+	.greeting {
+		font-size:11px;
+		text-transform: uppercase;
+		.name {
+			text-transform:normal;
+			display:block;
+			text-align:right;
+			font-size:16px;
+		}
+	}
+	.logout {
+		color: rgba(white,0.7);
+
+		display: flex;
+		align-items: center;
+		@media (min-width:$screen-sm) {
+			margin-left: 30px;
+			padding-left: 20px;
+			border-left: 2px solid rgba(white,0.4);
+		}
+		&:hover {
+			color:white;
+			text-decoration:none;
+		}
+		.icon-log-out {
+			font-size: 22px;
+		}
+	}
+}
+
+.welcome {
+	font-family:$font-heading;
+	font-weight: 800;
+	padding: $gap 0;
+	font-size: $gap;
+}
+

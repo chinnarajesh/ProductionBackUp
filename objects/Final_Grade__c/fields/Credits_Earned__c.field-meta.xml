@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Credits_Earned__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(  ISNULL(Student__r.Setup__r.Passing_Grade_Threshold__c) , Course_Credits__c, IF (Credit_Earned_Override__c , Course_Credits__c, IF (Final_Grade_Value__c  &gt;=  Student__r.Setup__r.Passing_Grade_Threshold__c, Course_Credits__c, 0)))</formula>
+    <inlineHelpText>This is the credits earned for a course. This field displays on transcripts.</inlineHelpText>
+    <label>Credits Earned</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

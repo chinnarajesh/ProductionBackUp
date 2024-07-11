@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Subject Area --></label>
+    <name>Subject_Area__c</name>
+    <picklistValues>
+        <masterLabel>Citizenship</masterLabel>
+        <translation><!-- Citizenship --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Cognitive Development</masterLabel>
+        <translation><!-- Cognitive Development --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Computer Science Programming</masterLabel>
+        <translation><!-- Computer Science Programming --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Computer Skills/Literacy</masterLabel>
+        <translation><!-- Computer Skills/Literacy --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Elective Activities</masterLabel>
+        <translation><!-- Elective Activities --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>English as a Second Language</masterLabel>
+        <translation><!-- English as a Second Language --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Fine Arts - Art</masterLabel>
+        <translation><!-- Fine Arts - Art --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Fine Arts - Dance</masterLabel>
+        <translation><!-- Fine Arts - Dance --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Fine Arts - Drama/Theater</masterLabel>
+        <translation><!-- Fine Arts - Drama/Theater --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Fine Arts - Music</masterLabel>
+        <translation><!-- Fine Arts - Music --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Fitness</masterLabel>
+        <translation><!-- Fitness --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Foreign Language and Literature</masterLabel>
+        <translation><!-- Foreign Language and Literature --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Geography</masterLabel>
+        <translation><!-- Geography --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Handwriting/Penmanship</masterLabel>
+        <translation><!-- Handwriting/Penmanship --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Health</masterLabel>
+        <translation><!-- Health --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>History</masterLabel>
+        <translation><!-- History --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Home Economics</masterLabel>
+        <translation><!-- Home Economics --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Homework</masterLabel>
+        <translation><!-- Homework --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Industrial Arts</masterLabel>
+        <translation><!-- Industrial Arts --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Keyboarding/typing</masterLabel>
+        <translation><!-- Keyboarding/typing --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Language Arts</masterLabel>
+        <translation><!-- Language Arts --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Library Skills</masterLabel>
+        <translation><!-- Library Skills --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Listening &amp; Speaking</masterLabel>
+        <translation><!-- Listening &amp; Speaking --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Literacy</masterLabel>
+        <translation><!-- Literacy --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Math</masterLabel>
+        <translation><!-- Math --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Mathematics/Arithmetic</masterLabel>
+        <translation><!-- Mathematics/Arithmetic --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Military Science</masterLabel>
+        <translation><!-- Military Science --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Multi/Interdisciplinary Studies</masterLabel>
+        <translation><!-- Multi/Interdisciplinary Studies --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Other</masterLabel>
+        <translation><!-- Other --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Physical Development</masterLabel>
+        <translation><!-- Physical Development --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Physical Education</masterLabel>
+        <translation><!-- Physical Education --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Reading</masterLabel>
+        <translation><!-- Reading --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Religious Education and Theology</masterLabel>
+        <translation><!-- Religious Education and Theology --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Science</masterLabel>
+        <translation><!-- Science --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Science &amp; Social Studies</masterLabel>
+        <translation><!-- Science &amp; Social Studies --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Social &amp; Emotional Development</masterLabel>
+        <translation><!-- Social &amp; Emotional Development --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Social Studies</masterLabel>
+        <translation><!-- Social Studies --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Spanish</masterLabel>
+        <translation><!-- Spanish --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Spelling</masterLabel>
+        <translation><!-- Spelling --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Study Skills</masterLabel>
+        <translation><!-- Study Skills --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Test Preparation</masterLabel>
+        <translation><!-- Test Preparation --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Writing</masterLabel>
+        <translation><!-- Writing --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

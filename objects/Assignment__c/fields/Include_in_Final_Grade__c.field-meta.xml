@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Include_in_Final_Grade__c</fullName>
+    <defaultValue>true</defaultValue>
+    <description>Determines whether or not a grade will be used in the calculation of a final grade or not</description>
+    <label>Include in Final Grade</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

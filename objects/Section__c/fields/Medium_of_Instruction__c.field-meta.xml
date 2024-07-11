@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Medium_of_Instruction__c</fullName>
+    <label>Medium of Instruction</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Technology</fullName>
+                <default>false</default>
+                <label>Technology</label>
+            </value>
+            <value>
+                <fullName>Correspondence instruction</fullName>
+                <default>false</default>
+                <label>Correspondence instruction</label>
+            </value>
+            <value>
+                <fullName>Face-to-face instruction</fullName>
+                <default>false</default>
+                <label>Face-to-face instruction</label>
+            </value>
+            <value>
+                <fullName>Virtual/On-line</fullName>
+                <default>false</default>
+                <label>Virtual/On-line</label>
+            </value>
+            <value>
+                <fullName>Center-based instruction</fullName>
+                <default>false</default>
+                <label>Center-based instruction</label>
+            </value>
+            <value>
+                <fullName>Independent study</fullName>
+                <default>false</default>
+                <label>Independent study</label>
+            </value>
+            <value>
+                <fullName>Internship</fullName>
+                <default>false</default>
+                <label>Internship</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

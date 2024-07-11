@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- % of Time by Medium of Instruction --></label>
+    <name>of_Time_by_Medium_of_Instruction__c</name>
+</CustomFieldTranslation>

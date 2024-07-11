@@ -212,7 +212,9 @@ public without sharing class Gradebook_Controller_v2 {
         }
 
         system.debug('*~*~* sectionID: ' + sectionID);
+        System.debug('sectionID++'+sectionID);
         if(String.isNotBlank(sectionID)) {
+            System.debug('condition check');
             for(Integer i = 0; i < orderedSchoolSections.size(); i++) {
                 if(sectionID == orderedSchoolSections[i].Section__c) {
                     sectionPosition = i;
@@ -227,8 +229,8 @@ public without sharing class Gradebook_Controller_v2 {
         } 
         else {
             loadedSchoolSection = null;
-            //Error_Handling.errorMessage('You do not have any staff/sections for the selected year. Please select a different year.');
-            Error_Handling.errorMessage('Please enroll students into your Gradebook sections first.');
+            Error_Handling.errorMessage('You do not have any staff/sections for the selected year. Please select a different year.');
+            //Error_Handling.errorMessage('Please enroll students into your Gradebook sections first.');
             return;
         }
 

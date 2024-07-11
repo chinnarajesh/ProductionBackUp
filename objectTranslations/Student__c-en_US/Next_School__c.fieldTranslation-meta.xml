@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- If the student intends to attend a school within your SchoolForce org next year, this field displays the name of next year&apos;s school. This field is updated by the EOY Wizard and you can also manually update it. --></help>
+    <label><!-- Next School --></label>
+    <name>Next_School__c</name>
+    <relationshipLabel><!-- Students (Next School Year) --></relationshipLabel>
+</CustomFieldTranslation>

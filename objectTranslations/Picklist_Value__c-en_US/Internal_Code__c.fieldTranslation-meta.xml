@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Internal Code --></label>
+    <name>Internal_Code__c</name>
+    <picklistValues>
+        <masterLabel>sf_absent</masterLabel>
+        <translation><!-- sf_absent --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>sf_absentwdue</masterLabel>
+        <translation><!-- sf_absentwdue --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>sf_complete</masterLabel>
+        <translation><!-- sf_complete --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>sf_departed</masterLabel>
+        <translation><!-- sf_departed --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>sf_exempt</masterLabel>
+        <translation><!-- sf_exempt --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>sf_incomplete</masterLabel>
+        <translation><!-- sf_incomplete --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>sf_late</masterLabel>
+        <translation><!-- sf_late --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>sf_missing</masterLabel>
+        <translation><!-- sf_missing --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>sf_present</masterLabel>
+        <translation><!-- sf_present --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>sf_suspended</masterLabel>
+        <translation><!-- sf_suspended --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>sf_suspension</masterLabel>
+        <translation><!-- sf_suspension --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>sf_tardy</masterLabel>
+        <translation><!-- sf_tardy --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>sf_tardydeparted</masterLabel>
+        <translation><!-- sf_tardydeparted --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

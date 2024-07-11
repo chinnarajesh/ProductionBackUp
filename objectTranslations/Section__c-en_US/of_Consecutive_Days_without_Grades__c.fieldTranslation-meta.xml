@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- This field is updated nightly and keeps track of whether grades were entered in the gradebook for that day. --></help>
+    <label><!-- # of Consecutive Days without Grades --></label>
+    <name>of_Consecutive_Days_without_Grades__c</name>
+</CustomFieldTranslation>

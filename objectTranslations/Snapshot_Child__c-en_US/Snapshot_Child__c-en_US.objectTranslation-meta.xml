@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Snapshot Child</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Snapshot Children</value>
+    </caseValues>
+    <layouts>
+        <layout>Snapshot Child Cohort</layout>
+        <sections>
+            <label><!-- Created by Modified by Information --></label>
+            <section>Created by Modified by Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Student Exit Information --></label>
+            <section>Student Exit Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Snapshot Child Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- School --></label>
+            <section>School</section>
+        </sections>
+        <sections>
+            <label><!-- Student --></label>
+            <section>Student</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Snapshot Child Section</layout>
+        <sections>
+            <label><!-- Created by Modified by Information --></label>
+            <section>Created by Modified by Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Section Snapshot --></label>
+            <section>Section Snapshot</section>
+        </sections>
+        <sections>
+            <label><!-- Student Snapshot --></label>
+            <section>Student Snapshot</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Snapshot Layout Standard</layout>
+        <sections>
+            <label><!-- Created by and Modified by Information --></label>
+            <section>Created by and Modified by Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Standard Snapshot --></label>
+            <section>Standard Snapshot</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <label><!-- Cohort --></label>
+        <name>Cohort</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Section --></label>
+        <name>Section</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Standard --></label>
+        <name>Standard</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

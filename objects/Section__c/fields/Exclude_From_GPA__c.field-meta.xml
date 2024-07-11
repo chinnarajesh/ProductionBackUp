@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Exclude_From_GPA__c</fullName>
+    <label>Exclude From GPA</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Same as Course</fullName>
+                <default>false</default>
+                <label>Same as Course</label>
+            </value>
+            <value>
+                <fullName>Include</fullName>
+                <default>false</default>
+                <label>Include</label>
+            </value>
+            <value>
+                <fullName>Exclude</fullName>
+                <default>false</default>
+                <label>Exclude</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

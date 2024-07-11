@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Defines the type of school entered in the Previous School 1 field.  If you update this field, SchoolForce updates the corresponding field on the Contact record. --></help>
+    <label><!-- Previous School 1 Type --></label>
+    <name>Previous_School_1_Type__c</name>
+    <picklistValues>
+        <masterLabel>Charter school</masterLabel>
+        <translation><!-- Charter school --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Home schooling</masterLabel>
+        <translation><!-- Home schooling --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Institution (example: correctional facility)</masterLabel>
+        <translation><!-- Institution (example: correctional facility) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Located outside of the country</masterLabel>
+        <translation><!-- Located outside of the country --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Matriculating (passed previous school&apos;s highest grade level)</masterLabel>
+        <translation><!-- Matriculating (passed previous school&apos;s highest grade level) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Non-existent or Foreign</masterLabel>
+        <translation><!-- Non-existent or Foreign --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Original entry into US School (no previous school)</masterLabel>
+        <translation><!-- Original entry into US School (no previous school) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Original entry into US School (no schooling interruption)</masterLabel>
+        <translation><!-- Original entry into US School (no schooling interruption) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Original entry into US School (schooling interruption)</masterLabel>
+        <translation><!-- Original entry into US School (schooling interruption) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Other</masterLabel>
+        <translation><!-- Other --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Private, non-religiously-affiliated, different district, same state</masterLabel>
+        <translation><!-- Private, non-religiously-affiliated, different district, same state --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Private, non-religiously-affiliated, different state</masterLabel>
+        <translation><!-- Private, non-religiously-affiliated, different state --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Private, non-religiously-affiliated, same district</masterLabel>
+        <translation><!-- Private, non-religiously-affiliated, same district --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Private, religiously-affiliated, different district, same state</masterLabel>
+        <translation><!-- Private, religiously-affiliated, different district, same state --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Private, religiously-affiliated, different state</masterLabel>
+        <translation><!-- Private, religiously-affiliated, different state --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Private, religiously-affiliated, same district</masterLabel>
+        <translation><!-- Private, religiously-affiliated, same district --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Public, Charter in State</masterLabel>
+        <translation><!-- Public, Charter in State --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Public, Different state</masterLabel>
+        <translation><!-- Public, Different state --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Public, in State</masterLabel>
+        <translation><!-- Public, in State --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

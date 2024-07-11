@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Displays the comments teachers enter for the student using the Overall Comments Wizard. This text displays on elementary school report cards and progress reports. --></help>
+    <label><!-- Comments --></label>
+    <name>Comments__c</name>
+</CustomFieldTranslation>

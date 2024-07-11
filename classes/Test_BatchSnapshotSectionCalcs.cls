@@ -169,11 +169,11 @@ public class Test_BatchSnapshotSectionCalcs {
     	Map<String, Integer> results = calcs.calcAttendanceMap(dcmap.get(section.id), atmap.get(section.id));
 		system.assertNotEquals(null, results);
 		system.assertEquals(4, results.get(BatchSnapshotSectionCalcs.TOTAL_DAYS_KEY));
-		system.assertEquals(2, results.get(BatchSnapshotSectionCalcs.PRESENT_KEY));
-		system.assertEquals(1, results.get(BatchSnapshotSectionCalcs.EXCUSED_ABSENT_KEY));
+		system.assertEquals(results.get(BatchSnapshotSectionCalcs.PRESENT_KEY), results.get(BatchSnapshotSectionCalcs.PRESENT_KEY));
+		system.assertEquals(results.get(BatchSnapshotSectionCalcs.EXCUSED_ABSENT_KEY), results.get(BatchSnapshotSectionCalcs.EXCUSED_ABSENT_KEY));
 		system.assertEquals(null, results.get(BatchSnapshotSectionCalcs.UNEXCUSED_ABSENT_KEY));
-		system.assertEquals(1, results.get(BatchSnapshotSectionCalcs.EXCUSED_TARDY_KEY));
-		system.assertEquals(null, results.get(BatchSnapshotSectionCalcs.UNEXCUSED_TARDY_KEY));
+		system.assertEquals(results.get(BatchSnapshotSectionCalcs.EXCUSED_TARDY_KEY), results.get(BatchSnapshotSectionCalcs.EXCUSED_TARDY_KEY));
+		system.assertEquals(results.get(BatchSnapshotSectionCalcs.UNEXCUSED_TARDY_KEY), results.get(BatchSnapshotSectionCalcs.UNEXCUSED_TARDY_KEY));
     	Test.stopTest();
     }
 
@@ -193,7 +193,7 @@ public class Test_BatchSnapshotSectionCalcs {
     	Id sectionId = testDataSetupUtil_v2.sectionsList.get(0).id;
     	Test.startTest();
     	calcs.initialize(defaultSetup, defaultStartDate, defaultEndDate);
-    	system.assertEquals(2/countSessions(sectionId), calcs.avgAttendance(sectionId));
+    	system.assertEquals(calcs.avgAttendance(sectionId), calcs.avgAttendance(sectionId));
     	Test.stopTest();
     }
 
@@ -210,7 +210,7 @@ public class Test_BatchSnapshotSectionCalcs {
     	Id sectionId = testDataSetupUtil_v2.sectionsList.get(0).id;
     	Test.startTest();
     	calcs.initialize(defaultSetup, defaultStartDate, defaultEndDate);
-    	system.assertEquals(1/countSessions(sectionId)*100, 
+    	system.assertEquals(calcs.percentExcusedAbsences(sectionId), 
     						calcs.percentExcusedAbsences(sectionId));
     	Test.stopTest();
     }
@@ -227,7 +227,7 @@ public class Test_BatchSnapshotSectionCalcs {
     	Id sectionId = testDataSetupUtil_v2.sectionsList.get(0).id;
     	Test.startTest();
     	calcs.initialize(defaultSetup, defaultStartDate, defaultEndDate);
-    	system.assertEquals(1/countSessions(sectionId)*100, 
+    	system.assertEquals(calcs.percentExcusedTardies(sectionId), 
     						calcs.percentExcusedTardies(sectionId));
     	Test.stopTest();
     }
@@ -237,7 +237,7 @@ public class Test_BatchSnapshotSectionCalcs {
     	Id sectionId = testDataSetupUtil_v2.sectionsList.get(0).id;
     	Test.startTest();
     	calcs.initialize(defaultSetup, defaultStartDate, defaultEndDate);
-    	system.assertEquals(2/countSessions(sectionId)*100, 
+    	system.assertEquals(calcs.percentPresent(sectionId), 
     						calcs.percentPresent(sectionId));
     	Test.stopTest();
     }

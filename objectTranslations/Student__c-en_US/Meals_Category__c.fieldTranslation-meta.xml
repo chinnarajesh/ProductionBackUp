@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Displays the type of meal program assigned to this student. The Meals module uses this field. You can also use it for reporting purposes. --></help>
+    <label><!-- Meals Category --></label>
+    <name>Meals_Category__c</name>
+    <picklistValues>
+        <masterLabel>Free</masterLabel>
+        <translation><!-- Free --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Full-Priced</masterLabel>
+        <translation><!-- Full-Priced --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Reduced</masterLabel>
+        <translation><!-- Reduced --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

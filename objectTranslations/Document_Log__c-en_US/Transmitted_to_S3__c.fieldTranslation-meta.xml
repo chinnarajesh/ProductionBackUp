@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Was the document sent to an S3 server? --></help>
+    <label><!-- Transmitted to S3 --></label>
+    <name>Transmitted_to_S3__c</name>
+</CustomFieldTranslation>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Dosage_denied</fullName>
+    <active>true</active>
+    <errorConditionFormula>Section__r.Account_Program__r.Program__r.SkipDosage__c</errorConditionFormula>
+    <errorMessage>This program does not allow dosage to be logged</errorMessage>
+</ValidationRule>

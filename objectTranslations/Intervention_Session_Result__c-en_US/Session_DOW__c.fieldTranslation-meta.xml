@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- This value derive from a calculation of Intervention_Session_Date__c --></help>
+    <label><!-- Session DOW --></label>
+    <name>Session_DOW__c</name>
+</CustomFieldTranslation>

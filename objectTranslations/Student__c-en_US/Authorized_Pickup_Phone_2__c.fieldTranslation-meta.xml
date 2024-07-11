@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Displays the phone number for the person listed in the Authorized Pickup Name 2 field. --></help>
+    <label><!-- Authorized Pickup Phone 2 --></label>
+    <name>Authorized_Pickup_Phone_2__c</name>
+</CustomFieldTranslation>

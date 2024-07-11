@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- This is the amount for an additional reimbursement applied at the state level. --></help>
+    <label><!-- Additional Reimbursement 1 Amount --></label>
+    <name>Additional_Reimbursement_1_Amount__c</name>
+</CustomFieldTranslation>

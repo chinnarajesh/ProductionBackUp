@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- This toggles the display of the &quot;Homework&quot; column on report cards/progress reports. --></help>
+    <label><!-- Show Homework Percentage --></label>
+    <name>Show_Homework_Percentage__c</name>
+</CustomFieldTranslation>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Standards_Based_Grading__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>School-wide setting that will reduce config time if set to false</description>
+    <inlineHelpText>Select if school wants to grade standards.  If set to false, users will enter traditional grades without association to standards or standard grades.  If checked, users in the Hybrid or Standard ONLY Gradebook can grade standards.</inlineHelpText>
+    <label>Standards Based Grading</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

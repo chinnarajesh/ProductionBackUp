@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Overall goal or target dosage (in mins) for this Program to be effective. This number will display on all Intervention Sections created under this Program. --></help>
+    <label><!-- Overall Target Dosage (in mins) --></label>
+    <name>Overall_Target_Dosage__c</name>
+</CustomFieldTranslation>

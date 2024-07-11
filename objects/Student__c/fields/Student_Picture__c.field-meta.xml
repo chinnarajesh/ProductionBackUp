@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Student_Picture__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(ISNULL(IMAGE(&quot;/resource/&quot; &amp; $Setup.pictureHelper__c.pictureURL__c &amp; &quot;/pictures/&quot; &amp;  Student_Id__c  &amp; &quot;.jpg&quot;, &quot;Student Picture&quot;)),IMAGE(&quot;/resource/&quot; &amp; $Setup.pictureHelper__c.picture2URL__c &amp; &quot;/picture2s/&quot; &amp;  Student_Id__c  &amp; &quot;.jpg&quot;, &quot;Student Picture&quot;),IMAGE(&quot;/resource/&quot; &amp; $Setup.pictureHelper__c.pictureURL__c &amp; &quot;/pictures/&quot; &amp;  Student_Id__c  &amp; &quot;.jpg&quot;, &quot;Student Picture&quot;))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Displays the student&apos;s picture. You cannot manually update this field.</inlineHelpText>
+    <label>Student Picture</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

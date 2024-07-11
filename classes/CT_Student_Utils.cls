@@ -66,19 +66,15 @@ public with sharing class CT_Student_Utils {
 		}
 
 		for(Student__c s: studentList){
-			System.debug('Student_ID__c~~~~'+s.Student_ID__c);
 			s.Student_ID__c = String.isNotBlank(s.Local_Student_ID__c)? s.Local_Student_ID__c : s.Student_ID__c;
-			System.debug('Student_ID__c!!!'+s.Student_ID__c);
 			if(s.Setup__c != null){
 				s.School__c = s.Setup_School__c;
 				s.School_Year__c = s.Setup_Year__c;
 				s.Expiration_Date__c = s.Setup_Year_End_Date__c;
 				if(s.Student_ID__c != null){
 					s.Reference_Id__c = generateStudentReference(s);
-					System.debug('s.Reference_Id__c^^^^'+s.Reference_Id__c);
 				} else if(s.Reference_Id__c != null && s.Reference_Id__c.contains('_')){
 					s.Student_Id__c = s.Reference_Id__c.split('_',2)[0];
-					System.debug('Trigger s.Student_Id__c ***'+s.Student_Id__c);
 				} else {
 					s.addError('Unable to create a student due to a malformed reference ID.');
 				}
@@ -97,11 +93,9 @@ public with sharing class CT_Student_Utils {
 				s.Setup__c = setup.ID;
 				s.Expiration_Date__c = setup.Year__r.End_Date__c;
 				if(s.Student_ID__c != null){
-					System.debug('s.Student_ID__c++++'+s.Student_ID__c);
 					s.Reference_Id__c = generateStudentReference(s, setup);
 				} else if(s.Reference_Id__c != null && s.Reference_Id__c.contains('_')){
 					s.Student_Id__c = s.Reference_Id__c.split('_',2)[0];
-					System.debug('s.Student_Id__c$$$$'+s.Student_Id__c);
 				} else {
 					s.addError('Unable to create a student due to a malformed reference ID.');
 				}
@@ -420,8 +414,6 @@ public with sharing class CT_Student_Utils {
 	public static void updateContactFromStudent(List <Student__c> studentList, Map<Id, Student__c> oldMap){
 		Map<Id, Contact> contactMap = new Map<Id, Contact>();
 		for(Student__c s:studentList){
-			System.debug('studentId++'+s.Student_ID__c);
-			System.debug('Id++'+s.Id);
 			if(s.Individual__c != null && (oldMap == null || s.Individual__c != oldMap.get(s.Id).Individual__c)){
 				if (s.Active__c == true){
 					contactMap.put(s.Individual__c, new Contact(Id = s.Individual__c, Student__c = s.Id));
@@ -598,18 +590,12 @@ public with sharing class CT_Student_Utils {
 
 		if(!contactMap.isEmpty()){
 			for(Student__c s: newMap.values()){
-				System.debug('s.Individual__c++'+s.Individual__c);
-				System.debug('X18_digit_ID__c'+s.X18_digit_ID__c);
 				if(s.Individual__c!=null && s.Student_Id__c!=s.Individual_Reference_Id__c){
 					if(!trigger.isInsert){
 						if(s.Student_Id__c != oldMap.get(s.Id).Student_Id__c)
 							contactMap.get(s.Individual__c).Reference_Id__c = s.X18_digit_ID__c;
-							System.debug('s.Student_Id__c==='+s.Student_Id__c);
-						    System.debug('trigger contact Reference_Id__c==='+contactMap.get(s.Individual__c).Reference_Id__c);
 					} else{
 						contactMap.get(s.Individual__c).Reference_Id__c = s.X18_digit_ID__c;
-						System.debug('s.Student_Id__c****'+s.Student_Id__c);
-						System.debug('trigger contact Reference_Id__c **'+contactMap.get(s.Individual__c).Reference_Id__c);
 					}
 				}
 				Student__c oldStudent = new Student__c();
@@ -773,7 +759,6 @@ public with sharing class CT_Student_Utils {
 						c.Detailed_Exit_Reason__c = s.Detailed_Exit_Reason__c;
 					if(s.Date_of_Birth__c!=null)
 						c.Date_of_Birth__c = c.Birthdate = s.Date_of_Birth__c;
-						System.debug('c.Date_of_Birth__c++'+c.Date_of_Birth__c);
 					if(s.Currently_evaluated_for_special_ed__c!=null)
 						c.Currently_evaluated_for_special_ed__c = s.Currently_evaluated_for_special_ed__c;
 					if(s.Country_of_Origin__c!=null)
@@ -803,7 +788,6 @@ public with sharing class CT_Student_Utils {
 
 			core_triggerUtils.contactTrigger = false;
 			Database.update(contactMap.values(), false);
-			System.debug('contactMap.values()+++'+contactMap.values());
 			core_triggerUtils.contactTrigger = true;
 		}//end empty contactMap
 	}

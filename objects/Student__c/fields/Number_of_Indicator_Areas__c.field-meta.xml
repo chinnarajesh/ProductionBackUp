@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Number_of_Indicator_Areas__c</fullName>
+    <inlineHelpText>How many active Indicator Areas is this student associated to?</inlineHelpText>
+    <label>Number of Indicator Areas</label>
+    <summaryFilterItems>
+        <field>Indicator_Area_Student__c.Active__c</field>
+        <operation>equals</operation>
+        <value>True</value>
+    </summaryFilterItems>
+    <summaryForeignKey>Indicator_Area_Student__c.Student__c</summaryForeignKey>
+    <summaryOperation>count</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

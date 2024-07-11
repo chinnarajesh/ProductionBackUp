@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Licensure Type --></label>
+    <name>Licensure_Type__c</name>
+    <picklistValues>
+        <masterLabel>Admin</masterLabel>
+        <translation><!-- Admin --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Principal</masterLabel>
+        <translation><!-- Principal --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Pupil Personnel Services</masterLabel>
+        <translation><!-- Pupil Personnel Services --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Special Education</masterLabel>
+        <translation><!-- Special Education --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Teacher</masterLabel>
+        <translation><!-- Teacher --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

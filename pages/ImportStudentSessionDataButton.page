@@ -1,0 +1,30 @@
+<apex:page controller="SessionInterventionBulkUploadController"  showHeader="false" sidebar="false" >
+
+    <style>
+         .download_btn {
+            margin: 0;
+            height: 36px;
+            font-size: larger;
+        }
+    </style>
+    <apex:form style="overflow: hidden;">
+        <center>
+        <apex:outputPanel >
+            <div >
+                 
+                <div class="section_content">
+                    <div class="download_btn" >
+                        <div>
+                        <!-- <h3 style="margin-left: -30px;">Import Student Session Data Button</h3> -->
+                       <div >
+                        <apex:commandButton value="Import Student Session Data" action="{!homePageButton}" styleClass="buttonStyle black_btn"/>
+                    </div>
+                   </div>
+                    </div>
+                    <div class="clear_fix" style="line-height: 1%">&nbsp;</div>
+                </div>
+            </div>
+        </apex:outputPanel>
+    </center>
+</apex:form>
+</apex:page>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Grade_Scale__c</fullName>
+    <label>Grade Scale</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Same as Course</fullName>
+                <default>false</default>
+                <label>Same as Course</label>
+            </value>
+            <value>
+                <fullName>Default</fullName>
+                <default>false</default>
+                <label>Default</label>
+            </value>
+            <value>
+                <fullName>ELH 1-2-3-4 Rubric</fullName>
+                <default>false</default>
+                <label>ELH 1-2-3-4 Rubric</label>
+            </value>
+            <value>
+                <fullName>4ELH 1-2-3-4 Rubric TENTHS</fullName>
+                <default>false</default>
+                <label>4ELH 1-2-3-4 Rubric TENTHS</label>
+            </value>
+            <value>
+                <fullName>ELH Traditional</fullName>
+                <default>false</default>
+                <label>ELH Traditional</label>
+            </value>
+            <value>
+                <fullName>Percentage</fullName>
+                <default>false</default>
+                <label>Percentage</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

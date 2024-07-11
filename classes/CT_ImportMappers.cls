@@ -283,7 +283,7 @@ public with sharing class CT_ImportMappers {
                 System.debug('holder.Student_Id__c++'+holder.Student_Id__c);
                 System.debug('student.Student_Id__c+++'+student.Student_Id__c);
             }
-            //student.Individual__r = new Contact(Reference_Id__c=CT_ImportUtils.stripLeadingZeroes(holder.Student_Id__c)+''+CT_ImportUtils.stripLeadingZeroes(holder.School_Dbn__c));
+            //student.Individual__r = new Contact(Reference_Id__c=CT_ImportUtils.stripLeadingZeroes(holder.Student_Id__c));
             student.Individual__r = new Contact(Reference_Id__c=holder.id);
 
             System.debug('student.Individual__r+++'+ student.Individual__r);

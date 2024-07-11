@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Number of days student is enrolled in school for the given time period --></help>
+    <label><!-- Days Enrolled --></label>
+    <name>Days_Enrolled__c</name>
+</CustomFieldTranslation>

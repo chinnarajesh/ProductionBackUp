@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Select if school wants to grade standards.  If set to false, users will enter traditional grades without association to standards or standard grades.  If checked, users in the Hybrid or Standard ONLY Gradebook can grade standards. --></help>
+    <label><!-- Standards Based Grading --></label>
+    <name>Standards_Based_Grading__c</name>
+</CustomFieldTranslation>

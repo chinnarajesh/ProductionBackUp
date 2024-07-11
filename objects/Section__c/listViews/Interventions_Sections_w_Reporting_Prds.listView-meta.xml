@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Interventions_Sections_w_Reporting_Prds</fullName>
+    <columns>NAME</columns>
+    <columns>Active__c</columns>
+    <columns>Reporting_Period__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Section__c.Intervention_Section</value>
+    </filters>
+    <filters>
+        <field>Reporting_Period__c</field>
+        <operation>notEqual</operation>
+    </filters>
+    <label>Interventions Sections w/Reporting Prds</label>
+</ListView>

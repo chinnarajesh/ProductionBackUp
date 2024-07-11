@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Integer_Rule_Days_Enrolled</fullName>
+    <active>true</active>
+    <errorConditionFormula>Days_Enrolled__c   &lt;&gt;  FLOOR(Days_Enrolled__c)</errorConditionFormula>
+    <errorDisplayField>Days_Enrolled__c</errorDisplayField>
+    <errorMessage>This field must be an integer.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Fastbridge_aReading_ELA_target_500</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(Assessment_Name__c = &quot;Fastbridge_aReading_ELA&quot;, 
+OR(Student_Target_Score__c &lt; 0, 
+Student_Target_Score__c &gt; 500))</errorConditionFormula>
+    <errorDisplayField>Student_Target_Score__c</errorDisplayField>
+    <errorMessage>Student Target Score must be within the range of 0 to 500.</errorMessage>
+</ValidationRule>

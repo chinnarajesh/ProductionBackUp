@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Enter the Spanish translation of the course name. This value will display on translated report cards, progress reports, transcripts, and the Student/Parent Portal. --></help>
+    <label><!-- Name in Spanish --></label>
+    <name>Name_Spanish__c</name>
+</CustomFieldTranslation>

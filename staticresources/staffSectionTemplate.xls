@@ -1,0 +1,13 @@
+*REQ*STAFF_ID,*REQ*FIRST_NAME,*REQ*LAST_NAME,*REQ*CLASS_NAME
+999171,Mona,PORTER,Group 3A - MARK12 Reading III (Remediation)
+999190,Ida,BALDWIN,Group 3A - MARK12 Reading III (Remediation)
+999184,Pierce,JENKINS,Group 3A - MARK12 Reading III (Remediation)
+999176,Radley,COLEMAN,Group 3A - MARK12 Reading III (Remediation)
+999181,Silas,MEYER,Group 3A - MARK12 Reading III (Remediation)
+999185,Rae,GARNER,Group 3A - MARK12 Reading III (Remediation)
+999177,Thaddeus,COHEN,Group 3A - MARK12 Reading III (Remediation)
+999175,Usher,JAMES,Group 3A - MARK12 Reading III (Remediation)
+999182,Scarlett,RUBIO,Group 3A - MARK12 Reading III (Remediation)
+999180,Tory,HIBBS,Group 3A - MARK12 Reading III (Remediation)
+999169,Waylon,WESTRICK,Group 3A - MARK12 Reading III (Remediation)
+999173,Xander,GARNETT,Group 3A - MARK12 Reading III (Remediation)

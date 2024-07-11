@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Indicates whether or not the student graduated. The EOY Wizard updates this field when deactivating the Student record for a student who is in the last grade of the school&apos;s grade span and is being promoted. You can manually update this field. --></help>
+    <label><!-- Graduated? --></label>
+    <name>Graduation_Indicator__c</name>
+</CustomFieldTranslation>

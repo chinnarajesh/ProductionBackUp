@@ -1,5 +1,7 @@
 public with sharing class ISTool{
+
     public  static final String SECTION_CURRICULUM = 'Curriculum';
+    public static string sectionLocation ;
     private Map<ID, SessionWrapper> sessionIDMap;
     private Map<Date, List<SessionWrapper>> sessionDateMap;
     private List<SessionWrapper> orderedSessions;
@@ -95,7 +97,8 @@ public with sharing class ISTool{
         orderedSessions = new List<SessionWrapper>();
 
         List<Intervention_Session__c> sessions = querySessions();
-        for(Intervention_Session__c session:sessions){
+        for(Intervention_Session__c session:sessions){           
+            if(studentSectionID ==null) {
             SessionWrapper wrapper = new SessionWrapper(session);
             orderedSessions.add(wrapper);
             sessionIDMap.put(wrapper.session.ID, wrapper);
@@ -104,12 +107,31 @@ public with sharing class ISTool{
             } else {
                 sessionDateMap.put(wrapper.session.Date__c, new List<SessionWrapper>{wrapper});
             }
-        }
+          }
+         else{
+            for(Intervention_Session_Result__c intrsult : session.Intervention_Session_Results__r){
+               
+                 if(intrsult.Student_Section__c ==studentSectionID){
+               SessionWrapper wrapper = new SessionWrapper(session);
+               orderedSessions.add(wrapper);
+               sessionIDMap.put(wrapper.session.ID, wrapper);
+               if(sessionDateMap.containsKey(wrapper.session.Date__c)){
+                   sessionDateMap.get(wrapper.session.Date__c).add(wrapper);
+               } else {
+                   sessionDateMap.put(wrapper.session.Date__c, new List<SessionWrapper>{wrapper});
+               }
+             }
+            }
+          }
+    }
     }
 
     public SessionWrapper getSessionByID(ID sessionID){
         return sessionIDMap.get(sessionID);
     }
+    // public string getStudentNameList(){
+    //     return studentList;
+    // }
 
     public List<SessionWrapper> getSessionsByDate(Date sessionDate){
         return sessionDateMap.get(sessionDate);
@@ -125,7 +147,7 @@ public with sharing class ISTool{
                 'Session_Time_Completed_For__r.Name, Skill_Primary__c, Skill_Primary__r.Name, LastModifiedDate, Session_Type__c, Session_Format__c ';
 
         if(loadSessionResults){
-            query += ',(select ID, Amount_of_Time__c, Student_Section__c, Student_Section__r.Dosage_to_Date__c, Student_Section__r.Student_Name__c,Exit_Ticket__c'+
+            query += ',(select ID, Intervention_Session__c,Related_Student_s_Name__c,Amount_of_Time__c, Student_Section__c, Student_Section__r.Dosage_to_Date__c, Student_Section__r.Student_Name__c,Exit_Ticket__c,Student_Section__r.Student__r.Local_Student_ID__c,Student_Section__r.Student__r.Student_ID_Auto_Number__c'+
                 ' from Intervention_Session_Results__r';
             if(studentSectionID != null){
                 query += ' where Student_Section__c =\''+String.escapeSingleQuotes(studentSectionID)+'\'';
@@ -155,10 +177,12 @@ public with sharing class ISTool{
         if(!queryFilters.isEmpty()){
             query += ' where '+String.join(queryFilters,' AND ');
         }
-        query+= ' order by Date__c desc';
+        query+= ' order by Date__c desc ';
 
         System.debug(query);
         List<Intervention_Session__c> results = Database.query(query);
+        //System.debug('results** '+results);
+        System.debug('results '+results.size());
         return results;
     }
 
@@ -205,20 +229,38 @@ public with sharing class ISTool{
     }
 
     public static List<SelectOption> getSiteDetailsOptions(){
+        System.debug('sectionLocation== '+sectionLocation);
         List<SelectOption> siteDetailsOptions = new List<SelectOption>();
         String usersSite = [Select Site__c From User Where Id = :UserInfo.getUserId()][0].Site__c;
+        // List<User_Location__c> userlocationList =[select id,name,Location__c from User_Location__c where User__c = : UserInfo.getUserId()];
+        // Set<string> userLocationSet = new Set<string>();
+        // for(User_Location__c ul : userlocationList){
+        //     userLocationSet.add(ul.Location__c);
+        // }
         if (usersSite == '' || usersSite == null){
             siteDetailsOptions = null;
         } else {
             List<Site_Details_Mapping__mdt> mappings = [SELECT Values__c
                                                         FROM Site_Details_Mapping__mdt
-                                                        WHERE Location__c = :usersSite];
-            if (mappings.size() != 0 && mappings[0].Values__c != null && mappings[0].Values__c != '') {
+                                                        WHERE Location__c =: sectionLocation];
+            // if (mappings.size() != 0 && mappings[0].Values__c != null && mappings[0].Values__c != '') {
+            //     siteDetailsOptions.add(new SelectOption('', 'None', false));
+            //     List<String> values = mappings[0].Values__c.split(';');
+            //     for(String value : values) {
+            //         siteDetailsOptions.add(new SelectOption(value, value));
+            //     }
+            // }
+            if (!mappings.isEmpty()) {
                 siteDetailsOptions.add(new SelectOption('', 'None', false));
-                List<String> values = mappings[0].Values__c.split(';');
-                for(String value : values) {
-                    siteDetailsOptions.add(new SelectOption(value, value));
+                for (Site_Details_Mapping__mdt mapping : mappings) {
+                    List<String> values = mapping.Values__c.split(';');
+                    for (String value : values) {
+                        siteDetailsOptions.add(new SelectOption(value, value));
+                    }
                 }
+            }
+            else{
+                siteDetailsOptions = null;
             }
         }
         return siteDetailsOptions;
@@ -227,14 +269,54 @@ public with sharing class ISTool{
     public class SessionWrapper{
         public Intervention_Session__c session  {get;set;}
         public List<Intervention_Session_Result__c> studentResults {get;set;}
+        public String studentList {get;set;}
+        public string studentCYIdList {get;set;}
+        public string studentLocalIdList {get;set;}
+        Map<Id, String> stsectionmap=new  Map<Id, String>();
+        Map<Id,String> studentCYIdMap = new Map<Id,String>();
+        Map<Id,String> studentLocalIdMap = new Map<Id,string>();
+
 
         public SessionWrapper(Intervention_Session__c session){
             this.session = session;
             if(session.Intervention_Session_Results__r != null){
                 this.studentResults = session.Intervention_Session_Results__r;
+                System.debug('size** '+this.studentResults.size());
+
+                for(Intervention_Session_Result__c st : studentResults){
+                    if(stsectionmap.containsKey(st.Intervention_Session__c)){
+                        String str =String.valueOf(st.Related_Student_s_Name__c);
+                        String str2=stsectionmap.get(st.Intervention_Session__c)+','+str;
+                        stsectionmap.put(st.Intervention_Session__c,str2);
+                    }else{
+                        stsectionmap.put(st.Intervention_Session__c,st.Related_Student_s_Name__c);
+                    }
+                    ///collecting CY_Ids
+                    if(studentCYIdMap.containsKey(st.Intervention_Session__c)){
+                        String CyId =String.valueOf(st.Student_Section__r.Student__r.Student_ID_Auto_Number__c);
+                        String CyIdList=studentCYIdMap.get(st.Intervention_Session__c)+','+CyId;
+                        studentCYIdMap.put(st.Intervention_Session__c,CyIdList);
+                    }else{
+                        studentCYIdMap.put(st.Intervention_Session__c,st.Student_Section__r.Student__r.Student_ID_Auto_Number__c);
+                    }
+                    ///
+                    /// collecting student localId
+                    if(studentLocalIdMap.containsKey(st.Intervention_Session__c)){
+                        String localId =String.valueOf(st.Student_Section__r.Student__r.Local_Student_ID__c);
+                        String localIdList=studentLocalIdMap.get(st.Intervention_Session__c)+','+localId;
+                        studentLocalIdMap.put(st.Intervention_Session__c,localIdList);
+                    }else{
+                        studentLocalIdMap.put(st.Intervention_Session__c,st.Student_Section__r.Student__r.Local_Student_ID__c);
+                    }
+                    ///
+                }
             } else {
                 this.studentResults = new List<Intervention_Session_Result__c>();
             }
+                this.studentList = stsectionmap.get(session.id);
+                this.studentCYIdList=studentCYIdMap.get(session.id);
+                this.studentLocalIdList=studentLocalIdMap.get(session.id);
+
         }
     }
 

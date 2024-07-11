@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Document Log</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Document Logs</value>
+    </caseValues>
+    <layouts>
+        <layout>Document Log Batch</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Log Information --></label>
+            <section>Log Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Individual Report Card</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <label><!-- Batch --></label>
+        <name>Batch</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Report Card --></label>
+        <name>Report_Card</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Transcript --></label>
+        <name>Transcript</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

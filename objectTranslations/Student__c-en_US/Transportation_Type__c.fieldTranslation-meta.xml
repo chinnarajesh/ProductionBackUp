@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Displays the method of transportation the student uses to get to school. This field is not used by SchoolForce, but you can use it for reporting purposes. --></help>
+    <label><!-- Transportation Type --></label>
+    <name>Transportation_Type__c</name>
+    <picklistValues>
+        <masterLabel>Bicycle</masterLabel>
+        <translation><!-- Bicycle --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Car</masterLabel>
+        <translation><!-- Car --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Carpool</masterLabel>
+        <translation><!-- Carpool --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Metro Bus</masterLabel>
+        <translation><!-- Metro Bus --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Metro Rail</masterLabel>
+        <translation><!-- Metro Rail --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Metro Rail &amp; Bus</masterLabel>
+        <translation><!-- Metro Rail &amp; Bus --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Walk</masterLabel>
+        <translation><!-- Walk --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Section_name_cannot_be_changed</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+ISCHANGED(Name) &amp;&amp;
+NOT(OR($Profile.Name != &quot;Int_Sys_Admin&quot;, $Profile.Name != &quot;System Administrator&quot; )))</errorConditionFormula>
+    <errorDisplayField>Name</errorDisplayField>
+    <errorMessage>Section name can&apos;t be modified.</errorMessage>
+</ValidationRule>

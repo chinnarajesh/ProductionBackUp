@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Displays a nickname for the student if he/she uses a name other than the one listed in the Student First Name field. --></help>
+    <label><!-- Nickname --></label>
+    <name>Nickname__c</name>
+</CustomFieldTranslation>

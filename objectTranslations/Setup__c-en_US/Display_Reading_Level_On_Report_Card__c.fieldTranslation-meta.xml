@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Selecting this displays the students&apos; reading levels on their report cards and progress reports. --></help>
+    <label><!-- Display Reading Level On Report Card --></label>
+    <name>Display_Reading_Level_On_Report_Card__c</name>
+</CustomFieldTranslation>

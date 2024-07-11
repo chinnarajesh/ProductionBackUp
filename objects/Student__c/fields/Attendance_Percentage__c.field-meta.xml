@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Attendance_Percentage__c</fullName>
+    <description>This is the percentage of attendance for a student.</description>
+    <formula>IF (Total_Daily_Attendance__c!=0, (Total_Daily_Attendance__c - Non_Present_Daily_Attendance__c)/ Total_Daily_Attendance__c, 1)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Displays the real-time calculation of the student&apos;s year-to-date percentage of time present at school.</inlineHelpText>
+    <label>Attendance Percentage</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Percent</type>
+</CustomField>

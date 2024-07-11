@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Display_Grade_Formula__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF ( ISBLANK(Student_Section__r.Section__r.Course__r.Grade_Scale_Lookup__c) , 
+IF ( Grade_Overridden__c ,  Grade_Override__c ,
+CASE(TEXT(Student_Section__r.Section__r.Course__r.Grade_Scale__c), &apos;Standard&apos;, TEXT(Standard_Section_Grade_v2__c), &apos;Credit/No Credit&apos;, Credit_No_Credit_Section_Grade__c,  Letter_Grade__c)),
+Letter_Grade__c)</formula>
+    <label>Grade</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

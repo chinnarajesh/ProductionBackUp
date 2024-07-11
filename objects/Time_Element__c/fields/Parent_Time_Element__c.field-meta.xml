@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Parent_Time_Element__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <label>Parent Time Element</label>
+    <referenceTo>Time_Element__c</referenceTo>
+    <relationshipLabel>Children Time Elements</relationshipLabel>
+    <relationshipName>Time</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

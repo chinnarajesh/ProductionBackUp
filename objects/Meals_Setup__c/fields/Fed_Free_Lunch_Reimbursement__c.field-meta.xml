@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Fed_Free_Lunch_Reimbursement__c</fullName>
+    <defaultValue>0</defaultValue>
+    <description>This is the amount of money that the school is reimbursed for free lunches that are served.</description>
+    <inlineHelpText>This is the amount of money that the school is reimbursed for free lunches that are served.</inlineHelpText>
+    <label>Fed Free Lunch Reimbursement</label>
+    <precision>18</precision>
+    <required>true</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
+</CustomField>

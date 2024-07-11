@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Displays on report cards and progress reports. You can enter a value up to 15 characters long. --></help>
+    <label><!-- Reading Level Q3 --></label>
+    <name>Reading_Level_Q3__c</name>
+</CustomFieldTranslation>

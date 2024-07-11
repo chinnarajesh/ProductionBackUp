@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Attendance_Starting_Strong__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>This pilot will support teams in launching attendance programming at the very start of the year. With a focus on homerooms with ACMs, teams will identify students within the first month of school who&apos;ve had absences/tardies and provide Tier 2 Attendance Interventions throughout the 1st quarter.</description>
+    <label>Attendance: Starting Strong</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

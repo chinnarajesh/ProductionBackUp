@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Transportation_Authorized__c</fullName>
+    <defaultValue>false</defaultValue>
+    <inlineHelpText>Indicates whether or not the student&apos;s method of transportation has been authorized. If you update this field, SchoolForce updates the corresponding field on the Contact record.</inlineHelpText>
+    <label>Transportation Authorized</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

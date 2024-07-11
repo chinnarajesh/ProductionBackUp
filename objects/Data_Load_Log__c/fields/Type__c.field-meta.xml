@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Type__c</fullName>
+    <description>Type of data loaded.</description>
+    <label>Type</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Section</fullName>
+                <default>false</default>
+                <label>Section</label>
+            </value>
+            <value>
+                <fullName>Session</fullName>
+                <default>false</default>
+                <label>Session</label>
+            </value>
+            <value>
+                <fullName>Staff</fullName>
+                <default>false</default>
+                <label>Staff</label>
+            </value>
+            <value>
+                <fullName>Staff/Section</fullName>
+                <default>false</default>
+                <label>Staff/Section</label>
+            </value>
+            <value>
+                <fullName>Student</fullName>
+                <default>false</default>
+                <label>Student</label>
+            </value>
+            <value>
+                <fullName>Student/Section</fullName>
+                <default>false</default>
+                <label>Student/Section</label>
+            </value>
+            <value>
+                <fullName>Interventions Data Deactivation</fullName>
+                <default>false</default>
+                <label>Interventions Data Deactivation</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

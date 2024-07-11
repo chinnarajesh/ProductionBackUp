@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Show_Attendance_Sections_in_Gradebook__c</fullName>
+    <defaultValue>false</defaultValue>
+    <inlineHelpText>Select if your school is taking sectional attendance and wants to display the sectional attendance within the Gradebook UI.</inlineHelpText>
+    <label>Show Attendance Sections In Gradebook</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Award Type Detail --></label>
+    <name>Award_Type_Detail__c</name>
+    <picklistValues>
+        <masterLabel>Blue</masterLabel>
+        <translation><!-- Blue --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Bronze</masterLabel>
+        <translation><!-- Bronze --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Gold</masterLabel>
+        <translation><!-- Gold --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Gold Striped</masterLabel>
+        <translation><!-- Gold Striped --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Red</masterLabel>
+        <translation><!-- Red --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Silver</masterLabel>
+        <translation><!-- Silver --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Silver &amp; Blue</masterLabel>
+        <translation><!-- Silver &amp; Blue --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Silver &amp; Red</masterLabel>
+        <translation><!-- Silver &amp; Red --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Silver Striped</masterLabel>
+        <translation><!-- Silver Striped --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Stripe</masterLabel>
+        <translation><!-- Stripe --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

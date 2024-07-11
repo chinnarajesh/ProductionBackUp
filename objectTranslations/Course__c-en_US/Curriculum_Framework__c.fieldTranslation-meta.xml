@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- An indication of the standard curriculum used for this course. --></help>
+    <label><!-- Curriculum Framework --></label>
+    <name>Curriculum_Framework__c</name>
+    <picklistValues>
+        <masterLabel>LEA Curriculum Framework</masterLabel>
+        <translation><!-- LEA Curriculum Framework --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>National Curriculum Standard</masterLabel>
+        <translation><!-- National Curriculum Standard --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Other</masterLabel>
+        <translation><!-- Other --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Private, Religious Curriculum</masterLabel>
+        <translation><!-- Private, Religious Curriculum --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>School Curriculum Framework</masterLabel>
+        <translation><!-- School Curriculum Framework --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>State Curriculum Framework</masterLabel>
+        <translation><!-- State Curriculum Framework --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

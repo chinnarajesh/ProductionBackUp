@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Configure_Grade_Scale_Catalog__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF( Grade_Scale_Catalog__c !=&apos;&apos;, HYPERLINK(&apos;/apex/SchoolSetup_Gradebook?setupId=&apos;+ Id+&apos;#gradeScales&apos;  , Grade_Scale_Catalog__r.Name, &quot;_top&quot;) ,
+HYPERLINK(&apos;/apex/SchoolSetup_Gradebook?setupId=&apos;+Id+&apos;#gradeScales&apos;, IMAGE(&apos;/img/feeds/follow12.png&apos;, &apos;Add&apos;),&quot;_top&quot;))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Configure Grade Scale Catalog</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

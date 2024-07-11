@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Calculate_Class_Rank__c</fullName>
+    <defaultValue>false</defaultValue>
+    <inlineHelpText>Should the school calculate class rank? If selected, the system will calculate the Class Rank per grade.  Admins will have the option of displaying the Class Rank on the Report Card on the Generate Student Documents page.</inlineHelpText>
+    <label>Calculate Student Class Rank?</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

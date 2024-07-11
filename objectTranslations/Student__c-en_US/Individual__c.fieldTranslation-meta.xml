@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Displays the name for the Contact record associated to this Student record. You can click the link to view the student&apos;s Contact record. --></help>
+    <label><!-- Individual Record --></label>
+    <name>Individual__c</name>
+    <relationshipLabel><!-- Student Records --></relationshipLabel>
+</CustomFieldTranslation>

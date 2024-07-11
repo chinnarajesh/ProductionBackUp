@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Indicates whether or not it is required for the student to complete their portfolio. --></help>
+    <label><!-- Portfolio Required? --></label>
+    <name>Portfolio_Required__c</name>
+</CustomFieldTranslation>

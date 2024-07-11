@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Credit_No_Credit_Final_Grade__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(AND(TEXT(Course__r.Grade_Scale__c)= &apos;Credit/No Credit&apos;, Final_Grade_Value__c &gt;= 97), &apos;C&apos;, IF(AND(TEXT(Course__r.Grade_Scale__c)= &apos;Credit/No Credit&apos;, NOT(ISBLANK(Final_Grade_Value__c))),&apos;NC&apos;,&apos;&apos;))</formula>
+    <label>Credit/No Credit Final Grade</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

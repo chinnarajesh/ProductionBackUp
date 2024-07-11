@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Indicates whether or not the student is an English language learner (ELL). --></help>
+    <label><!-- ELL --></label>
+    <name>ELL__c</name>
+</CustomFieldTranslation>

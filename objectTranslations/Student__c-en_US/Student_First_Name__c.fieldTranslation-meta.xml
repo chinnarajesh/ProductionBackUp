@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Displays the student&apos;s first name. --></help>
+    <label><!-- Student First Name --></label>
+    <name>Student_First_Name__c</name>
+</CustomFieldTranslation>

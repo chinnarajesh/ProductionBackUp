@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Behavior Type --></label>
+    <name>Behavior_Type__c</name>
+    <picklistValues>
+        <masterLabel>T1 - Any (Tier 1) behavior or other conduct not specifically enumerated in any other tier that is disrespectful or causes minor disruptions to the academic environment</masterLabel>
+        <translation><!-- T1 - Any (Tier 1) behavior or other conduct not specifically enumerated in any other tier that is disrespectful or causes minor disruptions to the academic environment --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>T1 - Any behavior not specifically enumerated in any other tier that is disrespectful or causes minor disruption to the academic environment but does not involved damage to school property or harm to self or others</masterLabel>
+        <translation><!-- T1 - Any behavior not specifically enumerated in any other tier that is disrespectful or causes minor disruption to the academic environment but does not involved damage to school property or harm to self or others --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>T1 - Attending class without required class materials or assigned work</masterLabel>
+        <translation><!-- T1 - Attending class without required class materials or assigned work --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>T1 - Behaviors that disrupt or interfere with classroom teaching and learning</masterLabel>
+        <translation><!-- T1 - Behaviors that disrupt or interfere with classroom teaching and learning --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>T1 - Communication or tone and language that is not respectful (including teasing, rolling eyes, swearing, etc.)</masterLabel>
+        <translation><!-- T1 - Communication or tone and language that is not respectful (including teasing, rolling eyes, swearing, etc.) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>T1 - Excessive noise in the classroom, hall, or building</masterLabel>
+        <translation><!-- T1 - Excessive noise in the classroom, hall, or building --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>T1 - Inappropriate displays of affection</masterLabel>
+        <translation><!-- T1 - Inappropriate displays of affection --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>T1 - Noncompliance with an approved dress code</masterLabel>
+        <translation><!-- T1 - Noncompliance with an approved dress code --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>T1 - Off-task behaviors that demonstrate disengagement from classroom learning</masterLabel>
+        <translation><!-- T1 - Off-task behaviors that demonstrate disengagement from classroom learning --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>T1 - Refusal to comply w/ instr. / class / school rules w/o arguing, talking back, or walking away</masterLabel>
+        <translation><!-- T1 - Refusal to comply w/ instr. / class / school rules w/o arguing, talking back, or walking away --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>T1 - Running in the classroom, hall, or building</masterLabel>
+        <translation><!-- T1 - Running in the classroom, hall, or building --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>T1 - Unexcused tardiness for class or school</masterLabel>
+        <translation><!-- T1 - Unexcused tardiness for class or school --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>T2 - Any behavior not specifically enumerated in any other tier that causes disruption to the academic environment, involves damage to school property, or may cause minor harm to self or others</masterLabel>
+        <translation><!-- T2 - Any behavior not specifically enumerated in any other tier that causes disruption to the academic environment, involves damage to school property, or may cause minor harm to self or others --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>T2 - Directing profanity or offensive gestures toward others</masterLabel>
+        <translation><!-- T2 - Directing profanity or offensive gestures toward others --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>T2 - Documented pattern of persistent Tier 1 behavior</masterLabel>
+        <translation><!-- T2 - Documented pattern of persistent Tier 1 behavior --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>T2 - Inappropriate physical contact between students that may not be physically harmful (tickling, bothering, etc.)</masterLabel>
+        <translation><!-- T2 - Inappropriate physical contact between students that may not be physically harmful (tickling, bothering, etc.) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>T2 - Intentional misuse of school equipment/supplies/facilities</masterLabel>
+        <translation><!-- T2 - Intentional misuse of school equipment/supplies/facilities --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>T2 - Leaving classroom or group without permission</masterLabel>
+        <translation><!-- T2 - Leaving classroom or group without permission --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>T2 - Lying with intent to mislead</masterLabel>
+        <translation><!-- T2 - Lying with intent to mislead --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>T2 - Refusal to comply w/ instr. or rules &amp; arguing, talking back, or walking away</masterLabel>
+        <translation><!-- T2 - Refusal to comply w/ instr. or rules &amp; arguing, talking back, or walking away --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>T2 - Unauthorized presence in hallway during class time</masterLabel>
+        <translation><!-- T2 - Unauthorized presence in hallway during class time --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>T2 - Unauthorized use of portable electronic devices during school hours</masterLabel>
+        <translation><!-- T2 - Unauthorized use of portable electronic devices during school hours --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>T2 - Unexcused absence from class</masterLabel>
+        <translation><!-- T2 - Unexcused absence from class --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>T2 - Unexcused absence from school</masterLabel>
+        <translation><!-- T2 - Unexcused absence from school --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>T2 - Using computer/office equipment without permission</masterLabel>
+        <translation><!-- T2 - Using computer/office equipment without permission --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>T3 - Academic Dishonesty</masterLabel>
+        <translation><!-- T3 - Academic Dishonesty --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>T3 - Any behavior not specifically enumerated in any other tier that causes significant disruption to the academic environment or causes harm to self or others</masterLabel>
+        <translation><!-- T3 - Any behavior not specifically enumerated in any other tier that causes significant disruption to the academic environment or causes harm to self or others --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>T3 - Documented pattern of persistent Tier 2 behavior</masterLabel>
+        <translation><!-- T3 - Documented pattern of persistent Tier 2 behavior --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>T3 - Engaging in behavior that demonstrates gang/neighborhood crew affiliation (displaying clothing or gestures associated with gangs)</masterLabel>
+        <translation><!-- T3 - Engaging in behavior that demonstrates gang/neighborhood crew affiliation (displaying clothing or gestures associated with gangs) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>T3 - Engaging in behavior that may cause harm to self or others (rough-housing, running in street, etc.)</masterLabel>
+        <translation><!-- T3 - Engaging in behavior that may cause harm to self or others (rough-housing, running in street, etc.) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>T3 - Forgery</masterLabel>
+        <translation><!-- T3 - Forgery --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>T3 - Gambling</masterLabel>
+        <translation><!-- T3 - Gambling --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>T3 - Hazing</masterLabel>
+        <translation><!-- T3 - Hazing --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>T3 - Impulsive theft that does not involve going into personal belongings (taking food, community property, etc.)</masterLabel>
+        <translation><!-- T3 - Impulsive theft that does not involve going into personal belongings (taking food, community property, etc.) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>T3 - Posting or distributing material or lit that is disrespectful, demeaning, humiliating, or damaging to students and/or staff</masterLabel>
+        <translation><!-- T3 - Posting or distributing material or lit that is disrespectful, demeaning, humiliating, or damaging to students and/or staff --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>T3 - Throwing objects that may cause injury or damage property</masterLabel>
+        <translation><!-- T3 - Throwing objects that may cause injury or damage property --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>T3 - Unauthorized possession, use, or distribution of over-the-counter medication</masterLabel>
+        <translation><!-- T3 - Unauthorized possession, use, or distribution of over-the-counter medication --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>T3 - Verbal, written, or physical threat to person or property (including intimidating gestures/postures)</masterLabel>
+        <translation><!-- T3 - Verbal, written, or physical threat to person or property (including intimidating gestures/postures) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>T4 - Any behavior not specifically enumerated in any other tier that causes disruption to the school operation, destroys school property, or causes significant harm to self or others</masterLabel>
+        <translation><!-- T4 - Any behavior not specifically enumerated in any other tier that causes disruption to the school operation, destroys school property, or causes significant harm to self or others --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>T4 - Causing serious disruption/damage to school&apos;s computer system, electronic files, or network</masterLabel>
+        <translation><!-- T4 - Causing serious disruption/damage to school&apos;s computer system, electronic files, or network --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>T4 - Documented pattern of persistent Tier 3 behavior</masterLabel>
+        <translation><!-- T4 - Documented pattern of persistent Tier 3 behavior --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>T4 - Intentional vandalism or destruction of property over $500</masterLabel>
+        <translation><!-- T4 - Intentional vandalism or destruction of property over $500 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>T4 - Intentional vandalism or destruction of property under $500</masterLabel>
+        <translation><!-- T4 - Intentional vandalism or destruction of property under $500 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>T4 - Interfering with school authorities or participating in a major disruption of the school&apos;s operations (outbursts / loss of control)</masterLabel>
+        <translation><!-- T4 - Interfering with school authorities or participating in a major disruption of the school&apos;s operations (outbursts / loss of control) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>T4 - Planned theft that involves going into personal belonging or space</masterLabel>
+        <translation><!-- T4 - Planned theft that involves going into personal belonging or space --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>T4 - Possession of tools or instruments which school administrators deem could be used as weapons</masterLabel>
+        <translation><!-- T4 - Possession of tools or instruments which school administrators deem could be used as weapons --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>T4 - Pushing, hitting, or fighting where there is no physical harm or weapon used</masterLabel>
+        <translation><!-- T4 - Pushing, hitting, or fighting where there is no physical harm or weapon used --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>T4 - Retaliation for reporting harassment and sexual harassment</masterLabel>
+        <translation><!-- T4 - Retaliation for reporting harassment and sexual harassment --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>T4 - Sexual harassment</masterLabel>
+        <translation><!-- T4 - Sexual harassment --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>T4 - Tampering with or altering an official school record or document</masterLabel>
+        <translation><!-- T4 - Tampering with or altering an official school record or document --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>T4 - Using obscene, seriously offensive, or abusive language or gestures</masterLabel>
+        <translation><!-- T4 - Using obscene, seriously offensive, or abusive language or gestures --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>T5 - Arson, Bio-hazard, Bomb threat</masterLabel>
+        <translation><!-- T5 - Arson, Bio-hazard, Bomb threat --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>T5 - Commission or attempted commission of any act of sexual assault or sexual aggression</masterLabel>
+        <translation><!-- T5 - Commission or attempted commission of any act of sexual assault or sexual aggression --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>T5 - Documented pattern of persistent Tier 4 behavior</masterLabel>
+        <translation><!-- T5 - Documented pattern of persistent Tier 4 behavior --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>T5 - Participating in group fight which has been planned, causes major disruption to school day or results in substantial bodily injury</masterLabel>
+        <translation><!-- T5 - Participating in group fight which has been planned, causes major disruption to school day or results in substantial bodily injury --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>T5 - Planned assault/physical attack on student or staff where there is or has the potential for substantial harm</masterLabel>
+        <translation><!-- T5 - Planned assault/physical attack on student or staff where there is or has the potential for substantial harm --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>T5 - Possession of a weapon</masterLabel>
+        <translation><!-- T5 - Possession of a weapon --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>T5 - Possession of drug paraphernalia or controlled substance</masterLabel>
+        <translation><!-- T5 - Possession of drug paraphernalia or controlled substance --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>T5 - Possession of fireworks or explosives</masterLabel>
+        <translation><!-- T5 - Possession of fireworks or explosives --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>T5 - Possession or distribution of alcohol</masterLabel>
+        <translation><!-- T5 - Possession or distribution of alcohol --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>T5 - Pushing, hitting, or fighting which results in a serious physical injury</masterLabel>
+        <translation><!-- T5 - Pushing, hitting, or fighting which results in a serious physical injury --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>T5 - Selling or distribution of marijuana, prescription drugs, controlled dangerous substances, imitation controlled substances, inhalants, other intoxicants, controlled or drug paraphernalia</masterLabel>
+        <translation><!-- T5 - Selling or distribution of marijuana, prescription drugs, controlled dangerous substances, imitation controlled substances, inhalants, other intoxicants, controlled or drug paraphernalia --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>T5 - Theft or attempted theft using force, coercion, intimidation, or threat of violence</masterLabel>
+        <translation><!-- T5 - Theft or attempted theft using force, coercion, intimidation, or threat of violence --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>T5 - Use, possession, or bringing to school a loaded or unloaded firearm</masterLabel>
+        <translation><!-- T5 - Use, possession, or bringing to school a loaded or unloaded firearm --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>T5 - Use, threatened use, or transfer of any weapon</masterLabel>
+        <translation><!-- T5 - Use, threatened use, or transfer of any weapon --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>T5 - Using an article that is not normally considered a weapon to injure another individual</masterLabel>
+        <translation><!-- T5 - Using an article that is not normally considered a weapon to injure another individual --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>T5 - Using an article that is not normally considered a weapon to intimidate or threaten another individual</masterLabel>
+        <translation><!-- T5 - Using an article that is not normally considered a weapon to intimidate or threaten another individual --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Homeroom__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <inlineHelpText>Displays the student&apos;s homeroom. This field is not used by SchoolForce, but you can use it for reporting purposes.</inlineHelpText>
+    <label>Homeroom</label>
+    <lookupFilter>
+        <active>true</active>
+        <errorMessage>Only sections marked as Homerooms can be selected</errorMessage>
+        <filterItems>
+            <field>Section__c.Homeroom__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </filterItems>
+        <isOptional>false</isOptional>
+    </lookupFilter>
+    <referenceTo>Section__c</referenceTo>
+    <relationshipLabel>Students (Homeroom)</relationshipLabel>
+    <relationshipName>Students</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

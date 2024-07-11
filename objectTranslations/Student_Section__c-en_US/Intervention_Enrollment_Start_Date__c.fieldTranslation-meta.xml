@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Date the Student was enrolled in the Section. If the Student has re-entered this Section, this field will update with the new enrollment date. --></help>
+    <label><!-- Intervention Enrollment Start Date --></label>
+    <name>Intervention_Enrollment_Start_Date__c</name>
+</CustomFieldTranslation>

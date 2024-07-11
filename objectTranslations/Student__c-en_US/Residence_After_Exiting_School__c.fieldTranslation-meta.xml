@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- If the student has been withdrawn from the school, this field displays where the student resides. If you update this field, SchoolForce updates the corresponding field on the Contact record. --></help>
+    <label><!-- Residence After Exiting School --></label>
+    <name>Residence_After_Exiting_School__c</name>
+    <picklistValues>
+        <masterLabel>Armed services</masterLabel>
+        <translation><!-- Armed services --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>New residence of family</masterLabel>
+        <translation><!-- New residence of family --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>New residence of student</masterLabel>
+        <translation><!-- New residence of student --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>No record of residence</masterLabel>
+        <translation><!-- No record of residence --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Non-educational institution</masterLabel>
+        <translation><!-- Non-educational institution --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Other</masterLabel>
+        <translation><!-- Other --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Other educational institution</masterLabel>
+        <translation><!-- Other educational institution --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Same residence</masterLabel>
+        <translation><!-- Same residence --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

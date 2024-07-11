@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- The median standard grade is the middle number of all standards this student has received based on date submitted. --></help>
+    <label><!-- Median Grade *Retired* --></label>
+    <name>Median_Grade__c</name>
+</CustomFieldTranslation>

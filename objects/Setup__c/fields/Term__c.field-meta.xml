@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Term__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>Term refers to the Term &apos;Template&apos; that the administrator associates to the School; this contains all Semeser/Quarter/Period logic necessary to create Sessions.</description>
+    <label>Term</label>
+    <referenceTo>Time_Element__c</referenceTo>
+    <relationshipLabel>Setup</relationshipLabel>
+    <relationshipName>Setup</relationshipName>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

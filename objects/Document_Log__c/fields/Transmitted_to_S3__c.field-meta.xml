@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Transmitted_to_S3__c</fullName>
+    <defaultValue>false</defaultValue>
+    <inlineHelpText>Was the document sent to an S3 server?</inlineHelpText>
+    <label>Transmitted to S3</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

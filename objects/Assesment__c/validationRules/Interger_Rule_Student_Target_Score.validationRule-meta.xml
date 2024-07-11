@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Interger_Rule_Student_Target_Score</fullName>
+    <active>true</active>
+    <errorConditionFormula>Student_Target_Score__c &lt;&gt; FLOOR(Student_Target_Score__c)</errorConditionFormula>
+    <errorDisplayField>Student_Target_Score__c</errorDisplayField>
+    <errorMessage>This field must be an integer.</errorMessage>
+</ValidationRule>

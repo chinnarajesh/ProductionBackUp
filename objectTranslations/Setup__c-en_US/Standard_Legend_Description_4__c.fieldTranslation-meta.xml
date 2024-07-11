@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- What is the description for a Standard with a Level 4? This will display on Report Cards and Progress report if &quot;Show Standards&quot; is selected on the &quot;Generate Student Documents&quot; page. --></help>
+    <label><!-- Standard Legend Description 4 --></label>
+    <name>Standard_Legend_Description_4__c</name>
+</CustomFieldTranslation>

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- State Reduced Breakfast Reimbursement --></label>
+    <name>State_Reduced_Breakfast_Reimbursement__c</name>
+</CustomFieldTranslation>

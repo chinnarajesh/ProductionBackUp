@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Assessment_wo_Templates</fullName>
+    <columns>NAME</columns>
+    <columns>Fieldset__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Picklist_Value__c.Assessment_wo_Template</value>
+    </filters>
+    <label>Assessment wo Templates</label>
+</ListView>

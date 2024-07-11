@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Credit_Type_Earned__c</fullName>
+    <description>The type of credits or units of value awarded for the completion of a course.</description>
+    <inlineHelpText>The type of credits or units of value awarded for the completion of a course.</inlineHelpText>
+    <label>Credit Type Earned</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Carnegie Unit</fullName>
+                <default>false</default>
+                <label>Carnegie Unit</label>
+            </value>
+            <value>
+                <fullName>Semester Hour Credit</fullName>
+                <default>false</default>
+                <label>Semester Hour Credit</label>
+            </value>
+            <value>
+                <fullName>Trimester Hour Credit</fullName>
+                <default>false</default>
+                <label>Trimester Hour Credit</label>
+            </value>
+            <value>
+                <fullName>Quarter Hour Credit</fullName>
+                <default>false</default>
+                <label>Quarter Hour Credit</label>
+            </value>
+            <value>
+                <fullName>Quinmester Hour Credit</fullName>
+                <default>false</default>
+                <label>Quinmester Hour Credit</label>
+            </value>
+            <value>
+                <fullName>Mini-Term Hour Credit</fullName>
+                <default>false</default>
+                <label>Mini-Term Hour Credit</label>
+            </value>
+            <value>
+                <fullName>Summer Term Hour Credit</fullName>
+                <default>false</default>
+                <label>Summer Term Hour Credit</label>
+            </value>
+            <value>
+                <fullName>Intersession Hour Credit</fullName>
+                <default>false</default>
+                <label>Intersession Hour Credit</label>
+            </value>
+            <value>
+                <fullName>Long Session Hour Credit</fullName>
+                <default>false</default>
+                <label>Long Session Hour Credit</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

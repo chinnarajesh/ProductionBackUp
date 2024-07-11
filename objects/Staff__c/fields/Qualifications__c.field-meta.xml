@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Qualifications__c</fullName>
+    <label>Qualifications</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Honors</fullName>
+                <default>false</default>
+                <label>Honors</label>
+            </value>
+            <value>
+                <fullName>AP</fullName>
+                <default>false</default>
+                <label>AP</label>
+            </value>
+            <value>
+                <fullName>IB</fullName>
+                <default>false</default>
+                <label>IB</label>
+            </value>
+            <value>
+                <fullName>ELA</fullName>
+                <default>false</default>
+                <label>ELA</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

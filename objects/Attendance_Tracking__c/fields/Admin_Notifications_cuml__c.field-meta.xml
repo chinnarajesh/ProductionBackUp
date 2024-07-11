@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Admin_Notifications_cuml__c</fullName>
+    <label>Admin Notifications (Cumulative)</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Notify Administration</fullName>
+                <default>false</default>
+                <label>Notify Administration</label>
+            </value>
+            <value>
+                <fullName>Administration Notified</fullName>
+                <default>false</default>
+                <label>Administration Notified</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

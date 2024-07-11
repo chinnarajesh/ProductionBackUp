@@ -34,6 +34,10 @@ public with sharing class ModalEnrollStudentController {
     public String letter { get; set; }
     public ID sectionID { get; set; }
 
+    public  string SearchAcc{get;set;}
+    public  string  searchstring{get;set;}
+    public  String NewStudentName {get;set;}
+
     //+++++++++++++++++++++++++++++++++++++++++++++
 
     public ModalEnrollStudentController() {
@@ -45,6 +49,7 @@ public with sharing class ModalEnrollStudentController {
     }
 
     public void loadAvailableStudents() {
+        System.debug('searchstring++ '+searchstring);
         availableStudents = new List<StudentInfoWrapper>();
         enrolledStudentIDs = new Set<ID>();
 
@@ -53,7 +58,7 @@ public with sharing class ModalEnrollStudentController {
                 enrolledStudentIDs.add(ss.Student__c);
             }
         }
-
+        System.debug('letter '+letter);
 
         String query = buildAvailableStudentQuery(true);
         System.debug('query = ' + query);
@@ -65,7 +70,7 @@ public with sharing class ModalEnrollStudentController {
         Set<String> gradeLevels = new Set<String>();
         Map<String, Set<ID>> indicatorAreaMap = new Map<String, Set<ID>>();
         Map<String, Set<ID>> sectionMap = new Map<String, Set<ID>>();
-        for (Student__c student : Database.query(query)) {
+        for (Student__c student :Database.query(query)) {
             for (Indicator_Area_Student__c ias : student.Indicator_Area_Student__r) {
                 if (selectedGradeFilter == 'all' && selectedSectionFilter == 'all' && selectedIndicatorAreaFilter == 'all') {
                     if (!indicatorAreaMap.containsKey(ias.Indicator_Area__r.Name)) {
@@ -155,8 +160,8 @@ public with sharing class ModalEnrollStudentController {
     }
 
     private String buildAvailableStudentQuery(Boolean isActive) {
-        String query = 'SELECT Id,Name,Student_Last_Name__c,Student_First_Name__c,Grade__c,Student_Id__c,Student_ID_Auto_Number__c,Local_Student_ID__c,Entry_Date__c,Expiration_Date__c';
-        query += ',(SELECT Indicator_Area__c, Indicator_Area__r.Name, Student__r.Name, Active__c, IA_Effective_Date__c, Reference_ID__c' +
+        String query = 'SELECT Id,Name,Student_Last_Name__c,Student_First_Name__c,Grade__c,Student_Id__c,Student_ID_Auto_Number__c,Local_Student_ID__c';
+        query += ',(SELECT Indicator_Area__c, Indicator_Area__r.Name, Active__c' +
                 ' FROM Indicator_Area_Student__r';
         if (!enabledStudentIAFilter) {
             query += ' WHERE Active__c = true';
@@ -188,27 +193,50 @@ public with sharing class ModalEnrollStudentController {
         if (String.isNotBlank(selectedGradeFilter) && selectedGradeFilter != 'all') {
             query += ' AND Grade__c =: selectedGradeFilter';
         }
-
-        query += ' ORDER BY Student_First_Name__c, Student_Last_Name__c';
+        if(String.isNotBlank(searchstring) && (searchstring.contains('CY') || searchstring.contains('cy'))){
+            NewStudentName = '%'+searchstring+'%';
+            query += ' AND Student_ID_Auto_Number__c LIKE :NewStudentName';
+        }
+        else if(String.isNotBlank(searchstring) && searchstring.isNumeric()){
+            NewStudentName = '%'+searchstring+'%';
+            query += ' AND Local_Student_ID__c LIKE :NewStudentName';
+        }
+        else if(String.isNotBlank(searchstring)){
+            NewStudentName = '%'+searchstring+'%';
+            query += ' AND Name LIKE :NewStudentName';
+        }
+        if( selectedIndicatorAreaFilter =='all' &&  selectedSectionFilter =='all' && selectedGradeFilter=='all' && letter=='all' && String.isBlank(searchstring)){
+            System.debug('Limit records');
+            query += ' ORDER BY Student_First_Name__c, Student_Last_Name__c LIMIT 100';
+        }else{
+            System.debug('All records');
+            query += ' ORDER BY Student_First_Name__c, Student_Last_Name__c';
+        }
+        searchstring ='';
+        //query += ' ORDER BY Student_First_Name__c, Student_Last_Name__c';
         system.debug(query);
+        system.debug('Final Query++ '+query);
         return query;
     }
 
     public void addToSelected() {
         List<studentInfoWrapper> tempWrapper = new List<StudentInfoWrapper>();
-        for (StudentInfoWrapper sw : availableStudents) {
-            if (selectedStudents.size() + tempWrapper.size() >= 1000) {
-                CyUtil.errorMessage('You have already selected 1000 students for addtion. Please finialize this addtion before adding more students.');
+        for (Integer i = availableStudents.size() - 1; i >= 0; i--) {
+            StudentInfoWrapper sw = availableStudents[i];
+            if (selectedStudents.size() + tempWrapper.size() >= 500) {
+                CyUtil.errorMessage('You have already selected 500 students for addition. Please finialize this addition before adding more students.');
                 break;
             } else if (sw.selected) {
                 sw.selected = false;
                 selectedStudents.add(sw);
                 selectedStudentIds.add(sw.student.ID);
+                availableStudents.remove(i);
             } else {
                 tempWrapper.add(sw);
             }
         }
-        availableStudents = tempWrapper;
+        availableStudents.clear();
+       // availableStudents = tempWrapper;
     }
 
     public void removeFromSelected() {
@@ -229,6 +257,7 @@ public with sharing class ModalEnrollStudentController {
         selectedGradeFilter = 'all';
         selectedSectionFilter = 'all';
         selectedIndicatorAreaFilter = 'all';
+        letter = 'All';
         selectedStudents = new List<StudentInfoWrapper>();
         selectedStudentIDs = new Set<ID>();
         studentSectionHolder = new Student_Section__c();//Enrollment_Start_Date__c = Datetime.now()
@@ -328,7 +357,7 @@ public with sharing class ModalEnrollStudentController {
 
             for (StudentInfoWrapper a : lstWr) {
                 if (SearchVar.equals('All')) {
-                    if (ShowStudent.size() < 1000) {
+                    if (ShowStudent.size() < 500) {
                         ShowStudent.add(a);
                     }
                 } else if (a.student.Student_First_Name__c.startsWith(SearchVar.toLowerCase()) || a.student.Student_First_Name__c.startsWith(SearchVar))
@@ -349,7 +378,7 @@ public with sharing class ModalEnrollStudentController {
             System.debug('SearchVar ' + listInner.size());
             for (StudentInfoWrapper a : listInner) {
                 if (SearchVar.equals('All')) {
-                    if (ShowStudent.size() < 1000) {
+                    if (ShowStudent.size() < 500) {
                         ShowStudent.add(a);
                     }
                 } else if (a.student.Student_First_Name__c.startsWith(SearchVar.toLowerCase()) || a.student.Student_First_Name__c.startsWith(SearchVar)) {

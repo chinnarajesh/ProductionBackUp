@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Section_Exit_Date</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(ISCHANGED(Active__c), NOT(Active__c), ISNULL(Section_Exit_Date__c))</errorConditionFormula>
+    <errorDisplayField>Section_Exit_Date__c</errorDisplayField>
+    <errorMessage>Section_Exit_Date is required.</errorMessage>
+</ValidationRule>

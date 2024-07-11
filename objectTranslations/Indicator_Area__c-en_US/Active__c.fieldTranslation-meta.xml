@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Indicates whether or not this indicator area is available to assign to students on the Add Students to Indicator Areas screen. If you uncheck this field, SchoolForce deactivates any associated Program, Staff/Section, and Student/Section records. --></help>
+    <label><!-- Active --></label>
+    <name>Active__c</name>
+</CustomFieldTranslation>

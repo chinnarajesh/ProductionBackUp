@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Prompt xmlns="http://soap.sforce.com/2006/04/metadata">
+    <masterLabel>The end is near for admins</masterLabel>
+    <promptVersions>
+        <actionButtonLabel>Submit Service Desk Case!</actionButtonLabel>
+        <actionButtonLink>https://mycityyear1.force.com/ServiceDesk/s/createrecord/cy_NewCommunityCase</actionButtonLink>
+        <body>&lt;p&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;By default, your last day in cyschoolhouse is June 23 and it’s fast approaching. Need more time to complete data submission and validation? Submit a Service Desk case to ITS &amp;gt; cyschoolhouse to request an extension for you or any other user at your site.&amp;nbsp;&lt;/span&gt;&lt;/p&gt;</body>
+        <delayDays>6</delayDays>
+        <description>This is the notification to let site, network, system and SDA&apos;s know the close of cyschoolhouse is coming</description>
+        <displayType>DockedComposer</displayType>
+        <endDate>2023-06-23</endDate>
+        <header>The End Is Near</header>
+        <isPublished>true</isPublished>
+        <masterLabel>The end is near for admins</masterLabel>
+        <publishedDate>2023-06-05</publishedDate>
+        <shouldDisplayActionButton>true</shouldDisplayActionButton>
+        <shouldIgnoreGlobalDelay>false</shouldIgnoreGlobalDelay>
+        <startDate>2023-06-05</startDate>
+        <targetPageKey1>home</targetPageKey1>
+        <targetPageType>standard__namedPage</targetPageType>
+        <themeColor>Theme1</themeColor>
+        <themeSaturation>Dark</themeSaturation>
+        <timesToDisplay>3</timesToDisplay>
+        <title>The End is Near...</title>
+        <uiFormulaRule>
+            <booleanFilter>1 OR 2 OR 3 OR 4 OR 5</booleanFilter>
+            <criteria>
+                <leftValue>{!$User.Profile.Key}</leftValue>
+                <operator>EQUAL</operator>
+                <rightValue>custom_site administrator</rightValue>
+            </criteria>
+            <criteria>
+                <leftValue>{!$User.Profile.Key}</leftValue>
+                <operator>EQUAL</operator>
+                <rightValue>Admin</rightValue>
+            </criteria>
+            <criteria>
+                <leftValue>{!$User.Profile.Key}</leftValue>
+                <operator>EQUAL</operator>
+                <rightValue>custom_network administrator</rightValue>
+            </criteria>
+            <criteria>
+                <leftValue>{!$User.Profile.Key}</leftValue>
+                <operator>EQUAL</operator>
+                <rightValue>custom_hq site admin access</rightValue>
+            </criteria>
+            <criteria>
+                <leftValue>{!$User.Profile.Key}</leftValue>
+                <operator>EQUAL</operator>
+                <rightValue>custom_cy system administrator</rightValue>
+            </criteria>
+        </uiFormulaRule>
+        <userAccess>Everyone</userAccess>
+        <userProfileAccess>SpecificProfiles</userProfileAccess>
+        <versionNumber>1</versionNumber>
+    </promptVersions>
+</Prompt>

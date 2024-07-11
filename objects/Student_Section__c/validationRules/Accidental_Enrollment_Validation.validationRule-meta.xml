@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Accidental_Enrollment_Validation</fullName>
+    <active>true</active>
+    <errorConditionFormula>IF(TEXT(Section_Exit_Reason__c) = &quot;Accidental Enrollment&quot;,
+	IF(Dosage_to_Date__c &lt; 1 &amp;&amp; DATEVALUE(Enrollment_End_Date__c) = DATEVALUE(Intervention_Enrollment_Start_Date__c),False,True)
+,False)</errorConditionFormula>
+    <errorDisplayField>Section_Exit_Reason__c</errorDisplayField>
+    <errorMessage>Accidentally enrolled students should have no program dosage and 0 days of enrollment.</errorMessage>
+</ValidationRule>

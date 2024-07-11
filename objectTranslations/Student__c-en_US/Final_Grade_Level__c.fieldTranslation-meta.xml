@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Indicates whether or not the student is in the final grade level of a SchoolForce org. For example, you may check this box for an 8th grader if there is no high school in your org. This field is updated by the EOY Wizard and you can update it manually. --></help>
+    <label><!-- Final Grade Level --></label>
+    <name>Final_Grade_Level__c</name>
+</CustomFieldTranslation>

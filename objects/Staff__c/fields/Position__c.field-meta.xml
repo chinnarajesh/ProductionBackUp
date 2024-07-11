@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Position__c</fullName>
+    <label>Position</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Admin</fullName>
+                <default>false</default>
+                <label>Admin</label>
+            </value>
+            <value>
+                <fullName>Aide</fullName>
+                <default>false</default>
+                <label>Aide</label>
+            </value>
+            <value>
+                <fullName>Behavior Coor</fullName>
+                <default>false</default>
+                <label>Behavior Coor</label>
+            </value>
+            <value>
+                <fullName>Coordinators/Dir</fullName>
+                <default>false</default>
+                <label>Coordinators/Dir</label>
+            </value>
+            <value>
+                <fullName>CTR</fullName>
+                <default>false</default>
+                <label>CTR</label>
+            </value>
+            <value>
+                <fullName>ELL</fullName>
+                <default>false</default>
+                <label>ELL</label>
+            </value>
+            <value>
+                <fullName>Family Outreach Coordinator</fullName>
+                <default>false</default>
+                <label>Family Outreach Coordinator</label>
+            </value>
+            <value>
+                <fullName>General Ed Teacher</fullName>
+                <default>false</default>
+                <label>General Ed Teacher</label>
+            </value>
+            <value>
+                <fullName>Inclusion</fullName>
+                <default>false</default>
+                <label>Inclusion</label>
+            </value>
+            <value>
+                <fullName>Marketing/Dev</fullName>
+                <default>false</default>
+                <label>Marketing/Dev</label>
+            </value>
+            <value>
+                <fullName>NLNS Resident</fullName>
+                <default>false</default>
+                <label>NLNS Resident</label>
+            </value>
+            <value>
+                <fullName>Nurse</fullName>
+                <default>false</default>
+                <label>Nurse</label>
+            </value>
+            <value>
+                <fullName>Operations</fullName>
+                <default>false</default>
+                <label>Operations</label>
+            </value>
+            <value>
+                <fullName>Project Manager</fullName>
+                <default>false</default>
+                <label>Project Manager</label>
+            </value>
+            <value>
+                <fullName>Social Work</fullName>
+                <default>false</default>
+                <label>Social Work</label>
+            </value>
+            <value>
+                <fullName>Special</fullName>
+                <default>false</default>
+                <label>Special</label>
+            </value>
+            <value>
+                <fullName>Speech Language Pathologist</fullName>
+                <default>false</default>
+                <label>Speech Language Pathologist</label>
+            </value>
+            <value>
+                <fullName>Wilson</fullName>
+                <default>false</default>
+                <label>Wilson</label>
+            </value>
+            <value>
+                <fullName>YRP</fullName>
+                <default>false</default>
+                <label>YRP</label>
+            </value>
+            <value>
+                <fullName>Coordintaors/Dir</fullName>
+                <default>false</default>
+                <label>Coordintaors/Dir</label>
+            </value>
+            <value>
+                <fullName>NLNS Resdient</fullName>
+                <default>false</default>
+                <label>NLNS Resdient</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

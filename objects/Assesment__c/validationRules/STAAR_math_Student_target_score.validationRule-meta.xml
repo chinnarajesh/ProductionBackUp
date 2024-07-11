@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>STAAR_math_Student_target_score</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(Assessment_Name__c = &quot;STAAR Mathematics - MATH&quot;, 
+OR(Student_Target_Score__c &lt; 0, 
+Student_Target_Score__c &gt; 2))</errorConditionFormula>
+    <errorDisplayField>Student_Target_Score__c</errorDisplayField>
+    <errorMessage>Student Target Score must be within the range of 0 to 2.</errorMessage>
+</ValidationRule>

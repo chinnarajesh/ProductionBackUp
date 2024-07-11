@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Section_Validation</fullName>
+    <active>true</active>
+    <description>Validate that the Section associated with the related Student/Section record is the same as the Section  associated with the related Intervention Session record.</description>
+    <errorConditionFormula>Student_Section__r.Section__c  &lt;&gt;  Intervention_Session__r.Section__c</errorConditionFormula>
+    <errorMessage>Please verify that the Section record associated with the Student/Section record and Intervention Section record are the same.</errorMessage>
+</ValidationRule>

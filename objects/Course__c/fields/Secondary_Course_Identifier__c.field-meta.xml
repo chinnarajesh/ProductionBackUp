@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Secondary_Course_Identifier__c</fullName>
+    <description>The five-digit SCED code and name of the course. The first two-digits of the code represent the Secondary Course Subject Area. These identifiers are fairly general but provide enough specificity to identify the course&apos;s topic and to distinguish it from other courses in that subject area.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The five-digit SCED code and name of the course. The first two-digits of the code represent the Secondary Course Subject Area.</inlineHelpText>
+    <label>Secondary Course Identifier</label>
+    <length>40</length>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

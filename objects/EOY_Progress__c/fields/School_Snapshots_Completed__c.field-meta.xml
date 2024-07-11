@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>School_Snapshots_Completed__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Schools will create snapshot records for the year.</description>
+    <inlineHelpText>This will be checked when snapshots are successfully created for the year.</inlineHelpText>
+    <label>School Snapshots Completed</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

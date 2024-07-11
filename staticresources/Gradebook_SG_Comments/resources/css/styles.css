@@ -1,0 +1,329 @@
+/* 
+__________TOC ________________
+$reset
+$global
+$header
+$Select Students
+$commentForm
+*/
+
+
+/******** $reset *******/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+	font-family:"Segoe UI", Segoe, Tahoma, Geneva, sans-serif;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+a {
+	text-decoration:none;
+}
+
+
+/******** $global *******/
+
+body{
+	background:url(../images/body-bkgd.png) 0 0 repeat-x;
+}
+
+h1 {
+	background:url(../images/sprite.png) 0 0 no-repeat;
+	width:253px;
+	height:69px;
+	margin:27px 0 20px 0;
+}
+
+h2 {
+	text-transform:uppercase;
+	margin:15px 0 15px 15px;
+	font-weight:bold;
+	font-size:22px;
+}
+
+h3 {
+	font-weight:bold;
+	font-size:16px;
+	margin:0 0 5px 15px;
+}
+
+.ir {
+	font: 0/0 a;
+    text-shadow: none;
+    color: transparent;
+}
+
+.wrapper {
+	width:990px;
+	margin:0 auto;
+}
+
+.content-section {
+	border:1px solid #D9D9D9;
+	border-radius:7px;
+	padding:5px;
+	clear:both;
+}
+
+.blackBtn {
+	border:1px solid #000;
+	border-radius:5px;
+	color:#fff;
+	text-transform:uppercase;
+	font-size:10px;
+	background: #333333; /* Old browsers */
+	background: -moz-linear-gradient(top,  #333333 38%, #000000 51%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(38%,#333333), color-stop(51%,#000000)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #333333 38%,#000000 51%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #333333 38%,#000000 51%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #333333 38%,#000000 51%); /* IE10+ */
+	background: linear-gradient(top,  #333333 38%,#000000 51%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#333333', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
+	padding:10px 10px;
+	line-height:17px;
+	cursor:pointer;
+}
+
+.blueBtn {
+	float:right;
+	border:1px solid #4A9EBA;
+	background: #59afcc; /* Old browsers */
+	background: -moz-linear-gradient(top,  #59afcc 0%, #0180ab 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#59afcc), color-stop(100%,#0180ab)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #59afcc 0%,#0180ab 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #59afcc 0%,#0180ab 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #59afcc 0%,#0180ab 100%); /* IE10+ */
+	background: linear-gradient(top,  #59afcc 0%,#0180ab 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#59afcc', endColorstr='#0180ab',GradientType=0 ); /* IE6-9 */
+	border-radius:5px;
+	text-transform:uppercase;
+	width:120px;
+	height:30px;
+	cursor:pointer;
+	margin:25px 20px 0 0;
+	color:#fff;
+	text-align:left;
+	padding:px 0 0 15px;
+	line-height:1.7;
+}
+
+span.arrow {
+	display:block;
+	float:right;
+	width:17px;
+	height:17px;
+	background:url(../images/sprite.png) -1px -83px no-repeat;
+	padding:0 0 0 5px;
+	margin-left:10px;
+}
+
+
+/******** $header *******/
+header {
+	float:left;
+	height:155px;
+	margin-bottom:27px;	
+}
+
+ul.nav li {
+	float:left;
+}
+
+ul.nav li a {
+	padding:0 5px 2px 5px;
+	color:#fff;
+}
+
+ul.nav li a.selected {
+	background-color:#00A8DF;
+	box-shadow:inset 0 1px 2px #333;
+	border-radius:7px;
+}
+
+
+/******** $Select Students *******/
+
+.select-students {
+	float:left;
+	width:960px;
+	margin-bottom:45px;
+}
+
+.select-students p {
+	width:150px;
+	float:left;
+	margin:0 0 0 10px;
+	padding:15px 0 0 0;
+}
+
+.select-students p label {
+	font-size:12px;
+	font-weight:bold;
+}
+
+.select-students select {
+	width:125px;
+}
+
+.select-students .callToAction {
+	border-left:1px solid #D9D9D9;
+	float:right;
+	margin:5px 0;
+	height:53px;
+	padding:12px 35px 0 35px;
+}
+
+
+/******** $commentForm *******/
+
+.commentForm {
+	width:970px;
+	padding:0;
+	/* overflow:hidden; */
+}
+
+.commentForm table {
+	width:100%;
+	position:relative;
+}
+
+.commnetForm table tr:nth-child(odd) {
+	background-color:#F7F7F7;
+}
+
+.commentForm table td {
+	padding:5px 0;
+	vertical-align:middle;
+}
+
+.commentForm table th {
+	padding:8px 0 8px 0;
+	background:#099BCC;
+	color:#fff;
+}
+
+.commentForm table td.grade{
+	background:#B5E3F2;
+	border-bottom:2px solid #fff;
+	border-right:2px solid #fff;
+	border-top:2px solid #fff;
+	text-align:center;
+	width:50px;
+	font-size:13px;
+	font-weight:bold;
+}
+
+.commentForm table td.passing {
+	color:#999A35;
+}
+
+.commentForm table td.failing {
+	color:#A10505;
+}
+
+.commentForm table th.grade {
+	color:#fff;
+	border-right:2px solid #fff;
+}
+
+
+.commentForm table .studentName {
+	width:167px;
+	padding-left:25px;
+	text-align:left;
+}
+
+.commentForm table td.studentName {
+	background:#B5E3F2;
+	border-top:2px solid #fff;
+	border-bottom:2px solid #fff;
+	font-weight:bold;
+	font-size:13px;
+	color:#333;
+	height:24px;
+}
+
+.commentForm table th.comments{
+	background-color:#E5E5E5;
+	color:#333;
+	font-weight:bold;
+	border-bottom:2px solid #fff;
+}
+
+.commentForm table td.comments {
+	padding:0;
+	border:none;
+}
+
+.commentForm table .comments textarea {
+	border:0px;
+	padding:0 0 0 5px;
+	font-size:10px;
+	height:35px;
+	width:250px;
+	display:block;
+	background:none;
+	resize:none;
+}
+
+textarea.focus {
+	resize:both !important;
+	position:absolute;
+	}
+
+.commentForm table tr.odd textarea {
+	background-color:#F7F7F7;
+}
+
+.commentForm table tr.even textarea {
+	background:#fff;
+}
+
+
+
+
+
+
+
+
+
+
+

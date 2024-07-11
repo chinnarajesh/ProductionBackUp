@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Displays the number of points a student has if your school is using the Incident Weighting field in the Behavior module. --></help>
+    <label><!-- Student Behavior Score --></label>
+    <name>Student_Behavior_Score__c</name>
+</CustomFieldTranslation>

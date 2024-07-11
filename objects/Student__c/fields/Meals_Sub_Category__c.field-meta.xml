@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Meals_Sub_Category__c</fullName>
+    <inlineHelpText>If Free is selected in the Meals Category field, this field displays the type of program that applies. This field is not used by SchoolForce, but you can use it for reporting purposes.</inlineHelpText>
+    <label>Meals Sub Category</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Meals_Category__c</controllingField>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>TEMP FREE</fullName>
+                <default>false</default>
+                <label>TEMP FREE</label>
+            </value>
+            <value>
+                <fullName>FDC FREE</fullName>
+                <default>false</default>
+                <label>FDC FREE</label>
+            </value>
+            <value>
+                <fullName>TANF FREE</fullName>
+                <default>false</default>
+                <label>TANF FREE</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Free</controllingFieldValue>
+            <valueName>TEMP FREE</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Free</controllingFieldValue>
+            <valueName>FDC FREE</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Free</controllingFieldValue>
+            <valueName>TANF FREE</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

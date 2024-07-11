@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>STAAR_MATH_Quantile_score</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(Assessment_Name__c = &quot;STAAR Mathematics - MATH&quot;, 
+OR(Quantile_Score__c &lt; -1300, 
+Quantile_Score__c &gt; 1600))</errorConditionFormula>
+    <errorDisplayField>Quantile_Score__c</errorDisplayField>
+    <errorMessage>Quantile Score must be within the range of -1300 to 1600.</errorMessage>
+</ValidationRule>

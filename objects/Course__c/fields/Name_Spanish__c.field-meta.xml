@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Name_Spanish__c</fullName>
+    <description>The Course Name in Spanish language.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Enter the Spanish translation of the course name. This value will display on translated report cards, progress reports, transcripts, and the Student/Parent Portal.</inlineHelpText>
+    <label>Name in Spanish</label>
+    <length>255</length>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

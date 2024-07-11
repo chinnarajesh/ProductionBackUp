@@ -1,0 +1,82 @@
+//== Colors
+$gray-base:              #000 !default;
+$gray-darker:            lighten($gray-base, 13.5%);
+$gray-dark:              lighten($gray-base, 20%);
+$gray:                   lighten($gray-base, 33.5%);
+$gray-light:             lighten($gray-base, 46.7%);
+$gray-lighter:           lighten($gray-base, 93.5%);
+
+
+$red: #ef3e33;
+$yellow:#FCBA55;
+$red-pale:#f1604a;
+$orange: #fbae3b;
+$cyan: #3ac2cf;
+$green: #BCC669;
+
+$brand-primary:         darken(#3ac2cf,10%);
+$brand-success:         #5cb85c;
+$brand-info:            #5bc0de;
+$brand-warning:         #f0ad4e;
+$brand-danger:          #d9534f;
+
+$text-color:                            #555;
+$text-medium:                           #777;
+$text-light:                            #ccc;
+
+$page-bg:                               #ECECEE;
+
+$border-default:                        #ccc;
+
+//-- Font's
+$font-regular:                          "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+$font-light:                            300;
+$font-medium:                           500;
+$font-bold:                             600;
+
+//--- Spacing
+$gap-xs: 5px;
+$gap-sm: 10px;
+$gap:    20px;
+$gap-md: 30px;
+$gap-lg: 40px;
+
+
+//--- Footer Styles
+$footer-bg:                             #333333;
+$footer-color:                          rgba(white,0.6);
+$footer-border:                         transparent;
+$footer-top-margin:                     0;
+$footer-vert-padding:                   20px;
+$footer-height:                         20px;
+
+
+//--- Bootstrap variables
+$font-family-sans-serif:                $font-regular !default;
+$icon-font-path:                        "../fonts/";
+
+$grid-gutter-width:                     20px;
+
+$navbar-height:                         40px;
+$navbar-link-pad-side:                  26px;
+
+$navbar-default-color:                  #333;
+$navbar-default-bg:                     $red;
+$navbar-default-border:                 $red;
+$navbar-default-link-color:             #333;
+$navbar-default-link-hover-color:       #333;
+$navbar-default-link-hover-bg:          $red-pale;
+$navbar-default-link-active-color:      #333;
+$navbar-default-link-active-bg:         $red-pale;
+$navbar-default-link-disabled-color:    rgba(#333,0.4);
+$navbar-default-link-disabled-bg:       transparent;
+$navbar-default-brand-color:            white;
+$navbar-default-brand-hover-color:      white;
+$navbar-default-brand-hover-bg:         transparent;
+$navbar-default-toggle-hover-bg:        transparent;
+$navbar-default-toggle-icon-bar-bg:     white;
+$navbar-default-toggle-border-color:    white;
+
+$nav-link-font-size:                    15px;
+$nav-link-padding:                      10px 15px;
+$nav-link-hover-bg:                     transparent;

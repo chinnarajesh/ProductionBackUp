@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Value_Range_Action_orientation_z_score</fullName>
+    <active>false</active>
+    <description>Action_orientation_z_score__c</description>
+    <errorConditionFormula>OR
+( 
+ Action_orientation_z_score__c &lt; -3.000, 
+Action_orientation_z_score__c &gt; 3.000
+ )</errorConditionFormula>
+    <errorDisplayField>Action_orientation_z_score__c</errorDisplayField>
+    <errorMessage>Score must be within -3.000 to 3.000 range</errorMessage>
+</ValidationRule>

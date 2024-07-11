@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Instructional_Approach__c</fullName>
+    <label>Instructional Approach</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Values Needed</fullName>
+                <default>false</default>
+                <label>Values Needed</label>
+            </value>
+            <value>
+                <fullName>Please Setup</fullName>
+                <default>false</default>
+                <label>Please Setup</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

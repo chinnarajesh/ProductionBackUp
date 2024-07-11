@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Record Form --></label>
+    <name>Record_Form__c</name>
+    <picklistValues>
+        <masterLabel>DESSA</masterLabel>
+        <translation><!-- DESSA --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>DESSA-mini Form 1</masterLabel>
+        <translation><!-- DESSA-mini Form 1 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>DESSA-mini Form 2</masterLabel>
+        <translation><!-- DESSA-mini Form 2 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>DESSA-mini Form 3</masterLabel>
+        <translation><!-- DESSA-mini Form 3 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>DESSA-mini Form 4</masterLabel>
+        <translation><!-- DESSA-mini Form 4 --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

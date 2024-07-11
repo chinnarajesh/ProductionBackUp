@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Displays the student&apos;s exit status. The values in this field are determined by your school. You can use this field for reporting purposes. --></help>
+    <label><!-- Exit Status --></label>
+    <name>Exit_Status__c</name>
+    <picklistValues>
+        <masterLabel>Permanent Exit/Withdrawal</masterLabel>
+        <translation><!-- Permanent Exit/Withdrawal --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Temporary Exit/Withdrawal</masterLabel>
+        <translation><!-- Temporary Exit/Withdrawal --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- If there are less than 3 assignments, the Rolling Most Recent Grade is the most recent grade based on due date.  If there are more than 3 assignments, it takes the average of the last 3 assignments across reporting periods. --></help>
+    <label><!-- Rolling Most Recent Grade --></label>
+    <name>Rolling_Most_Recent_Grade__c</name>
+</CustomFieldTranslation>

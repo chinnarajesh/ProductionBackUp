@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Select the color you want to display for this section in the Scheduled Sections grid. This color only appears on the schedule grid and is meant to help you differentiate between sections. --></help>
+    <label><!-- Color --></label>
+    <name>Color__c</name>
+</CustomFieldTranslation>

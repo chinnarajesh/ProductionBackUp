@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Unweighted_GPA_is_in_range</fullName>
+    <active>true</active>
+    <errorConditionFormula>OR(Unweighted_GPA__c &lt; 0, Unweighted_GPA__c &gt;= 10)</errorConditionFormula>
+    <errorDisplayField>Unweighted_GPA__c</errorDisplayField>
+    <errorMessage>Unweighted GPA cannot be greater than 10 or less than 0.</errorMessage>
+</ValidationRule>

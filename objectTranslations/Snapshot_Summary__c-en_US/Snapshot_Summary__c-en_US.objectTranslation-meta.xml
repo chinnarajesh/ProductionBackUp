@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Snapshot Summary</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Snapshot Summaries</value>
+    </caseValues>
+    <layouts>
+        <layout>School Snapshot</layout>
+        <sections>
+            <label><!-- Academics --></label>
+            <section>Academics</section>
+        </sections>
+        <sections>
+            <label><!-- Attendance --></label>
+            <section>Attendance</section>
+        </sections>
+        <sections>
+            <label><!-- Behavior --></label>
+            <section>Behavior</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Meals --></label>
+            <section>Meals</section>
+        </sections>
+        <sections>
+            <label><!-- School --></label>
+            <section>School</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Section Snapshot</layout>
+        <sections>
+            <label><!-- Academics --></label>
+            <section>Academics</section>
+        </sections>
+        <sections>
+            <label><!-- Attendance --></label>
+            <section>Attendance</section>
+        </sections>
+        <sections>
+            <label><!-- Behavior --></label>
+            <section>Behavior</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Meals --></label>
+            <section>Meals</section>
+        </sections>
+        <sections>
+            <label><!-- School --></label>
+            <section>School</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Snapshot Summary Layout</layout>
+        <sections>
+            <label><!-- Academics --></label>
+            <section>Academics</section>
+        </sections>
+        <sections>
+            <label><!-- Attendance --></label>
+            <section>Attendance</section>
+        </sections>
+        <sections>
+            <label><!-- Behavior --></label>
+            <section>Behavior</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Meals --></label>
+            <section>Meals</section>
+        </sections>
+        <sections>
+            <label><!-- School --></label>
+            <section>School</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Student Snapshot</layout>
+        <sections>
+            <label><!-- Attendance --></label>
+            <section>Attendance</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <description><!-- A simple summary of cohort yearly data --></description>
+        <label><!-- Cohort --></label>
+        <name>Cohort</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- School Summary --></label>
+        <name>School_Summary</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Section Summary --></label>
+        <name>Section_Summary</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Student Summary --></label>
+        <name>Student_Summary</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

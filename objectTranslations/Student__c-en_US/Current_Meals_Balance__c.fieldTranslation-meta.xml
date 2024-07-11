@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Displays the current balance for the student&apos;s meals account if your school uses the Meals module. You can add additional money by adding a credit transaction in the Meals related list. --></help>
+    <label><!-- Current Meals Balance --></label>
+    <name>Current_Meals_Balance__c</name>
+</CustomFieldTranslation>

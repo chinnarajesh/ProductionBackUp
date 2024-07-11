@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Passing_Grade_Threshold__c</fullName>
+    <externalId>false</externalId>
+    <inlineHelpText>Select the grade threshold (0-100 scale) that defines passing for this school.  Any section grade that is calculated below this number will display in the Gradebook UI as red.  Any number between this and the &quot;On Track&quot; number will yellow.</inlineHelpText>
+    <label>Passing Grade Threshold</label>
+    <precision>5</precision>
+    <required>false</required>
+    <scale>1</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

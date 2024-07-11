@@ -1,0 +1,1213 @@
+/* This beautiful CSS-File has been crafted with LESS (lesscss.org) and compiled by simpLESS (wearekiss.com/simpless) */
+body {
+  margin: 0;
+}
+#student-redeem {
+  width: 1000px;
+  position: relative;
+  margin: 0 auto;
+  padding-top: 15px;
+  font-family: "Segoe UI", Segoe, Tahoma, Geneva, sans-serif;
+}
+#student-redeem #redeem-points {
+  background: url(../images/modal_bkgd_big.png) 0 0 no-repeat;
+  position: absolute;
+  width: 586px;
+  z-index: 2;
+  height: 180px;
+  display: none;
+}
+#student-redeem #redeem-points h2 {
+  float: left;
+  margin: 10px 0 0 10px;
+}
+#student-redeem #redeem-points p {
+  width: 292px;
+  float: right;
+  text-align: right;
+  margin: 10px 25px 0 0;
+}
+#student-redeem #redeem-points p span {
+  float: left;
+  color: #333;
+  font-size: 13px;
+  padding: 3px 0 0 22px;
+}
+#student-redeem #redeem-points p input {
+  text-align: center;
+}
+
+#student-redeem #redeem-points input.black_btn {
+	margin:10px 27px 0 0;
+}
+
+#student-redeem #redeem-points textarea {
+  float: left;
+  margin: 10px 0 0 20px;
+  width: 380px;
+  height: 32px;
+  resize: none;
+}
+#student-redeem #redeem-points a {
+  display: inline-block;
+  width: 120px;
+  padding: 5px 15px 5px 10px;
+  text-transform: uppercase;
+  background: #A3DB9E;
+  border-radius: 5px;
+  font-size: 11px;
+  margin: 20px 0 0 10px;
+  font-weight: bold;
+  box-shadow: inset 0px 1px 3px #999;
+}
+#student-redeem #redeem-points a span {
+  float: right;
+  display: block;
+  width: 15px;
+  height: 15px;
+  background: url(../images/student_redeem_sprite.png) 0 0 no-repeat;
+  margin-left: 10px;
+}
+#student-redeem #balanceDetail {
+  background: url(../images/modal_bkgd_big.png) 0 0 no-repeat;
+  position: absolute;
+  width: 586px;
+  z-index: 2;
+  height: 180px;
+  display: none;
+}
+#student-redeem #balanceDetail h2 {
+  float: left;
+  margin: 10px 0 0 10px;
+}
+#student-redeem #balanceDetail p {
+  width: 262px;
+  text-align: right;
+  float: right;
+  margin: 10px 25px 0 0;
+  color: #333;
+  font-size: 13px;
+}
+#student-redeem #balanceDetail p span {
+  padding: 0 15px 0 22px;
+}
+#student-redeem #balanceDetail .clear p {
+  text-align: left;
+  width: 542px;
+}
+#student-redeem a {
+  cursor: pointer;
+}
+#student-redeem h2 {
+  font-size: 16px;
+  padding-left: 8px;
+  color: #9F0505;
+  margin-bottom: 10px;
+}
+#student-redeem h2 img {
+  margin-right: 10px;
+}
+#student-redeem .left {
+  float: left;
+}
+#student-redeem .right {
+  float: right;
+}
+#student-redeem .clear {
+  clear: both;
+}
+#student-redeem .blue-btn {
+  background: #B5E3F2 !important;
+  border-radius: 5px !important;
+  color: #000 !important;
+  font-weight: bold;
+  text-transform: uppercase !important;
+  padding: 5px 0 5px 20px;
+  border: none !important;
+  margin-right: 10px !important;
+  font-size: 10px;
+  display: inline-block;
+}
+#student-redeem .blue-btn span {
+  background: url(../images/student_redeem_sprite.png) 0 0 no-repeat;
+  width: 25px;
+  height: 14px;
+  display: inline-block;
+  margin-left: 15px;
+}
+#student-redeem .blue-btn:hover {
+  background: #B5E3F2 !important;
+  background-position: right 4px !important;
+}
+#student-redeem .buttons {
+  text-align: right;
+  width: 563px;
+  clear: right;
+}
+#student-redeem .top-wrap .filter {
+  width: 456px;
+  float: right;
+  padding-right: 10px;
+}
+#student-redeem .top-wrap .filter p {
+  float: right;
+  font-size: 11px;
+}
+#student-redeem .top-wrap .filter p label {
+  color: #333;
+  font-weight: bold;
+}
+#student-redeem .top-wrap .filter p span {
+  color: #999;
+  padding: 0 5px;
+}
+#student-redeem .top-wrap .filter p:last-child {
+  padding: 19px 15px 0 0;
+}
+#student-redeem .top-wrap .filter .buttons {
+  clear: right;
+  float: right;
+}
+#student-redeem .main-wrap {
+  margin-top: 5px;
+  border-radius: 7px;
+  border: 2px solid #D9D9D9;
+}
+#student-redeem .main-wrap p {
+  margin-top: 0;
+  margin-bottom: 2px;
+  font-weight: 16px;
+  font-weight: bold;
+}
+#student-redeem .main-wrap .left {
+  margin-left: 10px;
+}
+#student-redeem .main-wrap .right {
+  color: #0799CC;
+  font-weight: normal;
+  margin-right: 10px;
+}
+#student-redeem .main-wrap .right span {
+  font-weight: bold;
+  color: #000;
+  padding-left: 5px;
+}
+#student-redeem .main-wrap table {
+  width: 981px !important;
+  border-collapse: collapse;
+}
+#student-redeem .main-wrap table th {
+  text-align: center;
+  background: #099BCC;
+  color: #fff;
+  font-weight: normal;
+  font-size: 15px;
+  padding: 5px;
+}
+
+#student-redeem .main-wrap table th:first-child {
+	width:50px !important;
+}
+
+#student-redeem .main-wrap table td.edit-del {
+	width:50px !important;
+	vertical-align:middle;
+}
+
+#student-redeem .main-wrap table th.date, #student-redeem .main-wrap table th.comment {
+  border-right: 2px solid #fff;
+}
+#student-redeem .main-wrap table th.light {
+  background: #B5E3F2;
+  color: #000;
+  font-weight: bold;
+}
+#student-redeem .main-wrap table td {
+  padding: 5px;
+  text-align: center;
+  font-size: 14px;
+}
+#student-redeem .main-wrap table td span.star {
+  display: block;
+  width: 18px;
+  height: 18px;
+  float: right;
+  background: url(../images/student_redeem_sprite.png) -180px -180px no-repeat;
+}
+
+#student-redeem .main-wrap table td.edit-del {
+	width:50px !important;
+	/* float:left; */
+}
+
+#student-redeem .main-wrap table td.edit-del a {
+  display: block;
+  float: left;
+  width: 21px;
+  height: 21px;
+  background: url(../images/student_redeem_sprite.png) 0 0 no-repeat;
+}
+#student-redeem .main-wrap table td a.ex {
+  background-position: -109px -108px;
+  padding-left: 5px;
+}
+#student-redeem .main-wrap table td a.pencil {
+  background-position: -144px -144px;
+}
+#student-redeem .main-wrap table td.light {
+  color: #666;
+}
+#student-redeem .main-wrap table td.balance {
+  text-align: left;
+  padding-left: 24px;
+}
+#student-redeem .main-wrap table .gray {
+  background: #FAFAFA;
+}
+#student-redeem .pagination {
+  padding-top: 15px;
+}
+#student-redeem .pagination ul {
+  margin: 0 auto;
+  width: 250px;
+  padding: 0;
+}
+#student-redeem .pagination ul li {
+  float: left;
+  list-style: none;
+  color: #666;
+  font-size: 12px;
+  margin-left: 5px;
+}
+#student-redeem .pagination ul li.selected {
+  color: #000;
+  font-weight: bold;
+}
+#student-redeem .pagination ul li.next {
+  margin-left: 5px;
+  color: #333;
+  font-weight: bold;
+  padding-left: 25px;
+  background: url(../images/student_redeem_sprite.png) -68px -71px no-repeat;
+}
+#student-redeem .pagination ul li.prev {
+  margin-right: 5px;
+  color: #333;
+  font-weight: bold;
+  padding-right: 25px;
+  background: url(../images/student_redeem_sprite.png) 14px -35px no-repeat;
+}
+/* GLOBAL */
+body .bPageBlock,
+body #bodyCell .bResource .secondaryPalette,
+body .secondaryPalette.bPageBlock,
+body .overlayDialog .secondaryPalette.bPageBlock,
+body .individualPalette .secondaryPalette.bPageBlock,
+body .bodyDiv .genericTable,
+body .genericPageBlockTable,
+body .bodyDiv .bSubBlock,
+body .bComponentBlock .bPageBlock,
+body .bMyDashboard .bPageBlock,
+body.rlHoverFrame .bPageBlock,
+body.subjectSelectionPopup div.choicesBox,
+body.lookupTab .secondaryPalette.bPageBlock,
+body.popupTab .secondaryPalette.bPageBlock,
+body.UserTagStatsPage .secondaryPalette.bPageBlock {
+  border: none !important;
+}
+.bPageBlock {
+  background: #fff !important;
+  border: none;
+}
+.bEditBlock .pbHeader > table, .apexp .bPageBlock.apexDefaultPageBlock .pbHeader > table, #ep.bLayoutBlock .pbHeader > table {
+  border-bottom: none;
+}
+.section_content {
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 7px;
+  margin: 3px 0 52px 0;
+}
+.top_content_section {
+  margin-bottom: 15px;
+}
+.section_content label {
+  color: #666;
+  font-weight: normal;
+}
+.wrapper {
+  width: 1010px;
+  margin: 0 auto;
+}
+input.red_btn {
+  background: #cc2800 !important;
+  /* Old browsers */
+  border-radius: 5px !important;
+  font-family: 'Varela', sans-serif !important;
+  color: #fff !important;
+  font-weight: normal !important;
+  text-transform: uppercase !important;
+  padding: 10px !important;
+  border: none;
+  margin-right: 10px !important;
+  background: -moz-linear-gradient(top, #cc2800 16%, #7f0e00 100%) !important;
+  /* FF3.6+ */
+
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(16%, #cc2800), color-stop(100%, #7f0e00)) !important;
+  /* Chrome,Safari4+ */
+
+  background: -webkit-linear-gradient(top, #cc2800 16%, #7f0e00 100%) !important;
+  /* Chrome10+,Safari5.1+ */
+
+  background: -o-linear-gradient(top, #cc2800 16%, #7f0e00 100%) !important;
+  /* Opera 11.10+ */
+
+  background: -ms-linear-gradient(top, #cc2800 16%, #7f0e00 100%) !important;
+  /* IE10+ */
+
+  background: linear-gradient(top, #cc2800 16%, #7f0e00 100%) !important;
+  /* W3C */
+
+  filter: progid:dximagetransform.microsoft.gradient(startColorstr='#cc2800', endColorstr='#7f0e00', GradientType=0) !important;
+  /* IE6-9 */
+
+}
+input.red_btn:hover {
+  background: #7F0E00 !important;
+}
+input.blue_btn {
+  background: #B5E3F2 !important;
+  border-radius: 5px !important;
+  font-family: 'Varela', sans-serif !important;
+  color: #000 !important;
+  font-weight: normal !important;
+  text-transform: uppercase !important;
+  padding: 5px 40px 5px 20px !important;
+  border: none !important;
+  margin-right: 10px !important;
+}
+input.blue_btn:hvoer {
+  background: #B5E3F2 !important;
+  background-position: right 4px !important;
+}
+input.black_btn {
+  cursor: pointer;
+  margin-left: 5px;
+  margin-bottom: 25px;
+  font-weight: normal !important;
+  float: right !important;
+  padding: 10px 10px !important;
+  border-radius: 5px !important;
+  border: none !important;
+  text-trasform: upercase !important;
+  color: #fff !important;
+  background: #4c4c4c !important;
+  /* Old browsers */
+
+  background: -moz-linear-gradient(top, #4c4c4c 0%, #474747 29%, #2c2c2c 52%, #000000 64%, #1c1c1c 93%, #131313 100%) !important;
+  /* FF3.6+ */
+
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #4c4c4c), color-stop(29%, #474747), color-stop(52%, #2c2c2c), color-stop(64%, #000000), color-stop(93%, #1c1c1c), color-stop(100%, #131313)) !important;
+  /* Chrome,Safari4+ */
+
+  background: -webkit-linear-gradient(top, #4c4c4c 0%, #474747 29%, #2c2c2c 52%, #000000 64%, #1c1c1c 93%, #131313 100%) !important;
+  /* Chrome10+,Safari5.1+ */
+
+  background: -o-linear-gradient(top, #4c4c4c 0%, #474747 29%, #2c2c2c 52%, #000000 64%, #1c1c1c 93%, #131313 100%) !important;
+  /* Opera 11.10+ */
+
+  background: -ms-linear-gradient(top, #4c4c4c 0%, #474747 29%, #2c2c2c 52%, #000000 64%, #1c1c1c 93%, #131313 100%) !important;
+  /* IE10+ */
+
+  background: linear-gradient(top, #4c4c4c 0%, #474747 29%, #2c2c2c 52%, #000000 64%, #1c1c1c 93%, #131313 100%) !important;
+  /* W3C */
+
+  filter: progid:dximagetransform.microsoft.gradient(startColorstr='#4c4c4c', endColorstr='#131313', GradientType=0) !important;
+  /* IE6-9 */
+
+}
+input.black_btn:hover {
+  background: #000 !important;
+}
+input.drk_blue_btn {
+  margin: 15px 15px 0 0 !important;
+  padding: 6px 10px !important;
+  color: #fff !important;
+  background: #59afcc !important;
+  /* Old browsers */
+
+  background: -moz-linear-gradient(top, #59afcc 21%, #0180ab 85%) !important;
+  /* FF3.6+ */
+
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(21%, #59afcc), color-stop(85%, #0180ab)) !important;
+  /* Chrome,Safari4+ */
+
+  background: -webkit-linear-gradient(top, #59afcc 21%, #0180ab 85%) !important;
+  /* Chrome10+,Safari5.1+ */
+
+  background: -o-linear-gradient(top, #59afcc 21%, #0180ab 85%) !important;
+  /* Opera 11.10+ */
+
+  background: -ms-linear-gradient(top, #59afcc 21%, #0180ab 85%) !important;
+  /* IE10+ */
+
+  background: linear-gradient(top, #59afcc 21%, #0180ab 85%) !important;
+  /* W3C */
+
+  filter: progid:dximagetransform.microsoft.gradient(startColorstr='#59afcc', endColorstr='#0180ab', GradientType=0) !important;
+  /* IE6-9 */
+
+}
+input.drk_blue_btn:hover {
+  background: #0180AB !important;
+}
+.clear_fix {
+  clear: both;
+}
+div .gradebook input.blue_btn {
+  float: right;
+  margin-top: 15px;
+}
+div.gradebook h3 {
+  font-weight: bold;
+  font-size: 14px;
+  color: #333;
+  font-family: "Segoe UI", Segoe, Tahoma, Geneva, sans-serif;
+  margin: 55px 0 0 15px;
+  display: block;
+  width: 500px;
+  float: left;
+}
+.filter_form {
+  padding: 15px;
+  border: 1px solid #D9D9D9;
+  border-radius: 5px;
+  clear: both;
+}
+.filter_form .form_fields {
+  float: left;
+  width: 755px;
+}
+.filter_form .form_fields div {
+  float: left;
+  margin: 0 25px 0 0;
+  color: #333;
+  font-size: 12px;
+  font-family: "Segoe UI", Segoe, Tahoma, Geneva, sans-serif;
+  font-weight: bold;
+}
+.filter_form .form_fields div.bottom_form_element {
+  margin-top: 15px;
+}
+.filter_form .form_fields div select {
+  width: 130px;
+}
+span.dateFormat {
+  display: none;
+}
+.filter_form .Submit_btn_wrapper {
+  float: left;
+  width: 173px;
+  border-left: 1px solid #ccc;
+  height: 64px;
+  padding: 25px 0 0 35px;
+}
+.gradebook_results_wrapper {
+  float: left;
+}
+.gradebook_results_wrapper #mainDiv {
+  width: 800px;
+  overflow-x: scroll;
+  border-top-right-radius: 7px;
+  border-bottom-right-radius: 7px;
+  border: 1px solid #ccc;
+}
+.gradebook_results_wrapper #leftDiv {
+  float: left;
+  clear: left;
+  position: static;
+  border-top-left-radius: 7px;
+  border-bottom-left-radius: 7px;
+}
+#leftDiv #leftTable {
+  border: none;
+}
+.table_top p {
+  width: 450px;
+  float: right;
+  text-align: right;
+  margin: 55px 5px 0 0;
+}
+.table_top p a {
+  color: #999;
+  cursor: pointer;
+  text-decoration: none;
+}
+.table_top p a:hover {
+  text-decoration: underline;
+}
+.comment_model {
+  border-radius: 5px;
+  border: 5px solid #666 !important;
+  -moz-box-shadow: 5px 5px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 5px 5px rgba(0, 0, 0, 0.5);
+  box-shadow: 5px 5px rgba(0, 0, 0, 0.5);
+}
+/*Gradebook landing page */
+th.headCol {
+  color: #666;
+  font-weight: normal;
+  padding: 0 10px;
+  border-right: 3px solid #fff;
+}
+th.headCol a {
+  color: #333;
+  font-weight: bold;
+}
+a {
+  text-decoration: none;
+}
+td.headCol input {
+  border: 1px solid #999;
+  text-align: center;
+  color: #666;
+}
+tr.odd {
+  background: #FAFAFA;
+}
+#group .mainTable td {
+  border: none;
+}
+.leftTable th {
+  background: #099BCC;
+  color: #fff;
+  padding-left: 10px;
+  border-right: 3px solid #fff;
+}
+#group .leftTable td {
+  border-right: 3px solid #fff;
+}
+#group .leftTable td.studCol {
+  border-right: none;
+  padding-left: 10px;
+  font-size: 12px;
+  color: #333;
+  font-weight: bold;
+}
+#group .leftTable td.grade {
+  text-align: center;
+  font-weight: bold;
+}
+#group .leftTable td.failing {
+  color: #A10505;
+  background: none;
+}
+#group .leftTable td.passing {
+  color: #999A35;
+  background: none;
+}
+/*Create Groups */
+h2 {
+  color: #333;
+  margin: 0 0 3px 8px;
+  font-size: 12px;
+  text-transform: uppercase !important;
+}
+.datahighlight {
+  background-color: gold !important;
+}
+.datahighlight2 {
+  background-color: cyan !important;
+}
+.datahighlight3 {
+  background-color: orange !important;
+}
+.odd {
+  background-color: #f0f0f6;
+}
+.even {
+  background-color: #ffffff;
+}
+h3 {
+  color: #333;
+  margin: 0 0 3px 17px;
+  font-size: 12px;
+  text-transform: uppercase !important;
+}
+/* assignments */
+.bPageBlock {
+  background: #fff !important;
+  border: none;
+}
+.bEditBlock .pbHeader > table, .apexp .bPageBlock.apexDefaultPageBlock .pbHeader > table, #ep.bLayoutBlock .pbHeader > table {
+  border-bottom: none;
+}
+table.list {
+  margin-top: 45px;
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
+  width: 750px;
+}
+table.list th.headerRow {
+  background: #B5E3F2 !important;
+  color: #000 !important;
+  font-weight: normal;
+}
+table.list td {
+  color: #666 !important;
+  padding: 11px;
+}
+body .pbBody table.list tr th, body .pbBody table.list tr td {
+  border: 1px solid #999;
+}
+label {
+  margin: 0 15px 5px 0;
+}
+.detailList table.list {
+  margin: 0 0 45px 0;
+}
+.Custom92Tab .tertiaryPalette, .individualPalette .Custom92Block .tertiaryPalette, .layoutEdit .individualPalette .Custom92Block .tertiaryPalette {
+  background: none;
+}
+.dataTables_wrapper {
+  margin-bottom: 15px;
+}
+.dataTables_filter {
+  border: 0px solid #67b2ce !important;
+}
+.ui-widget-header {
+  border: 1px solid #67b2ce !important;
+}
+.detailList tr th {
+  border-color: #67b2ce !important;
+}
+.apexp .bPageBlock .detailList {
+  margin-bottom: 0 !important;
+}
+.pbBody {
+  padding-top: 25px !important;
+}
+.dataTables_paginate.fg-buttonset.ui-buttonset.fg-buttonset-multi.ui-buttonset-multi.paging_two_button {
+  width: 50px;
+  float: right;
+}
+.dataTables_info {
+  width: 500px;
+  margin-left: 5px;
+  float: left;
+}
+.ui-toolbar {
+  padding: 5px;
+  background: #B5E3F2;
+  color: #333;
+}
+.ui-widget-header {
+  background: #B5E3F2 !important;
+  padding: 5px;
+}
+.ui-widget-header .dataTables_length {
+  width: 250px;
+  float: right;
+  text-align: right;
+}
+.ui-widget-header .dataTables_filter {
+  float: left;
+  width: 250px;
+}
+.tablesorter th {
+  padding: 3px;
+  background: #B5E3F2;
+  border: 1px solid #67b2ce;
+}
+.tablesorter tbody tr td {
+  padding: 5px 3px;
+  color: #333;
+}
+/* GLOBAL */
+body .bPageBlock,
+body #bodyCell .bResource .secondaryPalette,
+body .secondaryPalette.bPageBlock,
+body .overlayDialog .secondaryPalette.bPageBlock,
+body .individualPalette .secondaryPalette.bPageBlock,
+body .bodyDiv .genericTable,
+body .genericPageBlockTable,
+body .bodyDiv .bSubBlock,
+body .bComponentBlock .bPageBlock,
+body .bMyDashboard .bPageBlock,
+body.rlHoverFrame .bPageBlock,
+body.subjectSelectionPopup div.choicesBox,
+body.lookupTab .secondaryPalette.bPageBlock,
+body.popupTab .secondaryPalette.bPageBlock,
+body.UserTagStatsPage .secondaryPalette.bPageBlock {
+  border: none !important;
+}
+.bPageBlock {
+  background: #fff !important;
+  border: none;
+}
+.bEditBlock .pbHeader > table, .apexp .bPageBlock.apexDefaultPageBlock .pbHeader > table, #ep.bLayoutBlock .pbHeader > table {
+  border-bottom: none;
+}
+.section_content {
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 7px;
+  margin: 3px 0 52px 0;
+}
+.section_content label {
+  color: #666;
+  font-weight: normal;
+}
+.wrapper {
+  width: 1010px;
+  margin: 0 auto;
+}
+input.red_btn {
+  background: #cc2800 !important;
+  /* Old browsers */
+  border-radius: 5px !important;
+  font-family: 'Varela', sans-serif !important;
+  color: #fff !important;
+  font-weight: normal !important;
+  text-transform: uppercase !important;
+  padding: 10px !important;
+  border: none;
+  margin-right: 10px !important;
+  background: -moz-linear-gradient(top, #cc2800 16%, #7f0e00 100%) !important;
+  /* FF3.6+ */
+
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(16%, #cc2800), color-stop(100%, #7f0e00)) !important;
+  /* Chrome,Safari4+ */
+
+  background: -webkit-linear-gradient(top, #cc2800 16%, #7f0e00 100%) !important;
+  /* Chrome10+,Safari5.1+ */
+
+  background: -o-linear-gradient(top, #cc2800 16%, #7f0e00 100%) !important;
+  /* Opera 11.10+ */
+
+  background: -ms-linear-gradient(top, #cc2800 16%, #7f0e00 100%) !important;
+  /* IE10+ */
+
+  background: linear-gradient(top, #cc2800 16%, #7f0e00 100%) !important;
+  /* W3C */
+
+  filter: progid:dximagetransform.microsoft.gradient(startColorstr='#cc2800', endColorstr='#7f0e00', GradientType=0) !important;
+  /* IE6-9 */
+
+}
+input.red_btn:hover {
+  background: #7F0E00 !important;
+}
+input.blue_btn {
+  background: #B5E3F2 !important;
+  border-radius: 5px !important;
+  font-family: 'Varela', sans-serif !important;
+  color: #000 !important;
+  font-weight: normal !important;
+  text-transform: uppercase !important;
+  padding: 5px 40px 5px 20px !important;
+  border: none !important;
+  margin-right: 10px !important;
+}
+input.blue_btn:hvoer {
+  background: #B5E3F2 !important;
+  background-position: right 4px !important;
+}
+input.black_btn {
+  float: right !important;
+  padding: 10px 10px !important;
+  border-radius: 5px !important;
+  border: none !important;
+  text-trasform: upercase !important;
+  color: #fff !important;
+  background: #4c4c4c !important;
+  /* Old browsers */
+
+  background: -moz-linear-gradient(top, #4c4c4c 0%, #474747 29%, #2c2c2c 52%, #000000 64%, #1c1c1c 93%, #131313 100%) !important;
+  /* FF3.6+ */
+
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #4c4c4c), color-stop(29%, #474747), color-stop(52%, #2c2c2c), color-stop(64%, #000000), color-stop(93%, #1c1c1c), color-stop(100%, #131313)) !important;
+  /* Chrome,Safari4+ */
+
+  background: -webkit-linear-gradient(top, #4c4c4c 0%, #474747 29%, #2c2c2c 52%, #000000 64%, #1c1c1c 93%, #131313 100%) !important;
+  /* Chrome10+,Safari5.1+ */
+
+  background: -o-linear-gradient(top, #4c4c4c 0%, #474747 29%, #2c2c2c 52%, #000000 64%, #1c1c1c 93%, #131313 100%) !important;
+  /* Opera 11.10+ */
+
+  background: -ms-linear-gradient(top, #4c4c4c 0%, #474747 29%, #2c2c2c 52%, #000000 64%, #1c1c1c 93%, #131313 100%) !important;
+  /* IE10+ */
+
+  background: linear-gradient(top, #4c4c4c 0%, #474747 29%, #2c2c2c 52%, #000000 64%, #1c1c1c 93%, #131313 100%) !important;
+  /* W3C */
+
+  filter: progid:dximagetransform.microsoft.gradient(startColorstr='#4c4c4c', endColorstr='#131313', GradientType=0) !important;
+  /* IE6-9 */
+
+}
+input.black_btn:hover {
+  background: #000 !important;
+}
+input.drk_blue_btn {
+  margin: 15px 15px 0 0 !important;
+  padding: 6px 10px !important;
+  color: #fff !important;
+  background: #59afcc !important;
+  /* Old browsers */
+
+  background: -moz-linear-gradient(top, #59afcc 21%, #0180ab 85%) !important;
+  /* FF3.6+ */
+
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(21%, #59afcc), color-stop(85%, #0180ab)) !important;
+  /* Chrome,Safari4+ */
+
+  background: -webkit-linear-gradient(top, #59afcc 21%, #0180ab 85%) !important;
+  /* Chrome10+,Safari5.1+ */
+
+  background: -o-linear-gradient(top, #59afcc 21%, #0180ab 85%) !important;
+  /* Opera 11.10+ */
+
+  background: -ms-linear-gradient(top, #59afcc 21%, #0180ab 85%) !important;
+  /* IE10+ */
+
+  background: linear-gradient(top, #59afcc 21%, #0180ab 85%) !important;
+  /* W3C */
+
+  filter: progid:dximagetransform.microsoft.gradient(startColorstr='#59afcc', endColorstr='#0180ab', GradientType=0) !important;
+  /* IE6-9 */
+
+}
+input.drk_blue_btn:hover {
+  background: #0180AB !important;
+}
+.clear_fix {
+  clear: both;
+}
+div .gradebook input.blue_btn {
+  float: right;
+  margin-top: 15px;
+}
+div.gradebook h3 {
+  font-weight: bold;
+  font-size: 14px;
+  color: #333;
+  font-family: "Segoe UI", Segoe, Tahoma, Geneva, sans-serif;
+  margin: 55px 0 0 15px;
+  display: block;
+  width: 500px;
+  float: left;
+}
+.filter_form {
+  padding: 15px;
+  border: 1px solid #D9D9D9;
+  border-radius: 5px;
+  clear: both;
+}
+.filter_form .form_fields {
+  float: left;
+  width: 755px;
+}
+.filter_form .form_fields div {
+  float: left;
+  margin: 0 25px 0 0;
+  color: #333;
+  font-size: 12px;
+  font-family: "Segoe UI", Segoe, Tahoma, Geneva, sans-serif;
+  font-weight: bold;
+}
+.filter_form .form_fields div.bottom_form_element {
+  margin-top: 15px;
+}
+.filter_form .form_fields div select {
+  width: 130px;
+}
+span.dateFormat {
+  display: none;
+}
+.filter_form .Submit_btn_wrapper {
+  float: left;
+  width: 173px;
+  border-left: 1px solid #ccc;
+  height: 64px;
+  padding: 25px 0 0 35px;
+}
+.gradebook_results_wrapper {
+  float: left;
+}
+.gradebook_results_wrapper #mainDiv {
+  width: 800px;
+  overflow-x: scroll;
+  border-top-right-radius: 7px;
+  border-bottom-right-radius: 7px;
+  border: 1px solid #ccc;
+}
+.gradebook_results_wrapper #leftDiv {
+  float: left;
+  clear: left;
+  position: static;
+  border-top-left-radius: 7px;
+  border-bottom-left-radius: 7px;
+}
+#leftDiv #leftTable {
+  border: none;
+}
+.table_top p {
+  width: 450px;
+  float: right;
+  text-align: right;
+  margin: 55px 5px 0 0;
+}
+.table_top p a {
+  color: #999;
+  cursor: pointer;
+  text-decoration: none;
+}
+.table_top p a:hover {
+  text-decoration: underline;
+}
+.comment_model {
+  border-radius: 5px;
+  border: 5px solid #666 !important;
+  -moz-box-shadow: 5px 5px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 5px 5px rgba(0, 0, 0, 0.5);
+  box-shadow: 5px 5px rgba(0, 0, 0, 0.5);
+}
+/*Gradebook landing page */
+th.headCol {
+  color: #666;
+  font-weight: normal;
+  padding: 0 10px;
+  border-right: 3px solid #fff;
+}
+th.headCol a {
+  color: #333;
+  font-weight: bold;
+}
+a {
+  text-decoration: none;
+}
+td.headCol input {
+  border: 1px solid #999;
+  text-align: center;
+  color: #666;
+}
+tr.odd {
+  background: #FAFAFA;
+}
+#group .mainTable td {
+  border: none;
+}
+.leftTable th {
+  background: #099BCC;
+  color: #fff;
+  padding-left: 10px;
+  border-right: 3px solid #fff;
+}
+#group .leftTable td {
+  border-right: 3px solid #fff;
+}
+#group .leftTable td.studCol {
+  border-right: none;
+  padding-left: 10px;
+  font-size: 12px;
+  color: #333;
+  font-weight: bold;
+}
+#group .leftTable td.grade {
+  text-align: center;
+  font-weight: bold;
+}
+#group .leftTable td.failing {
+  color: #A10505;
+  background: none;
+}
+#group .leftTable td.passing {
+  color: #999A35;
+  background: none;
+}
+/*Create Groups */
+h2 {
+  color: #333;
+  margin: 0 0 3px 8px;
+  font-size: 12px;
+  text-transform: uppercase !important;
+}
+.datahighlight {
+  background-color: gold !important;
+}
+.datahighlight2 {
+  background-color: cyan !important;
+}
+.datahighlight3 {
+  background-color: orange !important;
+}
+.odd {
+  background-color: #f0f0f6;
+}
+.even {
+  background-color: #ffffff;
+}
+h3 {
+  color: #333;
+  margin: 0 0 3px 17px;
+  font-size: 12px;
+  text-transform: uppercase !important;
+}
+/* assignments */
+.bPageBlock {
+  background: #fff !important;
+  border: none;
+}
+.bEditBlock .pbHeader > table, .apexp .bPageBlock.apexDefaultPageBlock .pbHeader > table, #ep.bLayoutBlock .pbHeader > table {
+  border-bottom: none;
+}
+table.list {
+  margin-top: 45px;
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
+  width: 750px;
+}
+table.list th.headerRow {
+  background: #B5E3F2 !important;
+  color: #000 !important;
+  font-weight: normal;
+}
+table.list td {
+  color: #666 !important;
+  padding: 11px;
+}
+body .pbBody table.list tr th, body .pbBody table.list tr td {
+  border: 1px solid #999;
+}
+label {
+  margin: 0 15px 5px 0;
+}
+.detailList table.list {
+  margin: 0 0 45px 0;
+}
+.Custom92Tab .tertiaryPalette, .individualPalette .Custom92Block .tertiaryPalette, .layoutEdit .individualPalette .Custom92Block .tertiaryPalette {
+  background: none;
+}
+/* historical Data */
+#historicalData h3 {
+  display: block;
+  margin-top: 10px;
+}
+#historicalData .sidebarModule {
+  float: left;
+}
+#historicalData .main-content {
+  float: left;
+  padding-left: 25px;
+}
+#historicalData table {
+  border: none;
+  padding: 0;
+}
+#historicalData table th {
+  border: none;
+}
+#historicalData table td {
+  padding: 5px;
+  border: none;
+}
+#historicalData table td.subth {
+  font-weight: bold;
+  border-bottom: 1px solid #666;
+}
+#historicalData .main-content .tableWrapper table {
+  margin-top: 45px;
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
+  width: 100%;
+}
+#historicalData .main-content .tableWrapper table th {
+  background: #B5E3F2 !important;
+  color: #000 !important;
+  font-weight: bold !important;
+  border: none;
+  border-spacing: 0;
+  font-weight: normal;
+}
+#historicalData .main-content .tableWrapper table td {
+  color: #666 !important;
+  padding: 11px;
+  background: transparent;
+  border-bottom: 1px solid #ccc;
+}
+#historicalData .main-content .tableWrapper table tr th, body .pbBody table.list tr td {
+  border: 1px solid #67B2CE;
+}
+#historicalData .main-content .tableWrapper table {
+  margin: 0 0 45px 0;
+}
+#historicalData .main-content .tableWrapper table tr.highlight {
+  background: #ffffcc;
+}
+#historicalData .main-content .tableWrapper table tr:last-child {
+  border: none;
+}
+#historicalData .tableWrapper {
+  border-radius: 7px;
+  border: 1px solid #67B2CE;
+  overflow: hidden;
+  margin-bottom: 50px;
+}
+/*large modal */
+#new-points {
+	background:url(../images/modal_bkgd_big.png) 0 0 no-repeat;
+	padding:5px;
+	width:581px;
+}
+
+#new-points h2 {
+	display:block;
+	margin-bottom:10px;
+	margin-top:7px;
+}
+
+#new-points textarea {
+	width:300px;
+	height:53px;
+}
+
+#new-points .new-points-wrapper {
+	float:right;
+	width:263px;
+}
+
+#new-points p {
+	width:230px;
+	float:left;	
+	margin:0 0 0 10px;
+}
+
+#new-points p label {
+	font-weight:bold;
+	display:inline-block;
+	width:50px;
+}
+
+#new-points p select {
+	width:130px;
+}
+
+#new-points input.black_btn {
+	text-align:center;
+	float:right;
+	clear:right;
+	margin-right:41px;	
+	margin-top:5px;
+}
+
+#new-points a:hover {
+	text-decoration:none;
+}
+
+
+
+
+
+
+
+

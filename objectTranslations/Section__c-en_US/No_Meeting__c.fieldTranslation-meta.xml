@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Select if you do not want to schedule this section for a specific period. The section will display in the All Day grid. --></help>
+    <label><!-- No Meeting --></label>
+    <name>No_Meeting__c</name>
+</CustomFieldTranslation>

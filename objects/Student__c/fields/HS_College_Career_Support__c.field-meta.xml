@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>HS_College_Career_Support__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Teams will partner with school-based guidance counselors/college advisors to implement college &amp; career activities for 9th and 10th grade students.  The purpose of this pilot is to build a model for how to partner with college advisors and guidance departments to get students to high school graduation and beyond.</description>
+    <label>HS College &amp; Career Support</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

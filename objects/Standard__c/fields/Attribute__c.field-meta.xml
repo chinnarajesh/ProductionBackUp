@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Attribute__c</fullName>
+    <description>School has option of editing Attributes for their school.  Default picklist values are aligned to the Common Core of (Major, Minor, Anchor, Supporting, Additional).  Each school could modify these picklists values as needed, and upload their standards with specific Attributes.  If a school decides not to have any values, the default option of “All” will be presented.  The Attribute Field is visible on the “Create Assignment” page as a searchable field when initially searching for standards (you can see this now).  It will also be visible in the pop up box when selecting standards to grade.  Lastly, this field is available in the Advanced Analytics as a searchable field.</description>
+    <inlineHelpText>Customizable option to categorize standards.  Defaults align with Common Core and are visible on the &quot;Create Assignment&quot; page when selecting standards to grade and in the Gradebook Advanced Analytics as a searchable field.</inlineHelpText>
+    <label>Attribute</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Major</fullName>
+                <default>false</default>
+                <label>Major</label>
+            </value>
+            <value>
+                <fullName>Minor</fullName>
+                <default>false</default>
+                <label>Minor</label>
+            </value>
+            <value>
+                <fullName>Anchor</fullName>
+                <default>false</default>
+                <label>Anchor</label>
+            </value>
+            <value>
+                <fullName>Supporting</fullName>
+                <default>false</default>
+                <label>Supporting</label>
+            </value>
+            <value>
+                <fullName>Additional</fullName>
+                <default>false</default>
+                <label>Additional</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

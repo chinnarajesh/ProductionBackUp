@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Math_FAST</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(Assessment_Name__c = &quot;Florida Assessment of Student Thinking - Math&quot;,OR(Math_FAST__c &lt; 0,
+Math_FAST__c &gt; 800))</errorConditionFormula>
+    <errorMessage>Math Fast must be within the range of 0 to 800.</errorMessage>
+</ValidationRule>

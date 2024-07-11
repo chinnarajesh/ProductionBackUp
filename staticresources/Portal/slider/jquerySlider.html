@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+
+<style type="text/css">
+label, span{
+	font-weight:bold;
+}
+
+.redColor {
+	color:#ff0000;
+}
+
+.greenColor {
+	color:#093;
+}
+</style>
+
+<script type="text/javascript" src="jquery/jquery-1.5.2.min.js"></script>
+<script type="text/javascript">
+$.fn.setSlider = function (){
+	var goal = $("#goal").val();
+	var progress = $("#progress").val();
+	var total = $("#total").width();
+	
+	var goalPerc = (goal/total)*100;
+	var progressPerc = (progress/total)*100;
+	
+	$("#progressLbl").html(progressPerc+"%");
+	$("#goalLbl").html(goalPerc+"%");	
+	
+	$('#progressDiv').animate({
+    	width: goal+"px",
+  	}, 3000, function() {
+    	// Animation complete.
+  	});
+
+	$('#redDiv').animate({
+    	width: progress+"px",
+  	}, 3000, function() {
+    	// Animation complete.
+  	});	
+
+//	$("#progressDiv").css("width",progress+"px").animate("width",2000);
+	$("#redArrow").css ("marginLeft",(goal-10)+"px");
+	$("#greenArrow").css ("marginLeft",(progress-10)+"px");
+}
+
+$(document).ready(function() {
+	$('#progressDiv').animate({
+    	width: '400px',
+  	}, 3000, function() {
+    	// Animation complete.
+  	});
+	
+	$('#redDiv').animate({
+    	width: '360px',
+  	}, 3000, function() {
+    	// Animation complete.
+  	});	
+});
+</script>
+</head>
+
+<body>
+<br />
+<div id="total" style="background:url('scale.png') #cccccc; width: 500px; height: 30px; border:2px solid #666666;">
+	<div id="progressDiv" style="background:url('scale.png') red; width: 0px; height: 30px;">
+		<div id="redDiv" style="background:url('scale.png') green; width: 0px; height: 30px;">
+   			<div id="redArrow" style="margin-left:390px;">
+            	<img src="red.png" style="margin-top:-13px; float:left;" />
+               	<label style="float:left; margin-top:-31px;">Goal:<span id="goalLbl" class="redColor" style="margin-top:-31px;">75</span>                </label>
+            </div>
+		</div>
+		<div id="greenArrow" style="margin-left:350px;">
+	    	<img src="green.png" /><br />
+        	<label>Progress:</label><span id="progressLbl" class="greenColor">75</span>
+        </div>
+    </div>
+</div>
+
+<br />
+<br />
+<br />
+
+<form>
+	Goal:<input type="text" id="goal" /><br /><br />
+    Progress:<input type="text" id="progress" /><br /><br />
+    
+    <input type="button" id="setSliderbtn" value="Set Slider" onclick="$(this).setSlider();" />
+</form>
+</body>
+</html>

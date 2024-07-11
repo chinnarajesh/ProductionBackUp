@@ -247,7 +247,8 @@
 <!--			</div>-->
 <!--			<br/>-->
 										
-			<apex:outputLabel value="In School/Extended Learning/Curriculum:" for="inAfterID" /> <br/>
+			<apex:outputLabel value="In School/Extended Learning/In School + ELT:" for="inAfterID" /> <br/>
+			<!-- <apex:outputLabel value="All Day/Extended Learning:" for="inAfterID" /> <br/> -->
 			<div class="requiredInput">
 				<div class="requiredBlock"></div>
 				<apex:inputField id="inAfterID"  value="{!sectionHolder.In_After_School__c}" />

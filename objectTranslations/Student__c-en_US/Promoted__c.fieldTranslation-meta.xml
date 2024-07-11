@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Indicates whether or not the student has been promoted to the next grade level. SchoolForce uses this field to determine what grade level to assign to next year&apos;s Student record. This field is updated by the EOY Wizard and you can manually update it. --></help>
+    <label><!-- Promoted --></label>
+    <name>Promoted__c</name>
+</CustomFieldTranslation>

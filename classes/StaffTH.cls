@@ -129,7 +129,7 @@ public with sharing class StaffTH {
 				}
 			}
 		}
-
+        System.debug('processStaff'+processStaff);
 		if(!processStaff.isEmpty()){
 			//get section record type
 			Id sectionRTId = CT_core_SoqlUtils.getRecordTypeIdBySobject('Section__c','Intervention Section');

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- If the student has a disability, this field defines the student&apos;s primary disability. --></help>
+    <label><!-- Primary Disability --></label>
+    <name>Primary_Disability__c</name>
+    <picklistValues>
+        <masterLabel>AUT - Autism</masterLabel>
+        <translation><!-- AUT - Autism --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>DB - Deaf-Blindness</masterLabel>
+        <translation><!-- DB - Deaf-Blindness --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>DD - Developmental Delay</masterLabel>
+        <translation><!-- DD - Developmental Delay --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>EMN - Emotional Disturbance</masterLabel>
+        <translation><!-- EMN - Emotional Disturbance --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>HI - Hearing Impairment</masterLabel>
+        <translation><!-- HI - Hearing Impairment --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>MD - Multiple Disabilities</masterLabel>
+        <translation><!-- MD - Multiple Disabilities --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>MR - Mental Retardation</masterLabel>
+        <translation><!-- MR - Mental Retardation --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>OHI - Other Health Impairment</masterLabel>
+        <translation><!-- OHI - Other Health Impairment --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>OI - Orthopedic Impairment</masterLabel>
+        <translation><!-- OI - Orthopedic Impairment --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SLD - Specific Learning Disability</masterLabel>
+        <translation><!-- SLD - Specific Learning Disability --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SLI - Speech or Language Impairment</masterLabel>
+        <translation><!-- SLI - Speech or Language Impairment --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>TBI - Traumatic Brain Injury</masterLabel>
+        <translation><!-- TBI - Traumatic Brain Injury --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>VI - Visual Impairment</masterLabel>
+        <translation><!-- VI - Visual Impairment --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

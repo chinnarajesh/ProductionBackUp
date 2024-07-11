@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Leave this check box selected if staff members will take daily or sectional attendance in this section. This field determines whether or not this section is available in the Attendance Wizard. --></help>
+    <label><!-- Record Attendance --></label>
+    <name>Record_Attendance__c</name>
+</CustomFieldTranslation>

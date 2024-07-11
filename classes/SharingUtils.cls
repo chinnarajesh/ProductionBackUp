@@ -4,7 +4,7 @@ public class SharingUtils {
 		These are the same strings that make up the picklist on Indicator Area
 	*/
 	public static final String MATH = 'Math';
-	public static final String BEH = 'Behavior';
+	public static final String SEL = 'SEL/SED';
 	public static final String ATT = 'Attendance';
 	public static final String ELA = 'ELA/Literacy';
 	
@@ -277,13 +277,13 @@ public class SharingUtils {
 				if(students.containsKey(ias.Student__c)){
 					if(toAdd){
 						if(iaType==MATH) students.get(ias.Student__c).Math__c++;
-						else if(iaType==BEH) students.get(ias.Student__c).Behavior__c++;
+						else if(iaType==SEL) students.get(ias.Student__c).Behavior__c++;
 						else if(iaType==ATT) students.get(ias.Student__c).Attendance__c++;
 						else if(iaType==ELA) students.get(ias.Student__c).ELA_Literacy__c++;
 					}
 					else{
 						if(iaType==MATH) students.get(ias.Student__c).Math__c--;
-						else if(iaType==BEH) students.get(ias.Student__c).Behavior__c--;
+						else if(iaType==SEL) students.get(ias.Student__c).Behavior__c--;
 						else if(iaType==ATT) students.get(ias.Student__c).Attendance__c--;
 						else if(iaType==ELA) students.get(ias.Student__c).ELA_Literacy__c--;
 					}

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Exclude_Course_from_GPA__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Based on value on Course - but needs to be stored locally so we can use in Rollups on Student</description>
+    <label>Exclude Course from GPA?</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

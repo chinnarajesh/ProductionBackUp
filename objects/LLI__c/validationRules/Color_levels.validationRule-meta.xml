@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Color_levels</fullName>
+    <active>false</active>
+    <errorConditionFormula>NOT(
+OR(
+ISBLANK(LLI_Color_System__c),REGEX(LLI_Color_System__c ,&quot;([Blue, Gold, Purple, Red,Teal-])*&quot;)))</errorConditionFormula>
+    <errorDisplayField>LLI_Color_System__c</errorDisplayField>
+    <errorMessage>Color Levels must be one of the following: Bluc, Gold, Purple, Red or Teal</errorMessage>
+</ValidationRule>

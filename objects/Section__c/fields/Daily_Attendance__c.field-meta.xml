@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Daily_Attendance__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>This should be checked if this section is recording daily attendance rather than sectional attendance.</description>
+    <inlineHelpText>Select if staff members will take daily attendance in this section. The section will display in the All Day grid and you will not be able to add it to a specific period in your schedule. You must also select the Record Attendance check box.</inlineHelpText>
+    <label>Daily Attendance?</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

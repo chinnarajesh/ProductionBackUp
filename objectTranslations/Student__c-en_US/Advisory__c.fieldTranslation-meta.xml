@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Displays the advisory to which the student is assigned. You can click on the advisory link to see all students related to the advisory section. --></help>
+    <label><!-- Advisory --></label>
+    <name>Advisory__c</name>
+    <relationshipLabel><!-- Students (Advisory) --></relationshipLabel>
+</CustomFieldTranslation>

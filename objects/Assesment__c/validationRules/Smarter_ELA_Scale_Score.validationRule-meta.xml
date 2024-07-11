@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Smarter_ELA_Scale_Score</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(Assessment_Name__c = &quot;Smarter Balanced - ELA&quot;,
+OR(Scale_Score__c &lt; 2000,
+Scale_Score__c &gt; 3000))</errorConditionFormula>
+    <errorDisplayField>Scale_Score__c</errorDisplayField>
+    <errorMessage>Scaled Score must be within the range of 2000 to 3000.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Assessment_Types</fullName>
+    <columns>CREATED_DATE</columns>
+    <columns>Indicator_Area__c</columns>
+    <columns>NAME</columns>
+    <columns>Fieldset__c</columns>
+    <columns>X18_character_salesforce_ID__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Picklist_Value__c.Assessment_Type</value>
+    </filters>
+    <label>Assessment Types</label>
+</ListView>

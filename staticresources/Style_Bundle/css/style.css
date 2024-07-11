@@ -1,0 +1,349 @@
+/****************** LookThink ********************
+************    TABLE OF CONTENTS    *************
+**************************************************
+
+								$Overall
+								$buttons
+								$assignments
+								$GradebookLandingPage
+*************************************************/
+
+
+
+/**************************************************
+								$overall
+*************************************************/
+#schoolforce-wrapper{
+	margin: 0 auto;
+	font-family: "Segoe UI", sans-serif !important;
+} 
+
+#schoolforce-wrapper h5 {
+	display:block;
+}
+
+span.dateFormat a {
+	margin-left:0px !important;
+}
+
+#schoolforce-wrapper h1 {
+	margin-left:18px;
+}
+
+#schoolforce-wrapper h4 {
+	color:#666666;
+}
+
+#schoolforce-wrapper h5 {
+	font-size:15px;
+	color:#1797BF;
+	font-weight:bold;
+	text-transform:uppercase;
+	margin-bottom:15px;
+}
+
+#schoolforce-wrapper p {
+	margin-top:10px;
+}
+
+#schoolforce-wrapper .content {
+	padding:0 15px 5px 15px;
+	border: none;
+}
+
+#schoolforce-wrapper input[type="text"] {
+	padding: 1px 5px 1px 5px;
+}
+
+#schoolforce-wrapper select {
+	width: auto;
+}
+
+#schoolforce-wrapper textarea {
+	width:100%;
+	padding:5px;
+}
+
+#schoolforce-wrapper table {
+	width:100%;
+	margin: 0 15px 15px 0;
+	border-radius: 0px;
+}
+
+#schoolforce-wrapper table tr {
+	height:15px;
+}
+
+#schoolforce-wrapper table td {
+	border:none;
+}
+
+#schoolforce-wrapper table thead {
+	height:25px;
+}
+/**************************************************
+								$assignments
+*************************************************/
+
+body .pbBody table.list tr th,
+body .pbBody table.list tr td { 
+	border:1px solid #bbbbbb;
+}
+/*---Floats--*/
+
+#schoolforce-wrapper .right {
+	float: right;
+	width: auto;
+}
+
+ #schoolforce-wrapper .left {
+	float: left;
+	width: auto;
+}
+
+hr {
+	border-style: none none dotted;
+	border-bottom: 1px #bbbbbb dotted;
+	background: none;
+}
+
+/*---Columns--*/
+
+.weekend {
+	background: #C0C0C0;
+}
+
+.content-column {
+	float: left;
+	background: #fff;
+	width: auto;
+	margin: 25px 20px 25px 0;
+}
+
+.content-column-2 {
+	background: #fff;
+	width: auto;
+	margin: 25px 40px 25px 75px;
+}
+	
+.half-column-left {
+	float: left;
+	background: #fff;
+	width: 325px;
+	height: 100%;
+	margin: 25px 0 15px 0;
+	padding: 0 0 15px 25px;
+}
+
+.half-column-right {
+	float: left;
+	background: #fff;
+	width: 325px;
+	height: 100%;
+	margin: 25px 0px 25px 25px;
+	padding: 0 0 15px 15px;
+}
+
+.last-column {
+	float: left;
+	background: #fff;
+	width: 400px;
+	height: 100%;
+	margin: 25px 0px 25px 35px;
+	padding: 0 0 15px 0;
+
+}
+
+.half-column-wide {
+	float: left;
+	background: #fff;
+	width: 425px;
+	height: 100%;
+	margin: 25px 0 15px 0;
+	padding: 0 0 15px 25px;
+
+}
+
+.column-list-middle {
+	float: left;
+	background: #fff;
+	width: 200px;
+	height: 100%;
+	margin: 25px 0 25px 0;
+	padding: 0 0 15px 20px;
+}
+
+#select-student {
+	margin: 0 25px 0 30px;
+}
+
+/*---Content Containers--*/
+
+.content-list {
+	border: 1px solid #dcdcdc;
+	padding: 10px;
+	width: auto;
+}
+
+.section-header {
+  	width: 100%;
+	display: inline-block;
+	padding: 5px 0 5px 0;
+	color: #fff;
+	text-align: center;
+	font-size: 13px;
+	font-weight: bold;
+	border-top-left-radius: 10px 5px;
+	border-top-right-radius: 10px;
+	background-image: linear-gradient(bottom, #008BBD 34%, #00B9D1 100%);
+	background-image: -o-linear-gradient(bottom, #008BBD 34%, #00B9D1 100%);
+	background-image: -moz-linear-gradient(bottom, #008BBD 34%, #00B9D1 100%);
+	background-image: -webkit-linear-gradient(bottom, #008BBD 34%, #00B9D1 100%);
+	background-image: -ms-linear-gradient(bottom, #008BBD 34%, #00B9D1 100%);
+}
+
+.field {
+	background: #dcdcdc;
+	width: 100%;
+	padding: 5px 0 5px 0;
+}
+
+.field select {
+	margin-left: 5px;
+}
+
+.box-right {
+	width: 300px;
+	display: block;
+	float: right;
+}
+
+.box-left {
+	width: 300px;
+	display: block;
+	float: left;
+}
+
+.bigbox-left {
+	width: 500px;
+	display: block;
+	float: left;
+}
+
+.table-box {
+	overflow: auto; 
+	height: 200px;	
+}
+
+.move-selection {
+	float: left;
+	width: auto;
+	margin: 80px 40px 0px 40px;
+}
+
+/*---Buttons--*/
+
+.arrow_btn {
+	cursor: pointer; 
+	width: auto; 
+	font-weight: normal; 
+	padding: 10px 5px 3px 5px; 
+	border-radius:5px !important; 
+	border:none !important;  
+	text-transform:uppercase !important;
+	color:#fff !important; 
+	background: #666666; /* Old browsers */
+	background: -moz-linear-gradient(top,  #999999 0%, #666666 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#999999), color-stop(100%,#666666)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #999999 0%,#666666 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #999999 0%,#666666 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #999999 0%,#666666 100%); /* IE10+ */
+	background: linear-gradient(top,  #999999 0%,#666666 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#999999', endColorstr='#666666',GradientType=0 ); /* IE6-8 */
+}
+	
+.drk_blue_btn { 
+	margin-left:0; 
+}
+
+.grey_btn {
+	margin-left:0; 
+}
+
+/*---Modal Overlay--*/
+#lean_overlay {
+    position: fixed;
+    z-index:100;
+    top: 0px;
+    left: 0px;
+    height:100%;
+    width:100%;
+    background: #000;
+    display: none;
+}
+
+.modal_close { 
+	position: absolute; 
+	top: 12px;
+	right: 12px;
+	display: block;
+	width: 16px;
+	height: 16px;
+	background: url(../images/btn_close.png);
+	z-index: 2; }
+
+ .modal_window {
+    width: 695px;
+	padding: 0 30px; 
+    display:none;
+	background: #FFF;
+    border-radius: 5px; 
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+    box-shadow: 0px 0px 4px rgba(0,0,0,0.7);
+	-webkit-box-shadow: 0 0 4px rgba(0,0,0,0.7); 
+	-moz-box-shadow: 0 0px 4px rgba(0,0,0,0.7); 
+	 /* top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    margin-left: auto !important;  */
+}
+
+#select-student,
+#add-student table {
+	border: none;
+}	
+
+.right-selector {
+	margin-top:10px;
+	margin-left:10px;	
+}
+@media screen and (max-width:900px){
+	.modal_window{
+		width: 100% !important;
+		left: 0 !important;
+		margin-left: 0 !important;
+		/*top: 4px !important;*/
+	}
+	/* .content{
+		height: 300px ;
+	} */
+
+}
+ @media screen and (max-width:1400px){
+	.modal_window{
+		width: 100% !important;
+		left: 0 !important;
+		margin-left: 0 !important;
+	}
+	 /* .content{
+		height: 300px ;
+	}  */
+} 
+/* @media screen and (max-width:1800px){
+	.modal_window{
+		width: 100% !important;
+		left: 0 !important;
+		margin-left: 0 !important;
+	}
+} */

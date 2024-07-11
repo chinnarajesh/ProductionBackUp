@@ -141,7 +141,11 @@ public with sharing class Gradebook_Wrapper_v2 {
         Map<ID, List<SelectOption>> aOptions = new Map<ID, List<SelectOption>>();
         Map<ID, List<SelectOption>> atOptions = new Map<ID, List<SelectOption>>();
         Map<ID, Set<SelectOption>>  atSetOptions = new Map<ID, Set<SelectOption>>();
-        
+        ////// added by juturi rajesh ///////
+        // check the selected section students in section
+        List<Student_Section__c> studentsection = [select id,name from Student_Section__c where Section__c =: section.ID];
+       
+        ////// ended by juturi rajesh/////
         //concept of an 'active' assignment doesn't exist.  but we will check for student sections
         for(Assignment__c a : [SELECT ID, Name, Name_in_Gradebook__c, Due_Date__c, Weighting_Value__c, Color__c, Possible_Points__c, Picklist_Value__c, Picklist_Value__r.Name, Standard_Scale__c, Standard_Scale__r.Name, Assignment_Library__c, Assignment_Library__r.Picklist_Value__c, Assignment_Library__r.Picklist_Value__r.Name, Time__c, Time__r.Name__c, Description__c FROM Assignment__c WHERE Section__c =: section.ID ORDER BY Due_Date__c DESC]) {
             if(!hasAssignment) {
@@ -257,9 +261,14 @@ public with sharing class Gradebook_Wrapper_v2 {
             //something along the lines there are no assignment for any rps in this section
             System.debug('cYear##'+cYear);
             System.debug('aYear##'+aYear);
-            if(cYear == aYear) {
+            if(studentsection.isEmpty()){
+                Error_Handling.errorMessage('Please enroll students into your Gradebook sections first.');
+             }
+             else if(cYear == aYear) {
                 //ApexPages.addMessage(new apexPages.Message(apexPages.Severity.WARNING, 'There are no assignments created in this section for any reporting period!  Please create an assignment.'));            
-                ApexPages.addMessage(new apexPages.Message(apexPages.Severity.WARNING, 'Please enroll your students in the sections before you can create assigments'));            
+                //ApexPages.addMessage(new apexPages.Message(apexPages.Severity.WARNING, 'Please enroll your students in the sections before you can create assigments'));            
+                ApexPages.addMessage(new apexPages.Message(apexPages.Severity.WARNING, 'Assignments must be created before viewing enrolled students'));            
+
             }
             else {
                 ApexPages.addMessage(new apexPages.Message(apexPages.Severity.WARNING, 'There are no assignments created in this section for any reporting period!'));          

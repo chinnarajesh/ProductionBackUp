@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Select this option to display the weighted GPA on Report Cards and Progress Reports --></help>
+    <label><!-- Display Weighted GPA on Documents --></label>
+    <name>Display_Weighted_GPA_on_Documents__c</name>
+</CustomFieldTranslation>

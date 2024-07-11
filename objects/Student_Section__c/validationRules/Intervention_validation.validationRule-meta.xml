@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Intervention_validation</fullName>
+    <active>true</active>
+    <description>an intervention validation that an exit date cannot be before the intervention section start date</description>
+    <errorConditionFormula>Enrollment_Start_Date__c &gt; Enrollment_End_Date__c</errorConditionFormula>
+    <errorDisplayField>Intervention_Enrollment_Start_Date__c</errorDisplayField>
+    <errorMessage>Intervention Exit Date cannot be before Intervention Enrollment Start Date.</errorMessage>
+</ValidationRule>

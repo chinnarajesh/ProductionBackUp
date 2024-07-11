@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Show_Points_Balance_in_Portal__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>This field determines whether or not to display the student&apos;s points balance in the student portal.</description>
+    <inlineHelpText>This will display the points balance of a student in portal.</inlineHelpText>
+    <label>Show Points Balance in Portal</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

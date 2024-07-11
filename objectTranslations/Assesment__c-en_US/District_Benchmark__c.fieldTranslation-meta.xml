@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- District Benchmark --></label>
+    <name>District_Benchmark__c</name>
+    <picklistValues>
+        <masterLabel>Needs Improvement</masterLabel>
+        <translation><!-- Needs Improvement --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Needs Much Improvement</masterLabel>
+        <translation><!-- Needs Much Improvement --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>On Target</masterLabel>
+        <translation><!-- On Target --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

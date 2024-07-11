@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Admission_Code__c</fullName>
+    <inlineHelpText>Displays the admission code assigned to the student.</inlineHelpText>
+    <label>Admission Code</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Re-Admitted in same school.</fullName>
+                <default>false</default>
+                <label>Re-Admitted in same school.</label>
+            </value>
+            <value>
+                <fullName>New - No prior school experience.</fullName>
+                <default>false</default>
+                <label>New - No prior school experience.</label>
+            </value>
+            <value>
+                <fullName>New - From Outside DC.</fullName>
+                <default>false</default>
+                <label>New - From Outside DC.</label>
+            </value>
+            <value>
+                <fullName>New - From Private DC School.</fullName>
+                <default>false</default>
+                <label>New - From Private DC School.</label>
+            </value>
+            <value>
+                <fullName>Transfer Within LEA.</fullName>
+                <default>false</default>
+                <label>Transfer Within LEA.</label>
+            </value>
+            <value>
+                <fullName>Re-Admitted After Withdrawal.</fullName>
+                <default>false</default>
+                <label>Re-Admitted After Withdrawal.</label>
+            </value>
+            <value>
+                <fullName>Assessment for Special Education.</fullName>
+                <default>false</default>
+                <label>Assessment for Special Education.</label>
+            </value>
+            <value>
+                <fullName>Entry from other LEA.</fullName>
+                <default>false</default>
+                <label>Entry from other LEA.</label>
+            </value>
+            <value>
+                <fullName>Scheduling Purposes only</fullName>
+                <default>false</default>
+                <label>Scheduling Purposes only</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

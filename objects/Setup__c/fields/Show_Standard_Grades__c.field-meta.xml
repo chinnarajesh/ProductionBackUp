@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Show_Standard_Grades__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Check this to display Standard or Strand grades on Progress Reports/Report Cards</description>
+    <inlineHelpText>Check this to display Standard or Strand grades on Progress Reports/Report Cards</inlineHelpText>
+    <label>Show Standard Grades</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

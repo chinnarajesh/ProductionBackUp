@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Status_Category__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(TEXT(Picklist_Value__r.Category__c)=&apos;Absent&apos;,
+	IF(Picklist_Value__r.Is_Unexcused__c,&apos;Unexcused Absence&apos;,&apos;Excused Absence&apos;),
+	IF(TEXT(Picklist_Value__r.Category__c)=&apos;Partial&apos;,
+		IF(AND(Picklist_Value__r.Is_Tardy__c,NOT(Picklist_Value__r.Is_Early_Departure__c)),
+			IF(Picklist_Value__r.Is_Unexcused__c,&apos;Unexcused Tardy&apos;,&apos;Excused Tardy&apos;),
+			IF(AND(Picklist_Value__r.Is_Early_Departure__c,NOT(Picklist_Value__r.Is_Tardy__c)),
+				IF(Picklist_Value__r.Is_Unexcused__c,&apos;Unexcused Early Departure&apos;,&apos;Excused Early Departure&apos;),
+				IF(AND(Picklist_Value__r.Is_Early_Departure__c,Picklist_Value__r.Is_Tardy__c),
+					IF(Picklist_Value__r.Is_Unexcused__c,&apos;Unexcused Tardy and Early Departure&apos;,&apos;Excused Tardy and Early Departure&apos;),
+					TEXT(Picklist_Value__r.Category__c)
+				)
+			)
+		),
+		IF(OR(ISNULL(TEXT(Picklist_Value__r.Category__c)), ISBLANK(TEXT(Picklist_Value__r.Category__c))),
+			&apos;UNKNOWN&apos;,
+			TEXT(Picklist_Value__r.Category__c)
+		)
+	)
+)</formula>
+    <label>Status Category</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

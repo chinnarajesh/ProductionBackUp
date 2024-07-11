@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Required_Program__c</fullName>
+    <defaultValue>false</defaultValue>
+    <inlineHelpText>Is this Program required for your school or organization? Administrators can select whether Programs should be required or not. If yes, then each school will automatically be associated with this Program. Schools can opt of required Programs.</inlineHelpText>
+    <label>Required Program</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

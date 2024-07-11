@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Truncated Intervention System Auto Number --></help>
+    <label><!-- Intervention Section Number --></label>
+    <name>Intervention_Section_Number__c</name>
+</CustomFieldTranslation>

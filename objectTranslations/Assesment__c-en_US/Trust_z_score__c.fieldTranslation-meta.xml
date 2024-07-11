@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Signed numbers, largely from -3.000 to +3.000 --></help>
+    <label><!-- Trust z-score --></label>
+    <name>Trust_z_score__c</name>
+</CustomFieldTranslation>

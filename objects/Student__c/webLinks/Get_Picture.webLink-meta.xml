@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Get_Picture</fullName>
+    <availability>online</availability>
+    <description>This takes the picture out of the static resource and makes it editable</description>
+    <displayType>button</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <height>600</height>
+    <linkType>url</linkType>
+    <masterLabel>Get Picture</masterLabel>
+    <openType>sidebar</openType>
+    <protected>false</protected>
+    <url>{!Student__c.RT_Picture__c}  = {!Student__c.Student_Picture__c}</url>
+</WebLink>

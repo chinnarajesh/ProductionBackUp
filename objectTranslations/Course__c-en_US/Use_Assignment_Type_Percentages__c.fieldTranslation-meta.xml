@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Select if you want SchoolForce to weigh the assignment types using a percentage. For example, you can designate Homework as worth 30% of a student&apos;s section grade. --></help>
+    <label><!-- Use Assignment Type Percentages --></label>
+    <name>Use_Assignment_Type_Percentages__c</name>
+</CustomFieldTranslation>

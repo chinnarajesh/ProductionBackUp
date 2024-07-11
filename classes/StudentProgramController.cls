@@ -375,7 +375,7 @@ public with sharing class StudentProgramController {
 		}
 
 		freqChecks.clear();
-		sectionHolder = new Section__c();
+		//sectionHolder = new Section__c();
 		stuSecHolder = new Student_Section__c();
 		if(selectedProgram != null && programMap != null){
 			Program__c currentProgram = programMap.get(selectedProgram);
@@ -531,7 +531,7 @@ public with sharing class StudentProgramController {
 //			errors.add('Section Frequency is required');
 //		}
 		if(sectionHolder.In_After_School__c == null){
-			errors.add('In School/Extended Learning/Curriculum is required');
+			errors.add('In School/Extended Learning/All Day is required');
 		}		
 //		if(sectionHolder.Target_Dosage_Section_Goal__c == null){
 ////			errors.add('Target Dosage (Section Goal) is required');

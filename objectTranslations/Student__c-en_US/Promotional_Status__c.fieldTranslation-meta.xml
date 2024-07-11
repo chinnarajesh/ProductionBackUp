@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Displays the status of the student&apos;s advancement to the next grade level. This field displays in the Promotional Status field on progress reports and report cards. --></help>
+    <label><!-- Promotional Status --></label>
+    <name>Promotional_Status__c</name>
+    <picklistValues>
+        <masterLabel>NA</masterLabel>
+        <translation><!-- NA --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Potential for Promotion with Recovery</masterLabel>
+        <translation><!-- Potential for Promotion with Recovery --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Promoted</masterLabel>
+        <translation><!-- Promoted --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Retained</masterLabel>
+        <translation><!-- Retained --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

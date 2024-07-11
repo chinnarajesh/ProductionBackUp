@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Meals Setup</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Meals Setup</value>
+    </caseValues>
+    <layouts>
+        <layout>Meals Setup Layout</layout>
+        <sections>
+            <label><!-- Additional Reimbursements --></label>
+            <section>Additional Reimbursements</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Federal Reimbursement --></label>
+            <section>Federal Reimbursement</section>
+        </sections>
+        <sections>
+            <label><!-- Meal Prices --></label>
+            <section>Meal Prices</section>
+        </sections>
+        <sections>
+            <label><!-- State Reimbursement --></label>
+            <section>State Reimbursement</section>
+        </sections>
+        <sections>
+            <label><!-- Student Statistics --></label>
+            <section>Student Statistics</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

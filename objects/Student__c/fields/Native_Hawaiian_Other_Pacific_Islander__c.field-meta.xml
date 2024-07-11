@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Native_Hawaiian_Other_Pacific_Islander__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF( INCLUDES(Race_Multi__c, &apos;Native Hawaiian/Other Pacific Islander&apos;), &apos;Yes&apos;, &apos;No&apos;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>This field is not used by SchoolForce, but you can use it for reporting purposes.</inlineHelpText>
+    <label>Native Hawaiian/Other Pacific Islander</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

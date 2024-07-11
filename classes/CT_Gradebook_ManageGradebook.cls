@@ -530,7 +530,6 @@ public class CT_Gradebook_ManageGradebook {
 		        	studentIDs.add(ss.Student__c);
 		        }
 		    }
-
 		    //Summer 2014: iteration 2 - no point in going forward.  Save on SOQL Limitation		    
 		    for(Grade__c g: [SELECT Id, Standards_Only_Grading__c,
                                     Strand_Grade__c,
@@ -559,8 +558,11 @@ public class CT_Gradebook_ManageGradebook {
                                     Entered_Grade__c
                                     FROM Grade__c WHERE (Student__c IN :studentIDs AND Student_Section__r.Active__c = true) 
                                     	OR Student_section__c IN :newssmap.keyset()]){
-		    	
+                                            System.debug('gradeStudentId++'+g.Student__c);
+                                            System.debug('g.Student_Section__r++'+ g.Student_Section__r.Active__c);
+                                             System.debug('studentIDs++'+studentIDs);
 		    	if(studentIDs.contains(g.Student__c) && g.Student_Section__r.Active__c){
+                    System.debug('check first condition');
 			    	//by using a key of AssignmentID + StandardID OR 'Null' + 'TRUE'(if there is a grade lookup) OR 'FALSE' (no grade lookup) 
 			    	//we ensure that no duplicate grades are created, we need the standardID/standard_gradebook_grade field check in order 
 			    	//added && Assignment__c != null to keep null lookup grades to duplicate and break gradebooks - JW 1/30
@@ -580,9 +582,8 @@ public class CT_Gradebook_ManageGradebook {
 		    	if(newssmap.containsKey(g.Student_section__c)){
 		    		//make sure we don't make existing grades over again   		
 		 			existingGradeKey.add(string.valueOf(g.Student_Section__c) + string.valueOf(g.Assignment__c) + string.valueOf(g.Standard__c));
-		    	}		        
+		    	}
 		    }
-			    
 		    if(sectionToGradeListMap.keyset().size()>0){
 		        Map<String, Strand_Grade__c> strandMap  = new Map<String, Strand_Grade__c>();
 		        Map<String, Standard_Grade__c> standardMap = new Map<String, Standard_Grade__c>();
@@ -646,7 +647,7 @@ public class CT_Gradebook_ManageGradebook {
 		        boolean finalRepPeriod;
 		        for(Student_Section__c ss: newssmap.values()){
 		            if(sectionToGradeListMap.get(ss.section__c)!=null){
-		                
+		             
 		                    for(Grade__c g: sectionToGradeListMap.get(ss.section__c)){
 		                            if((!existingGradeKey.contains(string.valueOf(ss.id)+string.valueOf(g.assignment__c)+string.valueOf(g.Standard__c)))&&(g.Standard_Gradebook_Grade__c==null)&&(g.Assignment__c!=null)){
 		                            Grade__c temp = new Grade__c();
@@ -678,11 +679,10 @@ public class CT_Gradebook_ManageGradebook {
 		                }
 		            }
 		        }
-		        
 		        try{
 		        	system.debug(gradesToInsert.size());
 		            insert gradesToInsert;
-		            if(core_TriggerUtils.setupBaseInfo().activeSetup.Standards_ONLY_Gradebook__c){
+		            if(core_TriggerUtils.setupBaseInfo() !=null && core_TriggerUtils.setupBaseInfo().activeSetup.Standards_ONLY_Gradebook__c){
 		            	List<Grade__c> fauxGradesToInsert = new List<Grade__c>();
 			            for(Grade__c g: gradesToInsert){
 			            	if(g.Standard__c!=null){

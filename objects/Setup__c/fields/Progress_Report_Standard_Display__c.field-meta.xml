@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Progress_Report_Standard_Display__c</fullName>
+    <description>This determines how &quot;Standards Only&quot; school&apos;s progress reports display standard or strand grades</description>
+    <label>Progress Report Standard Display</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Standards</fullName>
+                <default>true</default>
+                <label>Standards</label>
+            </value>
+            <value>
+                <fullName>Strands</fullName>
+                <default>false</default>
+                <label>Strands</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Counselor__c</fullName>
+    <externalId>false</externalId>
+    <inlineHelpText>The Counselor  will appear on the Transcript. Please enter the name exactly as you want it to appear on the transcript, &quot;Ms. Alice Jones&quot; or &quot;Alice Jones.&quot;</inlineHelpText>
+    <label>Counselor</label>
+    <length>255</length>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

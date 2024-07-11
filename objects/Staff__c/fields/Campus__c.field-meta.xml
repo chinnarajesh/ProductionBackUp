@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Campus__c</fullName>
+    <label>Campus</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>DC-Georgia Ave</fullName>
+                <default>false</default>
+                <label>DC-Georgia Ave</label>
+            </value>
+            <value>
+                <fullName>Kansas</fullName>
+                <default>false</default>
+                <label>Kansas</label>
+            </value>
+            <value>
+                <fullName>Organization</fullName>
+                <default>false</default>
+                <label>Organization</label>
+            </value>
+            <value>
+                <fullName>Base School</fullName>
+                <default>false</default>
+                <label>Base School</label>
+            </value>
+            <value>
+                <fullName>Campus</fullName>
+                <default>false</default>
+                <label>Campus</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

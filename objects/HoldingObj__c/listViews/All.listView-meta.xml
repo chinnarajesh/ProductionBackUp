@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All</fullName>
+    <columns>CREATEDBY_USER</columns>
+    <columns>Type__c</columns>
+    <columns>OBJECT_ID</columns>
+    <columns>Propagated__c</columns>
+    <columns>Student_Id__c</columns>
+    <columns>School_Year__c</columns>
+    <columns>DOB__c</columns>
+    <columns>First_Name__c</columns>
+    <columns>Class_Id__c</columns>
+    <columns>Error_Message__c</columns>
+    <columns>LAST_UPDATE</columns>
+    <columns>NAME</columns>
+    <columns>School_Dbn__c</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>Admission_Date__c</columns>
+    <filterScope>Everything</filterScope>
+    <label>All</label>
+</ListView>

@@ -21,8 +21,29 @@
         .show {
             display: block;
         }
+        #screen{
+            display: none;
+        }
+        .dataTables_filter {
+            display: none;
+        }
+    #loading-spinner {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        margin-left: 70vh;
+        width: 30px;
+      }
+
     </style>
     <script type="text/javascript">
+     var finalStudents ="";
+     var checkedIds = [];
+     var selectedIds = "";
+     var selectedcheckIds ="";
+     
+     var uncheckedStudentList="";
+       j$ = jQuery.noConflict();
         var generated = false;
         var hasChanges = false;
         var CITY = CITY || {};
@@ -37,22 +58,117 @@
         function setFocusOnLoad() {}
 
         function selectAllCheckboxes(obj,receivedInputID){
+            console.log('receivedInputID '+receivedInputID);
+            console.log('obj '+obj.checked);
+            var conditionValue=obj.checked;
+            if(obj.checked==true){
+                checkedAnsUnchekedJS(conditionValue);
+            }
+            else {
+                checkedAnsUnchekedJS(conditionValue);
+            }
             var inputCheckBox = document.getElementsByTagName("input");
             for(var i=0; i<inputCheckBox.length; i++){
                 if(inputCheckBox[i].id.indexOf(receivedInputID)!=-1){
                     inputCheckBox[i].checked = obj.checked;
                 }
             }
+              if (selectedIds && selectedIds.length > 0) {
+                selectedIds = '';
+               } 
+            else {
+                let table = document.getElementById("StudentTable");
+                    for (let i = 1; i < table.rows.length; i++) {
+                        checkedIds.push(table.rows[i].id);
+                    }
+                }
+               finalStudents='';
+               checkedIds.forEach(function(studentsetId) {
+               finalStudents+=studentsetId;
+                 });
+                console.log('finalStudents '+finalStudents);
+
             showConfirmAndHideDownload();
         }
 
-        function showConfirmAndHideDownload() {
+        function showConfirmAndHideDownload(obj,selectedId) {
+            var checkFlag =true;
+           console.log('obj++ '+obj.checked);
             var confirmElement = document.getElementById('btnConfirm');
             confirmElement.style = 'display:block';
             var downloadElement = document.getElementById('downloadDiv');
             downloadElement.style = 'display:none';
-        }
+            if(obj.checked ==false){
+                uncheckedStudentList+=selectedId;
+            }
+            var flag =true
+            var checkboxes = document.querySelectorAll("input[type='checkbox']:checked");
+            console.log('selectedId '+selectedId);
+            if(typeof selectedId ==='undefined'){
+                console.log('check undefined');
+                checkFlag=false;
+            }
+        
+            if(checkFlag==true){
+            for (var i = 0; i < checkboxes.length; i++) {
+                  var checkbox = checkboxes[i];
+                  console.log('checkboxes '+checkbox);
+                  //var studentId =  checkbox.closest("tr").id; 
+               if(obj.checked ==true){
+               if(!checkedIds.includes(selectedId)){
+                console.log('duplicate check');
+                  checkedIds.push(selectedId);
+                  flag=false;
+                  }
+                }
+               }
+            }
+               if(flag==true && typeof selectedId !=='undefined'){
+               var uncheckedIds = [];
+               //var uncheckedboxes = document.querySelectorAll("input[type='checkbox']");
+               uncheckedIds.push(selectedId);
 
+               uncheckedIds.forEach(function(uncheckedId) {
+                console.log('uncheckedId '+uncheckedId);
+               var index = checkedIds.indexOf(uncheckedId);
+               console.log('index'+index);
+               if (index !== -1) {
+               checkedIds.splice(index, 1);
+                }
+              });
+            }
+            finalStudents='';
+            console.log('finalStudents 111 '+finalStudents);
+            checkedIds.forEach(function(filterstudentsetId) {
+                finalStudents+=filterstudentsetId;
+              });
+         }
+       function hidewindow(){
+        var divElement = document.getElementById('screen');
+        divElement.style.display = 'none';
+        }
+        function showwindow(){
+        var divElement = document.getElementById('screen');
+        divElement.style.display = 'block';
+        }
+        function newLoadSection(){
+            changeStaffJS();
+        }
+        function displaySection(){
+            showLoading();
+            changeSectionJS();
+        }
+        function confirmSelectedJS(){
+            selectStudents(finalStudents,uncheckedStudentList);
+        }
+        function showLoading() {
+        document.getElementById('loading-spinner').style.display = 'block';
+          }
+
+        function hideLoading() {
+        document.getElementById('loading-spinner').style.display = 'none';
+        }
+       
     </script>
     <apex:form >
         <div id="schoolforce-wrapper" class="wrapper">
@@ -67,25 +183,62 @@
                 <div class="content">
                     <p>
                     <label>Select School:</label>
-                    <apex:selectList value="{!selectedSchool}" onchange="changeSchoolJS();" multiselect="false" size="1" id="school-selector">
+                    <apex:selectList value="{!selectedSchool}" onchange="changeSchoolJS();" onclick="hidewindow()" multiselect="false" size="1" id="school-selector">
                         <apex:selectOptions value="{!schools}"/>
                     </apex:selectList>
                     </p>
-                    <p>
+                    <!-- <p>
                         <label>Session time entered for:</label>
-                        <apex:selectList id="staffSelectBox" value="{!selectedStaff}" onchange="changeStaffJS();" multiselect="false" size="1">
+                        <apex:selectList id="staffSelectBox" value="{!selectedStaff}" onchange="changeStaffJS();" multiselect="false" size="1" onclick="selectstaff()">
                             <apex:selectOptions value="{!staff}"/>
                         </apex:selectList>
-                    </p>
-                    <p>
+                    </p> -->
+                     <!-- <p>
                         <label>Select Section:</label>
-                        <apex:selectList id="sectionSelectBox" value="{!selectedSection}" onchange="changeSectionJS();" multiselect="false" size="1">
+                        <apex:selectList id="sectionSelectBox" value="{!selectedSection}" onchange="changeSectionJS();"  multiselect="false" size="1">
                             <apex:selectOptions value="{!sections}"/>
                         </apex:selectList>
-                    </p>
+                    </p>  -->
                 </div>
+                <!--    -->
+                <div >
+                    <apex:commandButton style="margin-top: -7vh;height: 35px;" value="Download Blank Template"  styleClass="buttonStyle black_btn"
+                                        action="{!DownloadBlankTemplate}" onclick="showwindow()"/>
+                </div>
+                <div class="content" style="margin-left: 0px;">
+                <p>
+                    <label >Session time entered for:</label></p>
+                <apex:outputPanel >
+                    <c:StaffMultiselectPicklist leftLabel="Available Staff"
+                        id="staffSelectBox"	
+                        leftOption="{!staff}"
+                        rightLabel="Selected Staff"
+                        rightOption="{!selectedAllStaff}"
+                        size="4"
+                        width="170px"/>
+                 <!-- <apex:commandButton value="Ok" action="{!loadSections}"  style="margin-left: 72vh;width: 45px;margin-bottom: 10px;"/> -->
+                 </apex:outputPanel> 
+                </div>
+                <div  class="content" style="margin-left: 0px;">
+                    <p>
+                        <label >Select Section:</label></p>
+                <apex:outputPanel >
+                            <c:SectionMultiselectPicklist leftLabel="Available Sections"
+                                id="sectionselectBox"	
+                                leftOption="{!sections}"
+                                rightLabel="Selected Sections"
+                                rightOption="{!selectedSections}"
+                                size="5"
+                                width="400px"/>
+                         <!-- <apex:commandButton value="Ok" action="{!listOfselectedSections}" style="margin-left: 72vh;width: 45px;margin-bottom: 10px;"/> -->
+                         </apex:outputPanel> 
+                </div>
+                <!--    -->
+                
+                <img id="loading-spinner"  src="/img/loading32.gif" alt="Loading..." style="display: none;"/>
+
                 <apex:outputPanel id="mainPanel" rendered="{!showMainPanel}">
-                    <apex:outputPanel id="StudentPanel">
+                    <apex:outputPanel id="StudentPanel" layout="block">
                         <span class="section-header">{!currentSection.Name}
                             <span id="minutereminder" style="padding-left: 10px;"><i>(Select students to submit time for them.)</i></span>
                         </span>
@@ -96,8 +249,10 @@
                         </span>
                         <div class="content-list">
                             <div class="content">
-                                <table id="StudentTable">
+                                <table Class="table data-table" id="StudentTable">
                                     <thead>
+                                    <th>Section Name</th>
+                                    <th>Staff Name</th>
                                     <th onclick="toggleDirection();">Student Name</th>
                                     <th>CY-ID</th>
                                     <th>Local ID</th>
@@ -105,11 +260,13 @@
                                     </thead>
                                     <tbody>
                                     <apex:repeat value="{!resultsData}" var="student">
-                                        <tr>
+                                        <tr id="{!student.studentId}-{!student.sectionName};">
+                                            <td>{!student.sectionName}</td>
+                                            <td>{!student.staffName}</td>
                                             <td><a href="/{!student.studentId}" target="_blank">{!student.studentName}</a></td>
                                             <td>{!student.studentCYId}</td>
                                             <td>{!student.studentLocalId}</td>
-                                            <td><apex:inputCheckbox value="{!student.isChecked}" id="inputId" onClick="showConfirmAndHideDownload();"/></td>
+                                            <td><apex:inputCheckbox value="{!student.isChecked}" id="inputId" onClick="showConfirmAndHideDownload(this,'{!student.studentId}-{!student.sectionName};');"/></td>
                                         </tr>
                                     </apex:repeat>
                                     </tbody>
@@ -120,6 +277,33 @@
                             j$('input[readonly]').live('focus', function(e) {
                                 j$(this).blur();
                             });
+                            j$(document).ready(function() {
+                                hideLoading();
+            var contactTable = j$('[id$="StudentTable"]').DataTable({
+                //"sScrollY": "500px",
+                "bLengthChange": true,
+                //"scrollX": true,
+                //"bFilter": true,
+                "bInfo": true,
+                "aoColumnDefs": [{
+                    "sWidth": "30%",
+                    "aTargets": [0]
+                }],
+                "bAutoWidth": true,
+                //"bSort": true,
+                "bDestroy": true,
+                //"bScrollAutoCss": true,
+                "bPaginate": true,
+                "bScrollCollapse": true,
+                //"bJQueryUI": true,
+                "bSaveState": true,
+                "sPaginationType": "full_numbers",
+                iDisplayLength: 10,
+                "asStripeClasses": ['table_row1'],
+                "sDom": '<"top"lfip>rt<"bottom"ip<"clear">'
+                
+            });
+        });
                         </script>
                     </apex:outputPanel>
                     <apex:outputPanel id="buttons">
@@ -140,18 +324,32 @@
                     </apex:outputPanel>
                     </apex:outputPanel>
                 </apex:outputPanel>
-                <apex:outputPanel id="importSection" style="{!(IF(showImportSection, '', 'display : none;'))}">
+                <!-- <apex:outputPanel id="importSection" style="{!(IF(showImportSection, '', 'display : none;'))}">
                     <div >
                         <h3>Import Completed Template With Students</h3>
                         <div class="section_content">
-                            <p style="float:left">Click "Import Students" to upload your completed Students Template.</p>
+                    		        <p style="float:left">Click "Import Students" to upload your completed Students Template.</p>
                             <div class="download_btn">
                                 <apex:commandButton value="Import Students" action="{!startImport}" styleclass="black_btn"/>
                             </div>
                             <div class="clear_fix" style="line-height: 1%">&nbsp;</div>
                         </div>
                     </div>
+                </apex:outputPanel> -->
+                <!-- -->
+                <apex:outputPanel >
+                    <div >
+                        <h3>IMPORT COMPLETED TEMPLATE (FOR SELECTED SECTIONS) and IMPORT COMPLETED TEMPLATE (FOR BLANK TEMPLATE METHOD)</h3>
+                        <div class="section_content">
+                            <p style="float:left">Click "Import Students" to upload your completed Students Template.</p>
+                            <div class="download_btn">
+                                <apex:commandButton value="Import Student Session Data" action="{!startImport}" styleclass="black_btn"/>
+                            </div>
+                            <div class="clear_fix" style="line-height: 1%">&nbsp;</div>
+                        </div>
+                    </div>
                 </apex:outputPanel>
+                <!-- -->
         </div>
 
 
@@ -159,10 +357,19 @@
         <apex:actionfunction name="toggleDirection" action="{!toggleSortDirection}" rerender="StudentPanel"/>
         <apex:actionFunction name="resetPage" action="{!resetPage}"/>
 
-        <apex:actionFunction action="{!changeSection}" name="changeSectionJS" rerender="messages,StudentPanel,fullPanel,mainPanel,importSection" oncomplete="hasChanges=false;"/>
-        <apex:actionFunction action="{!changeStaff}" name="changeStaffJS" rerender="sectionSelectBox,messages,StudentPanel" oncomplete="hasChanges=false;"/>
-        <apex:actionFunction action="{!changeSchool}" name="changeSchoolJS" rerender="staffSelectBox,sectionSelectBox,messages,StudentPanel" oncomplete="hasChanges=false;"/>
-        <apex:actionFunction action="{!changeSection}" name="changeSectionJSAfterSubmit" rerender="messages,StudentPanel,fullPanel,mainPanel,importSection" oncomplete="hasChanges=false;"/>
-        <apex:actionFunction action="{!confirmSelectedStudents}" name="confirmSelectedJS" rerender="messages,StudentPanel,buttons" oncomplete="hasChanges=false;"/>
+        <apex:actionFunction action="{!listOfselectedSections}" name="changeSectionJS" rerender="messages,StudentPanel,fullPanel,mainPanel,importSection" oncomplete="hasChanges=false;"/>
+        <apex:actionFunction action="{!loadSections}" name="changeStaffJS" rerender="sectionselectBox,messages,StudentPanel" oncomplete="hasChanges=false;"/>
+        <apex:actionFunction action="{!changeSchool}" name="changeSchoolJS" rerender="staffSelectBox,messages,StudentPanel" oncomplete="hasChanges=false;"/>
+        <!-- <apex:actionFunction action="{!changeSection}" name="changeSectionJSAfterSubmit" rerender="messages,StudentPanel,fullPanel,mainPanel,importSection" oncomplete="hasChanges=false;"/> -->
+        
+        <apex:actionFunction action="{!confirmSelectedStudents}" name="selectStudents" rerender="messages,buttons" oncomplete="hasChanges=false;">
+            <apex:param name="a" value="" assignTo="{!selectStudentParam}"/>
+            <apex:param name="c" value="" assignTo="{!Unselectedsstudents}"/>
+        </apex:actionFunction>
+        <apex:actionFunction action="{!checkAndUncheckAllstudents}" name="checkedAnsUnchekedJS" rerender="messages,StudentPanel,fullPanel,mainPanel,importSection" oncomplete="hasChanges=false;">
+            <apex:param name="b" value="" assignTo="{!conditionParam}"/>
+        </apex:actionFunction>
+
+        <!-- <apex:actionFunction action="{!multiselectMethod}"  name="selectstaff"  oncomplete="hasChanges=false;"/> -->
     </apex:form>
 </apex:page>

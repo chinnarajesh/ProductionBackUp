@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Strand__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>Strand related to the Strand Grade</description>
+    <label>Strand</label>
+    <referenceTo>Standard__c</referenceTo>
+    <relationshipLabel>Strand Grades</relationshipLabel>
+    <relationshipName>Strand_Grades</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

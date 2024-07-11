@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Select if the course has a corresponding lab (e.g., a science of language class). You can use this field for reporting purposes. --></help>
+    <label><!-- Has a lab? --></label>
+    <name>Has_a_lab__c</name>
+</CustomFieldTranslation>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- If this check box is selected, this course displays on student and staff schedules. By default, this check box is selected. --></help>
+    <label><!-- Display on Student/Staff Schedule? --></label>
+    <name>Display_on_Student_Staff_Schedule__c</name>
+</CustomFieldTranslation>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Strand_Grade__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(NOT(ISNULL( Grade_Override__c )), TEXT(ROUND(Grade_Override__c,1)), 
+IF(Grade__c&gt;=3.75,&apos;4.0&apos;, 
+IF(Grade__c&gt;=3.25,&apos;3.5&apos;, 
+IF(Grade__c&gt;=2.75,&apos;3.0&apos;, 
+IF(Grade__c&gt;=2.25,&apos;2.5&apos;, 
+IF(Grade__c&gt;=1.75,&apos;2.0&apos;, 
+IF(Grade__c&gt;=1.25,&apos;1.5&apos;, 
+IF(Grade__c&gt;=0.75,&apos;1.0&apos;, 
+IF(Grade__c&gt;=0.25,&apos;0.5&apos;, 
+IF(Grade__c&gt;=0.0,&apos;0.0&apos;, 
+&apos;N/A&apos;))))))))))</formula>
+    <label>Grade</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

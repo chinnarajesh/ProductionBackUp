@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Show_In_Portal__c</fullName>
+    <defaultValue>false</defaultValue>
+    <inlineHelpText>If selected, the Behavior Title and Date will appear in the student and parent portal.</inlineHelpText>
+    <label>Show In Portal?</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Picklist Value</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Picklist Values</value>
+    </caseValues>
+    <fieldSets>
+        <label><!-- Assignment Types Picklist Value Template --></label>
+        <name>Assignment_Types_Picklist_Value_Template</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Attendance Picklist Value Template --></label>
+        <name>Attendance_Picklist_Value_Template</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Behavior Types Picklist Value Template --></label>
+        <name>Behavior_Types_Picklist_Value_Template</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Consequence Types Picklist Value Template --></label>
+        <name>Consequence_Types_Picklist_Template</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Grade Scales Picklist Value Template --></label>
+        <name>Grade_Scales_Picklist_Value_Template</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Homework Picklist Value Template --></label>
+        <name>Homework_Picklist_Value_Template</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Time Picklist Value Template --></label>
+        <name>Time_Picklist_Value_Template</name>
+    </fieldSets>
+    <layouts>
+        <layout>Assessment Type Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Assignment Type Picklist Value Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Attendance Picklist Value Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Behavior Consequence Picklist Value Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Behavior Type Picklist Value Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Grade Scale Picklist Value Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Non Admin Assignment Type Picklist Value Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Non Admin Attendance Picklist Value Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Non Admin Behavior Consequence Picklist Value Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Non Admin Behavior Type Picklist Value Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Non Admin Grade Scale Picklist Value Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Non Admin Points Category Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Non Admin Time Picklist Value Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Picklist Value Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Points Category Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>SPED Picklist Value Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Time Picklist Value Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <description><!-- Assessments given by the school. --></description>
+        <label><!-- Assessment Type --></label>
+        <name>Assessment_Type</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- assessments that dont have templates --></description>
+        <label><!-- Assessment wo Template --></label>
+        <name>Assessment_wo_Template</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- This is a record type for assignments to be labeled as an assessment --></description>
+        <label><!-- Assignment Assessment Type --></label>
+        <name>Assignment_Assessment_Type</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Assignment Type --></label>
+        <name>Assignment_Type</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Attendance --></label>
+        <name>Attendance</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Behavior Consequence --></label>
+        <name>Behavior_Consequence</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Behavior Type --></label>
+        <name>Behavior_Type</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Grade Scale --></label>
+        <name>Grade_Scale</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Record Type for Homework Status Values --></description>
+        <label><!-- Homework --></label>
+        <name>Homework</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Homework Tracking --></label>
+        <name>Homework_Tracking</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Points Category --></label>
+        <name>Points_Category</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- SPED --></label>
+        <name>SPED</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Time --></label>
+        <name>Time</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

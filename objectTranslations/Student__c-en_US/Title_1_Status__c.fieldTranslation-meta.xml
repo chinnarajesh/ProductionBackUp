@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- This field is not used by SchoolForce, but you can use it for reporting purposes. --></help>
+    <label><!-- Title 1 Status --></label>
+    <name>Title_1_Status__c</name>
+    <picklistValues>
+        <masterLabel>Free</masterLabel>
+        <translation><!-- Free --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>None</masterLabel>
+        <translation><!-- None --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Paid</masterLabel>
+        <translation><!-- Paid --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Reduced</masterLabel>
+        <translation><!-- Reduced --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

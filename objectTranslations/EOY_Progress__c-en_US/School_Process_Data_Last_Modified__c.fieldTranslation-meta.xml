@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Last user to modify and the time. --></help>
+    <label><!-- School Process Data Last Modified --></label>
+    <name>School_Process_Data_Last_Modified__c</name>
+</CustomFieldTranslation>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Indicates whether or not permission has been given to photograph the student. If you update this field, SchoolForce updates the corresponding field on the Contact record. --></help>
+    <label><!-- Photograph Authorized --></label>
+    <name>Photograph_Authorized__c</name>
+</CustomFieldTranslation>

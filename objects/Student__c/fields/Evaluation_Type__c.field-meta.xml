@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Evaluation_Type__c</fullName>
+    <description>The location where a child&apos;s evaluation was Administered.</description>
+    <inlineHelpText>Displays information about how a student&apos;s evaluation was administered.</inlineHelpText>
+    <label>Evaluation Type</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Local education agency</fullName>
+                <default>false</default>
+                <label>Local education agency</label>
+            </value>
+            <value>
+                <fullName>Early intervention classroom/cente</fullName>
+                <default>false</default>
+                <label>Early intervention classroom/cente</label>
+            </value>
+            <value>
+                <fullName>Community facility</fullName>
+                <default>false</default>
+                <label>Community facility</label>
+            </value>
+            <value>
+                <fullName>Hospital</fullName>
+                <default>false</default>
+                <label>Hospital</label>
+            </value>
+            <value>
+                <fullName>Child care</fullName>
+                <default>false</default>
+                <label>Child care</label>
+            </value>
+            <value>
+                <fullName>Home</fullName>
+                <default>false</default>
+                <label>Home</label>
+            </value>
+            <value>
+                <fullName>Outpatient hospital</fullName>
+                <default>false</default>
+                <label>Outpatient hospital</label>
+            </value>
+            <value>
+                <fullName>Ambulatory care center</fullName>
+                <default>false</default>
+                <label>Ambulatory care center</label>
+            </value>
+            <value>
+                <fullName>Primary care health provider office</fullName>
+                <default>false</default>
+                <label>Primary care health provider office</label>
+            </value>
+            <value>
+                <fullName>Public health facility</fullName>
+                <default>false</default>
+                <label>Public health facility</label>
+            </value>
+            <value>
+                <fullName>Social service agency</fullName>
+                <default>false</default>
+                <label>Social service agency</label>
+            </value>
+            <value>
+                <fullName>Other health care provider location</fullName>
+                <default>false</default>
+                <label>Other health care provider location</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

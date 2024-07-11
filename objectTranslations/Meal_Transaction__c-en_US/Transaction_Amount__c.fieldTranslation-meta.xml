@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- This is the amount the student is required to pay for their meal. --></help>
+    <label><!-- Transaction Amount --></label>
+    <name>Transaction_Amount__c</name>
+</CustomFieldTranslation>

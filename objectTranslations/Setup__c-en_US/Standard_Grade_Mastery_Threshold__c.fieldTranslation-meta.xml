@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- What is the definition for mastery of standards for this school? This number will be used to determine standard mastery on reports. --></help>
+    <label><!-- Standard Grade Mastery Threshold --></label>
+    <name>Standard_Grade_Mastery_Threshold__c</name>
+</CustomFieldTranslation>

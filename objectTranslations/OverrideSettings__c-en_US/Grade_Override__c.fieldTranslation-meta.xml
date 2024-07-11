@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- does this profile/user have permissions to override a section grade with one of the allowable grades? --></help>
+    <label><!-- Grade Override --></label>
+    <name>Grade_Override__c</name>
+</CustomFieldTranslation>

@@ -184,6 +184,8 @@ public with sharing class IndicatorAreasController {
 
     public void processSelectedStudents(String selectStudentParam){
         for(StudentInfoWrapper studentWrapper: studentsFiltered){
+            System.debug('selectedstudentdate++'+studentWrapper.dtIA);
+            System.debug('studentsFiltered++'+studentsFiltered);
             selected.remove(studentWrapper.student.ID);
             if (orderedStudentIdsInAddTo.contains(studentWrapper.student.ID)) {
                 orderedStudentIdsInAddTo.remove(orderedStudentIdsInAddTo.indexOf(studentWrapper.student.ID));
@@ -198,6 +200,7 @@ public with sharing class IndicatorAreasController {
             for(String i : ids){
                 selIds.add(i.trim());
             }
+            System.debug('studentIds++'+selIds);
             selected.addAll(selIds);
             List<Id> orderedStudents = sortStudentsByLastName(selected);
             for(StudentInfoWrapper studentWrapper: studentsFiltered){
@@ -213,7 +216,7 @@ public with sharing class IndicatorAreasController {
                     addTo.put(selectedId, orderedStudentsAddToMap.get(selectedId));
                 }
             }
-        }   
+        }
     }
 
     private List<Id> sortStudentsByLastName(Set<Id> studentIds) {
@@ -250,6 +253,7 @@ public with sharing class IndicatorAreasController {
     }
     
     public void updateStudents(){
+        Date SelectedDate =null;
     if(activeIAId !=null && activeIAId.size()>0){
     
        for(string arealistId:activeIAId){
@@ -269,7 +273,9 @@ public with sharing class IndicatorAreasController {
                 IA_S.Active__c = true;
                 s.addArea(IA_S);
             }
-
+            If(s.dtIA != null){
+                SelectedDate=s.dtIA;
+            }
             IA_S.IA_Effective_Date__c = s.dtIA == null? IA_S.IA_Effective_Date__c: s.dtIA;
             IA_S.Active__c = true;
             if(!changesIDs.contains(IA_S.Reference_ID__c)){
@@ -277,6 +283,7 @@ public with sharing class IndicatorAreasController {
                 changesIDs.add(IA_S.Reference_ID__c);
             }
             s.refreshIndicatorAreaDisplay();
+            s.addIndicatoreDate(SelectedDate);
         }
         }
         hasUnsavedChanges = true;
@@ -336,5 +343,6 @@ public with sharing class IndicatorAreasController {
         }else{
             CYUtil.errorMessage(String.join(errorMessages, '<br/>')+'<br/>Please verify that your changes have been saved.');
         }
+       
     }
 }

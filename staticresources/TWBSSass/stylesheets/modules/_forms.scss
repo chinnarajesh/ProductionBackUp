@@ -1,0 +1,57 @@
+.form-control {
+	border-radius:0;
+	&:focus {
+		border: 1px solid $cyan;
+		box-shadow: inset 0 0 0 1px $cyan;
+	}
+	&.time {
+		max-width: 70px;
+		@media (max-width:$screen-sm) {
+			margin-left: auto;
+		}
+	}
+}
+
+form.container-bs {
+	@media (min-width:$screen-sm) {
+		margin-top:$gap;
+	}
+}
+
+.select2-container--default .selection .select2-selection--multiple {
+	border-radius:0;
+}
+.select2-container--default.select2-container--open.select2-container--below .select2-selection--single,
+.select2-container--default.select2-container--open.select2-container--below .select2-selection--multiple,
+.select2-container--default.select2-container--focus .select2-selection--multiple {
+	border:1px solid $cyan !important;
+	box-shadow: inset 0 0 0 1px $cyan;
+}
+.select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+	font-size:12px;
+	font-weight:500;
+}
+
+.select2-container--default .select2-results__option--highlighted[aria-selected] {
+	background:$cyan !important;
+}
+
+.date-group {
+	.dateOnlyInput input {
+		width:auto;
+	}
+	.dateInput {
+		display: flex;
+		align-items:center;
+		font-size:12px;
+		font-weight:500;
+	}
+	.dateInput .form-control {
+		max-width:130px;
+		margin-right:10px;
+	}
+}
+
+.select2-results__option {
+	font-size:13px;
+}

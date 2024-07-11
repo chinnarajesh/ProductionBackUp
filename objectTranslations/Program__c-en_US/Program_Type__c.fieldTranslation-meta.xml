@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Program Type --></label>
+    <name>Program_Type__c</name>
+    <picklistValues>
+        <masterLabel>Assessment</masterLabel>
+        <translation><!-- Assessment --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Curriculum</masterLabel>
+        <translation><!-- Curriculum --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Intervention</masterLabel>
+        <translation><!-- Intervention --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

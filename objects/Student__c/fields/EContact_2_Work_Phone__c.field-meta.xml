@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>EContact_2_Work_Phone__c</fullName>
+    <inlineHelpText>Displays the work phone number for the contact listed in the Emergency Contact #2 Name field.</inlineHelpText>
+    <label>EContact #2 Work Phone</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Phone</type>
+</CustomField>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Displays the student&apos;s Office of the State Superintendent of Education (OSSE) code. Only relevant to schools in Washington, DC. --></help>
+    <label><!-- OSSE Code --></label>
+    <name>OSSE_Code__c</name>
+    <picklistValues>
+        <masterLabel>D-1111</masterLabel>
+        <translation><!-- D-1111 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>D-2222</masterLabel>
+        <translation><!-- D-2222 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>D-3333</masterLabel>
+        <translation><!-- D-3333 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>D-4444</masterLabel>
+        <translation><!-- D-4444 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>T-1111</masterLabel>
+        <translation><!-- T-1111 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>T-2222</masterLabel>
+        <translation><!-- T-2222 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>T-3333</masterLabel>
+        <translation><!-- T-3333 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>T-4444</masterLabel>
+        <translation><!-- T-4444 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>W-1111</masterLabel>
+        <translation><!-- W-1111 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>W-2222</masterLabel>
+        <translation><!-- W-2222 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>W-3333</masterLabel>
+        <translation><!-- W-3333 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>W-4444</masterLabel>
+        <translation><!-- W-4444 --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

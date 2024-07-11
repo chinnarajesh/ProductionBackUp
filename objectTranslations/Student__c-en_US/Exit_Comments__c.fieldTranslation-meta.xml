@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Displays additional details about the student&apos;s exit/withdrawal from the school. --></help>
+    <label><!-- Exit Comments --></label>
+    <name>Exit_Comments__c</name>
+</CustomFieldTranslation>

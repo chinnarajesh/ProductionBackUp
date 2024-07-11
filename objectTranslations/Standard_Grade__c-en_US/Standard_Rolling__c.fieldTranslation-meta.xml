@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- If selected, the standard grade includes the assignment grades from the first through the current reporting period (e.g., the Q3 grade is calculated from the Q1-Q3 grades). Otherwise, the standard grade includes only the grades from the reporting period. --></help>
+    <label><!-- Standard Rolling? --></label>
+    <name>Standard_Rolling__c</name>
+</CustomFieldTranslation>

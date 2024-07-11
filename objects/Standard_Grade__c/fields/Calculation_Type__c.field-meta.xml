@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Calculation_Type__c</fullName>
+    <description>Shows the currently selected calculation type based off the school setup where the student currently attends.</description>
+    <externalId>false</externalId>
+    <formula>TEXT(Student__r.Setup__r.Calculation_Type__c)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Displays the formal calculation type for standards in this school.</inlineHelpText>
+    <label>Calculation Type</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

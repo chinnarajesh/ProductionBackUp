@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Chronological_Periods__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>This field determines if period times should follow chronological order.</description>
+    <inlineHelpText>Check when school does not allow periods to overlap during a given school day.</inlineHelpText>
+    <label>Chronological Periods</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>District_External_ID_Creator__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF( (NOT(CONTAINS(Internal_Local_ID__c, &quot;Invalid&quot;))),
+
+Substitute(IF(LEN(Local_Student_ID__c) &lt; 10, LPAD(TEXT(LEN(Local_Student_ID__c)),2,&quot;0&quot;),
+
+IF(AND(LEN(Local_Student_ID__c) &gt;=10,LEN(Local_Student_ID__c) &lt; 100), TEXT(LEN(Local_Student_ID__c)), &quot;00&quot;)) &amp;
+
+LEFT( Internal_Local_ID__c , 10) &amp; School__r.District_School_ID__c &amp; Right( Internal_Local_ID__c , 10),&quot; &quot;, &quot;&quot;),
+
+(IF(CONTAINS(Internal_Local_ID__c,&quot;Invalid - Local Student ID Less Than 5 characters&quot;), &quot;Invalid - Local Student ID Less Than 5 characters&quot;,
+
+IF(CONTAINS(Internal_Local_ID__c,&quot;Invalid - Local Student ID contains spaces&quot;), &quot;Invalid - Local Student ID contains spaces&quot;,
+
+IF(CONTAINS(Internal_Local_ID__c,&quot;Invalid - Local Student ID not available for this student&quot;), &quot;Invalid - Local Student ID not available for this student&quot;,
+
+IF(CONTAINS(Internal_Local_ID__c,&quot;Invalid - Local Student ID contains scientific notation&quot;), &quot;Invalid - Local Student ID contains scientific notation&quot;,
+
+&quot;Invalid - Unknown reason&quot;))))))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>District External ID Creator</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

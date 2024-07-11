@@ -232,9 +232,12 @@ public with sharing class ModalAddSessionCtrl {
         allPrimaryFields = new List<SelectOption>();
         avaliableFields = new List<SelectOption>();
         String schoolProgram = section.Account_Program__r.Name;
+        String sectionLocation =section.Location__c;
+        ISTool.sectionLocation=sectionLocation;
         ISTool.getAvaliableSkills(schoolProgram, avaliableFields, allPrimaryFields);
         allAvenuesOptions = ISTool.getAllAvenues();
         siteDetailsOptions = ISTool.getSiteDetailsOptions();
+        System.debug('section++'+section.id);
     }
 
     public void initSelectedFields(){

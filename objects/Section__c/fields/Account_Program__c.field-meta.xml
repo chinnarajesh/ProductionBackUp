@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Account_Program__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <inlineHelpText>What intervention Program is this intervention Section associated to?</inlineHelpText>
+    <label>School Program</label>
+    <lookupFilter>
+        <active>false</active>
+        <filterItems>
+            <field>Account_Program__c.Program__c</field>
+            <operation>equals</operation>
+            <valueField>$Source.Program__c</valueField>
+        </filterItems>
+        <isOptional>false</isOptional>
+    </lookupFilter>
+    <referenceTo>Account_Program__c</referenceTo>
+    <relationshipLabel>Sections</relationshipLabel>
+    <relationshipName>Sections</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

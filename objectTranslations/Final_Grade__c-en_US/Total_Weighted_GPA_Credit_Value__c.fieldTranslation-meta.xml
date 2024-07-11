@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Total Weighted GPA Credit Value --></label>
+    <name>Total_Weighted_GPA_Credit_Value__c</name>
+</CustomFieldTranslation>

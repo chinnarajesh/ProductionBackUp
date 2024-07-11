@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Max_Session_Time__c</fullName>
+    <label>Max Session Time</label>
+    <summarizedField>Intervention_Session_Result__c.Amount_of_Time__c</summarizedField>
+    <summaryForeignKey>Intervention_Session_Result__c.Intervention_Session__c</summaryForeignKey>
+    <summaryOperation>max</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

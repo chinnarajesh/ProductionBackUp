@@ -234,8 +234,12 @@ public without sharing class AssessmentWizardController {
         } else if(sResults.size()==recordSearchCount){
             infoMessage('Your search terms returned more then '+recordSearchCount+' results. Only the first '+recordSearchCount+' are displayed.');
         }
+        
     }
-
+    // public PageReference ClearGradLevel(){
+    //     studentSearchInfo.student.Grede_Multiselect__c=null;
+    //     return null;
+    // }
     public void getstdata(){
         if(inputWrapper!=null){
             inputWrapper.assessments.clear();
@@ -253,6 +257,7 @@ public without sharing class AssessmentWizardController {
         addStudents(new Set<String>(listOfId));
         listOfId.clear();
         slctdStdId='';
+        studentSearchInfo.student.Grede_Multiselect__c=null;
     }
     public void addStudents( Set<String> stIds){
         boolean foundStudent = false;
@@ -400,7 +405,8 @@ public without sharing class AssessmentWizardController {
         }
     }
 
-    public PageReference saveInput(){       
+    public PageReference saveInput(){    
+        System.debug('method check second');   
         callDateError='';
         //remove all selected assessments
         Map<Id, sObject> mapAssessment = new Map<Id, sObject>();
@@ -736,14 +742,14 @@ public without sharing class AssessmentWizardController {
         List<Assesment__c> assessments = (List<Assesment__c>)dw.assessments;
         List<String> msgErrors = new List<String>();
         
-        Set<String> studentIds = new Set<String>();
-        Set<String> typeIds = new Set<String>();
-        Set<Date> adminDates = new Set<Date>();
-        for(Assesment__c a: assessments){
-            studentIds.add(a.Student_Id__c);
-            typeIds.add(a.Type__c);
-            adminDates.add(a.Date_Administered__c);
-        }
+        // Set<String> studentIds = new Set<String>();
+        // Set<String> typeIds = new Set<String>();
+        // Set<Date> adminDates = new Set<Date>();
+        // for(Assesment__c a: assessments){
+        //     studentIds.add(a.Student_Id__c);
+        //     typeIds.add(a.Type__c);
+        //     adminDates.add(a.Date_Administered__c);
+        // }
 
         try{
             Integer i=0;

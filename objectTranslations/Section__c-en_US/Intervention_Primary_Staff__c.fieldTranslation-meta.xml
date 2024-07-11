@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Who is the primary staff member associated with this Intervention Section? --></help>
+    <label><!-- Intervention Primary Staff --></label>
+    <lookupFilter>
+        <errorMessage><!-- Intervention Primary Staff does not match filter criteria. --></errorMessage>
+    </lookupFilter>
+    <name>Intervention_Primary_Staff__c</name>
+    <relationshipLabel><!-- Intervention Sections --></relationshipLabel>
+</CustomFieldTranslation>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Value_Range_ISIP_Overall_Reading_Ability</fullName>
+    <active>true</active>
+    <description>ISIP_Overall_Reading_Ability_Score__c</description>
+    <errorConditionFormula>OR
+( 
+ ISIP_Overall_Reading_Ability_Score__c &lt; -5000, 
+ISIP_Overall_Reading_Ability_Score__c &gt; 5000
+ )</errorConditionFormula>
+    <errorDisplayField>ISIP_Overall_Reading_Ability_Score__c</errorDisplayField>
+    <errorMessage>ISIP Overall Reading Ability Score must be within -5000 to 5000 range</errorMessage>
+</ValidationRule>

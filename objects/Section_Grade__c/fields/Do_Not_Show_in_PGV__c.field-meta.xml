@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Do_Not_Show_in_PGV__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>NYC functionality to control the ability for a teacher to determine if a section_grade__c comment is visible within the PGV (Parent Guardian View) on the Gradebook_SG_Comments.page</description>
+    <label>Do Not Show in PGV</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

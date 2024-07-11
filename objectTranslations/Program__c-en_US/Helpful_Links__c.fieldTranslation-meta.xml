@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Set of instructive or helpful links to end users who will be administering this Program. These links could be to a website, YouTube video, etc. --></help>
+    <label><!-- Helpful Links --></label>
+    <name>Helpful_Links__c</name>
+</CustomFieldTranslation>

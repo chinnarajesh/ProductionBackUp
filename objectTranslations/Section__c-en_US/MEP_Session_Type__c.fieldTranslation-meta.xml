@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- MEP Session Type --></label>
+    <name>MEP_Session_Type__c</name>
+    <picklistValues>
+        <masterLabel>Regular School Year (Services provided during the school day only)</masterLabel>
+        <translation><!-- Regular School Year (Services provided during the school day only) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Regular School Year (Some or all services provided during an extended Day/week)</masterLabel>
+        <translation><!-- Regular School Year (Some or all services provided during an extended Day/week) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Summer Term or Intersession for Instructional or Support Service</masterLabel>
+        <translation><!-- Summer Term or Intersession for Instructional or Support Service --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Year round project (Services provided throughout the regular school year and summer/intersession terms)</masterLabel>
+        <translation><!-- Year round project (Services provided throughout the regular school year and summer/intersession terms) --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

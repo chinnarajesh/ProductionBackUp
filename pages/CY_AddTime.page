@@ -19,6 +19,7 @@
 
         .flex-column {
             display: flex;
+            flex-wrap: wrap;
         }
 
         .exitTicketInput {
@@ -93,7 +94,7 @@
                                                      showDatePicker="{!showCalDatePicker}" id="dosageDateID"/>
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label for="allAvenuesID">In-Person Service or Virtual Service</label>
                                 <div class="requiredInput field">
                                     <div class="requiredBlock"></div>
@@ -102,7 +103,7 @@
                                         <apex:selectOptions value="{!allAvenuesOptions}"/>
                                     </apex:selectList>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="form-group">
                                 <label><strong>Session Type:</strong></label>
                                 <div class="field">
@@ -147,14 +148,14 @@
                                 <!--<div class="requiredBlock"></div>-->
                                 <apex:selectList id="primarySkill" value="{!primaryField}" size="1"
                                                  styleClass="form-control tags"
-                                                 onchange="javascript:updatePrimaryField(this);">
+                                                 onchange="javascript:updatePrimaryField(this);" style="width: 100%;">
                                     <apex:selectOptions value="{!allPrimaryFields}"/>
                                 </apex:selectList>
                             </div>
                             <label for="skills">Other Skills</label>
                             <select name="skills" id="skills" class="form-control tags" multiple="multiple"
                                     data-placeholder="Tap here to add skills" onChange="addSelected();"
-                                    onclick="checkSelected();">
+                                    onclick="checkSelected();" style="width: 100%;">
                                 <apex:repeat var="availField" value="{!avaliableFields}">
                                     <option value="{!availField.label}"
                                             class="{!IF(contains(studentSelectedSkills, availField.label), 'selected', '')}">{!availField.Label}</option>
@@ -211,7 +212,7 @@
 
                                     <th>
                                         <apex:commandButton styleClass="btn-bs btn-default btn-sm"
-                                                            action="{!doAddStudentToSession}" title="Add" value="Add"/>
+                                                            action="{!doAddStudentToSession}" title="Add" value="Add Student"/>
                                     </th>
                                     <tr>
                                         <th>Student</th>
@@ -422,7 +423,17 @@
         var singleValues;
 
         function addSelected() {
+            var res='';
             singleValues = $("#skills").val();
+
+            if (singleValues != null) {
+                res = singleValues.toString();
+                if (res != null && res != '') {
+                   $("input[ID$='inputSkill']").val(res);
+                }
+            } 
+            //$("input[ID$='inputSkill']").val(singleValues);
+            //console.log('singleValues++'+singleValues);
         }
 
         <!--function submitSessions() {-->
@@ -442,12 +453,13 @@
             if (singleValues == null) {
                 addSelected();
             }
-            if (singleValues != null) {
-                res = singleValues.toString();
-                if (res != null && res != '') {
-                    $("input[ID$='inputSkill']").val(res);
-                }
-            } 
+            // if (singleValues != null) {
+            //     res = singleValues.toString();
+            //     if (res != null && res != '') {
+            //        $("input[ID$='inputSkill']").val(res);
+                   
+            //     }
+            // } 
              SesseionActionFunction();
              console.log('sessetionsubmit');
              return true;

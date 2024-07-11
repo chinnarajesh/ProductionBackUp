@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Displays the total amount of instructional time lost (in minutes) for all the student&apos;s behavior incidents. SchoolForce calculates this by adding the values in Consequence Time Lost field for all Behavior records. --></help>
+    <label><!-- Behavior Time Lost --></label>
+    <name>Sum_of_Time_Lost__c</name>
+</CustomFieldTranslation>

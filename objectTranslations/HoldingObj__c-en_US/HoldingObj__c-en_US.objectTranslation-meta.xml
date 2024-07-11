@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>HoldingObj</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>HoldingObjs</value>
+    </caseValues>
+    <fieldSets>
+        <label><!-- Staff Holding Object Template --></label>
+        <name>Staff_Holding_Object_Template</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Staff Section Holding Object Template --></label>
+        <name>Staff_Section_Holding_Object_Template</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Student Holding Object Template --></label>
+        <name>Student_Holding_Object_Template</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- Student Section Holding Object Template --></label>
+        <name>Student_Section_Holding_Object_Template</name>
+    </fieldSets>
+    <layouts>
+        <layout>Holding Object Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

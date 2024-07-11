@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Citywide_Instructional_Expectation__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>This determines if the standard is part of the &quot;Citywide Instructional Expectations&quot; set of standards</description>
+    <inlineHelpText>This determines if the standard is part of the &quot;Citywide Instructional Expectations&quot; set of standards</inlineHelpText>
+    <label>Citywide Instructional Expectation</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

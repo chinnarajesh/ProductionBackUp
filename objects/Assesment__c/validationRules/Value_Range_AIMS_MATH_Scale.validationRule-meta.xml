@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Value_Range_AIMS_MATH_Scale</fullName>
+    <active>true</active>
+    <errorConditionFormula>OR
+( 
+       AIMSweb_Math_Scale_score__c        &lt; 0, 
+  AIMSweb_Math_Scale_score__c       &gt; 100 
+ )</errorConditionFormula>
+    <errorDisplayField>AIMSweb_Math_Scale_score__c</errorDisplayField>
+    <errorMessage>AIMSweb Math Scale Score must be within a 0 - 100 range.</errorMessage>
+</ValidationRule>

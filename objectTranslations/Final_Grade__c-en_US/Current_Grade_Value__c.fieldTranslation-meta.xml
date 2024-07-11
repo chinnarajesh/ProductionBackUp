@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Year to Date Grade Value, with no time/course weightings applied --></help>
+    <label><!-- Current Grade Value --></label>
+    <name>Current_Grade_Value__c</name>
+</CustomFieldTranslation>

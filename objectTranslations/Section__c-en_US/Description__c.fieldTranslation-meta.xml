@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Enter a description of the section. This field only displays in the Description field on the Section record. You can use it on reports. --></help>
+    <label><!-- Description --></label>
+    <name>Description__c</name>
+</CustomFieldTranslation>

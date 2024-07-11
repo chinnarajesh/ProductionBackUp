@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- This is set to true if the EOY Purge custom settings are configured for the year. --></help>
+    <label><!-- EOY Purge Settings Completed --></label>
+    <name>EOY_Purge_Settings_Completed__c</name>
+</CustomFieldTranslation>

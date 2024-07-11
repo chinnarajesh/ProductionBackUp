@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Display_Teacher_On_RC_PR__c</fullName>
+    <defaultValue>true</defaultValue>
+    <description>This determines which teachers will be shown on the report cards</description>
+    <label>Display Teacher On RC/PR</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

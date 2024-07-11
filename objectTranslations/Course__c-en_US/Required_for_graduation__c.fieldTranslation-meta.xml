@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Select If students are required to take this course in order to graduate. You can use this field for reporting purposes as well as for cohort requirements. --></help>
+    <label><!-- Required for graduation --></label>
+    <name>Required_for_graduation__c</name>
+</CustomFieldTranslation>

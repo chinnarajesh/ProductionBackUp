@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Area for an individual comment for this student for this Intervention Session --></help>
+    <label><!-- Individual Student Comment --></label>
+    <name>Individual_Student_Comment__c</name>
+</CustomFieldTranslation>

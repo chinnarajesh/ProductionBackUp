@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- This is the percentage of students who are eligible to receive free or reduced meals. --></help>
+    <label><!-- % Students Eligible for Free/Reduced --></label>
+    <name>Students_Eligible_for_Free_Reduced__c</name>
+</CustomFieldTranslation>

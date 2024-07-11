@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Entry_Type__c</fullName>
+    <description>The process by which a student enters a school during a given academic session.</description>
+    <inlineHelpText>Indicates the situation under which the student entered the school. If you update this field, SchoolForce updates the corresponding field on the Contact record.</inlineHelpText>
+    <label>Entry Code</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Transfer from a public school in the same local education agency</fullName>
+                <default>false</default>
+                <label>Transfer from a public school in the same local education agency</label>
+            </value>
+            <value>
+                <fullName>Transfer from a public school in a different local education agency in the same state</fullName>
+                <default>false</default>
+                <label>Transfer from a public school in a different local education agency in the same state</label>
+            </value>
+            <value>
+                <fullName>Transfer from a public school in a different state</fullName>
+                <default>false</default>
+                <label>Transfer from a public school in a different state</label>
+            </value>
+            <value>
+                <fullName>Transfer from a private, non-religiously-affiliated school in the same local education agency</fullName>
+                <default>false</default>
+                <label>Transfer from a private, non-religiously-affiliated school in the same local education agency</label>
+            </value>
+            <value>
+                <fullName>Transfer from a private, non-religiously-affiliated school in a different local education agency in the same state</fullName>
+                <default>false</default>
+                <label>Transfer from a private, non-religiously-affiliated school in a different local education agency in the same state</label>
+            </value>
+            <value>
+                <fullName>Transfer from a private, non-religiously-affiliated school in a different state</fullName>
+                <default>false</default>
+                <label>Transfer from a private, non-religiously-affiliated school in a different state</label>
+            </value>
+            <value>
+                <fullName>Transfer from a private, religiously-affiliated school in the same local education agency</fullName>
+                <default>false</default>
+                <label>Transfer from a private, religiously-affiliated school in the same local education agency</label>
+            </value>
+            <value>
+                <fullName>Transfer from a private, religiously-affiliated school in a different local education agency in the same state</fullName>
+                <default>false</default>
+                <label>Transfer from a private, religiously-affiliated school in a different local education agency in the same state</label>
+            </value>
+            <value>
+                <fullName>Transfer from a private, religiously-affiliated school in a different state</fullName>
+                <default>false</default>
+                <label>Transfer from a private, religiously-affiliated school in a different state</label>
+            </value>
+            <value>
+                <fullName>Transfer from a school outside of the country</fullName>
+                <default>false</default>
+                <label>Transfer from a school outside of the country</label>
+            </value>
+            <value>
+                <fullName>Transfer from an institution</fullName>
+                <default>false</default>
+                <label>Transfer from an institution</label>
+            </value>
+            <value>
+                <fullName>Transfer from a charter school</fullName>
+                <default>false</default>
+                <label>Transfer from a charter school</label>
+            </value>
+            <value>
+                <fullName>Transfer from home schooling</fullName>
+                <default>false</default>
+                <label>Transfer from home schooling</label>
+            </value>
+            <value>
+                <fullName>Re-entry from the same school with no interruption of schooling</fullName>
+                <default>false</default>
+                <label>Re-entry from the same school with no interruption of schooling</label>
+            </value>
+            <value>
+                <fullName>Re-entry after a voluntary withdrawal</fullName>
+                <default>false</default>
+                <label>Re-entry after a voluntary withdrawal</label>
+            </value>
+            <value>
+                <fullName>Re-entry after an involuntary withdrawal</fullName>
+                <default>false</default>
+                <label>Re-entry after an involuntary withdrawal</label>
+            </value>
+            <value>
+                <fullName>Original entry into a United States school</fullName>
+                <default>false</default>
+                <label>Original entry into a United States school</label>
+            </value>
+            <value>
+                <fullName>Original entry into a United States school from a foreign country with no interruption in schooling</fullName>
+                <default>false</default>
+                <label>Original entry into a United States school from a foreign country with no interruption in schooling</label>
+            </value>
+            <value>
+                <fullName>Original entry into a United States school from a foreign country with an interruption in schooling</fullName>
+                <default>false</default>
+                <label>Original entry into a United States school from a foreign country with an interruption in schooling</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

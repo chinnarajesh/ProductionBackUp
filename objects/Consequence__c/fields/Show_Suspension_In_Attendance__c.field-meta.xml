@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Show_Suspension_In_Attendance__c</fullName>
+    <defaultValue>false</defaultValue>
+    <inlineHelpText>If selected, the students attendance records for the days they have been suspended will be marked to reflect the suspension.</inlineHelpText>
+    <label>Show Suspension In Attendance</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

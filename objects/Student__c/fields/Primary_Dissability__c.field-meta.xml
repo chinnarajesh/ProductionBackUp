@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Primary_Dissability__c</fullName>
+    <inlineHelpText>Do not use this field; it is no longer used by SchoolForce.</inlineHelpText>
+    <label>Primary Dissability*Retired*</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>AUT - Autism</fullName>
+                <default>false</default>
+                <label>AUT - Autism</label>
+            </value>
+            <value>
+                <fullName>DB - Deaf-Blindness</fullName>
+                <default>false</default>
+                <label>DB - Deaf-Blindness</label>
+            </value>
+            <value>
+                <fullName>DD - Developmental Delay</fullName>
+                <default>false</default>
+                <label>DD - Developmental Delay</label>
+            </value>
+            <value>
+                <fullName>EMN - Emotional Disturbance</fullName>
+                <default>false</default>
+                <label>EMN - Emotional Disturbance</label>
+            </value>
+            <value>
+                <fullName>HI - Hearing Impairment</fullName>
+                <default>false</default>
+                <label>HI - Hearing Impairment</label>
+            </value>
+            <value>
+                <fullName>MR - Mental Retardation</fullName>
+                <default>false</default>
+                <label>MR - Mental Retardation</label>
+            </value>
+            <value>
+                <fullName>MD - Multiple Disabilities</fullName>
+                <default>false</default>
+                <label>MD - Multiple Disabilities</label>
+            </value>
+            <value>
+                <fullName>OI - Orthopedic Impairment</fullName>
+                <default>false</default>
+                <label>OI - Orthopedic Impairment</label>
+            </value>
+            <value>
+                <fullName>SLD - Specific Learning Disability</fullName>
+                <default>false</default>
+                <label>SLD - Specific Learning Disability</label>
+            </value>
+            <value>
+                <fullName>SLI - Speech or Language Impairment</fullName>
+                <default>false</default>
+                <label>SLI - Speech or Language Impairment</label>
+            </value>
+            <value>
+                <fullName>TBI - Traumatic Brain Injury</fullName>
+                <default>false</default>
+                <label>TBI - Traumatic Brain Injury</label>
+            </value>
+            <value>
+                <fullName>VI - Visual Impairment</fullName>
+                <default>false</default>
+                <label>VI - Visual Impairment</label>
+            </value>
+            <value>
+                <fullName>OHI - Other Health Impairment</fullName>
+                <default>false</default>
+                <label>OHI - Other Health Impairment</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

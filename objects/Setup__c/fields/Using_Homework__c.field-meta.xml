@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Using_Homework__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>This checkbox indicates whether this school is using the Homework module for this school year.</description>
+    <inlineHelpText>This checkbox indicates whether this school is using the Homework module for this school year.</inlineHelpText>
+    <label>Using Homework</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

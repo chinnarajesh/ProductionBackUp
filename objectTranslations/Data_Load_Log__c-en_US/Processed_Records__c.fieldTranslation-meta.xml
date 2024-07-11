@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- The total number of records processed successfully by this batch. --></help>
+    <label><!-- Processed Records --></label>
+    <name>Processed_Records__c</name>
+</CustomFieldTranslation>

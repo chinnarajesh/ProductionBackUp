@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Indicates the Attendance record is for daily attendance. Otherwise, it is for sectional attendance. --></help>
+    <label><!-- Daily --></label>
+    <name>Daily__c</name>
+</CustomFieldTranslation>

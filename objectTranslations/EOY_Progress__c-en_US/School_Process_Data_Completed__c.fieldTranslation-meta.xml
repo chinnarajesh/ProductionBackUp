@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- This will be checked when the EOY Data is deactivated and archived has been verified. --></help>
+    <label><!-- School Process Data Completed --></label>
+    <name>School_Process_Data_Completed__c</name>
+</CustomFieldTranslation>

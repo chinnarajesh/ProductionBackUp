@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- If selected, the students attendance records for the days they have been suspended will be marked to reflect the suspension. --></help>
+    <label><!-- Show Suspension In Attendance --></label>
+    <name>Show_Suspension_In_Attendance__c</name>
+</CustomFieldTranslation>

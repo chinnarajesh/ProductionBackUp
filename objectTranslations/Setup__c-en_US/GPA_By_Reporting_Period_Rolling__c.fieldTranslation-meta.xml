@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- If this checkbox is checked grades from previous reporting periods will be factored into student&apos;s GPA for current reporting period.  IE for Q2 GPA, Section Grades from Q1 &amp; Q2 will factor into calculations. --></help>
+    <label><!-- Rolling GPA? --></label>
+    <name>GPA_By_Reporting_Period_Rolling__c</name>
+</CustomFieldTranslation>

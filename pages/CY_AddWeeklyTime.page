@@ -70,6 +70,7 @@
             color: rgb(84, 84, 84);
             cursor: default;
             margin:1px;
+            margin-left: 16px;
         }
 /*      .fakeTextArea:hover{
             border:2px solid blue;
@@ -123,6 +124,16 @@
                 width: 70%;
             }
         }
+        /* @media screen and (min-width: 1800px){
+         .navbar-default{
+            width: 164vh;
+         }
+        } */
+        /* @media screen and (min-width: 400px){
+         .navbar-default{
+            width: 164vh;
+         }
+        }  */
         .sectiontitle{
             width: 100%;
     display: inline-block;
@@ -227,18 +238,20 @@
                                                 <apex:outputPanel rendered="{!dayOfWeek.isDisabled}">
                                                 <!--<div class="requiredInput">
                                                   <div class="requiredBlock"></div>-->
-                                                    <input type="text" size="2" onchange="" title="{!dayOfWeek.title}" disabled="true"/>
                                                     <img src="{!URLFOR($Resource.Style_Bundle, 'images/arrow-down.png')}" title="Add Time to Column"/>
+                                                    <input type="text" size="2" onchange="" title="{!dayOfWeek.title}" disabled="true"/>
                                                     <img src="{!URLFOR($Resource.Style_Bundle, 'images/comment.png')}" title="Edit Details for Session"/>
                                                     <!--</div>-->
                                                 </apex:outputPanel>
                                                 <apex:outputPanel rendered="{!NOT(dayOfWeek.isDisabled)}">
+                                                <div style="display:flex;">
+                                                <img style="margin-right: 7px;height: 16px;width: 12px;" src="{!URLFOR($Resource.Style_Bundle, 'images/arrow-down.png')}" onclick="populateDown('populateTime{!dayOfWeek.positionIdentifer}');openModal({!dayOfWeek.positionIdentifer});" title="Add Time to Column"/>
                                                 <div class="requiredInput">
                                                   <div class="requiredBlock"></div>
-                                                    <input type="text" size="3" onchange="changeDosage(this);" title="{!dayOfWeek.title}" id="populateTime{!dayOfWeek.positionIdentifer}"/>
-                                                    <img src="{!URLFOR($Resource.Style_Bundle, 'images/arrow-down.png')}" onclick="populateDown('populateTime{!dayOfWeek.positionIdentifer}');openModal({!dayOfWeek.positionIdentifer});" title="Add Time to Column"/>
+                                                    <input type="text" size="2" onchange="changeDosage(this);" title="{!dayOfWeek.title}" id="populateTime{!dayOfWeek.positionIdentifer}"/>
                                                     <img src="{!URLFOR($Resource.Style_Bundle, 'images/comment.png')}" onclick="openModal({!dayOfWeek.positionIdentifer})" title="Edit Details for Session"/>
                                                </div>
+                                                </div>
                                                 </apex:outputPanel>
                                             </th>
                                         </apex:repeat>
@@ -254,7 +267,7 @@
                                                             <!-- onClick="openStudentDetail('{!student.studentId}','{!selectedSection}','{!sessionPlaceHolder.dateString}');" -->
                                                         </apex:outputPanel>
                                                         <apex:outputPanel rendered="{!NOT(sessionPlaceHolder.isDisabled)}">
-                                                            <apex:inputField style="width: 43px;margin: 2px 0px;" onchange="changeDosage(this);" value="{!sessionPlaceHolder.isr.Amount_of_Time__c}"  id="timeEntry"/>
+                                                            <apex:inputField style="width: 43px;margin: 2px 0px;margin-left: 20px;" onchange="changeDosage(this);" value="{!sessionPlaceHolder.isr.Amount_of_Time__c}"  id="timeEntry"/>
                                                         </apex:outputPanel>
                                                     </td>  
                                                 </apex:repeat>   
@@ -297,65 +310,78 @@
                 <apex:inputTextarea value="{!dayOfWeek.session.Site_Details__c}" styleClass="siteDetails{!dayOfWeek.positionIdentifer}"/>
                 <apex:inputTextarea value="{!dayOfWeek.session.Session_Type__c}" styleClass="sessionType{!dayOfWeek.positionIdentifer}"/>
                 <apex:inputTextarea value="{!dayOfWeek.session.Session_Format__c}" styleClass="sessionFormat{!dayOfWeek.positionIdentifer}"/>
+                <apex:inputTextarea value="{!dayOfWeek.newExiteticket}" styleClass="secondExitTicket{!dayOfWeek.positionIdentifer}"/>
                 <apex:inputCheckbox value="{!dayOfWeek.isProceed}" styleClass="isProceed{!dayOfWeek.positionIdentifer}"/>
             </apex:repeat>
         </div>
     </apex:outputPanel>
      <!-- MODALS -->
      <apex:outputPanel id="test1" >
-        <div id="sessionDataModal" class="modal_window" style="width:max-content;">
+        <div style="align-items:center;width:max-content;" id="sessionDataModal" class="modal_window">
+        <div   style="">
             <a class="modal_close" href="#"></a>
             <p></p>
             <br/>
-            <div class="content">
+            <div class="content" style="height: 65vh;">
                 <div style="width: max-content; display: inline-flex;">
-                    <input type="hidden" id="loadedPos"/>
-                    <div class="requiredInput" style="margin-bottom: 10px;">
+                    <input type="hidden" id="loadedPos" />
+                    <!-- <div class="requiredInput" style="margin-bottom: 10px;">
                         <div class="requiredBlock"></div>
-                        <label><strong>In-Person Service or Virtual Service:</strong></label>
-                        <apex:selectList size="1" value="{!allAvenuesSelected}" id="allAvenuesID" >
-                            <apex:selectOptions value="{!allAvenuesOptions}"/>
+                        <label>
+                            <strong>In-Person Service or Virtual Service:</strong>
+                        </label>
+                        <apex:selectList size="1" value="{!allAvenuesSelected}" id="allAvenuesID">
+                            <apex:selectOptions value="{!allAvenuesOptions}" />
                         </apex:selectList>
-                    </div>
+                    </div> -->
                     <div style="margin-left: 15px; display: inline-block;">
-                        <label><strong>Session Type:</strong></label>
-                        <apex:selectList size="1" value="{!sessionTypeSelected}" id="sessionTypeId" >
-                            <apex:selectOption itemLabel="None" Itemvalue=""/>
-                            <apex:selectOption itemLabel="1:1" Itemvalue="1:1"/>
-                            <apex:selectOption itemLabel="Small Group" Itemvalue="Small Group"/>
+                        <label>
+                            <strong>Session Type:</strong>
+                        </label>
+                        <apex:selectList size="1" value="{!sessionTypeSelected}" id="sessionTypeId">
+                            <apex:selectOption itemLabel="None" Itemvalue="" />
+                            <apex:selectOption itemLabel="1:1" Itemvalue="1:1" />
+                            <apex:selectOption itemLabel="Small Group" Itemvalue="Small Group" />
                         </apex:selectList>
                     </div>
                     <!--<div style="{!IF(!showTutoringModel, "display:none", "margin-left: 15px; display: inline-block;")}">
-                        <label><strong>Tutoring Model:</strong></label>
-                        <apex:selectList size="1" value="{!tutoringModelSelected}" id="tutoringModelId" >
-                            <apex:selectOption itemLabel="None" Itemvalue=""/>
-                            <apex:selectOption itemLabel="Catch Up" Itemvalue="Catch Up"/>
-                            <apex:selectOption itemLabel="Keep Up" Itemvalue="Keep Up"/>
-                        </apex:selectList>
-                    </div>-->
+                                        <label><strong>Tutoring Model:</strong></label>
+                                        <apex:selectList size="1" value="{!tutoringModelSelected}" id="tutoringModelId" >
+                                            <apex:selectOption itemLabel="None" Itemvalue=""/>
+                                            <apex:selectOption itemLabel="Catch Up" Itemvalue="Catch Up"/>
+                                            <apex:selectOption itemLabel="Keep Up" Itemvalue="Keep Up"/>
+                                        </apex:selectList>
+                                    </div>-->
                     <div style="margin-left: 15px; display: inline-block;">
-                        <label><strong>Session Format:</strong></label>
-                        <apex:selectList size="1" value="{!sessionFormatSelected}" id="sessionFormatId" >
-                            <apex:selectOption itemLabel="None" Itemvalue=""/>
-                            <apex:selectOption itemLabel="Push In" Itemvalue="Push In"/>
-                            <apex:selectOption itemLabel="Pull Out" Itemvalue="Pull Out"/>
+                        <label>
+                            <strong>Session Format:</strong>
+                        </label>
+                        <apex:selectList size="1" value="{!sessionFormatSelected}" id="sessionFormatId">
+                            <apex:selectOption itemLabel="None" Itemvalue="" />
+                            <apex:selectOption itemLabel="Push In" Itemvalue="Push In" />
+                            <apex:selectOption itemLabel="Pull Out" Itemvalue="Pull Out" />
                         </apex:selectList>
                     </div>
-                    <div style="{!IF(!showSiteDetails, "display:none", "margin-left: 15px; display: inline-block;")}">
-                        <label><strong>Site Details:</strong></label>
-                        <apex:selectList size="1" value="{!siteDetailsSelected}" id="siteDetailsId" >
-                            <apex:selectOptions value="{!siteDetailsOptions}"/>
+                    <div style="{!IF(!showSiteDetails, " display:none ", "margin-left: 15px; display: inline-block; ")}">
+                        <label>
+                            <strong>Site Details:</strong>
+                        </label>
+                        <apex:selectList size="1" value="{!siteDetailsSelected}" id="siteDetailsId">
+                            <apex:selectOptions value="{!siteDetailsOptions}" />
                         </apex:selectList>
                     </div>
-                   <div style="margin-left: 15px; display: inline-block;">
-                       <label><strong>Exit Ticket:</strong></label>
-                       <apex:inputText value="{!Exitticket}"></apex:inputText>
-                   </div>
+                    <div style="margin-left: 15px; display: inline-block;">
+                        <label>
+                            <strong>Exit Ticket:</strong>
+                        </label>
+                        <apex:inputText id="NewExiteTicket"></apex:inputText>
+                    </div>
                 </div>
                 <!--<h4>{!$ObjectType.Intervention_Session__c.fields.Skills_Covered_for_the_Session__c.Label}:</h4>-->
-    <!--            <textarea id="sessionSkills"></textarea> -->
-                <c:MultiselectPicklist leftLabel="Other Skills" leftOption="{!avaliableFields}"
-                    rightLabel="Selected Skills" rightOption="{!selectedFields}" isPrimaryOption="true" Alldata="{!allPrimaryFields}" primaryLabel="Primary Skill" primaryOption="{!primarySkill}" size="14" width="450px" />
+                <!--            <textarea id="sessionSkills"></textarea> -->
+                <c:MultiselectPicklist leftLabel="Other Skills" leftOption="{!avaliableFields}" rightLabel="Selected Skills" rightOption="{!selectedFields}"
+                    isPrimaryOption="true" Alldata="{!allPrimaryFields}" primaryLabel="Primary Skill" primaryOption="{!primarySkill}"
+                    size="14" width="450px" />
                 <span id="serviceErrorSpan" style="color:red;display:none">{!$Label.Required_Service}</span>
                 <span id="skillsErrorSpan" style="color:red;display:none">{!$Label.Skills_Required}</span>
                 <span id="skillsLengthErrorSpan" style="color:red;display:none">{!$Label.Exceeded_Skill_Length}</span>
@@ -363,12 +389,13 @@
                 <h4>{!$ObjectType.Intervention_Session__c.fields.Comments__c.Label}:</h4>
                 <textarea id="sessionComments"></textarea>
             </div>
-            
+        
             <div id="options">
                 <input type="button" class="black_btn" value="Proceed" onclick="storeSessionChanges();" />
-                <input type="button" class="grey_btn" value="Cancel" onclick="close_modal('#sessionDataModal');"/>
+                <input type="button" class="grey_btn" value="Cancel" onclick="close_modal('#sessionDataModal');" />
             </div>
-            
+        
+        </div>
         </div>
         </apex:outputPanel>
         <div id="studentDetailModal" class="modal_window" style="width:1200px;top:0px !important;">
@@ -467,8 +494,7 @@
               //$("input[id$='timeEntry']").value(); 
             //}
        //}
-       
-       
+      
         function changeDosage(inputBox) {
             var val = inputBox.value;
             if (ValidateTime(val) != false) {
@@ -607,7 +633,8 @@
         }
          function storeSessionChanges(){
             var isError = false;
-
+            var exiteTicket = j$('input[id$=NewExiteTicket]').val();
+            console.log('exiteTicket++'+exiteTicket);
             var allAvenues = j$("select[id$='allAvenuesID'] option:selected").text();
             console.log('allAvenues##'+allAvenues);
             if(allAvenues=='None'){
@@ -658,6 +685,7 @@
             j$('.siteDetails'+dataPosition,'#dailySessionPanel').val(j$("select[id$='siteDetailsId'] option:selected").attr('value'));
             j$('.sessionType'+dataPosition,'#dailySessionPanel').val(j$("select[id$='sessionTypeId'] option:selected").attr('value'));
             j$('.sessionFormat'+dataPosition,'#dailySessionPanel').val(j$("select[id$='sessionFormatId'] option:selected").attr('value'));
+            j$('.secondExitTicket'+dataPosition,'#dailySessionPanel').val(exiteTicket);
             j$('.isProceed'+dataPosition,'#dailySessionPanel').attr('checked', true);
             close_modal('#sessionDataModal');
             
@@ -674,6 +702,14 @@
         }
        
         function openModal(dataPosition){
+            var screenWidth = window.innerWidth;
+       var screenWidthPercentage = (screenWidth / screen.width) * 100;
+       console.log(screenWidthPercentage + "%");
+       
+            console.log('papulating buble');
+           var val = j$('.secondExitTicket'+dataPosition,'#dailySessionPanel').val();
+           j$("input[id$='NewExiteTicket']").val(val);
+
             j$('#loadedPos','#sessionDataModal').val(dataPosition);
             j$('.leftList option').remove();
             j$('.rightList option').remove();
@@ -710,7 +746,7 @@
             j$("select[id$='sessionTypeId'] option[value='"+j$('.sessionType'+dataPosition,'#dailySessionPanel').val()+"']").attr('selected', true);
             j$("select[id$='sessionFormatId'] option[value='"+j$('.sessionFormat'+dataPosition,'#dailySessionPanel').val()+"']").attr('selected', true);
             j$("select[id$='siteDetailsId'] option[value='"+j$('.siteDetails'+dataPosition,'#dailySessionPanel').val()+"']").attr('selected', true);
-
+            j$('#NewExiteTicket','#sessionDataModal').val(j$('.secondExitTicket'+dataPosition,'#dailySessionPanel').val());
             j$('#jumpLink').click();
         }
 

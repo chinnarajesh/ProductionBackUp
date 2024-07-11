@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Curriculum_Name__c</fullName>
+    <defaultValue>&quot;Do The Math&quot;</defaultValue>
+    <label>Curriculum Name</label>
+    <required>true</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Do The Math</fullName>
+                <default>false</default>
+                <label>Do The Math</label>
+            </value>
+            <value>
+                <fullName>Do the Math Now!</fullName>
+                <default>false</default>
+                <label>Do the Math Now!</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

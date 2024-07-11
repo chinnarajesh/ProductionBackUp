@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Displays information about how a student&apos;s evaluation was administered. --></help>
+    <label><!-- Evaluation Type --></label>
+    <name>Evaluation_Type__c</name>
+    <picklistValues>
+        <masterLabel>Ambulatory care center</masterLabel>
+        <translation><!-- Ambulatory care center --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Child care</masterLabel>
+        <translation><!-- Child care --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Community facility</masterLabel>
+        <translation><!-- Community facility --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Early intervention classroom/cente</masterLabel>
+        <translation><!-- Early intervention classroom/cente --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Home</masterLabel>
+        <translation><!-- Home --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Hospital</masterLabel>
+        <translation><!-- Hospital --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Local education agency</masterLabel>
+        <translation><!-- Local education agency --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Other</masterLabel>
+        <translation><!-- Other --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Other health care provider location</masterLabel>
+        <translation><!-- Other health care provider location --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Outpatient hospital</masterLabel>
+        <translation><!-- Outpatient hospital --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Primary care health provider office</masterLabel>
+        <translation><!-- Primary care health provider office --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Public health facility</masterLabel>
+        <translation><!-- Public health facility --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Social service agency</masterLabel>
+        <translation><!-- Social service agency --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

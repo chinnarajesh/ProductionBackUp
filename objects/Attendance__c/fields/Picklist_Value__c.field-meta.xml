@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Picklist_Value__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <inlineHelpText>Displays the value that users select to describe the student&apos;s attendance using the Attendance tab or Attendance Wizard. These picklist options are chosen by your school.</inlineHelpText>
+    <label>Status</label>
+    <referenceTo>Picklist_Value__c</referenceTo>
+    <relationshipLabel>Attendance</relationshipLabel>
+    <relationshipName>Attendance</relationshipName>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

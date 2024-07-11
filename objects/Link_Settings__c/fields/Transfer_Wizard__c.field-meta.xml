@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Transfer_Wizard__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Link to enter transfer courses and grades</description>
+    <label>Transfer Wizard</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

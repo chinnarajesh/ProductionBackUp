@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Show_Class_Rank__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Check this field to show Class Rank on Report Card/Progress Reports</description>
+    <inlineHelpText>Check this field to show Class Rank on Report Card/Progress Reports</inlineHelpText>
+    <label>Show Class Rank</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

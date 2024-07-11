@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Evaluation_Results_Uploaded__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Have Evaluation Results Been Uploaded to Content?</description>
+    <inlineHelpText>Have Evaluation Results Been Uploaded to Content?</inlineHelpText>
+    <label>Are Eval Results in Content?</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

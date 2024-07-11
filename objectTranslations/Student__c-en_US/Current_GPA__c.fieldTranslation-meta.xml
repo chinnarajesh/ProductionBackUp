@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Displays the real-time calculation of the GPA that includes grades from assignments in the courses a student is currently enrolled in as well as the courses a student has completed. --></help>
+    <label><!-- Current GPA --></label>
+    <name>Current_GPA__c</name>
+</CustomFieldTranslation>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Community Service</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Community Service</value>
+    </caseValues>
+    <fieldSets>
+        <label><!-- Community Service Wizard --></label>
+        <name>Community_Service_Wizard</name>
+    </fieldSets>
+    <fieldSets>
+        <label><!-- MassAdd --></label>
+        <name>MassAdd</name>
+    </fieldSets>
+    <layouts>
+        <layout>Community Service Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- Service Hours Completed must non-negative. --></errorMessage>
+        <name>Non_Negative_Service_Hours</name>
+    </validationRules>
+    <webLinks>
+        <label><!-- Contact_New_Community_Service --></label>
+        <name>Contact_New_Community_Service</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Student_New_Community_Service --></label>
+        <name>Student_New_Community_Service</name>
+    </webLinks>
+</CustomObjectTranslation>

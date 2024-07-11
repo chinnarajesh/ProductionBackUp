@@ -1,0 +1,511 @@
+@charset "UTF-8";
+/* CSS Document for student portal */
+
+html { font-family: trebuchet,trebuchet MS, helvetica, arial;}
+
+p { font-family:trebuchet, trebuchet MS;}
+ul {list-style-type: none;}
+
+a:focus { 
+outline: none; 
+}
+
+a {text-decoration: none;font-family:trebuchet, trebuchet MS; color:#0083F2;}
+
+h2 {font-size:22px;}
+
+span.small_arrow {display:block; float:left; width:14px; height:14px; background:url(../images/arrow_down_right.png) 0px 0px no-repeat;}
+span.small_arrow closed {background-position:0px 0px; border:none;}
+span.open { background-position:0px -14px;}
+
+
+span.arrow_big {display:block; float:left!important; width:28px; height:28px; background:url(../images/big_arrow_down_right.png) 0px 0px no-repeat; margin:0px 7px 0px 0px !important;}
+span.arrow_big,open { background-position:0px -28px;}
+span.closed { background-position:0px 0px;}
+
+
+body {font-family: arial; margin: 0px; padding: 0px; background: #FFF url(../images/page_bg.jpg) repeat-x 0px 0px; background: #fff; font-family: trebuchet, trebuchet MS;}
+
+#wrapper {width: 1200px; margin: 0px auto; padding: 0px; background: none; display: block; height: 100%;} 
+
+#header {display: block; min-height: 135px; margin: 0px; padding: 15px 10px; background: none;}
+
+#headerinfo {width: 1025px; clear: left; display: block; background: none; height: 60px; padding-top: 10px; border-bottom: 0px solid #ccc;}
+
+#headerinfo .topleft {width: 725px; float: left; clear: left;}
+
+#headerinfo .topleft a.logo {background: url(../images/logo.png) no-repeat 0px 0px; display: block; text-indent: -10000px; width: 148px; height: 101px; float: left; margin: 0px 30px 0px 0px;}
+
+#headerinfo .topleft .clock {background: url(../images/clock_bg.png) no-repeat 0px 0px; width: 414px; height: 40px; display: block; float: left;}
+
+#headerinfo .topleft .clock table {display: inline; margin-left: 25px;}
+
+#headerinfo .topleft .clock span {vertical-align: middle; padding-bottom: 10px; font-size: 16px; padding-left: 15px;}
+
+#headerinfo .topleft .awards {background: url(../images/awards_bg.png) no-repeat 0px 0px; display: block; width: 650px; height: 90px; margin-top: 10px; margin-left: 175px;}
+#headerinfo .topleft .awards ul {padding-left:0px;}
+#headerinfo .topleft .awards ul li {display: inline; float:left;}
+#medal { width:50px; height:90px; margin:0px 0px 0px 3px; border:0px red solid; background: url(../images/medal_a.png) no-repeat 0px 0px;}
+#first { width:100px; height:90px; margin:0px 0px 0px 20px; color:white; padding-top:35px; }
+#last { width:210px; padding-top:25px; margin-left:30px; }
+
+
+#headerinfo .topleft p {margin: 0px 10px; padding: 0px;}
+
+#headerinfo .topcenter {float: left; clear: none; display: block; width: 325px; text-align: center;}
+#headerinfo .topcenter table {margin-left: 110px;}
+
+#headerinfo .topright {float: left; clear: none; width: 300px; display: block; text-align: right;}
+
+#headerinfo .topright p {margin: 0px 10px; padding: 0px; font-size: 14px; line-height: 15px;}
+
+#headerinfo .topright p.schoolinfo {font-family: trebuchet, trebuchet MS; font-size:14px; font-weight:bold; line-height:15px; margin:7px 0 0 10px;
+padding:0;
+}
+
+#headerinfo .topright p.behavior {color: #0083f2; color: #000; font-size: 12px; font-family: trebuchet, trebuchet MS; margin: 20px 0px 0px 0px;}
+#headerinfo .topright p.behavior span.numeric {color: #063;}
+#headerinfo .topright p.behavior span.numeric_yellow {color:#FC0;}
+
+h2.name {  display: block; font-size: 24px; color: #c10505; font-family: trebuchet, trebuchet MS; margin: 0px;}
+
+#header .photo {float: right; display:block;}
+
+
+
+#mainnav {width: 100%; display: block; height: 140px; background: url(../images/nav_bg_shadow.png) no-repeat 0px 0px; }
+#mainnav ul {margin: 0px; padding: 0px;}
+#mainnav ul li {background: none; height: 140px; margin: 0px; padding: 0px; float: left; display: block;}
+#mainnav ul li a {display: block; margin: 0px; padding: 0px; text-decoration: none; height: 140px; text-indent: -10000px;}
+
+#mainnav ul li.home a {background: url(../images/nav_bg.png) no-repeat 0px 0px; display: block; width: 151px;}
+#mainnav ul li.home a:hover, #mainnav ul li.home a.selected {background-position: 0px -140px;}
+
+#mainnav ul li.assignments a {background: url(../images/nav_bg.png) no-repeat -151px 0px; display: block; width: 208px;}
+#mainnav ul li.assignments a:hover, #mainnav ul li.assignments a.selected {background-position: -151px -140px;}
+
+#mainnav ul li.progress a {background: url(../images/nav_bg.png) no-repeat -360px 0px; display: block; width: 182px;}
+#mainnav ul li.progress a:hover, #mainnav ul li.progress a.selected {background-position: -360px -140px;}
+
+#mainnav ul li.calendar a {background: url(../images/nav_bg.png) no-repeat -543px 0px; display: block; width: 186px;}
+#mainnav ul li.calendar a:hover, #mainnav ul li.calendar a.selected {background-position: -543px -140px;}
+
+#mainnav ul li.projects a {background: url(../images/nav_bg.png) no-repeat -729px 0px; display: block; width: 180px;}
+#mainnav ul li.projects a:hover, #mainnav ul li.projects a.selected {background-position: -729px -140px;}
+
+#mainnav ul li.corp {background: url(../images/nav_bg.png) no-repeat -911px 0px; width: 289px; text-indent: none; padding-top: 30px; height: 110px; }
+
+#mainnav ul li.corp div {display: block; text-indent: none; border: 0px solid red; margin: 0px; padding: 4px 0 0 0; text-align:center; vertical-align:top;}
+
+#mainnav ul li.corp div span {color: #e1ecf4; font-weight: normal; font-size: 14px; margin: 0px 5px 0px 7px;}
+
+#mainnav ul li.corp div a {display: inline; text-indent: none; color: #e1ecf4; font-weight: normal; font-size:12px; }
+
+#maindash {width: 905px; float: left; clear: left; display: block; height: 100%; background: #fff;margin: 0px; padding: 0px; margin-right: 15px;}
+
+#maindash_full {width: 905px; width: 1175px; float: left; clear: left; display: block; height: 100%; background: #fff;margin: 0px; padding: 0px; margin-right: 15px;}
+
+
+#maindash h2 {background: url(../images/home_blue_header.png) no-repeat 0px 0px; color: #fff; margin: 0px 0px 0px 10px; padding: 0px; display: block; height: 29px; padding: 7px 10px; margin-bottom: 0px; text-transform:uppercase;}
+
+#maindash_full h2 {background: url(../images/home_blue_header_full.png) no-repeat 0px 0px; color: #fff; margin: 0px 0px 0px 10px; padding: 0px; display: block; height: 29px; padding: 7px 10px; margin-bottom: 0px; text-transform:uppercase;}
+
+
+#maindash h2 span, #maindash_full h2 span {display: block; float: right; margin-top: -18px;}
+
+
+#awardsdetail {width:100%;}
+#awardsdetail table {width:100%}
+#awardsdetail td {font-size:15px; border-bottom:1px solid #e9e9e9; padding-top:7px; padding-right:10px; }
+
+#alertsDetail {width:100%;}
+#alertsDetail table {width:100%}
+#alertsDetail td {font-size:11px; border-bottom:1px solid #ccc; padding-top:7px; padding-right:15px; }
+
+#alerts {margin: 0px 0px 20px 10px;}
+#alertone {margin-bottom: 0px; background: #fffcab;}
+#alertone .from {display: block; float: left; width: 200x; margin-left: 10px; font-size: 13px; padding: 10px; border-right: 2px solid #fff; font-weight:bold;}
+#alertone .from a {text-decoration: underline; color:#B40B0B; font-weight:bold;}
+#alertone .message {display: block; float: left; clear: right; width: 430px; font-size: 13px; line-height: 16px;  padding: 10px;}
+#alertone .message span.title {font-size: 16px;}
+#alertone .message a {text-decoration: underline;}
+
+#alerttwo {margin-bottom: 0px; background: #faf583; margin: 0px;}
+#alerttwo .from {display: block; float: left; width: 115px; margin-left: 10px; font-size: 13px; padding: 10px; font-weight:bold;}
+#alerttwo .from a {text-decoration: underline; color:#B40B0B; font-weight:bold;}
+#alerttwo .message {display: block; float: left; clear: right; width: 630px; font-size: 13px; line-height: 16px;  border-left: 2px solid #fff; padding: 10px;}
+#alerttwo .message span.title {font-size: 16px;}
+#alerttwo .message a {text-decoration: underline;}
+
+#maindashalt {margin: 0px 0px 0px 0px; padding: 0px; width: 520px; float: left; clear: left; display: block;}
+#maindashalt_wider {margin: 0px 0px 0px 0px; padding: 0px; width: 790px; float: left; clear: left; display: block;}
+
+h2.assignments {background: url(../images/blue-header_wider.png) no-repeat 0px 0px !important; height: 29px; width: 520px !important; width: 790px !important; margin: 0px; padding: 0px; text-transform: uppercase;float: left; clear: left; display: block; color: #fff; padding: 7px 10px; margin: 0px 0px 0px 10px;}
+
+h2.assignments span {display: block; float: right; margin-top: -18px; margin-right: 15px;}
+h2.assignments span.arrow { display:block; float:left; width:14px; height:14px; background:url(../images/arrow_down_right.png) 0px 0px no-repeat; border:1px solid red;}
+h2.assignments span.arrow,open { background-position:0px -14px;}
+
+#assignments {background: #fffcab; padding: 5px 0px; margin: 0px 0px 10px 10px; width: 520px; width: 790px; margin-bottom: 30px; float: left; clear: left; display: block;}
+
+#assignments h3 {margin-bottom: 0px; padding: 5px; color: #093d62; font-size: 17px; margin: 7px 0px 5px 0px; display: block; clear: both;}
+
+#assignments h4 {margin-bottom: 0px;}
+
+#assignments p {margin-top: 0px; font-family: helvetica; font-size: 12px; margin-left: 5px;}
+
+#assignments p span {color: #9c3303; display: block; float: left; width: 75px; font-weight: bold; padding: 0px 0px 10px 0px;}
+
+#assignments .assignclass {margin-left: 6px; background: none; padding: 5px 10px 10px 10px;}
+
+#assignments .assignclass {padding: 5px;}
+
+#assignments .assignclass a.paper {background: url(../images/ico-papers.png) no-repeat 0px 0px; display: block; float: left; width: 16px; height: 16px; text-indent: -10000px; margin: 0px 7px 0px 0px;}
+
+#assignments .assignclass a.photo {background: url(../images/ico-images.png) no-repeat 0px 0px; display: block; float: left; width: 16px; height: 16px; text-indent: -10000px; margin: 0px 7px 0px 0px;}
+
+#assignments .assignclass a.music {background: url(../images/ico-music.png) no-repeat 0px 0px; display: block; float: left; width: 16px; height: 16px; text-indent: -10000px; margin: 0px 7px 0px 0px;}
+
+#assignments .assignclass a.video {background: url(../images/ico-movies.png) no-repeat 0px 0px; display: block; float: left; width: 16px; height: 16px; text-indent: -10000px; margin: 0px 7px 0px 0px;}
+
+
+
+
+#assignments .assignclassalt a p.collapse {color: #0083f2 !important; display: block; text-align: right; margin: 0px; padding: 0px; margin-right: 5px;}
+
+#assignments .assignclass h4 {font-size: 14px; font-weight: bold; margin-top: 7px;}
+
+.assignmentDivider { height:3px;border-width:0;color:#FC0 ;background-color: #FC0; clear: both;}
+
+.assignmentDataWrapper {width: 600px;}
+ 
+.uploadAttachment {display: block; width: 100px; height: 100px; text-align: center; float: right ;}
+
+/*media center and resources column */
+
+#mediacenter {width: 355px; float: left; clear: none; margin-left: 30px; display: block;}
+
+#mediacenter h2.media {background: url(../images/media-header.png) no-repeat 0px 0px; height: 35px; color: #fff; text-transform: uppercase; margin: 0px; padding: 7px 0px 0px 10px}
+
+#mediacenter h2.media span {display: block; float: right; margin-top: -18px; margin-right: 15px;}
+
+#video {margin: 0px; padding: 0px; background: #414141; width: 336px; padding: 3px;}
+#video h3 {color: #ebebea; background: #000; font-size: 14px; padding: 2px 10px;  margin:5px 0 0 0px!important;}
+
+#video h3 span {display: block; float: right;  color: #000; font-weight: normal; width: 21px; height: 21px; font-size: 12px; padding-left: 8px; padding-top: 4px; margin-bottom: 0px;}
+
+#video table {width: 100%; margin: 0px; padding: 0px; text-align: left; vertical-align:top; padding: 0px 0px;}
+#video table tr.top {margin: 0px; padding: 0px;}
+#video table th {font-size: 11px; color: #a2a2a1; font-weight: normal; background: #575757; margin-top: 0px; padding-left: 12px;}
+#video table td a {color: #ebebeb; font-size: 12px; padding-left: 7px;}
+
+#video ul.playlistItems {margin: 0px; padding: 0px;}
+#video ul.playlistItems li {margin: 0px 0px 0px 10px; padding: 0px ;}
+#video ul.playlistItems li a {color: #fff; font-size: 10px; line-height: 14px; font-weight: normal; margin-bottom: 4px;}
+
+#videobottom {background: url(../images/media-footer.png) no-repeat 0px 0px; margin: 0px; padding: 0px;}
+
+#mediacenter h2.resources {background: url(../images/resources-header.png) no-repeat 0px 0px; height: 35px; color: #fff; text-transform: uppercase; margin: 0px; padding: 7px 0px 0px 10px; margin-top: 15px;}
+
+#mediacenter h2.resources span {display: block; float: right; margin-top: -18px; margin-right: 15px;}
+
+#resources {background: #7f5585; padding: 3px; width: 336px;}
+#resources .content {background: #fff; margin: 0px; padding: 5px 0px;}
+#resources .content h3 {margin: 0px; background: #7f5585; color: #ebebea; padding: 3px 0px 3px 30px;}
+#resources .content h3 span {display: block; float: right; background: url(../images/alert-purple.png) no-repeat 0px 1px; color: #000; font-weight: normal; width: 21px; height: 21px; font-size: 12px; padding-left: 8px; padding-top: 4px; margin-bottom: 0px;}
+#resources .content h3.images {background: #7f5585 url(../images/ico-images.png) no-repeat 5px 7px;}
+#resources .content h3.papers {background: #7f5585 url(../images/ico-papers.png) no-repeat 5px 7px;}
+#resources .content h3.links {background: #7f5585 url(../images/ico-links.png) no-repeat 5px 7px;}
+#resources .content h3.music {background: #7f5585 url(../images/ico-music.png) no-repeat 5px 7px;}
+#resources .content h3.movies {background: #7f5585 url(../images/ico-movies.png) no-repeat 5px 7px;}
+#resources .content table {width: 100%; margin-top: 1px; text-align: left;}
+#resources .content table th {background: #c1aac4; color: #353535; font-size: 11px; padding-left: 10px;}
+#resources .content table td {padding-left: 10px;}
+#resources .content table td a {color: #000; font-size: 12px;}
+#resourcebottom {background: url(../images/resources-footer.png) no-repeat 0px 0px; display: block; height: 21px; width: 342px;}
+
+
+#maindash .projects {background: #fffcab;  margin: 0px; margin-left:10px; padding-left:0px; }
+#maindash .projects h3 {height: 29px; width: auto; background: url(../images/project-tab-bg.png) no-repeat 0px 0px; display: block; padding-left: 20px; float: left; font-weight: bold; font-size: 17px; color: #093d62; padding-top: 5px; margin-left: 10px;}
+#maindash .projects h3 span {background: url(../images/project-tab-right.png) no-repeat 0px 0px; display: block; float: right; height: 29px; width: 44px; margin-right: -28px; margin-top: -5px;}
+#maindash .projects .project {background: #fff; margin: 0px; padding: 0px 10px; margin: -20px 11px 0px 11px;}
+
+
+#maindash .projects .projectinfo {background: #fff; margin: 0px; padding: 0px 20px; margin: 45px 11px 0px 11px;}
+#maindash .projects .projectinfo p span.title {color: #9c3303; font-family: helvetica; font-size: 12px; font-weight: bold; width: 110px; display: block; float: left; padding-left: 10px;}
+#maindash .projects .projectinfo p span.content { color: #000; font-size: 12px; font-weight: normal; display: block; padding-left: 110px;}
+
+
+#maindash .projects .project p span.title {color: #9c3303; font-family: helvetica; font-size: 12px; font-weight: bold; width: 110px; display: block; float: left; padding-left:20px;}
+#maindash .projects .project p span.titleone {color: #9c3303; font-family: helvetica; font-size: 12px; font-weight: bold; width: 110px; display: block; float: left; padding-left: 8px;}
+#maindash .projects .project p span.content { color: #000; font-size: 12px; font-weight: normal; display: block; padding-left: 130px;}
+#maindash .projects .project .projecttable {margin: 0px; padding: 0px;}
+#maindash .projects .project .projecttable table {margin: 0px; padding: 0px; width: 725px !important; font-size: 12px; font-family: helvetica; text-align: left;}
+#maindash .projects .project .projecttable table th {margin-top: 0px; padding: 5px; background-color: #faf583;}
+#maindash .projects .project .projecttable table td {border-bottom: 2px solid #fff; padding: 5px; background: #eef3f6;}
+#maindash .projects .project .projecttable table td.one {background: #e1edf6;}
+#maindash .projects .project p.collapsea {float: right; display: block; font-size: 12px; padding-right: 10px; color: #0083f2; padding-top: 20px;}
+
+#maindash .projects p.collapsea {float: right; display: block; font-size: 12px; padding-right: 10px; color: #0083f2; margin-top: 10px;}
+
+#maindash .projects .project .projecttable table td a.paper {background: url(../images/ico-papers.png) no-repeat 0px 0px; display: block; float: left; width: 16px; height: 16px; text-indent: -10000px; margin: 0px 7px 0px 0px;}
+
+#maindash .projects .project .projecttable table td a.photo {background: url(../images/ico-images.png) no-repeat 0px 0px; display: block; float: left; width: 16px; height: 16px; text-indent: -10000px; margin: 0px 7px 0px 0px;}
+
+#maindash .projects .project .projecttable table td a.music {background: url(../images/ico-music.png) no-repeat 0px 0px; display: block; float: left; width: 16px; height: 16px; text-indent: -10000px; margin: 0px 7px 0px 0px;}
+
+#maindash .projects .project .projecttable table td a.video {background: url(../images/ico-movies.png) no-repeat 0px 0px; display: block; float: left; width: 16px; height: 16px; text-indent: -10000px; margin: 0px 7px 0px 0px;}
+
+
+#progress {background: #fffcab !important;  margin: 0px; margin-left:10px; padding-left:0px; padding: 20px 0px; }
+
+#progress img {margin: 10px 5px;}
+
+#scorecard {background: #ccc; padding: 5px 10px; margin: 10px 0px;}
+
+#rightbar {width: 270px; float: left; clear: right; display: block; margin: 0px 10px 0px 0px; padding-left: 0px; padding-top: 0px;}
+
+#rightbar h2 {margin-top: 0px; text-transform: uppercase; color: #fff;}
+
+#rightbar h2.today {background: url(../images/todays-header.png) no-repeat 0px 0px;  margin: 0px; height: 50px; padding-top: 15px; padding-left: 10px; margin-top: -8px; margin-bottom: 0px;}
+
+#rightbar h2.today span {color: #000; font-size: 18px; float: right; padding-right: 20px; padding-top: 5px;}
+
+#rightbar h3 {margin: 0px 0px 5px 0px; color: #353535; color: #900; background: #faf583; font-size:16px; margin:0 5px 5px 4px; padding-left:5px;}
+
+#rightbar .homework {border-bottom: 0px solid #ccc; padding:  5px; background: #fff; margin: 0px; background: url(../images/todays-bg.png) repeat-y 0px 0px;}
+
+#rightbar .homework ul, #rightbar .homework table.assignmentList {margin: 0px; padding: 0px; margin-left: 10px; margin-bottom: 15px;}
+#rightbar .homework table.assignmentList td.assignment {width: 300px;}
+#rightbar .homework table.assignmentList td.due_date {width: 100px;}
+
+
+#rightbar .homework ul li ul {margin-bottom: 5px;}
+
+#rightbar .homework ul li a, #rightbar .homework table.assignmentList tr td, #rightbar .homework table.assignmentList tr td a  {font-weight: bold; color: #333; font-size: 13px; font-family: trebuchet;}
+
+#rightbar .homework ul li a span.over {color: red;}
+#rightbar .homework ul li ul li a {font-weight: normal; font-size: 12px;}
+
+#todaysbottom {background: url(../images/todays-footer.png) no-repeat 0px 0px; margin: 0px; padding: 0px; display: block; height: 16px; width: 270px;}
+
+
+#rightbar h2.chat {background: url(../images/whos-online-header.png) no-repeat 0px 0px;  margin: 0px; height: 42px; padding-top: 15px; padding-left: 10px; margin-bottom: 0px; text-transform:uppercase; margin-top: 25px; padding-top: 8px;}
+
+#rightbar h2.chat span {color: #000; font-size: 18px; float: right; padding-right: 25px; padding-top: 3px;}
+
+#chat {background: #215b85; padding: 0px 4px; width: 262px;}
+#chat .body {background: #fff; margin: 0px; padding-top: 5px;}
+
+#chat .body h3 span {display: block; float: right; background: url(../images/alert-blue.png) no-repeat 0px 0px; color: #fff; font-weight: normal; width: 21px; height: 21px; font-size: 12px; padding-left: 8px; padding-top: 2px;}
+
+#chat .body ul {margin: 0px; padding: 0px; margin-bottom: 20px;}
+
+#chat .body ul li {padding-left: 28px;}
+
+#chat .body ul li a {color: #333; font-size:13px;}
+
+#chat .body ul li.team {background: url(../images/chat-team.png) no-repeat 6px 7px; }
+
+#chatfooter {background: url(../images/whos-online-footer.png) no-repeat 0px 0px; margin: 0px; padding: 0px; display: block; height: 16px; width: 270px;}
+
+/* assignments sub navigation */
+
+#assignmentsnav {margin: 0px; padding: 0px; display: block; width: 900px; float: left; clear: none; margin-top: -22px; }
+
+#assignmentsnav ul {list-style-type: none; background: url(../images/assignments-nav-bg.png) repeat-x 0px 0px; height: 35px; width: 880px; width: 1175px;margin-left: 10px; margin-top: 0px; padding: 0px; float: left; clear: none; }
+
+#assignmentsnav ul li {float: left; display: block; padding: 0px; margin: 0px; height: 35px; padding-top: 7px; color: #038103; padding: 7px 0px 0px 0px;}
+#assignmentsnav ul li.addclass {float: right; padding-top: 0px;}
+#assignmentsnav ul li.addclass a {text-indent: -10000px; background: url(../images/btn-addclass.png) no-repeat 0px 0px; height: 36px; width: 36px; float: right; margin: 0px; padding: 7px 0px 0px 0px; color:#FC0;}
+#assignmentsnav ul li.addclass a:hover {text-indent: -10000px; background: url(../images/btn-addclass.png) no-repeat 0px 0px; height: 36px; width: 36px; float: right; margin: 0px; padding: 7px 0px 0px 0px;}
+
+#assignmentsnav ul li a {padding: 7px 20px; margin: 0px; color: #fff; height: 35px; }
+
+#assignmentsnav ul li a span {text-align:center; margin: 0px; padding: 0px;  color: #038103; float: right; display: block; margin-left: -4px; margin-right: -4px;}
+
+#assignmentsnav ul li a:hover, #assignmentsnav ul li a.selected {background: url(../images/assignments-nav-selected.png) repeat-x 0px 0px;}
+
+
+.assignmentTable {  margin: 10px 0px 0px 10px; }
+
+.testScoreTable {}
+
+.reportCardTable {}
+
+.assignmentTable th, .testScoreTable th, .reportCardTable th {color: #900 !important; font-size: 13px; line-height: 16px; text-indent: 0px; padding: 0px 0px 4px 0px; text-align: left; padding-right: 20px;}
+.assignmentTable td, .testScoreTable td, .reportCardTable td {color: #000; font-size: 12px; line-height: 14px; padding-left: 10px;}
+
+.testScoreTable td span.above {color:#0C6;}
+.testScoreTable td span.below {color:#900;}
+
+
+
+
+
+a.sort{font-size:11px; font-weight:normal;}
+
+#clear {display: block; clear: both; height: 0px;}
+
+.loginTable {color:#ffffff; font-family:trebuchet, trebuchet MS; border:0px red solid; width:300px;}
+.loginTable a {color:#fff; font-size:11px;font-weight:normal;}
+.loginTable td {color:#ffffff; font-family:trebuchet, trebuchet MS;}
+
+.showTrophyCase,
+.showAllAlerts,
+.showAllIncidents,
+.logoutPortal{
+	display: inline-block;
+	cursor: pointer;
+}
+
+.showTrophyCase{
+	height: 18px;
+	padding: 12px 5px;
+	background: none;
+	border: 1px solid #5f98cd;
+	border-radius: 5px;
+	line-height: 22px;
+	color: #fff;
+	text-transform: uppercase;
+	text-decoration: none;
+}
+.showTrophyCase .trophyDoubleArrow{
+	float: right;
+	display: inline-block;
+	width: 27px;
+	height: 22px;
+	background: url('../images/double-arrow.png') no-repeat 0 0;
+	margin: 0 5px 0 10px;
+}
+
+.showAllAlerts,
+.showAllIncidents{
+	height: 29px;
+	padding: 8px;
+	background: #a30000;
+	background: -moz-linear-gradient(50% 0% -90deg, #e3b1b1 0%, #b12828 48%, #a30000 53%, #a30000 100%);
+	background: -ms-linear-gradient(-90deg, #e3b1b1 0%, #b12828 48%, #a30000 53%, #a30000 100%);
+	background: -o-linear-gradient(-90deg, #e3b1b1 0%, #b12828 48%, #a30000 53%, #a30000 100%);
+	background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0, #e3b1b1), color-stop(0.48, #b12828), color-stop(0.53, #a30000), color-stop(1, #a30000));
+	background: -webkit-linear-gradient(-90deg, #e3b1b1 0%, #b12828 48%, #a30000 53%, #a30000 100%);
+	background: linear-gradient(-90deg, #e3b1b1 0%, #b12828 48%, #a30000 53%, #a30000 100%);
+	border: 1px solid #a30000;
+	border-radius: 5px;
+	box-shadow: 0 3px 6px #444;
+	font-size: 14px;
+	font-weight: bold;
+	color: #fff;
+	line-height: 30px;
+	text-decoration: none;
+	text-transform: capitalize;
+}
+.showAllAlerts .showAllAlertsStar{
+	float: left !important;
+	display: inline-block !important;
+	width: 30px;
+	height: 30px;
+	background: url('../images/star-icon.png') no-repeat 0 0;
+	margin: 0 5px 0 0 !important;
+}
+
+.logoutPortal{
+	height: 27px;
+	padding: 2px 8px;
+	background: #010101;
+	background: -moz-linear-gradient(top,  #3f3f3f 0%, #010101 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#3f3f3f), color-stop(100%,#010101));
+	background: -webkit-linear-gradient(top,  #3f3f3f 0%,#010101 100%);
+	background: -o-linear-gradient(top,  #3f3f3f 0%,#010101 100%);
+	background: -ms-linear-gradient(top,  #3f3f3f 0%,#010101 100%);
+	background: linear-gradient(to bottom,  #3f3f3f 0%,#010101 100%);
+	border: 1px solid #010101;
+	border-radius: 5px;
+	color: #fff;
+	font-size: 14px;
+	line-height: 29px;
+	text-decoration: none;
+	text-transform: uppercase;
+}
+.logoutPortal .logoutPortalArrow{
+	float: right;
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	background: url('../images/logoutArrow.png') no-repeat 0 0;
+	margin: 5px 0 0 10px;
+}
+
+.mainNav{
+	max-width: 1170px;
+	height: 95px;
+	box-shadow: 0 5px 10px #444;
+	padding: 0;
+}
+.mainNav .mainNavItem{
+	//float: left;
+	//min-width: 189px;
+	height: 95px;
+	padding: 0 10px;
+	background: #009800;
+	background: -moz-linear-gradient(top,  #009800 0%, #6ecc0a 50%, #58a806 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#009800), color-stop(50%,#6ecc0a), color-stop(100%,#58a806));
+	background: -webkit-linear-gradient(top,  #009800 0%,#6ecc0a 50%,#58a806 100%);
+	background: -o-linear-gradient(top,  #009800 0%,#6ecc0a 50%,#58a806 100%);
+	background: -ms-linear-gradient(top,  #009800 0%,#6ecc0a 50%,#58a806 100%);
+	background: linear-gradient(to bottom,  #009800 0%,#6ecc0a 50%,#58a806 100%);
+	border-left: 1px solid #86ce3a;
+	color: white;
+	font-size: 18px;
+	text-align: center;
+	text-transform: uppercase;
+	line-height: 35px;
+	list-style: none;
+	cursor: pointer;
+}
+.mainNav .mainNavItem:first-child{
+	min-width: 100px;
+	border: none;
+}
+.mainNav .mainNavItem:hover{
+	background: #009800;
+	background: -moz-linear-gradient(top,  #009800 0%, #00c400 50%, #009b00 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#009800), color-stop(50%,#00c400), color-stop(100%,#009b00));
+	background: -webkit-linear-gradient(top,  #009800 0%,#00c400 50%,#009b00 100%);
+	background: -o-linear-gradient(top,  #009800 0%,#00c400 50%,#009b00 100%);
+	background: -ms-linear-gradient(top,  #009800 0%,#00c400 50%,#009b00 100%);
+	background: linear-gradient(to bottom,  #009800 0%,#00c400 50%,#009b00 100%);
+}
+.mainNavHomeIcon,
+.mainNavAssignmentsIcon,
+.mainNavProgressIcon,
+.mainNavCalendarIcon,
+.mainNavPortfolioIcon,
+.mainNavStandardsIcon{
+	display: block;
+	height: 60px;
+	margin: -12px 0 0 0;
+}
+.mainNavHomeIcon{
+	background: url('../images/home.png') no-repeat top center;
+}
+.mainNavAssignmentsIcon{
+	background: url('../images/h-ico-assign-curr.png') no-repeat top center;
+}
+.mainNavProgressIcon{
+	background: url('../images/h-ico-progress.png') no-repeat top center;
+}
+.mainNavCalendarIcon{
+	background: url('../images/calendar.png') no-repeat top center;
+}
+.mainNavPortfolioIcon{
+	background: url('../images/h-ico-projects.png') no-repeat top center;
+}
+.mainNavStandardsIcon{
+	background: url('../images/standards.png') no-repeat top center;
+}
+.mainNavMytonomyIcon{
+	background: url('../images/logo.png') no-repeat top center;
+}
+
+

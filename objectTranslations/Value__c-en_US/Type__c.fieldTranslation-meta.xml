@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Type --></label>
+    <name>Type__c</name>
+    <picklistValues>
+        <masterLabel>Attendance Alerts</masterLabel>
+        <translation><!-- Attendance Alerts --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Attendance Threshold Alerts</masterLabel>
+        <translation><!-- Attendance Threshold Alerts --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Homework Alerts</masterLabel>
+        <translation><!-- Homework Alerts --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Tardy Alerts</masterLabel>
+        <translation><!-- Tardy Alerts --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

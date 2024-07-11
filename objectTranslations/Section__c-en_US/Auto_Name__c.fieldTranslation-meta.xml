@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- This name is created using the Program Name, the Primary Point person, and an automatically generated number. This field cannot be modified here. --></help>
+    <label><!-- Intervention Section Name --></label>
+    <name>Auto_Name__c</name>
+</CustomFieldTranslation>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Percent_Correct__c</fullName>
+    <description>The students overall score on the  test, based on 25 questions</description>
+    <inlineHelpText>The students overall score on the  test, based on 25 questions</inlineHelpText>
+    <label>Percent Correct</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>3</scale>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackTrending>false</trackTrending>
+    <type>Percent</type>
+</CustomField>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- The adult interacting with the student at the time or immediately after the incident. If no adult was interacting, then the adult primarily responsible for the student at the time of the incident. --></help>
+    <label><!-- Adult on Duty --></label>
+    <name>Adult_on_Duty__c</name>
+    <relationshipLabel><!-- Behavior --></relationshipLabel>
+</CustomFieldTranslation>

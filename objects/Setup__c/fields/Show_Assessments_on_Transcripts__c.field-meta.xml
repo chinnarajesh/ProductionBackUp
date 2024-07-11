@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Show_Assessments_on_Transcripts__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>This checkbox aid Admins in displaying Assessment information on all transcript documents.</description>
+    <label>Show Assessments</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

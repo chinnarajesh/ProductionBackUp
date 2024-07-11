@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>School_Purge_EOY_Data_Completed__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>School EOY Data purge process.</description>
+    <inlineHelpText>This will be checked when the EOY Data has successfully been purged.</inlineHelpText>
+    <label>School Purge EOY Data Completed</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

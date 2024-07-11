@@ -16,7 +16,7 @@ trigger StudentEnrollmentTrigger on Contact (after insert,after update) {
         ContactId.add(con.id);
         }
     }
-        List<Contact> contactList =[select id,name,Student__c,Student_Current_Grade__c,Student__r.School__c,Student__r.Grade__c from Contact where  Id IN:ContactId];
+        List<Contact> contactList =[select id,name,Student__c,Student_Current_Grade__c,Student__r.School__c,Student__r.Grade__c,Student__r.Student_Id__c,Student__r.School__r.Reference_Id__c,Student__r.School_Year__r.Name__c from Contact where  Id IN:ContactId];
     System.debug('Keyset'+trigger.newMap.keyset());
     System.debug('contactList'+contactList);
        for(Contact con:contactList){          
@@ -28,13 +28,13 @@ trigger StudentEnrollmentTrigger on Contact (after insert,after update) {
            System.debug('gradeSet'+gradeSet);
     
       Map<string,Account> accountMap = new Map<string,Account>();
-         for(Account account:[select id,name, (select id,name,School__c,Reference_Id__c,Available_Grade_Levels__c from Sections__r where Available_Grade_Levels__c IN: gradeSet and (Period__c='ELA/Literacy' or  Period__c='Math'))from Account where id IN: SchoolId ]){
+         for(Account account:[select id,name, Reference_Id__c,(select id,name,School__c,Reference_Id__c,Available_Grade_Levels__c from Sections__r where Available_Grade_Levels__c IN: gradeSet and (Period__c='ELA/Literacy' or  Period__c='Math'))from Account where id IN: SchoolId ]){
             accountMap.put(account.id,account);
            }
        System.debug('accountMap'+accountMap);
       Map<string,Student_Section__c> studentMap = new Map<String,Student_Section__c>();
       for(Student_Section__c studentsection :[select id,name,Section__c,Student__c from Student_Section__c where Student__c IN: StudentIdSet]){
-        studentMap.put(studentsection.Section__c,studentsection);
+          studentMap.put(studentsection.Section__c+'#'+studentsection.Student__c,studentsection);
       }
       System.debug('studentMap****'+studentMap);
     System.debug('contactList'+contactList);
@@ -51,18 +51,13 @@ trigger StudentEnrollmentTrigger on Contact (after insert,after update) {
                  system.debug('++'+section.Available_Grade_Levels__c);
                   if(contact.Student_Current_Grade__c==section.Available_Grade_Levels__c){
                       Student_Section__c studentSection = new Student_Section__c();
-                     if(studentMap.containsKey(section.id)){
-                        studentSection = new Student_Section__c(
-                        id=studentMap.get(Section.id).id,
-                        Student__c=studentMap.get(Section.id).Student__c);
-                        studentsectionList.add(studentSection);
-                     }
-                     else{
+                    if(!studentMap.containsKey(section.Id+'#'+contact.student__C)){
+                     
                         studentSection = new Student_Section__c(
                         Student__c=contact.Student__c,
                         Section__c=section.id,
                         Original_School__c=section.School__c,
-                        Reference_ID__c=section.Reference_Id__c,
+                        Reference_ID__c=contact.Student__r.Student_Id__c+'_'+section.name+'_'+contact.Student__r.School__r.Reference_Id__c+'_'+contact.Student__r.School_Year__r.Name__c,//section.Reference_Id__c,
                         Active__c=True);
                         studentsectionList.add(studentSection);
                         System.debug('studentList'+studentsectionList);

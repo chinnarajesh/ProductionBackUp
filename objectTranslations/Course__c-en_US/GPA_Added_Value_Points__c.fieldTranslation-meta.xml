@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- If this course uses value-added points for weighted GPA grading, enter the number of points you want SchoolForce to add or multiply to calculate the weighted GPA. --></help>
+    <label><!-- GPA Added Value Points --></label>
+    <name>GPA_Added_Value_Points__c</name>
+</CustomFieldTranslation>

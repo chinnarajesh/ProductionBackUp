@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Integer_Rule_ISIP_Overall_Reading</fullName>
+    <active>true</active>
+    <description>ISIP_Overall_Reading_Ability_Score__c</description>
+    <errorConditionFormula>ISIP_Overall_Reading_Ability_Score__c &lt;&gt; FLOOR(ISIP_Overall_Reading_Ability_Score__c)</errorConditionFormula>
+    <errorDisplayField>ISIP_Overall_Reading_Ability_Score__c</errorDisplayField>
+    <errorMessage>This field must be an integer.</errorMessage>
+</ValidationRule>

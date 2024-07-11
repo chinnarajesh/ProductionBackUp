@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Dosage_to_Date_hrs__c</fullName>
+    <description>Dosage to Date calculated in hours</description>
+    <externalId>false</externalId>
+    <formula>Dosage_to_Date__c / 60</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Dosage to Date calculated in hours</inlineHelpText>
+    <label>Dosage to Date (hrs)</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

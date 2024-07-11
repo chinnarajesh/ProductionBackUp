@@ -4,12 +4,13 @@ public class StudentInfoWrapper{
 	public String name									{get;set;}
 	public Boolean selected								{get;set;}
 	public Date	dtIA									{get;set;}
-	public String indicatorAreaDisplay					{get;set;}
-	public String programsIADisplay						{get;set;}
+	public  String indicatorAreaDisplay					{get;set;}
+	public  String programsIADisplay						{get;set;}
 	public List<Indicator_Area_Student__c> indicators 	{get;set;}
 	public Map<Id, Indicator_Area_Student__c> areaIDs 	{get;set;}
 
 	public StudentInfoWrapper(Student_Section__c studentSection){
+		//System.debug('student++ '+studentSection.Student__r);
 		this.student = studentSection.Student__r == null? new Student__c(): studentSection.Student__r;
 		this.studentSection = studentSection;
 		this.selected = false;
@@ -34,6 +35,7 @@ public class StudentInfoWrapper{
 	}
 
 	public void updateStudentInfoWrapper(Student__c student, List<Indicator_Area_Student__c> indicators){
+		//System.debug('studentList++ '+student);
 		this.student = student;
 		this.indicators = indicators;
 		this.name = student.Student_First_Name__c+' '+student.Student_Last_Name__c;
@@ -42,6 +44,7 @@ public class StudentInfoWrapper{
 			areaIDs.put(ia_s.Indicator_Area__r.id, ia_s);
 			//dtIA = (dtIA==null || ia_s.IA_Effective_Date__c > dtIA)? ia_s.IA_Effective_Date__c: dtIA; //show last date
 		}
+		//System.debug('areaIDs++'+areaIDs);
 		refreshIndicatorAreaDisplay();
 		refreshProgramsIADisplay();
 	}
@@ -59,6 +62,7 @@ public class StudentInfoWrapper{
 			indicators.add(i, ia);
 		}
 		areaIDs.put(ia.Indicator_Area__r.id, ia);
+		//System.debug('areaIDs++'+areaIDs);
 		this.refreshIndicatorAreaDisplay();
 	}
 
@@ -73,6 +77,12 @@ public class StudentInfoWrapper{
 		iaNames.sort();
 		indicatorAreaDisplay = String.join(iaNames, ', ');
 	}
+	////////////////
+	public void addIndicatoreDate (date dt){
+		selected=true;
+		dtIA=dt;
+	}
+	////////////////
 
 	public void refreshProgramsIADisplay(){
 		Set<String> pIANames = new Set<String>();

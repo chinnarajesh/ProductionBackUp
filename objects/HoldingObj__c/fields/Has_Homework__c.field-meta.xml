@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Has_Homework__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Section has homework</description>
+    <label>Has Homework</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

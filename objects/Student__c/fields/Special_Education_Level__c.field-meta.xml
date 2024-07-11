@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Special_Education_Level__c</fullName>
+    <inlineHelpText>Displays the student&apos;s special education level. You can use this field for reporting purposes.</inlineHelpText>
+    <label>Special Education Level</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>PK Pre-Kindergarten/Preschool</fullName>
+                <default>false</default>
+                <label>PK Pre-Kindergarten/Preschool</label>
+            </value>
+            <value>
+                <fullName>KG Kindergarten</fullName>
+                <default>false</default>
+                <label>KG Kindergarten</label>
+            </value>
+            <value>
+                <fullName>01</fullName>
+                <default>false</default>
+                <label>01</label>
+            </value>
+            <value>
+                <fullName>02</fullName>
+                <default>false</default>
+                <label>02</label>
+            </value>
+            <value>
+                <fullName>03</fullName>
+                <default>false</default>
+                <label>03</label>
+            </value>
+            <value>
+                <fullName>04</fullName>
+                <default>false</default>
+                <label>04</label>
+            </value>
+            <value>
+                <fullName>05</fullName>
+                <default>false</default>
+                <label>05</label>
+            </value>
+            <value>
+                <fullName>06</fullName>
+                <default>false</default>
+                <label>06</label>
+            </value>
+            <value>
+                <fullName>08</fullName>
+                <default>false</default>
+                <label>08</label>
+            </value>
+            <value>
+                <fullName>09</fullName>
+                <default>false</default>
+                <label>09</label>
+            </value>
+            <value>
+                <fullName>10</fullName>
+                <default>false</default>
+                <label>10</label>
+            </value>
+            <value>
+                <fullName>11</fullName>
+                <default>false</default>
+                <label>11</label>
+            </value>
+            <value>
+                <fullName>12</fullName>
+                <default>false</default>
+                <label>12</label>
+            </value>
+            <value>
+                <fullName>PG Postgraduate/Adult</fullName>
+                <default>false</default>
+                <label>PG Postgraduate/Adult</label>
+            </value>
+            <value>
+                <fullName>UN Ungraded</fullName>
+                <default>false</default>
+                <label>UN Ungraded</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

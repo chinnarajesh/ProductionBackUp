@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Report_Card</fullName>
+    <availability>online</availability>
+    <description>This button takes the user to the documents generation page</description>
+    <displayType>button</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <hasMenubar>false</hasMenubar>
+    <hasScrollbars>false</hasScrollbars>
+    <hasToolbar>false</hasToolbar>
+    <height>500</height>
+    <isResizable>true</isResizable>
+    <linkType>url</linkType>
+    <masterLabel>Student Documents</masterLabel>
+    <openType>newWindow</openType>
+    <position>none</position>
+    <protected>false</protected>
+    <showsLocation>false</showsLocation>
+    <showsStatus>false</showsStatus>
+    <url>/apex/Student_report_card?student={!Student__c.Id}&amp;studentID={!Student__c.Student_Id__c}</url>
+    <width>700</width>
+</WebLink>

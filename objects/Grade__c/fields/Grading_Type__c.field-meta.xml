@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Grading_Type__c</fullName>
+    <description>Store Grading Scale Id so we can lookup Normalization Map</description>
+    <externalId>false</externalId>
+    <formula>IF (
+ISBLANK( Standard__c ),
+ CASESAFEID(Assignment__r.Picklist_Value__c),
+ CASESAFEID(Assignment__r.Standard_Scale__c)  
+)</formula>
+    <label>Grading Type</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- time period the data was collected for --></help>
+    <label><!-- Time Period --></label>
+    <name>Time_Period__c</name>
+    <picklistValues>
+        <masterLabel>Apr</masterLabel>
+        <translation><!-- Apr --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Aug</masterLabel>
+        <translation><!-- Aug --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Current EOY</masterLabel>
+        <translation><!-- Current EOY --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Dec</masterLabel>
+        <translation><!-- Dec --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Feb</masterLabel>
+        <translation><!-- Feb --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Jan</masterLabel>
+        <translation><!-- Jan --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Jul</masterLabel>
+        <translation><!-- Jul --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Jun</masterLabel>
+        <translation><!-- Jun --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>M1</masterLabel>
+        <translation><!-- M1 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>M2</masterLabel>
+        <translation><!-- M2 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>M3</masterLabel>
+        <translation><!-- M3 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>M4</masterLabel>
+        <translation><!-- M4 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>M5</masterLabel>
+        <translation><!-- M5 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>M6</masterLabel>
+        <translation><!-- M6 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Mar</masterLabel>
+        <translation><!-- Mar --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>May</masterLabel>
+        <translation><!-- May --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Nov</masterLabel>
+        <translation><!-- Nov --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Oct</masterLabel>
+        <translation><!-- Oct --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Prior EOY</masterLabel>
+        <translation><!-- Prior EOY --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Q1</masterLabel>
+        <translation><!-- Q1 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Q2</masterLabel>
+        <translation><!-- Q2 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Q3</masterLabel>
+        <translation><!-- Q3 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Q4</masterLabel>
+        <translation><!-- Q4 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Sem 1</masterLabel>
+        <translation><!-- Sem 1 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Sem 2</masterLabel>
+        <translation><!-- Sem 2 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Sep</masterLabel>
+        <translation><!-- Sep --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>T1</masterLabel>
+        <translation><!-- T1 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>T2</masterLabel>
+        <translation><!-- T2 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>T3</masterLabel>
+        <translation><!-- T3 --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

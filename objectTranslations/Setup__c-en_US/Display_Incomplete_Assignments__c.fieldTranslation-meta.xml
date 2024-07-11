@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Incomplete Assignments are based on the number of Gradebook Assignments that have a value of I, INC, IN, IC.  These do not include grades with &quot;N&quot; or that are excluded from the section grade. --></help>
+    <label><!-- Display Incomplete Assignments? --></label>
+    <name>Display_Incomplete_Assignments__c</name>
+</CustomFieldTranslation>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- This field is not used by SchoolForce, but you can use it for reporting purposes. --></help>
+    <label><!-- Special Ed Type Notes --></label>
+    <name>Special_Ed_Type_Notes__c</name>
+</CustomFieldTranslation>

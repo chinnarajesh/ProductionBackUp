@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Value_Range_Lexile</fullName>
+    <active>true</active>
+    <errorConditionFormula>OR
+( 
+ Lexile_Score__c &lt; -2000, 
+Lexile_Score__c &gt; 2000
+ )</errorConditionFormula>
+    <errorDisplayField>Lexile_Score__c</errorDisplayField>
+    <errorMessage>Lexile Score must be within  - 2000 to 2000 range.</errorMessage>
+</ValidationRule>

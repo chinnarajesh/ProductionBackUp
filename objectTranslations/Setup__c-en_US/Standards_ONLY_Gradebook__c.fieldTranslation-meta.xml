@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Is this school using the Standards ONLY Gradebook? This Gradebook allows users to enter only standard grades.  Please see additional documentation for more information. --></help>
+    <label><!-- Standards ONLY Gradebook --></label>
+    <name>Standards_ONLY_Gradebook__c</name>
+</CustomFieldTranslation>

@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Subject_Area__c</fullName>
+    <label>Subject Area</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Citizenship</fullName>
+                <default>false</default>
+                <label>Citizenship</label>
+            </value>
+            <value>
+                <fullName>Cognitive Development</fullName>
+                <default>false</default>
+                <label>Cognitive Development</label>
+            </value>
+            <value>
+                <fullName>Computer Science Programming</fullName>
+                <default>false</default>
+                <label>Computer Science Programming</label>
+            </value>
+            <value>
+                <fullName>Computer Skills/Literacy</fullName>
+                <default>false</default>
+                <label>Computer Skills/Literacy</label>
+            </value>
+            <value>
+                <fullName>Elective Activities</fullName>
+                <default>false</default>
+                <label>Elective Activities</label>
+            </value>
+            <value>
+                <fullName>English as a Second Language</fullName>
+                <default>false</default>
+                <label>English as a Second Language</label>
+            </value>
+            <value>
+                <fullName>Fine Arts - Art</fullName>
+                <default>false</default>
+                <label>Fine Arts - Art</label>
+            </value>
+            <value>
+                <fullName>Fine Arts - Dance</fullName>
+                <default>false</default>
+                <label>Fine Arts - Dance</label>
+            </value>
+            <value>
+                <fullName>Fine Arts - Drama/Theater</fullName>
+                <default>false</default>
+                <label>Fine Arts - Drama/Theater</label>
+            </value>
+            <value>
+                <fullName>Fine Arts - Music</fullName>
+                <default>false</default>
+                <label>Fine Arts - Music</label>
+            </value>
+            <value>
+                <fullName>Fitness</fullName>
+                <default>false</default>
+                <label>Fitness</label>
+            </value>
+            <value>
+                <fullName>Foreign Language and Literature</fullName>
+                <default>false</default>
+                <label>Foreign Language and Literature</label>
+            </value>
+            <value>
+                <fullName>Geography</fullName>
+                <default>false</default>
+                <label>Geography</label>
+            </value>
+            <value>
+                <fullName>Handwriting/Penmanship</fullName>
+                <default>false</default>
+                <label>Handwriting/Penmanship</label>
+            </value>
+            <value>
+                <fullName>Health</fullName>
+                <default>false</default>
+                <label>Health</label>
+            </value>
+            <value>
+                <fullName>History</fullName>
+                <default>false</default>
+                <label>History</label>
+            </value>
+            <value>
+                <fullName>Home Economics</fullName>
+                <default>false</default>
+                <label>Home Economics</label>
+            </value>
+            <value>
+                <fullName>Homework</fullName>
+                <default>false</default>
+                <label>Homework</label>
+            </value>
+            <value>
+                <fullName>Industrial Arts</fullName>
+                <default>false</default>
+                <label>Industrial Arts</label>
+            </value>
+            <value>
+                <fullName>Keyboarding/typing</fullName>
+                <default>false</default>
+                <label>Keyboarding/typing</label>
+            </value>
+            <value>
+                <fullName>Language Arts</fullName>
+                <default>false</default>
+                <label>Language Arts</label>
+            </value>
+            <value>
+                <fullName>Library Skills</fullName>
+                <default>false</default>
+                <label>Library Skills</label>
+            </value>
+            <value>
+                <fullName>Listening &amp; Speaking</fullName>
+                <default>false</default>
+                <label>Listening &amp; Speaking</label>
+            </value>
+            <value>
+                <fullName>Literacy</fullName>
+                <default>false</default>
+                <label>Literacy</label>
+            </value>
+            <value>
+                <fullName>Math</fullName>
+                <default>false</default>
+                <label>Math</label>
+            </value>
+            <value>
+                <fullName>Mathematics/Arithmetic</fullName>
+                <default>false</default>
+                <label>Mathematics/Arithmetic</label>
+            </value>
+            <value>
+                <fullName>Military Science</fullName>
+                <default>false</default>
+                <label>Military Science</label>
+            </value>
+            <value>
+                <fullName>Multi/Interdisciplinary Studies</fullName>
+                <default>false</default>
+                <label>Multi/Interdisciplinary Studies</label>
+            </value>
+            <value>
+                <fullName>Physical Development</fullName>
+                <default>false</default>
+                <label>Physical Development</label>
+            </value>
+            <value>
+                <fullName>Physical Education</fullName>
+                <default>false</default>
+                <label>Physical Education</label>
+            </value>
+            <value>
+                <fullName>Reading</fullName>
+                <default>false</default>
+                <label>Reading</label>
+            </value>
+            <value>
+                <fullName>Religious Education and Theology</fullName>
+                <default>false</default>
+                <label>Religious Education and Theology</label>
+            </value>
+            <value>
+                <fullName>Science</fullName>
+                <default>false</default>
+                <label>Science</label>
+            </value>
+            <value>
+                <fullName>Science &amp; Social Studies</fullName>
+                <default>false</default>
+                <label>Science &amp; Social Studies</label>
+            </value>
+            <value>
+                <fullName>Social &amp; Emotional Development</fullName>
+                <default>false</default>
+                <label>Social &amp; Emotional Development</label>
+            </value>
+            <value>
+                <fullName>Social Studies</fullName>
+                <default>false</default>
+                <label>Social Studies</label>
+            </value>
+            <value>
+                <fullName>Spanish</fullName>
+                <default>false</default>
+                <label>Spanish</label>
+            </value>
+            <value>
+                <fullName>Spelling</fullName>
+                <default>false</default>
+                <label>Spelling</label>
+            </value>
+            <value>
+                <fullName>Study Skills</fullName>
+                <default>false</default>
+                <label>Study Skills</label>
+            </value>
+            <value>
+                <fullName>Test Preparation</fullName>
+                <default>false</default>
+                <label>Test Preparation</label>
+            </value>
+            <value>
+                <fullName>Writing</fullName>
+                <default>false</default>
+                <label>Writing</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

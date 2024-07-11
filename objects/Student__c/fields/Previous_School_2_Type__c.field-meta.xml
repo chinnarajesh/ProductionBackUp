@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Previous_School_2_Type__c</fullName>
+    <inlineHelpText>Defines the type of school entered in the Previous School 2 field.  If you update this field, SchoolForce updates the corresponding field on the Contact record.</inlineHelpText>
+    <label>Previous School 2 Type</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Public, in State</fullName>
+                <default>false</default>
+                <label>Public, in State</label>
+            </value>
+            <value>
+                <fullName>Public, Charter in State</fullName>
+                <default>false</default>
+                <label>Public, Charter in State</label>
+            </value>
+            <value>
+                <fullName>Public, Different state</fullName>
+                <default>false</default>
+                <label>Public, Different state</label>
+            </value>
+            <value>
+                <fullName>Private, non-religiously-affiliated, same district</fullName>
+                <default>false</default>
+                <label>Private, non-religiously-affiliated, same district</label>
+            </value>
+            <value>
+                <fullName>Private, non-religiously-affiliated, different district, same state</fullName>
+                <default>false</default>
+                <label>Private, non-religiously-affiliated, different district, same state</label>
+            </value>
+            <value>
+                <fullName>Private, non-religiously-affiliated, different state</fullName>
+                <default>false</default>
+                <label>Private, non-religiously-affiliated, different state</label>
+            </value>
+            <value>
+                <fullName>Private, religiously-affiliated, same district</fullName>
+                <default>false</default>
+                <label>Private, religiously-affiliated, same district</label>
+            </value>
+            <value>
+                <fullName>Private, religiously-affiliated, different district, same state</fullName>
+                <default>false</default>
+                <label>Private, religiously-affiliated, different district, same state</label>
+            </value>
+            <value>
+                <fullName>Private, religiously-affiliated, different state</fullName>
+                <default>false</default>
+                <label>Private, religiously-affiliated, different state</label>
+            </value>
+            <value>
+                <fullName>Non-existent or Foreign</fullName>
+                <default>false</default>
+                <label>Non-existent or Foreign</label>
+            </value>
+            <value>
+                <fullName>Original entry into US School (no previous school)</fullName>
+                <default>false</default>
+                <label>Original entry into US School (no previous school)</label>
+            </value>
+            <value>
+                <fullName>Original entry into US School (no schooling interruption)</fullName>
+                <default>false</default>
+                <label>Original entry into US School (no schooling interruption)</label>
+            </value>
+            <value>
+                <fullName>Original entry into US School (schooling interruption)</fullName>
+                <default>false</default>
+                <label>Original entry into US School (schooling interruption)</label>
+            </value>
+            <value>
+                <fullName>Located outside of the country</fullName>
+                <default>false</default>
+                <label>Located outside of the country</label>
+            </value>
+            <value>
+                <fullName>Institution (example: correctional facility)</fullName>
+                <default>false</default>
+                <label>Institution (example: correctional facility)</label>
+            </value>
+            <value>
+                <fullName>Charter school</fullName>
+                <default>false</default>
+                <label>Charter school</label>
+            </value>
+            <value>
+                <fullName>Home schooling</fullName>
+                <default>false</default>
+                <label>Home schooling</label>
+            </value>
+            <value>
+                <fullName>Matriculating (passed previous school&apos;s highest grade level)</fullName>
+                <default>false</default>
+                <label>Matriculating (passed previous school&apos;s highest grade level)</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

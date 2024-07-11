@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- What is the title that should display for a Standard Level 4? (ie: Advanced) This will display on Report Cards and Progress Reports if user selects &quot;Show Standards&quot; on the &quot;Generate Student Documents&quot; page. --></help>
+    <label><!-- Standard Title 4 --></label>
+    <name>Standard_Legend_4__c</name>
+</CustomFieldTranslation>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- This is the “Subject” that all standards and strands look up to.   Standard/Strand grades are presented on Report Cards and Progress Reports under the specific “Subject.”  Subjects can be imported. NOTE: This is a different field that the “Course Subjec --></help>
+    <label><!-- Standard Subject --></label>
+    <name>Standard_Subject__c</name>
+    <relationshipLabel><!-- Standards (Standard Subject) --></relationshipLabel>
+</CustomFieldTranslation>

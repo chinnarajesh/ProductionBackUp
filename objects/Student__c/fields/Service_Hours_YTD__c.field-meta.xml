@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Service_Hours_YTD__c</fullName>
+    <defaultValue>0</defaultValue>
+    <description>The total number of community service hours the student has completed during the current school year (i.e. Student__c.Current_School_Year__c).</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Displays the total number of community service hours the student has completed during the current school year. SchoolForce automatically updates this field and related fields on the Contact record when you enter community service information.</inlineHelpText>
+    <label>Service Hours To Date</label>
+    <precision>6</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

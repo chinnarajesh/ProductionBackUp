@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- This number is the Program&apos;s Target Dosage and is the recommended dosage.  You can modify this section&apos;s goal in the &quot;Target Dosage Section Goal (in mins)&quot; field. --></help>
+    <label><!-- Target Dosage - Org Goal (in mins) --></label>
+    <name>Target_Dosage_Org_Goal__c</name>
+</CustomFieldTranslation>

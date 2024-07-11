@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Check this field to show Class Rank on Report Card/Progress Reports --></help>
+    <label><!-- Show Class Rank --></label>
+    <name>Show_Class_Rank__c</name>
+</CustomFieldTranslation>

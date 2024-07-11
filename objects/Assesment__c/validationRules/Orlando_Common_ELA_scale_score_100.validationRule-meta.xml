@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Orlando_Common_ELA_scale_score_100</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(Assessment_Name__c = &quot;Orlando Common Numeric Assessment - ELA&quot;, 
+OR(Scale_Score__c &lt; 0, 
+Scale_Score__c &gt; 100))</errorConditionFormula>
+    <errorDisplayField>Scale_Score__c</errorDisplayField>
+    <errorMessage>Scaled Score must be within the range of 0 to 100.</errorMessage>
+</ValidationRule>

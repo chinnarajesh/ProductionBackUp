@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>HW_Status__c</fullName>
+    <label>HW Status</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Complete</fullName>
+                <default>false</default>
+                <label>Complete</label>
+            </value>
+            <value>
+                <fullName>No Homework</fullName>
+                <default>false</default>
+                <label>No Homework</label>
+            </value>
+            <value>
+                <fullName>Poor Quality</fullName>
+                <default>false</default>
+                <label>Poor Quality</label>
+            </value>
+            <value>
+                <fullName>Abs When Due</fullName>
+                <default>false</default>
+                <label>Abs When Due</label>
+            </value>
+            <value>
+                <fullName>Abs When Given</fullName>
+                <default>false</default>
+                <label>Abs When Given</label>
+            </value>
+            <value>
+                <fullName>No Work</fullName>
+                <default>false</default>
+                <label>No Work</label>
+            </value>
+            <value>
+                <fullName>Exempt</fullName>
+                <default>false</default>
+                <label>Exempt</label>
+            </value>
+            <value>
+                <fullName>Poor Rdng Log</fullName>
+                <default>false</default>
+                <label>Poor Rdng Log</label>
+            </value>
+            <value>
+                <fullName>Inc. Sentences</fullName>
+                <default>false</default>
+                <label>Inc. Sentences</label>
+            </value>
+            <value>
+                <fullName>Not Signed</fullName>
+                <default>false</default>
+                <label>Not Signed</label>
+            </value>
+            <value>
+                <fullName>Extension</fullName>
+                <default>false</default>
+                <label>Extension</label>
+            </value>
+            <value>
+                <fullName>Extension Con&apos;t</fullName>
+                <default>false</default>
+                <label>Extension Con&apos;t</label>
+            </value>
+            <value>
+                <fullName>Counts On Time</fullName>
+                <default>false</default>
+                <label>Counts On Time</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

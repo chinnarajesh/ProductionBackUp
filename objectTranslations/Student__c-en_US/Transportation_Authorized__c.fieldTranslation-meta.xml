@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Indicates whether or not the student&apos;s method of transportation has been authorized. If you update this field, SchoolForce updates the corresponding field on the Contact record. --></help>
+    <label><!-- Transportation Authorized --></label>
+    <name>Transportation_Authorized__c</name>
+</CustomFieldTranslation>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Old_Consecutive_Value__c</fullName>
+    <defaultValue>0</defaultValue>
+    <description>This field will hold the old consecutive value which will allow us to rollback the consecutive value in the case of a mistake and an update.</description>
+    <externalId>false</externalId>
+    <label>Old Consecutive Value</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

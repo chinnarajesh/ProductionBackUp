@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Behavior_Tier__c</fullName>
+    <label>Behavior Tier</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Behavior_Type__c</controllingField>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Tier 1</fullName>
+                <default>false</default>
+                <label>Tier 1</label>
+            </value>
+            <value>
+                <fullName>Tier 2</fullName>
+                <default>false</default>
+                <label>Tier 2</label>
+            </value>
+            <value>
+                <fullName>Tier 3</fullName>
+                <default>false</default>
+                <label>Tier 3</label>
+            </value>
+            <value>
+                <fullName>Tier 4</fullName>
+                <default>false</default>
+                <label>Tier 4</label>
+            </value>
+            <value>
+                <fullName>Tier 5</fullName>
+                <default>false</default>
+                <label>Tier 5</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>T4 - Planned theft that involves going into personal belonging or space</controllingFieldValue>
+            <controllingFieldValue>T4 - Causing serious disruption/damage to school&apos;s computer system, electronic files, or network</controllingFieldValue>
+            <controllingFieldValue>T4 - Intentional vandalism or destruction of property under $500</controllingFieldValue>
+            <controllingFieldValue>T4 - Intentional vandalism or destruction of property over $500</controllingFieldValue>
+            <controllingFieldValue>T4 - Retaliation for reporting harassment and sexual harassment</controllingFieldValue>
+            <controllingFieldValue>T4 - Any behavior not specifically enumerated in any other tier that causes disruption to the school operation, destroys school property, or causes significant harm to self or others</controllingFieldValue>
+            <controllingFieldValue>T4 - Documented pattern of persistent Tier 3 behavior</controllingFieldValue>
+            <controllingFieldValue>T4 - Tampering with or altering an official school record or document</controllingFieldValue>
+            <valueName>Tier 4</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>T5 - Theft or attempted theft using force, coercion, intimidation, or threat of violence</controllingFieldValue>
+            <controllingFieldValue>T5 - Documented pattern of persistent Tier 4 behavior</controllingFieldValue>
+            <controllingFieldValue>T5 - Possession of a weapon</controllingFieldValue>
+            <controllingFieldValue>T5 - Use, threatened use, or transfer of any weapon</controllingFieldValue>
+            <controllingFieldValue>T5 - Possession of fireworks or explosives</controllingFieldValue>
+            <controllingFieldValue>T5 - Using an article that is not normally considered a weapon to injure another individual</controllingFieldValue>
+            <controllingFieldValue>T5 - Use, possession, or bringing to school a loaded or unloaded firearm</controllingFieldValue>
+            <controllingFieldValue>T5 - Possession of drug paraphernalia or controlled substance</controllingFieldValue>
+            <controllingFieldValue>T5 - Possession or distribution of alcohol</controllingFieldValue>
+            <controllingFieldValue>T5 - Selling or distribution of marijuana, prescription drugs, controlled dangerous substances, imitation controlled substances, inhalants, other intoxicants, controlled or drug paraphernalia</controllingFieldValue>
+            <controllingFieldValue>T5 - Commission or attempted commission of any act of sexual assault or sexual aggression</controllingFieldValue>
+            <valueName>Tier 5</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>T2 - Unexcused absence from school</controllingFieldValue>
+            <controllingFieldValue>T2 - Unauthorized use of portable electronic devices during school hours</controllingFieldValue>
+            <controllingFieldValue>T2 - Intentional misuse of school equipment/supplies/facilities</controllingFieldValue>
+            <controllingFieldValue>T2 - Using computer/office equipment without permission</controllingFieldValue>
+            <controllingFieldValue>T2 - Unauthorized presence in hallway during class time</controllingFieldValue>
+            <controllingFieldValue>T2 - Leaving classroom or group without permission</controllingFieldValue>
+            <controllingFieldValue>T2 - Unexcused absence from class</controllingFieldValue>
+            <controllingFieldValue>T2 - Any behavior not specifically enumerated in any other tier that causes disruption to the academic environment, involves damage to school property, or may cause minor harm to self or others</controllingFieldValue>
+            <controllingFieldValue>T2 - Documented pattern of persistent Tier 1 behavior</controllingFieldValue>
+            <controllingFieldValue>T2 - Lying with intent to mislead</controllingFieldValue>
+            <valueName>Tier 2</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>T3 - Throwing objects that may cause injury or damage property</controllingFieldValue>
+            <controllingFieldValue>T3 - Engaging in behavior that demonstrates gang/neighborhood crew affiliation (displaying clothing or gestures associated with gangs)</controllingFieldValue>
+            <controllingFieldValue>T3 - Any behavior not specifically enumerated in any other tier that causes significant disruption to the academic environment or causes harm to self or others</controllingFieldValue>
+            <controllingFieldValue>T3 - Documented pattern of persistent Tier 2 behavior</controllingFieldValue>
+            <controllingFieldValue>T3 - Unauthorized possession, use, or distribution of over-the-counter medication</controllingFieldValue>
+            <controllingFieldValue>T3 - Gambling</controllingFieldValue>
+            <controllingFieldValue>T3 - Academic Dishonesty</controllingFieldValue>
+            <controllingFieldValue>T3 - Forgery</controllingFieldValue>
+            <controllingFieldValue>T3 - Impulsive theft that does not involve going into personal belongings (taking food, community property, etc.)</controllingFieldValue>
+            <valueName>Tier 3</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>T1 - Noncompliance with an approved dress code</controllingFieldValue>
+            <controllingFieldValue>T1 - Attending class without required class materials or assigned work</controllingFieldValue>
+            <controllingFieldValue>T1 - Off-task behaviors that demonstrate disengagement from classroom learning</controllingFieldValue>
+            <controllingFieldValue>T1 - Refusal to comply w/ instr. / class / school rules w/o arguing, talking back, or walking away</controllingFieldValue>
+            <controllingFieldValue>T2 - Refusal to comply w/ instr. or rules &amp; arguing, talking back, or walking away</controllingFieldValue>
+            <controllingFieldValue>T1 - Unexcused tardiness for class or school</controllingFieldValue>
+            <controllingFieldValue>T1 - Any behavior not specifically enumerated in any other tier that is disrespectful or causes minor disruption to the academic environment but does not involved damage to school property or harm to self or others</controllingFieldValue>
+            <valueName>Tier 1</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

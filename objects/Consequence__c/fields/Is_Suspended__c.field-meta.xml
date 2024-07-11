@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Is_Suspended__c</fullName>
+    <description>Used to determine if consequence should be included in Behavior Reporting Stats</description>
+    <externalId>false</externalId>
+    <formula>IF( Picklist_Value__r.Is_Suspension__c ,&quot;Yes&quot;,&quot;No&quot;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Is Suspended?</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

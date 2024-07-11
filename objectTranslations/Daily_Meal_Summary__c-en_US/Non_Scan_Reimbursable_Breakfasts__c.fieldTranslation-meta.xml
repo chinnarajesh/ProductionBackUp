@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Breakfast that is not scanned should be manually totalled and entered here. --></help>
+    <label><!-- Non-Scan Reimbursable Breakfasts --></label>
+    <name>Non_Scan_Reimbursable_Breakfasts__c</name>
+</CustomFieldTranslation>

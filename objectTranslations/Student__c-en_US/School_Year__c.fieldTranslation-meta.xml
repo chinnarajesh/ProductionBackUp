@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Displays the Time record for the school year. You can view the name of this Time record in the School Year Name field. --></help>
+    <label><!-- School Year --></label>
+    <name>School_Year__c</name>
+    <relationshipLabel><!-- Students --></relationshipLabel>
+</CustomFieldTranslation>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Reason__c</fullName>
+    <label>Reason</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Great participation</fullName>
+                <default>false</default>
+                <label>Great participation</label>
+            </value>
+            <value>
+                <fullName>100% attendance this week</fullName>
+                <default>false</default>
+                <label>100% attendance this week</label>
+            </value>
+            <value>
+                <fullName>Helped out another student</fullName>
+                <default>false</default>
+                <label>Helped out another student</label>
+            </value>
+            <value>
+                <fullName>Helped teacher with task</fullName>
+                <default>false</default>
+                <label>Helped teacher with task</label>
+            </value>
+            <value>
+                <fullName>Completed extra credit</fullName>
+                <default>false</default>
+                <label>Completed extra credit</label>
+            </value>
+            <value>
+                <fullName>Showed significant improvement</fullName>
+                <default>false</default>
+                <label>Showed significant improvement</label>
+            </value>
+            <value>
+                <fullName>Was extra nice to a classmate</fullName>
+                <default>false</default>
+                <label>Was extra nice to a classmate</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

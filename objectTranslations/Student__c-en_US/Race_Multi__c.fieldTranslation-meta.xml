@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- You can use this field to specify the student&apos;s race(s). It allows for more than one selection if the student is multi-racial. --></help>
+    <label><!-- Race Multi --></label>
+    <name>Race_Multi__c</name>
+    <picklistValues>
+        <masterLabel>American Indian or Alaska Native</masterLabel>
+        <translation><!-- American Indian or Alaska Native --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Asian</masterLabel>
+        <translation><!-- Asian --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Black or African American</masterLabel>
+        <translation><!-- Black or African American --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Caucasian</masterLabel>
+        <translation><!-- Caucasian --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Hispanic or Latino</masterLabel>
+        <translation><!-- Hispanic or Latino --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Native Hawaiian/Other Pacific Islander</masterLabel>
+        <translation><!-- Native Hawaiian/Other Pacific Islander --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Other</masterLabel>
+        <translation><!-- Other --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

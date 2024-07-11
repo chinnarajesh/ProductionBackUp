@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Displays the date the student was withdrawn. SchoolForce updates this field when a student is withdrawn through the Section Wizard. --></help>
+    <label><!-- Exit Date --></label>
+    <name>Exit_Date__c</name>
+</CustomFieldTranslation>

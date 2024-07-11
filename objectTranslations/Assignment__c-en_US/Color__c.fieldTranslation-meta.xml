@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Color --></label>
+    <name>Color__c</name>
+    <picklistValues>
+        <masterLabel>blue</masterLabel>
+        <translation><!-- blue --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>brown</masterLabel>
+        <translation><!-- brown --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>green</masterLabel>
+        <translation><!-- green --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>orange</masterLabel>
+        <translation><!-- orange --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>pink</masterLabel>
+        <translation><!-- pink --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>tan</masterLabel>
+        <translation><!-- tan --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>white</masterLabel>
+        <translation><!-- white --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

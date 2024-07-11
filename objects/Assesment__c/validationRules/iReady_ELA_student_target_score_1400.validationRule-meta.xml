@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>iReady_ELA_student_target_score_1400</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(Assessment_Name__c = &quot;iReady - ELA&quot;,OR(Student_Target_Score__c &lt; 0, Student_Target_Score__c &gt; 1400))</errorConditionFormula>
+    <errorDisplayField>Student_Target_Score__c</errorDisplayField>
+    <errorMessage>Student Target Score must be within the range of 0 to 1400.</errorMessage>
+</ValidationRule>

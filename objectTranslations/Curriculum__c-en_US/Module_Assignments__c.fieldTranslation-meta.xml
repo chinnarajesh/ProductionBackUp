@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Module Assignments --></label>
+    <name>Module_Assignments__c</name>
+    <picklistValues>
+        <masterLabel>Beginning of Module Assessment</masterLabel>
+        <translation><!-- Beginning of Module Assessment --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>End of Module Assessment</masterLabel>
+        <translation><!-- End of Module Assessment --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SWYK: Lesson 10</masterLabel>
+        <translation><!-- SWYK: Lesson 10 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SWYK: Lesson 15</masterLabel>
+        <translation><!-- SWYK: Lesson 15 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SWYK: Lesson 20</masterLabel>
+        <translation><!-- SWYK: Lesson 20 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SWYK: Lesson 25</masterLabel>
+        <translation><!-- SWYK: Lesson 25 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SWYK: Lesson 30</masterLabel>
+        <translation><!-- SWYK: Lesson 30 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SWYK: Lesson 5</masterLabel>
+        <translation><!-- SWYK: Lesson 5 --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

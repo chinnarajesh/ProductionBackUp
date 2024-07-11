@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>MEP_Session_Type__c</fullName>
+    <label>MEP Session Type</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Regular School Year (Services provided during the school day only)</fullName>
+                <default>false</default>
+                <label>Regular School Year (Services provided during the school day only)</label>
+            </value>
+            <value>
+                <fullName>Regular School Year (Some or all services provided during an extended Day/week)</fullName>
+                <default>false</default>
+                <label>Regular School Year (Some or all services provided during an extended Day/week)</label>
+            </value>
+            <value>
+                <fullName>Year round project (Services provided throughout the regular school year and summer/intersession terms)</fullName>
+                <default>false</default>
+                <label>Year round project (Services provided throughout the regular school year and summer/intersession terms)</label>
+            </value>
+            <value>
+                <fullName>Summer Term or Intersession for Instructional or Support Service</fullName>
+                <default>false</default>
+                <label>Summer Term or Intersession for Instructional or Support Service</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

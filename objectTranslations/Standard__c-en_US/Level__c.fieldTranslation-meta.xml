@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- This  field displays when searching for standards on an Assignment and can be used in a variety of ways pending school&apos;s approach. --></help>
+    <label><!-- Level --></label>
+    <name>Level__c</name>
+</CustomFieldTranslation>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Standard Grade</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Standard Grades</value>
+    </caseValues>
+    <layouts>
+        <layout>Standard Grade Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Other Grade Calculations --></label>
+            <section>Other Grade Calculations</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

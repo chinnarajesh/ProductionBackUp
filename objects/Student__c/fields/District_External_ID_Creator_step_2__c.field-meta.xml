@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>District_External_ID_Creator_step_2__c</fullName>
+    <externalId>false</externalId>
+    <formula>SUBSTITUTE(
+SUBSTITUTE(
+SUBSTITUTE(
+SUBSTITUTE(
+SUBSTITUTE(
+SUBSTITUTE(
+SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE( District_External_ID_Creator__c ,&quot;0&quot;, &quot;+&quot;),&quot;1&quot;,&quot;!&quot; ),&quot;2&quot;,&quot;@&quot;),&quot;3&quot;,&quot;#&quot; ),&quot;4&quot;,&quot;$&quot;),&quot;5&quot;,&quot;%&quot; ),&quot;6&quot;,&quot;^&quot; ),&quot;7&quot;,&quot;&amp;&quot;), &quot;8&quot;,&quot;*&quot;),&quot;9&quot;,&quot;?&quot;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>District External ID Creator step 2</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

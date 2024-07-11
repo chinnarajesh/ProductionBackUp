@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Room_Dependent__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Boolean field to provide dynamic logic to Scheduler Modules</description>
+    <inlineHelpText>If the school related to the setup needs to configure rooms to manage scheduling Check field, otherwise set to Unchecked</inlineHelpText>
+    <label>Room Dependent</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

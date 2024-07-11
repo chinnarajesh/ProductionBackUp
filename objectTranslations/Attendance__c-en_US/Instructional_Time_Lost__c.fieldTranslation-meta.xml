@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- This field is an exact copy of the Instructional Time Lost field. It is used to calculate the following fields on the Student record: Daily Attendance Time Lost and Sectional Attendance Time Lost. --></help>
+    <label><!-- Instructional Time Lost --></label>
+    <name>Instructional_Time_Lost__c</name>
+</CustomFieldTranslation>

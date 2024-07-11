@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- P/G Proactive conversion Value --></help>
+    <label><!-- Proactive P/G Relationship --></label>
+    <name>Proactive_PG_Relationship__c</name>
+</CustomFieldTranslation>

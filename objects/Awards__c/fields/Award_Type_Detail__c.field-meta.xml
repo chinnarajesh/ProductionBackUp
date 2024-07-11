@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Award_Type_Detail__c</fullName>
+    <label>Award Type Detail</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Award_Type__c</controllingField>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Bronze</fullName>
+                <default>false</default>
+                <label>Bronze</label>
+            </value>
+            <value>
+                <fullName>Silver</fullName>
+                <default>false</default>
+                <label>Silver</label>
+            </value>
+            <value>
+                <fullName>Gold</fullName>
+                <default>false</default>
+                <label>Gold</label>
+            </value>
+            <value>
+                <fullName>Silver &amp; Blue</fullName>
+                <default>false</default>
+                <label>Silver &amp; Blue</label>
+            </value>
+            <value>
+                <fullName>Silver &amp; Red</fullName>
+                <default>false</default>
+                <label>Silver &amp; Red</label>
+            </value>
+            <value>
+                <fullName>Gold Striped</fullName>
+                <default>false</default>
+                <label>Gold Striped</label>
+            </value>
+            <value>
+                <fullName>Silver Striped</fullName>
+                <default>false</default>
+                <label>Silver Striped</label>
+            </value>
+            <value>
+                <fullName>Blue</fullName>
+                <default>false</default>
+                <label>Blue</label>
+            </value>
+            <value>
+                <fullName>Red</fullName>
+                <default>false</default>
+                <label>Red</label>
+            </value>
+            <value>
+                <fullName>Stripe</fullName>
+                <default>false</default>
+                <label>Stripe</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Cup</controllingFieldValue>
+            <valueName>Bronze</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Cup</controllingFieldValue>
+            <valueName>Silver</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Cup</controllingFieldValue>
+            <valueName>Gold</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Medal</controllingFieldValue>
+            <valueName>Silver &amp; Blue</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Medal</controllingFieldValue>
+            <valueName>Silver &amp; Red</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Medal</controllingFieldValue>
+            <valueName>Gold Striped</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Medal</controllingFieldValue>
+            <valueName>Silver Striped</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Ribbon</controllingFieldValue>
+            <valueName>Blue</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Ribbon</controllingFieldValue>
+            <valueName>Red</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Ribbon</controllingFieldValue>
+            <valueName>Stripe</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

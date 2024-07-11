@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Grade_Scale__c</fullName>
+    <inlineHelpText>SchoolForce no longer uses this field. Do not select a value.</inlineHelpText>
+    <label>Legacy Grade Scale *Do Not Use*</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Credit/No Credit</fullName>
+                <default>false</default>
+                <label>Credit/No Credit</label>
+            </value>
+            <value>
+                <fullName>Points</fullName>
+                <default>false</default>
+                <label>Points</label>
+            </value>
+            <value>
+                <fullName>Standard</fullName>
+                <default>false</default>
+                <label>Standard</label>
+            </value>
+            <value>
+                <fullName>Default</fullName>
+                <default>true</default>
+                <label>Default</label>
+            </value>
+            <value>
+                <fullName>ELH 1-2-3-4 Rubric</fullName>
+                <default>false</default>
+                <label>ELH 1-2-3-4 Rubric</label>
+            </value>
+            <value>
+                <fullName>4ELH 1-2-3-4 Rubric TENTHS</fullName>
+                <default>false</default>
+                <label>4ELH 1-2-3-4 Rubric TENTHS</label>
+            </value>
+            <value>
+                <fullName>ELH Traditional</fullName>
+                <default>false</default>
+                <label>ELH Traditional</label>
+            </value>
+            <value>
+                <fullName>Percentage</fullName>
+                <default>false</default>
+                <label>Percentage</label>
+            </value>
+            <value>
+                <fullName>Standards</fullName>
+                <default>false</default>
+                <label>Standards</label>
+            </value>
+            <value>
+                <fullName>0-100</fullName>
+                <default>false</default>
+                <label>0-100</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

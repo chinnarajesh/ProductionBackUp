@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Value_Range_DIBELS_target_score</fullName>
+    <active>true</active>
+    <errorConditionFormula>OR
+( 
+ DIBELS_GLE_Student_Target_Score__c &lt; 0, 
+ DIBELS_GLE_Student_Target_Score__c  &gt; 1000 
+ )</errorConditionFormula>
+    <errorDisplayField>DIBELS_GLE_Student_Target_Score__c</errorDisplayField>
+    <errorMessage>DIBELS Grade Level Equivalent Student Target Score must be within a 0 - 1000 range.</errorMessage>
+</ValidationRule>

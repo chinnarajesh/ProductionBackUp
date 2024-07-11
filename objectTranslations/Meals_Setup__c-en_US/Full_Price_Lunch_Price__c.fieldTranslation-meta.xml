@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- This is the amount a student pays for a full-priced lunch. --></help>
+    <label><!-- Full-Price Lunch Price --></label>
+    <name>Full_Price_Lunch_Price__c</name>
+</CustomFieldTranslation>

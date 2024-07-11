@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Behavior__c</fullName>
+    <formula>INCLUDES(CreateSections__c, &apos;50 Acts of Greatness &amp; In School&apos;) ||
+INCLUDES(CreateSections__c, &apos;50 Acts of Leadership &amp; In School&apos;) ||
+INCLUDES(CreateSections__c, &apos;Coaching: Behavior (Local) &amp; In School&apos;) ||
+INCLUDES(CreateSections__c, &apos;50 Acts of Greatness &amp; Extended Learning&apos;) ||
+INCLUDES(CreateSections__c, &apos;50 Acts of Leadership &amp; Extended Learning&apos;) ||
+INCLUDES(CreateSections__c, &apos;Coaching: Behavior (Local) &amp; Extended Learning&apos;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Behavior</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

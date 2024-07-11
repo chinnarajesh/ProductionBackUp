@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Type__c</fullName>
+    <label>Type</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Homework Alerts</fullName>
+                <default>false</default>
+                <label>Homework Alerts</label>
+            </value>
+            <value>
+                <fullName>Attendance Alerts</fullName>
+                <default>false</default>
+                <label>Attendance Alerts</label>
+            </value>
+            <value>
+                <fullName>Attendance Threshold Alerts</fullName>
+                <default>false</default>
+                <label>Attendance Threshold Alerts</label>
+            </value>
+            <value>
+                <fullName>Tardy Alerts</fullName>
+                <default>false</default>
+                <label>Tardy Alerts</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

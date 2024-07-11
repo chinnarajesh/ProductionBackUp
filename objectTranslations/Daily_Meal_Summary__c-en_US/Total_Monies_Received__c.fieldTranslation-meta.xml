@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- This is the total amount received from students paying for either full-priced or reduced meals for the day. --></help>
+    <label><!-- Total Monies Received --></label>
+    <name>Total_Monies_Received__c</name>
+</CustomFieldTranslation>

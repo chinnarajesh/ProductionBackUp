@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Used for data migration during the package conversion.  Typically not populated via the application. --></help>
+    <label><!-- External Id --></label>
+    <name>External_Id__c</name>
+</CustomFieldTranslation>

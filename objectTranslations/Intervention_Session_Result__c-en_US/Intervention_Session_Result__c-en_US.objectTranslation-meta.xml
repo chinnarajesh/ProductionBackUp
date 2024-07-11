@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Intervention Session Result</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Intervention Session Results</value>
+    </caseValues>
+    <layouts>
+        <layout>Intervention Session Result Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Intervention Session Result Layout - Admin</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- Session time for a day must be less than 500 minutes. --></errorMessage>
+        <name>Prevent_Over_500_Session_Time</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Session time cannot be less than 1. --></errorMessage>
+        <name>Prevent_Session_Time_Less_than_1</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please verify that the Section record associated with the Student/Section record and Intervention Section record are the same. --></errorMessage>
+        <name>Section_Validation</name>
+    </validationRules>
+</CustomObjectTranslation>

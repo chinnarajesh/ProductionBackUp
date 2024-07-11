@@ -1,0 +1,28 @@
+.box {
+	background:white;
+	.data {
+		margin:0 0 $gap-md;
+	}
+	.box-header {
+		padding:$gap;
+		border-bottom:2px solid #eee;
+		.title {
+			margin:0 0 $gap-sm;
+		}
+		h2 {
+			margin:0 0 $gap-xs;
+			font-size:24px;
+			@media (max-width:$screen-sm) {
+				font-size:18px;
+			}
+		}
+		.controls {
+			display:flex;
+
+		}
+	}
+	.box-footer {
+		padding: $gap;
+		border-top: 2px solid #EEE;
+	}
+}

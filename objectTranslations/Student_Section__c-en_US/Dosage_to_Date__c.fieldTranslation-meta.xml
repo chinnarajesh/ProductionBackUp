@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- The total number of minutes to date that this student has had in this particular Intervention Section --></help>
+    <label><!-- Dosage to Date --></label>
+    <name>Dosage_to_Date__c</name>
+</CustomFieldTranslation>

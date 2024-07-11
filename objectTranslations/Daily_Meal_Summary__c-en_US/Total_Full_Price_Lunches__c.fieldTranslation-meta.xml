@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- This is the total number of full-priced lunches served that day. --></help>
+    <label><!-- Total Full-Price Lunches --></label>
+    <name>Total_Full_Price_Lunches__c</name>
+</CustomFieldTranslation>

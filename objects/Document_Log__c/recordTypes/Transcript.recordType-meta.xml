@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Transcript</fullName>
+    <active>true</active>
+    <label>Transcript</label>
+    <picklistValues>
+        <picklist>Document_Type__c</picklist>
+        <values>
+            <fullName>Progress Report - Elementary School</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Progress Report - High School</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Report Card - Elementary School</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Report Card - High School</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Transcript</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Status__c</picklist>
+        <values>
+            <fullName>Aborted</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Complete</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Complete - With Warnings</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Failed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>In Progress</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>In Queue</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>In Queue - With Warnings</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

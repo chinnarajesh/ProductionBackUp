@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Validation_Curriculum</fullName>
+    <active>true</active>
+    <errorConditionFormula>Section__r.RecordType.Name == &apos;Curriculum&apos; ||  ISPICKVAL(Section__r.In_After_School__c, &apos;Curriculum&apos;)</errorConditionFormula>
+    <errorMessage>This is a curriculum section and is unable to add dosage.</errorMessage>
+</ValidationRule>

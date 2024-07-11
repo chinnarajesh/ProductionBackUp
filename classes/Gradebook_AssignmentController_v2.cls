@@ -778,8 +778,9 @@ public with sharing class Gradebook_AssignmentController_v2 {
             }
             
             //only if successful can we do this
+            //System.debug('check the data++ '+assignmentWrapper.attachAssignment);
             pageReference p;
-            if(assignmentWrapper.attachAssignment) {
+            if(assignmentWrapper.attachAssignment != null && assignmentWrapper.attachAssignment) {
                 String temp1 = 'false';
                 String temp2 = ApexPages.currentPage().getParameters().get('fromGradeBook');
                 p = new pageReference('/apex/Gradebook_AttachAssignment' + '?id='+assignmentWrapper.assignmentLibrary.ID +'&aName='+assignmentWrapper.assignmentName +'&createNew='+temp1 +'&fromGradeBook='+temp2);
@@ -878,7 +879,7 @@ public with sharing class Gradebook_AssignmentController_v2 {
             
             //only if successful can we do this
             pageReference p;
-            if(assignmentWrapper.attachAssignment) {
+            if(assignmentWrapper.attachAssignment !=null && assignmentWrapper.attachAssignment) {
                 String temp1 = 'false';
                 String temp2 = ApexPages.currentPage().getParameters().get('fromGradeBook');
                 p = new pageReference('/apex/Gradebook_AttachAssignment' + '?id='+assignmentWrapper.assignmentLibrary.ID +'&aName='+assignmentWrapper.assignmentName +'&createNew='+temp1 +'&fromGradeBook='+temp2);

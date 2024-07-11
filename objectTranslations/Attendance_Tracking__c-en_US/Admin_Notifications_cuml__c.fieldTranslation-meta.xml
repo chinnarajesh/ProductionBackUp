@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Admin Notifications (Cumulative) --></label>
+    <name>Admin_Notifications_cuml__c</name>
+    <picklistValues>
+        <masterLabel>Administration Notified</masterLabel>
+        <translation><!-- Administration Notified --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Notify Administration</masterLabel>
+        <translation><!-- Notify Administration --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

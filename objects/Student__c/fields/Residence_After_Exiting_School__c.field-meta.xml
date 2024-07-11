@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Residence_After_Exiting_School__c</fullName>
+    <inlineHelpText>If the student has been withdrawn from the school, this field displays where the student resides. If you update this field, SchoolForce updates the corresponding field on the Contact record.</inlineHelpText>
+    <label>Residence After Exiting School</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Armed services</fullName>
+                <default>false</default>
+                <label>Armed services</label>
+            </value>
+            <value>
+                <fullName>New residence of family</fullName>
+                <default>false</default>
+                <label>New residence of family</label>
+            </value>
+            <value>
+                <fullName>New residence of student</fullName>
+                <default>false</default>
+                <label>New residence of student</label>
+            </value>
+            <value>
+                <fullName>No record of residence</fullName>
+                <default>false</default>
+                <label>No record of residence</label>
+            </value>
+            <value>
+                <fullName>Non-educational institution</fullName>
+                <default>false</default>
+                <label>Non-educational institution</label>
+            </value>
+            <value>
+                <fullName>Same residence</fullName>
+                <default>false</default>
+                <label>Same residence</label>
+            </value>
+            <value>
+                <fullName>Other educational institution</fullName>
+                <default>false</default>
+                <label>Other educational institution</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

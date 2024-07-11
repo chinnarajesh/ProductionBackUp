@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Displays the student&apos;s special education hours. You can use this field or reporting purposes. --></help>
+    <label><!-- Special Education Hours --></label>
+    <name>Special_Education_Hours__c</name>
+</CustomFieldTranslation>

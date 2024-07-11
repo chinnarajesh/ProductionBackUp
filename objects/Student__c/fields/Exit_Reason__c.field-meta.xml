@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Exit_Reason__c</fullName>
+    <inlineHelpText>Displays the reason the student was withdrawn/exited from the school. SchoolForce updates this field when a student is withdrawn through the Section Wizard.</inlineHelpText>
+    <label>Exit Code</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>NI (No Information)</fullName>
+                <default>false</default>
+                <label>NI (No Information)</label>
+            </value>
+            <value>
+                <fullName>TSS (Transfer to Silings School)</fullName>
+                <default>false</default>
+                <label>TSS (Transfer to Silings School)</label>
+            </value>
+            <value>
+                <fullName>DE (Dissatisfaction with Education)</fullName>
+                <default>false</default>
+                <label>DE (Dissatisfaction with Education)</label>
+            </value>
+            <value>
+                <fullName>DS (Dissatisfaction with Staff)</fullName>
+                <default>false</default>
+                <label>DS (Dissatisfaction with Staff)</label>
+            </value>
+            <value>
+                <fullName>TSI (Transfer to Special Interest School)</fullName>
+                <default>false</default>
+                <label>TSI (Transfer to Special Interest School)</label>
+            </value>
+            <value>
+                <fullName>DL (Dissatisfaction with Location)</fullName>
+                <default>false</default>
+                <label>DL (Dissatisfaction with Location)</label>
+            </value>
+            <value>
+                <fullName>TC (Transfer to Closer School)</fullName>
+                <default>false</default>
+                <label>TC (Transfer to Closer School)</label>
+            </value>
+            <value>
+                <fullName>DE (Death)</fullName>
+                <default>false</default>
+                <label>DE (Death)</label>
+            </value>
+            <value>
+                <fullName>EX (Expulsion)</fullName>
+                <default>false</default>
+                <label>EX (Expulsion)</label>
+            </value>
+            <value>
+                <fullName>TO (Transfer Out Of State)</fullName>
+                <default>false</default>
+                <label>TO (Transfer Out Of State)</label>
+            </value>
+            <value>
+                <fullName>TS (Transfer in State)</fullName>
+                <default>false</default>
+                <label>TS (Transfer in State)</label>
+            </value>
+            <value>
+                <fullName>TSS (Transfer to Siblings School)</fullName>
+                <default>false</default>
+                <label>TSS (Transfer to Siblings School)</label>
+            </value>
+            <value>
+                <fullName>Student is in a different public school in the same local education agency</fullName>
+                <default>false</default>
+                <label>Student is in a different public school in the same local education agency</label>
+            </value>
+            <value>
+                <fullName>Transferred to a public school in a different local education agency in the same state</fullName>
+                <default>false</default>
+                <label>Transferred to a public school in a different local education agency in the same state</label>
+            </value>
+            <value>
+                <fullName>Transferred to a public school in a different state</fullName>
+                <default>false</default>
+                <label>Transferred to a public school in a different state</label>
+            </value>
+            <value>
+                <fullName>Transferred to a private, non-religiously-affiliated school in the same local education agency</fullName>
+                <default>false</default>
+                <label>Transferred to a private, non-religiously-affiliated school in the same local education agency</label>
+            </value>
+            <value>
+                <fullName>Transferred to a private, non-religiously-affiliated school in the same state</fullName>
+                <default>false</default>
+                <label>Transferred to a private, non-religiously-affiliated school in the same state</label>
+            </value>
+            <value>
+                <fullName>Transferred to a private, non-religiously-affiliated school in a different state</fullName>
+                <default>false</default>
+                <label>Transferred to a private, non-religiously-affiliated school in a different state</label>
+            </value>
+            <value>
+                <fullName>Transferred to a private, religiously-affiliated school in the same local education agency</fullName>
+                <default>false</default>
+                <label>Transferred to a private, religiously-affiliated school in the same local education agency</label>
+            </value>
+            <value>
+                <fullName>Transferred to a private, religiously-affiliated school in the same state</fullName>
+                <default>false</default>
+                <label>Transferred to a private, religiously-affiliated school in the same state</label>
+            </value>
+            <value>
+                <fullName>Transferred to a private, religiouslyaffiliated school in a different state</fullName>
+                <default>false</default>
+                <label>Transferred to a private, religiouslyaffiliated school in a different state</label>
+            </value>
+            <value>
+                <fullName>Transferred to an institution</fullName>
+                <default>false</default>
+                <label>Transferred to an institution</label>
+            </value>
+            <value>
+                <fullName>Transferred to home schooling</fullName>
+                <default>false</default>
+                <label>Transferred to home schooling</label>
+            </value>
+            <value>
+                <fullName>Matriculation to another school</fullName>
+                <default>false</default>
+                <label>Matriculation to another school</label>
+            </value>
+            <value>
+                <fullName>Graduated with regular, advanced, International Baccalaureate, or other type of diploma</fullName>
+                <default>false</default>
+                <label>Graduated with regular, advanced, International Baccalaureate, or other type of diploma</label>
+            </value>
+            <value>
+                <fullName>Completed school with other credentials</fullName>
+                <default>false</default>
+                <label>Completed school with other credentials</label>
+            </value>
+            <value>
+                <fullName>Died or is permanently incapacitated</fullName>
+                <default>false</default>
+                <label>Died or is permanently incapacitated</label>
+            </value>
+            <value>
+                <fullName>Withdrawn due to illness</fullName>
+                <default>false</default>
+                <label>Withdrawn due to illness</label>
+            </value>
+            <value>
+                <fullName>Expelled or involuntarily withdrawn</fullName>
+                <default>false</default>
+                <label>Expelled or involuntarily withdrawn</label>
+            </value>
+            <value>
+                <fullName>Reached maximum age for services</fullName>
+                <default>false</default>
+                <label>Reached maximum age for services</label>
+            </value>
+            <value>
+                <fullName>Discontinued schooling</fullName>
+                <default>false</default>
+                <label>Discontinued schooling</label>
+            </value>
+            <value>
+                <fullName>Completed grade 12, but did not meet all graduation requirements</fullName>
+                <default>false</default>
+                <label>Completed grade 12, but did not meet all graduation requirements</label>
+            </value>
+            <value>
+                <fullName>Enrolled in a postsecondary early admission program, eligible to return</fullName>
+                <default>false</default>
+                <label>Enrolled in a postsecondary early admission program, eligible to return</label>
+            </value>
+            <value>
+                <fullName>Not enrolled, unknown status</fullName>
+                <default>false</default>
+                <label>Not enrolled, unknown status</label>
+            </value>
+            <value>
+                <fullName>Student is in the same local education agency and receiving education services, but is not assigned to a particular school</fullName>
+                <default>false</default>
+                <label>Student is in the same local education agency and receiving education services, but is not assigned to a particular school</label>
+            </value>
+            <value>
+                <fullName>Enrolled in an  adult education or training program</fullName>
+                <default>false</default>
+                <label>Enrolled in an  adult education or training program</label>
+            </value>
+            <value>
+                <fullName>Completed a state-recognized vocational education program</fullName>
+                <default>false</default>
+                <label>Completed a state-recognized vocational education program</label>
+            </value>
+            <value>
+                <fullName>Not enrolled, eligible to return</fullName>
+                <default>false</default>
+                <label>Not enrolled, eligible to return</label>
+            </value>
+            <value>
+                <fullName>Enrolled in a foreign exchange program, eligible to return</fullName>
+                <default>false</default>
+                <label>Enrolled in a foreign exchange program, eligible to return</label>
+            </value>
+            <value>
+                <fullName>Withdrawn from school, under the age for compulsory attendance; eligible to return</fullName>
+                <default>false</default>
+                <label>Withdrawn from school, under the age for compulsory attendance; eligible to return</label>
+            </value>
+            <value>
+                <fullName>Exited</fullName>
+                <default>false</default>
+                <label>Exited</label>
+            </value>
+            <value>
+                <fullName>Student is in a charter school managed by the same local education agency</fullName>
+                <default>false</default>
+                <label>Student is in a charter school managed by the same local education agency</label>
+            </value>
+            <value>
+                <fullName>Completed with a state-recognized equivalency certificate</fullName>
+                <default>false</default>
+                <label>Completed with a state-recognized equivalency certificate</label>
+            </value>
+            <value>
+                <fullName>A student who transferred to a private school (affiliated with and operated by a non-governmental, religious group or organization) that is located in another state.</fullName>
+                <default>false</default>
+                <label>A student who transferred to a private school (affiliated with and operated by a non-governmental, religious group or organization) that is located in another state.</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

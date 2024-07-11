@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- How many active Indicator Areas is this student associated to? --></help>
+    <label><!-- Number of Indicator Areas --></label>
+    <name>Number_of_Indicator_Areas__c</name>
+</CustomFieldTranslation>

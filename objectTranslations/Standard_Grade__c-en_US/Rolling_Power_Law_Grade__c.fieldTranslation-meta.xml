@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- A formula derived grade across reporting periods; please see additional documentation for more information. --></help>
+    <label><!-- Rolling Power Law Grade --></label>
+    <name>Rolling_Power_Law_Grade__c</name>
+</CustomFieldTranslation>

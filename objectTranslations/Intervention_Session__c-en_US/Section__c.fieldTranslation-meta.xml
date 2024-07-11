@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- This field connects the Intervention Session record to the correct intervention Section. --></help>
+    <label><!-- Section --></label>
+    <name>Section__c</name>
+    <relationshipLabel><!-- Intervention Sessions --></relationshipLabel>
+</CustomFieldTranslation>

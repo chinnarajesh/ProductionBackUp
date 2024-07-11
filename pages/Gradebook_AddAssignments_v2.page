@@ -977,7 +977,7 @@
                                                     </td>
                                                 </tr>
 
-                                                <tr>
+                                                <!-- <tr>
                                                     <td align="RIGHT">
                                                         <apex:outputLabel value="Media Name" style="font-weight: bold; margin-right: auto;"/>
                                                         <span class="helpButton" id="media_name-_help">
@@ -1002,15 +1002,15 @@
                                                     <td>
                                                         <apex:inputText value="{!assignmentWrapper.mediaSource}" onkeypress="return noenter();"/>
                                                     </td>
-                                                </tr>
+                                                </tr> -->
                                                 
-                                                <tr>                                                
+                                                <!-- <tr>                                                
                                                     <td align="RIGHT">
                                                         <apex:outputLabel value="Show in portal?" style="font-weight:bold; margin-right: auto;"/>
                                                         <span class="helpButton" id="show_in_portal-_help">
-                                                            <img src="/s.gif" class="helpOrb"/>
+                                                            <img src="/s.gif" class="helpOrb"/> -->
                                                             <!-- {!$ObjectType.Assignment__c.fields.Show_in_portal__c.inlineHelpText} -->
-                                                            <script type="text/javascript">
+                                                            <!-- <script type="text/javascript">
                                                                 sfdcPage.setHelp('show_in_portal', 'Select whether or not you want this assignment to display in the Student Portal. This check box is selected by default.');
                                                             </script>
                                                         </span>                                                     
@@ -1018,9 +1018,9 @@
                                                     <td>
                                                         <apex:inputCheckBox value="{!assignmentWrapper.showInPortal}"/>
                                                     </td>
-                                                </tr>
+                                                </tr> -->
 
-                                                <tr>
+                                                <!-- <tr>
                                                     <td align="RIGHT">
                                                         <apex:outputLabel value="Include in final grade?" style="font-weight:bold; margin-right: auto;"/>
                                                         <span class="helpButton" id="includeInFinal-_help">
@@ -1046,7 +1046,7 @@
                                                     <td>
                                                         <apex:inputCheckBox value="{!assignmentWrapper.attachAssignment}" />
                                                     </td>
-                                                </tr>
+                                                </tr> -->
                                             </table>                                                                
                                         </div>
                                     </div>

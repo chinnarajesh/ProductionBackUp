@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Type_Of_Contact__c</fullName>
+    <label>Type Of Contact</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Conference/Mtng</fullName>
+                <default>false</default>
+                <label>Conference/Mtng</label>
+            </value>
+            <value>
+                <fullName>Failed Attempt</fullName>
+                <default>false</default>
+                <label>Failed Attempt</label>
+            </value>
+            <value>
+                <fullName>In-Person (Unscheduled)</fullName>
+                <default>false</default>
+                <label>In-Person (Unscheduled)</label>
+            </value>
+            <value>
+                <fullName>None (No Attempt)</fullName>
+                <default>false</default>
+                <label>None (No Attempt)</label>
+            </value>
+            <value>
+                <fullName>Note/Email to Parent</fullName>
+                <default>false</default>
+                <label>Note/Email to Parent</label>
+            </value>
+            <value>
+                <fullName>Phone Call with Parent</fullName>
+                <default>false</default>
+                <label>Phone Call with Parent</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

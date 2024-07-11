@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Static_Reference_IDs__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Check this box to keep the reference IDs on various objects static.</description>
+    <label>Static Reference IDs</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

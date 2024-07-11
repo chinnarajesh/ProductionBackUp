@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Position --></label>
+    <name>Position__c</name>
+    <picklistValues>
+        <masterLabel>Admin</masterLabel>
+        <translation><!-- Admin --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Aide</masterLabel>
+        <translation><!-- Aide --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Behavior Coor</masterLabel>
+        <translation><!-- Behavior Coor --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>CTR</masterLabel>
+        <translation><!-- CTR --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Coordinators/Dir</masterLabel>
+        <translation><!-- Coordinators/Dir --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Coordintaors/Dir</masterLabel>
+        <translation><!-- Coordintaors/Dir --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>ELL</masterLabel>
+        <translation><!-- ELL --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Family Outreach Coordinator</masterLabel>
+        <translation><!-- Family Outreach Coordinator --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>General Ed Teacher</masterLabel>
+        <translation><!-- General Ed Teacher --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Inclusion</masterLabel>
+        <translation><!-- Inclusion --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Marketing/Dev</masterLabel>
+        <translation><!-- Marketing/Dev --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>NLNS Resdient</masterLabel>
+        <translation><!-- NLNS Resdient --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>NLNS Resident</masterLabel>
+        <translation><!-- NLNS Resident --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Nurse</masterLabel>
+        <translation><!-- Nurse --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Operations</masterLabel>
+        <translation><!-- Operations --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Project Manager</masterLabel>
+        <translation><!-- Project Manager --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Social Work</masterLabel>
+        <translation><!-- Social Work --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Special</masterLabel>
+        <translation><!-- Special --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Speech Language Pathologist</masterLabel>
+        <translation><!-- Speech Language Pathologist --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Wilson</masterLabel>
+        <translation><!-- Wilson --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>YRP</masterLabel>
+        <translation><!-- YRP --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

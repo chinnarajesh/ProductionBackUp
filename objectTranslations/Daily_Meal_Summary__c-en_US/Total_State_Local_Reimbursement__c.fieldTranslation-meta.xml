@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- This is the total amount of State/Local reimbursement for a given day based on the meal prices established in the Meals Setup object. --></help>
+    <label><!-- Total State/Local Reimbursement --></label>
+    <name>Total_State_Local_Reimbursement__c</name>
+</CustomFieldTranslation>

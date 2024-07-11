@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Document_Type__c</fullName>
+    <label>Document Type</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Progress Report - Elementary School</fullName>
+                <default>false</default>
+                <label>Progress Report - Elementary School</label>
+            </value>
+            <value>
+                <fullName>Progress Report - High School</fullName>
+                <default>false</default>
+                <label>Progress Report - High School</label>
+            </value>
+            <value>
+                <fullName>Report Card - Elementary School</fullName>
+                <default>false</default>
+                <label>Report Card - Elementary School</label>
+            </value>
+            <value>
+                <fullName>Report Card - High School</fullName>
+                <default>false</default>
+                <label>Report Card - High School</label>
+            </value>
+            <value>
+                <fullName>Transcript</fullName>
+                <default>false</default>
+                <label>Transcript</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Show_Community_Service_In_Portal__c</fullName>
+    <defaultValue>false</defaultValue>
+    <inlineHelpText>Show Community Service Hours in Portal?</inlineHelpText>
+    <label>Show Community Service In Portal</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

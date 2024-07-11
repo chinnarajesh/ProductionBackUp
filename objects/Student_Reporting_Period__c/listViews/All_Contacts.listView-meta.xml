@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All_Contacts</fullName>
+    <columns>NAME</columns>
+    <columns>Student__c</columns>
+    <columns>Marked_For_Creation__c</columns>
+    <columns>Show_In_Portal__c</columns>
+    <filterScope>Everything</filterScope>
+    <label>All Contacts</label>
+</ListView>

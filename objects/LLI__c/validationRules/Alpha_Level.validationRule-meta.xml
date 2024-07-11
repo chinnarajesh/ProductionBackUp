@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Alpha_Level</fullName>
+    <active>true</active>
+    <errorConditionFormula>NOT( 
+OR( 
+ISBLANK(Level__c),REGEX(Level__c ,&quot;([A-Z-])*&quot;)))</errorConditionFormula>
+    <errorDisplayField>Level__c</errorDisplayField>
+    <errorMessage>Levels must Capital Alpha A-Z</errorMessage>
+</ValidationRule>

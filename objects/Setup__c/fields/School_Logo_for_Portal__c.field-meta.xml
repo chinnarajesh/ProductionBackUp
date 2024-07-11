@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>School_Logo_for_Portal__c</fullName>
+    <inlineHelpText>Please upload the image to use as the school logo for student portal here.  This image will appear in the top left corner of the student portal.  Maximum size is 175px w x 225px h.</inlineHelpText>
+    <label>School Logo for Portal</label>
+    <length>32768</length>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Html</type>
+    <visibleLines>25</visibleLines>
+</CustomField>

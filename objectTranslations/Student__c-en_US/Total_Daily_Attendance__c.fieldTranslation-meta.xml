@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Displays the total number of daily attendance records for the student. If your school does not take daily attendance, this value is 0. --></help>
+    <label><!-- Total Daily Attendance --></label>
+    <name>Total_Daily_Attendance__c</name>
+</CustomFieldTranslation>

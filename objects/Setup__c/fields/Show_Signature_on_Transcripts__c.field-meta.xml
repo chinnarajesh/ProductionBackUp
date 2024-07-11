@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Show_Signature_on_Transcripts__c</fullName>
+    <defaultValue>false</defaultValue>
+    <inlineHelpText>Determines if the Signature section displays on the transcript.</inlineHelpText>
+    <label>Show Signature</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Student/Section</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Student/Section</value>
+    </caseValues>
+    <layouts>
+        <layout>CY Student/Section Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Enrollment &amp; Exit Information --></label>
+            <section>Enrollment &amp; Exit Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Non Admin Student/Section</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Student/Section Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- Accidentally enrolled students should have no program dosage and 0 days of enrollment. --></errorMessage>
+        <name>Accidental_Enrollment_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- An Exit Reason Is Required --></errorMessage>
+        <name>Exit_reason_required</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Intervention Exit Date cannot be before Intervention Enrollment Start Date. --></errorMessage>
+        <name>Intervention_validation</name>
+    </validationRules>
+</CustomObjectTranslation>

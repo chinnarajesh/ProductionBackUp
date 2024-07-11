@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Displays the year-to-date weighted GPA for all completed courses in a single school year. The value in this field displays on report cards in the Weighted GPA field. --></help>
+    <label><!-- Final Weighted GPA Value --></label>
+    <name>Final_Weighted_GPA_Value__c</name>
+</CustomFieldTranslation>

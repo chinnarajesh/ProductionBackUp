@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>School_picture__c</fullName>
+    <description>School Picture</description>
+    <inlineHelpText>Please upload the image to use as the school logo for student documents here.  This image will appear in the top left corner of report cards, progress reports, and transcripts.  Maximum size is 190px w x 50px h</inlineHelpText>
+    <label>School Logo for Documents</label>
+    <length>32768</length>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Html</type>
+    <visibleLines>25</visibleLines>
+</CustomField>

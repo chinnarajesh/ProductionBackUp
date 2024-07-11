@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Student_compact_layout</fullName>
+    <fields>Student_ID_Auto_Number__c</fields>
+    <fields>Local_Student_ID__c</fields>
+    <fields>Name</fields>
+    <fields>Location__c</fields>
+    <fields>School_Name__c</fields>
+    <label>Student compact layout</label>
+</CompactLayout>

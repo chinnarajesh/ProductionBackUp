@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Grade_Scale_Catalog__c</fullName>
+    <label>Grade Scale Catalog</label>
+    <referenceTo>Grade_Scale_Catalog__c</referenceTo>
+    <relationshipLabel>Grade Scale Catalog/Scales</relationshipLabel>
+    <relationshipName>Grade_Scale_Catalog_Scales</relationshipName>
+    <relationshipOrder>0</relationshipOrder>
+    <reparentableMasterDetail>false</reparentableMasterDetail>
+    <trackTrending>false</trackTrending>
+    <type>MasterDetail</type>
+    <writeRequiresMasterRead>false</writeRequiresMasterRead>
+</CustomField>

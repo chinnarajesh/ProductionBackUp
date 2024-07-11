@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Type Of Contact --></label>
+    <name>Type_Of_Contact__c</name>
+    <picklistValues>
+        <masterLabel>Conference/Mtng</masterLabel>
+        <translation><!-- Conference/Mtng --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Failed Attempt</masterLabel>
+        <translation><!-- Failed Attempt --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>In-Person (Unscheduled)</masterLabel>
+        <translation><!-- In-Person (Unscheduled) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>None (No Attempt)</masterLabel>
+        <translation><!-- None (No Attempt) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Note/Email to Parent</masterLabel>
+        <translation><!-- Note/Email to Parent --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Phone Call with Parent</masterLabel>
+        <translation><!-- Phone Call with Parent --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

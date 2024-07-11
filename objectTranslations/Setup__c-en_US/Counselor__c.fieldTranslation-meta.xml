@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- The Counselor  will appear on the Transcript. Please enter the name exactly as you want it to appear on the transcript, &quot;Ms. Alice Jones&quot; or &quot;Alice Jones.&quot; --></help>
+    <label><!-- Counselor --></label>
+    <name>Counselor__c</name>
+</CustomFieldTranslation>

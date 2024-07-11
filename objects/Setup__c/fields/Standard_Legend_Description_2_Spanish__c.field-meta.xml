@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Standard_Legend_Description_2_Spanish__c</fullName>
+    <inlineHelpText>What is the description in Spanish  for a Standard with a Level 2? This will display on Report Cards and Progress report if &quot;Show Standards&quot; is selected on the &quot;Generate Student Documents&quot; page.</inlineHelpText>
+    <label>Standard Legend Description 2 Spanish</label>
+    <length>32768</length>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>LongTextArea</type>
+    <visibleLines>3</visibleLines>
+</CustomField>

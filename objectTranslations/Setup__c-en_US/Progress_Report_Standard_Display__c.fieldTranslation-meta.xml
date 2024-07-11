@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Progress Report Standard Display --></label>
+    <name>Progress_Report_Standard_Display__c</name>
+    <picklistValues>
+        <masterLabel>Standards</masterLabel>
+        <translation><!-- Standards --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Strands</masterLabel>
+        <translation><!-- Strands --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

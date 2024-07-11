@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Parental Notification Required --></label>
+    <name>Parental_Notification_Required__c</name>
+    <picklistValues>
+        <masterLabel>Notification Sent</masterLabel>
+        <translation><!-- Notification Sent --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Send Notification</masterLabel>
+        <translation><!-- Send Notification --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

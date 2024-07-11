@@ -1,6 +1,8 @@
 public with sharing class sectionDetailExtension {
     public Section__c section { get; set; }
     public List<StudentInfoWrapper> studentSections { get; set; }
+    public List<StudentInfoWrapper> finalstudentSections { get; set; }
+    public List<StudentInfoWrapper> finalWithdrastudentSections { get; set; }
     public Boolean isCM { get; set; }
     public Boolean isCurriculum { get; set; }
 
@@ -23,6 +25,7 @@ public with sharing class sectionDetailExtension {
 
     //Edit time
     public List<ISTool.SessionWrapper> sessions { get; set; }
+    public List<ISTool.SessionWrapper> studentResults {get;set;}
     public String sessionID { get; set; }
     public String sectionID { get; set; }
     public Intervention_Session__c sessionFilter { get; set; }
@@ -33,7 +36,35 @@ public with sharing class sectionDetailExtension {
     private ISTool sessionLoader;
     private Set<ID> enrolledStudentIDs;
     private Set<ID> selectedStudentIDs;
+    private Set<Id> wrappSelectedStudentIds;
+    ////added by juturi rajesh
+    public integer OffsetSize = 0;
 
+    private integer LimitSize= 50;
+    public integer totalRecs {get;set;}
+    public Integer showingRecords {get;set;}
+    public Integer increaseCount {get;set;}
+
+    public Id secondSectionId ;
+
+    public Set<Id> pageSelectedStudentIds ;
+    public Set<Id> pageUnselectedStudentIds;
+    public Set<Id> finalSelectedList ;
+    public Boolean checkCondition =false;
+    public Integer selectedStudentCount {get;set;}
+
+    public String studentList {get;set;}
+
+    public  string SearchAcc{get;set;}
+    public  string  searchstring{get;set;}
+    public  String NewStudentName {get;set;}
+    public  string searchSectionid ;
+
+    public String selectStudentParam{get;set;}
+    public string conditionParam  {get;set;}
+    public string Unselectedsstudents {get;set;}
+
+   //// endded by juturi rajesh
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     public String letter { get; set; }
@@ -42,6 +73,7 @@ public with sharing class sectionDetailExtension {
     public SectionDetailExtension() {
 
         ID sectionID = ApexPages.currentPage().getParameters().get('sectionID');
+        searchSectionid=sectionID;
         enabledStudentIAFilter = false;
         selectedIndicatorAreaFilter = 'all';
         selectedGradeFilter = 'all';
@@ -55,23 +87,56 @@ public with sharing class sectionDetailExtension {
         } else {
             CYUtil.errorMessage('The system was unable to locate the id of the section you wish to view. Please return to the section detail page and try again.');
         }
+        ///added bu juturi rajesh
+        showingRecords=1;
+        pageSelectedStudentIds = new Set<id>();
+        //pageUnselectedStudentIds = new Set<id>();
+        //increaseCount=LimitSize;
+        // edded by juturi rajesh
+    }
+    public void StudentSerach2(){
+        system.debug('searchstring++ '+searchstring);
+        loadSectionData(searchSectionid);
+
     }
 
     private void loadSectionData(ID sectionID) {
         Set<String> allowedRT = new Set<String>{
                 'Intervention Section', 'Curriculum'
         };
+      
+        secondSectionId=sectionID;
+        // String sectionQuery = 'SELECT Active__c, Student__c, Student__r.Id, Student__r.Name, Student__r.Student_ID_Auto_Number__c, Student__r.Grade__c,Student__r.Local_Student_ID__c, Student_Name__c, Student_Grade__c,Section__c, Dosage_to_Date__c, Intervention_Enrollment_Start_Date__c,Enrollment_Start_Date__c, Enrollment_End_Date__c from Student_Section__c where Section__c =: sectionID  ORDER BY Student__r.Student_First_Name__c ASC LIMIT :LimitSize OFFSET :OffsetSize ';
+
+        String sectionQuery = 'SELECT Active__c, Student__c, Student__r.Id, Student__r.Name, Student__r.Student_ID_Auto_Number__c, Student__r.Grade__c,Student__r.Local_Student_ID__c, Student_Name__c, Student_Grade__c,Section__c, Dosage_to_Date__c, Intervention_Enrollment_Start_Date__c,Enrollment_Start_Date__c, Enrollment_End_Date__c from Student_Section__c where Section__c =: sectionID ';
+
+        if(String.isNotBlank(searchstring) && (searchstring.contains('CY') || searchstring.contains('cy'))){
+            NewStudentName = '%'+searchstring+'%';
+            sectionQuery += ' AND Student__r.Student_ID_Auto_Number__c LIKE :NewStudentName ORDER BY Student__r.Student_First_Name__c';
+        }
+        else if(String.isNotBlank(searchstring) && searchstring.isNumeric()){
+            NewStudentName = '%'+searchstring+'%';
+            sectionQuery += ' AND Student__r.Local_Student_ID__c LIKE :NewStudentName ORDER BY Student__r.Student_First_Name__c';
+        }
+        else if(String.isNotBlank(searchstring)){
+            NewStudentName = '%'+searchstring+'%';
+            sectionQuery += ' AND Student__r.Name LIKE :NewStudentName ORDER BY Student__r.Student_First_Name__c';
+        }else{
+            sectionQuery += 'ORDER BY Student__r.Student_First_Name__c ASC LIMIT :LimitSize OFFSET :OffsetSize ';
+        }
+        searchstring ='';
+        List<Student_Section__c> newSectionList = Database.query(sectionQuery);
         section = [
                 SELECT Id, Name, Auto_Name__c, Start_Date__c, Program__c, Intervention_Primary_Staff__c, End_Date__c,
                         School__c, Active__c, School__r.Name, Time__r.Name__c, Program__r.Indicator_Area__r.Id,
-                        Program__r.Indicator_Area__r.Name, RecordTypeID, RecordType.Name, Account_Program__r.Name,
+                        Program__r.Indicator_Area__r.Name, RecordTypeID, RecordType.Name, Account_Program__r.Name,Location__c,
                         In_After_School__c, (
                         SELECT Active__c, Student__c, Student__r.Id, Student__r.Name, Student__r.Student_ID_Auto_Number__c, Student__r.Grade__c,
                                 Student__r.Local_Student_ID__c, Student_Name__c, Student_Grade__c,
                                 Section__c, Dosage_to_Date__c, Intervention_Enrollment_Start_Date__c,
                                 Enrollment_Start_Date__c, Enrollment_End_Date__c
                         FROM Student_Section__r
-                        ORDER BY Student__r.Student_First_Name__c ASC
+                        ORDER BY Student__r.Student_First_Name__c ASC 
 //                        LIMIT 1000
                 ), (
                         SELECT Is_Active__c, Staff__r.Name, Intervention_Primary_Staff__c
@@ -80,13 +145,20 @@ public with sharing class sectionDetailExtension {
                 FROM Section__c
                 WHERE Id = :sectionID
         ];
-
+        List<Student_Section__c> totalStudentsections = section.Student_Section__r;
+        totalRecs =totalStudentsections.size();
+        if(totalRecs < 50){
+            increaseCount = totalRecs;
+        }
+        else {
+            increaseCount=LimitSize;
+        }
         if (!allowedRT.contains(section.RecordType.Name)) {
             CYUtil.errorMessage('The section you selected is not an intervention section. There is no data to display.');
             section = new Section__c();
         } else {
             isCurriculum = section.In_After_School__c == 'Curriculum';
-            buildStudentSectionWrapper(section.Student_Section__r);
+            buildStudentSectionWrapper(newSectionList);
             if (studentSections.isEmpty()) {
                 CyUtil.errorMessage('There are currently no active students in this section.');
             }
@@ -113,6 +185,8 @@ public with sharing class sectionDetailExtension {
         studentSections = new List<StudentInfoWrapper>();
         enrolledStudentIDs = new Set<ID>();
         selectedStudentIDs = new Set<Id>();
+        System.debug('ssList++ '+ssList.size());
+    
         for (Student_Section__c ss : ssList) {
             studentSections.add(new StudentInfoWrapper(ss));
             selectedStudentIDs.add(ss.Student__c);
@@ -128,8 +202,17 @@ public with sharing class sectionDetailExtension {
             enabledStudentIAFilter = true;
             String query = buildAvailableStudentQuery(false);
             Map<Id, Student__c> students = new Map<Id, Student__c>((List<Student__c>) Database.query(query));
+            //System.debug('students++ '+students.size());
             enabledStudentIAFilter = false;
+            //System.debug('pageSelectedStudentIds'+pageSelectedStudentIds);
+        
             for (StudentInfoWrapper sw : studentSections) {
+                ///added by juturi rajesh
+            
+                if(pageSelectedStudentIds !=null && pageSelectedStudentIds.contains(sw.studentSection.Student__c)){
+                   sw.selected=true;
+                }
+                // endded by juturi rajes
                 if (students.containsKey(sw.studentSection.Student__c)) {
                     Map<String, Object> data = new Map<String, Object>{
                             'Name' => students.get(sw.studentSection.Student__c).Name,
@@ -143,7 +226,8 @@ public with sharing class sectionDetailExtension {
                     Student__c record = (Student__c) JSON.deserialize(
                             JSON.serialize(data), Student__c.class
                     );
-                    sw.updateStudentInfoWrapper(record, students.get(sw.studentSection.Student__c).Indicator_Area_Student__r);
+                    Student__c studentRecord = students.get(sw.studentSection.Student__c);
+                    sw.updateStudentInfoWrapper(studentRecord, students.get(sw.studentSection.Student__c).Indicator_Area_Student__r);
                 }
             }
             selectedStudentIDs = new Set<Id>();
@@ -185,7 +269,7 @@ public with sharing class sectionDetailExtension {
             query += ' AND Grade__c =: selectedGradeFilter';
         }
 
-        query += ' ORDER BY Student_First_Name__c, Student_Last_Name__c';
+        query += ' ORDER BY Student_First_Name__c, Student_Last_Name__c ';
         system.debug(query);
         return query;
     }
@@ -240,7 +324,22 @@ public with sharing class sectionDetailExtension {
     public void startWithdrawStudents() {
         studentsToWithdraw = new List<StudentInfoWrapper>();
         studentSectionHolder = new Student_Section__c(Enrollment_End_Date__c = System.Now()); //system.today());
-        for (StudentInfoWrapper sew : studentSections) {
+
+        List<Student_Section__c> finalList =[SELECT Active__c, Student__c, Student__r.Id, Student__r.Name, Student__r.Student_ID_Auto_Number__c, Student__r.Grade__c,Student__r.Local_Student_ID__c, Student_Name__c, Student_Grade__c,Section__c, Dosage_to_Date__c, Intervention_Enrollment_Start_Date__c,Enrollment_Start_Date__c, Enrollment_End_Date__c from Student_Section__c where Section__c =: secondSectionId AND Student__c =: pageSelectedStudentIds];
+
+        finalWithdrastudentSections = new List<StudentInfoWrapper>();
+
+        for (Student_Section__c ss : finalList) {
+            finalWithdrastudentSections.add(new StudentInfoWrapper(ss));
+            //enrolledStudentIDs.add(ss.Student__c);
+            if (ss.Active__c) {
+                enrolledStudentIDs.add(ss.Student__c);
+            }
+        }
+        for(StudentInfoWrapper sew : finalWithdrastudentSections){
+            sew.selected=true;
+          }
+        for (StudentInfoWrapper sew : finalWithdrastudentSections) {
             if (sew.selected) {
                 studentsToWithdraw.add(sew);
             }
@@ -284,12 +383,11 @@ public with sharing class sectionDetailExtension {
     public void startEditTime() {
         selectedStaff = null;
         sessionFilter = new Intervention_Session__c();
-        sessionLoader.updateResultSelection(false);
+        sessionLoader.updateResultSelection(true);
         sessionLoader.setAllSessions();
         sessionLoader.updateSessionSelection(section.ID, null, null, null, null);
         sessionLoader.loadSessionData();
         sessions = sessionLoader.getOrderedSessions();
-        system.debug(sessions);
         if (sessions.isEmpty()) {
             CYUtil.errorMessage('There are no sessions for this section. Please create a new session.');
         }
@@ -316,4 +414,151 @@ public with sharing class sectionDetailExtension {
         PageReference sessionPage = new PageReference(sectionRecordUrl);
         return sessionPage;
     }
+    ///// added by juturi 
+    public void FirstPage(){
+        OffsetSize = 0;
+        finalSelectedListAction();
+        if (secondSectionId != null) {
+            loadSectionData(secondSectionId);
+        }
+        showingRecords=1;
+        increaseCount=50;
+    }
+    public void previous(){
+        OffsetSize = OffsetSize - LimitSize;
+        finalSelectedListAction();
+        if (secondSectionId != null) {
+            loadSectionData(secondSectionId);
+        }
+        showingRecords=OffsetSize;
+        if(OffsetSize==0){
+            showingRecords=1;
+        }
+        increaseCount= OffsetSize + LimitSize;
+    }
+    public void next(){
+
+        finalSelectedListAction();
+        OffsetSize = OffsetSize + LimitSize;
+        if (secondSectionId != null) {
+            loadSectionData(secondSectionId);
+        }
+        showingRecords=OffsetSize;
+        increaseCount= OffsetSize + LimitSize;
+    }
+    public void LastPage(){
+       OffsetSize = totalrecs - math.mod(totalRecs,LimitSize);
+
+    finalSelectedListAction();
+       if (secondSectionId != null) {
+        loadSectionData(secondSectionId);
+      }
+        showingRecords=OffsetSize;
+        Integer lastcount =totalrecs - OffsetSize;
+        increaseCount= OffsetSize + lastcount;
+    }
+    public Integer getPageNumber() {
+
+        return OffsetSize/LimitSize + 1;
+
+    }
+    public boolean getprev(){
+        if(OffsetSize == 0)
+            return true;
+        else
+            return false;
+    }
+    public boolean getnxt(){
+        if((OffsetSize + LimitSize) > totalRecs)
+            return true;
+        else
+            return false;
+    }
+
+    public void finalSelectedListAction(){
+        
+        pageUnselectedStudentIds = new Set<Id>();
+
+        Set<string> selIds = new Set<string>();
+        set<string> unselectedIdSet = new set<string>();
+        if(String.isNotBlank(selectStudentParam)){
+            List<String> ids = selectStudentParam.split(';');
+            for(String i : ids){
+                pageSelectedStudentIds.add(i.trim());
+            }
+        }
+        if(String.isNotBlank(Unselectedsstudents)){
+            List<String> ids = Unselectedsstudents.split(';');
+            for(String i : ids){
+                pageUnselectedStudentIds.add(i.trim());
+            }
+        }
+
+        for (StudentInfoWrapper sw : studentSections) {
+            if(sw.selected){
+             pageSelectedStudentIds.add(sw.studentSection.Student__c);
+             } else{
+                pageUnselectedStudentIds.add(sw.studentSection.Student__c);
+            }
+          }
+          Set<Id> idsToRemove = new Set<Id>();
+          if(pageUnselectedStudentIds != null){
+          for(Id stIds : pageUnselectedStudentIds){
+              if(pageSelectedStudentIds.contains(stIds)){
+                  idsToRemove.add(stIds);
+              }
+           }
+          pageSelectedStudentIds.removeAll(idsToRemove);
+         }
+        List<Student_Section__c> finalList =[SELECT Active__c, Student__c, Student__r.Id, Student__r.Name, Student__r.Student_ID_Auto_Number__c, Student__r.Grade__c,Student__r.Local_Student_ID__c, Student_Name__c, Student_Grade__c,Section__c, Dosage_to_Date__c, Intervention_Enrollment_Start_Date__c,Enrollment_Start_Date__c, Enrollment_End_Date__c from Student_Section__c where Section__c =: secondSectionId AND Student__c =: pageSelectedStudentIds ORDER BY Student__r.Student_First_Name__c, Student__r.Student_Last_Name__c];
+        
+        selectedStudentCount = finalList.size();
+        finalstudentSections = new List<StudentInfoWrapper>();
+        enrolledStudentIDs = new Set<ID>();
+        selectedStudentIDs = new Set<Id>();
+      
+        for (Student_Section__c ss : finalList) {
+            finalstudentSections.add(new StudentInfoWrapper(ss));
+            selectedStudentIDs.add(ss.Student__c);
+            //enrolledStudentIDs.add(ss.Student__c);
+            if (ss.Active__c) {
+                enrolledStudentIDs.add(ss.Student__c);
+            }
+        }
+        System.debug('FinalAddtimeEvent++ '+finalstudentSections.size());
+
+        if (!selectedStudentIDs.isEmpty()) {
+            selectedIndicatorAreaFilter = 'all';
+            selectedGradeFilter = 'all';
+            enabledStudentIAFilter = true;
+            String query = buildAvailableStudentQuery(false);
+            Map<Id, Student__c> students = new Map<Id, Student__c>((List<Student__c>) Database.query(query));
+            //System.debug('students++ '+students.size());
+            enabledStudentIAFilter = false;
+            for (StudentInfoWrapper sw : finalstudentSections) {
+                sw.selected=true;
+                // if(pageSelectedStudentIds !=null && pageSelectedStudentIds.contains(sw.studentSection.Student__c)){
+                //     sw.selected=true;
+                //  }
+                if (students.containsKey(sw.studentSection.Student__c)) {
+                    Map<String, Object> data = new Map<String, Object>{
+                            'Name' => students.get(sw.studentSection.Student__c).Name,
+                            'Student_First_Name__c' => students.get(sw.studentSection.Student__c).Student_First_Name__c,
+                            'Id' => students.get(sw.studentSection.Student__c).Id,
+                            'Student_Last_Name__c' => students.get(sw.studentSection.Student__c).Student_Last_Name__c,
+                            'Student_ID_Auto_Number__c' => students.get(sw.studentSection.Student__c).Student_ID_Auto_Number__c,
+                            'Local_Student_ID__c' => students.get(sw.studentSection.Student__c).Local_Student_ID__c,
+                            'Grade__c' => students.get(sw.studentSection.Student__c).Grade__c
+                    };
+                    Student__c record = (Student__c) JSON.deserialize(
+                            JSON.serialize(data), Student__c.class
+                    );
+                    Student__c studentRecord = students.get(sw.studentSection.Student__c);
+                    sw.updateStudentInfoWrapper(studentRecord, students.get(sw.studentSection.Student__c).Indicator_Area_Student__r);
+                }
+            }
+            selectedStudentIDs = new Set<Id>();
+        }
+    }
+    ///// andded by juturi
 }

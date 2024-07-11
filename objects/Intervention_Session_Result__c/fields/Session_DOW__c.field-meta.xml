@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Session_DOW__c</fullName>
+    <description>Calculation of the session data into a corresponding day of the week</description>
+    <externalId>false</externalId>
+    <formula>CASE(
+MOD( Intervention_Session_Date__c - DATE( 1900, 1, 7 ), 7 ),
+0, &quot;Sunday&quot;,
+1, &quot;Monday&quot;,
+2, &quot;Tuesday&quot;,
+3, &quot;Wednesday&quot;,
+4, &quot;Thursday&quot;,
+5, &quot;Friday&quot;,
+&quot;Saturday&quot;
+)</formula>
+    <inlineHelpText>This value derive from a calculation of Intervention_Session_Date__c</inlineHelpText>
+    <label>Session DOW</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

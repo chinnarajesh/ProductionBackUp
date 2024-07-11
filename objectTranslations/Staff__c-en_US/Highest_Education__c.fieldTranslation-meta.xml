@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Highest Education --></label>
+    <name>Highest_Education__c</name>
+    <picklistValues>
+        <masterLabel>Doctorate</masterLabel>
+        <translation><!-- Doctorate --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Graduate</masterLabel>
+        <translation><!-- Graduate --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Masters</masterLabel>
+        <translation><!-- Masters --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Undergraduate</masterLabel>
+        <translation><!-- Undergraduate --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

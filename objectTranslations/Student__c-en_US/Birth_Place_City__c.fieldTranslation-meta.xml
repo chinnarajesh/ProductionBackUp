@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Displays the city in which the student was born. If you update this field, SchoolForce updates the corresponding field on the Contact record. --></help>
+    <label><!-- Birth Place - City --></label>
+    <name>Birth_Place_City__c</name>
+</CustomFieldTranslation>

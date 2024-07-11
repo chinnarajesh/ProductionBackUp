@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- The structure in which class instruction is arranged. --></help>
+    <label><!-- Class Organization --></label>
+    <name>Class_Organization__c</name>
+    <picklistValues>
+        <masterLabel>Ability Group Class</masterLabel>
+        <translation><!-- Ability Group Class --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Departmentalized Instruction</masterLabel>
+        <translation><!-- Departmentalized Instruction --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Elementary Enrichment Class</masterLabel>
+        <translation><!-- Elementary Enrichment Class --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Pull-Out Class</masterLabel>
+        <translation><!-- Pull-Out Class --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Self-Contained Class</masterLabel>
+        <translation><!-- Self-Contained Class --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Self-Contained Class (Special Education)</masterLabel>
+        <translation><!-- Self-Contained Class (Special Education) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Team-Taught Class</masterLabel>
+        <translation><!-- Team-Taught Class --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

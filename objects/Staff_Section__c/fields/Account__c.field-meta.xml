@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Account__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <inlineHelpText>Shouldn&apos;t be changed</inlineHelpText>
+    <label>School</label>
+    <referenceTo>Account</referenceTo>
+    <relationshipLabel>Staff/Section</relationshipLabel>
+    <relationshipName>Staff_Section</relationshipName>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

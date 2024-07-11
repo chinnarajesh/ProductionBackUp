@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- On Homework Tracker, Course will be displayed according to the order in this field (1 = Furthest Left). Any records with the default of 9999 will be displayed in A-Z order after the ordered records --></help>
+    <label><!-- Display Order --></label>
+    <name>Display_Order__c</name>
+</CustomFieldTranslation>

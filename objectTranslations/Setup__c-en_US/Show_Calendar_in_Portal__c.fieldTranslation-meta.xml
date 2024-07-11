@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- This will allow schools to display a calendar visible to students and parents. --></help>
+    <label><!-- Show Calendar in Portal --></label>
+    <name>Show_Calendar_in_Portal__c</name>
+</CustomFieldTranslation>

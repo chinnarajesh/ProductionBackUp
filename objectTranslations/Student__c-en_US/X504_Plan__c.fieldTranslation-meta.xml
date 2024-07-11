@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Indicates whether or not the student is enrolled in a 504 plan.  If you update this field, SchoolForce updates the corresponding field on the Contact record. When mass printing report cards, you can use this field to narrow down your search results. --></help>
+    <label><!-- 504 Plan --></label>
+    <name>X504_Plan__c</name>
+</CustomFieldTranslation>

@@ -76,7 +76,7 @@
                                         <label for="student-name">Student Name</label>
                                         <!-- <apex:inputField value="{!ss.Student__c}" styleClass="form-control input-sm" taborderhint="1" /> -->
                                         <div style="display: flex;">
-                                        <apex:inputText value="{!searchstudentName}" styleClass="form-control input-sm"/>
+                                        <apex:inputText value="{!searchstudentName}" styleClass="form-control input-sm" id="StudentName"/>
                                             <apex:image url="{!$Resource.searchIcon}" style="width: 28px;margin-left: 5px;margin-top: 2px;" onclick="StudentSerach2()" />
                                         </div>
                                     </div><!-- /.form-group -->
@@ -84,7 +84,7 @@
                                     <td>
                                     <div class="form-group">
                                         <label for="corps-member">Corps Member</label>
-                                        <apex:inputField value="{!sect.Intervention_Primary_Staff__c}" styleClass="form-control input-sm" taborderhint="2" />
+                                        <apex:inputField value="{!sect.Intervention_Primary_Staff__c}" styleClass="form-control input-sm" taborderhint="2" id="corpsMember" />
                                         <!-- filter on Intervention_Primary_Staff__c doesn`t work correct witout School__c-->
                                         <apex:inputField style="display: none;" value="{!sect.School__c}"/>
 
@@ -104,12 +104,12 @@
                                     <td>
                                     <div class="form-group date-group">
                                         <label for="start-date">Start Date</label>
-                                        <apex:inputField value="{!sect.Start_Date__c}" styleClass="form-control input-sm" taborderhint="3" />
+                                        <apex:inputField value="{!sect.Start_Date__c}" styleClass="form-control input-sm" taborderhint="3" id="startdate"/>
                                     </div><!-- /.form-group -->
                                     </td><td colspan="2" align="left">
                                     <div class="form-group date-group">
                                         <label for="end-date">End Date</label>
-                                        <apex:inputField value="{!sect.End_Date__c}" styleClass="form-control input-sm" taborderhint="4" />
+                                        <apex:inputField value="{!sect.End_Date__c}" styleClass="form-control input-sm" taborderhint="4" id="enddate"/>
                                     </div><!-- /.form-group -->
 
                                    </td>
@@ -132,7 +132,7 @@
                                             <th class="desktop">Student List</th>
                                             <th>Comments</th>
                                             <th>Primary Skill</th>
-                                            <th>In-Person Service or <br></br>Virtual Service</th>
+                                            <!-- <th>In-Person Service or <br></br>Virtual Service</th> -->
                                             <th>Other Skill</th>
                                             <th>Session Type</th>
                                             <th>Session Format</th>
@@ -159,9 +159,9 @@
                                                 
                                                 <td>{!s.studentList}</td>
                                                  <td><apex:outputField value="{!s.intervSection.Comments__c}"/></td>
-                                                 <td><apex:outputField value="{!s.intervSection.Skill_Primary__r.name}"/></td>
+                                                 <td><apex:outputText value="{!s.Primaryskill}"/></td>
                                                  <!--<td><apex:outputText value="{!s.Primaryskill}"></apex:outputText></td>-->
-                                                 <td><apex:outputField value="{!s.intervSection.All_avenues__c}"/></td>
+                                                 <!-- <td><apex:outputField value="{!s.intervSection.All_avenues__c}"/></td> -->
                                                  <td><apex:outputField value="{!s.intervSection.Skills_Covered_for_the_Session__c}"/></td>
                                                  <td><apex:outputField value="{!s.intervSection.Session_Type__c}"/></td>
                                                  <td><apex:outputField value="{!s.intervSection.Session_Format__c}"/></td>
@@ -209,7 +209,7 @@
                                             <th>Student List</th>
                                             <th>Comments</th>
                                             <th>Primary Skill</th>
-                                            <th>In-Person Service or <br></br>Virtual Service</th>
+                                            <!-- <th>In-Person Service or <br></br>Virtual Service</th> -->
                                             <!--<th>Tutoring Model</th>-->
                                             <th>Other Skill</th>
                                             <th>Session Type</th>
@@ -236,9 +236,9 @@
                                                 <!--<td><apex:outputField value="{!s.intervSection.Section__r.Name}"/></td>-->
                                                 <td style="width: initial;"><apex:outputText value="{!s.studentList}"></apex:outputText></td>
                                                 <td style="width: 1000px;"><apex:outputField value="{!s.intervSection.Comments__c}"/></td>
-                                                <td><apex:outputField value="{!s.intervSection.Skill_Primary__r.name}"/></td>
+                                                <td><apex:outputText value="{!s.Primaryskill}"/></td>
                                                 <!--<td><apex:outputText value="{!s.Primaryskill}"></apex:outputText></td>-->
-                                                <td><apex:outputField value="{!s.intervSection.All_avenues__c}"/></td>
+                                                <!-- <td><apex:outputField value="{!s.intervSection.All_avenues__c}"/></td> -->
                                                 <!--<td><apex:outputField value="{!s.intervSection.Tutoring_Model__c}"/></td>-->
                                                 <td><apex:outputField value="{!s.intervSection.Skills_Covered_for_the_Session__c}"/></td>
                                                 <td><apex:outputField value="{!s.intervSection.Session_Type__c}"/></td>
@@ -322,11 +322,33 @@
     </apex:composition>
     <script type="text/javascript">
         var generated = false;
+        var flag ;
         var tabelwidth = 'firstload';
         // jwerty.key('enter', false);
+        function TestFunction(){
+            //console.log('test method');
+
+            var val='';
+            flag='true';
+            //if(flag ==true){
+                //j$("input[id$='StudentName']").val(val);
+                j$("input[id$='startdate']").val(val);
+                j$("input[id$='corpsMember']").val(val);
+                j$("input[id$='enddate']").val(val);
+            //}
+            console.log('test flag one'+flag);
+            }
+       
+
+         //function studentsearch(){
+           // console.log( 'search log');
+           
+        //     flag=true;
+         //}
         j$ = jQuery.noConflict();
         j$(document).ready(function() {
            console.log( 'after');
+           //TestFunction();
             var contactTable1 = j$('[id$="sctnList"]').DataTable({
                 "sScrollY": "500px",
                 "bLengthChange": true,
@@ -335,7 +357,8 @@
                 "bInfo": false,
                 "aoColumnDefs": [{
                     "sWidth": "30%",
-                    "aTargets": [0]
+                    "aTargets": [0],
+                    "orderData": [1]
                 }],
                 "bAutoWidth": true,
                 "bSort": true,
@@ -346,12 +369,14 @@
                 "bJQueryUI": true,
                 "bSaveState": true,
                 iDisplayLength: 10,
-                "asStripClasses": ['odd', 'even']
+                "asStripClasses": ['odd', 'even'],
+                "order": [[1, 'desc']],
             });
             return false;
         });
 
         j$(document).ready(function() {
+            console.log( 'after 2');
             var contactTable = j$('[id$="sctnList1"]').DataTable({
                 "sScrollY": "500px",
                 "bLengthChange": true,
@@ -374,11 +399,15 @@
                 "asStripClasses": ['odd', 'even'],
                 
             });
+            TestFunction();
+          
+
         });
         //function enterstudent(){
          //   console.log('newdata'+document.getElementedById('.studentname').value());
         //}
         j$(document).ready(function() {
+            console.log( 'after 3');
             var contactTable = j$('[id$="tablesorter"]').DataTable({
                 "sScrollY": "500px",
                 "bLengthChange": true,
@@ -402,5 +431,8 @@
                 
             });
         });
+
+       
+
     </script>
 </apex:page>

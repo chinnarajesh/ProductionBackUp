@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Context_Time__c</fullName>
+    <inlineHelpText>Time at which the incident occurred.</inlineHelpText>
+    <label>Context-Time</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Context_Location__c</controllingField>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Before School</fullName>
+                <default>false</default>
+                <label>Before School</label>
+            </value>
+            <value>
+                <fullName>After School</fullName>
+                <default>false</default>
+                <label>After School</label>
+            </value>
+            <value>
+                <fullName>Arrival</fullName>
+                <default>false</default>
+                <label>Arrival</label>
+            </value>
+            <value>
+                <fullName>Class-Lesson/Meeting</fullName>
+                <default>false</default>
+                <label>Class-Lesson/Meeting</label>
+            </value>
+            <value>
+                <fullName>Class-Indep/Group Work</fullName>
+                <default>false</default>
+                <label>Class-Indep/Group Work</label>
+            </value>
+            <value>
+                <fullName>Class-Transition</fullName>
+                <default>false</default>
+                <label>Class-Transition</label>
+            </value>
+            <value>
+                <fullName>Class-Other</fullName>
+                <default>false</default>
+                <label>Class-Other</label>
+            </value>
+            <value>
+                <fullName>Room/Hall Transition</fullName>
+                <default>false</default>
+                <label>Room/Hall Transition</label>
+            </value>
+            <value>
+                <fullName>Lunch</fullName>
+                <default>false</default>
+                <label>Lunch</label>
+            </value>
+            <value>
+                <fullName>Recess</fullName>
+                <default>false</default>
+                <label>Recess</label>
+            </value>
+            <value>
+                <fullName>Dismissal</fullName>
+                <default>false</default>
+                <label>Dismissal</label>
+            </value>
+            <value>
+                <fullName>Evening Event</fullName>
+                <default>false</default>
+                <label>Evening Event</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+            <value>
+                <fullName>Transition In Room</fullName>
+                <default>false</default>
+                <label>Transition In Room</label>
+            </value>
+            <value>
+                <fullName>Transition In Hall/Stairs</fullName>
+                <default>false</default>
+                <label>Transition In Hall/Stairs</label>
+            </value>
+            <value>
+                <fullName>Transition In/Out Building</fullName>
+                <default>false</default>
+                <label>Transition In/Out Building</label>
+            </value>
+            <value>
+                <fullName>Pull Out</fullName>
+                <default>false</default>
+                <label>Pull Out</label>
+            </value>
+            <value>
+                <fullName>After Hours Event</fullName>
+                <default>false</default>
+                <label>After Hours Event</label>
+            </value>
+            <value>
+                <fullName>Community Circle/All School Meeting</fullName>
+                <default>false</default>
+                <label>Community Circle/All School Meeting</label>
+            </value>
+            <value>
+                <fullName>Fieldwork</fullName>
+                <default>false</default>
+                <label>Fieldwork</label>
+            </value>
+            <value>
+                <fullName>Special Class</fullName>
+                <default>false</default>
+                <label>Special Class</label>
+            </value>
+            <value>
+                <fullName>Special Block</fullName>
+                <default>false</default>
+                <label>Special Block</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Office</controllingFieldValue>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <controllingFieldValue>Lobby</controllingFieldValue>
+            <controllingFieldValue>Classroom</controllingFieldValue>
+            <controllingFieldValue>Hallway</controllingFieldValue>
+            <controllingFieldValue>Stairwell</controllingFieldValue>
+            <controllingFieldValue>Bathroom</controllingFieldValue>
+            <controllingFieldValue>Cafeteria</controllingFieldValue>
+            <controllingFieldValue>Gym</controllingFieldValue>
+            <valueName>Before School</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Office</controllingFieldValue>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <controllingFieldValue>Lobby</controllingFieldValue>
+            <controllingFieldValue>Classroom</controllingFieldValue>
+            <controllingFieldValue>Hallway</controllingFieldValue>
+            <controllingFieldValue>Stairwell</controllingFieldValue>
+            <controllingFieldValue>Bathroom</controllingFieldValue>
+            <controllingFieldValue>Cafeteria</controllingFieldValue>
+            <controllingFieldValue>Gym</controllingFieldValue>
+            <controllingFieldValue>Playground</controllingFieldValue>
+            <valueName>After School</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Office</controllingFieldValue>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <controllingFieldValue>Lobby</controllingFieldValue>
+            <controllingFieldValue>Hallway</controllingFieldValue>
+            <controllingFieldValue>Stairwell</controllingFieldValue>
+            <controllingFieldValue>Bathroom</controllingFieldValue>
+            <controllingFieldValue>Cafeteria</controllingFieldValue>
+            <controllingFieldValue>Gym</controllingFieldValue>
+            <valueName>Arrival</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Office</controllingFieldValue>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <controllingFieldValue>Specialist Room</controllingFieldValue>
+            <controllingFieldValue>Classroom</controllingFieldValue>
+            <controllingFieldValue>Bathroom</controllingFieldValue>
+            <controllingFieldValue>Cafeteria</controllingFieldValue>
+            <valueName>Lunch</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Office</controllingFieldValue>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <controllingFieldValue>Specialist Room</controllingFieldValue>
+            <controllingFieldValue>Classroom</controllingFieldValue>
+            <controllingFieldValue>Bathroom</controllingFieldValue>
+            <controllingFieldValue>Gym</controllingFieldValue>
+            <controllingFieldValue>Playground</controllingFieldValue>
+            <controllingFieldValue>Park</controllingFieldValue>
+            <valueName>Recess</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Office</controllingFieldValue>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <controllingFieldValue>Lobby</controllingFieldValue>
+            <controllingFieldValue>Classroom</controllingFieldValue>
+            <controllingFieldValue>Hallway</controllingFieldValue>
+            <controllingFieldValue>Stairwell</controllingFieldValue>
+            <controllingFieldValue>Bathroom</controllingFieldValue>
+            <controllingFieldValue>Cafeteria</controllingFieldValue>
+            <controllingFieldValue>Gym</controllingFieldValue>
+            <controllingFieldValue>Playground</controllingFieldValue>
+            <valueName>Dismissal</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Office</controllingFieldValue>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <controllingFieldValue>Lobby</controllingFieldValue>
+            <controllingFieldValue>Playground</controllingFieldValue>
+            <valueName>Evening Event</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Office</controllingFieldValue>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <controllingFieldValue>Lobby</controllingFieldValue>
+            <controllingFieldValue>Specialist Room</controllingFieldValue>
+            <controllingFieldValue>Classroom</controllingFieldValue>
+            <controllingFieldValue>Hallway</controllingFieldValue>
+            <controllingFieldValue>Stairwell</controllingFieldValue>
+            <controllingFieldValue>Bathroom</controllingFieldValue>
+            <controllingFieldValue>Cafeteria</controllingFieldValue>
+            <controllingFieldValue>Gym</controllingFieldValue>
+            <controllingFieldValue>Playground</controllingFieldValue>
+            <controllingFieldValue>Sidewalk/Street</controllingFieldValue>
+            <controllingFieldValue>Park</controllingFieldValue>
+            <valueName>Other</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Office</controllingFieldValue>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <controllingFieldValue>Lobby</controllingFieldValue>
+            <controllingFieldValue>Specialist Room</controllingFieldValue>
+            <controllingFieldValue>Hallway</controllingFieldValue>
+            <controllingFieldValue>Stairwell</controllingFieldValue>
+            <controllingFieldValue>Cafeteria</controllingFieldValue>
+            <controllingFieldValue>Gym</controllingFieldValue>
+            <controllingFieldValue>Sidewalk/Street</controllingFieldValue>
+            <valueName>Transition In Room</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Office</controllingFieldValue>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <controllingFieldValue>Lobby</controllingFieldValue>
+            <controllingFieldValue>Specialist Room</controllingFieldValue>
+            <controllingFieldValue>Hallway</controllingFieldValue>
+            <controllingFieldValue>Stairwell</controllingFieldValue>
+            <controllingFieldValue>Cafeteria</controllingFieldValue>
+            <controllingFieldValue>Gym</controllingFieldValue>
+            <controllingFieldValue>Sidewalk/Street</controllingFieldValue>
+            <valueName>Transition In Hall/Stairs</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Office</controllingFieldValue>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <controllingFieldValue>Lobby</controllingFieldValue>
+            <controllingFieldValue>Specialist Room</controllingFieldValue>
+            <controllingFieldValue>Hallway</controllingFieldValue>
+            <controllingFieldValue>Stairwell</controllingFieldValue>
+            <controllingFieldValue>Cafeteria</controllingFieldValue>
+            <controllingFieldValue>Gym</controllingFieldValue>
+            <controllingFieldValue>Sidewalk/Street</controllingFieldValue>
+            <valueName>Transition In/Out Building</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Office</controllingFieldValue>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <controllingFieldValue>Specialist Room</controllingFieldValue>
+            <controllingFieldValue>Cafeteria</controllingFieldValue>
+            <valueName>Pull Out</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <controllingFieldValue>Classroom</controllingFieldValue>
+            <valueName>Class-Lesson/Meeting</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <controllingFieldValue>Classroom</controllingFieldValue>
+            <valueName>Class-Indep/Group Work</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <valueName>Class-Transition</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <valueName>Class-Other</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <valueName>Room/Hall Transition</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <controllingFieldValue>Hallway</controllingFieldValue>
+            <controllingFieldValue>Stairwell</controllingFieldValue>
+            <controllingFieldValue>Bathroom</controllingFieldValue>
+            <controllingFieldValue>Cafeteria</controllingFieldValue>
+            <controllingFieldValue>Gym</controllingFieldValue>
+            <valueName>After Hours Event</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <controllingFieldValue>Hallway</controllingFieldValue>
+            <controllingFieldValue>Stairwell</controllingFieldValue>
+            <controllingFieldValue>Bathroom</controllingFieldValue>
+            <controllingFieldValue>Cafeteria</controllingFieldValue>
+            <valueName>Community Circle/All School Meeting</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <controllingFieldValue>Park</controllingFieldValue>
+            <controllingFieldValue>Fieldwork</controllingFieldValue>
+            <valueName>Fieldwork</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <controllingFieldValue>Bathroom</controllingFieldValue>
+            <controllingFieldValue>Cafeteria</controllingFieldValue>
+            <controllingFieldValue>Gym</controllingFieldValue>
+            <controllingFieldValue>Playground</controllingFieldValue>
+            <controllingFieldValue>Park</controllingFieldValue>
+            <valueName>Special Class</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <valueName>Special Block</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

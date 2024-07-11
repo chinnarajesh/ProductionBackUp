@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- This is the number of additional breakfasts served that day. --></help>
+    <label><!-- Additional Breakfasts Served --></label>
+    <name>Additional_Breakfasts_Served__c</name>
+</CustomFieldTranslation>

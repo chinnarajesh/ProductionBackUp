@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Did this incident occur during EDP? --></label>
+    <name>Did_this_incident_occur_during_EDP__c</name>
+</CustomFieldTranslation>

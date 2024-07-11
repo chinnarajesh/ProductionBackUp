@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Recommended_Time_per_Session__c</fullName>
+    <externalId>false</externalId>
+    <inlineHelpText>Recommended amount of time (in min) that each meeting, or session, of this Intervention should take to be effective. This number will display on all Intervention Sections created under this Program.</inlineHelpText>
+    <label>Recommended Time per Session (in mins)</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>
